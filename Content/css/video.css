@@ -1,0 +1,266 @@
+.header-banner {
+    min-width: 320px;
+    overflow: hidden;
+    padding: 160px 0 270px;
+    position: relative
+}
+
+.header-banner {
+    position: relative;
+}
+
+.header-banner--opacity {
+    background: rgba(0,0,0,0.1);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0
+}
+
+.header-banner--flexible-height, .header-banner[style*='height'] {
+    padding: 0;
+    height: 562px
+}
+
+    .header-banner--flexible-height .header-banner__title, .header-banner[style*='height'] .header-banner__title {
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        top: 50%
+    }
+
+.header-banner__cover {
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -2
+}
+
+.header-banner video {
+    bottom: 50%;
+    height: auto;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    right: 50%;
+    -webkit-transform: translateX(50%) translateY(50%);
+    -ms-transform: translateX(50%) translateY(50%);
+    transform: translateX(50%) translateY(50%);
+    width: auto;
+    z-index: -1
+}
+
+.header-banner__section {
+    background: #9b242d;
+    color: #fff;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 1.4em;
+    padding: 8px 14px 6px;
+    text-transform: uppercase
+}
+
+.header-banner__title {
+    margin: 0 auto;
+    min-width: 320px;
+    width: 1024px;
+    position: relative;
+    text-align: center;
+    z-index: 1
+}
+
+@media screen and (max-width:1064px) {
+    .header-banner__title {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%
+    }
+}
+
+.header-banner__title .care-logo {
+    width: 126px;
+    position: relative;
+    z-index: 99999999999999;
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.header-banner__title h1 {
+    color: #fff;
+    line-height: 34px;
+    margin-bottom: 25px;
+    font-size: 60px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-family: 'Montserrat Alternates';
+}
+
+.header-banner__title span {
+    color: #FF7A15;
+}
+
+.header-banner__title h2 {
+    color: #fff;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 10px;
+    line-height: 1;
+    line-height: 26px;
+    font-weight: normal;
+}
+
+.donate-btn2 {
+    display: block;
+    margin: auto;
+    width: 200px;
+    text-align: center;
+    padding: 7px 0;
+    text-transform: uppercase;
+    font-size: 20px;
+    border: 2px solid #fff;
+    color: #fff;
+    margin-top: 20px;
+}
+
+    .donate-btn2:hover {
+        background: #ffffff;
+        color: #FF7A15;
+        text-decoration: none;
+    }
+
+.scroll-down {
+    display: block;
+    margin: auto;
+    width: 50px;
+    margin-top: 20px;
+}
+
+@media all and (max-width: 1250px) {
+    .header-banner {
+        padding: 120px 0 250px;
+    }
+}
+
+@media all and (max-width: 1180px) {
+    .header-banner {
+        padding: 100px 0 210px;
+    }
+}
+
+@media all and (max-width: 1090px) {
+    .header-banner {
+        padding: 70px 0 170px;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .header-banner {
+        padding: 60px 0 140px;
+    }
+}
+
+@media all and (max-width: 900px) {
+    .header-banner {
+        padding: 70px 0 90px;
+    }
+
+    .header-banner__title h1 {
+        line-height: 30px;
+        font-size: 38px;
+    }
+
+    .header-banner__title span {
+        font-size: 48px;
+    }
+
+    .header-banner__title h2 {
+        font-size: 16px;
+    }
+
+    .donate-btn2 {
+        width: 160px;
+        padding: 6px 0;
+        font-size: 18px;
+    }
+
+    .scroll-down {
+        width: 40px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .header-banner {
+        padding: 60px 0 70px;
+    }
+
+    .header-banner__title h1 {
+        font-size: 31px;
+    }
+
+    .header-banner__title span {
+        font-size: 40px;
+    }
+}
+
+@media all and (max-width: 700px) {
+    .header-banner {
+        padding: 50px 0 50px;
+    }
+}
+
+@media all and (max-width: 650px) {
+    .header-banner {
+        padding: 60px 0 60px;
+    }
+
+    .header-banner__title h2 {
+        font-size: 31px;
+        display: none;
+    }
+}
+
+@media all and (max-width: 590px) {
+    .header-banner {
+        padding: 50px 0 50px;
+    }
+
+    .header-banner__title h1 {
+        font-size: 26px;
+    }
+
+    .header-banner__title span {
+        font-size: 34px;
+    }
+
+    .donate-btn2 {
+        width: 140px;
+        padding: 4px 0;
+        font-size: 16px;
+    }
+
+    .scroll-down {
+        width: 30px;
+    }
+}
+
+@media all and (max-width: 520px) {
+    .header-banner {
+        padding: 40px 0 40px;
+    }
+
+    .header-banner__title h1 {
+        font-size: 23px;
+    }
+
+    .header-banner__title span {
+        font-size: 28px;
+    }
+}

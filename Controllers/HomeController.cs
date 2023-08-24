@@ -12,6 +12,26 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
+        public ActionResult AimObjectives()
+        {
+            return View();
+        }
+
+        public ActionResult Design()
+        {
+            return View();
+        }
+
+        public ActionResult Intervention()
+        {
+            return View();
+        }
+
+
+        public ActionResult Journeysofar()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

@@ -1,0 +1,1462 @@
+@media all and (max-width: 1260px) {
+    .logo {
+        float: left;
+        max-width: 220px;
+        margin-top: 2px;
+    }
+
+    .div-manage {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .scale-intervention, .manage-achievement {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media all and (max-width: 1200px) {
+    .video-message h2 {
+        font-size: 40px;
+    }
+
+    .video-message p {
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .container-matter p {
+        margin-left: 100px;
+        margin-right: 30px;
+        line-height: 28px;
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 1100px) {
+    .video-message h2 {
+        font-size: 36px;
+    }
+
+    .img-lefter {
+        width: 30%;
+        margin-right: 30px;
+        margin-bottom: 20px;
+    }
+
+    .video-message p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .matter h2 {
+        font-size: 60px;
+        padding-top: 120px;
+        margin-left: 100px;
+    }
+
+    .matter h3 {
+        margin-left: 100px;
+    }
+
+    .matter p {
+        font-size: 16px;
+        margin: 20px 30px 20px 100px;
+    }
+
+    .social {
+        float: right;
+        margin-right: 0px;
+        margin-top: 24px;
+    }
+
+    .email-icon {
+        margin-top: 24px;
+    }
+
+    .donate-btn {
+        display: block;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+
+    .detail-center p, .what-we-do p {
+        padding: 15px 180px;
+    }
+
+    .container-matter {
+        padding: 40px 0;
+    }
+
+        .container-matter p {
+            margin-left: 80px;
+            margin-right: 20px;
+            line-height: 26px;
+            font-size: 14px;
+        }
+}
+
+@media all and (max-width: 1024px) {
+    .matter h2 {
+        font-size: 55px;
+        padding-top: 90px;
+        margin-left: 80px;
+    }
+
+    .botlogo {
+        width: 10%;
+        margin: 10px 2% 0 3%;
+    }
+
+    .history-banner h2, .care-team-banner h2, .maternal-health-banner h2, .newborn-care-banner h2, .nutrition-banner h2, .family-planning-banner h2, .kala-azar-banner h2 {
+        font-size: 40px;
+    }
+
+    .scale-intervention h2 {
+        font-size: 34px;
+    }
+
+    .container-matter {
+        padding: 30px 0;
+    }
+
+        .container-matter p {
+            margin-left: 70px;
+            margin-right: 20px;
+            line-height: 26px;
+            font-size: 14px;
+        }
+
+    .matter h3 {
+        margin-left: 80px;
+    }
+
+    .matter p {
+        font-size: 15px;
+        margin: 20px 30px 20px 80px;
+    }
+
+    .foot2 {
+        float: left;
+        width: 94%;
+        margin-right: 0%;
+        margin-left: 3%;
+    }
+
+    .detail-center p, .what-we-do p {
+        font-size: 18px;
+        line-height: 30px;
+        padding: 15px 150px;
+    }
+
+    .foot {
+        float: left;
+        width: 31%;
+        margin-left: 2%;
+        margin-right: 0%;
+    }
+
+    .foot3 {
+        float: right;
+        width: 33%;
+    }
+
+    .bihar-details h2 {
+        font-size: 36px;
+    }
+
+    .bihar-details h3 {
+        font-size: 20px;
+    }
+
+    .bihar-details p, .bihar-details li {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .prod-detail h2 {
+        font-size: 55px;
+    }
+
+    .video-message h2 {
+        font-size: 30px;
+    }
+
+    .pic-lefter {
+        width: 30%;
+        margin-right: 50px;
+        margin-bottom: 40px;
+    }
+
+    .content-details h2 {
+        font-size: 47px;
+    }
+
+    .content-details h3 {
+        font-size: 28px;
+    }
+
+    .content-details p {
+        font-size: 16px;
+        line-height: 27px;
+        padding-right: 10px;
+    }
+
+    .approach-point {
+        width: 52%;
+        margin-top: 20px;
+    }
+
+    .btsp-history p {
+        padding: 15px 80px;
+    }
+
+    .story-title h2 {
+        font-size: 36px;
+        line-height: 43px;
+    }
+
+    .newsroom-detail h3 {
+        font-size: 20px;
+    }
+
+    .banner_title h1 {
+        font-size: 50px;
+    }
+
+    .banner_title span {
+        font-size: 40px;
+    }
+
+    .contest-point a {
+        padding: 7px 14px;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+    }
+}
+
+@media all and (max-width: 920px) {
+    .title-manage {
+        margin-top: -30px;
+    }
+
+    .poetry-detail h3 {
+        font-size: 22px;
+    }
+
+    .contest-title br {
+        display: none;
+    }
+
+    .winner-post .winner-date {
+        padding: 5px 14px;
+        width: 120px;
+        font-size: 16px;
+    }
+
+    .winner-post h3 {
+        font-size: 19px;
+        margin-bottom: 15px;
+    }
+
+    .winner-post p {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .member-detail {
+        width: 47%;
+        margin: 15px 1.5%;
+    }
+
+    .banner_title h1 {
+        font-size: 40px;
+    }
+
+    .banner_title span {
+        font-size: 34px;
+    }
+
+    .story-title h2 {
+        font-size: 33px;
+        line-height: 40px;
+    }
+
+    .case-detail-detail {
+        width: 46%;
+        margin: 15px 2% 10px;
+    }
+
+        .case-detail-detail h3 {
+            font-size: 16px;
+            line-height: 23px;
+        }
+
+    .case-clear, .member-devider {
+        display: none;
+    }
+
+    .meter {
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 100%;
+    }
+
+    .mapper {
+        float: left;
+        width: 98%;
+        margin-right: 0px;
+        margin-left: 10px;
+    }
+
+    .story-detail2 {
+        width: 48%;
+    }
+
+    .impact-image {
+        float: left;
+        width: 90%;
+        margin: 20px 5%;
+    }
+
+    .story-detail {
+        width: 48%;
+    }
+
+    .story-breaker {
+        display: none;
+    }
+
+    .scale-intervention p {
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .manage-matter-text, .manage-matter-text2 {
+        float: right;
+        width: 100%;
+        background: rgba(214, 66, 39, 0.9);
+        color: #fff;
+        padding: 60px 0;
+    }
+
+    .manage-matter-text2 {
+        padding: 60px 30px;
+    }
+
+    .btsp-history p {
+        font-size: 17px;
+        line-height: 28px;
+        padding: 15px 50px;
+    }
+
+    .history-banner h2, .care-team-banner h2, .maternal-health-banner h2, .newborn-care-banner h2, .nutrition-banner h2, .family-planning-banner h2, .kala-azar-banner h2 {
+        font-size: 36px;
+    }
+
+    .approach-point p {
+        font-size: 17px;
+        line-height: 25px;
+    }
+
+    .container-bg {
+        float: right;
+        width: 100%;
+        height: 400px;
+        background: url(../images/what-we-do.jpg) top repeat-x;
+    }
+
+    .container-matter {
+        float: left;
+        width: 90%;
+        padding: 70px 0;
+    }
+
+    .detail-center p, .what-we-do p {
+        font-size: 18px;
+        line-height: 30px;
+        padding: 15px 120px;
+    }
+
+    .care-matter-photo {
+        display: none;
+    }
+
+    .round-text {
+        float: left;
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .matter h2 {
+        font-size: 55px;
+        padding-top: 130px;
+    }
+
+    .vide {
+        width: 100%;
+    }
+
+    .serve p {
+        font-size: 14px;
+    }
+
+    .video-message {
+        float: left;
+        width: 90%;
+        margin-left: 5%;
+        margin-top: -36px;
+        padding-bottom: 30px;
+    }
+
+    .bihar-details h2 {
+        font-size: 32px;
+    }
+
+    .bihar-details h3 {
+        font-size: 19px;
+    }
+
+    .bihar-details p, .bihar-details li {
+        font-size: 15px;
+        line-height: 26px;
+    }
+
+    .bihar-details ul {
+        padding-left: 10px;
+    }
+
+    .prod-detail h2 {
+        font-size: 50px;
+    }
+
+    .highlight-point h3 {
+        font-size: 21px;
+    }
+
+    .highlight-point p {
+        font-size: 15px;
+    }
+
+    .scl-icon {
+        float: left;
+        width: 20px;
+        margin-right: 10px;
+    }
+
+    .innovation {
+        width: 31%;
+        margin: 25px 1% 15px;
+    }
+
+    .care-achievement h2 {
+        font-size: 40px;
+    }
+
+    .achieve-pic {
+        width: 100px;
+    }
+
+    .pic-lefter {
+        width: 34%;
+        margin-right: 40px;
+    }
+
+    .content-details h2 {
+        font-size: 44px;
+    }
+
+    .content-details h3 {
+        font-size: 27px;
+    }
+
+    .content-details p {
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .bg-matter {
+        float: right;
+        width: 50%;
+    }
+
+        .bg-matter p {
+            font-size: 18px;
+            line-height: 35px;
+        }
+
+    .content-details {
+        padding: 20px 30px;
+    }
+
+    .partner-logo {
+        width: 30.3%;
+        margin: 9px 1.5%;
+    }
+
+    .innovate, .innovate2, .innovate3 {
+        float: left;
+        width: 96%;
+        margin: 20px 2% 20px;
+        color: #fff;
+    }
+
+        .innovate div, .innovate2 div, .innovate3 div {
+            display: block;
+            padding: 18px;
+            border: 1px solid #fff;
+            min-height: unset;
+        }
+
+    .manage-achievement h2 {
+        font-size: 35px;
+    }
+
+    .manage-achievement li {
+        font-size: 16px;
+    }
+
+    .devide-serve {
+        display: block;
+    }
+
+    .contest-point a {
+        padding: 5px 10px;
+        font-size: 13px;
+        letter-spacing: 0px;
+    }
+
+    .contest-details h2 {
+        font-size: 28px;
+    }
+
+    .caption-design h3 {
+        font-size: 21px;
+    }
+
+    .photograph-details {
+        width: 39%;
+    }
+
+    .contest-title h2 {
+        font-size: 27px;
+    }
+
+    .winner-point h3 {
+        font-size: 19px;
+    }
+
+    .winner-point h4 {
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .title-manage {
+        margin-top: 20px;
+    }
+
+    .botlogo {
+        width: 16%;
+        margin: 10px 2% 0 3%;
+    }
+
+    .pic-lefters {
+        float: none;
+        display: block;
+        margin: auto;
+        width: 70%;
+        margin-bottom: 5px;
+    }
+
+    .manage-who {
+        float: left;
+        width: 100%;
+    }
+
+    .contest-title h2 {
+        font-size: 25px;
+    }
+
+    .winner-post {
+        float: left;
+        width: 47%;
+        margin: 22px 1.5%;
+    }
+
+    .photograph {
+        width: 100%;
+    }
+
+    .photograph-details {
+        width: 90%;
+        margin-left: 25px;
+        margin-top: -30px;
+    }
+
+    .caption-design h3 {
+        font-size: 20px;
+    }
+
+    .contest-details h2 {
+        font-size: 25px;
+    }
+
+    .poetry-detail h3 {
+        font-size: 20px;
+    }
+
+    .hiders {
+        display: none;
+    }
+
+    .contest-hide {
+        display: none;
+    }
+
+    .impact-point {
+        width: 46%;
+        margin: 15px 2% 15px;
+    }
+
+    .subscribe h2 {
+        font-size: 20px;
+    }
+
+    .subscribe p {
+        font-size: 13px;
+    }
+
+    .work-with-us br {
+        display: none;
+    }
+
+    .newsroom-detail {
+        float: left;
+        width: 96%;
+        margin: 23px 2% 15px;
+    }
+
+    .story-title h2 {
+        font-size: 28px;
+        line-height: 37px;
+    }
+
+    .manage-stories h2 {
+        font-size: 20px;
+    }
+
+    .manage-stories p {
+        font-size: 13px;
+    }
+
+    .scale-intervention h2 {
+        font-size: 30px;
+    }
+
+    .img-lefter {
+        float: none;
+        width: 50%;
+        display: block;
+        margin-top: 25px;
+        margin-bottom: 1px;
+    }
+
+    .btsp-history p {
+        font-size: 16px;
+        line-height: 26px;
+        padding: 15px 20px;
+    }
+
+    .care-impact-bihar {
+        background: url(../images/our-impact.jpg) center center;
+    }
+
+    .history-banner h2, .care-team-banner h2, .maternal-health-banner h2, .newborn-care-banner h2, .nutrition-banner h2, .family-planning-banner h2, .kala-azar-banner h2 {
+        font-size: 33px;
+    }
+
+    .approach-point p {
+        font-size: 15px;
+        line-height: 23px;
+    }
+
+    .banner-message h2 {
+        font-size: 28px;
+    }
+
+    .detail-center p, .what-we-do p {
+        font-size: 17px;
+        line-height: 28px;
+        padding: 15px 80px;
+    }
+
+    .bg-matter {
+        float: right;
+        margin-right: 5%;
+        width: 90%;
+    }
+
+    .content-details h2 {
+        font-size: 38px;
+        margin-top: 0px;
+    }
+
+    .content-details h3 {
+        font-size: 25px;
+    }
+
+    .content-details p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .innovation {
+        width: 46%;
+        margin: 25px 2% 15px;
+    }
+
+    .hidden-break {
+        display: block;
+    }
+
+    .email-icon {
+        font-size: 15px;
+        margin-right: 0px;
+        padding-right: 10px;
+    }
+
+    .matter h2 {
+        font-size: 50px;
+        padding-top: 100px;
+    }
+
+    .sponsor-btn, .donate-btn {
+        font-size: 13px;
+        padding: 4px 15px;
+    }
+
+    .cln h3 {
+        font-size: 33px;
+    }
+
+    .blogg h2 {
+        font-size: 39px;
+    }
+
+    .post-tag h3 {
+        font-size: 17px;
+    }
+
+    .bihar-details h2 {
+        font-size: 29px;
+    }
+
+    .bihar-details h3 {
+        font-size: 18px;
+    }
+
+    .bihar-details p, .bihar-details li {
+        font-size: 14px;
+        line-height: 25px;
+    }
+
+    .prod-detail h2 {
+        font-size: 45px;
+    }
+
+    .highlight-point h3 {
+        font-size: 19px;
+    }
+
+    .highlight-point p {
+        font-size: 14px;
+    }
+
+    .social {
+        margin-top: 19px;
+        display: none;
+    }
+
+    #js-video {
+        display: none;
+    }
+
+    .page-banner, .banner_title, .fixed-social {
+        display: block;
+    }
+
+        .banner_title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .banner_title span {
+            font-size: 45px;
+        }
+
+        .banner_title h2 {
+            font-size: 17px;
+        }
+
+    .serve h3 {
+        font-size: 19px;
+    }
+
+    .serve p {
+        font-size: 14px;
+    }
+
+    .impact-image h2 {
+        font-size: 40px;
+    }
+
+    .impact-image span {
+        font-size: 35px;
+    }
+
+    .care-achievement {
+        padding: 0px 0px 10px;
+    }
+
+        .care-achievement h2 {
+            font-size: 34px;
+        }
+
+    .achieve-point {
+        float: left;
+        width: 30%;
+        margin: 0 1.6% 0;
+        margin-top: -65px;
+        margin-bottom: 70px;
+    }
+
+    .hider2 {
+        display: block;
+    }
+
+    .what-we-do h2, .internal_contest_bg h2 {
+        font-size: 36px;
+    }
+
+    .caption-trans-bg {
+        width: 80%;
+        margin-top: -50px;
+    }
+
+    .caption-detail p {
+        font-size: 17px;
+    }
+
+    .tagline h3 {
+        font-size: 18px;
+    }
+
+    .tagline p {
+        font-size: 15px;
+    }
+
+    .story-contest {
+        width: 98%;
+    }
+
+    .under {
+        width: 80%;
+    }
+}
+
+@media all and (max-width: 700px) {
+    .contest-point a {
+        padding: 4px 8px;
+        font-size: 12px;
+        margin: 0 -3px;
+    }
+
+    .contest-detail-pic {
+        float: left;
+        width: 100%;
+    }
+
+    .winner-point {
+        float: left;
+        width: 96%;
+        margin-left: 2%;
+        margin-top: -30px;
+    }
+
+    .contest-title h2 {
+        font-size: 23px;
+    }
+
+    .tagline {
+        width: 98%;
+    }
+
+    .poetry-detail p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .what-we-do p {
+        font-size: 15px;
+        line-height: 26px;
+    }
+
+    .banner-message h2 {
+        font-size: 26px;
+    }
+
+    .pic-lefter {
+        margin-right: 30px;
+        margin-bottom: 30px;
+    }
+
+    .impact-point h3 {
+        font-size: 27px;
+    }
+
+    .achieve-point h3 {
+        font-size: 20px;
+    }
+
+    .achieve-pic {
+        width: 80px;
+    }
+
+    .achieve-point p {
+        font-size: 13px;
+    }
+
+    .care-achievement h2 {
+        font-size: 30px;
+    }
+
+    .impact-point p {
+        font-size: 14px;
+    }
+
+    .round-text {
+        width: 94%;
+        margin-left: 3%;
+    }
+
+    .email-icon {
+        display: none;
+    }
+
+    .matter h2 {
+        font-size: 40px;
+        padding-top: 70px;
+    }
+
+    .foot {
+        float: left;
+        width: 47%;
+        margin-left: 3%;
+        margin-right: 0%;
+    }
+
+    .foot3 {
+        float: left;
+        width: 94%;
+        margin-left: 3%;
+    }
+
+    .bihar-details {
+        width: 100%;
+    }
+
+    .bihar-map {
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .bihar-point {
+        border: 1px solid #F46900;
+    }
+
+    .bihar-point {
+        float: left;
+        width: 46%;
+        padding: 10px;
+        color: #fff;
+        margin-left: 2%;
+    }
+
+    .map-view {
+        float: none;
+        display: block;
+        margin: auto;
+        max-width: 350px;
+    }
+
+    .video-message h2 {
+        font-size: 27px;
+    }
+
+    .highlight-point h3 {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+
+    .highlight-point p {
+        font-size: 13px;
+    }
+
+    .highlight-btn, .highlight-btn2 {
+        padding: 12px 40px;
+        font-size: 16px;
+    }
+
+    .banner_title h1 {
+        font-size: 31px;
+    }
+
+    .banner_title span {
+        font-size: 38px;
+    }
+
+    .banner_title h2 {
+        font-size: 16px;
+    }
+
+    .social-icon {
+        display: block;
+    }
+
+    .prod-detail h2 {
+        font-size: 40px;
+    }
+
+    .content-details h2 {
+        font-size: 36px;
+    }
+
+    .content-details h3 {
+        font-size: 24px;
+    }
+
+    .what-we-do h2, .internal_contest_bg h2 {
+        font-size: 33px;
+    }
+
+    .manage-achievement h2 {
+        font-size: 32px;
+    }
+
+    .manage-achievement li {
+        font-size: 15px;
+    }
+
+    .poem-post {
+        width: 98%;
+    }
+}
+
+@media all and (max-width: 620px) {
+    .pic-lefters {
+        width: 80%;
+    }
+
+    .botlogo {
+        width: 20%;
+        margin: 10px 2% 0 3%;
+    }
+
+    .under {
+        width: 90%;
+    }
+
+    .story-contest h3 {
+        font-size: 23px;
+    }
+
+    .story-contest p {
+        font-size: 14px;
+    }
+
+    .story-detail2 {
+        width: 98%;
+    }
+
+    .winner-point h3 {
+        font-size: 18px;
+    }
+
+    .contest-manage-page p {
+        font-size: 16px;
+        line-height: 25px;
+    }
+
+    .winner-point h4 {
+        font-size: 15px;
+    }
+
+    .contest-title h2 {
+        font-size: 21px;
+        font-weight: normal;
+    }
+
+    .tagline h3 {
+        font-size: 17px;
+    }
+
+    .tagline p {
+        font-size: 14px;
+    }
+
+    .caption-detail p {
+        font-size: 15px;
+    }
+
+    .caption-design h3 {
+        font-size: 18px;
+    }
+
+    .poetry-detail p {
+        font-size: 15px;
+        line-height: 26px;
+    }
+
+    .subscribe h2 {
+        font-size: 18px;
+    }
+
+    .poetry-detail h3 {
+        font-size: 18px;
+    }
+
+    .subscribe p {
+        font-size: 13px;
+    }
+
+        .subscribe p br {
+            display: none;
+        }
+
+    .care-achievement h2 {
+        font-size: 26px;
+    }
+
+    .member-detail {
+        width: 90%;
+        margin: 15px 5%;
+    }
+
+    .case-detail-detail {
+        width: 97%;
+        margin: 15px 1.5% 10px;
+    }
+
+    .story-point {
+        width: 100%;
+        min-height: unset;
+    }
+
+    .round-left {
+        float: left;
+        width: 80%;
+        margin: 10%;
+    }
+
+    .story-detail {
+        width: 98%;
+    }
+
+    .img-lefter {
+        width: 70%;
+    }
+
+    .partner-logo {
+        width: 46%;
+        margin: 9px 2%;
+    }
+
+    .btsp-history p {
+        font-size: 15px;
+        line-height: 25px;
+        padding: 15px 10px;
+    }
+
+    .approach-point {
+        float: right;
+        width: 96%;
+        margin-left: 2%;
+        margin-top: 0px;
+    }
+
+    .matter h2, .matter h3 {
+        margin-left: 50px;
+    }
+
+    .detail-center p, .what-we-do p {
+        padding: 15px 50px;
+    }
+
+    .what-we-do p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .content-details h2 {
+        font-size: 32px;
+    }
+
+    .content-details h3 {
+        font-size: 23px;
+    }
+
+    .matter p {
+        font-size: 15px;
+        margin: 20px 30px 20px 50px;
+    }
+
+    .achieve-point {
+        width: 46%;
+        margin: 0 2% 0;
+        margin-top: -65px;
+        margin-bottom: 70px;
+    }
+
+    .hider {
+        display: block;
+    }
+
+    .hider2 {
+        display: none;
+    }
+
+    .impact-image h2 {
+        font-size: 35px;
+    }
+
+    .impact-image span {
+        font-size: 30px;
+    }
+
+    .innovation {
+        width: 96%;
+        margin: 25px 2% 15px;
+    }
+
+    .video-message h2 {
+        font-size: 23px;
+    }
+
+    .email-icon {
+        font-size: 13px;
+        margin-right: 10px;
+        padding-right: 8px;
+    }
+
+    .donate-btn {
+        margin-top: 22px;
+    }
+
+    .cln h3 {
+        font-size: 29px;
+    }
+
+    .blogg h2 {
+        font-size: 36px;
+    }
+
+    .bihar-point h3 {
+        font-size: 32px;
+        width: 100px;
+    }
+
+    .bihar-point span {
+        font-size: 12px;
+    }
+
+    .prod-detail h2 {
+        font-size: 40px;
+    }
+
+    .highlight-btn, .highlight-btn2 {
+        padding: 10px 33px;
+        font-size: 15px;
+    }
+
+    .email-icon {
+        display: none;
+    }
+
+    .banner_title h1 {
+        font-size: 28px;
+    }
+
+    .banner_title span {
+        font-size: 33px;
+    }
+
+    .banner_title h2 {
+        font-size: 15px;
+    }
+
+    .prod-detail h2 {
+        font-size: 37px;
+    }
+
+    .highlight-point {
+        float: left;
+        width: 96%;
+        margin: 10px 2% 20px;
+        color: #fff;
+    }
+
+    .what-we-do h2, .internal_contest_bg h2 {
+        font-size: 30px;
+    }
+
+    .contest-loger h3 {
+        font-size: 17px;
+    }
+
+    .footer-stat li {
+        letter-spacing: 0.3px;
+        font-size: 12px;
+        padding: 7px 6px 7px 0px;
+    }
+}
+
+@media all and (max-width: 520px) {
+    .winner-post {
+        float: left;
+        width: 96%;
+        margin: 16px 2%;
+    }
+
+    .pic-lefters {
+        width: 90%;
+    }
+
+    .story-contest h3 {
+        font-size: 22px;
+    }
+
+    .story-contest p {
+        font-size: 13px;
+    }
+
+    .contest-manage-page p {
+        font-size: 15px;
+        line-height: 24px;
+    }
+
+    .matter h2, .matter h3 {
+        margin-left: 30px;
+    }
+
+    .contest-point a {
+        padding: 3px 5px;
+        font-size: 11px;
+    }
+
+    .margin-bottom {
+        width: 90%;
+    }
+
+    .member-detail {
+        width: 96%;
+        margin: 15px 2%;
+    }
+
+    .care-achievement h2 {
+        font-size: 24px;
+    }
+
+    .img-lefter {
+        width: 80%;
+        margin: auto;
+    }
+
+    .what-we-do h2, .internal_contest_bg h2 {
+        font-size: 28px;
+    }
+
+    .pic-lefter {
+        display: block;
+        float: none;
+        clear: both;
+        width: 90%;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+
+    .matter p {
+        font-size: 15px;
+        margin: 20px 30px 20px 30px;
+    }
+
+    .video-message h2 {
+        font-size: 22px;
+    }
+
+    .care-service {
+        margin-top: -100px;
+    }
+
+        .care-service h2 {
+            font-size: 24px;
+            width: 150px;
+            height: 150px;
+            padding: 44px 0;
+        }
+
+    .cln h3 {
+        font-size: 26px;
+    }
+
+    .blogg h2 {
+        font-size: 31px;
+    }
+
+    .highlight-btn, .highlight-btn2 {
+        padding: 9px 28px;
+        font-size: 14px;
+    }
+
+    .banner_title h1 {
+        font-size: 25px;
+    }
+
+    .banner_title span {
+        font-size: 29px;
+    }
+
+    .banner_title h2 {
+        font-size: 14px;
+    }
+
+    .donate-btn {
+        margin-top: 22px;
+        display: none;
+    }
+}
+
+@media all and (max-width: 440px) {
+    .sponsor-btn, .donate-btn {
+        font-size: 11px;
+        padding: 3px 10px;
+        margin-top: 19px;
+    }
+
+    .contest-point a {
+        padding: 3px 4px;
+        font-size: 10px;
+    }
+
+    .highlight-btn, .highlight-btn2 {
+        padding: 7px 22px;
+        font-size: 12px;
+    }
+
+    .care-service {
+        margin-top: -60px;
+    }
+}
