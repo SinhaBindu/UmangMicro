@@ -6,9 +6,11 @@
     <title>UMANG Site</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <base href="@UmangMicro.Manager.CommonModel.GetBaseUrl()" />
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,5 +42,23 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+    @if (TempData["ToastMsg"] != null)
+    {
+        <script>
+
+            var success = @((TempData["ToastMsg"] != null).ToString().ToLower());
+            if (success == true) {
+                var jsonToast = JSON.parse(decodeHtml('@TempData["ToastMsg"]'));
+                CreateToasterMessage(jsonToast.MsgTitle, jsonToast.MsgBody, jsonToast.MsgType);
+            }
+            $(function () {
+                $("#tooltip").text($(this).attr('alt'));
+            });
+
+        </script>
+    }
 </body>
 </html>
+
+

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UM_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="DistrictId" Type="Int32" />
+    <Property Name="BlockId" Type="Int32" />
+    <Property Name="ClusterId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetRoles" Relationship="UM_DBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="Block_Mast">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DistId_fk" Type="Int32" />
+    <Property Name="LG_Block_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BlockName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Cluster_Mast">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="BlockId_fk" Type="Int32" />
+    <Property Name="ClusterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="HelpDeskName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Dist_Mast">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="Dist_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="State_Mast">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="UM_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Block_Mast" EntityType="Self.Block_Mast" />
+    <EntitySet Name="Cluster_Mast" EntityType="Self.Cluster_Mast" />
+    <EntitySet Name="Dist_Mast" EntityType="Self.Dist_Mast" />
+    <EntitySet Name="State_Mast" EntityType="Self.State_Mast" />
+    <EntitySet Name="AspNetRoles" EntityType="UM_DBModel.AspNetRole" />
+    <AssociationSet Name="AspNetUserRoles" Association="UM_DBModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="tbl_Registration" EntityType="UM_DBModel.tbl_Registration" />
+  </EntityContainer>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="UM_DBModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="AspNetUserRoles">
+    <End Type="UM_DBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="UM_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="tbl_Registration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="DistrictId" Type="Int32" />
+    <Property Name="BlockId" Type="Int32" />
+    <Property Name="ClusterId" Type="Int32" />
+    <Property Name="Village" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Visited" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsSkillTraining" Type="Boolean" />
+    <Property Name="IsMarriage" Type="Boolean" />
+    <Property Name="IsStudy" Type="Boolean" />
+    <Property Name="SocialClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TillStudied" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsWork" Type="Boolean" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsPsychometric" Type="Boolean" />
+    <Property Name="PsyYes_Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Advice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsFollowUp" Type="Int32" />
+    <Property Name="FollowUp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedDt" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>
