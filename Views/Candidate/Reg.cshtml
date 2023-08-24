@@ -256,7 +256,8 @@
         $(document).ready(function () {
       
             $('#LanguangeType').change(function () {
-            
+
+
                 var url = '@Url.Action("Reg", "Candidate")';
                 window.location.href = url + '?LangType='+$(this).val();
                 });
