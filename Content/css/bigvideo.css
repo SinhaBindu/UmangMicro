@@ -1,0 +1,42 @@
+#big-video-wrap {
+    overflow: hidden;
+    position: static;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+#big-video-vid, #big-video-image {
+    position: absolute;
+}
+.slider {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.video-wrapper {
+    position: relative;
+    width: 800%;
+    height: 100%;
+    z-index: 0;
+}
+.screen {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 12.5%;
+    float: left;
+}
+.screen video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.big-image, .screen video {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+}
