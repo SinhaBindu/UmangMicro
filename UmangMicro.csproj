@@ -271,6 +271,7 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+
     <EntityDeploy Include="Models\DBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
@@ -278,6 +279,7 @@
     <Content Include="Models\DBModel.edmx.diagram">
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Content>
+
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -327,11 +329,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+
     <Content Include="Views\Shared\_Alerts.cshtml" />
     <Content Include="Views\Master\UserDetaillist.cshtml" />
     <Content Include="Views\Master\_UserDetailData.cshtml" />
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Candidate\Reg.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
