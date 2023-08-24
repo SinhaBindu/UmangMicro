@@ -256,7 +256,8 @@
         $(document).ready(function () {
       
             $('#LanguangeType').change(function () {
-            
+
+
                 var url = '@Url.Action("Reg", "Candidate")';
                 window.location.href = url + '?LangType='+$(this).val();
                 });
@@ -300,8 +301,40 @@
 
 
         });
-        //function () {
+        function CUData() {
 
-        //}
+            // $('#global-loader').css('background', 'transparent').css('display', 'block');
+            //FormData formdata=java
+            //$.ajax({
+            //    url: document.baseURI + 'Candidate/Reg',
+            //    type: "Post",
+            //    //data: {
+            //    //    'StartDt': sd, 'EndDt': ed, 'LeadProcessedIds': leadIds
+            //    //},
+            //    //dataType: "json",
+            //    //cache: false,
+            //    //contentType: false,
+            //    //processData: false,
+            //    success: function (response) {
+            //        if (response.StatusType == 'success') {
+            //            CreateToasterMessage("Lead", response.Message, response.StatusType);
+            //            BindData();
+            //        }
+            //        else {
+            //            CreateToasterMessage("Error", response.Message, response.StatusType);
+            //            //$('#global-loader').css('background', 'transparent').css('display', 'none');
+            //        }
+            //        //$('#global-loader').css('background', 'transparent').css('display', 'none');
+            //    },
+            //    error: function (req, error) {
+            //        if (error === 'error') { error = req.statusText; }
+            //        var errormsg = 'There was a communication error: ' + error;
+            //        //$('#submission-data').html(errormsg);
+            //        //$('#submission-data').addClass("text-danger");
+            //        //$('#global-loader').css('background', 'transparent').css('display', 'none');
+            //    }
+            //});
+
+        }
     </script>
 }
