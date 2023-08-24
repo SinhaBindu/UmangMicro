@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace UmangMicro.Models
@@ -48,11 +49,12 @@ namespace UmangMicro.Models
 
     public class LoginViewModel
     {
+        public string Id { get; set; }
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
-
+      
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -61,9 +63,9 @@ namespace UmangMicro.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
-
     public class RegisterViewModel
     {
+        public string Id { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,8 +81,74 @@ namespace UmangMicro.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Display(Name = "Mobile No")]
+        public string PhoneNumber { get; set; }
+        [Display(Name = "Mobile No Confirmed")]
+        public string PhoneNumberConfirmed { get; set; }
+        [Display(Name = "State")]
+        public int? StateId { get; set; }
+        [Display(Name = "District")]
+        public int? DistrictId { get; set; }
+        [Display(Name = "Block")]
+        public int? BlockId { get; set; }
+        [Display(Name = "Cluster")]
+        public int? ClusterId { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+        [Display(Name = "Role")]
+        public string Role { get; set; }
+        public string CreatedBY { get; set; }
+        public DateTime CreatedDt { get; set; }
     }
+    public class UserEditViewModel
+    {
+        public string Id { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+        [Display(Name = "Mobile No")]
+        public string PhoneNumber { get; set; }
+        [Display(Name = "Mobile No Confirmed")]
+        public string PhoneNumberConfirmed { get; set; }
+        [Display(Name = "State")]
+        public int? StateId { get; set; }
+        [Display(Name = "District")]
+        public int? DistrictId { get; set; }
+        [Display(Name = "Block")]
+        public int? BlockId { get; set; }
+        [Display(Name = "Cluster")]
+        public int? ClusterId { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+        [Display(Name = "Role")]
+        public string Role { get; set; }
+    }
+    public class UserViewModel
+    {
+        public string Id { get; set; }
+        public string PhoneNumber { get; set; }
+        public int DistrictId { get; set; }
+        public string District { get; set; }
+        public int BlockId { get; set; }
+        public string Block { get; set; }
+        public int ClusterId { get; set; }
+        public string Cluster { get; set; }
+        public string Role { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+    }
     public class ResetPasswordViewModel
     {
         [Required]
@@ -98,7 +166,6 @@ namespace UmangMicro.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
         public string Code { get; set; }
     }
 

@@ -8,7 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using UmangMicro.Manager;
 using UmangMicro.Models;
+using static UmangMicro.Manager.Enums;
 
 namespace UmangMicro.Controllers
 {
@@ -136,7 +138,8 @@ namespace UmangMicro.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize]
+        //[AllowAnonymous]
         public ActionResult Register()
         {
             return View();
@@ -144,26 +147,44 @@ namespace UmangMicro.Controllers
 
         //
         // POST: /Account/Register
+        [Authorize]
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            UM_DBEntities dbe = new UM_DBEntities();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var uptbl = dbe.AspNetUsers.Find(user.Id);
+                    if (uptbl != null)
+                    {
+                        //Role mapping
+                        var result1 = UserManager.AddToRole(user.Id, model.Role);
+
+                        uptbl.Name = model.Name;
+                        uptbl.StateId = 20;
+                        uptbl.DistrictId = model.DistrictId;
+                        uptbl.BlockId = model.BlockId;
+                        uptbl.ClusterId = model.ClusterId;
+                        uptbl.CreatedBY = user.Id;
+                        uptbl.CreatedDt = DateTime.Now;
+                        dbe.SaveChanges();
+                    }
+                    // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserDetaillist", "Master");
                 }
                 AddErrors(result);
             }
@@ -172,6 +193,97 @@ namespace UmangMicro.Controllers
             return View(model);
         }
 
+        //
+        // GET: /Account/EditUser
+        [AllowAnonymous]
+        public ActionResult EditUser(string id)
+        {
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                UM_DBEntities dbe = new UM_DBEntities();
+                var user = dbe.AspNetUsers.Find(id);
+                var model = new UserEditViewModel
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                    DistrictId = user.DistrictId.Value,
+                    BlockId = user.BlockId.Value,
+                    ClusterId = user.ClusterId.Value,
+                    Role = user.AspNetRoles.FirstOrDefault().Name
+                };
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Register", "Account");
+            }
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        //public async Task<ActionResult> EditUser(UserEditViewModel model)
+        public ActionResult EditUser(UserEditViewModel model)
+        {
+            UM_DBEntities dbe = new UM_DBEntities();
+            if (ModelState.IsValid)
+            {
+                var user = dbe.AspNetUsers.Find(model.Id);
+                if (user != null)
+                {
+                    if (!dbe.AspNetUsers.Any(x => x.Email == model.Email && x.Id != model.Id))
+                    {
+                        user.UserName = user.Email = model.Email;
+                        user.PhoneNumber = model.PhoneNumber;
+                        user.Name = model.Name;
+                        user.DistrictId = model.DistrictId;
+                        user.BlockId = model.BlockId;
+                        user.ClusterId = model.ClusterId;
+                        user.CreatedBY = user.Id;
+                        
+                        var userRoles = UserManager.GetRoles(model.Id);
+                        foreach (var item in userRoles)
+                        {
+                            if (model.Role != item)
+                            {
+                                UserManager.RemoveFromRoles(model.Id, item);
+                                UserManager.AddToRole(model.Id, model.Role);
+                            }
+                        }
+
+                        GlobalUtilityManager.MessageToaster(this, "Edit User", Enums.GetEnumDescription(Enums.eReturnReg.Update), eAlertType.success.ToString());
+                        return RedirectToAction("UserDetaillist", "Master");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("DuplicateEmail", "Email already exists!");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("UserNotFound", "User Not Found");
+                }
+            }
+            return View(model);
+        }
+        public ActionResult Register_Lock(RegisterViewModel model)
+        {
+            var lockoutEndDate = DateTime.Now.Date;
+            UserManager.SetLockoutEndDate(model.Id, DateTimeOffset.Now.Date);
+            UserManager.SetLockoutEnabled(model.Id, false);
+            return RedirectToLocal("~/Master/UserDetaillist");
+        }
+        public ActionResult Register_Enable(RegisterViewModel model)
+        {
+            var lockoutEndDate = DateTime.Now.Date;
+            UserManager.SetLockoutEndDate(model.Id, DateTimeOffset.Now.Date);
+            UserManager.SetLockoutEnabled(model.Id, true);
+            return RedirectToLocal("~/Master/UserDetaillist");
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
