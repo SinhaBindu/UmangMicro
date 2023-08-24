@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FoolproofValidation, Version=0.9.5851.39121, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\FoolproofValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="IronBarCode, Version=4.0.2.18638, Culture=neutral, PublicKeyToken=b971bb3971bdf306, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\IronBarCode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SubSonic.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,12 +141,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -168,14 +191,62 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CandidateController.cs" />
+    <Compile Include="Controllers\CounsellorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Manager\Alert.cs" />
+    <Compile Include="Manager\AppConstants.cs" />
+    <Compile Include="Manager\BaseLineSPManager.cs" />
+    <Compile Include="Manager\CommonModel.cs" />
+    <Compile Include="Manager\Enums.cs" />
+    <Compile Include="Manager\Extension.cs" />
+    <Compile Include="Manager\GlobalUtilityManager.cs" />
+    <Compile Include="Manager\JsonResponseData.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Block_Mast.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cluster_Mast.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dist_Mast.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RegModel.cs" />
+    <Compile Include="Models\State_Mast.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Registration.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -184,154 +255,31 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\aos.css" />
-    <Content Include="Content\css\assets\large_left.png" />
-    <Content Include="Content\css\assets\large_right.png" />
-    <Content Include="Content\css\assets\loader.gif" />
-    <Content Include="Content\css\bigvideo.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\font-awesome.css" />
-    <Content Include="Content\css\fonts.css" />
-    <Content Include="Content\css\initcarousel-1.css" />
-    <Content Include="Content\css\milestone.css" />
-    <Content Include="Content\css\responsive.css" />
-    <Content Include="Content\css\sass-compiled.css" />
-    <Content Include="Content\css\settings4361.css" />
-    <Content Include="Content\css\sider-nav.css" />
-    <Content Include="Content\css\smartphoto.min.css" />
-    <Content Include="Content\css\style.css" />
-    <Content Include="Content\css\super-menu.css" />
-    <Content Include="Content\css\tabbing.css" />
-    <Content Include="Content\css\testimonial.css" />
-    <Content Include="Content\css\video-bootstrap.css" />
-    <Content Include="Content\css\video-popup.css" />
-    <Content Include="Content\css\video.css" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\images\about-umang.jpg" />
-    <Content Include="Content\images\activities\activity-1.webp" />
-    <Content Include="Content\images\activities\activity-2.webp" />
-    <Content Include="Content\images\activities\activity-3.webp" />
-    <Content Include="Content\images\activities\activity-4.webp" />
-    <Content Include="Content\images\adolescent.png" />
-    <Content Include="Content\images\aim-box-trans-bg.jpg" />
-    <Content Include="Content\images\aims-objective.webp" />
-    <Content Include="Content\images\arrow-left.png" />
-    <Content Include="Content\images\arrow-right.png" />
-    <Content Include="Content\images\arrow.png" />
-    <Content Include="Content\images\backtotopicon.png" />
-    <Content Include="Content\images\balance.png" />
-    <Content Include="Content\images\banner-text-bg.png" />
-    <Content Include="Content\images\belief.png" />
-    <Content Include="Content\images\bot-ar.png" />
-    <Content Include="Content\images\bounce-arrow.png" />
-    <Content Include="Content\images\child-marriage.jpg" />
-    <Content Include="Content\images\child-marriage.png" />
-    <Content Include="Content\images\design-banner.jpg" />
-    <Content Include="Content\images\directon.png" />
-    <Content Include="Content\images\district-saturation.jpeg" />
-    <Content Include="Content\images\empowerment-framework\public-life.webp" />
-    <Content Include="Content\images\empowerment-framework\umang-assumption.webp" />
-    <Content Include="Content\images\empowerment-framework\umang-expectation.webp" />
-    <Content Include="Content\images\godda.png" />
-    <Content Include="Content\images\influence-arrow.png" />
-    <Content Include="Content\images\influence\info-1.png" />
-    <Content Include="Content\images\influence\info-2.png" />
-    <Content Include="Content\images\influence\info-3.png" />
-    <Content Include="Content\images\influence\info-4.png" />
-    <Content Include="Content\images\influence\info-5.png" />
-    <Content Include="Content\images\intervention-banner.jpg" />
-    <Content Include="Content\images\jamtara.png" />
-    <Content Include="Content\images\jharkhan-child-marriage-map.png" />
-    <Content Include="Content\images\jslps.png" />
-    <Content Include="Content\images\map-icon.png" />
-    <Content Include="Content\images\mdl-ar.png" />
-    <Content Include="Content\images\mother-daughter-relation\daughter-education.webp" />
-    <Content Include="Content\images\mother-daughter-relation\enriched.webp" />
-    <Content Include="Content\images\mother-daughter-relation\nurture.webp" />
-    <Content Include="Content\images\mother-daughter-relation\protect.webp" />
-    <Content Include="Content\images\mother-daughter-relation\resolving.webp" />
-    <Content Include="Content\images\mother-daughter.webp" />
-    <Content Include="Content\images\mther-daughter.webp" />
-    <Content Include="Content\images\non-compliance.png" />
-    <Content Include="Content\images\partnership-banner.jpg" />
-    <Content Include="Content\images\partnership-team.webp" />
-    <Content Include="Content\images\pci.png" />
-    <Content Include="Content\images\pilot.jpeg" />
-    <Content Include="Content\images\scroll_down.gif" />
-    <Content Include="Content\images\search.png" />
-    <Content Include="Content\images\section-bg.jpg" />
-    <Content Include="Content\images\shg-arrow.png" />
-    <Content Include="Content\images\shg-structure.png" />
-    <Content Include="Content\images\shg-women-group.png" />
-    <Content Include="Content\images\shg.webp" />
-    <Content Include="Content\images\slider\slide-1.webp" />
-    <Content Include="Content\images\slider\slide-2.webp" />
-    <Content Include="Content\images\slider\slide-3.webp" />
-    <Content Include="Content\images\Socioecological Model_Umang.png" />
-    <Content Include="Content\images\theoratical-framework.webp" />
-    <Content Include="Content\images\timeline-banner.jpg" />
-    <Content Include="Content\images\timeline\arrow-down.png" />
-    <Content Include="Content\images\timeline\arrow-up.png" />
-    <Content Include="Content\images\timeline\black-arrow.png" />
-    <Content Include="Content\images\timeline\blue-arrow.png" />
-    <Content Include="Content\images\timeline\dark-pink-arrow.png" />
-    <Content Include="Content\images\timeline\orange-arrow.png" />
-    <Content Include="Content\images\timeline\tm-arrow-left.png" />
-    <Content Include="Content\images\timeline\tm-arrow-right.png" />
-    <Content Include="Content\images\timeline\tm-black-arrow-hl.png" />
-    <Content Include="Content\images\timeline\tm-blue-arrow-sm-hl.png" />
-    <Content Include="Content\images\timeline\tm-blue-lg-arrow-hl.png" />
-    <Content Include="Content\images\timeline\tm-orange-arrow-hl.png" />
-    <Content Include="Content\images\timeline\tm-orange-sm-arrow-hl.png" />
-    <Content Include="Content\images\timeline\tm-pink-arrow-hl.png" />
-    <Content Include="Content\images\top-ar.png" />
-    <Content Include="Content\images\umang-logo.png" />
-    <Content Include="Content\images\white-curve-bg.png" />
-    <Content Include="Content\images\women-collective.jpg" />
-    <Content Include="Content\images\yellow-curve-bg.png" />
-    <Content Include="Content\js\amazingcarousel.js" />
-    <Content Include="Content\js\aos.js" />
-    <Content Include="Content\js\bootstrap.min.js" />
-    <Content Include="Content\js\common.js" />
-    <Content Include="Content\js\ddmm.js" />
-    <Content Include="Content\js\initcarousel-1.js" />
-    <Content Include="Content\js\jquery.expander.js" />
-    <Content Include="Content\js\jquery.imagesloaded.min.js" />
-    <Content Include="Content\js\jquery.min.js" />
-    <Content Include="Content\js\js\bigslide.js" />
-    <Content Include="Content\js\js\bootstrap.min.js" />
-    <Content Include="Content\js\js\datepicker.js" />
-    <Content Include="Content\js\js\jquery.js" />
-    <Content Include="Content\js\js\main.js" />
-    <Content Include="Content\js\lib.min.js" />
-    <Content Include="Content\js\main.js" />
-    <Content Include="Content\js\modernizr-2.6.2.js" />
-    <Content Include="Content\js\modernizr.js" />
-    <Content Include="Content\js\plugins\jquery.themepunch.plugins.min4361.js" />
-    <Content Include="Content\js\plugins\jquery.themepunch.revolution.min4361.js" />
-    <Content Include="Content\js\smartphoto.js" />
-    <Content Include="Content\js\smoothscroll.js" />
-    <Content Include="Content\js\submenu-2.js" />
-    <Content Include="Content\js\video\combined.js" />
-    <Content Include="Content\js\video\jquery-1.7.2.min.js" />
-    <Content Include="Content\js\video\skrollr.js" />
-    <Content Include="Content\js\widgets.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\DBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DBModel.edmx.diagram">
+      <DependentUpon>DBModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -341,7 +289,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JS\Master.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\TreeTable.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -376,16 +327,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Home\AimObjectives.cshtml" />
-    <Content Include="Views\Home\Design.cshtml" />
-    <Content Include="Views\Home\Intervention.cshtml" />
-    <Content Include="Views\Home\JourneySoFar.cshtml" />
-    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_Alerts.cshtml" />
+    <Content Include="Views\Master\UserDetaillist.cshtml" />
+    <Content Include="Views\Master\_UserDetailData.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Candidate\Reg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Counsellor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -399,6 +349,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -433,7 +386,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
