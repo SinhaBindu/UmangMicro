@@ -4,7 +4,7 @@
     ViewBag.Title = "Reg";
 }
 
-@using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @class = "form-horizontal", role = "form", autocomplete = "off" }))
+@using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id="formid", @class = "form-horizontal", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.ID)
     @Html.AntiForgeryToken()
@@ -242,7 +242,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -300,9 +300,53 @@
                     $('#ClusterId').val('@Model.ClusterId');
             }
 
+            $('#formid').submit(function (e) {
+                e.preventDefault();
+                CUData();
+            })
+
 
         });
         function CUData() {
+            debugger;
+            //var formDataJson = $('#formid').serialize();
+            var formData = new FormData($('#formid')[0]);
+
+            //formData.append('tax_file', $('input[type=file]')[0].files[0]);
+
+            $.ajax({
+                type: "POST",
+                url: document.baseURI + "Candidate/Reg/",
+                data: formData,
+                //use contentType, processData for sure.
+                contentType: false,
+                processData: false,
+                //beforeSend: function () {
+                //    $('.modal .ajax_data').prepend('<img src="' +
+                //        base_url +
+                //        '"asset/images/ajax-loader.gif" />');
+                //    //$(".modal .ajax_data").html("<pre>Hold on...</pre>");
+                //    $(".modal").modal("show");
+                //},
+                success: function (msg) {
+
+                    //$(".modal .ajax_data").html("<pre>" + msg +
+                    //    "</pre>");
+                    //$('#close').hide();
+                },
+                error: function () {
+                    //$(".modal .ajax_data").html(
+                    //    "<pre>Sorry! Couldn't process your request.</pre>"
+                    //); // 
+                    //$('#done').hide();
+                }
+            });
+
+
+           // type: 'POST',
+             //   contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                //    processData: false, // NEEDED, DON'T OMIT THIS
+           // ... Other options like success and etc
 
             // $('#global-loader').css('background', 'transparent').css('display', 'block');
             //FormData formdata=java

@@ -19,53 +19,53 @@ namespace UmangMicro.Models
         }
         public RegModel(string name) { }
         public int ID { get; set; }
-        [Required]
+       // [Required]
         public string Name { get; set; }
-        [Required]
+       // [Required]
         public string FatherName { get; set; }
-        [Required]
+       // [Required]
         public string MotherName { get; set; }
         //[Required]
         public Nullable<int> StateId { get; set; }
-        [Required]
+       // [Required]
         public Nullable<int> DistrictId { get; set; }
-        [Required]
+       // [Required]
         public Nullable<int> BlockId { get; set; }
-        [Required]
+       // [Required]
         public Nullable<int> ClusterId { get; set; }
-        [Required]
+       // [Required]
         public string Village { get; set; }
         //[Required]
         public string CaseID { get; set; }
-        [Required]
+       // [Required]
         public string Visited { get; set; }
-        [Required]
+       // [Required]
         public Nullable<System.DateTime> DOB { get; set; }
-        [Required]
+       // [Required]
         public string Age { get; set; }
-        [Required]
+       // [Required]
         public string MobileNo { get; set; }
-        [Required]
+       // [Required]
         public Nullable<bool> IsSkillTraining { get; set; }
-        [Required]
+       // [Required]
         public Nullable<bool> IsMarriage { get; set; }
-        [Required]
+       // [Required]
         public Nullable<bool> IsStudy { get; set; }
-        [Required]
+       // [Required]
         public string SocialClass { get; set; }
-        [Required]
+       // [Required]
         public string TillStudied { get; set; }
-        [Required]
+       // [Required]
         public Nullable<bool> IsWork { get; set; }
-        [Required]
+       // [Required]
         public string Reason { get; set; }
-        [Required]
+       // [Required]
         public bool IsPsychometric { get; set; }
         //[RequiredIf("IsPsychometric", true, ErrorMessageResourceName = "PsyYes_Result")]
         public string PsyYes_Result { get; set; }
-        [Required]
+       // [Required]
         public string Advice { get; set; }
-        [Required]
+       // [Required]
         public Nullable<int> IsFollowUp { get; set; }
         public bool IsFollowUpCheck { get; set; }
         //[RequiredIf("IsFollowUpCheck", true, ErrorMessageResourceName = "FollowUp")]
