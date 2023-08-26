@@ -10,17 +10,10 @@
           rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @*<link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/responsive.css" rel="stylesheet">
-        <link href="css/font-awesome.css" rel="stylesheet">
-        <link href="css/fonts.css" rel="stylesheet">
-        <link href="css/super-menu.css" rel="stylesheet" type="text/css" media="screen" />
-        <link rel="stylesheet" href="css/aos.css" />*@
     <!-- JS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
     <base href="@UmangMicro.Manager.CommonModel.GetBaseUrl()" />
-    <script type="text/javascript" src="/Content/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -49,12 +42,12 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-    <script src="/Content/js/widgets.js"></script>
-    <script src="/Content/js/ddmm.js"></script>
+    <script src="~/Content/js/widgets.js"></script>
+    <script src="~/Content/js/ddmm.js"></script>
     <!-- Smooth Scroll -->
-    <script type="text/javascript" src="/Content/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="~/Content/js/smoothscroll.js"></script>
     <!-- Content Animate Code -->
-    <script src="/Content/js/aos.js"></script>
+    <script src="~/Content/js/aos.js"></script>
     <script>
         AOS.init({
             easing: 'ease-out-back',

@@ -34,7 +34,7 @@
 }
 #ddmenu li {
 	margin: 0;
-	padding: 5px 18px 4px;
+	padding: 12px 18px 12px;
 	font-size: 14px;
 	display: inline-block;
 	position: relative;
@@ -221,27 +221,32 @@
 	font-size: 16px;
 }
 @media only screen and (max-width: 1200px) {
-#ddmenu li {
-	padding: 0 15px;
-}
+	#ddmenu li {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 }
 @media only screen and (max-width: 1140px) {
-#ddmenu li {
-	padding: 0 10px;
-}
+	#ddmenu li {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }
 /*styles for mobile*/
-@media only screen and (max-width: 1050px) {
-#ddmenu {
-	display: block;
-	float: none;
-	background: #000;
-	margin-top: 5px;
-	z-index: 9999999;
-}
-#ddmenu .column.mayHide {
-	display: none;
-}
+@media only screen and (max-width: 1024px) {
+	#ddmenu {
+		display: block;
+		float: none;
+		background: #3A1F2E;
+		margin-top: 5px;
+		z-index: 9999999;
+	}
+	.top-heading br {
+		display: none;
+	}
+	#ddmenu .column.mayHide {
+		display: none;
+	}
 .super-menu {
 	margin-top: 5px;
 	background: #ccc
@@ -250,12 +255,12 @@
 	background: #ccc;
 }
 /*override the original settings*/
-#ddmenu ul {
-	width: 100%;
-	display: none;
-	border-radius: 0;
-	background: #ccc;
-}
+	#ddmenu ul {
+		width: 100%;
+		display: none;
+		border-radius: 0;
+		background: #FFFBFA;
+	}
 #ddmenu li {
 	position: relative;
 	display: block;
@@ -339,7 +344,7 @@
 	box-sizing: content-box;
 }
 #ddmenu .menu-icon-active {
-	background-color: #E2E2E2;
+	background-color: #fff;
 	color: #000;
 }
 #ddmenu .menu-icon-active::before {
