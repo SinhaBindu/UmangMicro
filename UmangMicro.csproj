@@ -255,8 +255,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-<<<<<<< Updated upstream
-=======
     <Content Include="Content\css\aos.css" />
     <Content Include="Content\css\assets\large_left.png" />
     <Content Include="Content\css\assets\large_right.png" />
@@ -290,7 +288,9 @@
     <Content Include="Content\images\aim-mother-daughter.jpg" />
     <Content Include="Content\images\aims-objective.jpg" />
     <Content Include="Content\images\arrow-left.png" />
+    <Content Include="Content\images\arrow-maroon.png" />
     <Content Include="Content\images\arrow-right.png" />
+    <Content Include="Content\images\arrow-yellow.png" />
     <Content Include="Content\images\arrow.png" />
     <Content Include="Content\images\backtotopicon.png" />
     <Content Include="Content\images\balance.png" />
@@ -397,7 +397,6 @@
     <Content Include="Content\js\video\jquery-1.7.2.min.js" />
     <Content Include="Content\js\video\skrollr.js" />
     <Content Include="Content\js\widgets.js" />
->>>>>>> Stashed changes
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

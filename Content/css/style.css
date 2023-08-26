@@ -1374,14 +1374,55 @@ img {
 .div-block {
     margin: auto;
     max-width: 1200px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     position: relative;
     padding-bottom: 50px;
     margin-top: 40px;
 }
+
+    .div-block::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+        background: gray;
+    }
+
+    .div-block::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .div-block::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+        .div-block::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .div-block::-webkit-scrollbar-thumb:horizontal {
+            background: #000;
+            border-radius: 10px;
+        }
+
+.model-scroller {
+    width: 700px;
+    max-width: none;
+    margin: auto;
+}
+
 .box-responsive {
     width: 1200px;
     padding: 0 0 0 20px;
 }
+
+.boxes-responsive {
+    width: 1200px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    display: none
+}
+
 .box-2-responsive {
     width: 680px;
     padding: 0 0 20px 0px;
@@ -1389,6 +1430,7 @@ img {
     overflow-y: hidden;
     overflow-x: scroll;
 }
+
 .intervention-info h2, .intervention-info h3 {
     text-align: center;
 }
@@ -1830,13 +1872,13 @@ img {
     -moz-transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -o-transform: scale(1.05);
-    -ms-transform: scale(1.05); /* IE 9 */
+    -ms-transform: scale(1.05);
 }
 
 .design-graph {
     margin: auto;
     max-width: 1200px;
-    padding: 50px 0;
+    padding: 50px 0 40px;
 }
 
     .design-graph h2 {
@@ -1847,28 +1889,39 @@ img {
     }
 
 .graph-flex {
-    display: flex;
     margin: auto;
     max-width: 1200px;
-    gap: 30px;
+    margin-top: 60px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 30px
 }
 
-.graph-box-1, .graph-box-2, .graph-box-3 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.graph-scroll {
+    width: 1200px;
+    max-width: none;
 }
 
 .graph-box-1 {
-    background: url('../images/empowerment-framework/umang-assumption.webp') center top;
+    float: left;
+    width: 320px;
 }
 
 .graph-box-2 {
-    background: url('../images/empowerment-framework/public-life.webp') center top;
+    float: left;
+    width: 360px;
 }
 
 .graph-box-3 {
-    background: url('../images/empowerment-framework/umang-expectation.webp') right top;
+    float: left;
+    width: 320px;
+}
+
+.graph-arrow {
+    float: left;
+    width: 80px;
+    margin-top: 20px
 }
 
 .graph-txt, .graph-img {
@@ -1876,147 +1929,163 @@ img {
 }
 
 .graph-txt {
-    padding: 40px 30px;
+    padding: 20px 10px;
     font-size: 22px;
     flex: 1;
     font-weight: 600;
+    text-align: center;
+    height: 70px !important;
+    color: #fff
 }
 
 .bgr1 {
-    background: #FBC982;
-    color: #000;
+    background: #5B2C54;
 }
 
-.bgr2 {
-    background: #5B2C54;
-    color: #fff;
-    font-size: 17px;
+.graph-box-2 {
+    position: relative;
+    border: 1px solid #5B2C54;
+    padding: 20px 0;
+    height: 280px;
 }
 
 .bgr3 {
-    background: #F3987A;
-    color: #fff;
-}
-
-.height-giver {
-    height: 300px;
+    background: #5B2C54;
 }
 
 .graph-img {
     position: relative;
 }
 
-.hidden-content, .hidden-content2, .hidden-content3 {
+.hidden-content, .hidden-content3 {
     position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0;
     top: 0px;
     visibility: hidden;
-    background: #FBC982;
-    background: linear-gradient(to right, white 50%, rgba(251, 201, 130, 0.9) 50%);
+    height: 250px;
 }
 
 .hidden-content {
     background: #5B2C54;
-    background: linear-gradient(to right, white 50%, rgba(251, 201, 130, 0.9) 50%);
+    background: linear-gradient(to top, rgba(251, 201, 130, 1) 100%, rgba(251, 201, 130, 1) 100%);
     background-size: 200% 100%;
-    background-position: left bottom;
-    transition: all 1s ease;
-}
-
-.hidden-content2 {
-    background: #FBC982;
-    background: linear-gradient(to right, white 50%, rgba(91, 44, 84, 0.9) 50%);
-    background-size: 200% 100%;
-    background-position: left bottom;
+    background-position: top bottom;
     transition: all 1s ease;
 }
 
 .hidden-content3 {
-    background: #F3987A;
-    background: linear-gradient(to right, white 50%, rgba(243, 152, 122, 0.9) 50%);
+    background: #5B2C54;
+    background: linear-gradient(to top, rgba(243, 152, 122, 1) 100%, rgba(243, 152, 122, 1) 100%);
     background-size: 200% 100%;
-    background-position: left bottom;
+    background-position: top bottom;
     transition: all 1s ease;
 }
 
-    .hidden-content ul, .hidden-content2 ul, .hidden-content3 ul {
+    .hidden-content ul, .hidden-content3 ul {
         padding: 30px 0 10px;
         margin: 0px;
     }
 
-    .hidden-content li, .hidden-content2 li, .hidden-content3 li {
-        font-size: 18px;
-        padding: 8px 25px 12px;
+    .hidden-content li, .hidden-content3 li {
+        font-size: 15px;
+        padding: 8px 15px 12px;
         color: #000;
         list-style: none;
     }
 
-    .hidden-content2 li, .hidden-content3 li {
+    .hidden-content3 li {
         color: #fff;
     }
 
-        .hidden-content li .fa, .hidden-content2 li .fa, .hidden-content3 li .fa {
+        .hidden-content li .fa, .hidden-content3 li .fa {
             margin-right: 10px;
         }
 
 .graph-box-1:hover .hidden-content, .graph-box-2:hover .hidden-content2, .graph-box-3:hover .hidden-content3 {
     opacity: 1;
     visibility: visible;
-    background-position: right bottom;
+    background-position: top bottom;
 }
 
 .round-achieve, .round-resource, .round-agency {
-    display: block;
-    width: 105px;
-    height: 105px;
-    background: #FBC982;
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    background: rgba(156, 181, 208, 0.8);
+    border: 1px solid #325176;
     text-align: center;
-    color: #000;
+    color: #1F334A;
     font-weight: bold;
     border-radius: 100%;
-    padding-top: 32px;
-    margin: auto;
     margin-top: 10px;
     font-size: 12px;
 }
 
+.round-achieve {
+    top: 0px;
+    left: 120px;
+    padding-top: 43px
+}
+
 .round-resource {
-    padding-top: 20px;
-    float: left;
-    margin-left: 76px;
-    margin-top: -10px;
-    font-size: 13px;
+    top: 90px;
+    left: 65px;
+    padding-top: 34px
 }
 
 .round-agency {
-    padding-top: 32px;
-    float: right;
-    margin-right: 76px;
-    margin-top: -10px;
-    font-size: 13px;
+    top: 90px;
+    right: 55px;
+    padding-top: 43px
 }
 
-.peer-network, .ability-define {
-    padding: 12px 20px;
-    background: #FBC982;
-    color: #000;
-    float: left;
-    width: 170px;
+.peer-network, .ability-define, .enhance-life {
+    padding: 7px 12px;
+    background: #5B2C54;
+    color: #fff;
     text-align: center;
     font-size: 12px;
-    font-weight: bold;
-    margin-top: 12px;
+    position: absolute;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 600ms, visibility 600ms;
+    transition: opacity 600ms, visibility 600ms;
+}
+
+.enhance-life {
+    top: -20px;
+    left: 10px;
+    right: 10px;
 }
 
 .peer-network {
-    margin-left: 6px;
+    top: 236px;
+    left: -30px;
+    width: 140px;
 }
 
 .ability-define {
-    float: right;
-    margin-right: 6px;
+    top: 236px;
+    right: -30px;
+    width: 140px;
+}
+
+.round-achieve:hover + .enhance-life {
+    visibility: visible;
+    opacity: 1;
+}
+
+.round-resource:hover + .peer-network {
+    visibility: visible;
+    opacity: 1;
+}
+
+.round-agency:hover + .ability-define {
+    visibility: visible;
+    opacity: 1;
 }
 
 .map-control {
