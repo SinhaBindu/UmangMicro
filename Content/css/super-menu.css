@@ -6,12 +6,22 @@
 	/* border-bottom: 2px solid #FBC982; */
 	/* padding-top: 10px; */
 }
-.nav-i {
-	float: left;
-	width: 14px;
-	margin-right: 10px;
-	margin-top: 1px;
+.login-btn {
+	background: #F26522;
+	color: #fff;
+	border-radius: 7px;
+	padding: 9px 18px;
 }
+	.login-btn:hover {
+		background: #fff;
+		color: #5B2C54 !important;
+	}
+	.nav-i {
+		float: left;
+		width: 14px;
+		margin-right: 10px;
+		margin-top: 1px;
+	}
 #ddmenu {
 	max-width: 1200px;
 	display: block;
@@ -34,7 +44,7 @@
 }
 #ddmenu li {
 	margin: 0;
-	padding: 12px 18px 12px;
+	padding: 12px 14px 12px;
 	font-size: 14px;
 	display: inline-block;
 	position: relative;
