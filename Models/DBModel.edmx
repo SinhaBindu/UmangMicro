@@ -88,6 +88,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegDate" Type="date" />
           <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="MotherName" Type="nvarchar" MaxLength="200" />
@@ -101,14 +102,14 @@
           <Property Name="DOB" Type="date" />
           <Property Name="Age" Type="nvarchar" MaxLength="50" />
           <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsSkillTraining" Type="bit" />
-          <Property Name="IsMarriage" Type="bit" />
-          <Property Name="IsStudy" Type="bit" />
+          <Property Name="IsSkillTraining" Type="int" />
+          <Property Name="IsMarriage" Type="int" />
+          <Property Name="IsStudy" Type="int" />
           <Property Name="SocialClass" Type="nvarchar" MaxLength="500" />
           <Property Name="TillStudied" Type="nvarchar" MaxLength="500" />
-          <Property Name="IsWork" Type="bit" />
+          <Property Name="IsWork" Type="int" />
           <Property Name="Reason" Type="nvarchar(max)" />
-          <Property Name="IsPsychometric" Type="bit" />
+          <Property Name="IsPsychometric" Type="int" />
           <Property Name="PsyYes_Result" Type="nvarchar(max)" />
           <Property Name="Advice" Type="nvarchar" MaxLength="500" />
           <Property Name="IsFollowUp" Type="int" />
@@ -265,6 +266,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegDate" Type="DateTime" Precision="0" />
           <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MotherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -278,14 +280,14 @@
           <Property Name="DOB" Type="DateTime" Precision="0" />
           <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsSkillTraining" Type="Boolean" />
-          <Property Name="IsMarriage" Type="Boolean" />
-          <Property Name="IsStudy" Type="Boolean" />
+          <Property Name="IsSkillTraining" Type="Int32" />
+          <Property Name="IsMarriage" Type="Int32" />
+          <Property Name="IsStudy" Type="Int32" />
           <Property Name="SocialClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="TillStudied" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IsWork" Type="Boolean" />
+          <Property Name="IsWork" Type="Int32" />
           <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsPsychometric" Type="Boolean" />
+          <Property Name="IsPsychometric" Type="Int32" />
           <Property Name="PsyYes_Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Advice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsFollowUp" Type="Int32" />
@@ -423,6 +425,7 @@
                 <ScalarProperty Name="MotherName" ColumnName="MotherName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

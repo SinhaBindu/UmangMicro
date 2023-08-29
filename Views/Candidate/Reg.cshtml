@@ -4,250 +4,256 @@
     ViewBag.Title = "Reg";
 }
 
-@using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id="formid", @class = "form-horizontal", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id = "formid", @class = "form-horizontal", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.ID)
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>RegModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguangeType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.LanguangeType, CommonModel.GetLanguangeType(), null, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(model => model.LanguangeType, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <h4>RegModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.LanguangeType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.LanguangeType, CommonModel.GetLanguangeType(), null, new { @class = "form-control", @required = "required" })
+            @Html.ValidationMessageFor(model => model.LanguangeType, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.Label(Model.DisplayName1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.RegDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RegDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+            @Html.ValidationMessageFor(model => model.RegDate, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.Label(Model.DisplayMN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayName1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.Label(Model.DisplayFN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayMN, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
         </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayFN, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayDId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayDId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+            @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayBId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayBId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+            @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayClId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.ClusterId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(model => model.ClusterId, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayClId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.ClusterId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+            @Html.ValidationMessageFor(model => model.ClusterId, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayVillageTxt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Village, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Village, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayVillageTxt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Village, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Village, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @*<div class="form-group">
-                @Html.Label(Model.CaseID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CaseID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayVisitedTxt, htmlAttributes: new { @class = "control-label col-md-2" })
+    @*<div class="form-group">
+            @Html.Label(Model.CaseID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Visited, CommonModel.GetVisited(), null, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(model => model.Visited, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CaseID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayDOBTxt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayVisitedTxt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Visited, CommonModel.GetVisited(), null, new { @class = "form-control", @required = "required" })
+            @Html.ValidationMessageFor(model => model.Visited, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayAgeTxt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayDOBTxt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control datepicker" } })
+            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayMobileTxt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayAgeTxt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayIsSKTN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @foreach (var item in CommonModel.GetYesNo())
-                    {
-                        @Html.RadioButtonFor(model => model.IsSkillTraining, item.Value, new { id = "IsSKTN," + item.Value }) @item.Text<br />
-                    }
-                    @Html.ValidationMessageFor(model => model.IsSkillTraining, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.Label(Model.DisplayMobileTxt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label(Model.DisplayIsMG, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @foreach (var item in CommonModel.GetYesNo())
-                    {
-                        @Html.RadioButtonFor(model => model.IsMarriage, item.Value, new { id = "IsMG" + item.Value }) @item.Text<br />
-                    }
-                    @Html.ValidationMessageFor(model => model.IsMarriage, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayIsSTDY, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @foreach (var item in CommonModel.GetYesNo())
-                    {
-                        @Html.RadioButtonFor(model => model.IsStudy, item.Value, new { id = "IsSTDY" + item.Value }) @item.Text<br />
-                    }
-                    @Html.ValidationMessageFor(model => model.IsStudy, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplaySC, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SocialClass, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SocialClass, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayTillSTDY, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TillStudied, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TillStudied, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayIsWK, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*<div class="checkbox">*@
-                    @foreach (var item in CommonModel.GetYesNo())
-                    {
-                        @Html.RadioButtonFor(model => model.IsWork, item.Value, new { id = "IsWK" + item.Value }) @item.Text<br />
-                    }
-                    @Html.ValidationMessageFor(model => model.IsWork, "", new { @class = "text-danger" })
-                @*</div>*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayRESON, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayIsPSYMT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                        @foreach (var item in CommonModel.GetYesNo())
-                        {
-                            @Html.RadioButtonFor(model => model.IsPsychometric, item.Value, new { id = "IsPSYMT" + item.Value }) @item.Text<br />
-                        }
-                        @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
-                    </div>
-            </div>
-        </div>
-
-        <div class="form-group" hidden id="div-psyr">
-            @Html.Label(Model.DisplayPSYRESULT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PsyYes_Result, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PsyYes_Result, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayADVC, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Advice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Advice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(Model.DisplayIsFLWUP, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @foreach (var item in CommonModel.GetYesNo())
-                    {
-                        @Html.RadioButtonFor(model => model.IsFollowUp, item.Value, new { id = "IsFLW" + item.Value }) @item.Text<br />
-                    }
-                    @Html.ValidationMessageFor(model => model.IsFollowUp, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group" hidden id="div-flwup">
-            @Html.Label(Model.DisplayFLWUP, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FollowUp, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FollowUp, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+    <div class="form-group">
+        @Html.Label(Model.DisplayIsSKTN, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @foreach (var item in CommonModel.GetYesNo())
+                {
+                    @Html.RadioButtonFor(model => model.IsSkillTraining, item.Value, new { id = "IsSKTN" + item.Value }) @item.Text<br />
+                }
+                @Html.ValidationMessageFor(model => model.IsSkillTraining, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
-}
 
+    <div class="form-group">
+        @Html.Label(Model.DisplayIsMG, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @foreach (var item in CommonModel.GetYesNo())
+                {
+                    @Html.RadioButtonFor(model => model.IsMarriage, item.Value, new { id = "IsMG" + item.Value }) @item.Text<br />
+                }
+                @Html.ValidationMessageFor(model => model.IsMarriage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplayIsSTDY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @foreach (var item in CommonModel.GetYesNo())
+                {
+                    @Html.RadioButtonFor(model => model.IsStudy, item.Value, new { id = "IsSTDY" + item.Value }) @item.Text<br />
+                }
+                @Html.ValidationMessageFor(model => model.IsStudy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplaySC, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SocialClass, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SocialClass, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplayTillSTDY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TillStudied, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TillStudied, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplayIsWK, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @foreach (var item in CommonModel.GetYesNo())
+                {
+                    @Html.RadioButtonFor(model => model.IsWork, item.Value, new { id = "IsWK" + item.Value, }) @item.Text<br />
+                }
+                @Html.ValidationMessageFor(model => model.IsWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplayRESON, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplayIsPSYMT, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @foreach (var item in CommonModel.GetYesNo())
+                {
+                    @Html.RadioButtonFor(model => model.IsPsychometric, item.Value, new { id = "IsPSYMT" + item.Value }) @item.Text<br />
+                }
+                @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" hidden id="div-psyr">
+        @Html.Label(Model.DisplayPSYRESULT, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PsyYes_Result, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PsyYes_Result, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplayADVC, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Advice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Advice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(Model.DisplayIsFLWUP, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @foreach (var item in CommonModel.GetYesNo())
+                {
+                    @Html.RadioButtonFor(model => model.IsFollowUp, item.Value, new { id = "IsFLW" + item.Value }) @item.Text<br />
+                }
+                @Html.ValidationMessageFor(model => model.IsFollowUp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" hidden id="div-flwup">
+        @Html.Label(Model.DisplayFLWUP, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FollowUp, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FollowUp, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -255,9 +261,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-
             $('#LanguangeType').change(function () {
-
 
                 var url = '@Url.Action("Reg", "Candidate")';
                 window.location.href = url + '?LangType='+$(this).val();
@@ -297,7 +301,22 @@
                     OnChangeDistrict('BlockId', '@Model.DistrictId');
                     $('#BlockId').val('@Model.BlockId');
                     OnChangeBlock('ClusterId', '@Model.BlockId');
-                    $('#ClusterId').val('@Model.ClusterId');
+                $('#ClusterId').val('@Model.ClusterId');
+                 $("#RegDate").val(moment('@Model.DOB').format("d-MMM-yyyy"));
+                 $("#DOB").val(moment('@Model.DOB').format("d-MMM-yyyy"));
+                //$("#DOB").val('@Model.DOB').toISOString().split('T')[0];
+                if ($('input[name=IsPsychometric]:checked').val()=="1") {
+                    $('#div-psyr').show();
+                }
+                else {
+                    $('#div-psyr').hide();
+                }
+                if ($('input[name=IsFollowUp]:checked').val() == "1") {
+                    $('#div-flwup').show();
+                }
+                else {
+                    $('#div-flwup').hide();
+                }
             }
 
             $('#formid').submit(function (e) {
@@ -305,48 +324,48 @@
                 CUData();
             })
 
-
         });
         function CUData() {
+            jQuery.event.trigger("ajaxStart");
             debugger;
-            //var formDataJson = $('#formid').serialize();
+            //var formDataJson = $('#formid').serialize();//formData.append('tax_file', $('input[type=file]')[0].files[0]);
             var formData = new FormData($('#formid')[0]);
+            //var vl = $("#formid").validate();
+            if ($("#formid").Valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: document.baseURI + "/Candidate/Reg/",
+                    data: formData,
+                    //use contentType, processData for sure.
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        toastr.error("Success", resp.Message);
+                        jQuery.event.trigger("ajaxStop");
+                    },
+                    error: function (req, error) {
+                        if (error === 'error') { error = req.statusText; }
+                        var errormsg = 'There was a communication error: ' + error;
+                       // CreateToasterMessage("Error", errormsg, "error");
+                        toastr.error("Error", errormsg);
+                        jQuery.event.trigger("ajaxStop");
+                        return false;
+                    }
 
-            //formData.append('tax_file', $('input[type=file]')[0].files[0]);
+                });
+            }
+            else {
+                //CreateToasterMessage("Error", "All Record Validate !!", "error");
+                toastr.error("Error", "All Record Validate !!");
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
+            }
 
-            $.ajax({
-                type: "POST",
-                url: document.baseURI + "Candidate/Reg/",
-                data: formData,
-                //use contentType, processData for sure.
-                contentType: false,
-                processData: false,
-                //beforeSend: function () {
-                //    $('.modal .ajax_data').prepend('<img src="' +
-                //        base_url +
-                //        '"asset/images/ajax-loader.gif" />');
-                //    //$(".modal .ajax_data").html("<pre>Hold on...</pre>");
-                //    $(".modal").modal("show");
-                //},
-                success: function (msg) {
-
-                    //$(".modal .ajax_data").html("<pre>" + msg +
-                    //    "</pre>");
-                    //$('#close').hide();
-                },
-                error: function () {
-                    //$(".modal .ajax_data").html(
-                    //    "<pre>Sorry! Couldn't process your request.</pre>"
-                    //); // 
-                    //$('#done').hide();
-                }
-            });
-
-
-           // type: 'POST',
-             //   contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-                //    processData: false, // NEEDED, DON'T OMIT THIS
-           // ... Other options like success and etc
+              //type: 'POST',
+             //contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+            //processData: false, // NEEDED, DON'T OMIT THIS
+           //Other options like success and etc
 
             // $('#global-loader').css('background', 'transparent').css('display', 'block');
             //FormData formdata=java

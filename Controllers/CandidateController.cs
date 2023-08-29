@@ -20,10 +20,44 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-        public ActionResult Reg(int LangType = 1)
+        public ActionResult Reg(int LangType = 1, int Id = 0)
         {
             RegModel model = new RegModel();
             model.LanguangeType = LangType;
+            if (Id > 0)
+            {
+                var tbl = db.tbl_Registration.Find(Id);
+                if (tbl != null)
+                {
+                    model.ID = tbl.ID;
+                    model.CaseID = tbl.CaseID;
+                    model.RegDate = tbl.RegDate;
+                    model.Name = tbl.Name;
+                    model.MotherName = tbl.MotherName;
+                    model.FatherName = tbl.FatherName;
+                    model.StateId = tbl.StateId;
+                    model.DistrictId = tbl.DistrictId;
+                    model.BlockId = tbl.BlockId;
+                    model.ClusterId = tbl.ClusterId;
+                    model.Village = tbl.Village;
+                    model.Visited = tbl.Visited;
+                    model.DOB = tbl.DOB;
+                    model.Age = tbl.Age;
+                    model.MobileNo = tbl.MobileNo;
+                    model.IsSkillTraining = tbl.IsSkillTraining.Value;
+                    model.IsMarriage = tbl.IsMarriage.Value;
+                    model.IsStudy =tbl.IsStudy.Value;
+                    model.SocialClass = tbl.SocialClass;
+                    model.TillStudied = tbl.TillStudied;
+                    model.IsWork = tbl.IsWork.Value;
+                    model.Reason = tbl.Reason;
+                    model.IsPsychometric = tbl.IsPsychometric.Value;
+                    model.PsyYes_Result = tbl.PsyYes_Result;
+                    model.Advice = tbl.Advice;
+                    model.IsFollowUp = tbl.IsFollowUp;
+                    model.FollowUp = tbl.FollowUp;
+                }
+            }
             return View(model);
         }
         [HttpPost]
@@ -37,6 +71,7 @@ namespace UmangMicro.Controllers
                     var tbl = model.ID != 0 ? db.tbl_Registration.Find(model.ID) : new tbl_Registration();
                     if (tbl != null)
                     {
+                        tbl.RegDate = model.RegDate;
                         tbl.Name = !(string.IsNullOrWhiteSpace(model.Name)) ? model.Name.Trim() : model.Name;
                         tbl.MotherName = !(string.IsNullOrWhiteSpace(model.MotherName)) ? model.MotherName.Trim() : model.MotherName;
                         tbl.FatherName = !(string.IsNullOrWhiteSpace(model.FatherName)) ? model.FatherName.Trim() : model.FatherName;

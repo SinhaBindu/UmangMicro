@@ -1,0 +1,101 @@
+﻿@model IEnumerable<KGBV_JH.Models.m_EmployeeList>
+@{
+    int rowNumber = 1;
+}
+<style>
+    #ListDataTable #tbl-body tr td {
+        padding: 11px 8px 0 8px !important;
+    }
+    .edit-icon .fa {
+        font-size: 17px;
+        color: #3FAEE2;
+    }
+</style>
+<div class="table-data">
+    <div class="table-responsive">
+        <div id="demo-dt-basic_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <table id="ListDataTable" class="table table-striped table-bordered" width="100%">
+                <thead>
+                    <tr role="row">
+                        <th width="25">Sl.No.</th>
+                      
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>                     
+                        <th class="hidden"></th>
+                        <th>Is Active</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbl-body">
+                    @foreach (var item in Model)
+                    {
+                        var yes_no = item.IsActive == true ? "yes" : "no";
+                        <tr role="row" class="all odd @yes_no">
+                            <td class="text-center">@(rowNumber++)</td>
+                           
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.EmpMobile</td>
+                          
+                            <td class="text-center hidden">@(item.IsActive == true ? "Yes" : "No")</td>
+                            <td>
+
+                                <div class="onoffswitch1">
+                                    <input type="checkbox" data-id="@item.EmpId_pk" name="bootstrapSwitch_@item.EmpId_pk" class="bootstrapSwitch" id="bootstrapSwitch_@item.EmpId_pk" checked="@item.IsActive.Value">
+                                    <label class="onoffswitch1-label" for="myonoffswitch1_@item.EmpId_pk">
+                                        <span class="onoffswitch1-inner"></span>
+                                        <span class="onoffswitch1-switch"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="edit-icon">
+                                <a class="fa fa-edit" href="~/Employee/Add/@item.EmpGuid"></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+        <script>
+
+            $(function () {
+
+                $("#ListDataTable").DataTable();
+                Switch();
+                $('#ListDataTable').on('draw.dt', function () {
+                    Switch();
+                });
+            })
+
+            function Switch() {
+                var result = false;
+                $("input.bootstrapSwitch").bootstrapSwitch({
+                    onColor: 'success',
+                    offColor: 'danger',
+                    onText: 'Yes',
+                    offText: 'No',
+                    onSwitchChange: function (event, state) {
+                        if (confirm("Are you sure to change active status of this employee?")) {
+                            var EmpID = $(this).attr('data-id');
+                            $.ajax({
+                                type: 'GET',
+                                url: document.baseURI + "/Employee/UpdateEmployeeActiveStatus?EmpID=" + EmpID + "&IsActive=" + state,
+                                data: '',
+                                async: false,
+                                success: function (resp) {
+                                    alert(resp.displayMessage);
+                                    console.log(state);
+                                    result = resp.success;
+                                }
+                            });
+                            return result;
+                        }
+                        return false;
+                    }
+                });
+            }
+
+        </script>

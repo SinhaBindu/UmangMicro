@@ -19,7 +19,9 @@ namespace UmangMicro.Models
         }
         public RegModel(string name) { }
         public int ID { get; set; }
-       // [Required]
+        [Display(Name="Registration Date")]
+        public Nullable<System.DateTime> RegDate { get; set; }
+        // [Required]
         public string Name { get; set; }
        // [Required]
         public string FatherName { get; set; }
@@ -45,22 +47,22 @@ namespace UmangMicro.Models
         public string Age { get; set; }
        // [Required]
         public string MobileNo { get; set; }
+        // [Required]
+        public int IsSkillTraining { get; set; }
        // [Required]
-        public Nullable<bool> IsSkillTraining { get; set; }
+        public int IsMarriage { get; set; }
        // [Required]
-        public Nullable<bool> IsMarriage { get; set; }
-       // [Required]
-        public Nullable<bool> IsStudy { get; set; }
+        public int IsStudy { get; set; }
        // [Required]
         public string SocialClass { get; set; }
        // [Required]
         public string TillStudied { get; set; }
        // [Required]
-        public Nullable<bool> IsWork { get; set; }
+        public int IsWork { get; set; }
        // [Required]
         public string Reason { get; set; }
        // [Required]
-        public bool IsPsychometric { get; set; }
+        public int IsPsychometric { get; set; }
         //[RequiredIf("IsPsychometric", true, ErrorMessageResourceName = "PsyYes_Result")]
         public string PsyYes_Result { get; set; }
        // [Required]
@@ -70,12 +72,12 @@ namespace UmangMicro.Models
         public bool IsFollowUpCheck { get; set; }
         //[RequiredIf("IsFollowUpCheck", true, ErrorMessageResourceName = "FollowUp")]
         public string FollowUp { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDt { get; set; }
         public string UpdatedBY { get; set; }
         public Nullable<System.DateTime> UpdatedDt { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDt { get; set; }
         public int? LanguangeType { get; set; }
 

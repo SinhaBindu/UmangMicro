@@ -1,0 +1,119 @@
+﻿@model IEnumerable<UmangMicro.Models.tbl_Registration>
+@{
+    ViewBag.Title = "User's List";
+    ViewBag.TitleIcon = "fa fa-user";
+    ViewBag.SemiTitle = "User";
+    ViewBag.SemiTitleLink = "/";
+}
+<div id="page-content">
+    <div class="genral-form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-spacer">
+                        <p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-list spacerright2"></i>User's List</p>
+                    </div>
+                    @using (Html.BeginForm("_Index", "Candidate", FormMethod.Post, new { @id = "tblList-frm", @class = "panel-body form-horizontal form-padding loader" }))
+                    {
+                        <div class="manage-bg">
+                            @*<div class="col-lg-3">
+                                <label class="tar-pull-manage2">Role</label>
+                                <div id="demo-dp-range">
+                                    <select class="form-control" name="roleid" id="roleid">
+                                        @foreach(var item in KGBV_JH.Models.CommonModel.GetRoleIDNameList())
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>*@
+                            @*<div class="col-lg-3">
+                                <label class="tar-pull-manage2">Employee Type</label>
+                                <div id="demo-dp-range">
+                                    <select class="form-control" name="type" id="type">
+                                        <option value="">ALL</option>
+                                        <option value="Consultant">Consultant</option>
+                                        <option value="Payroll">Payroll</option>
+                                    </select>
+                                </div>
+                            </div>*@
+                            <div class="col-lg-3">
+                                <label class="tar-pull-manage2">Active Status</label>
+                                <div id="demo-dp-range">
+                                    <select class="form-control" name="Status" id="Status">
+                                        <option value="">ALL</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mark-devide2"></div>
+                            <div class="col-sm-1">
+                                <label class="margin-tops"></label>
+                                <div class="clearfix"></div>
+                                <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="Click to show data between date range" />
+                            </div>
+                            <div class="breaker"></div>
+                        </div>
+                    }
+                    <div class="col-md-12">@Html.Partial("_Alerts")</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12" id="result">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        @*$(document).ready(function () {
+            $("#result").load('@(Url.Action("_Index", "Employee",null , Request.Url.Scheme))?status=');
+        });
+        $("#searchfilter").on("change", function () {
+
+            $("#result").load('@(Url.Action("_Index", "Employee",null,  Request.Url.Scheme))?searchfilter=' + $("#searchfilter").val());
+        });*@
+        $(document).ready(function () {
+
+            LoadReport();
+
+            $("#tblList-frm").submit(function (event) {
+                event.preventDefault();
+                LoadReport();
+            });
+
+        });
+
+        function LoadReport() {
+
+            var id = '#tblList-frm'
+            var url = $(id).attr("action");
+            var roleid = $("#roleid").val();
+           // var type = $("#type").val();
+            var Status = $("#Status").val();
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: { roleid: roleid, status: Status },
+                success: function (resp) {
+                    $('#result').html(resp);
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#result').html(errormsg);
+                }
+            })
+
+        }
+    </script>
+}

@@ -15,6 +15,7 @@ namespace UmangMicro.Models
     public partial class tbl_Registration
     {
         public int ID { get; set; }
+        public Nullable<System.DateTime> RegDate { get; set; }
         public string CaseID { get; set; }
         public string Name { get; set; }
         public string MotherName { get; set; }
@@ -28,14 +29,14 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> DOB { get; set; }
         public string Age { get; set; }
         public string MobileNo { get; set; }
-        public Nullable<bool> IsSkillTraining { get; set; }
-        public Nullable<bool> IsMarriage { get; set; }
-        public Nullable<bool> IsStudy { get; set; }
+        public Nullable<int> IsSkillTraining { get; set; }
+        public Nullable<int> IsMarriage { get; set; }
+        public Nullable<int> IsStudy { get; set; }
         public string SocialClass { get; set; }
         public string TillStudied { get; set; }
-        public Nullable<bool> IsWork { get; set; }
+        public Nullable<int> IsWork { get; set; }
         public string Reason { get; set; }
-        public Nullable<bool> IsPsychometric { get; set; }
+        public Nullable<int> IsPsychometric { get; set; }
         public string PsyYes_Result { get; set; }
         public string Advice { get; set; }
         public Nullable<int> IsFollowUp { get; set; }
