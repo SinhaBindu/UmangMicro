@@ -1,9 +1,12 @@
-﻿@model IEnumerable<UmangMicro.Models.tbl_Registration>
+﻿@model  UmangMicro.Models.FilterCanReg
+@using UmangMicro.Models
+@*@model IEnumerable<KGBV_JH.Models.QesRes>*@
 @{
-    ViewBag.Title = "User's List";
+    ViewBag.Title = "Registration List";
     ViewBag.TitleIcon = "fa fa-user";
-    ViewBag.SemiTitle = "User";
+    ViewBag.SemiTitle = "Registration List";
     ViewBag.SemiTitleLink = "/";
+
 }
 <div id="page-content">
     <div class="genral-form">
@@ -11,55 +14,47 @@
             <div class="col-lg-12">
                 <div class="panel">
                     <div class="panel-spacer">
-                        <p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-list spacerright2"></i>User's List</p>
+                        <p class="bord-btm pad-ver text-main text-bold">
+                            <i class="fa fa-list spacerright2"></i>@ViewBag.Title
+                        </p>
                     </div>
-                    @using (Html.BeginForm("_Index", "Candidate", FormMethod.Post, new { @id = "tblList-frm", @class = "panel-body form-horizontal form-padding loader" }))
+                    @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "tblList-frm", @class = "panel-body form-horizontal form-padding loader" }))
                     {
                         <div class="manage-bg">
-                            @*<div class="col-lg-3">
-                                <label class="tar-pull-manage2">Role</label>
+                            <div class="col-lg-2">
+                                <label class="tar-pull-manage2">From Date</label>
                                 <div id="demo-dp-range">
-                                    <select class="form-control" name="roleid" id="roleid">
-                                        @foreach(var item in KGBV_JH.Models.CommonModel.GetRoleIDNameList())
-                                        {
-                                            <option value="@item.Value">@item.Text</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>*@
-                            @*<div class="col-lg-3">
-                                <label class="tar-pull-manage2">Employee Type</label>
-                                <div id="demo-dp-range">
-                                    <select class="form-control" name="type" id="type">
-                                        <option value="">ALL</option>
-                                        <option value="Consultant">Consultant</option>
-                                        <option value="Payroll">Payroll</option>
-                                    </select>
-                                </div>
-                            </div>*@
-                            <div class="col-lg-3">
-                                <label class="tar-pull-manage2">Active Status</label>
-                                <div id="demo-dp-range">
-                                    <select class="form-control" name="Status" id="Status">
-                                        <option value="">ALL</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
-                                    </select>
+                                    @Html.EditorFor(model => model.FD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
                                 </div>
                             </div>
-                            <div class="mark-devide2"></div>
-                            <div class="col-sm-1">
+                            <div class="col-lg-2">
+                                <label class="tar-pull-manage2">To Date</label>
+                                <div id="demo-dp-range">
+                                    @Html.EditorFor(model => model.TD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
                                 <label class="margin-tops"></label>
                                 <div class="clearfix"></div>
-                                <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="Click to show data between date range" />
+                                <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />
                             </div>
+                            <div class="mark-devide2"></div>
                             <div class="breaker"></div>
                         </div>
                     }
                     <div class="col-md-12">@Html.Partial("_Alerts")</div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-12" id="result">
+                            <div class="col-sm-12" id="sub-data">
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12" id="sub-data-view">
+
                             </div>
                         </div>
                     </div>
@@ -73,47 +68,55 @@
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/JS/Master.js"></script>
+
     <script>
-
-        @*$(document).ready(function () {
-            $("#result").load('@(Url.Action("_Index", "Employee",null , Request.Url.Scheme))?status=');
-        });
-        $("#searchfilter").on("change", function () {
-
-            $("#result").load('@(Url.Action("_Index", "Employee",null,  Request.Url.Scheme))?searchfilter=' + $("#searchfilter").val());
-        });*@
         $(document).ready(function () {
 
-            LoadReport();
-
-            $("#tblList-frm").submit(function (event) {
-                event.preventDefault();
+            $('#formid').submit(function (e) {
+                e.preventDefault();
                 LoadReport();
-            });
+            })
 
         });
 
         function LoadReport() {
-
+            $('#sub-data').html("");
+            jQuery.event.trigger("ajaxStart");
+            $('#sub-data').removeClass("text-danger");
             var id = '#tblList-frm'
             var url = $(id).attr("action");
-            var roleid = $("#roleid").val();
-           // var type = $("#type").val();
-            var Status = $("#Status").val();
+            var FD = $("#FD").val() == "" ? "" : $("#FD").val();
+            var TD = $("#TD").val() == "" ? "" : $("#TD").val();
             $.ajax({
-                url: url,
+               // url: url,
+                url: document.baseURI + "/Candidate/GetIndex",
                 type: "POST",
-                data: { roleid: roleid, status: Status },
+                data: { 'FD': FD, 'TD': TD },
+               // contentType: "application/json",
                 success: function (resp) {
-                    $('#result').html(resp);
+                    if (resp.IsSuccess) {
+                        $('#sub-data').html(resp.Data); $('#sub-data').addClass("text-black");
+                        jQuery.event.trigger("ajaxStop");
+                    }
+                    else {
+                        $('#sub-data').html(resp.Data); $('#sub-data').addClass("text-danger");
+                       // toastr.error("Error", errormsg);
+                        jQuery.event.trigger("ajaxStop");
+                        return false;
+                    }
                 },
                 error: function (req, error) {
                     if (error === 'error') { error = req.statusText; }
                     var errormsg = 'There was a communication error: ' + error;
-                    $('#result').html(errormsg);
+                    $('#sub-data').addClass("text-danger");
+                    toastr.error("Error", errormsg);
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
                 }
-            })
-
+            });
         }
+
+     
     </script>
 }

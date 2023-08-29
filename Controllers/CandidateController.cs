@@ -1,24 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Xml.Linq;
 using UmangMicro.Models;
+using UmangMicro.Manager;
 using static UmangMicro.Manager.Enums;
+using Antlr.Runtime.Misc;
+using KGBV_JH.Controllers;
 
 namespace UmangMicro.Controllers
 {
-    public class CandidateController : Controller
+    public class CandidateController : BaseController
     {
         UM_DBEntities db = new UM_DBEntities();
         int results = 0; int results2nd = 0;
         // GET: Candidate
+        #region 
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult GetIndex(string FD="", string TD = "")
+        {
+            DataTable tbllist = new DataTable();
+            var html = "";
+            try
+            {
+                tbllist = SP_Model.SPCandRegList(FD, TD);
+                bool IsCheck = false;
+                if (tbllist.Rows.Count > 0)
+                {
+                    IsCheck = true;
+                    html = ConvertViewToString("_Index", tbllist);
+                    var res = Json(new { IsSuccess = IsCheck, Data = html }, JsonRequestBehavior.AllowGet);
+                    res.MaxJsonLength = int.MaxValue;
+                    return res;
+                }
+                else
+                {
+                    var res = Json(new { IsSuccess = IsCheck, Data = "Record Not Found !!" }, JsonRequestBehavior.AllowGet);
+                    res.MaxJsonLength = int.MaxValue;
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
+            }
         }
         public ActionResult Reg(int LangType = 1, int Id = 0)
         {
@@ -113,6 +148,10 @@ namespace UmangMicro.Controllers
                     }
                     if (results > 0)
                     {
+                        //var resResponse = Json(new { IsSuccess = true, htmlData = html, msg = action }, JsonRequestBehavior.AllowGet);
+                        //resResponse.MaxJsonLength = int.MaxValue;
+                        //return resResponse;
+
                         response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully.", Data = null };
                         var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
                         resResponse1.MaxJsonLength = int.MaxValue;
@@ -121,12 +160,11 @@ namespace UmangMicro.Controllers
                 }
                 else
                 {
-                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Registration" + " Successfully.", Data = null };
+                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "All Record Required !!", Data = null };
                     var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
                     resResponse1.MaxJsonLength = int.MaxValue;
                     return resResponse1;
                 };
-               
             }
             catch (Exception)
             {
@@ -136,6 +174,18 @@ namespace UmangMicro.Controllers
                 return resResponse1;
             }
             return View();
+        }
+        #endregion
+        private string ConvertViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewEngineResult vResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext vContext = new ViewContext(this.ControllerContext, vResult.View, ViewData, new TempDataDictionary(), writer);
+                vResult.View.Render(vContext, writer);
+                return writer.ToString();
+            }
         }
     }
 }

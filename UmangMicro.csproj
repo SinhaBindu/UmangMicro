@@ -56,6 +56,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\FoolproofValidation.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="IronBarCode, Version=4.0.2.18638, Culture=neutral, PublicKeyToken=b971bb3971bdf306, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\IronBarCode.dll</HintPath>
@@ -191,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\CounsellorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,8 +204,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Alert.cs" />
+    <Compile Include="Helper\Healpers.cs" />
+    <Compile Include="Helper\ImageUpload.cs" />
+    <Compile Include="Helper\MyHelper.cs" />
     <Compile Include="Manager\Alert.cs" />
     <Compile Include="Manager\AppConstants.cs" />
+    <Compile Include="Manager\SP_Model.cs" />
     <Compile Include="Manager\BaseLineSPManager.cs" />
     <Compile Include="Manager\CommonModel.cs" />
     <Compile Include="Manager\Enums.cs" />
@@ -238,6 +248,7 @@
     <Compile Include="Models\Dist_Mast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RegModel.cs" />
@@ -288,9 +299,7 @@
     <Content Include="Content\images\aim-mother-daughter.jpg" />
     <Content Include="Content\images\aims-objective.jpg" />
     <Content Include="Content\images\arrow-left.png" />
-    <Content Include="Content\images\arrow-maroon.png" />
     <Content Include="Content\images\arrow-right.png" />
-    <Content Include="Content\images\arrow-yellow.png" />
     <Content Include="Content\images\arrow.png" />
     <Content Include="Content\images\backtotopicon.png" />
     <Content Include="Content\images\balance.png" />

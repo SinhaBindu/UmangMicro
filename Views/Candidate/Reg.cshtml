@@ -267,62 +267,62 @@
                 window.location.href = url + '?LangType='+$(this).val();
                 });
 
-            BindDistrict('DistrictId', 20);
-            $('#DistrictId').change(function () {
-                OnChangeDistrict('BlockId', $('#DistrictId').val());
-            });
-            $('#BlockId').change(function () {
-                OnChangeBlock('ClusterId', $('#BlockId').val());
-            });
-            $('#DOB').change(function () {
-                $('#Age').val(getAge($(this).val()));
-            });
-            $('input[name=IsFollowUp]').click(function () {
-                $('#FollowUp').val('');
-                if ($(this).val() == "1") {
-                    $('#div-flwup').show();
-                }
-                else {
-                    $('#div-flwup').hide();
-                }
-            });
-            $('input[name=IsPsychometric]').change(function () {
-                $('#PsyYes_Result').val('');
-                if ($(this).val() == "1") {
-                    $('#div-psyr').show();
-                }
-                else {
-                    $('#div-psyr').hide();
-                }
-            });
+                BindDistrict('DistrictId', 20);
+                $('#DistrictId').change(function () {
+                    OnChangeDistrict('BlockId', $('#DistrictId').val());
+                });
+                $('#BlockId').change(function () {
+                    OnChangeBlock('ClusterId', $('#BlockId').val());
+                });
+                $('#DOB').change(function () {
+                    $('#Age').val(getAge($(this).val()));
+                });
+                $('input[name=IsFollowUp]').click(function () {
+                    $('#FollowUp').val('');
+                    if ($(this).val() == "1") {
+                        $('#div-flwup').show();
+                    }
+                    else {
+                        $('#div-flwup').hide();
+                    }
+                });
+                $('input[name=IsPsychometric]').change(function () {
+                    $('#PsyYes_Result').val('');
+                    if ($(this).val() == "1") {
+                        $('#div-psyr').show();
+                    }
+                    else {
+                        $('#div-psyr').hide();
+                    }
+                });
 
-            if ('@Model.ID' != '0' && '@Model.ID' != '') {
-                $('#DistrictId').val('@Model.DistrictId');
-                    OnChangeDistrict('BlockId', '@Model.DistrictId');
-                    $('#BlockId').val('@Model.BlockId');
-                    OnChangeBlock('ClusterId', '@Model.BlockId');
-                $('#ClusterId').val('@Model.ClusterId');
-                 $("#RegDate").val(moment('@Model.DOB').format("d-MMM-yyyy"));
-                 $("#DOB").val(moment('@Model.DOB').format("d-MMM-yyyy"));
-                //$("#DOB").val('@Model.DOB').toISOString().split('T')[0];
-                if ($('input[name=IsPsychometric]:checked').val()=="1") {
-                    $('#div-psyr').show();
-                }
-                else {
-                    $('#div-psyr').hide();
-                }
-                if ($('input[name=IsFollowUp]:checked').val() == "1") {
-                    $('#div-flwup').show();
-                }
-                else {
-                    $('#div-flwup').hide();
-                }
-            }
+                if ('@Model.ID' != '0' && '@Model.ID' != '') {
+                    $('#DistrictId').val('@Model.DistrictId');
+                        OnChangeDistrict('BlockId', '@Model.DistrictId');
+                        $('#BlockId').val('@Model.BlockId');
+                        OnChangeBlock('ClusterId', '@Model.BlockId');
+                    $('#ClusterId').val('@Model.ClusterId');
+                     $("#RegDate").val(moment('@Model.DOB').format("d-MMM-yyyy"));
+                     $("#DOB").val(moment('@Model.DOB').format("d-MMM-yyyy"));
+                    //$("#DOB").val('@Model.DOB').toISOString().split('T')[0];
+                    if ($('input[name=IsPsychometric]:checked').val()=="1") {
+                        $('#div-psyr').show();
+                    }
+                    else {
+                        $('#div-psyr').hide();
+                    }
+                    if ($('input[name=IsFollowUp]:checked').val() == "1") {
+                        $('#div-flwup').show();
+                    }
+                    else {
+                        $('#div-flwup').hide();
+                    }
+            };
 
             $('#formid').submit(function (e) {
                 e.preventDefault();
                 CUData();
-            })
+            });
 
         });
         function CUData() {
@@ -340,6 +340,7 @@
                     contentType: false,
                     processData: false,
                     dataType: "json",
+                    contentType: "application/json; charset=utf-8",
                     success: function (resp) {
                         toastr.error("Success", resp.Message);
                         jQuery.event.trigger("ajaxStop");

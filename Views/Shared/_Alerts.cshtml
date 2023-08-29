@@ -1,4 +1,4 @@
-﻿@using IPEL.Controllers;
+﻿@using UmangMicro.Models;
 @{
     var alerts = TempData.ContainsKey(Alert.TempDataKey) ? (List<Alert>)TempData[Alert.TempDataKey] : new List<Alert>();
     foreach (var alert in alerts)
