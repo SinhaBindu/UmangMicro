@@ -29,7 +29,7 @@ namespace UmangMicro
                       "~/Content/css/font-awesome.css",
                       "~/Content/css/fonts.css",
                       "~/Content/css/super-menu.css",
-                      "~/Content/style/aos.css")
+                      "~/Content/css/aos.css")
                 );
         }
     }

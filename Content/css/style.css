@@ -2479,3 +2479,259 @@ img {
     color: #F26522;
     font-size: 36px;
 }
+.our-reach {
+    margin: auto;
+    background: url(../images/our-impact.jpg) right center;
+    padding: 70px 0;
+}
+
+.div-manage {
+    margin: auto;
+    max-width: 1200px;
+}
+
+.impact-image {
+    float: left;
+    width: 60%;
+    margin: 20px 0;
+}
+
+    .impact-image h2 {
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 45px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin: 10px 0 40px;
+    }
+
+    .impact-image span {
+        background: #fff;
+        padding: 4px 18px;
+        font-size: 40px;
+        color: #000;
+        margin-left: 12px;
+    }
+
+.impact-point {
+    float: left;
+    width: 29%;
+    background: #F46900;
+    color: #fff;
+    padding: 7px 0;
+    margin: 15px 3% 15px 0;
+    transition: width 2s;
+}
+
+    .impact-point:hover {
+        background: #fff;
+    }
+
+        .impact-point:hover h3, .impact-point:hover p {
+            color: #000;
+        }
+
+    .impact-point h3 {
+        padding: 15px 15px 5px;
+        font-size: 32px;
+        margin: 0px;
+    }
+
+    .impact-point p {
+        padding: 0px 15px 16px;
+        font-size: 16px;
+        margin: 0px;
+    }
+.umang-impact {
+    padding: 70px 20px 0;
+    background: url(../images/our-impact-girl.jpg) top center no-repeat;
+    position: relative;
+}
+.umang-manage {
+    margin: auto;
+    max-width: 1160px;
+    background: #fff;
+    padding: 30px 20px;
+    height: 450px;
+    margin-top: 300px;
+    text-align: center
+}
+.umang-manage h2 {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 30px
+}
+    .umang-manage p {
+        font-size: 16px;
+        line-height: 26px;
+        color: #545563;
+        width: 670px;
+        margin: auto
+    }
+.quick-message {
+    margin: auto;
+    max-width: 1100px;
+    padding: 60px 0;
+    display: flex;
+    gap: 80px;
+    align-items: center
+}
+.quick-info {
+    flex: 1
+}
+    .quick-info h1 {
+        font-size: 55px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #000;
+        margin-top: 10px;
+        letter-spacing: 0.6px
+    }
+.border-bottom {
+    width: 90px;
+    height: 4px;
+    background: #FBC982;
+    margin-bottom: 35px;
+}
+.quick-info p {
+    font-size: 19px;
+    line-height: 30px;
+    color: #5C5C5C
+}
+    .quick-graphic {
+        flex: 1;
+        position: relative;
+    }
+.quick-graphic img {
+    width: 50%;
+}
+.girl-work {
+    margin-top: -40px
+}
+.woemn-confidence {
+    margin-left: -60px;
+    margin-top: 110px;
+    border: 12px solid #fff;
+    border-bottom: none
+}
+.cool-italic {
+    color: #000;
+    font-style: italic;
+}
+.umang-aim {
+    padding: 70px 20px 90px;
+    background: #5B2C54;
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+}
+    .umang-aim h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 40px;
+        margin-top: 0px;
+        margin-bottom: 20px
+    }
+.aim-flex {
+    margin: auto;
+    max-width: 1200px;
+    display: flex;
+    gap: 60px;
+    margin-top: 70px
+}
+    
+    .aim-content {
+        flex: 1;
+    }
+    .aim-content p {
+        font-size: 19px;
+        line-height: 30px;
+        margin: 15px 0;
+    }
+.text-stylish {
+    display: block;
+    padding: 20px;
+    background: #FBC674;
+    margin-top: 45px;
+    color: #5B2C54;
+    font-weight: 600;
+    border-radius: 10px
+}
+.aim-graphic {
+    flex: 1;
+}
+.aim-graphic img {
+    position: absolute;
+    bottom: 60px;
+    right: -10px;
+    border-radius: 200px 0 0 200px;
+    border: 5px solid #FBC982;
+    height: auto;
+    width: 46%;
+}
+.objectives-content {
+    padding: 70px 0;
+    margin: auto;
+    max-width: 1100px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.title-round {
+    float: left;
+    width: 220px;
+    height: 220px;
+    border-radius: 100%;
+    border: 2px dashed #F3987A;
+    padding: 10px;
+}
+    .title-round span {
+        display: block;
+        background: #F3987A;
+        text-align: center;
+        font-size: 29px;
+        color: #fff;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        padding-top: 75px;
+    }
+.objectives-content ul {
+    margin-left: 40px;
+    flex: 1;
+}
+.objectives-content li {
+    padding: 15px 25px;
+    margin: 25px 0 !important;
+    list-style: none;
+    font-size: 17px;
+    color: #000;
+    position: relative;
+    display: flex;
+    line-height: 27px;
+}
+.obj-bgr-1 {
+    background: #F7F7F8;
+    border-radius: 10px;
+}
+.obj-bgr-2 {
+    border-radius: 10px;
+    background: #F7F7F8;
+}
+.obj-icon1, .obj-icon2 {
+    display: inline-block;
+    width: 80px !important;
+    height: 60px !important;
+    border-radius: 100%;
+    text-align: center;
+    margin-right: 20px;
+    background: #5B2C54;
+    margin-left: -50px;
+    font-size: 28px;
+    padding-top: 15px;
+    color: #fff
+}
+.obj-icon2 {
+    width: 68px !important;
+}

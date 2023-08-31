@@ -315,6 +315,8 @@
     <Content Include="Content\images\empowerment-framework\public-life.png" />
     <Content Include="Content\images\empowerment-framework\umang-assumption.png" />
     <Content Include="Content\images\empowerment-framework\umang-expectation.png" />
+    <Content Include="Content\images\girl-cycling.jpg" />
+    <Content Include="Content\images\girl-design-work.jpg" />
     <Content Include="Content\images\godda.png" />
     <Content Include="Content\images\influence-arrow.png" />
     <Content Include="Content\images\influence\info-1.png" />
@@ -326,6 +328,7 @@
     <Content Include="Content\images\jamtara.png" />
     <Content Include="Content\images\jharkhan-child-marriage-map.png" />
     <Content Include="Content\images\jslps.png" />
+    <Content Include="Content\images\login-bg.jpg" />
     <Content Include="Content\images\map-icon.png" />
     <Content Include="Content\images\mdl-ar.png" />
     <Content Include="Content\images\mother-daughter-relation.jpg" />
@@ -336,6 +339,8 @@
     <Content Include="Content\images\mother-daughter-relation\resolving.jpg" />
     <Content Include="Content\images\mother-daughter.jpg" />
     <Content Include="Content\images\non-compliance.png" />
+    <Content Include="Content\images\our-impact-girl.jpg" />
+    <Content Include="Content\images\our-impact.jpg" />
     <Content Include="Content\images\partnership-banner.jpg" />
     <Content Include="Content\images\partnership-team.png" />
     <Content Include="Content\images\pci.png" />
@@ -375,8 +380,11 @@
     <Content Include="Content\images\timeline\tm-orange-sm-arrow-hl.png" />
     <Content Include="Content\images\timeline\tm-pink-arrow-hl.png" />
     <Content Include="Content\images\top-ar.png" />
+    <Content Include="Content\images\slider\umang-banner.jpg" />
     <Content Include="Content\images\umang-logo.png" />
+    <Content Include="Content\images\WhatsApp Image 2023-05-31 at 21.00.42.jpg" />
     <Content Include="Content\images\white-curve-bg.png" />
+    <Content Include="Content\images\women-confidence.jpg" />
     <Content Include="Content\images\women-collective.jpg" />
     <Content Include="Content\images\yellow-curve-bg.png" />
     <Content Include="Content\js\amazingcarousel.js" />
