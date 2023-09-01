@@ -9,8 +9,12 @@
     @Html.HiddenFor(x => x.ID)
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+<div>
     <h4>RegModel</h4>
+    @if (Model.ID != 0)
+    {
+        <strong class="text-primary">Case ID : <strong>@Model.CaseID</strong></strong>
+    }
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -116,8 +120,9 @@
     <div class="form-group">
         @Html.Label(Model.DisplayMobileTxt, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @type = "number", @class = "form-control", @min = "10", @max = "10" } })
             @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+            @*, @min = "10", @max = "10"*@
         </div>
     </div>
 
@@ -302,8 +307,8 @@
                         $('#BlockId').val('@Model.BlockId');
                         OnChangeBlock('ClusterId', '@Model.BlockId');
                     $('#ClusterId').val('@Model.ClusterId');
-                     $("#RegDate").val(moment('@Model.DOB').format("d-MMM-yyyy"));
-                     $("#DOB").val(moment('@Model.DOB').format("d-MMM-yyyy"));
+                     $("#RegDate").val(moment('@Model.RegDate').format("DD-MMM-yyyy"));
+                     $("#DOB").val(moment('@Model.DOB').format("DD-MMM-yyyy"));
                     //$("#DOB").val('@Model.DOB').toISOString().split('T')[0];
                     if ($('input[name=IsPsychometric]:checked').val()=="1") {
                         $('#div-psyr').show();
@@ -337,11 +342,12 @@
                     url: document.baseURI + "/Candidate/Reg/",
                     data: formData,
                     //use contentType, processData for sure.
-                    contentType: false,
-                    processData: false,
+                    //contentType: false,
+                   // processData: false,
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     success: function (resp) {
+                      //  CreateToasterMessage("Registration", resp.Message, resp.StatusType);
                         toastr.error("Success", resp.Message);
                         jQuery.event.trigger("ajaxStop");
                     },

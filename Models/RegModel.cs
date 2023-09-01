@@ -22,10 +22,13 @@ namespace UmangMicro.Models
         [Display(Name="Registration Date")]
         public Nullable<System.DateTime> RegDate { get; set; }
         // [Required]
+        //[StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
-       // [Required]
+        //[StringLength(100, MinimumLength = 3)]
+        // [Required]
         public string FatherName { get; set; }
-       // [Required]
+        //[StringLength(100, MinimumLength = 3)]
+        // [Required]
         public string MotherName { get; set; }
         //[Required]
         public Nullable<int> StateId { get; set; }
@@ -35,7 +38,8 @@ namespace UmangMicro.Models
         public Nullable<int> BlockId { get; set; }
        // [Required]
         public Nullable<int> ClusterId { get; set; }
-       // [Required]
+        // [Required]
+        //[StringLength(100, MinimumLength = 3)]
         public string Village { get; set; }
         //[Required]
         public string CaseID { get; set; }
@@ -45,7 +49,9 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> DOB { get; set; }
        // [Required]
         public string Age { get; set; }
-       // [Required]
+        // [Required]
+        //[Range(Int32.MinValue, 10)]
+        //[Range(3000, 10000000, ErrorMessage = "Salary must be between 3000 and 10000000")]
         public string MobileNo { get; set; }
         // [Required]
         public int IsSkillTraining { get; set; }
@@ -80,7 +86,6 @@ namespace UmangMicro.Models
         public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDt { get; set; }
         public int? LanguangeType { get; set; }
-
         public String DisplayName1
         {
             get

@@ -18,7 +18,7 @@
                             <i class="fa fa-list spacerright2"></i>@ViewBag.Title
                         </p>
                     </div>
-                    @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "tblList-frm", @class = "panel-body form-horizontal form-padding loader" }))
+                    @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "panel-body form-horizontal form-padding loader", autocomplete = "off", enctype = "multipart/form-data" }))
                     {
                         <div class="manage-bg">
                             <div class="col-lg-2">
@@ -81,10 +81,11 @@
         });
 
         function LoadReport() {
+            debugger;
             $('#sub-data').html("");
             jQuery.event.trigger("ajaxStart");
             $('#sub-data').removeClass("text-danger");
-            var id = '#tblList-frm'
+            var id = '#formid'
             var url = $(id).attr("action");
             var FD = $("#FD").val() == "" ? "" : $("#FD").val();
             var TD = $("#TD").val() == "" ? "" : $("#TD").val();
@@ -94,6 +95,9 @@
                 type: "POST",
                 data: { 'FD': FD, 'TD': TD },
                // contentType: "application/json",
+               // dataType: "json",
+               // contentType: "application/json; charset=utf-8",
+                //async: false,
                 success: function (resp) {
                     if (resp.IsSuccess) {
                         $('#sub-data').html(resp.Data); $('#sub-data').addClass("text-black");

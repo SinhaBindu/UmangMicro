@@ -158,57 +158,48 @@ namespace UmangMicro.Manager
         //}
 
 
-        //public static UserViewModel User
-        //{
-        //    get
-        //    {
-        //        if (HttpContext.Current.User.Identity.IsAuthenticated)
-        //        {
-        //            if (HttpContext.Current.Session["User"] != null)
-        //            {
-        //                return (UserViewModel)HttpContext.Current.Session["User"];
-        //            }
-        //            else
-        //            {
-        //                var u = dbe.AspNetUsers.Single(x => x.UserName == HttpContext.Current.User.Identity.Name);
-        //                var locations = (from l in dbe.MST_Location
-        //                                 join ul in dbe.AspNetUsers_Location on l.ID equals ul.LocationId into loctionGroup
-        //                                 from uLoc in loctionGroup.DefaultIfEmpty()
-        //                                 where ((u.LocationID != 0 && uLoc.UserId.ToString() == u.Id) || u.LocationID == 0)
-        //                                 && l.IsActive.Value
-        //                                 select l).ToList();
-        //                var Organizations = (from o in dbe.MST_Organization
-        //                                     where ((u.IDOrganization != 0 && o.ID == u.IDOrganization) || u.IDOrganization == 0)
-        //                                     && o.IsActive
-        //                                     select o).ToList();
+        public static UserViewModel User
+        {
+            get
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    if (HttpContext.Current.Session["User"] != null)
+                    {
+                        return (UserViewModel)HttpContext.Current.Session["User"];
+                    }
+                    else
+                    {
+                        var u = dbe.AspNetUsers.Single(x => x.UserName == HttpContext.Current.User.Identity.Name);
+                        var dis = (from l in dbe.Dist_Mast
+                                   join un in dbe.AspNetUsers on l.ID equals un.DistrictId
+                                   where ((u.DistrictId != 0) || u.DistrictId == 0 && un.LockoutEnabled == true)
+                                   select l);
 
-        //                var role = GetUserRole();
-        //                var forAll = new List<string>() { "All", "CPMU" };
+                        var role = GetUserRole();
+                        var forAll = new List<string>() { "All", "Admin" };
 
-        //                var user = new UserViewModel
-        //                {
-        //                    Id = u.Id,
-        //                    Name = u.Name,
-        //                    Email = u.Email,
-        //                    IDOrganization = u.IDOrganization.Value,
-        //                    LocationID = u.LocationID.Value,
-        //                    PhoneNumber = u.PhoneNumber,
-        //                    Role = u.AspNetRoles.First()?.Name,
-        //                    OrganizationName = string.Join(", ", Organizations.Select(x => x.Name)),
-        //                    LocationName = string.Join(", ", locations.Select(x => x.Name)),
-        //                    Locations = locations
-        //                };
-        //                HttpContext.Current.Session["User"] = user;
-        //                return user;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            HttpContext.Current.Response.Redirect("~/Account/Login", false);
-        //            return null;
-        //        }
-        //    }
-        //}
+                        var user = new UserViewModel
+                        {
+                            Id = u.Id,
+                            Name = u.Name,
+                            Email = u.Email,
+                            DistrictId = u.DistrictId.Value,
+                            District = string.Join(", ", dis.Select(x => x.DistName)),
+                            PhoneNumber = u.PhoneNumber,
+                            Role = u.AspNetRoles.First()?.Name,
+                        };
+                        HttpContext.Current.Session["User"] = user;
+                        return user;
+                    }
+                }
+                else
+                {
+                    HttpContext.Current.Response.Redirect("~/Account/Login", false);
+                    return null;
+                }
+            }
+        }
 
 
         //public static DataTable GetSPUserDetail()
