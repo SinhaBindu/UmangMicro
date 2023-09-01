@@ -28,11 +28,9 @@
         <!-- PAGE-HEADER END -->
         @using (Html.BeginForm("GetUserDetailData", "Master", FormMethod.Post, new { id = "submission-form" }))
         {
-
             <div id="submission-data">
             </div>
         }
-
         </div>
 </div>
 
@@ -46,6 +44,7 @@
         });
        
         function BindData() {
+            jQuery.event.trigger("ajaxStart");
             $('#submission-data').removeClass("text-danger");
             var url = $('#submission-form').attr("action");
             var formData = $('#submission-form').serialize();
@@ -55,6 +54,7 @@
                 data: '',//{ 'District': District, 'Block': Block },
                 success: function (resp) {
                     if (resp.IsSuccess) {
+                        jQuery.event.trigger("ajaxStop");
                         $('#submission-data').html(resp.Data);
                         if ($.fn.dataTable.isDataTable('#DataList')) {
                             $("#DataList").dataTable().fnDestroy();
@@ -91,6 +91,8 @@
                     if (error === 'error') { error = req.statusText; }
                     var errormsg = 'There was a communication error: ' + error;
                     $('#submission-data').html(errormsg);
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
                 }
             });
         }

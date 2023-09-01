@@ -146,6 +146,7 @@ namespace UmangMicro.Models
         public int ClusterId { get; set; }
         public string Cluster { get; set; }
         public string Role { get; set; }
+        public string RoleId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
     }

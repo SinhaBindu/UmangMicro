@@ -127,6 +127,23 @@ namespace UmangMicro.Manager
             }
             return "All";
         }
+        //public static class SessionLog
+        //{
+        //    public static int EmployeeId { get { return MvcApplication.Emplog().EmpId_pk; } }
+        //    public static int SchoolId_fk { get { return MvcApplication.Emplog().SchoolId_fk == null ? 0 : MvcApplication.Emplog().SchoolId_fk.Value; } }
+        //    public static int DistrictId { get { return MvcApplication.Emplog().DistrictId_fk ?? 0; } }
+        //    public static int BlockId { get { return MvcApplication.Emplog().BlockId_fk ?? 0; } }
+        //    //public static int? EmployeeCode { get { return MvcApplication.Emplog().EmpCode; } }
+        //    public static string Name { get { return MvcApplication.Emplog().Name; } }
+        //    public static string Email { get { return MvcApplication.Emplog().Email; } }
+        //    public static string EmpGuid { get { return MvcApplication.Emplog().EmpGuid; } }
+        //    //  public static int Hubid { get { return MvcApplication.Emplog().Hubid_fk.Value; } }
+
+        //    // public static int? SupervisorId { get { return MvcApplication.Emplog().SupervisorId; } }
+        //    public static int? StateId { get { return MvcApplication.Emplog().StateId_fk; } }
+        //    //  public static string SupervisorName { get { return MvcApplication.Emplog().SupervisorName; } }
+        //    //public static string SupervisorEmail { get { return MvcApplication.Emplog().SupervisorEmail; } }
+        //}
         //public static List<SelectListItem> GetRole()
         //{
         //    try
@@ -158,48 +175,48 @@ namespace UmangMicro.Manager
         //}
 
 
-        public static UserViewModel User
-        {
-            get
-            {
-                if (HttpContext.Current.User.Identity.IsAuthenticated)
-                {
-                    if (HttpContext.Current.Session["User"] != null)
-                    {
-                        return (UserViewModel)HttpContext.Current.Session["User"];
-                    }
-                    else
-                    {
-                        var u = dbe.AspNetUsers.Single(x => x.UserName == HttpContext.Current.User.Identity.Name);
-                        var dis = (from l in dbe.Dist_Mast
-                                   join un in dbe.AspNetUsers on l.ID equals un.DistrictId
-                                   where ((u.DistrictId != 0) || u.DistrictId == 0 && un.LockoutEnabled == true)
-                                   select l);
+        //public static UserViewModel User
+        //{
+        //    get
+        //    {
+        //        if (HttpContext.Current.User.Identity.IsAuthenticated)
+        //        {
+        //            if (HttpContext.Current.Session["User"] != null)
+        //            {
+        //                return (UserViewModel)HttpContext.Current.Session["User"];
+        //            }
+        //            else
+        //            {
+        //                var u = dbe.AspNetUsers.Single(x => x.UserName == HttpContext.Current.User.Identity.Name);
+        //                var dis = (from l in dbe.Dist_Mast
+        //                           join un in dbe.AspNetUsers on l.ID equals un.DistrictId
+        //                           where ((u.DistrictId != 0) || u.DistrictId == 0 && un.LockoutEnabled == true)
+        //                           select l);
 
-                        var role = GetUserRole();
-                        var forAll = new List<string>() { "All", "Admin" };
+        //                var role = GetUserRole();
+        //                var forAll = new List<string>() { "All", "Admin" };
 
-                        var user = new UserViewModel
-                        {
-                            Id = u.Id,
-                            Name = u.Name,
-                            Email = u.Email,
-                            DistrictId = u.DistrictId.Value,
-                            District = string.Join(", ", dis.Select(x => x.DistName)),
-                            PhoneNumber = u.PhoneNumber,
-                            Role = u.AspNetRoles.First()?.Name,
-                        };
-                        HttpContext.Current.Session["User"] = user;
-                        return user;
-                    }
-                }
-                else
-                {
-                    HttpContext.Current.Response.Redirect("~/Account/Login", false);
-                    return null;
-                }
-            }
-        }
+        //                var user = new UserViewModel
+        //                {
+        //                    Id = u.Id,
+        //                    Name = u.Name,
+        //                    Email = u.Email,
+        //                    DistrictId = u.DistrictId.Value,
+        //                    District = string.Join(", ", dis.Select(x => x.DistName)),
+        //                    PhoneNumber = u.PhoneNumber,
+        //                    Role = u.AspNetRoles.First()?.Name,
+        //                };
+        //                HttpContext.Current.Session["User"] = user;
+        //                return user;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            HttpContext.Current.Response.Redirect("~/Account/Login", false);
+        //            return null;
+        //        }
+        //    }
+        //}
 
 
         //public static DataTable GetSPUserDetail()
