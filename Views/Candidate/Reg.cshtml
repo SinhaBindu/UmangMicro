@@ -132,7 +132,7 @@
             <div class="checkbox">
                 @foreach (var item in CommonModel.GetYesNo())
                 {
-                    @Html.RadioButtonFor(model => model.IsSkillTraining, item.Value, new { id = "IsSKTN" + item.Value }) @item.Text<br />
+                    @Html.RadioButtonFor(model => model.IsSkillTraining, item.Value, new { id = "IsSKTN" + item.Value }) @item.Text 
                 }
                 @Html.ValidationMessageFor(model => model.IsSkillTraining, "", new { @class = "text-danger" })
             </div>
@@ -145,7 +145,7 @@
             <div class="checkbox">
                 @foreach (var item in CommonModel.GetYesNo())
                 {
-                    @Html.RadioButtonFor(model => model.IsMarriage, item.Value, new { id = "IsMG" + item.Value }) @item.Text<br />
+                    @Html.RadioButtonFor(model => model.IsMarriage, item.Value, new { id = "IsMG" + item.Value }) @item.Text
                 }
                 @Html.ValidationMessageFor(model => model.IsMarriage, "", new { @class = "text-danger" })
             </div>
@@ -158,7 +158,7 @@
             <div class="checkbox">
                 @foreach (var item in CommonModel.GetYesNo())
                 {
-                    @Html.RadioButtonFor(model => model.IsStudy, item.Value, new { id = "IsSTDY" + item.Value }) @item.Text<br />
+                    @Html.RadioButtonFor(model => model.IsStudy, item.Value, new { id = "IsSTDY" + item.Value }) @item.Text
                 }
                 @Html.ValidationMessageFor(model => model.IsStudy, "", new { @class = "text-danger" })
             </div>
@@ -187,7 +187,7 @@
             <div class="checkbox">
                 @foreach (var item in CommonModel.GetYesNo())
                 {
-                    @Html.RadioButtonFor(model => model.IsWork, item.Value, new { id = "IsWK" + item.Value, }) @item.Text<br />
+                    @Html.RadioButtonFor(model => model.IsWork, item.Value, new { id = "IsWK" + item.Value, }) @item.Text
                 }
                 @Html.ValidationMessageFor(model => model.IsWork, "", new { @class = "text-danger" })
             </div>
@@ -208,7 +208,7 @@
             <div class="checkbox">
                 @foreach (var item in CommonModel.GetYesNo())
                 {
-                    @Html.RadioButtonFor(model => model.IsPsychometric, item.Value, new { id = "IsPSYMT" + item.Value }) @item.Text<br />
+                    @Html.RadioButtonFor(model => model.IsPsychometric, item.Value, new { id = "IsPSYMT" + item.Value }) @item.Text
                 }
                 @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
             </div>
@@ -237,7 +237,7 @@
             <div class="checkbox">
                 @foreach (var item in CommonModel.GetYesNo())
                 {
-                    @Html.RadioButtonFor(model => model.IsFollowUp, item.Value, new { id = "IsFLW" + item.Value }) @item.Text<br />
+                    @Html.RadioButtonFor(model => model.IsFollowUp, item.Value, new { id = "IsFLW" + item.Value }) @item.Text
                 }
                 @Html.ValidationMessageFor(model => model.IsFollowUp, "", new { @class = "text-danger" })
             </div>
