@@ -233,6 +233,17 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        public static DataSet GetSPCourselist(string Parame)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_Courselist");
+            sp.Command.AddParameter("@Parame", Parame, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            if (ds.Tables.Count > 0)
+            {
+                return ds;
+            }
+            return ds;
+        }
         public class User_Model
         {
             public int StateId { get; set; }
