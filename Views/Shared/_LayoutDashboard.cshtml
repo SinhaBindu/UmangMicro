@@ -7,14 +7,26 @@
     <title>UMANG Microsite</title>
     <link id="Link" href="/Content/images/pci.png" rel="icon" type="image/x-icon" />
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
     <base href="@UmangMicro.Manager.CommonModel.GetBaseUrl()" />
     <link href="~/Content/assets/main.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type='text/css' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+    <style>
+        input[type="radio"] {
+            margin: 0 2px 0 10px;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="loader" style="position: fixed; left: 50%; top: 50%; display: none;">
+        <img src="https://www.drupal.org/files/issues/ajax-loader.gif" />
+    </div>
 
-    
     <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
         @Html.Partial("_AdminHeader")
 
@@ -54,7 +66,7 @@
             </div>
             <div class="app-main__outer">
                 <div class="app-main__inner">
-                    <div class="app-page-title">
+                    @*<div class="app-page-title">
                         <div class="page-title-wrapper">
                             <div class="page-title-heading">
                                 <div class="page-title-icon">
@@ -65,13 +77,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     @RenderBody()
 
                 </div>
                 @Html.Partial("_AdminFooter")
             </div>
         </div>
+
     </div>
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
     @Scripts.Render("~/bundles/jquery")
@@ -79,5 +92,44 @@
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript" src="~/Content/assets/scripts/main.d810cf0ae7f39f28f336.js"></script>
+
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>*@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
+    @if (TempData["ToastMsg"] != null)
+    {
+        <script>
+            var success = @((TempData["ToastMsg"] != null).ToString().ToLower());
+            if (success == true) {
+                var jsonToast = JSON.parse(decodeHtml('@TempData["ToastMsg"]'));
+                CreateToasterMessage(jsonToast.MsgTitle, jsonToast.MsgBody, jsonToast.MsgType);
+            }
+            $(function () {
+                $("#tooltip").text($(this).attr('alt'));
+            });
+        </script>
+    }
+    <script type="text/javascript">
+        $(document).ajaxStop(function () {
+            //console.debug("ajaxStop");
+            $("#loader").hide();
+        });
+        $(document).ajaxStart(function () {
+            // console.debug("ajaxStart");
+            $("#loader").show();
+        });
+    </script>
+
 </body>
 </html>

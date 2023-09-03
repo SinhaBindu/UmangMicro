@@ -1,5 +1,7 @@
 ﻿@model UmangMicro.Models.RegisterViewModel
-@{ }
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
 <style>
     .dataTables_wrapper {
         padding: 5px;
@@ -77,7 +79,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <link href="~/Content/StyleSheet1.scss"  />
+    <link href="~/Content/StyleSheet1.scss" />
 
     <script>
         $(document).ready(function () {
