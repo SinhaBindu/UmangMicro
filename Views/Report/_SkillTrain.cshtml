@@ -1,0 +1,75 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "User List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table card-table table-vcenter text-nowrap" id="DataList">
+                    <thead>
+                        <tr>
+                            <th>SrNo.</th>
+                            <th>Name of the Course</th>
+                            <th>Course Type</th>
+                            <th>Job Opportunity</th>
+                            <th>Course Duration</th>
+                            <th>Short Description of Course</th>
+                            <th>Eligibility</th>
+                            <th>Marks Criteria</th>
+                            <th>Admission Process</th>
+                            <th>Medium of Instructions</th>
+                            <th>Hostel Availability</th>
+                            <th>Available Scholarships</th>
+                            <th>Category</th>
+                            <th>College/University/Institute</th>
+                            <th>Fee Structure</th>
+                            <th>Status of Institution</th>
+                            <th>District</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1;
+                            if (Model != null)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    <tr>
+                                        <td class="text-center">@(sno++)</td>
+                                        <td class="text-left">@dr["NameCourse"]</td>
+                                        <td class="text-left">@dr["CourseType"]</td>
+                                        <td class="text-left">@dr["JobOppty"]</td>
+                                        <td class="text-left">@dr["CorseDur"]</td>
+                                        <td class="text-left">@dr["ShortDesCourse"]</td>
+                                        <td class="text-left">@dr["Eligibility"]</td>
+                                        <td class="text-left">@dr["MarksCriteria"]</td>
+                                        <td class="text-left">@dr["AdmissionProcess"]</td>
+                                        <td class="text-left">@dr["MediumInstructions"]</td>
+                                        <td class="text-left">@dr["HostelAvailability"]</td>
+                                        <td class="text-left">@dr["AvailableScholarships"]</td>
+                                        <td class="text-left">@dr["Category"]</td>
+                                        <td class="text-left">@dr["CollegeUniversityInstitute"]</td>
+                                        <td class="text-left">@dr["FeeStructure"]</td>
+                                        <td class="text-left">@dr["District"]</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
