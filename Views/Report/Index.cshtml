@@ -1,7 +1,7 @@
 ﻿@model UmangMicro.Models.RegisterViewModel
 @{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
- }
+}
 <style>
     .dataTables_wrapper {
         padding: 5px;
@@ -23,21 +23,63 @@
         <div class="page-header">
             <ol class="breadcrumb">
                 <!-- breadcrumb -->
-                <li class="breadcrumb-item"><h5 class="mb-0 breadcrump-tittle">List Of User Details</h5></li>
+                @*<li class="breadcrumb-item"><a href="#"><h3 class="mb-0 breadcrump-tittle">List Of User Details</h3></a></li>*@
             </ol><!-- End breadcrumb -->
             <div id="div-download"></div>
         </div>
         <!-- PAGE-HEADER END -->
-        @using (Html.BeginForm("GetUserDetailData", "Master", FormMethod.Post, new { id = "submission-form" }))
+        @using (Html.BeginForm("GetCoursesDetail", "Report", FormMethod.Post, new { id = "submission-form" }))
         {
             <div id="submission-data">
+                <div class="container">
+                    <h1>Courses Details</h1>
+                    <div class="slides">
+
+                        <div class="slide">
+                            <a href="#">Courses Details</a>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat officiis repellat reprehenderit incidunt deserunt illum eum ipsa quod nihil eligendi hic delectus quaerat. Ad sint tempore cumque mollitia reiciendis!
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <a href="#">Skill Trainings</a>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus obcaecati velit autem tenetur doloribus perferendis esse odit animi quasi deserunt recusandae perspiciatis a sapiente aliquam qui libero dolor officiis assumenda.
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <a href="#">Scholarships</a>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse harum eius voluptas dicta. Vero tempore rerum itaque? Quidem nobis vel consectetur sit amet illo dicta veniam ab ut libero officia!
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <a href="#">Schemes</a>
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat officiis repellat reprehenderit incidunt deserunt illum eum ipsa quod nihil eligendi hic delectus quaerat. Ad sint tempore cumque mollitia reiciendis!
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         }
     </div>
 </div>
 
+@*https://freefrontend.com/jquery-tabs/*@
+@*https://codepen.io/frxnz/pen/AEzeLp*@
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/StyleSheet1.scss" />
 
     <script>
         $(document).ready(function () {
