@@ -95,16 +95,18 @@ img {
     display: flex;
     justify-content: space-between;
     padding-bottom: 8px;
+    padding-top: 8px;
     align-items: center;
 }
 
-.logo, .excellence {
-    width: 80px;
+.logo {
+    width: 60px;
     padding: 5px 0px;
 }
 
 .excellence {
     width: 130px;
+    padding: 5px 0px;
 }
 
 .main-banner {
