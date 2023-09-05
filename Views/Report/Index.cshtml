@@ -17,60 +17,61 @@
         padding: 8px 10px !important;
     }
 </style>
-<div class="app-content">
-    <div class="side-app">
-        <!-- PAGE-HEADER -->
-        <div class="page-header">
-            <ol class="breadcrumb">
-                <!-- breadcrumb -->
-                @*<li class="breadcrumb-item"><a href="#"><h3 class="mb-0 breadcrump-tittle">List Of User Details</h3></a></li>*@
-            </ol><!-- End breadcrumb -->
-            <div id="div-download"></div>
-        </div>
-        <!-- PAGE-HEADER END -->
-        @using (Html.BeginForm("GetCoursesDetail", "Report", FormMethod.Post, new { id = "submission-form" }))
-        {
-            <div id="submission-data">
-                <div class="container">
-                    <h1>Courses Details</h1>
-                    <div class="slides">
-
-                        <div class="slide">
-                            <a href="#">Courses Details</a>
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat officiis repellat reprehenderit incidunt deserunt illum eum ipsa quod nihil eligendi hic delectus quaerat. Ad sint tempore cumque mollitia reiciendis!
+<div class="app-container app-theme-white body-tabs-shadow">
+    <div class="app-container">
+        <div class="h-100">
+            <div class="h-100 no-gutters row">
+                <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
+                    <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
+                        <div id="div-download"></div>
+                        <!-- PAGE-HEADER END -->
+                        @using (Html.BeginForm("GetCoursesDetail", "Report", FormMethod.Post, new { id = "submission-form" }))
+                        {
+                            <div class="col-md-6">
+                                <div class="card mr-8">
+                                    <div class="card-body">
+                                        <ul class="tabs-animated-shadow tabs-animated nav">
+                                            <li class="nav-item">
+                                                <a role="tab" class="nav-link active" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
+                                                    <span>Skill Training</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="false">
+                                                    <span>Schemes</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
+                                                    <span>Scholarships</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
+                                                <p class="mb-0">
+                                                    <div id="sub-data1"></div>
+                                                </p>
+                                            </div>
+                                            <div class="tab-pane" id="tab-animated-1" role="tabpanel">
+                                                <p class="mb-0">
+                                                    <div id="sub-data2"></div>
+                                                </p>
+                                            </div>
+                                            <div class="tab-pane" id="tab-animated-2" role="tabpanel">
+                                                <p class="mb-0">
+                                                    <div id="sub-data3"></div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="slide">
-                            <a href="#">Skill Trainings</a>
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus obcaecati velit autem tenetur doloribus perferendis esse odit animi quasi deserunt recusandae perspiciatis a sapiente aliquam qui libero dolor officiis assumenda.
-                            </div>
-                        </div>
-
-                        <div class="slide">
-                            <a href="#">Scholarships</a>
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse harum eius voluptas dicta. Vero tempore rerum itaque? Quidem nobis vel consectetur sit amet illo dicta veniam ab ut libero officia!
-                            </div>
-                        </div>
-
-                        <div class="slide">
-                            <a href="#">Schemes</a>
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi rem ab voluptate provident voluptatum veniam cupiditate beatae expedita veritatis aliquid officia doloribus dolore maiores doloremque mollitia! A ducimus autem ut!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat officiis repellat reprehenderit incidunt deserunt illum eum ipsa quod nihil eligendi hic delectus quaerat. Ad sint tempore cumque mollitia reiciendis!
-                            </div>
-                        </div>
-
+                        }
                     </div>
                 </div>
             </div>
-        }
+        </div>
     </div>
 </div>
 
@@ -84,7 +85,6 @@
     <script>
         $(document).ready(function () {
             BindData();
-
         });
 
         function BindData() {
@@ -99,9 +99,17 @@
                 success: function (resp) {
                     if (resp.IsSuccess) {
                         jQuery.event.trigger("ajaxStop");
-                        $('#submission-data').html(resp.Data);
+                        $('#sub-data1').html(resp.html1);
+                        $('#sub-data2').html(resp.html2);
+                        $('#sub-data3').html(resp.html3);
                         if ($.fn.dataTable.isDataTable('#DataList')) {
                             $("#DataList").dataTable().fnDestroy();
+                        }
+                        if ($.fn.dataTable.isDataTable('#DataList1')) {
+                            $("#DataList1").dataTable().fnDestroy();
+                        }
+                        if ($.fn.dataTable.isDataTable('#DataList2')) {
+                            $("#DataList2").dataTable().fnDestroy();
                         }
                         table = $('#DataList').DataTable({
                             //scrollY: "400px",
@@ -123,12 +131,47 @@
                         $('.dataTables_filter input[type="search"]').css(
                             { 'width': '500px', 'display': 'inline-block' }
                         );
-                        $('#div-download').empty();
+                        $('#div-download2').empty();
                         table.buttons().container().appendTo($('#div-download'));
+                        table1 = $('#DataList1').DataTable({
+                            //scrollY: "400px",
+                            //scrollX: true,
+                            //scrollCollapse: true,
+                            //paging: false,
+                            pageLength: 100,
+                            fixedColumns: {
+                                leftColumns: 1,
+                                rightColumns: 1
+                            },
+                            buttons: [{
+                                extend: 'excel', text: '<span><i class="fa fa-download"></i>Export</span>', title: 'User Lists',//$('#IDDistrict option:selected').text() +
+                                className: 'btn btn-primary button-icon mr-3 mt-1 mb-1',
+                                filename: 'User List',
+                                exportOptions: { modifier: { page: 'all' } }
+                            }],
+                        });
+                        table2 = $('#DataList2').DataTable({
+                            //scrollY: "400px",
+                            //scrollX: true,
+                            //scrollCollapse: true,
+                            //paging: false,
+                            pageLength: 100,
+                            fixedColumns: {
+                                leftColumns: 1,
+                                rightColumns: 1
+                            },
+                            buttons: [{
+                                extend: 'excel', text: '<span><i class="fa fa-download"></i>Export</span>', title: 'User Lists',//$('#IDDistrict option:selected').text() +
+                                className: 'btn btn-primary button-icon mr-3 mt-1 mb-1',
+                                filename: 'User List',
+                                exportOptions: { modifier: { page: 'all' } }
+                            }],
+                        });
+                       
                     }
                     else {
-                        $('#submission-data').html("Record Not Found !!");//TO DO
-                        $('#submission-data').addClass("text-danger");//TO DO
+                        $('#sub-data1').html("Record Not Found !!");//TO DO
+                        $('#sub-data1').addClass("text-danger");//TO DO
                     }
                 },
                 error: function (req, error) {

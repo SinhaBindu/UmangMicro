@@ -20,6 +20,7 @@ namespace UmangMicro.Controllers
         {
             try
             {
+                //dt = ds.Tables.Contains("Tables[0]") == true ? dt : ds.Tables[0];//dt1 = ds.Tables.Contains("Tables[1]") == true ? dt1 : ds.Tables[1];
                 bool IsCheck = false;
                 DataTable dt = new DataTable();
                 DataTable dt1 = new DataTable();
@@ -29,15 +30,28 @@ namespace UmangMicro.Controllers
                 if (ds.Tables.Count > 0)
                 {
                     IsCheck = true;
-                    dt = ds.Tables[0];
-                    dt1 = ds.Tables[1];
-                    dt2 = ds.Tables[2];
-                    dt3 = ds.Tables[3];
+                    if (ds.Tables[0].Rows.Count>0)
+                    {
+                        dt = ds.Tables[0];
+                    }
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        dt1 = ds.Tables[1];
+                    }
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        dt2= ds.Tables[2];
+                    }
+                    if (ds.Tables[3].Rows.Count > 0)
+                    {
+                        dt3 = ds.Tables[3];
+                    }
                 }
-                var html1 = ConvertViewToString("_SkillTrain", dt);
-                //var html2 = ConvertViewToString("_UserDetailData", tbllist);
+                var html_1 = ConvertViewToString("_SkillTrain", dt);
+                var html_2 = ConvertViewToString("_Scheme", dt1);
+                var html_3 = ConvertViewToString("_Scholarship", dt2);
                 //var html3 = ConvertViewToString("_UserDetailData", tbllist);
-                var res = Json(new { IsSuccess = IsCheck, Data = html1 }, JsonRequestBehavior.AllowGet);
+                var res = Json(new { IsSuccess = IsCheck, html1 = html_1, html2 = html_2, html3 = html_3 }, JsonRequestBehavior.AllowGet);
                 res.MaxJsonLength = int.MaxValue;
                 return res;
             }

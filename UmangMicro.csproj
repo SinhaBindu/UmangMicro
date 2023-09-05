@@ -694,7 +694,6 @@
     <Content Include="Content\images\timeline\tm-pink-arrow-hl.png" />
     <Content Include="Content\images\top-ar.png" />
     <Content Include="Content\images\slider\umang-banner.jpg" />
-    <Content Include="Content\images\umang-cover.jpg" />
     <Content Include="Content\images\umang-logo.png" />
     <Content Include="Content\images\WhatsApp Image 2023-05-31 at 21.00.42.jpg" />
     <Content Include="Content\images\white-curve-bg.png" />
@@ -849,6 +848,8 @@
     <Content Include="Views\Shared\_AdminFooter.cshtml" />
     <Content Include="Views\Report\_SkillTrain.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\_Scheme.cshtml" />
+    <Content Include="Views\Report\_Scholarship.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
