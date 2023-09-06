@@ -1,129 +1,37 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 <!-- Banner -->
-<link rel='stylesheet' href='/Content/css/settings4361.css?rev=4.1.3&amp;ver=3.9' type='text/css' />
-<script type='text/javascript' src='/Content/js/plugins/jquery.themepunch.plugins.min4361.js?rev=4.1.3&amp;ver=3.9'></script>
-<script type='text/javascript'
-        src='/Content/js/plugins/jquery.themepunch.revolution.min4361.js?rev=4.1.3&amp;ver=3.9'></script>
-<!-- Banner -->
-<img src="~/Content/images/umang-cover.jpg" alt="Umang Cover" />
-@*<div class="main-banner">
-    <div id="rev_slider_3_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container"
-         style="margin:0px auto; background-color:#E9E9E9; padding:0px; margin-top:0px; margin-bottom:0px; max-height:520px; height:520px; position:relative">
-        <div id="rev_slider_3_1" class="rev_slider fullwidthabanner"
-             style="display:none; max-height:520px; height:520px;">
-            <ul>
-                <li data-transition="random" data-slotamount="7" data-masterspeed="300">
-                    <img src="~/Content/images/slider/umang-banner.jpg" alt="" data-bgposition="center top" data-bgfit="cover"
-                         data-bgrepeat="no-repeat">
-                </li>
-                <li data-transition="random" data-slotamount="7" data-masterspeed="300">
-                    <img src="/Content/images/slider/slide-1.jpg" alt="" data-bgposition="center top" data-bgfit="cover"
-                         data-bgrepeat="no-repeat">
-                </li>
-                <li data-transition="random" data-slotamount="7" data-masterspeed="300">
-                    <img src="/Content/images/slider/slide-2.jpg" alt="" data-bgposition="center top" data-bgfit="cover"
-                         data-bgrepeat="no-repeat">
-                </li>
-                <li data-transition="random" data-slotamount="7" data-masterspeed="300">
-                    <img src="/Content/images/slider/slide-3.jpg" alt="" data-bgposition="center top" data-bgfit="cover"
-                         data-bgrepeat="no-repeat">
-                </li>
-            </ul>
-        </div>
-
+<div class="cool-banner">
+    <div class="banner-text">
+        <h2>Umang</h2>
+        <p><span class="txt-bold">Umang (meaning enthusiasm)</span> is an empowerment-integrated and norm-shifting model that addresses the issue of child/early  marriage of adolescent girls in Jharkhand.</p>
+        <a href="#">
+            <span>READ MORE</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="svg-arrow-right"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z" /></svg>
+        </a>
     </div>
-    <script type="text/javascript">
-        var tpj = jQuery;
-        tpj.noConflict();
-        var revapi3;
-
-        tpj(document).ready(function () {
-
-            if (tpj('#rev_slider_3_1').revolution == undefined)
-                revslider_showDoubleJqueryError('#rev_slider_3_1');
-            else
-                revapi3 = tpj('#rev_slider_3_1').show().revolution(
-                    {
-                        dottedOverlay: "none",
-                        delay: 9000,
-                        startwidth: 1170,
-                        startheight: 520,
-                        hideThumbs: 200,
-
-                        thumbWidth: 100,
-                        thumbHeight: 50,
-                        thumbAmount: 4,
-
-                        navigationType: "none",
-                        navigationArrows: "solo",
-                        navigationStyle: "round",
-
-                        touchenabled: "on",
-                        onHoverStop: "on",
-
-                        navigationHAlign: "center",
-                        navigationVAlign: "bottom",
-                        navigationHOffset: 0,
-                        navigationVOffset: 20,
-
-                        soloArrowLeftHalign: "left",
-                        soloArrowLeftValign: "center",
-                        soloArrowLeftHOffset: 20,
-                        soloArrowLeftVOffset: 0,
-
-                        soloArrowRightHalign: "right",
-                        soloArrowRightValign: "center",
-                        soloArrowRightHOffset: 20,
-                        soloArrowRightVOffset: 0,
-
-                        shadow: 0,
-                        fullWidth: "on",
-                        fullScreen: "off",
-
-                        stopLoop: "off",
-                        stopAfterLoops: -1,
-                        stopAtSlide: -1,
-
-                        shuffle: "off",
-                        autoHeight: "off",
-                        forceFullWidth: "off",
-
-                        hideThumbsOnMobile: "on",
-                        hideBulletsOnMobile: "on",
-                        hideArrowsOnMobile: "on",
-                        hideThumbsUnderResolution: 0,
-                    });
-        });
-    </script>
-</div>*@
-<!-- Quick Message -->
-<div class="quick-message">
-    <div class="quick-info" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
-        <h1>Umang</h1>
-        <div class="border-bottom"></div>
-        <p><span class="cool-italic">Umang (meaning enthusiasm)</span> is an empowerment-integrated and norm-shifting model that addresses the issue of child/early marriage of adolescent girls in Jharkhand.</p>
-    </div>
-    <div class="quick-graphic">
-        <img src="~/Content/images/girl-design-work.jpg" alt="girl art design" class="girl-work" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200" />
-        <img src="~/Content/images/women-confidence.jpg" alt="woemn in confidence" class="woemn-confidence" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200" />
+    <div class="umang-cover">
+        <img src="~/Content/images/umang-cover.jpg" alt="Umang Cover" />
     </div>
 </div>
-<!-- AIM -->
-<div class="umang-aim">
-    <h2 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Aim</h2>
-    <div class="bord" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"></div>
-    <div class="aim-flex">
-        <div class="aim-content" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
+
+<div class="default-bg">
+    <div class="quick-message">
+        <div class="quick-info" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
+            <h1>Aim</h1>
+            <div class="border-bottom"></div>
             <p>Project Umang aims to reduce incidence of child/early marriage in high-prevalence districts in Jharkhand and empower adolescent girls.</p>
-            <p><span class="text-stylish">PCI India has partnered with Jharkhand State Livelihood Promotion Society (JSLPS) to pilot the model in Jamtara and Godda districts of the state.</span></p>
+            <p>PCI India has partnered with Jharkhand State Livelihood Promotion Society (JSLPS) to pilot the model in Jamtara and Godda districts of the state.</p>
         </div>
-        <div class="aim-graphic">
-            <img src="~/Content/images/girl-cycling.jpg" alt="girl cycling" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="100" />
+        <div class="quick-graphic">
+            <img src="~/Content/images/girl-design-work.jpg" alt="girl art design" class="girl-work" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200" />
+            <img src="~/Content/images/women-confidence.jpg" alt="woemn in confidence" class="woemn-confidence" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200" />
         </div>
     </div>
 </div>
+
 <!-- Objectives -->
 <div class="objectives-content">
     <div class="title-round" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
@@ -135,78 +43,188 @@
     </ul>
 </div>
 <!-- Impact -->
-<div class="umang-impact">
-    <div class="umang-manage">
+<div class="primary-bg">
+    <div class="impact-stat">
         <h2>Our Impact</h2>
         <p>Since its inception in 2019, Umang has been empowering mothers, who are able to stand against child/early marriage and nurture the aspirations of their daughters, thus enhancing prospects of a better future for 46,000+ adolescent girls in Godda & Jamtara.</p>
+        <div class="impact-flex">
+            <div class="imp-1" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
+                <img src="~/Content/images/umang-stat/child-marriage.png" alt="Child/early marriages averted" />
+                <div class="data-1">
+                    <h3>250</h3>
+                </div>
+                <h4>Child/early marriages <br />averted</h4>
+            </div>
+            <div class="imp-2" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="200">
+                <img src="~/Content/images/umang-stat/women-capitalize.png" alt="Women capacitated" />
+                <div class="data-2">
+                    <h3>1,76,000</h3>
+                </div>
+                <h4>Women <br />capacitated</h4>
+            </div>
+            <div class="imp-3" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="300">
+                <img src="~/Content/images/umang-stat/girls-school.png" alt="Girls re-enrolled
+                    in schools" />
+                <div class="data-3">
+                    <h3>300</h3>
+                </div>
+                <h4>
+                    Girls re-enrolled<br />
+                    in schools
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Reach Out -->
+<div class="umang-impact">
+    <div class="umang-manage">
+        <img src="~/Content/images/umang-reach.png" alt="umang reach" />
+             @*<h2>UMANG HAS REACHED OUT TO</h2>
         <div class="cool-data">
             <div class="data1">
                 <img src="~/Content/images/child-marriage-icon.png" alt="child marriage" />
-                <h4>250</h4>
-                <h5>Child/early marriages averted</h5>
+                <h4>12,000</h4>
+                <h5>SHGs</h5>
             </div>
             <div class="data2">
                 <img src="~/Content/images/girl-reschooling.png" alt="child marriage" />
-                <h4>300</h4>
-                <h5>Girls re-enrolled in schools</h5>
+                <h4>1200</h4>
+                <h5>VOs</h5>
             </div>
             <div class="data3">
                 <img src="~/Content/images/women-capacitor.png" alt="child marriage" />
-                <h4>1,76,000</h4>
-                <h5>Women capacitated</h5>
+                <h4>50</h4>
+                <h5>CLFs</h5>
             </div>
-        </div>
+        </div>*@
     </div>
-</div>
-<!-- Our Reach -->
-<div class="our-reach">
-    <div class="div-manage">
-        <div class="impact-image">
-            <h2>Umang has <span>reached</span> out to</h2>
-            <div class="impact-point clr1">
-                <h3>12,000 </h3>
-                <p>SHGs</p>
-            </div>
-            <div class="impact-point clr2">
-                <h3>1200</h3>
-                <p>VOs</p>
-            </div>
-            <div class="impact-point clr3">
-                <h3>50</h3>
-                <p>CLFs</p>
-            </div>
-        </div>
-    </div>
-    <div class="breaker"></div>
 </div>
 <!-- Video Testimonials -->
-<div class="video-testim">
-    <h2>Video Testimonials</h2>
-    <div class="bord"></div>
-    <div class="video-flex">
-        <div class="video-box">
-            <div class="side-vide">
-                <div class="side-video-container">
-                    <iframe width="100%" height="290" src="https://www.youtube.com/embed/YzA5ifZ-TJ4"></iframe>
+<div class="grey-bg">
+    <div class="video-testim">
+        <h2>
+            <span class="video-round">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" class="svg-video"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z" /></svg>
+            </span>
+            
+            Video Testimonials
+        </h2>
+        <div class="video-flex">
+            <div class="video-box vd1">
+                <h3>Community Members</h3>
+                <div class="container12 bg_gray bg_img">
+                    <div class="product_slider">
+                        <div class="amazingcarousel-list-container">
+                            <ul class="amazingcarousel-list">
+                                <li class="amazingcarousel-item">
+                                    <div class="amazingcarousel-item-container">
+                                        <div class="lex">
+                                            <video width="320" height="240" controls>
+                                                <source src="~/Content/videos/community-member/1_Sweety Das_Jamtara.mp4" type="video/mp4">
+                                                <source src="~/Content/videos/community-member/1_Sweety Das_Jamtara.ogg" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Sweety Das Jamtara</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="amazingcarousel-item">
+                                    <div class="amazingcarousel-item-container">
+                                        <div class="lex">
+                                            <video width="320" height="240" controls>
+                                                <source src="~/Content/videos/community-member/2_Priyanka%20Kumari,%20Baisadi,%20Godda.mp4" type="video/mp4">
+                                                <source src="~/Content/videos/community-member/2_Priyanka%20Kumari,%20Baisadi,%20Godda.ogg" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Priyanka Kumari</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="amazingcarousel-prev"></div>
+                            <div class="amazingcarousel-next"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <h3>About Filaria</h3>
-        </div>
-        <div class="video-box">
-            <div class="side-vide">
-                <div class="side-video-container">
-                    <iframe width="100%" height="290" src="https://www.youtube.com/embed/fyZlMGcDS7Y"></iframe>
+            <div class="video-box vd2">
+                <h3>Cadre</h3>
+                <div class="container12 bg_gray bg_img">
+                    <div class="product_slider2">
+                        <div class="amazingcarousel-list-container">
+                            <ul class="amazingcarousel-list">
+                                <li class="amazingcarousel-item">
+                                    <div class="amazingcarousel-item-container">
+                                        <div class="lex">
+                                            <video width="320" height="240" controls>
+                                                <source src="~/Content/videos/community-member/1_Sweety Das_Jamtara.mp4" type="video/mp4">
+                                                <source src="~/Content/videos/community-member/1_Sweety Das_Jamtara.ogg" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Sweety Das Jamtara</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="amazingcarousel-item">
+                                    <div class="amazingcarousel-item-container">
+                                        <div class="lex">
+                                            <video width="320" height="240" controls>
+                                                <source src="~/Content/videos/community-member/2_Priyanka%20Kumari,%20Baisadi,%20Godda.mp4" type="video/mp4">
+                                                <source src="~/Content/videos/community-member/2_Priyanka%20Kumari,%20Baisadi,%20Godda.ogg" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Priyanka Kumari</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="amazingcarousel-prev"></div>
+                            <div class="amazingcarousel-next"></div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <h3>Maternal diet film for JEEViKA</h3>
-        </div>
-        <div class="video-box">
-            <div class="side-vide">
-                <div class="side-video-container">
-                    <iframe width="100%" height="290" src="https://www.youtube.com/embed/5edPv45w7iY"></iframe>
+            <div class="video-box vd3">
+                <h3>Officials</h3>
+                <div class="container12 bg_gray bg_img">
+                    <div class="product_slider3">
+                        <div class="amazingcarousel-list-container">
+                            <ul class="amazingcarousel-list">
+                                <li class="amazingcarousel-item">
+                                    <div class="amazingcarousel-item-container">
+                                        <div class="lex">
+                                            <video width="320" height="240" controls>
+                                                <source src="~/Content/videos/community-member/1_Sweety Das_Jamtara.mp4" type="video/mp4">
+                                                <source src="~/Content/videos/community-member/1_Sweety Das_Jamtara.ogg" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Sweety Das Jamtara</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="amazingcarousel-item">
+                                    <div class="amazingcarousel-item-container">
+                                        <div class="lex">
+                                            <video width="320" height="240" controls>
+                                                <source src="~/Content/videos/community-member/2_Priyanka%20Kumari,%20Baisadi,%20Godda.mp4" type="video/mp4">
+                                                <source src="~/Content/videos/community-member/2_Priyanka%20Kumari,%20Baisadi,%20Godda.ogg" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Priyanka Kumari</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="amazingcarousel-prev"></div>
+                            <div class="amazingcarousel-next"></div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <h3>SHG formation film for JEEViKA</h3>
         </div>
     </div>
 </div>
+
