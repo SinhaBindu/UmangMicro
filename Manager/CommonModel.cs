@@ -174,7 +174,6 @@ namespace UmangMicro.Manager
         //    return str;
         //}
 
-
         //public static UserViewModel User
         //{
         //    get
@@ -785,6 +784,56 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "Father", Text = "Father" });
             list.Add(new SelectListItem { Value = "Daughter", Text = "Daughter" });
             list.Add(new SelectListItem { Value = "Brother", Text = "Brother" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetInstitutionEng()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "Government", Text = "Government" });
+            list.Add(new SelectListItem { Value = "Private", Text = "Private" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetInstitutionHindi()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "सरकारी", Text = "सरकारी" });
+            list.Add(new SelectListItem { Value = "गैर सरकारी", Text = "गैर सरकारी" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetYesNoEng()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "Yes", Text = "Yes" });
+            list.Add(new SelectListItem { Value = "No", Text = "No" });
+            list.Add(new SelectListItem { Value = "NA", Text = "NA" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetYesNoHindi()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "हाँ", Text = "हाँ" });
+            list.Add(new SelectListItem { Value = "नहीं", Text = "नहीं" });
+            list.Add(new SelectListItem { Value = "एन.ए.", Text = "एन.ए." });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetCategoryEng()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "All", Text = "All" });
+            list.Add(new SelectListItem { Value = "Other", Text = "Other" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetCategoryHindi()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "सभी", Text = "सभी" });
+            list.Add(new SelectListItem { Value = "अन्य", Text = "अन्य" });
             return list.OrderByDescending(x => x.Text).ToList();
         }
         #endregion

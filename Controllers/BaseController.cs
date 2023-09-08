@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using UmangMicro.Models;
 using UmangMicro;
 
-namespace KGBV_JH.Controllers
+namespace UmangMicro.Controllers
 {
     public class BaseController : Controller
     {

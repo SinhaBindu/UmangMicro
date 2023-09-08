@@ -83,6 +83,51 @@
           <Property Name="StateName" Type="nvarchar" MaxLength="20" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="tbl_CoursesDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameCourseEng" Type="nvarchar(max)" />
+          <Property Name="NameCourseHindi" Type="nvarchar(max)" />
+          <Property Name="CourseTypeEng" Type="nvarchar(max)" />
+          <Property Name="CourseTypeHindi" Type="nvarchar(max)" />
+          <Property Name="JobOpportunityEng" Type="nvarchar(max)" />
+          <Property Name="JobOpportunityHindi" Type="nvarchar(max)" />
+          <Property Name="CourseDurationEng" Type="nvarchar(max)" />
+          <Property Name="CourseDurationHindi" Type="nvarchar(max)" />
+          <Property Name="ShortDescriptionCourseEng" Type="nvarchar(max)" />
+          <Property Name="ShortDescriptionCourseHindi" Type="nvarchar(max)" />
+          <Property Name="EligibilityEng" Type="nvarchar(max)" />
+          <Property Name="EligibilityHindi" Type="nvarchar(max)" />
+          <Property Name="MarksCriteriaEng" Type="nvarchar(max)" />
+          <Property Name="MarksCriteriaHindi" Type="nvarchar(max)" />
+          <Property Name="AdmissionProcessEng" Type="nvarchar(max)" />
+          <Property Name="AdmissionProcessHindi" Type="nvarchar(max)" />
+          <Property Name="MediumInstructionEng" Type="nvarchar(max)" />
+          <Property Name="MediumInstructionHindi" Type="nvarchar(max)" />
+          <Property Name="HostelAvailabilityEng" Type="nvarchar" MaxLength="50" />
+          <Property Name="HostelAvailabilityHindi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AvailableScholarshipEng" Type="nvarchar" MaxLength="50" />
+          <Property Name="AvailableScholarshipHindi" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryEng" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryHindi" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryOtherEng" Type="nvarchar" MaxLength="1200" />
+          <Property Name="CategoryOtherHindi" Type="nvarchar" MaxLength="1200" />
+          <Property Name="College_Unvty_InstEng" Type="nvarchar(max)" />
+          <Property Name="College_Unvty_InstHindi" Type="nvarchar(max)" />
+          <Property Name="FeeStructureEng" Type="nvarchar(max)" />
+          <Property Name="FeeStructureHindi" Type="nvarchar(max)" />
+          <Property Name="StatusInstitutionEng" Type="nvarchar" MaxLength="200" />
+          <Property Name="StatusInstitutionHindi" Type="nvarchar" MaxLength="200" />
+          <Property Name="DistrictEng" Type="nvarchar(max)" />
+          <Property Name="DistrictHindi" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedDt" Type="datetime" />
+        </EntityType>
         <EntityType Name="tbl_Registration">
           <Key>
             <PropertyRef Name="ID" />
@@ -158,6 +203,7 @@
           <EntitySet Name="Cluster_Mast" EntityType="Self.Cluster_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dist_Mast" EntityType="Self.Dist_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State_Mast" EntityType="Self.State_Mast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CoursesDetail" EntityType="Self.tbl_CoursesDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Registration" EntityType="Self.tbl_Registration" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -248,6 +294,7 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="tbl_Registration" EntityType="UM_DBModel.tbl_Registration" />
+          <EntitySet Name="tbl_CoursesDetail" EntityType="UM_DBModel.tbl_CoursesDetail" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -299,6 +346,51 @@
           <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="DeletedDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CoursesDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCourseEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameCourseHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseTypeEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseTypeHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobOpportunityEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobOpportunityHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseDurationEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseDurationHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescriptionCourseEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescriptionCourseHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EligibilityEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EligibilityHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MarksCriteriaEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MarksCriteriaHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdmissionProcessEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdmissionProcessHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MediumInstructionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MediumInstructionHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HostelAvailabilityEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HostelAvailabilityHindi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AvailableScholarshipEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AvailableScholarshipHindi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryHindi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryOtherEng" Type="String" MaxLength="1200" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryOtherHindi" Type="String" MaxLength="1200" FixedLength="false" Unicode="true" />
+          <Property Name="College_Unvty_InstEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="College_Unvty_InstHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FeeStructureEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FeeStructureHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusInstitutionEng" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StatusInstitutionHindi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -426,6 +518,52 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CaseID" ColumnName="CaseID" />
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CoursesDetail">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CoursesDetail">
+              <MappingFragment StoreEntitySet="tbl_CoursesDetail">
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DistrictHindi" ColumnName="DistrictHindi" />
+                <ScalarProperty Name="DistrictEng" ColumnName="DistrictEng" />
+                <ScalarProperty Name="StatusInstitutionHindi" ColumnName="StatusInstitutionHindi" />
+                <ScalarProperty Name="StatusInstitutionEng" ColumnName="StatusInstitutionEng" />
+                <ScalarProperty Name="FeeStructureHindi" ColumnName="FeeStructureHindi" />
+                <ScalarProperty Name="FeeStructureEng" ColumnName="FeeStructureEng" />
+                <ScalarProperty Name="College_Unvty_InstHindi" ColumnName="College_Unvty_InstHindi" />
+                <ScalarProperty Name="College_Unvty_InstEng" ColumnName="College_Unvty_InstEng" />
+                <ScalarProperty Name="CategoryOtherHindi" ColumnName="CategoryOtherHindi" />
+                <ScalarProperty Name="CategoryOtherEng" ColumnName="CategoryOtherEng" />
+                <ScalarProperty Name="CategoryHindi" ColumnName="CategoryHindi" />
+                <ScalarProperty Name="CategoryEng" ColumnName="CategoryEng" />
+                <ScalarProperty Name="AvailableScholarshipHindi" ColumnName="AvailableScholarshipHindi" />
+                <ScalarProperty Name="AvailableScholarshipEng" ColumnName="AvailableScholarshipEng" />
+                <ScalarProperty Name="HostelAvailabilityHindi" ColumnName="HostelAvailabilityHindi" />
+                <ScalarProperty Name="HostelAvailabilityEng" ColumnName="HostelAvailabilityEng" />
+                <ScalarProperty Name="MediumInstructionHindi" ColumnName="MediumInstructionHindi" />
+                <ScalarProperty Name="MediumInstructionEng" ColumnName="MediumInstructionEng" />
+                <ScalarProperty Name="AdmissionProcessHindi" ColumnName="AdmissionProcessHindi" />
+                <ScalarProperty Name="AdmissionProcessEng" ColumnName="AdmissionProcessEng" />
+                <ScalarProperty Name="MarksCriteriaHindi" ColumnName="MarksCriteriaHindi" />
+                <ScalarProperty Name="MarksCriteriaEng" ColumnName="MarksCriteriaEng" />
+                <ScalarProperty Name="EligibilityHindi" ColumnName="EligibilityHindi" />
+                <ScalarProperty Name="EligibilityEng" ColumnName="EligibilityEng" />
+                <ScalarProperty Name="ShortDescriptionCourseHindi" ColumnName="ShortDescriptionCourseHindi" />
+                <ScalarProperty Name="ShortDescriptionCourseEng" ColumnName="ShortDescriptionCourseEng" />
+                <ScalarProperty Name="CourseDurationHindi" ColumnName="CourseDurationHindi" />
+                <ScalarProperty Name="CourseDurationEng" ColumnName="CourseDurationEng" />
+                <ScalarProperty Name="JobOpportunityHindi" ColumnName="JobOpportunityHindi" />
+                <ScalarProperty Name="JobOpportunityEng" ColumnName="JobOpportunityEng" />
+                <ScalarProperty Name="CourseTypeHindi" ColumnName="CourseTypeHindi" />
+                <ScalarProperty Name="CourseTypeEng" ColumnName="CourseTypeEng" />
+                <ScalarProperty Name="NameCourseHindi" ColumnName="NameCourseHindi" />
+                <ScalarProperty Name="NameCourseEng" ColumnName="NameCourseEng" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

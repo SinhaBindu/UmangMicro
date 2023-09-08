@@ -32,5 +32,6 @@ namespace UmangMicro.Models
         public virtual DbSet<State_Mast> State_Mast { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<tbl_Registration> tbl_Registration { get; set; }
+        public virtual DbSet<tbl_CoursesDetail> tbl_CoursesDetail { get; set; }
     }
 }
