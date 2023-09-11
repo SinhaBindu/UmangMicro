@@ -41,6 +41,15 @@
         padding-top: 140px;
         font-size: 14px;
     }
+    .dataTables_filter {
+        font-size: large !important;
+        font-weight: normal !important;
+        margin-left: 3% !important;
+    }
+    input[type="search"] {
+        height: 50px !important;
+    }
+  
 </style>
 
 <div class="app-container app-theme-white body-tabs-shadow">
@@ -56,11 +65,11 @@
                         @using (Html.BeginForm("GetCoursesDetail", "Report", FormMethod.Post, new { id = "submission-form" }))
                         {
                             <div class="form-row">
-                                <div class="col-md-12">
+                                @*<div class="col-md-12">
                                     <div style="text-align: center; font-weight: 700;">
                                         <h4><strong>Compendium List</strong></h4>
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
@@ -241,6 +250,7 @@
                             scrollCollapse: false,
                             "dom": '<"pull-left"f><"pull-right"l>tip',
                             "pageLength": 100,
+                            "lengthChange": false,
                             "buttons": [
                                 {
                                     extend: 'excel',

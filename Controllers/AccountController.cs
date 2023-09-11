@@ -244,7 +244,8 @@ namespace UmangMicro.Controllers
                         user.BlockId = model.BlockId;
                         user.ClusterId = model.ClusterId;
                         user.CreatedBY = user.Id;
-                        
+                        dbe.SaveChanges();
+
                         var userRoles = UserManager.GetRoles(model.Id);
                         foreach (var item in userRoles)
                         {
@@ -254,7 +255,7 @@ namespace UmangMicro.Controllers
                                 UserManager.AddToRole(model.Id, model.Role);
                             }
                         }
-
+                       
                         GlobalUtilityManager.MessageToaster(this, "Edit User", Enums.GetEnumDescription(Enums.eReturnReg.Update), eAlertType.success.ToString());
                         return RedirectToAction("UserDetaillist", "Master");
                     }
@@ -568,7 +569,7 @@ namespace UmangMicro.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Report");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
