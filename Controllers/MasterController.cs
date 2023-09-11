@@ -21,10 +21,77 @@ namespace UmangMicro.Controllers
         // int result = 0; bool CheckStatus = false;
         string MSG = string.Empty;
 
-        #region Course Details Create,Update
+        #region Course Details Create,List,Update
+        public ActionResult CourseDetail()
+        {
+            CoursesDModel model = new CoursesDModel();
+            return View(model);
+        }
+        public ActionResult GetCourseDetail()
+        {
+            try
+            {
+                bool IsCheck = false;
+                var tbllist = SP_Model.GetSPCourseEdit();
+                if (tbllist != null)
+                {
+                    IsCheck = true;
+                }
+                var html = ConvertViewToString("_CourseEdit", tbllist);
+                var res = Json(new { IsSuccess = IsCheck, Data = html }, JsonRequestBehavior.AllowGet);
+                res.MaxJsonLength = int.MaxValue;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
+            }
+        }
         public ActionResult CourseD(int Id = 0)
         {
-            CoursesDModel model=new CoursesDModel();
+            CoursesDModel model = new CoursesDModel();
+            if (Id > 0)
+            {
+                var tbl = db.tbl_CoursesDetail.Find(Id);
+                if (tbl != null && Id > 0)
+                {
+                    model.NameCourseEng = tbl.NameCourseEng;
+                    model.NameCourseHindi = tbl.NameCourseHindi;
+                    model.CourseTypeEng = tbl.CourseTypeEng;
+                    model.CourseTypeHindi = tbl.CourseTypeHindi;
+                    model.JobOpportunityEng = tbl.JobOpportunityEng;
+                    model.JobOpportunityHindi = tbl.JobOpportunityHindi;
+                    model.CourseDurationEng = tbl.CourseDurationEng;
+                    model.CourseDurationHindi = tbl.CourseDurationHindi;
+                    model.ShortDescriptionCourseEng = tbl.ShortDescriptionCourseEng;
+                    model.ShortDescriptionCourseHindi = tbl.ShortDescriptionCourseHindi;
+                    model.EligibilityEng = tbl.EligibilityEng;
+                    model.EligibilityHindi = tbl.EligibilityHindi;
+                    model.MarksCriteriaEng = tbl.MarksCriteriaEng;
+                    model.MarksCriteriaHindi = tbl.MarksCriteriaHindi;
+                    model.AdmissionProcessEng = tbl.AdmissionProcessEng;
+                    model.AdmissionProcessHindi = tbl.AdmissionProcessHindi;
+                    model.MediumInstructionEng = tbl.MediumInstructionEng;
+                    model.MediumInstructionHindi = tbl.MediumInstructionHindi;
+                    model.HostelAvailabilityEng = tbl.HostelAvailabilityEng;
+                    model.HostelAvailabilityHindi = tbl.HostelAvailabilityHindi;
+                    model.AvailableScholarshipEng = tbl.AvailableScholarshipEng;
+                    model.AvailableScholarshipHindi = tbl.AvailableScholarshipHindi;
+                    model.CategoryEng = tbl.CategoryEng;
+                    model.CategoryHindi = tbl.CategoryHindi;
+                    model.CategoryOtherEng = tbl.CategoryOtherEng;
+                    model.CategoryOtherHindi = tbl.CategoryOtherHindi;
+                    model.College_Unvty_InstEng = tbl.College_Unvty_InstEng;
+                    model.College_Unvty_InstHindi = tbl.College_Unvty_InstHindi;
+                    model.FeeStructureEng = tbl.FeeStructureEng;
+                    model.FeeStructureHindi = tbl.FeeStructureHindi;
+                    model.StatusInstitutionEng = tbl.StatusInstitutionEng;
+                    model.StatusInstitutionHindi = tbl.StatusInstitutionHindi;
+                    model.DistrictEng = tbl.DistrictEng;
+                    model.DistrictHindi = tbl.DistrictHindi;
+                }
+            }
             return View(model);
         }
         [HttpPost]
@@ -32,7 +99,8 @@ namespace UmangMicro.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                Danger("Required!", true);
+                return View(model);
             }
             var tbl = model.ID != 0 ? db.tbl_CoursesDetail.Find(model.ID) : new tbl_CoursesDetail();
             if (tbl != null)
@@ -86,11 +154,10 @@ namespace UmangMicro.Controllers
                 var res = db.SaveChanges();
                 if (res > 0)
                 {
-                    Success("Employee added successfully !", true);
-                    return RedirectToAction("Add", new { id = 0 });
+                    Success("Added Successfully !", true);
+                    return RedirectToAction("CourseD", new { id = tbl.ID });
                 }
             }
-
             return View(model);
         }
         #endregion
@@ -113,6 +180,7 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+        //[HttpGet]
         public ActionResult GetDistrictList(int StateId = 20)
         {
             try

@@ -12,7 +12,7 @@
     <div class="col-lg-12 col-md-12">
         <div class="card">
             <div class="table-responsive">
-                <table class="table card-table table-vcenter text-nowrap" id="DataList1">
+                <table class="table table-bordered table-hover dt-responsive display" id="DataList1" width="100%">
                     <thead>
                         <tr>
                             <th>SrNo.</th>
@@ -32,11 +32,11 @@
                                 {
                                     <tr>
                                         <td class="text-center">@(sno++)</td>
-                                        <td class="text-left">@dr["NameofScheme"]</td>
-                                        <td class="text-left">@dr["Objective"]</td>
-                                        <td class="text-left">@dr["Eligibility"]</td>
-                                        <td class="text-left">@dr["Benefit"]</td>
-                                        <td class="text-left">@dr["Remarks"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["NameofScheme"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Objective"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Eligibility"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Benefit"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Remarks"]</td>
                                     </tr>
                                 }
                             }

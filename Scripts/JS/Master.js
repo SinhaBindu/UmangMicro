@@ -260,7 +260,7 @@ function BindState(Ele) {
     //$('#IDState').append($("<option>").val('').text('Select'));
     $.ajax({
         url: document.baseURI+ "/Master/GetStateList",
-        type: "Get",
+        type: "Post",
         data: '',
         contentType: "application/json; charset=utf-8",
         global: false,
@@ -285,16 +285,17 @@ function BindState(Ele) {
 
 
 function BindDistrict(Ele, Sel) {
+    debugger;
     $('#' + Ele).empty();
     $('#' + Ele).prop("disabled", false);
     $('#' + Ele).append($("<option>").val('').text('Select'));
     $.ajax({
         url: document.baseURI + "/Master/GetDistrictList",
-        type: "Get",
-        data: { 'StateId': Sel },
+        type: "Post",
+        data: JSON.stringify({ 'StateId': Sel }),
         contentType: "application/json; charset=utf-8",
         global: false,
-        async: false,
+        async: false,   
         dataType: "json",
         success: function (resp) {
             if (resp.IsSuccess) {
@@ -319,8 +320,8 @@ function BindBlock(Ele, Sel) {
     $('#' + Ele).append($("<option>").val('').text('Select'));
     $.ajax({
         url: document.baseURI + "/Master/GetBlockList",
-        type: "Get",
-        data: { 'DistrictId': Sel },
+        type: "Post",
+        data: JSON.stringify({ 'DistrictId': Sel }),
         contentType: "application/json; charset=utf-8",
         global: false,
         async: false,
@@ -347,8 +348,8 @@ function BindCluster(Ele, Sel) {
     $('#' + Ele).append($("<option>").val('').text('Select'));
     $.ajax({
         url: document.baseURI + "/Master/GetClusterList",
-        type: "Get",
-        data: { 'BlockId': Sel },
+        type: "Post",
+        data: JSON.stringify({ 'BlockId': Sel }),
         contentType: "application/json; charset=utf-8",
         global: false,
         async: false,
