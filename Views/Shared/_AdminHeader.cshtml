@@ -29,7 +29,7 @@
                 </span>
             </button>
         </span>
-    </div> 
+    </div>
     <div class="app-header__content">
         <div class="app-header-right">
 
@@ -39,32 +39,48 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="~/Content/assets/images/avatars/1.jpg" alt="">
+                                    <img width="42" class="rounded-circle" src="~/Content/images/UserLogin.png" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
                                     <div class="dropdown-menu-header">
                                         <div class="dropdown-menu-header-inner bg-info">
-                                            <div class="menu-header-image opacity-2" style="background-image: url('~/Content/assets/images/dropdown-header/city3.jpg');"></div>
+                                            <div class="menu-header-image opacity-2" style="background-image: url('~/Content/images/UserLogin.png');"></div>
                                             <div class="menu-header-content text-left">
                                                 <div class="widget-content p-0">
                                                     <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <img width="42" class="rounded-circle" src="~/Content/assets/images/avatars/1.jpg" alt="">
-                                                        </div>
+                                                        @*<div class="widget-content-left mr-3">
+                                                                <img width="42" class="rounded-circle" src="~/Content/images/UserLogin.png" alt="">
+                                                            </div>*@
                                                         <div class="widget-content-left">
-                                                            <div class="widget-heading">Alina Mcloughlin</div>
-                                                            <div class="widget-subheading opacity-8">A short profile description</div>
+                                                            <div class="widget-heading">
+                                                                @if (User.Identity.IsAuthenticated)
+                                                                {@User.Identity.Name}
+                                                            </div>
+                                                            @*<div class="widget-subheading opacity-8">A short profile description</div>*@
                                                         </div>
                                                         <div class="widget-content-right mr-2">
-                                                            <button class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                            @*<button class="btn-pill btn-shadow btn-shine btn btn-focus btn-lg">Logout</button>*@
+                                                            @if (Request.IsAuthenticated)
+                                                            {
+                                                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                                                {
+
+                                                                    @Html.AntiForgeryToken()
+                                                                    @*<button class="btn-pill btn-shadow btn-shine btn btn-focus btn-lg">Logout</button>*@
+                                                                    <a  class="btn-pill btn-shadow btn-shine btn btn-focus btn-lg" href="javascript:document.getElementById('logoutForm').submit()"><i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out</a>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

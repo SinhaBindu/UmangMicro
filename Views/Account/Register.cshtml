@@ -56,6 +56,11 @@
                         {
                             <div class="form-row">
                                 <div class="col-md-12">
+                                    <div style="text-align: center; font-weight: 700;">
+                                        <h4><strong>Login Register</strong></h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <div class="position-relative form-group">
                                         @Html.AntiForgeryToken()
                                         @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -127,8 +132,8 @@
                                     </div>
                                 </div>
                                 @*<div class="text-center pt-3">
-                                        <p class="text-dark mb-0">Already registered?<a href="~/Account/Login" class="text-primary ml-1">Log In now</a></p>
-                                    </div>*@
+            <p class="text-dark mb-0">Already registered?<a href="~/Account/Login" class="text-primary ml-1">Log In now</a></p>
+        </div>*@
 
 
                             </div>

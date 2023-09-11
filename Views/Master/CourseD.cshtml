@@ -12,8 +12,12 @@
                     <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
                         @using (Html.BeginForm("CourseD", "Master", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
                         {
-                            <strong>Add Courses Details</strong>
                             <div class="form-row">
+                                <div class="col-md-12">
+                                    <div style="text-align: center; font-weight: 700;">
+                                        <h4><strong>Add Courses Details</strong></h4>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="position-relative form-group">
                                         @Html.HiddenFor(model => model.ID)
@@ -364,14 +368,14 @@
                                 </div>
 
                                 @*<div class="form-group">
-                                        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
-                                        <div class="col-md-10">
-                                            <div class="checkbox">
-                                                @Html.EditorFor(model => model.IsActive)
-                                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>*@
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
                                 <div class="break"></div>
                                 <div class="col-md-6">
                                     <div class="mt-4 mb-4 d-flex align-items-center">
@@ -382,10 +386,10 @@
                                 </div>
 
                                 @*<div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Create" class="btn btn-default" />
-                                        </div>
-                                    </div>*@
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
 
                             </div>
                         }
