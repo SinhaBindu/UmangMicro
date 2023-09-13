@@ -1,14 +1,39 @@
 @media all and (max-width: 1260px) {
-    .aims-objective, #header, .design-graph {
+    .aims-objective, .design-graph, .quick-message, .impact-stat, .video-testim, .objectives-content {
         padding-left: 20px;
         padding-right: 20px;
     }
+    .banner-text {
+        padding: 20px 0;
+    }
+        .banner-text h2 {
+            font-size: 60px;
+            margin-bottom: 30px;
+            margin-top: 38px;
+        }
+
+        .banner-text p {
+            font-size: 21px;
+            line-height: 31px;
+            margin-bottom: 28px
+        }
 }
 
 @media all and (max-width: 1200px) {
     .aims-objective h2 {
         font-size: 45px;
         line-height: 58px;
+    }
+    .banner-text h2 {
+        font-size: 54px;
+        margin-bottom: 28px;
+        margin-top: 32px;
+    }
+
+    .banner-text p {
+        font-size: 20px;
+        line-height: 29px;
+        margin-bottom: 26px
     }
 }
 
@@ -21,14 +46,63 @@
     .umang-relation {
         flex-direction: column;
     }
-}
+    .banner-text h2 {
+        font-size: 48px;
+        margin-bottom: 25px;
+        margin-top: 20px;
+    }
 
+    .banner-text p {
+        font-size: 18px;
+        line-height: 27px;
+        margin-bottom: 22px
+    }
+    .banner-text h2, .banner-text p, .banner-text a {
+        padding: 0 30px
+    }
+    .banner-text a {
+        font-size: 17px;
+    }
+}
+@media all and (max-width: 1050px) {
+    #wrapper {
+        flex-direction: column;
+    }
+    #header {
+        margin: auto
+    }
+}
 @media all and (max-width: 1024px) {
+    .banner-text h2 {
+        font-size: 44px;
+        margin-bottom: 22px;
+        margin-top: 15px;
+    }
+
+    .banner-text p {
+        font-size: 16px;
+        line-height: 25px;
+        margin-bottom: 20px
+    }
+
+    .banner-text h2, .banner-text p, .banner-text a {
+        padding: 0 25px
+    }
+    .banner-text a {
+        font-size: 16px;
+    }
     .aims-objective h2 {
         font-size: 39px;
         line-height: 50px;
     }
-
+    .impact-stat h2, .video-testim h2, .umang-manage h2 {
+        font-size: 45px;
+    }
+    .video-round {
+        width: 66px;
+        height: 66px;
+        margin-top: -10px;
+    }
     .foot2 {
         float: left;
         width: 94%;
@@ -68,13 +142,67 @@
     .innovate {
         gap: 20px;
     }
+    .quick-info h1 {
+        font-size: 61px;
+    }
+    .botlogo {
+        margin-left: 25px;
+    }
+    .data-1 h3, .data-3 h3 {
+        font-size: 46px;
+        padding-top: 70px
+    }
+
+    .data-2 h3 {
+        font-size: 36px;
+        padding-top: 94px
+    }
 }
 
 @media all and (max-width: 920px) {
+    .impact-flex h4 {
+        font-size: 19px;
+        line-height: 29px;
+    }
+    .banner-text {
+        padding: 40px 0 50px;
+    }
+    .cool-banner {
+        flex-direction: column;
+    }
+    .cover-top {
+        display: block;
+    }
+    .banner-text h2 {
+        font-size: 44px;
+        margin-bottom: 30px;
+        margin-top: 15px;
+    }
+    .banner-text p {
+        font-size: 18px;
+        line-height: 29px;
+        margin-bottom: 30px
+    }
+    .cover-bottom {
+        display: none;
+    }
+    .quick-info h1 {
+        font-size: 56px;
+    }
+    .impact-stat h2, .video-testim h2, .umang-manage h2 {
+        font-size: 41px;
+    }
+    .video-round {
+        width: 60px;
+        height: 60px;
+        margin-top: -10px;
+    }
     .district-block h3, .umang-design h3, .design-bg h3, .design-graph h2 {
         font-size: 29px;
     }
-
+    .video-box h3 {
+        font-size: 22px;
+    }
     .important-points p {
         font-size: 16px;
         line-height: 26px;
@@ -157,9 +285,55 @@
     .shg-arrow {
         display: none
     }
+    .view-btn {
+        margin-top: 10px;
+    }
+    .objectives-content {
+        gap: 30px;
+    }
+    .quick-info p, .impact-stat p {
+        font-size: 18px;
+        line-height: 29px;
+    }
 }
 
 @media all and (max-width: 768px) {
+    .banner-text h2 {
+        font-size: 38px;
+    }
+    .impact-flex {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .banner-text p {
+        font-size: 17px;
+        line-height: 28px;
+    }
+    .quick-info h1 {
+        font-size: 50px;
+    }
+    .impact-stat h2, .video-testim h2, .umang-manage h2 {
+        font-size: 37px;
+    }
+    .video-round {
+        width: 58px;
+        height: 58px;
+        margin-top: -10px;
+    }
+    .video-flex {
+        gap: 50px;
+        flex-direction: column;
+    }
+    .objectives-content {
+        flex-direction: column;
+    }
+    .quick-message {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .quick-graphic {
+        margin-left: 30px;
+    }
     .points-number {
         width: 110px;
         height: 110px;
@@ -264,9 +438,30 @@
     .step-arrow {
         display: none
     }
+    .quick-info p, .impact-stat p {
+        font-size: 17px;
+        line-height: 28px;
+    }
 }
 
 @media all and (max-width: 700px) {
+    .cool-data {
+        gap: 20px;
+    }
+
+    .data1, .data2, .data3 {
+        border-radius: 70px
+    }
+
+    .cool-data img {
+        width: 70px;
+    }
+    .quick-info h1 {
+        font-size: 48px;
+    }
+    .impact-stat h2, .video-testim h2, .umang-manage h2 {
+        font-size: 35px;
+    }
     .design-1 p, .design-2 p, .design-3 p, .umang-design p {
         font-size: 16px;
     }
@@ -291,6 +486,28 @@
 }
 
 @media all and (max-width: 620px) {
+    .data1, .data2, .data3 {
+        border-radius: 50px
+    }
+
+    .cool-data img {
+        width: 60px;
+    }
+    .quick-info h1 {
+        font-size: 45px;
+    }
+    .impact-stat h2, .video-testim h2, .umang-manage h2 {
+        font-size: 32px;
+    }
+    .view-btn {
+        margin-top: 5px;
+    }
+    .video-round {
+        width: 54px;
+        height: 54px;
+        margin-top: -10px;
+        margin-right: 22px;
+    }
     .shg-structure {
         flex-direction: column;
         gap: 0px
@@ -308,19 +525,12 @@
         font-size: 25px;
     }
 
-    .logo, .excellence {
-        width: 70px;
-    }
-
     .umang-partnership p {
         font-size: 17px;
         line-height: 27px;
         padding: 5px 20px;
     }
 
-    .excellence {
-        width: 120px;
-    }
 
     .n-ppost-name {
         height: 110px;
@@ -383,6 +593,23 @@
 }
 
 @media all and (max-width: 520px) {
+    .cool-data {
+        gap: 15px;
+    }
+
+    .data1, .data2, .data3 {
+        border-radius: 40px
+    }
+
+    .cool-data img {
+        width: 50px;
+    }
+    .cool-data h4 {
+        font-size: 26px;
+    }
+    .quick-info h1 {
+        font-size: 42px;
+    }
     .design-points {
         flex-direction: column;
     }
@@ -434,7 +661,9 @@
     .take-points {
         flex-basis: 97%;
     }
-
+    .cool-data h4 {
+        font-size: 23px;
+    }
     .n-ppost-name {
         height: 60px;
     }

@@ -17,7 +17,7 @@
 }
 
 .primary-bg {
-    background: #FFFBF2;
+    background: #FFFCF6;
 }
 .grey-bg {
     background: #F6FAFD;
@@ -96,21 +96,15 @@ img {
     }
 
 #wrapper {
-    margin: 0 auto;
     padding: 0px 0;
     background: #fff;
     position: relative;
     z-index: 99999999;
     display: flex;
-    gap: 30px
+    justify-content: space-between
 }
 
 #header {
-    /*max-width: 1200px;*/
-    margin: 0 auto;
-    /*display: flex;
-    justify-content: space-between;
-    align-items: center;*/
     padding-bottom: 6px;
     padding-top: 6px;
 }
@@ -118,6 +112,7 @@ img {
 .excellence {
     width: 160px;
     padding: 0px 20px;
+    float: left
 }
 
 .main-banner {
@@ -596,7 +591,31 @@ img {
 .p3 {
     background: #FFE6DE;
 }
-
+.imfluence-plus-1, .imfluence-plus-2, .imfluence-plus-3, .imfluence-plus-4, .imfluence-plus-5 {
+    width: 26px;
+    position: absolute;
+    cursor: pointer;
+}
+.imfluence-plus-1 {
+    top: 22px;
+    right: 155px;
+}
+.imfluence-plus-2 {
+    top: 12px;
+    right: 145px;
+}
+.imfluence-plus-3 {
+    top: 22px;
+    left: 85px;
+}
+.imfluence-plus-4 {
+    top: 26px;
+    right: 42px;
+}
+.imfluence-plus-5 {
+    top: 51px;
+    left: -5px;
+}
 .plus-icon, .minus-icon {
     position: relative;
     display: block;
@@ -697,10 +716,10 @@ img {
 }
 
 .texture-bg {
-    background: #FFFBF2;
+    background: #FFFCF6;
 }
 .mother-daughter-steps {
-    background: #F9F9F9;
+    background: #FBFBFB;
     border-top: 4px solid #fff;
     padding-bottom: 70px;
 }
@@ -844,7 +863,7 @@ img {
 }
 
 .umang-steps {
-    background: #FFFBF2;
+    background: #FFFCF6;
     padding: 70px 20px;
     color: #fff;
 }
@@ -1331,14 +1350,15 @@ img {
         font-size: 32px;
         color: #0A5B66;
         margin-bottom: 40px;
+        font-weight: 600;
     }
 
 .innovation-point {
     margin: auto;
-    max-width: 1100px;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 70px;
 }
 
 .innovate {
@@ -1481,6 +1501,7 @@ img {
     font-size: 33px;
     margin-bottom: 15px;
     color: #0A5B66;
+    font-weight: 600
 }
 
 .intervention-info h3 {
@@ -1661,7 +1682,7 @@ img {
 }
 
 .block-fixed-1, .block-fixed-2, .block-fixed-3, .block-fixed-4, .block-fixed-5 {
-    width: 260px;
+    width: 240px;
     padding: 15px;
     background: #fff;
     border-radius: 5px;
@@ -1672,6 +1693,7 @@ img {
     visibility: hidden;
     -webkit-transition: opacity 600ms, visibility 600ms;
     transition: opacity 600ms, visibility 600ms;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 
 .arrow-right-5 {
@@ -1685,7 +1707,7 @@ img {
     position: absolute;
     width: 270px;
     left: -265px;
-    top: 25px;
+    top: 15px;
 }
 
 .arrow-left-3 {
@@ -1710,7 +1732,7 @@ img {
 }
 
 .block-fixed-5 {
-    top: 0px;
+    top: 10px;
     right: 20px;
 }
 
@@ -1725,7 +1747,7 @@ img {
 
 .block-fixed-4 {
     top: 100px;
-    right: 0px;
+    right: 10px;
 }
 
 .b4 {
@@ -1739,6 +1761,7 @@ img {
 
 .block-fixed-3 {
     top: 190px;
+    left: 5px;
 }
 
 .b3 {
@@ -1752,7 +1775,7 @@ img {
 
 .block-fixed-2 {
     top: 310px;
-    right: 0px;
+    right: 5px;
 }
 
 .b2 {
@@ -1765,7 +1788,7 @@ img {
 }
 
 .block-fixed-1 {
-    top: 450px;
+    top: 420px;
     left: 20px;
 }
 
@@ -1827,7 +1850,7 @@ img {
 .disctrict-map {
     margin: auto;
     max-width: 1220px;
-    padding: 50px 0;
+    padding: 70px 0;
 }
 
     .disctrict-map h2 {
@@ -1842,7 +1865,7 @@ img {
         font-size: 18px;
         text-align: center;
         color: #5F5F5F;
-        margin-bottom: 30px
+        margin-bottom: 50px
     }
 
 .district-1 p, .district-2 p {
@@ -1928,7 +1951,7 @@ img {
 
     .design-graph h2 {
         text-align: center;
-        color: #0A5B66;
+        color: #000;
         font-size: 32px;
         margin-bottom: 30px;
     }
@@ -2033,7 +2056,7 @@ img {
     width: 100%;
     height: 100%;
     opacity: 0;
-    top: 0px;
+    top: 5px;
     visibility: hidden;
     height: 250px;
 }
@@ -2044,7 +2067,6 @@ img {
     background-size: 200% 100%;
     background-position: top bottom;
     transition: all 1s ease;
-    border-radius: 10px;
 }
 
 .hidden-content3 {
@@ -2053,7 +2075,6 @@ img {
     background-size: 200% 100%;
     background-position: top bottom;
     transition: all 1s ease;
-    border-radius: 10px;
 }
 
     .hidden-content ul, .hidden-content3 ul {
@@ -2451,8 +2472,8 @@ img {
 }
 
 .mother-daughter-points {
-    padding: 120px 20px 30px;
-    background: #F4F7F3;
+    padding: 60px 20px 30px;
+    /*background: #fff;*/
     margin: auto;
     max-width: 1200px;
 }
@@ -2468,7 +2489,6 @@ img {
     .important-points p {
         font-size: 17px;
         line-height: 27px;
-        text-align: center;
     }
 
 .take-points {
@@ -2477,10 +2497,11 @@ img {
     background: #fff;
     border-radius: 10px;
     margin-bottom: 70px;
+    box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
 }
 
     .take-points:hover {
-        background: #F59678;
+        background: #0A5B66;
     }
 
         .take-points:hover p {
@@ -2488,17 +2509,18 @@ img {
         }
 
 .points-number {
-    width: 150px;
-    height: 150px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    background: #0A5B66;
+    border-radius: 6px;
+    padding: 15px;
     display: block;
-    margin: auto;
-    margin-bottom: 20px;
-    margin-top: -70px;
+    width: 80px;
+    text-align: center;
 }
 
     .points-number img {
-        border-radius: 100%;
-        border: 4px solid #fff;
+        width: 50px;
         -moz-transition: all 0.3s ease;
         -ms-transition: all 0.3s ease;
         -webkit-transition: all 0.3s ease;
@@ -2529,10 +2551,12 @@ img {
         color: #fff;
         background: #FBC982;
     }
-
+.influence-bg {
+    background: #FEFEFC !important;
+}
 .intervention-back {
     background: #FEFEFC !important;
-    height: 960px;
+    /*height: 960px;*/
 }
 
     .intervention-back h2 {
@@ -2656,17 +2680,19 @@ img {
 
 .umang-manage {
     margin: auto;
-    max-width: 1160px;
+    max-width: 1200px;
     background: #fff;
-    padding: 30px 20px 70px;
+    padding: 30px 0px 70px;
     margin-top: 300px;
     text-align: center
 }
-
+    .umang-manage img {
+        max-width: 580px
+    }
     .umang-manage h2 {
-        font-size: 42px;
-        font-weight: 600;
-        margin-bottom: 30px
+        font-size: 50px;
+        margin-bottom:45px;
+        color: #0A5B66
     }
 
     .umang-manage p {
@@ -2686,7 +2712,7 @@ img {
 }
 
     .cool-data h4 {
-        font-size: 42px;
+        font-size: 32px;
         margin-bottom: 15px;
         font-weight: 600;
         margin-bottom: 0px
@@ -2707,19 +2733,19 @@ img {
     flex: 1;
     padding: 20px 0 10px;
     color: #fff;
-    border-radius: 8px
+    border-radius: 70px
 }
 
 .data1 {
-    background: #823F78
+    background: #45A3B0
 }
 
 .data2 {
-    background: #F7941E
+    background: #F4A287
 }
 
 .data3 {
-    background: #0C9444
+    background: #CED858
 }
 
 .quick-message {
@@ -2885,7 +2911,6 @@ img {
     font-size: 17px;
     color: #000;
     position: relative;
-    display: flex;
     line-height: 27px;
 }
 
@@ -2901,9 +2926,11 @@ img {
 
 .obj-icon1, .obj-icon2 {
     display: inline-block;
-    width: 80px !important;
+    width: 63px !important;
     height: 63px !important;
     border-radius: 100%;
+    float: left;
+    margin-top: -5px;
     text-align: center;
     margin-right: 20px;
     background: #0A5B66;
@@ -2914,9 +2941,9 @@ img {
     border: 5px solid #fff;
 }
 
-.obj-icon2 {
+/*.obj-icon2 {
     width: 68px !important;
-}
+}*/
 
 .video-testim {
     padding: 90px 0;
@@ -2927,7 +2954,7 @@ img {
 
     .video-testim h2 {
         font-size: 50px;
-        margin-bottom: 60px;
+        margin-bottom: 80px;
         color: #0A5B66;
         margin-top: 0px;
         text-align: left !important
@@ -3024,12 +3051,13 @@ img {
 .cool-banner {
     display: flex;
 }
-
+.cover-top {
+    display: none;
+}
 .banner-text {
     background: #F3FF61;
-    /*flex: 2;*/
     padding: 40px 0;
-    flex-basis: 35% !important;
+    flex-basis: 36% !important;
 }
 
     .banner-text h2, .banner-text p, .banner-text a {
@@ -3039,7 +3067,8 @@ img {
     .banner-text h2 {
         font-size: 65px;
         color: #0A5B66;
-        margin-bottom: 30px
+        margin-bottom: 30px;
+        margin-top: 40px;
     }
 
     .banner-text p {
@@ -3061,7 +3090,7 @@ img {
 }
 .umang-cover {
     /*flex: 3;*/
-    flex-basis: 65%;
+    flex-basis: 64%;
 }
 
 .txt-bold {
@@ -3083,14 +3112,14 @@ img {
 }
 
 .impact-stat {
-    padding: 60px 0;
+    padding: 80px 0;
     margin: auto;
     max-width: 1200px;
     text-align: center;
 }
 
 .impact-stat h2 {
-    font-size: 60px;
+    font-size: 50px;
     color: #0A5B66;
     margin-top: 5px;
     margin-bottom: 30px;
@@ -3116,7 +3145,7 @@ img {
     margin: auto;
     max-width: 960px;
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 50px;
     justify-content: space-around;
     align-items: center
 }
@@ -3223,19 +3252,24 @@ img {
 .contentToggle {
     padding: 8px 22px;
     border-radius: 20px;
-    border: 1px solid #0A5B66;
+    border: 2px solid #0A5B66;
+    font-weight: bold;
     background: none;
     color: #0A5B66;
-    font-size: 13px;
+    font-size: 15px;
     margin-top: 20px
 }
-.objectives-matter {
-    display: flex;
-    gap: 60px;
-    margin: auto;
-    max-width: 900px;
-    margin-top: 50px;
-}
+    .contentToggle:hover {
+        background: #0A5B66;
+        color: #fff;
+    }
+    .objectives-matter {
+        display: flex;
+        gap: 60px;
+        margin: auto;
+        max-width: 900px;
+        margin-top: 50px;
+    }
 .object-content {
     flex: 1;
     padding: 10px;
@@ -3316,6 +3350,7 @@ img {
     opacity: 0;
     visibility: hidden;
     border: 5px solid #fff;
+    transition: background-color 0.5s ease;
     box-shadow: 0 0 5px rgba(0,0,0,0.08);
 }
 .round-content {

@@ -606,8 +606,18 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\arrow-maroon.png" />
     <Content Include="Content\images\arrow-yellow.png" />
+    <Content Include="Content\images\clf-icon.png" />
+    <Content Include="Content\images\jharkhand-map.png" />
+    <Content Include="Content\images\mother-daughter-6-steps\early-child-marriage.png" />
+    <Content Include="Content\images\mother-daughter-6-steps\enabling-together.png" />
+    <Content Include="Content\images\mother-daughter-6-steps\enricher.png" />
+    <Content Include="Content\images\mother-daughter-6-steps\issue=resolve.png" />
+    <Content Include="Content\images\mother-daughter-6-steps\mother-participation.png" />
+    <Content Include="Content\images\mother-daughter-6-steps\nurturing-aspirant.png" />
     <Content Include="Content\images\mother-daughter-relation-point.png" />
+    <Content Include="Content\images\plus-icon.png" />
     <Content Include="Content\images\shg-icon.png" />
+    <Content Include="Content\images\shgs-icon.png" />
     <Content Include="Content\images\theoratical--icon.png" />
     <Content Include="Content\images\about-umang.jpg" />
     <Content Include="Content\images\activities\activity-1.png" />
@@ -715,6 +725,7 @@
     <Content Include="Content\images\title-bg.png" />
     <Content Include="Content\images\top-ar.png" />
     <Content Include="Content\images\slider\umang-banner.jpg" />
+    <Content Include="Content\images\umang-cover.jpg" />
     <Content Include="Content\images\umang-logo.png" />
     <Content Include="Content\images\umang-reach.png" />
     <Content Include="Content\images\umang-stat\blue-strip.png" />
@@ -726,6 +737,7 @@
     <Content Include="Content\images\umang-stat\women-capatited.png" />
     <Content Include="Content\images\umang-stat\women-capitalize.png" />
     <Content Include="Content\images\umang-stat\yellow-strip.png" />
+    <Content Include="Content\images\vo-icon.png" />
     <Content Include="Content\images\WhatsApp Image 2023-05-31 at 21.00.42.jpg" />
     <Content Include="Content\images\white-curve-bg.png" />
     <Content Include="Content\images\women-capacitor.png" />
