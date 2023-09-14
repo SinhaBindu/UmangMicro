@@ -10,7 +10,7 @@
             <div class="h-100 no-gutters row">
                 <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
                     <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
-                        @using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" , noValidate = "novalidate" }))
                         {
                             <div class="form-row">
                                 <div class="col-md-12">
@@ -30,48 +30,47 @@
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                @*<div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.LabelFor(model => model.LanguangeType, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(m => m.LanguangeType, CommonModel.GetLanguangeType(), null, new { @class = "form-control", @required = "required" })
+                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.LanguangeType, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(model => model.LanguangeType, CommonModel.GetLanguangeType(), null, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.LanguangeType, "", new { @class = "text-danger" })
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.LabelFor(model => model.RegDate, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.RegDate, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.RegDate, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.RegDate, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayName1, htmlAttributes: new { @class = "" })
-
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayName1, htmlAttributes: new { @class = "" })
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control"} })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @required = "required" })
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayMN, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayMN, htmlAttributes: new { @class = "" })
 
-                                        @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        <span class="text-danger">*</span> @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayFN, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayFN, htmlAttributes: new { @class = "" })
 
-                                        @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        <span class="text-danger">*</span> @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayDId, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayDId, htmlAttributes: new { @class = "" })
 
                                         @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
                                         @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
@@ -80,7 +79,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayBId, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayBId, htmlAttributes: new { @class = "" })
 
                                         @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
                                         @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
@@ -89,7 +88,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayClId, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayClId, htmlAttributes: new { @class = "" })
 
                                         @Html.DropDownListFor(m => m.ClusterId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
                                         @Html.ValidationMessageFor(model => model.ClusterId, "", new { @class = "text-danger" })
@@ -98,7 +97,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayVillageTxt, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayVillageTxt, htmlAttributes: new { @class = "" })
 
                                         @Html.EditorFor(model => model.Village, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.Village, "", new { @class = "text-danger" })
@@ -106,16 +105,16 @@
                                 </div>
 
                                 @*<div class="form-group">
-            @Html.Label(Model.CaseID, htmlAttributes: new { @class = "" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CaseID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                                        @Html.Label(Model.CaseID, htmlAttributes: new { @class = "" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.CaseID, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>*@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayVisitedTxt, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayVisitedTxt, htmlAttributes: new { @class = "" })
 
                                         @Html.DropDownListFor(m => m.Visited, CommonModel.GetVisited(), null, new { @class = "form-control", @required = "required" })
                                         @Html.ValidationMessageFor(model => model.Visited, "", new { @class = "text-danger" })
@@ -124,7 +123,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayDOBTxt, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayDOBTxt, htmlAttributes: new { @class = "" })
 
                                         @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
@@ -133,7 +132,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayAgeTxt, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayAgeTxt, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                                         @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
                                     </div>
@@ -141,7 +140,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayMobileTxt, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayMobileTxt, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @type = "number", @class = "form-control", @min = "10", @max = "10", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
                                         @*, @min = "10", @max = "10"*@
@@ -150,7 +149,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayIsSKTN, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayIsSKTN, htmlAttributes: new { @class = "" })
                                         <div class="checkbox">
                                             @foreach (var item in CommonModel.GetYesNo())
                                             {
@@ -163,7 +162,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayIsMG, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>  @Html.Label(Model.DisplayIsMG, htmlAttributes: new { @class = "" })
                                         <div class="checkbox">
                                             @foreach (var item in CommonModel.GetYesNo())
                                             {
@@ -176,7 +175,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayIsSTDY, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayIsSTDY, htmlAttributes: new { @class = "" })
                                         <div class="checkbox">
                                             @foreach (var item in CommonModel.GetYesNo())
                                             {
@@ -189,7 +188,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplaySC, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplaySC, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.SocialClass, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.SocialClass, "", new { @class = "text-danger" })
                                     </div>
@@ -197,7 +196,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayTillSTDY, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayTillSTDY, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.TillStudied, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.TillStudied, "", new { @class = "text-danger" })
                                     </div>
@@ -205,7 +204,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayIsWK, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>@Html.Label(Model.DisplayIsWK, htmlAttributes: new { @class = "" })
                                         <div class="checkbox">
                                             @foreach (var item in CommonModel.GetYesNo())
                                             {
@@ -218,7 +217,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayRESON, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayRESON, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
                                     </div>
@@ -226,7 +225,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayIsPSYMT, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span>  @Html.Label(Model.DisplayIsPSYMT, htmlAttributes: new { @class = "" })
                                         <div class="checkbox">
                                             @foreach (var item in CommonModel.GetYesNo())
                                             {
@@ -240,7 +239,7 @@
 
                                 <div class="col-md-6" id="div-psyr" style="display:none;">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayPSYRESULT, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayPSYRESULT, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.PsyYes_Result, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.PsyYes_Result, "", new { @class = "text-danger" })
                                     </div>
@@ -248,7 +247,7 @@
 
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayADVC, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayADVC, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.Advice, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.Advice, "", new { @class = "text-danger" })
                                     </div>
@@ -269,7 +268,7 @@
 
                                 <div class="col-md-6" id="div-flwup" style="display:none;">
                                     <div class="position-relative form-group">
-                                        @Html.Label(Model.DisplayFLWUP, htmlAttributes: new { @class = "" })
+                                        <span class="text-danger">*</span> @Html.Label(Model.DisplayFLWUP, htmlAttributes: new { @class = "" })
                                         @Html.EditorFor(model => model.FollowUp, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.FollowUp, "", new { @class = "text-danger" })
                                     </div>
@@ -278,6 +277,7 @@
                                 <div class="col-md-12">
                                     <div class="position-relative form-group" style="margin-left: 50% !important;">
                                         <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                        <a href="~/Candidate/Reg" class="btn btn-info text-white">Reset</a>
                                     </div>
                                 </div>
 
@@ -293,6 +293,8 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
+
+   
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -354,37 +356,93 @@
                     }
             };
 
-            $('#formid').submit(function (e) {
-                e.preventDefault();
-                CUData();
+            //$('#submit').click(function (e) {
+
+            //    e.preventDefault();
+            //    debugger;
+
+            //   // CUData();
+            //    $('#formid').validate({
+            //        rules: {
+            //            RegDate: "required",
+            //            Name: "required"
+            //        },
+            //        messages: {
+            //            //RegDate: "Registration Date",
+            //            // Name: "Please enter last name"
+
+            //        },
+            //        submitHandler: function (form) {
+            //            form.submit();
+            //            CUData();
+            //        }
+            //        // any other options and/or rules
+            //    });
+            //    return false;
+            //});
+
+            $('#submit').click(function (e) {
+                var isValid = $(e.target).parents('form').isValid();
+                if ($("#formid").validate()) { //check if form is valid using model annotation
+                    $('#formid').submit();
+                }
+                else {
+                    return false;
+                }
+                
+                //     $('#formid').validate({
+                //    rules: {
+                //        RegDate: "required",
+                //        Name: "required"
+                //    },
+                //    messages: {
+                //        RegDate: "Registration Date",
+                //         Name: "Please enter last name"
+
+                //    },
+                //    submitHandler: function (form) {
+                //        form.submit();
+                //        $('#formid').submit();
+                //    }
+                //    // any other options and/or rules
+                //});
+                //return false;
+
             });
 
         });
-        function CUData() {
+
+        $("#formid").on("submit", function (event) {
+            event.preventDefault();
             jQuery.event.trigger("ajaxStart");
             debugger;
             //var formDataJson = $('#formid').serialize();//formData.append('tax_file', $('input[type=file]')[0].files[0]);
-            var formData = new FormData($('#formid')[0]);
+
             //var vl = $("#formid").validate();
-            if ($("#formid").Valid()) {
+            ////var formData = new FormData($('#formid')[0]);
+            var isvalid = $('#formid').validate();
+            var formData = $(this).serialize();
+            if (isvalid) {
                 $.ajax({
                     type: "POST",
                     url: document.baseURI + "/Candidate/Reg/",
                     data: formData,
                     //use contentType, processData for sure.
                     //contentType: false,
-                   // processData: false,
+                    // processData: false,
                     dataType: "json",
-                    contentType: "application/json; charset=utf-8",
+                    //contentType: "application/json; charset=utf-8",
                     success: function (resp) {
-                      //  CreateToasterMessage("Registration", resp.Message, resp.StatusType);
-                        toastr.error("Success", resp.Message);
-                        jQuery.event.trigger("ajaxStop");
+                        //  CreateToasterMessage("Registration", resp.Message, resp.StatusType);
+                        if (resp.StatusType == "success") {
+                            toastr.success("Success", resp.Message);
+                            jQuery.event.trigger("ajaxStop");
+                        }
                     },
                     error: function (req, error) {
                         if (error === 'error') { error = req.statusText; }
                         var errormsg = 'There was a communication error: ' + error;
-                       // CreateToasterMessage("Error", errormsg, "error");
+                        // CreateToasterMessage("Error", errormsg, "error");
                         toastr.error("Error", errormsg);
                         jQuery.event.trigger("ajaxStop");
                         return false;
@@ -395,9 +453,11 @@
             else {
                 //CreateToasterMessage("Error", "All Record Validate !!", "error");
                 toastr.error("Error", "All Record Validate !!");
-                    jQuery.event.trigger("ajaxStop");
-                    return false;
+                jQuery.event.trigger("ajaxStop");
+                return false;
             }
+
+        });
 
               //type: 'POST',
              //contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
@@ -436,6 +496,7 @@
             //    }
             //});
 
-        }
+
     </script>
+   
 }

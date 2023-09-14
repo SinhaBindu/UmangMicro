@@ -152,14 +152,14 @@ namespace UmangMicro.Controllers
                         //resResponse.MaxJsonLength = int.MaxValue;
                         //return resResponse;
 
-                        //response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully.", Data = null };
-                        //var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                        //resResponse1.MaxJsonLength = int.MaxValue;
-                        //return resResponse1;
+                        response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully.", Data = null };
+                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                        resResponse1.MaxJsonLength = int.MaxValue;
+                        return resResponse1;
                         //Success("Added Successfully !", true);
                         //return RedirectToAction("CourseD", new { id = tbl.ID });
-                        Success("Added Successfully !", true);
-                        return RedirectToAction("Index");
+                        // Success("Added Successfully !", true);
+                        // return RedirectToAction("Index");
                     }
                 }
                 else

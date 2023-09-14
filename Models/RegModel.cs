@@ -19,61 +19,62 @@ namespace UmangMicro.Models
         }
         public RegModel(string name) { }
         public int ID { get; set; }
+        [Required]
         [Display(Name="Registration Date")]
         public Nullable<System.DateTime> RegDate { get; set; }
-        // [Required]
+         [Required]
         //[StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
         //[StringLength(100, MinimumLength = 3)]
-        // [Required]
+         [Required]
         public string FatherName { get; set; }
         //[StringLength(100, MinimumLength = 3)]
-        // [Required]
+         [Required]
         public string MotherName { get; set; }
-        //[Required]
+       // [Required]
         public Nullable<int> StateId { get; set; }
-       // [Required]
+        [Required]
         public Nullable<int> DistrictId { get; set; }
-       // [Required]
+        [Required]
         public Nullable<int> BlockId { get; set; }
-       // [Required]
+        [Required]
         public Nullable<int> ClusterId { get; set; }
-        // [Required]
+         [Required]
         //[StringLength(100, MinimumLength = 3)]
         public string Village { get; set; }
         //[Required]
         public string CaseID { get; set; }
-       // [Required]
+        [Required]
         public string Visited { get; set; }
-       // [Required]
+        [Required]
         public Nullable<System.DateTime> DOB { get; set; }
-       // [Required]
+       [Required]
         public string Age { get; set; }
-        // [Required]
+         [Required]
         //[Range(Int32.MinValue, 10)]
         //[Range(3000, 10000000, ErrorMessage = "Salary must be between 3000 and 10000000")]
         public string MobileNo { get; set; }
-        // [Required]
+         [Required]
         public int IsSkillTraining { get; set; }
-       // [Required]
+        [Required]
         public int IsMarriage { get; set; }
-       // [Required]
+        [Required]
         public int IsStudy { get; set; }
-       // [Required]
+        [Required]
         public string SocialClass { get; set; }
-       // [Required]
+        [Required]
         public string TillStudied { get; set; }
-       // [Required]
+        [Required]
         public int IsWork { get; set; }
-       // [Required]
+        [Required]
         public string Reason { get; set; }
-       // [Required]
+        [Required]
         public int IsPsychometric { get; set; }
         //[RequiredIf("IsPsychometric", true, ErrorMessageResourceName = "PsyYes_Result")]
         public string PsyYes_Result { get; set; }
-       // [Required]
+        [Required]
         public string Advice { get; set; }
-       // [Required]
+        [Required]
         public Nullable<int> IsFollowUp { get; set; }
         public bool IsFollowUpCheck { get; set; }
         //[RequiredIf("IsFollowUpCheck", true, ErrorMessageResourceName = "FollowUp")]
@@ -221,7 +222,7 @@ namespace UmangMicro.Models
                 String CN = String.Empty;
                 if (LanguangeType == 1)
                 {
-                    CN = "Visited by the Ancients?";
+                    CN = "Who has visited?";
                 }
                 else
                 {

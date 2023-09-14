@@ -285,7 +285,7 @@ function BindState(Ele) {
 
 
 function BindDistrict(Ele, Sel) {
-    debugger;
+    
     $('#' + Ele).empty();
     $('#' + Ele).prop("disabled", false);
     $('#' + Ele).append($("<option>").val('').text('Select'));
