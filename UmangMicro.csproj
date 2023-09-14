@@ -897,6 +897,7 @@
     <Content Include="Views\Master\CourseD.cshtml" />
     <Content Include="Views\Master\CourseDetail.cshtml" />
     <Content Include="Views\Master\_CourseEdit.cshtml" />
+    <Content Include="Views\Report\_CD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

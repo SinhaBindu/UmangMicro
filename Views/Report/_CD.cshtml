@@ -1,0 +1,128 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "User List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+
+<strong>Courses Details</strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                @*table card-table table-vcenter text-nowrap*@
+                <table class="table table-bordered table-hover dt-responsive display" id="DataList_0" width="100%">
+                    <thead class="">
+                        <tr>
+                            <th>SrNo.</th>
+                            <th>पाठयक्रम का नाम</th>
+                            <th>Name of the Course</th>
+                            <th>कार्स का प्रकार</th>
+                            <th>Course Type</th>
+                            <th>नौकरी का अवसर</th>
+                            <th>Job Opportunity</th>
+                            <th>पाठयक्रम की अवधि</th>
+                            <th>Course Duration</th>
+                            <th>पाठयक्रम का संक्षिप्त विवरण</th>
+                            <th>Short Description of Course</th>
+                            <th>योग्यता</th>
+                            <th>Eligibility</th>
+                            <th>अंक मानदंड</th>
+                            <th>Marks Criteria</th>
+                            <th>प्रवेश प्रक्रिया</th>
+                            <th>Admission Process</th>
+                            <th>निर्देशों का माध्यम</th>
+                            <th>Medium of Instructions</th>
+                            <th>छात्रावास की उपलब्धता</th>
+                            <th>Hostel Availability</th>
+                            <th>उपलब्ध छात्रवृत्ति</th>
+                            <th>Available Scholarships </th>
+                            <th>श्रेणी</th>
+                            <th>Category</th>
+                            <th>महाविद्यालय/<br />विश्वविद्यालय/संस्था</th>
+                            <th>College/<br />University/Institute</th>
+                            <th>श्शुल्क संरचना</th>
+                            <th>Fee Structure</th>
+                            <th>संस्थान की दशा</th>
+                            <th>Status of Institution</th>
+                            <th>जिला</th>
+                            <th>District</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1;
+                            if (Model != null)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    <tr>
+                                        <td class="text-center">@(sno++)</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["NameCourseHindi"]</td>
+                                        <td class="text-left">@dr["NameCourseEng"]</td>
+                                        <td class="text-left">@dr["CourseTypeHindi"]</td>
+                                        <td class="text-left">@dr["CourseTypeEng"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["JobOpportunityHindi"]</td>
+                                        <td class="text-left">@dr["JobOpportunityEng"]</td>
+                                        <td class="text-left">@dr["CourseDurationHindi"]</td>
+                                        <td class="text-left">@dr["CourseDurationEng"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["ShortDescriptionCourseHindi"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["ShortDescriptionCourseEng"]</td>
+                                        <td class="text-left">@dr["EligibilityHindi"]</td>
+                                        <td class="text-left">@dr["EligibilityEng"]</td>
+                                        <td class="text-left">@dr["MarksCriteriaHindi"]</td>
+                                        <td class="text-left">@dr["MarksCriteriaEng"]</td>
+                                        <td class="text-left">@dr["AdmissionProcessHindi"]</td>
+                                        <td class="text-left">@dr["AdmissionProcessEng"]</td>
+                                        <td class="text-left">@dr["MediumInstructionHindi"]</td>
+                                        <td class="text-left">@dr["MediumInstructionEng"]</td>
+                                        <td class="text-left">@dr["HostelAvailabilityHindi"]</td>
+                                        <td class="text-left">@dr["HostelAvailabilityEng"]</td>
+                                        <td class="text-left">@dr["AvailableScholarshipHindi"]</td>
+                                        <td class="text-left">@dr["AvailableScholarshipEng"]</td>
+                                        <td class="text-left">@dr["CategoryHindi"]</td>
+                                        <td class="text-left">@dr["CategoryEng"]</td>
+                                        <td class="text-left">@dr["College_Unvty_InstHindi"]</td>
+                                        <td class="text-left">@dr["College_Unvty_InstEng"]</td>
+                                        <td class="text-left">@dr["FeeStructureHindi"]</td>
+                                        <td class="text-left">@dr["FeeStructureEng"]</td>
+                                        <td class="text-left">@dr["StatusInstitutionHindi"]</td>
+                                        <td class="text-left">@dr["StatusInstitutionEng"]</td>
+                                        <td class="text-left">@dr["DistrictHindi"]</td>
+                                        <td class="text-left">@dr["DistrictEng"]</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="36" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+    new DataTable('#DataList_0', {
+        responsive: {
+            details: {
+                display: DataTable.Responsive.display.modal({
+                    header: function (row) {
+                        var data = row.data();
+                        return 'Details for ' + data[0] + ' ' + data[1];
+                    }
+                }),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                    tableClass: 'table'
+                })
+            }
+        }
+    });
+</script>*@

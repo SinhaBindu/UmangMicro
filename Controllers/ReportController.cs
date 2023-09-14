@@ -50,8 +50,9 @@ namespace UmangMicro.Controllers
                 var html_1 = ConvertViewToString("_SkillTrain", dt);
                 var html_2 = ConvertViewToString("_Scheme", dt1);
                 var html_3 = ConvertViewToString("_Scholarship", dt2);
+                var html_4 = ConvertViewToString("_CD", dt3);
                 //var html3 = ConvertViewToString("_UserDetailData", tbllist);
-                var res = Json(new { IsSuccess = IsCheck, html1 = html_1, html2 = html_2, html3 = html_3 }, JsonRequestBehavior.AllowGet);
+                var res = Json(new { IsSuccess = IsCheck, html1 = html_1, html2 = html_2, html3 = html_3, html4 = html_4 }, JsonRequestBehavior.AllowGet);
                 res.MaxJsonLength = int.MaxValue;
                 return res;
             }
