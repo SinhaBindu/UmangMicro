@@ -18,6 +18,26 @@
     <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
 
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/scripts/main.d810cf0ae7f39f28f336.js"></script>
+
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>*@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="~/Content/assets/scripts/main.d810cf0ae7f39f28f336.js"></script>
+
     <style>
         input[type="radio"] {
             margin: 0 2px 0 10px;
@@ -40,6 +60,7 @@
         @Html.Partial("_AdminHeader")
 
         <div class="app-main">
+
             <div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
                     <div class="logo-src"></div>
@@ -73,6 +94,7 @@
                 </div>
                 @Html.Partial("_AdminNavbar")
             </div>
+
             <div class="app-main__outer">
                 <div class="app-main__inner">
                     @*<div class="app-page-title">
@@ -90,32 +112,20 @@
                     @RenderBody()
 
                 </div>
-                @Html.Partial("_AdminFooter")
-            </div>
-        </div>
 
+
+                @Html.Partial("_AdminFooter")
+
+            </div>
+
+        </div>
     </div>
+
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
-    @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @*@RenderSection("scripts")*@
-    <script type="text/javascript" src="~/Content/assets/scripts/main.d810cf0ae7f39f28f336.js"></script>
 
-    <script src="~/Scripts/toastr.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
-    <script type="text/javascript" src="~/Content/assets/scripts/main.d810cf0ae7f39f28f336.js"></script>
 
     @if (TempData["ToastMsg"] != null)
     {

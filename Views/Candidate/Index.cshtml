@@ -8,82 +8,74 @@
     ViewBag.SemiTitleLink = "/";
 }
 
-<div class="app-container app-theme-white body-tabs-shadow">
-    <div class="app-container">
-        <div class="h-100">
-            <div class="h-100 no-gutters row">
-                @*h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12*@
-                <div class="h-100 d-md-flex d-sm-block bg-white align-items-center col-md-12 col-lg-12">
-                    <div class="ml-2">
-                        @*mx-auto app-login-box col-sm-12 col-md-10 col-lg-9*@
-                        @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "panel-body form-horizontal form-padding loader", autocomplete = "off", enctype = "multipart/form-data" }))
-                        {
-                            <div class="form-row ">
-                                <div class="col-md-12">
-                                    <div style="text-align: center; font-weight: 700;">
-                                        <h4><strong>Registration List</strong></h4>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="position-relative form-group">
-                                        @Html.Partial("_Alerts")
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="position-relative form-group">
-                                        <label class="tar-pull-manage2">From Date</label>
-                                        <div id="demo-dp-range">
-                                            @Html.EditorFor(model => model.FD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="position-relative form-group">
-                                        <label class="tar-pull-manage2">To Date</label>
-                                        <div id="demo-dp-range">
-                                            @Html.EditorFor(model => model.TD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="margin-tops"></label>
-                                    <div class="clearfix"></div>
-                                    <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />
-                                </div>
-                                <div class="mark-devide2"></div>
-                                <div class="breaker"></div>
-                            </div>
-
-                            <div class="breaker"></div>
-                            <div class="col-md-12">
-                                <div class="card">
-                                    @*<div class="card-body">*@
-                                    <div class="col-sm-12" id="sub-data">
-
-                                    </div>
-                                    @*</div>*@
-                                </div>
-                            </div>
-                        }
-
-
-
-                        @*<div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-12" id="sub-data-view">
-
-                                    </div>
-                                </div>
-                            </div>*@
-
-
-
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <div id="div-download"></div>
+        @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
+        {
+            <div class="row ">
+                <div class="col-md-12">
+                    <div style="text-align: center; font-weight: 700;">
+                        <h4><strong>Registration List</strong></h4>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="position-relative form-group">
+                        @Html.Partial("_Alerts")
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="position-relative form-group">
+                        <label class="tar-pull-manage2">From Date</label>
+                        <div id="demo-dp-range">
+                            @Html.EditorFor(model => model.FD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="position-relative form-group">
+                        <label class="tar-pull-manage2">To Date</label>
+                        <div id="demo-dp-range">
+                            @Html.EditorFor(model => model.TD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="margin-tops"></label>
+                    <div class="clearfix"></div>
+                    <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />
+                </div>
+                <div class="mark-devide2"></div>
+                <div class="breaker"></div>
             </div>
-        </div>
+
+            <div class="breaker"></div>
+            <div class="col-md-12">
+                <div class="card">
+                    @*<div class="card-body">*@
+                    <div class="col-sm-12" id="sub-data">
+
+                    </div>
+                    @*</div>*@
+                </div>
+            </div>
+        }
+
+
+
+        @*<div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12" id="sub-data-view">
+
+                </div>
+            </div>
+        </div>*@
+
+
+
     </div>
 </div>
+
 
 @section Scripts
 {
@@ -122,6 +114,32 @@
                     if (resp.IsSuccess) {
                         $('#sub-data').html(resp.Data); $('#sub-data').addClass("text-black");
                         jQuery.event.trigger("ajaxStop");
+
+                        if ($.fn.dataTable.isDataTable('#DataList')) {
+                            $("#DataList").dataTable().fnDestroy();
+                        }
+                        table = $('#DataList').DataTable({
+                            //scrollY: "400px",
+                            //scrollX: true,
+                            //scrollCollapse: true,
+                            //paging: false,
+                            pageLength: 100,
+                            fixedColumns: {
+                                leftColumns: 1,
+                                rightColumns: 1
+                            },
+                            buttons: [{
+                                extend: 'excel', text: '<span><i class="fa fa-download"></i>Export</span>', title: 'User Lists',//$('#IDDistrict option:selected').text() +
+                                className: 'btn btn-primary button-icon mr-3 mt-1 mb-1',
+                                filename: 'User List',
+                                exportOptions: { modifier: { page: 'all' } }
+                            }],
+                        });
+                        $('.dataTables_filter input[type="search"]').css(
+                            { 'width': '500px', 'display': 'inline-block' }
+                        );
+                        $('#div-download').empty();
+                        table.buttons().container().appendTo($('#div-download'));
                     }
                     else {
                         $('#sub-data').html(resp.Data); $('#sub-data').addClass("text-danger");

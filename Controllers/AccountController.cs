@@ -24,7 +24,7 @@ namespace UmangMicro.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +36,9 @@ namespace UmangMicro.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -70,6 +70,7 @@ namespace UmangMicro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            UM_DBEntities dbe = new UM_DBEntities();
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -81,6 +82,14 @@ namespace UmangMicro.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    string id = User.Identity.GetUserId();
+                    tbl_LoginDetail tbl = new tbl_LoginDetail();
+                    tbl.ID = Guid.NewGuid();
+                    tbl.UserId = Guid.Parse(id);
+                    tbl.LoginDt = DateTime.Now;
+                    tbl.IsActive = true;
+                    dbe.tbl_LoginDetail.Add(tbl);
+                    dbe.SaveChanges();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -122,7 +131,7 @@ namespace UmangMicro.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -255,7 +264,7 @@ namespace UmangMicro.Controllers
                                 UserManager.AddToRole(model.Id, model.Role);
                             }
                         }
-                       
+
                         GlobalUtilityManager.MessageToaster(this, "Edit User", Enums.GetEnumDescription(Enums.eReturnReg.Update), eAlertType.success.ToString());
                         return RedirectToAction("UserDetaillist", "Master");
                     }

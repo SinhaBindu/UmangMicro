@@ -8,6 +8,8 @@ using System.Web.Routing;
 using UmangMicro.Models;
 using UmangMicro.Manager;
 using System.Web.UI;
+using SubSonic.Schema;
+using System.Data;
 
 namespace UmangMicro
 {
@@ -27,42 +29,78 @@ namespace UmangMicro
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
+                    var User = new UserViewModel();
+                    if (HttpContext.Current.Session["CUser"] != null)
+                    {
+                        return (UserViewModel)HttpContext.Current.Session["CUser"];
+                    }
+                    else
+                    {
+                        StoredProcedure sp = new StoredProcedure("Get_SPCurrentLogin");
+                        sp.Command.AddParameter("@UN", HttpContext.Current.User.Identity.Name, DbType.String);
+                        DataTable dt = sp.ExecuteDataSet().Tables[0];
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                User.Id = dr["UId"].ToString();
+                                User.Name = dr["Name"].ToString();
+                                User.Email = dr["Email"].ToString();
+                                User.UserName = dr["UserName"].ToString();
+                                User.PhoneNumber = dr["PhoneNumber"].ToString();
+                                User.LockoutEnabled = dr["LockoutEnabled"].ToString();
+
+                                User.RoleId = dr["RId"].ToString();
+                                User.Role = dr["RoleN"].ToString();
+
+                                User.DistrictId = dr["DId"].ToString();
+                                User.District = dr["DistName"].ToString();
+                                User.BlockId = dr["BkId"].ToString();
+                                User.Block = dr["BlockName"].ToString();
+                                User.ClusterId = dr["CId"].ToString();
+                                User.Cluster = dr["ClusterName"].ToString();
+
+                            }
+                        }
+                        HttpContext.Current.Session["CUser"] = User;
+                        return CUser;
+                    }
                     //if (HttpContext.Current.Session["User"] != null)
                     //{
                     //    return (UserViewModel)HttpContext.Current.Session["User"];
                     //}
-                   //else
-                   // {
-                    var u = dbe.AspNetUsers.Single(x => x.UserName == HttpContext.Current.User.Identity.Name);
-                    var dis = (from d in dbe.Dist_Mast
-                               join un in dbe.AspNetUsers on d.ID equals un.DistrictId
-                             //  join b in dbe.Block_Mast on
-                              // new { ID = d.ID, BlockId = un.BlockId } equals new { b.DistId_fk, b.ID }
-                               where ((u.DistrictId != 0) || u.DistrictId == 0 && un.LockoutEnabled == true)
-                               select d);
+                    //else
+                    //{
+                    //    var u = dbe.AspNetUsers.Single(x => x.UserName == HttpContext.Current.User.Identity.Name);
+                    //    var dis = (from l in dbe.Dist_Mast
+                    //               join un in dbe.AspNetUsers on l.ID equals un.DistrictId
+                    //               where ((u.DistrictId != 0) || u.DistrictId == 0 && un.LockoutEnabled == true)
+                    //               select l);
 
-                    var role =CommonModel.GetUserRole();
-                        var forAll = new List<string>() { "All", "Admin" };
+                    //    var role = GetUserRole();
+                    //    var forAll = new List<string>() { "All", "Admin" };
 
-                        var user = new UserViewModel
-                        {
-                            Id = u.Id,
-                            Name = u.Name,
-                            Email = u.Email,
-                            DistrictId = u.DistrictId.Value,
-                            District = string.Join(", ", dis.Select(x => x.DistName)),
-                            PhoneNumber = u.PhoneNumber,
-                            RoleId = u.AspNetRoles.First().Id,
-                            Role = u.AspNetRoles.First()?.Name,
-                        };
-                        //HttpContext.Current.Session["User"] = user;
-                        return user;
+                    //    var user = new UserViewModel
+                    //    {
+                    //        Id = u.Id,
+                    //        Name = u.Name,
+                    //        Email = u.Email,
+                    //        DistrictId = u.DistrictId.Value,
+                    //        District = string.Join(", ", dis.Select(x => x.DistName)),
+                    //        PhoneNumber = u.PhoneNumber,
+                    //        Role = u.AspNetRoles.First()?.Name,
+                    //    };
+                    //    HttpContext.Current.Session["User"] = user;
+                    //    return user;
                     //}
                 }
                 else
                 {
-                    HttpContext.Current.RewritePath("~/Account/Login");
-                    return  null;
+                    HttpContext.Current.Response.RedirectToRoute("~/Account/Login", false);
+                    //HttpContext.Current.Response.Redirect("~/Account/Login", false);
+                    //RewritePath
+                    return null;
                 }
             }
         }

@@ -16,6 +16,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 
 namespace UmangMicro.Manager
 {
@@ -127,6 +128,14 @@ namespace UmangMicro.Manager
             }
             return "All";
         }
+        //public static UserViewModel Get_IsRole()
+        //{
+        //    var un = dbe.AspNetRoles.Where(x=>x.Name == CUser.Role);
+        //    return role;
+        //}
+
+       
+
         //public static class SessionLog
         //{
         //    public static int EmployeeId { get { return MvcApplication.Emplog().EmpId_pk; } }
@@ -174,48 +183,7 @@ namespace UmangMicro.Manager
         //    return str;
         //}
 
-        //public static UserViewModel User
-        //{
-        //    get
-        //    {
-        //        if (HttpContext.Current.User.Identity.IsAuthenticated)
-        //        {
-        //            if (HttpContext.Current.Session["User"] != null)
-        //            {
-        //                return (UserViewModel)HttpContext.Current.Session["User"];
-        //            }
-        //            else
-        //            {
-        //                var u = dbe.AspNetUsers.Single(x => x.UserName == HttpContext.Current.User.Identity.Name);
-        //                var dis = (from l in dbe.Dist_Mast
-        //                           join un in dbe.AspNetUsers on l.ID equals un.DistrictId
-        //                           where ((u.DistrictId != 0) || u.DistrictId == 0 && un.LockoutEnabled == true)
-        //                           select l);
 
-        //                var role = GetUserRole();
-        //                var forAll = new List<string>() { "All", "Admin" };
-
-        //                var user = new UserViewModel
-        //                {
-        //                    Id = u.Id,
-        //                    Name = u.Name,
-        //                    Email = u.Email,
-        //                    DistrictId = u.DistrictId.Value,
-        //                    District = string.Join(", ", dis.Select(x => x.DistName)),
-        //                    PhoneNumber = u.PhoneNumber,
-        //                    Role = u.AspNetRoles.First()?.Name,
-        //                };
-        //                HttpContext.Current.Session["User"] = user;
-        //                return user;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            HttpContext.Current.Response.Redirect("~/Account/Login", false);
-        //            return null;
-        //        }
-        //    }
-        //}
 
 
         //public static DataTable GetSPUserDetail()

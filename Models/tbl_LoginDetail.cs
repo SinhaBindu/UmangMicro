@@ -12,13 +12,11 @@ namespace UmangMicro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Dist_Mast
+    public partial class tbl_LoginDetail
     {
-        public int IDpk { get; set; }
-        public int ID { get; set; }
-        public Nullable<int> StateId { get; set; }
-        public string Dist_Code { get; set; }
-        public string DistName { get; set; }
+        public System.Guid ID { get; set; }
+        public Nullable<System.Guid> UserId { get; set; }
+        public Nullable<System.DateTime> LoginDt { get; set; }
         public Nullable<bool> IsActive { get; set; }
     }
 }

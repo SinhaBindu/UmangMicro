@@ -1,136 +1,149 @@
 ﻿
+@using UmangMicro.Manager
+@{
+    var u = MvcApplication.CUser;
+    var r = CommonModel.GetUserRole();
+}
+
 <div class="scrollbar-sidebar">
     <div class="app-sidebar__inner">
         <ul class="vertical-nav-menu">
             <li class="app-sidebar__heading">Menu</li>
-            <li>
-                <a href="#">
-                    <i class="metismenu-icon pe-7s-browser"></i>Counselling
-                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="~/Candidate/Reg">
-                            <i class="metismenu-icon"></i>Registration
-                        </a>
-                    </li>
-                    <li>
-                        <a href="~/Candidate/Index">
-                            <i class="metismenu-icon"></i>Edit
-                        </a>
-                    </li>
-                    @*<li>
-                    <a href="pages-register.html">
-                        <i class="metismenu-icon"></i>Register
-                    </a>
-                </li>
-                <li>
-                    <a href="pages-register-boxed.html">
-                        <i class="metismenu-icon"></i>Register Boxed
-                    </a>
-                </li>
-                <li>
-                    <a href="pages-forgot-password.html">
-                        <i class="metismenu-icon"></i>Forgot Password
-                    </a>
-                </li>
-                <li>
-                    <a href="pages-forgot-password-boxed.html">
-                        <i class="metismenu-icon"></i>Forgot Password Boxed
-                    </a>
-                </li>*@
-                </ul>
-            </li>
-            <li class="mm-active">
-                <a href="#">
-                    <i class="metismenu-icon pe-7s-rocket"></i>Compendium
-                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
 
-                    <li>
-                        <a href="~/Report/Index">
-                            Compendium List
-                            <i class="metismenu-icon"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="~/Master/CourseD">
-                            Add Course
-                            <i class="metismenu-icon"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="~/Master/CourseDetail">
-                             Edit
-                            <i class="metismenu-icon"></i>
-                        </a>
-                    </li>
-                    @*<li>
+            @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("State"))
+            {
+                <li>
                     <a href="#">
-                        <i class="metismenu-icon"></i>  design
+                        <i class="metismenu-icon pe-7s-browser"></i>Counselling
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="~/Candidate/Reg">
+                                <i class="metismenu-icon"></i>Registration
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Candidate/Index">
+                                <i class="metismenu-icon"></i>Edit
+                            </a>
+                        </li>
+                        @*<li>
+                        <a href="pages-register.html">
+                            <i class="metismenu-icon"></i>Register
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages-register-boxed.html">
+                            <i class="metismenu-icon"></i>Register Boxed
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages-forgot-password.html">
+                            <i class="metismenu-icon"></i>Forgot Password
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages-forgot-password-boxed.html">
+                            <i class="metismenu-icon"></i>Forgot Password Boxed
+                        </a>
+                    </li>*@
+                    </ul>
+                </li>
+
+                <li class="mm-active">
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-rocket"></i>Compendium
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+
+                        <li>
+                            <a href="~/Report/Index">
+                                Compendium Search
+                                <i class="metismenu-icon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Master/CourseD">
+                                Add Course
+                                <i class="metismenu-icon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Master/CourseDetail">
+                                Edit
+                                <i class="metismenu-icon"></i>
+                            </a>
+                        </li>
+                        @*<li>
+                        <a href="#">
+                            <i class="metismenu-icon"></i>  design
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="~/Account/Register">
+                                    <i class="metismenu-icon"></i>User Registration
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/Master/UserDetaillist">
+                                    <i class="metismenu-icon"></i>User Detail list
+                                </a>
+                            </li>
+                        </ul>
+                    </li>*@
+                        @*<li>
+                        <a href="dashboards-crm.html">
+                            <i class="metismenu-icon"></i> CRM
+                        </a>
+                    </li>*@
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-plugin"></i>Account
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="~/Account/Register">
-                                <i class="metismenu-icon"></i>User Registration
+                                <i class="metismenu-icon"></i> Register
                             </a>
                         </li>
                         <li>
                             <a href="~/Master/UserDetaillist">
-                                <i class="metismenu-icon"></i>User Detail list
+                                <i class="metismenu-icon"></i>Register list
                             </a>
                         </li>
+                        @*<li>
+                        <a href="pages-register.html">
+                            <i class="metismenu-icon"></i>Register
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages-register-boxed.html">
+                            <i class="metismenu-icon"></i>Register Boxed
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages-forgot-password.html">
+                            <i class="metismenu-icon"></i>Forgot Password
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages-forgot-password-boxed.html">
+                            <i class="metismenu-icon"></i>Forgot Password Boxed
+                        </a>
+                    </li>*@
                     </ul>
-                </li>*@
-                    @*<li>
-                    <a href="dashboards-crm.html">
-                        <i class="metismenu-icon"></i> CRM
-                    </a>
-                </li>*@
-                </ul>
-            </li>
+                </li>
+
+            }
 
 
-            <li>
-                <a href="#">
-                    <i class="metismenu-icon pe-7s-plugin"></i>Account
-                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="~/Account/Register">
-                            <i class="metismenu-icon"></i> Register
-                        </a>
-                    </li>
-                    <li>
-                        <a href="~/Master/UserDetaillist">
-                            <i class="metismenu-icon"></i>Register list
-                        </a>
-                    </li>
-                    @*<li>
-                    <a href="pages-register.html">
-                        <i class="metismenu-icon"></i>Register
-                    </a>
-                </li>
-                <li>
-                    <a href="pages-register-boxed.html">
-                        <i class="metismenu-icon"></i>Register Boxed
-                    </a>
-                </li>
-                <li>
-                    <a href="pages-forgot-password.html">
-                        <i class="metismenu-icon"></i>Forgot Password
-                    </a>
-                </li>
-                <li>
-                    <a href="pages-forgot-password-boxed.html">
-                        <i class="metismenu-icon"></i>Forgot Password Boxed
-                    </a>
-                </li>*@
-                </ul>
-            </li>
             @*<li>
             <a href="#">
                 <i class="metismenu-icon pe-7s-plugin"></i>Applications

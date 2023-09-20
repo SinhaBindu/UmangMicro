@@ -13,9 +13,11 @@ using UmangMicro.Manager;
 using static UmangMicro.Manager.Enums;
 using Antlr.Runtime.Misc;
 using UmangMicro.Controllers;
+using System.Threading.Tasks;
 
 namespace UmangMicro.Controllers
 {
+    [Authorize]
     public class CandidateController : BaseController
     {
         UM_DBEntities db = new UM_DBEntities();
@@ -26,7 +28,7 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-        public ActionResult GetIndex(string FD="", string TD = "")
+        public ActionResult GetIndex(string FD = "", string TD = "")
         {
             DataTable tbllist = new DataTable();
             var html = "";
@@ -55,6 +57,14 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
             }
         }
+
+        [AllowAnonymous]
+        public ActionResult SelfReg(int LangType = 1)
+        {
+            RegModel model = new RegModel();
+            return View(model);
+        }
+
         public ActionResult Reg(int LangType = 1, int Id = 0)
         {
             RegModel model = new RegModel();
@@ -81,7 +91,7 @@ namespace UmangMicro.Controllers
                     model.MobileNo = tbl.MobileNo;
                     model.IsSkillTraining = tbl.IsSkillTraining.Value;
                     model.IsMarriage = tbl.IsMarriage.Value;
-                    model.IsStudy =tbl.IsStudy.Value;
+                    model.IsStudy = tbl.IsStudy.Value;
                     model.SocialClass = tbl.SocialClass;
                     model.TillStudied = tbl.TillStudied;
                     model.IsWork = tbl.IsWork.Value;
@@ -95,6 +105,7 @@ namespace UmangMicro.Controllers
             }
             return View(model);
         }
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Reg(RegModel model)
         {
@@ -103,6 +114,14 @@ namespace UmangMicro.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var getdt = db.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
+                    if (getdt.Any(x => x.MobileNo == model.MobileNo))
+                    {
+                        response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Registration No : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
+                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                        resResponse1.MaxJsonLength = int.MaxValue;
+                        return resResponse1;
+                    }
                     var tbl = model.ID != 0 ? db.tbl_Registration.Find(model.ID) : new tbl_Registration();
                     if (tbl != null)
                     {
@@ -135,27 +154,42 @@ namespace UmangMicro.Controllers
                         tbl.IsActive = true; tbl.IsDeleted = false;
                         if (model.ID == 0)
                         {
-                            tbl.CreatedBy = User.Identity.Name;
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                tbl.CreatedBy = User.Identity.Name;
+                            }
                             tbl.CreatedDt = DateTime.Now;
                             db.tbl_Registration.Add(tbl);
                         }
                         else
                         {
-                            tbl.UpdatedBY = User.Identity.Name;
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                tbl.UpdatedBY = User.Identity.Name;
+                            }
                             tbl.UpdatedDt = DateTime.Now;
                         }
                         results = db.SaveChanges();
                     }
                     if (results > 0)
                     {
-                        //var resResponse = Json(new { IsSuccess = true, htmlData = html, msg = action }, JsonRequestBehavior.AllowGet);
-                        //resResponse.MaxJsonLength = int.MaxValue;
-                        //return resResponse;
+                        var taskres = CU_RegLogin(model, tbl.ID);
 
-                        response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully.", Data = null };
-                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                        resResponse1.MaxJsonLength = int.MaxValue;
-                        return resResponse1;
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully.<br /> <span> User Name : <strong>" + model.MobileNo + " </strong> </span> <br /> <span>Password :<strong>User@123</strong> </span>", Data = null };
+                            var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                            resResponse1.MaxJsonLength = int.MaxValue;
+                            return resResponse1;
+                        }
+                        else
+                        {
+                            response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully. <br /> <span> User Name : <strong>" + model.MobileNo + "</strong> </span> <br /> <span>Password :<strong>User@123</strong> </span>", Data = 1 };
+                            var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                            resResponse1.MaxJsonLength = int.MaxValue;
+                            return resResponse1;
+                        }
+
                         //Success("Added Successfully !", true);
                         //return RedirectToAction("CourseD", new { id = tbl.ID });
                         // Success("Added Successfully !", true);
@@ -179,6 +213,60 @@ namespace UmangMicro.Controllers
             }
             return View();
         }
+
+        public string CU_RegLogin(RegModel model, int RegId)
+        {
+            UM_DBEntities dbe = new UM_DBEntities();
+            AspNetUser ur;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(model.UseraspID) && RegId > 0)
+                {
+                    var user = new ApplicationUser { UserName = model.MobileNo, Email = model.MobileNo + "@gmail.com", PhoneNumber = model.MobileNo };
+                    var result = UserManager.CreateAsync(user, "User@123").Result;
+                    if (result.Succeeded)
+                    {
+                        ur = dbe.AspNetUsers.Find(user.Id);
+                        ur.RegId = RegId;
+                        ur.DistrictId = model.DistrictId;
+                        ur.BlockId = model.BlockId;
+                        ur.ClusterId = model.ClusterId;
+                        ur.Name = model.Name;
+                        //dbe.AspNetUsers.Add(ur);
+                        int res = db.SaveChanges();
+                        if (res > 0)
+                        {
+                            var s = eAlertType.success.ToString();
+                            return s;
+                        }
+                    }
+                }
+                else if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(model.UseraspID) && RegId > 0)
+                {
+                    ur = db.AspNetUsers.Find(model.UseraspID);
+                    ur.RegId = RegId;
+                    ur.PhoneNumber = model.MobileNo;
+                    ur.Email = model.MobileNo + "@gmail.com";
+                    ur.PasswordHash = "User@123";
+                    ur.Name = model.Name;
+                    ur.DistrictId = model.DistrictId;
+                    ur.BlockId = model.BlockId;
+                    ur.ClusterId = model.ClusterId;
+                    int res = db.SaveChanges();
+                    if (res > 0)
+                    {
+                        var s = eAlertType.success.ToString();
+                        return s;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return eAlertType.error.ToString();
+            }
+            return eAlertType.error.ToString();
+        }
+
         #endregion
         private string ConvertViewToString(string viewName, object model)
         {
@@ -191,5 +279,6 @@ namespace UmangMicro.Controllers
                 return writer.ToString();
             }
         }
+
     }
 }

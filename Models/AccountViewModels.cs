@@ -52,7 +52,7 @@ namespace UmangMicro.Models
         public string Id { get; set; }
         [Required]
         [Display(Name = "Email")]
-        [EmailAddress]
+        //[EmailAddress]
         public string Email { get; set; }
       
         [Required]
@@ -139,16 +139,18 @@ namespace UmangMicro.Models
     {
         public string Id { get; set; }
         public string PhoneNumber { get; set; }
-        public int DistrictId { get; set; }
+        public string DistrictId { get; set; }
         public string District { get; set; }
-        public int BlockId { get; set; }
+        public string BlockId { get; set; }
         public string Block { get; set; }
-        public int ClusterId { get; set; }
+        public string ClusterId { get; set; }
         public string Cluster { get; set; }
         public string Role { get; set; }
         public string RoleId { get; set; }
         public string Name { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
+        public string LockoutEnabled { get; set; }
     }
     public class ResetPasswordViewModel
     {

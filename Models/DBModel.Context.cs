@@ -25,13 +25,14 @@ namespace UmangMicro.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<Block_Mast> Block_Mast { get; set; }
         public virtual DbSet<Cluster_Mast> Cluster_Mast { get; set; }
         public virtual DbSet<Dist_Mast> Dist_Mast { get; set; }
         public virtual DbSet<State_Mast> State_Mast { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<tbl_LoginDetail> tbl_LoginDetail { get; set; }
         public virtual DbSet<tbl_Registration> tbl_Registration { get; set; }
         public virtual DbSet<tbl_CoursesDetail> tbl_CoursesDetail { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

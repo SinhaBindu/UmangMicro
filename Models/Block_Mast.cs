@@ -14,6 +14,7 @@ namespace UmangMicro.Models
     
     public partial class Block_Mast
     {
+        public int IDpk { get; set; }
         public int ID { get; set; }
         public Nullable<int> DistId_fk { get; set; }
         public string LG_Block_Code { get; set; }

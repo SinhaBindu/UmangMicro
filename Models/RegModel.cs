@@ -19,6 +19,7 @@ namespace UmangMicro.Models
         }
         public RegModel(string name) { }
         public int ID { get; set; }
+        public string UseraspID { get; set; }
         [Required]
         [Display(Name="Registration Date")]
         public Nullable<System.DateTime> RegDate { get; set; }
@@ -87,6 +88,7 @@ namespace UmangMicro.Models
         public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDt { get; set; }
         public int? LanguangeType { get; set; }
+        public RegisterViewModel RegisterViModel { get; set; }    
         public String DisplayName1
         {
             get
@@ -477,4 +479,6 @@ namespace UmangMicro.Models
         public const string Name = "Name";
         public readonly string FatherName = "Father Name";
     }
+
+    
 }

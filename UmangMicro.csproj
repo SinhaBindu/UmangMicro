@@ -261,6 +261,9 @@
     <Compile Include="Models\tbl_CoursesDetail.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_LoginDetail.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_Registration.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -899,6 +902,8 @@
     <Content Include="Views\Master\CourseDetail.cshtml" />
     <Content Include="Views\Master\_CourseEdit.cshtml" />
     <Content Include="Views\Report\_CD.cshtml" />
+    <Content Include="Views\Candidate\SelfReg.cshtml" />
+    <Content Include="Views\Candidate\_RegInput.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

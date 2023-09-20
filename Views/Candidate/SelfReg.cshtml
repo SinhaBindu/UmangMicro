@@ -2,29 +2,38 @@
 @using UmangMicro.Manager
 @{
     ViewBag.Title = "Reg";
+    Layout = null;
 }
 
-<div class="app-container app-theme-white body-tabs-shadow">
-    <div class="app-container">
-        <div class="h-100">
-            <div class="h-100 no-gutters row">
-                <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
-                    <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
-                        @using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
-                        {
-                            @Html.Partial("_RegInput")
-                        }
+<html>
+<head></head>
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100">
+                <div class="h-100 no-gutters row">
+                    <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
+                        <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
+                            @using (Html.BeginForm("SelfReg", "Candidate", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
+                            {
+                                @Html.Partial("_RegInput")
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</body>
+</html>
+
+
 
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="~/Scripts/JS/Master.js"></script>
 
 
