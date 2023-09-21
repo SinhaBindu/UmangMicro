@@ -1451,7 +1451,13 @@ img {
     padding: 60px 20px 80px;
     border-radius: 0 0 10px 10px;
 }
-
+.cluster-bg {
+    background: #FEFEFC;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0px 20px 0px;
+    border-radius: 0 0 10px 10px;
+}
 .div-block {
     margin: auto;
     max-width: 1200px;
@@ -2063,7 +2069,7 @@ img {
     left: 50px
 }
 .bgr3 {
-    background: #003941;
+    background: #53590C;
     border-radius: 10px;
 }
 
@@ -2490,7 +2496,7 @@ img {
 }
 
 .mother-daughter-points {
-    padding: 60px 20px 30px;
+    padding: 20px 20px 30px;
     /*background: #fff;*/
     margin: auto;
     max-width: 1200px;
@@ -2522,7 +2528,9 @@ img {
     .take-points:hover {
         background: #D3DD68
     }
-
+    .take-points:hover p {
+        color: #fff;
+    }
 .points-number {
     margin-bottom: 30px;
     margin-top: 10px;
