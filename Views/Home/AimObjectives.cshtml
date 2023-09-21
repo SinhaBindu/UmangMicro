@@ -1,13 +1,15 @@
 ﻿<!-- Banner -->
-<img src="~/Content/images/slider/slide-2.jpg" alt="Aims & Objectives">
+<div class="banner-manage">
+    <img src="~/Content/images/slider/design-banner.jpg" alt="Aims & Objectives">
+</div>
 <div class="banner-title">
-    <h2><span>Aims & Objectives</span></h2>
+    <h2><span>About Umang</span></h2>
 </div>
 <!-- AIMS & OBJECTIVES -->
 <section class="section-1">
     <div class="aims-objective">
         <div class="aims" data-aos="fade-up" data-aos-duration="1500">
-            <h2>AIM & <br><span class="txt-clr">OBJECTIVES</span></h2>
+            <h2>About <span class="txt-clr">Umang</span></h2>
             <p class="clr-dark">
                 Inter-generational transmission of empowerment from mothers to daughters
             </p>
@@ -38,15 +40,15 @@
                     SHGs) as a means for developing agency among their next generation of adolescent daughters.
                 </p>
             </div>
-            <button class="contentToggle">Read More</button>
+            <button class="contentToggle">View More</button>
         </div>
         <div class="objectives" data-aos="fade-down" data-aos-duration="1500">
             <img src="~/Content/images/aim-mother-daughter.jpg" alt="Aim mother daughter" />
         </div>
     </div>
-    <div class="objectives-points">
+    @*<div class="objectives-points">
         <div class="aims-point" data-aos="fade-up" data-aos-duration="1500">
-            <div class="main-objectives">
+            <div class="main-objectives" data-aos="fade-up" data-aos-duration="1500">
                 <h3>Objectives</h3>
                 <p>
                     Layered upon the federated SHG structure (that has been developed and nurtured by JSLPS in the
@@ -55,7 +57,7 @@
                 </p>
             </div>
             <div class="objectives-matter">
-                <div class="object-content">
+                <div class="object-content" data-aos="fade-up" data-aos-duration="1500">
                     <img src="/Content/images/women-collective.jpg" alt="Women Collectives">
                     <h4>Women Collectives</h4>
                     <div class="bord"></div>
@@ -64,7 +66,7 @@
                         fulfil their aspirations.
                     </p>
                 </div>
-                <div class="object-content">
+                <div class="object-content" data-aos="fade-up" data-aos-duration="1500">
                     <img src="/Content/images/child-marriage.jpg" alt="Sustainable Model">
                     <h4>Sustainable Model</h4>
                     <div class="bord"></div>
@@ -76,7 +78,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="aim-box">
         <h3>
             Umang has adopted a unique approach for empowering SHG women <br>through capacitating them with:
@@ -138,10 +140,10 @@
             $(".contentToggle").click(function () {
                 var elem = $(".contentToggle").text();
                 if (elem == "Read More") {
-                    $(".contentToggle").text("Read Less");
+                    $(".contentToggle").text("View Less");
                     $(".hiddenTxt").slideDown();
                 } else {
-                    $(".contentToggle").text("Read More");
+                    $(".contentToggle").text("View More");
                     $(".hiddenTxt").slideUp();
                 }
             });

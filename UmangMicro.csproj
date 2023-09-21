@@ -599,6 +599,7 @@
     <Content Include="Content\css\sass-compiled.css" />
     <Content Include="Content\css\settings4361.css" />
     <Content Include="Content\css\sider-nav.css" />
+    <Content Include="Content\css\simp.min.css" />
     <Content Include="Content\css\smartphoto.min.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\super-menu.css" />
@@ -619,6 +620,13 @@
     <Content Include="Content\images\mother-daughter-6-steps\mother-participation.png" />
     <Content Include="Content\images\mother-daughter-6-steps\nurturing-aspirant.png" />
     <Content Include="Content\images\mother-daughter-relation-point.png" />
+    <Content Include="Content\images\partners\cl-1.jpg" />
+    <Content Include="Content\images\partners\cl-2.jpg" />
+    <Content Include="Content\images\partners\cl-3.jpg" />
+    <Content Include="Content\images\partners\cl-4.jpg" />
+    <Content Include="Content\images\partners\cl-5.jpg" />
+    <Content Include="Content\images\partners\cl-6.jpg" />
+    <Content Include="Content\images\partners\cl-7.jpg" />
     <Content Include="Content\images\plus-icon.png" />
     <Content Include="Content\images\shg-icon.png" />
     <Content Include="Content\images\shgs-icon.png" />
@@ -731,6 +739,7 @@
     <Content Include="Content\images\slider\umang-banner.jpg" />
     <Content Include="Content\images\umang-cover.jpg" />
     <Content Include="Content\images\umang-logo.png" />
+    <Content Include="Content\images\umang-objectives.png" />
     <Content Include="Content\images\umang-reach.png" />
     <Content Include="Content\images\umang-stat\blue-strip.png" />
     <Content Include="Content\images\umang-stat\child-marriage.png" />
@@ -749,6 +758,8 @@
     <Content Include="Content\images\women-confidence.jpg" />
     <Content Include="Content\images\women-collective.jpg" />
     <Content Include="Content\images\yellow-curve-bg.png" />
+    <Content Include="Content\js\1-simp-lib.min.js" />
+    <Content Include="Content\js\2-simp-lib.min.js" />
     <Content Include="Content\js\amazingcarousel.js" />
     <Content Include="Content\js\aos.js" />
     <Content Include="Content\js\bootstrap.min.js" />

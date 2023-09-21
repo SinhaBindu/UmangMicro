@@ -134,7 +134,7 @@
 			border-radius: 5px;
 			background: #fff;
 			box-shadow: 0 2px rgba(0, 0, 0, 0.2);
-			color: #000;
+			color: #666;
             font-size: 19px;
 		}
 
@@ -143,14 +143,14 @@
 			opacity: 1;
 		}
 
-		.pcss3t-theme-1>input:checked+label {
-			margin-bottom: 0;
-			padding-bottom: 5px;
-			border-bottom-right-radius: 0;
-			border-bottom-left-radius: 0;
-			color: #F3987A;
-			opacity: 1;
-		}
+.pcss3t-theme-1 > input:checked + label {
+	margin-bottom: 0;
+	padding-bottom: 5px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	color: #00AEC4;
+	opacity: 1;
+}
 
 		.pcss3t-theme-1>ul {
 			border-radius: 5px;
@@ -207,5 +207,5 @@
 
 		.pcss3t>ul,
 		.pcss3t>ul>li {
-			height: 920px;
+			height: 850px;
 		}

@@ -1,19 +1,23 @@
 .super-menu {
     width: auto;
     /*background: #8BBDBD;*/
-    font-family: 'Noto Sans', sans-serif;
+    /*font-family: 'Noto Sans', sans-serif;*/
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .login-btn {
-    background: #F3FF61;
-    color: #0A5B66 !important;
-    border-radius: 30px;
-    padding: 10px 21px;
+    float: right;
+    background: #00AEC4;
+    color: #fff !important;
+    padding: 17px 21px !important;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
     .login-btn:hover {
-        background: #fff;
-        color: #5B2C54 !important;
+        background: #D3DD68;
+        color: #fff !important;
     }
 
 .nav-i {
@@ -44,16 +48,18 @@
 
     #ddmenu li {
         margin: 0;
-        padding: 7px 5px 7px;
+        padding: 7px 15px 7px;
         font-size: 14px;
         display: inline-block;
         position: relative;
-        color: #fff;
+        color: #595959;
         vertical-align: middle;
         transition: background-color 0.2s;
-        font-weight: 500;
+        /*font-weight: bold;*/
+        font-weight: 600;
         text-decoration: none;
         line-height: 20px;
+        /*text-transform: uppercase;*/
     }
 
     #ddmenu .full-width {
@@ -61,14 +67,12 @@
     }
 
     #ddmenu .over {
-        color: #fff;
-        background: #0A5B66;
+        color: #00AEC4;
         text-decoration: none;
     }
 
     #ddmenu .current {
-        color: #fff;
-        background: #0A5B66;
+        color: #00AEC4;
     }
 
     #ddmenu .top-heading {
@@ -181,6 +185,7 @@
         background: none;
         transition: none;
         border-radius: 0;
+        font-weight: normal;
     }
 /* links in sub menu
 ----------------------------*/
@@ -247,7 +252,7 @@
     font-size: 16px;
 }
 
-.nav-bg-KH {
+/*.nav-bg-KH {
     background: #84B8B8;
 }
 
@@ -273,7 +278,7 @@
 
 .nav-bg-UM {
     background: #619C9C;
-}
+}*/
 @media only screen and (max-width: 1220px) {
     #ddmenu li {
         padding-left: 5px;
@@ -441,9 +446,9 @@
             border-color: #222;
         }
 
-    .nav-bg-KH, .nav-bg-ME, .nav-bg-VP, .nav-bg-EL, .nav-bg-last, .nav-bg-CM, .nav-bg-UM {
+    /*.nav-bg-KH, .nav-bg-ME, .nav-bg-VP, .nav-bg-EL, .nav-bg-last, .nav-bg-CM, .nav-bg-UM {
         background: #fff;
-    }
+    }*/
     #ddmenu .current {
         color: #fff;
         background: #0A5B66;

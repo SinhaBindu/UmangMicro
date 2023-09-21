@@ -73,6 +73,9 @@
     }
 }
 @media all and (max-width: 1024px) {
+    .objectives-matter {
+        gap: 40px;
+    }
     .banner-text h2 {
         font-size: 44px;
         margin-bottom: 22px;
@@ -160,6 +163,9 @@
 }
 
 @media all and (max-width: 920px) {
+    .objectives-matter {
+        gap: 20px;
+    }
     .impact-flex h4 {
         font-size: 19px;
         line-height: 29px;
@@ -445,6 +451,10 @@
 }
 
 @media all and (max-width: 700px) {
+    .objectives-matter {
+        flex-direction: column;
+        gap: 40px;
+    }
     .cool-data {
         gap: 20px;
     }
@@ -486,6 +496,12 @@
 }
 
 @media all and (max-width: 620px) {
+    .main-objectives {
+        flex-direction: column;
+    }
+        .main-objectives p {
+            font-size: 17px;
+        }
     .data1, .data2, .data3 {
         border-radius: 50px
     }
