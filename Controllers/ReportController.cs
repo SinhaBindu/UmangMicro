@@ -59,7 +59,36 @@ namespace UmangMicro.Controllers
             catch (Exception ex)
             {
                 string er = ex.Message;
-                return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
+                return Json(new { IsSuccess = false, Data = "There was a communication error." }, JsonRequestBehavior.AllowGet); throw;
+            }
+        }
+        public ActionResult LastLogin()
+        {
+            return View();
+        }
+        public ActionResult GetLastLogin(string Parame)
+        {
+            try
+            {
+                //dt = ds.Tables.Contains("Tables[0]") == true ? dt : ds.Tables[0];//dt1 = ds.Tables.Contains("Tables[1]") == true ? dt1 : ds.Tables[1];
+                bool IsCheck = false;
+                DataTable dt =SP_Model.GetSPLastLogin();
+                if (dt.Rows.Count > 0)
+                {
+                    IsCheck = true;
+                    var html_1 = ConvertViewToString("_LastLoginData", dt);
+                    var res1 = Json(new { IsSuccess = IsCheck, html1 = html_1 }, JsonRequestBehavior.AllowGet);
+                    res1.MaxJsonLength = int.MaxValue;
+                    return res1;
+                }
+                var res = Json(new { IsSuccess = IsCheck, html1 = "Record Not Found !!" }, JsonRequestBehavior.AllowGet);
+                res.MaxJsonLength = int.MaxValue;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "There was a communication error." }, JsonRequestBehavior.AllowGet); throw;
             }
         }
         private string ConvertViewToString(string viewName, object model)

@@ -26,5 +26,11 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        public static DataTable GetSPLastLogin()
+        {
+            StoredProcedure sp = new StoredProcedure("GetSPLastLogin");
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
     }
 }

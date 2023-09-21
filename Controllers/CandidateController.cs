@@ -14,6 +14,7 @@ using static UmangMicro.Manager.Enums;
 using Antlr.Runtime.Misc;
 using UmangMicro.Controllers;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace UmangMicro.Controllers
 {
@@ -213,7 +214,6 @@ namespace UmangMicro.Controllers
             }
             return View();
         }
-
         public string CU_RegLogin(RegModel model, int RegId)
         {
             UM_DBEntities dbe = new UM_DBEntities();
@@ -232,8 +232,8 @@ namespace UmangMicro.Controllers
                         ur.BlockId = model.BlockId;
                         ur.ClusterId = model.ClusterId;
                         ur.Name = model.Name;
-                        //dbe.AspNetUsers.Add(ur);
-                        int res = db.SaveChanges();
+                        var result1 = UserManager.AddToRole(user.Id, "User");
+                        int res = dbe.SaveChanges();
                         if (res > 0)
                         {
                             var s = eAlertType.success.ToString();
@@ -244,7 +244,8 @@ namespace UmangMicro.Controllers
                 else if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(model.UseraspID) && RegId > 0)
                 {
                     ur = db.AspNetUsers.Find(model.UseraspID);
-                    ur.RegId = RegId;
+                    //ur.RegId = RegId;
+                    ur.UserName = model.MobileNo;
                     ur.PhoneNumber = model.MobileNo;
                     ur.Email = model.MobileNo + "@gmail.com";
                     ur.PasswordHash = "User@123";
@@ -252,7 +253,16 @@ namespace UmangMicro.Controllers
                     ur.DistrictId = model.DistrictId;
                     ur.BlockId = model.BlockId;
                     ur.ClusterId = model.ClusterId;
-                    int res = db.SaveChanges();
+                    var userRoles = UserManager.GetRoles(model.UseraspID);
+                    foreach (var item in userRoles)
+                    {
+                        if ("User" != item)
+                        {
+                            UserManager.RemoveFromRoles(model.UseraspID, item);
+                            UserManager.AddToRole(model.UseraspID, "User");
+                        }
+                    }
+                    int res = dbe.SaveChanges();
                     if (res > 0)
                     {
                         var s = eAlertType.success.ToString();

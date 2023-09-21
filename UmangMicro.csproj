@@ -916,6 +916,8 @@
     <Content Include="Views\Candidate\SelfReg.cshtml" />
     <Content Include="Views\Candidate\_RegInput.cshtml" />
     <Content Include="Views\Candidate\_ViewData.cshtml" />
+    <Content Include="Views\Report\LastLogin.cshtml" />
+    <Content Include="Views\Report\_LastLoginData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

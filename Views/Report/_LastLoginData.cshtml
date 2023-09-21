@@ -1,0 +1,51 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "User List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+<strong>Last Login Details</strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover dt-responsive display" id="tbl" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Sr No.</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Last Login Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1;
+                            if (Model != null)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    string clr = dr["BG"].ToString() != "" ? "color:#fff;" : "";
+                                    <tr>
+                                        <td class="text-center">@(sno++)</td>
+                                        <td class="text-center" style="text-wrap: wrap;">@dr["Name"]</td>
+                                        <td class="text-center" style="text-wrap: wrap;">@dr["RoleN"]</td>
+                                        <td class="text-center" style="text-wrap: wrap; @dr["BG"] @clr "><strong>@dr["LDt"]</strong></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="4" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
