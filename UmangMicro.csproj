@@ -915,6 +915,7 @@
     <Content Include="Views\Report\_CD.cshtml" />
     <Content Include="Views\Candidate\SelfReg.cshtml" />
     <Content Include="Views\Candidate\_RegInput.cshtml" />
+    <Content Include="Views\Candidate\_ViewData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

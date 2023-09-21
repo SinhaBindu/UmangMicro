@@ -83,13 +83,16 @@ namespace UmangMicro.Controllers
             {
                 case SignInStatus.Success:
                     string id = User.Identity.GetUserId();
-                    tbl_LoginDetail tbl = new tbl_LoginDetail();
-                    tbl.ID = Guid.NewGuid();
-                    tbl.UserId = Guid.Parse(id);
-                    tbl.LoginDt = DateTime.Now;
-                    tbl.IsActive = true;
-                    dbe.tbl_LoginDetail.Add(tbl);
-                    dbe.SaveChanges();
+                    if (!string.IsNullOrWhiteSpace(id))
+                    {
+                        tbl_LoginDetail tbl = new tbl_LoginDetail();
+                        tbl.ID = Guid.NewGuid();
+                        tbl.UserId = Guid.Parse(id);
+                        tbl.LoginDt = DateTime.Now;
+                        tbl.IsActive = true;
+                        dbe.tbl_LoginDetail.Add(tbl);
+                        dbe.SaveChanges();
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
