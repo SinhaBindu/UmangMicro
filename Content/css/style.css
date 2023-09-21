@@ -2519,9 +2519,9 @@ img {
     text-align: center;
     border: 4px solid #fff;
 }
-    /*.take-points:hover {
-        border: 4px solid #0A5B66;
-    }*/
+    .take-points:hover {
+        background: #D3DD68
+    }
 
 .points-number {
     margin-bottom: 30px;

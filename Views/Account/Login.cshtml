@@ -6,14 +6,30 @@
 }
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet">
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/modernizr")
+@*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+<link href="~/Content/css/style.css" rel="stylesheet" />
 <style>
     body {
         background: #6A4566;
         font-family: 'Source Sans Pro', sans-serif;
     }
-
+    #wrappers {
+        width: 100%;
+        background: #fff;
+    }
+    #headers {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 20px;
+    }
+    .logo1 {
+        width: 90px;
+    }
+    .logo2 {
+        width: 60px;
+    }
     .umang-credential {
         display: flex;
         gap: 10px;
@@ -111,10 +127,10 @@
         width: 60px !important;
     }
 </style>
-<div id="wrapper">
-    <div id="header">
-        <div class="excellence"><a href="/"><img src="/Content/images/umang-logo.png" alt="Umang Logo" /></a></div>
-        <div class="logo"><a href="/"><img src="/Content/images/pci.png" alt="PCI" /></a></div>
+<div id="wrappers">
+    <div id="headers">
+        <div class="logo1"><a href="/"><img src="/Content/images/umang-logo.png" alt="Umang Logo" /></a></div>
+        <div class="logo2"><a href="/"><img src="/Content/images/pci.png" alt="PCI" /></a></div>
     </div>
 </div>
 <div class="umang-credential">
