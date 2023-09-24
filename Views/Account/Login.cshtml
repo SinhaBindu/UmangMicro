@@ -11,25 +11,31 @@
 <link href="~/Content/css/style.css" rel="stylesheet" />
 <style>
     body {
-        background: #6A4566;
+        /*background: #6A4566;*/
+        background: #00AEC4;
         font-family: 'Source Sans Pro', sans-serif;
     }
+
     #wrappers {
         width: 100%;
         background: #fff;
     }
+
     #headers {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 8px 20px;
     }
+
     .logo1 {
         width: 90px;
     }
+
     .logo2 {
         width: 60px;
     }
+
     .umang-credential {
         display: flex;
         gap: 10px;
@@ -45,7 +51,7 @@
 
     .login-graphic {
         flex: 3;
-        height: calc(100vh - 300px);
+        height: calc(115vh - 300px);
     }
 
     .login-form {
@@ -126,7 +132,28 @@
     .logo {
         width: 60px !important;
     }
+
+    .text-danger {
+        color: red;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: calc(3.25rem + 3px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+    }
 </style>
+
 <div id="wrappers">
     <div id="headers">
         <div class="logo1"><a href="/"><img src="/Content/images/umang-logo.png" alt="Umang Logo" /></a></div>
@@ -145,23 +172,24 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-box">
-                @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })<em class="text-danger">*</em>*@
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "User Name" })
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
             <div class="form-box">
-                @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })*@
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })<em class="text-danger">*</em>*@
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Password" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
-            <div class="form-box">
-                <div class="checkbox">
-                    @Html.CheckBoxFor(m => m.RememberMe)
-                    @Html.LabelFor(m => m.RememberMe)
-                </div>
-            </div>
+            @*<div class="form-box">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                </div>*@
             <input type="submit" value="Log in" class="btn-submit" />
-            @Html.ActionLink("Register as a new user", "Register")
+            @*@Html.ActionLink("Register as a new user", "Register")*@
+            <a href="~/Candidate/SelfReg">Register as a new user</a>
         }
     </div>
 </div>

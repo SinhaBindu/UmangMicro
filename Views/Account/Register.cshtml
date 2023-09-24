@@ -128,12 +128,12 @@
                                 <div class="mt-4 d-flex align-items-center">
                                     @*<h5 class="mb-0">Already have an account? <a href="javascript:void(0);" class="text-primary">Sign in</a></h5>*@
                                     <div class="ml-auto">
-                                        <input type="submit" class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-small" value="Register" />
+                                        <input type="submit" class="btn btn-primary" value="Register" />
                                     </div>
                                 </div>
                                 @*<div class="text-center pt-3">
-            <p class="text-dark mb-0">Already registered?<a href="~/Account/Login" class="text-primary ml-1">Log In now</a></p>
-        </div>*@
+                                        <p class="text-dark mb-0">Already registered?<a href="~/Account/Login" class="text-primary ml-1">Log In now</a></p>
+                                    </div>*@
 
 
                             </div>
@@ -147,11 +147,11 @@
 
 
 @section Scripts {
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/JS/Master.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Scripts/JS/Master.js"></script>
+
 
     <script type="text/javascript">
         $(document).ready(function () {

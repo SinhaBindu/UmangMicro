@@ -51,7 +51,7 @@ namespace UmangMicro.Models
     {
         public string Id { get; set; }
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "User Name")]
         //[EmailAddress]
         public string Email { get; set; }
       

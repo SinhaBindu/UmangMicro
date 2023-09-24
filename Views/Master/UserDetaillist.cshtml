@@ -17,45 +17,25 @@
         padding: 8px 10px !important;
     }
 </style>
-<!--<div class="app-content">
-    <div class="side-app">
-        <!-- PAGE-HEADER -->
-<!--<div class="page-header">
-    <ol class="breadcrumb">-->
-<!-- breadcrumb -->
-<!--@*<li class="breadcrumb-item"><h5 class="mb-0 breadcrump-tittle">List Of User Details</h5></li>*@
-</ol>-->
-<!-- End breadcrumb -->
-<!--<div id="div-download"></div>
-</div>-->
-<!-- PAGE-HEADER END -->
-<div class="app-container app-theme-white body-tabs-shadow">
-    <div class="app-container">
-        <div class="h-100">
-            <div class="h-100 no-gutters row">
-                <div class=" d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
-                    @*h-100 d-md-flex*@
-                    <div class="">
-                        @*mx-auto app-login-box col-sm-12 col-md-10 col-lg-9*@
-                        <div id="div-download"></div>
-                        <!-- PAGE-HEADER END -->
-                        @using (Html.BeginForm("GetUserDetailData", "Master", FormMethod.Post, new { id = "submission-form" }))
-                        {
 
-                            <div class="col-md-12">
-                                <div style="text-align: center; font-weight: 700;">
-                                    <h4><strong>Account (Register) List</strong></h4>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="submission-data">
-                                </div>
-                            </div>
-                        }
-                    </div>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+
+        <div id="div-download"></div>
+        <!-- PAGE-HEADER END -->
+        @using (Html.BeginForm("GetUserDetailData", "Master", FormMethod.Post, new { id = "submission-form" }))
+        {
+
+            <div class="col-md-12">
+                <div style="text-align: center; font-weight: 700;">
+                    <h4><strong>Account (Register) List</strong></h4>
                 </div>
             </div>
-        </div>
+            <div class="col-md-12">
+                <div id="submission-data">
+                </div>
+            </div>
+        }
     </div>
 </div>
 
@@ -105,7 +85,7 @@
                             { 'width': '500px', 'display': 'inline-block' }
                         );
                         $('#div-download').empty();
-                        table.buttons().container().appendTo($('#div-download'));
+                        //table.buttons().container().appendTo($('#div-download'));
                     }
                     else {
                         $('#submission-data').html("Record Not Found !!");//TO DO
