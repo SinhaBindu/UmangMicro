@@ -4,405 +4,411 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
-<div class="app-container app-theme-white body-tabs-shadow">
-    <div class="app-container">
-        <div class="h-100">
-            <div class="h-100 no-gutters row">
-                <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
-                    <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
-                        @using (Html.BeginForm("CourseD", "Master", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
-                        {
-                            <div class="form-row">
-                                <div class="col-md-12">
-                                    <div style="text-align: center; font-weight: 700;">
-                                        <h4><strong>Add Courses</strong></h4>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="position-relative form-group">
-                                        @Html.HiddenFor(model => model.ID)
-                                        @Html.AntiForgeryToken()
-                                        @Html.ValidationSummary("", new { @class = "text-danger" })
-                                        <div class="col-md-12">@Html.Partial("_Alerts")</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.NameCourseEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.NameCourseEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.NameCourseEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+<style>
+    .ulcl {
+        columns: 8;
+        -webkit-columns: 8;
+        -moz-columns: 8;
+    }
+</style>
 
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.NameCourseHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.NameCourseHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.NameCourseHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CourseTypeEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.CourseTypeEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.CourseTypeEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CourseTypeHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.CourseTypeHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.CourseTypeHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.JobOpportunityEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.JobOpportunityEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.JobOpportunityEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.JobOpportunityHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.JobOpportunityHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.JobOpportunityHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CourseDurationEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.CourseDurationEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.CourseDurationEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CourseDurationHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.CourseDurationHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.CourseDurationHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.ShortDescriptionCourseEng, htmlAttributes: new { @class = "" })
-
-                                        @Html.EditorFor(model => model.ShortDescriptionCourseEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ShortDescriptionCourseEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.ShortDescriptionCourseHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.ShortDescriptionCourseHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ShortDescriptionCourseHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.EligibilityEng, htmlAttributes: new { @class = "" })
-
-                                        @Html.EditorFor(model => model.EligibilityEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.EligibilityEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.EligibilityHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.EligibilityHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.EligibilityHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.MarksCriteriaEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.MarksCriteriaEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.MarksCriteriaEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.MarksCriteriaHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.MarksCriteriaHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.MarksCriteriaHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.AdmissionProcessEng, htmlAttributes: new { @class = "" })
-
-                                        @Html.EditorFor(model => model.AdmissionProcessEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.AdmissionProcessEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.AdmissionProcessHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.AdmissionProcessHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.AdmissionProcessHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.MediumInstructionEng, htmlAttributes: new { @class = "" })
-
-                                        @Html.EditorFor(model => model.MediumInstructionEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.MediumInstructionEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.MediumInstructionHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.MediumInstructionHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.MediumInstructionHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.HostelAvailabilityEng, htmlAttributes: new { @class = "" })
-                                        <div class="checkbox">
-                                            @foreach (var item in CommonModel.GetYesNoEng())
-                                            {
-                                                @Html.RadioButtonFor(model => model.HostelAvailabilityEng, item.Value, new { id = "IsHAEN" + item.Value, @required = "required" }) @item.Text
-                                            }
-                                            @Html.ValidationMessageFor(model => model.HostelAvailabilityEng, "", new { @class = "text-danger" })
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.HostelAvailabilityEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.HostelAvailabilityHindi, htmlAttributes: new { @class = "" })
-                                        <div class="checkbox">
-                                            @foreach (var item in CommonModel.GetYesNoHindi())
-                                            {
-                                                @Html.RadioButtonFor(model => model.HostelAvailabilityHindi, item.Value, new { id = "IsHAHI" + item.Value, @required = "required" }) @item.Text
-                                            }
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.HostelAvailabilityHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.AvailableScholarshipEng, htmlAttributes: new { @class = "" })
-                                        <div class="checkbox">
-                                            @foreach (var item in CommonModel.GetYesNoEng())
-                                            {
-                                                @Html.RadioButtonFor(model => model.AvailableScholarshipEng, item.Value, new { id = "IsASEN" + item.Value, @required = "required" }) @item.Text
-                                            }
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.AvailableScholarshipEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.AvailableScholarshipHindi, htmlAttributes: new { @class = "" })
-                                        <div class="checkbox">
-                                            @foreach (var item in CommonModel.GetYesNoHindi())
-                                            {
-                                                @Html.RadioButtonFor(model => model.AvailableScholarshipHindi, item.Value, new { id = "IsASHI" + item.Value, @required = "required" }) @item.Text
-                                            }
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.AvailableScholarshipHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CategoryEng, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(model => model.CategoryEng, CommonModel.GetCategoryEng(), "Select", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.CategoryEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CategoryHindi, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(model => model.CategoryHindi, CommonModel.GetCategoryHindi(), "Select", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.CategoryHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-6" id="hd_cateotrEN" style="display:none;">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CategoryOtherEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.CategoryOtherEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.CategoryOtherEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6" id="hd_cateotrHI" style="display:none;">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.CategoryOtherHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.CategoryOtherHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.CategoryOtherHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.College_Unvty_InstEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.College_Unvty_InstEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.College_Unvty_InstEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.College_Unvty_InstHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.College_Unvty_InstHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.College_Unvty_InstHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.FeeStructureEng, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.FeeStructureEng, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.FeeStructureEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.FeeStructureHindi, htmlAttributes: new { @class = "" })
-                                        @Html.EditorFor(model => model.FeeStructureHindi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.FeeStructureHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.StatusInstitutionEng, htmlAttributes: new { @class = "" })
-                                        <div class="checkbox">
-                                            @foreach (var item in CommonModel.GetInstitutionEng())
-                                            {
-                                                @Html.RadioButtonFor(model => model.StatusInstitutionEng, item.Value, new { id = "IsSIEN" + item.Value, @required = "required" }) @item.Text
-                                            }
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.StatusInstitutionEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.StatusInstitutionHindi, htmlAttributes: new { @class = "" })
-                                        <div class="checkbox">
-                                            @foreach (var item in CommonModel.GetInstitutionHindi())
-                                            {
-                                                @Html.RadioButtonFor(model => model.StatusInstitutionHindi, item.Value, new { id = "IsSIHI" + item.Value, @required = "required" }) @item.Text
-                                            }
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.StatusInstitutionHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.DistrictEng, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(model => model.DistrictEng, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.DistrictEng, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(model => model.DistrictHindi, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(model => model.DistrictHindi, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.DistrictHindi, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                @*<div class="form-group">
-            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsActive)
-                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>*@
-                                <div class="break"></div>
-                                <div class="col-md-6">
-                                    <div class="mt-4 mb-4 d-flex align-items-center">
-                                        <div class="ml-auto">
-                                            <input type="submit" class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-small" value="Submit" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>*@
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                @using (Html.BeginForm("CourseD", "Master", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
+                {
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div style="text-align: center; font-weight: 700;">
+                                <h4><strong>Add Courses</strong></h4>
                             </div>
-                        }
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                @Html.HiddenFor(model => model.ID)
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "text-danger ulcl" })
+                                <div class="col-md-12">@Html.Partial("_Alerts")</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.NameCourseEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.NameCourseEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.NameCourseEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.NameCourseHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.NameCourseHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.NameCourseHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CourseTypeEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CourseTypeEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.CourseTypeEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CourseTypeHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CourseTypeHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.CourseTypeHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.JobOpportunityEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.JobOpportunityEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.JobOpportunityEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.JobOpportunityHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.JobOpportunityHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.JobOpportunityHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CourseDurationEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CourseDurationEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.CourseDurationEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CourseDurationHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CourseDurationHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.CourseDurationHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.ShortDescriptionCourseEng, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.ShortDescriptionCourseEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.ShortDescriptionCourseEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.ShortDescriptionCourseHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.ShortDescriptionCourseHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.ShortDescriptionCourseHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.EligibilityEng, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.EligibilityEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.EligibilityEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.EligibilityHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.EligibilityHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.EligibilityHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.MarksCriteriaEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.MarksCriteriaEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.MarksCriteriaEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.MarksCriteriaHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.MarksCriteriaHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.MarksCriteriaHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.AdmissionProcessEng, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.AdmissionProcessEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.AdmissionProcessEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.AdmissionProcessHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.AdmissionProcessHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.AdmissionProcessHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.MediumInstructionEng, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.MediumInstructionEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.MediumInstructionEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.MediumInstructionHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.MediumInstructionHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.MediumInstructionHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.HostelAvailabilityEng, htmlAttributes: new { @class = "" })
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetYesNoEng())
+                                    {
+                                        @Html.RadioButtonFor(model => model.HostelAvailabilityEng, item.Value, new { id = "IsHAEN" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                    @Html.ValidationMessageFor(model => model.HostelAvailabilityEng, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.HostelAvailabilityEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.HostelAvailabilityHindi, htmlAttributes: new { @class = "" })
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetYesNoHindi())
+                                    {
+                                        @Html.RadioButtonFor(model => model.HostelAvailabilityHindi, item.Value, new { id = "IsHAHI" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                </div>
+                                @Html.ValidationMessageFor(model => model.HostelAvailabilityHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.AvailableScholarshipEng, htmlAttributes: new { @class = "" })
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetYesNoEng())
+                                    {
+                                        @Html.RadioButtonFor(model => model.AvailableScholarshipEng, item.Value, new { id = "IsASEN" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                </div>
+                                @Html.ValidationMessageFor(model => model.AvailableScholarshipEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.AvailableScholarshipHindi, htmlAttributes: new { @class = "" })
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetYesNoHindi())
+                                    {
+                                        @Html.RadioButtonFor(model => model.AvailableScholarshipHindi, item.Value, new { id = "IsASHI" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                </div>
+                                @Html.ValidationMessageFor(model => model.AvailableScholarshipHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CategoryEng, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.CategoryEng, CommonModel.GetCategoryEng(), "Select", new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.CategoryEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CategoryHindi, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.CategoryHindi, CommonModel.GetCategoryHindi(), "Select", new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.CategoryHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6" id="hd_cateotrEN" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CategoryOtherEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CategoryOtherEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.CategoryOtherEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" id="hd_cateotrHI" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.CategoryOtherHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CategoryOtherHindi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CategoryOtherHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.College_Unvty_InstEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.College_Unvty_InstEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.College_Unvty_InstEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.College_Unvty_InstHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.College_Unvty_InstHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.College_Unvty_InstHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.FeeStructureEng, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.FeeStructureEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.FeeStructureEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.FeeStructureHindi, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.FeeStructureHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.FeeStructureHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.StatusInstitutionEng, htmlAttributes: new { @class = "" })
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetInstitutionEng())
+                                    {
+                                        @Html.RadioButtonFor(model => model.StatusInstitutionEng, item.Value, new { id = "IsSIEN" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                </div>
+                                @Html.ValidationMessageFor(model => model.StatusInstitutionEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.StatusInstitutionHindi, htmlAttributes: new { @class = "" })
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetInstitutionHindi())
+                                    {
+                                        @Html.RadioButtonFor(model => model.StatusInstitutionHindi, item.Value, new { id = "IsSIHI" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                </div>
+                                @Html.ValidationMessageFor(model => model.StatusInstitutionHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.DistrictEng, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.DistrictEng, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.DistrictEng, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.DistrictHindi, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.DistrictHindi, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.DistrictHindi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.IsActive)
+                                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="break"></div>
+                        <div class="col-md-6">
+                            <div class="mt-4 mb-4 d-flex align-items-center">
+                                <div class="ml-auto">
+                                    <input type="submit" class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-small" value="Submit" />
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>*@
+
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -410,9 +416,10 @@
                 $('#CategoryOtherEng').val('');
                 if ($(this).val() == "Other") {
                     $('#hd_cateotrEN').show();
+                    $('#CategoryOtherEng').attr('required', 'required');
                 }
                 else {
-                    $('#hd_cateotrEN').hide();
+                    $('#hd_cateotrEN').hide(); $('#CategoryOtherEng').removeAttr('required');
                 }
             });
 
@@ -420,12 +427,12 @@
                 $('#CategoryOtherHindi').val('');
                 if ($(this).val() == "अन्य") {
                     $('#hd_cateotrHI').show();
+                    $('#CategoryOtherHindi').attr('required', 'required');
                 }
                 else {
-                    $('#hd_cateotrHI').hide();
+                    $('#hd_cateotrHI').hide(); $('#CategoryOtherHindi').removeAttr('required');
                 }
             });
-
 
         });
 

@@ -3887,7 +3887,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-focus {
     color: #fff;
-    background-color: #444054;
+    background-color: #2BBFCE; /*#444054*/
     border-color: #444054
 }
 
@@ -11985,7 +11985,7 @@ a, button, .btn {
 }
 
 .app-theme-white .app-footer .app-footer__inner, .app-theme-white .app-header {
-    background: #fafbfc
+    background: #2BBFCE
 }
 
 .app-theme-white.fixed-header .app-header__logo {

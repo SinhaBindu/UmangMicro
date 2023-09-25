@@ -17,11 +17,7 @@
         font-size: 11px !important;
         padding: 8px 10px !important;
     }
-
-    body {
-        font-size: 140%;
-    }
-
+   
     h2 {
         text-align: center;
         padding: 20px 0;
@@ -55,78 +51,72 @@
     }
 </style>
 
-<div class="app-container app-theme-white body-tabs-shadow">
-    <div class="app-container">
-        <div class="h-100">
-            <div class="h-100 no-gutters row">
-                <div class=" d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
-                    @*h-100 d-md-flex*@
-                    <div class="">
-                        @*mx-auto app-login-box col-sm-12 col-md-10 col-lg-9*@
-                        <div id="div-download"></div>
-                        <!-- PAGE-HEADER END -->
-                        @using (Html.BeginForm("GetCoursesDetail", "Report", FormMethod.Post, new { id = "submission-form" }))
-                        {
-                            <div class="form-row">
-                                @*<div class="col-md-12">
-                                        <div style="text-align: center; font-weight: 700;">
-                                            <h4><strong>Compendium List</strong></h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div id="div-download"></div>
+                <!-- PAGE-HEADER END -->
+                @using (Html.BeginForm("GetCoursesDetail", "Report", FormMethod.Post, new { id = "submission-form" }))
+                {
+                    <div class="form-row">
+                        @*<div class="col-md-12">
+                                <div style="text-align: center; font-weight: 700;">
+                                    <h4><strong>Compendium List</strong></h4>
+                                </div>
+                            </div>*@
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <ul class="tabs-animated-shadow tabs-animated nav">
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link active" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
+                                                <span>Courses Details</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="true">
+                                                <span>Skill Training</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
+                                                <span>Schemes</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link" id="tab-c-3" data-toggle="tab" href="#tab-animated-3" aria-selected="false">
+                                                <span>Scholarships</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data" class="col-md-12"></div>
+                                            </p>
                                         </div>
-                                    </div>*@
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <ul class="tabs-animated-shadow tabs-animated nav">
-                                                <li class="nav-item">
-                                                    <a role="tab" class="nav-link active" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
-                                                        <span>Courses Details</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="true">
-                                                        <span>Skill Training</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
-                                                        <span>Schemes</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a role="tab" class="nav-link" id="tab-c-3" data-toggle="tab" href="#tab-animated-3" aria-selected="false">
-                                                        <span>Scholarships</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
-                                                    <p class="mb-0">
-                                                        <div id="sub-data" class="col-md-12"></div>
-                                                    </p>
-                                                </div>
-                                                <div class="tab-pane active" id="tab-animated-1" role="tabpanel">
-                                                    <p class="mb-0">
-                                                        <div id="sub-data1" class="col-md-12"></div>
-                                                    </p>
-                                                </div>
-                                                <div class="tab-pane active" id="tab-animated-2" role="tabpanel">
-                                                    <p class="mb-0">
-                                                        <div id="sub-data2" class="col-md-12"></div>
-                                                    </p>
-                                                </div>
-                                                <div class="tab-pane active" id="tab-animated-3" role="tabpanel">
-                                                    <p class="mb-0">
-                                                        <div id="sub-data3" class="col-md-12"></div>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                        <div class="tab-pane active" id="tab-animated-1" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data1" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-2" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data2" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-3" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data3" class="col-md-12"></div>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        }
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -136,8 +126,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <link href="~/Content/StyleSheet1.scss" />
-    <link rel='stylesheet' href='https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css'>
+    @*<link href="~/Content/StyleSheet1.scss" />*@
+    @*<link rel='stylesheet' href='https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css'>*@
 
     <script>
         $(document).ready(function () {
@@ -168,6 +158,7 @@
                             $('table').DataTable({
                                 //paging: false,
                                 fixedHeader: true,
+                                responsive: true,
                                 //responsive: false,
                                // scrollCollapse: false,
                                 "dom": '<"pull-left"f><"pull-right"l>tip',

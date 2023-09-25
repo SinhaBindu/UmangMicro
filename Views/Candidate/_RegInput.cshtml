@@ -131,7 +131,7 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <span class="text-danger">*</span>@Html.Label(Model.DisplayMobileTxt, htmlAttributes: new { @class = "" })
-            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @type = "number", @class = "form-control", @min = "10", @maxlength = "10", @required = "required" } })
+            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @type = "number", @class = "form-control", @maxlength = "10", @required = "required" } })
             @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
             @*, @min = "10", @max = "10"*@
         </div>

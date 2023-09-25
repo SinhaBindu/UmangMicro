@@ -4,18 +4,14 @@
     ViewBag.Title = "Reg";
 }
 
-<div class="row">
-    <div class="app-container">
-        <div class="h-100">
-            <div class="h-100 no-gutters row">
-                <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-12">
-                    <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
-                        @using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
-                        {
-                            @Html.Partial("_RegInput")
-                        }
-                    </div>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                @using (Html.BeginForm("Reg", "Candidate", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
+                {
+                    @Html.Partial("_RegInput")
+                }
             </div>
         </div>
     </div>
