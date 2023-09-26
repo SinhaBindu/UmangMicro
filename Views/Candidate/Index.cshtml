@@ -13,41 +13,52 @@
         <div id="div-download"></div>
         @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
         {
-            <div class="row ">
-                <div class="col-md-12">
-                    <div style="text-align: center; font-weight: 700;">
-                        <h4><strong>Registration List</strong></h4>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="position-relative form-group">
-                        @Html.Partial("_Alerts")
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="position-relative form-group">
-                        <label class="tar-pull-manage2">From Date</label>
-                        <div id="demo-dp-range">
-                            @Html.EditorFor(model => model.FD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                <div class="row ">
+                    <div class="col-md-12">
+                        <div style="text-align: center; font-weight: 700;">
+                            <h4><strong>Registration List</strong></h4>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="position-relative form-group">
-                        <label class="tar-pull-manage2">To Date</label>
-                        <div id="demo-dp-range">
-                            @Html.EditorFor(model => model.TD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+
+
+                    <div class="col-md-12">
+                        <div class="position-relative form-group">
+                            @Html.Partial("_Alerts")
                         </div>
                     </div>
+                    <div class="col-md-12 col-md-offset-5">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Search  :</legend>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group">
+                                        <label class="tar-pull-manage2">From Date :  <span class="text-danger">*</span> </label>
+                                        <div id="demo-dp-range">
+                                            @Html.EditorFor(model => model.FD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group">
+                                        <label class="tar-pull-manage2">To Date : <span class="text-danger">*</span></label>
+                                        <div id="demo-dp-range">
+                                            @Html.EditorFor(model => model.TD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="mt-3"></label>
+                                    <div class="clearfix"></div>
+                                    <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />
+                                </div>
+                                <div class="mark-devide2"></div>
+                                <div class="breaker"></div>
+                            </div>
+
+                        </fieldset>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label class="margin-tops"></label>
-                    <div class="clearfix"></div>
-                    <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />
-                </div>
-                <div class="mark-devide2"></div>
-                <div class="breaker"></div>
-            </div>
 
             <div class="breaker"></div>
             <div class="col-md-12">

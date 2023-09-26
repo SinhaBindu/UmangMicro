@@ -18,24 +18,28 @@
     }
 </style>
 
-<div class="main-card mb-3 card">
-    <div class="card-body">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
 
-        <div id="div-download"></div>
-        <!-- PAGE-HEADER END -->
-        @using (Html.BeginForm("GetUserDetailData", "Master", FormMethod.Post, new { id = "submission-form" }))
-        {
+                <div id="div-download"></div>
+                <!-- PAGE-HEADER END -->
+                @using (Html.BeginForm("GetUserDetailData", "Master", FormMethod.Post, new { id = "submission-form" }))
+                {
 
-            <div class="col-md-12">
-                <div style="text-align: center; font-weight: 700;">
-                    <h4><strong>Account (Register) List</strong></h4>
-                </div>
+                    <div class="col-md-12">
+                        <div style="text-align: center; font-weight: 700;">
+                            <h4><strong>Account (Register) List</strong></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="submission-data">
+                        </div>
+                    </div>
+                }
             </div>
-            <div class="col-md-12">
-                <div id="submission-data">
-                </div>
-            </div>
-        }
+        </div>
     </div>
 </div>
 

@@ -3887,7 +3887,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-focus {
     color: #fff;
-    background-color: #2BBFCE; /*#444054*/
+    background-color: #00AEC4; /*#444054*/
     border-color: #444054
 }
 
@@ -4353,7 +4353,7 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
     z-index: 1000;
     display: none;
     float: left;
-    min-width: 15rem;
+    min-width: 10rem;
     padding: .65rem 0 0;
     margin: .125rem 0 0;
     font-size: .88rem;
@@ -32630,7 +32630,7 @@ legend {
     .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
         width: 24px;
         height: 2px;
-        background-color: #3f6ad8;
+        background-color: #ffffff !important;
         border-radius: 10px;
         position: absolute;
         transition-property: transform;
