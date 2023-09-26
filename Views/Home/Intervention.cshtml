@@ -1,4 +1,9 @@
 ﻿<link rel="stylesheet" href="~/Content/css/tabbing.css" />
+<style>
+    #ddmenu .current {
+        color: #00AEC4;
+    }
+</style>
 <!-- Banner -->
 <div class="banner-manage"><img src="/Content/images/slider/intervention-banner.jpg" alt="intervention banner"></div>
 
@@ -42,10 +47,10 @@
                 </p>*@
                 <div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
                     <input type="radio" name="pcss3t" checked id="tab1" class="tab-content-first">
-                    <label for="tab1">Pilot Phase</label>
+                    <label for="tab1">Pilot Phase<br /><span class="blocks">(2 Blocks)</span></label>
 
                     <input type="radio" name="pcss3t" id="tab2" class="tab-content-2">
-                    <label for="tab2">District Saturation</label>
+                    <label for="tab2">District Saturation<br /><span class="blocks">(13 Blocks)</span></label>
                     <ul>
                         <li class="tab-content tab-content-first">
                             <div class="box-responsive">
@@ -84,12 +89,24 @@
                                     <div class="district-1">
                                         <h3>Godda</h3>
                                         <p>Pilot: 1 Block (Godda Sadar)</p>
-                                        <p>Dist Saturation: 6 expect</p>
+                                        <p>
+                                            Dist Saturation: Expanded to 6 more blocks <span>(Meherma, Thakurganj, Mahagama, Boarijor, Basant Raj, Pathargama)</span>
+                                            @*<span class="social__content">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="svg-info"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" /></svg>
+            <span class="social__tooltip social__tooltip-bottom">Expanded to 6 more blocks (names of blocks, please refer map)</span>
+        </span>*@
+                                        </p>
                                     </div>
                                     <div class="district-2">
                                         <h3>Jamtara</h3>
                                         <p>Pilot: 1 Block (Nala)</p>
-                                        <p>Dist Saturation: 5 expect</p>
+                                        <p>
+                                            Dist Saturation: Expanded to 5 more blocks <span>(Karmatar Vidyasagar, Narayanpur, Fatehpur, Kundhit, Nala)</span>
+                                            @*<span class="social__content">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="svg-info"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" /></svg>
+            <span class="social__tooltip social__tooltip-bottom">Expanded to 5 more blocks (names of blocks, please refer map)</span>
+        </span>*@
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="map-control">
@@ -224,60 +241,76 @@
         <div class="manage-innovation">
             <h2>Major Activities under Umang</h2>
             <div class="innovation-point">
-                <div class="innovate flex-reverse" data-aos="fade-up" data-aos-duration="3500">
-                    <div class="innovate-photo"><img src="/Content/images/activities/activity-1.png" alt="Activity 1"></div>
-                    <div class="innovate-content">
-                        <p><b>Rollout of Modular Sessions:</b></p>
-                        <p>
-                            For imparting knowledge, skills and confidence among SHG
-                            members, Umang team designed 21 modular sessions for SHGs covering topics such as
-                            ill-effects of child marriage, importance of girls’ education, child rights and
-                            entitlements, mother-daughter communication, etc. PCI India trained Active Women (cadre
-                            of frontline workers), who conducted the sessions during SHG meetings (one out of every
-                            4 weekly sessions were devoted to Umang modules). Similarly, separate modules were
-                            developed for VOs (21 modules) and CLFs (14).
-                        </p>
+                <div class="innovate" data-aos="fade-up" data-aos-duration="3500">
+                    <div class="innovate-content modular-session-bg">
+                        <div class="innovate-title">
+                            <h4>Rollout of Modular Sessions:</h4>
+                        </div>                        
+                        <div class="hide-innovation">
+                            <h3>Rollout of Modular Sessions:</h3>
+                            <p>
+                                For imparting knowledge, skills and confidence among SHG
+                                members, Umang team designed 21 modular sessions for SHGs covering topics such as
+                                ill-effects of child marriage, importance of girls’ education, child rights and
+                                entitlements, mother-daughter communication, etc. PCI India trained Active Women (cadre
+                                of frontline workers), who conducted the sessions during SHG meetings (one out of every
+                                4 weekly sessions were devoted to Umang modules). @*Similarly, separate modules were
+                                developed for VOs (21 modules) and CLFs (14).*@
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="innovate" data-aos="fade-up" data-aos-duration="3500">
-                    <div class="innovate-content">
-                        <p><b>Community Level Campaigns:</b></p>
-                        <p>
-                            Mother Daughter event was an integral part of Umang that
-                            highlighted the power of mother-daughter bond in resolving issues and shifting
-                            regressive social norms (such as child marriage).
-                        </p>
-                    </div>
-                    <div class="innovate-photo"><img src="/Content/images/activities/activity-2.png" alt="Activity 2"></div>
-                </div>
-                <div class="innovate flex-reverse" data-aos="fade-up" data-aos-duration="3500">
-                    <div class="innovate-photo"><img src="/Content/images/activities/activity-3.png" alt="Activity 3"></div>
-                    <div class="innovate-content">
-                        <p><b>Kishori Help Desk:</b></p>
-                        <p>
-                            To fill the gap between aspirations & reality among adolescent girls
-                            for their education & career, Kishori (meaning adolescent) Help Desks were created
-                            towards the end of 2022. Set up at CLF offices and managed by trained counsellors, these
-                            help desks offer counselling to adolescent girls & their parents on education, career,
-                            life skills & SRHR. Career counselling was provided to girls based on their psychometric
-                            tests that help identify their acumen for selecting suitable career options and study
-                            streams. Since it came late, the uptake has been low and yet to cover adequate number of
-                            girls at the time of endline survey.
-                        </p>
+                    <div class="innovate-content community-level-bg">                        
+                        <div class="innovate-title">
+                            <h4>Community Level Campaigns:</h4>
+                        </div>
+                        <div class="hide-innovation">
+                            <h3>Community Level Campaigns:</h3>
+                            <p>
+                                Mother Daughter event was an integral part of Umang that
+                                highlighted the power of mother-daughter bond in resolving issues and shifting
+                                regressive social norms (such as child marriage).
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="innovate" data-aos="fade-up" data-aos-duration="3500">
-                    <div class="innovate-content">
-                        <p><b>Enhancing Leadership & Advocacy Skills of CLF Members:</b></p>
-                        <p>
-                            To enable women leaders take
-                            ownership for addressing social issue, the project has facilitated engagement with Block
-                            Level Child Protection Committee (BLCPC) in Nala where CLF & SAC leaders raised their
-                            concerns regarding quality services for adolescent girls to continue their education and
-                            thus avoid child/early marriages.
-                        </p>
+                    <div class="innovate-content kishori-helpdesk-bg">                        
+                        <div class="innovate-title">
+                            <h4>Kishori Help Desk:</h4>
+                        </div>
+                        <div class="hide-innovation">
+                            <h3>Kishori Help Desk:</h3>
+                            <p>
+                                To fill the gap between aspirations & reality among adolescent girls
+                                for their education & career, Kishori (meaning adolescent) Help Desks were created
+                                towards the end of 2022. Set up at CLF offices and managed by trained counsellors, these
+                                help desks offer counselling to adolescent girls & their parents on education, career,
+                                life skills & SRHR. Career counselling was provided to girls based on their psychometric
+                                tests that help identify their acumen for selecting suitable career options and study
+                                streams. @*Since it came late, the uptake has been low and yet to cover adequate number of
+                                girls at the time of endline survey.*@
+                            </p>
+                        </div>
                     </div>
-                    <div class="innovate-photo"><img src="/Content/images/activities/activity-4.png" alt="Activity 4"></div>
+                </div>
+                <div class="innovate" data-aos="fade-up" data-aos-duration="3500">
+                    <div class="innovate-content enhancing-leadership-bg">
+                        <div class="innovate-title">
+                            <h4>Enhancing Leadership & Advocacy Skills of CLF Members:</h4>
+                        </div>                        
+                        <div class="hide-innovation">
+                            <h3>Enhancing Leadership & Advocacy Skills of CLF Members:</h3>
+                            <p>
+                                To enable women leaders take
+                                ownership for addressing social issue, the project has facilitated engagement with Block
+                                Level Child Protection Committee (BLCPC) in Nala where CLF & SAC leaders raised their
+                                concerns regarding quality services for adolescent girls to continue their education and
+                                thus avoid child/early marriages.
+                            </p>
+                        </div>
+                    </div>                   
                 </div>
             </div>
             <div class="breaker"></div>

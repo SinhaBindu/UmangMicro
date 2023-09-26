@@ -71,9 +71,9 @@
         text-decoration: none;
     }
 
-    #ddmenu .current {
+    /*#ddmenu .current {
         color: #00AEC4;
-    }
+    }*/
 
     #ddmenu .top-heading {
         margin: 0 16px;
@@ -179,7 +179,7 @@
         color: inherit;
         line-height: 1;
         margin: 0;
-        border-bottom: 1px solid #B2B2B2;
+        border-bottom: 1px solid #E8E8E8;
         display: block;
         position: static;
         background: none;

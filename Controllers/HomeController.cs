@@ -12,6 +12,11 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
+
+        public ActionResult Testimonials()
+        {
+            return View();
+        }
         public ActionResult AimObjectives()
         {
             return View();

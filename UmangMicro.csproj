@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="FoolproofValidation, Version=0.9.5851.39121, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -530,53 +529,9 @@
     <Content Include="Content\assets\fonts\ZA.svg" />
     <Content Include="Content\assets\fonts\ZM.svg" />
     <Content Include="Content\assets\fonts\ZW.svg" />
-    <Content Include="Content\assets\images\avatars\1.jpg" />
-    <Content Include="Content\assets\images\avatars\10.jpg" />
-    <Content Include="Content\assets\images\avatars\12.jpg" />
-    <Content Include="Content\assets\images\avatars\2.jpg" />
-    <Content Include="Content\assets\images\avatars\3.jpg" />
-    <Content Include="Content\assets\images\avatars\4.jpg" />
-    <Content Include="Content\assets\images\avatars\5.jpg" />
-    <Content Include="Content\assets\images\avatars\6.jpg" />
-    <Content Include="Content\assets\images\avatars\7.jpg" />
-    <Content Include="Content\assets\images\avatars\8.jpg" />
-    <Content Include="Content\assets\images\avatars\9.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\abstract1.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\abstract10.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\abstract2.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\abstract3.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\abstract4.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\abstract5.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\abstract6.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\city1.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\city2.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\city3.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\city4.jpg" />
-    <Content Include="Content\assets\images\dropdown-header\city5.jpg" />
     <Content Include="Content\assets\images\icons-rtl.gif" />
     <Content Include="Content\assets\images\icons.gif" />
     <Content Include="Content\assets\images\loading.gif" />
-    <Content Include="Content\assets\images\logo-inverse.png" />
-    <Content Include="Content\assets\images\logo.png" />
-    <Content Include="Content\assets\images\originals\city.jpg" />
-    <Content Include="Content\assets\images\originals\citydark.jpg" />
-    <Content Include="Content\assets\images\originals\citynights.jpg" />
-    <Content Include="Content\assets\images\originals\fence-small.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract1.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract10.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract2.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract3.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract4.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract5.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract6.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract7.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract8.jpg" />
-    <Content Include="Content\assets\images\sidebar\abstract9.jpg" />
-    <Content Include="Content\assets\images\sidebar\city1.jpg" />
-    <Content Include="Content\assets\images\sidebar\city2.jpg" />
-    <Content Include="Content\assets\images\sidebar\city3.jpg" />
-    <Content Include="Content\assets\images\sidebar\city4.jpg" />
-    <Content Include="Content\assets\images\sidebar\city5.jpg" />
     <Content Include="Content\assets\images\vline-rtl.gif" />
     <Content Include="Content\assets\images\vline.gif" />
     <Content Include="Content\assets\JS\main.d810cf0ae7f39f28f336.js" />
@@ -627,6 +582,9 @@
     <Content Include="Content\images\partners\cl-5.jpg" />
     <Content Include="Content\images\partners\cl-6.jpg" />
     <Content Include="Content\images\partners\cl-7.jpg" />
+    <Content Include="Content\images\partners\global-communities-logo.jpeg" />
+    <Content Include="Content\images\partners\icrw-logo.jpg" />
+    <Content Include="Content\images\partners\jslps-logo.jpg" />
     <Content Include="Content\images\plus-icon.png" />
     <Content Include="Content\images\shg-icon.png" />
     <Content Include="Content\images\shgs-icon.png" />
@@ -737,6 +695,7 @@
     <Content Include="Content\images\title-bg.png" />
     <Content Include="Content\images\top-ar.png" />
     <Content Include="Content\images\slider\umang-banner.jpg" />
+    <Content Include="Content\images\transparent-bg.png" />
     <Content Include="Content\images\umang-cover.jpg" />
     <Content Include="Content\images\umang-logo.png" />
     <Content Include="Content\images\umang-objectives.png" />
@@ -918,6 +877,7 @@
     <Content Include="Views\Candidate\_ViewData.cshtml" />
     <Content Include="Views\Report\LastLogin.cshtml" />
     <Content Include="Views\Report\_LastLoginData.cshtml" />
+    <Content Include="Views\Home\Testimonials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -972,10 +932,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

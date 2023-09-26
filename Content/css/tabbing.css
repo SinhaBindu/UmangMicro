@@ -105,10 +105,10 @@
 		}
 
 		.pcss3t>label {
-			padding: 0 20px;
+			padding: 4px 20px 0;
 			background: #e5e5e5;
 			font-size: 13px;
-			line-height: 49px;
+			line-height: 28px;
 		}
 
 		.pcss3t>label:hover {
