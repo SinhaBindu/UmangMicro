@@ -1,0 +1,473 @@
+﻿@model UmangMicro.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<style>
+    @@import url("https://code.highcharts.com/css/highcharts.css");
+    @@import url("https://code.highcharts.com/datagrid/css/datagrid.css");
+    @@import url("https://code.highcharts.com/dashboards/css/dashboards.css");
+
+    * {
+        transition: background-color 100ms, color 100ms;
+    }
+
+    .highcharts-description {
+        margin-top: 1em;
+    }
+
+    .highcharts-point {
+        fill-opacity: 0.5;
+    }
+
+    .highcharts-dark .highcharts-point {
+        fill-opacity: 0.9;
+    }
+
+    .datagrid {
+        height: 100%;
+    }
+
+    #dashboard-col-0 h1 {
+        margin-bottom: 0;
+    }
+
+    .inputs-wrapper {
+        padding: 12px;
+        background-color: white;
+        box-shadow: none;
+        margin: 1em;
+    }
+
+    @@media (prefers-color-scheme: dark) {
+        .highcharts-point {
+            fill-opacity: 0.9;
+        }
+    }
+</style>
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <div id="div-download"></div>
+        @using (Html.BeginForm("GetResource", "Report", FormMethod.Post, new { id = "submission-form" }))
+        {
+
+            <div id="container"></div>
+            <div class="breaker"></div>
+            <div class="col-md-12">
+                <div class="col-sm-12" id="sub-data">
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+</div>
+
+
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css'>
+    <link rel='stylesheet' href='https://cdn.datatables.net/responsive/1.0.4/css/dataTables.responsive.css'>
+    <link rel='stylesheet' href='https://datatables.net/release-datatables/extensions/FixedHeader/css/fixedHeader.dataTables.css'>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js'></script>
+
+    <script src='https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+    <script src='https://cdn.datatables.net/responsive/1.0.4/js/dataTables.responsive.js'></script>
+    <script src='https://datatables.net/release-datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js'></script>*@
+
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
+    <script src="https://code.highcharts.com/dashboards/datagrid.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/dashboards/modules/dashboards-plugin.js"></script>
+    <script src="https://code.highcharts.com/modules/item-series.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+    <script src="https://code.highcharts.com/modules/treemap.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <script>
+        var datalist = [];
+        $(document).ready(function () {
+            BindData();
+
+
+
+
+        });
+
+        function BindData() {
+            $('#sub-data').html('');
+            jQuery.event.trigger("ajaxStart");
+            var url = $('#submission-form').attr("action");
+            var formData = $('#submission-form').serialize();
+            $.ajax({
+                url: url,
+                type: "Post",
+                data: { 'Sd': '', 'Ed': '' },//{ 'District': District, 'Block': Block },
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        jQuery.event.trigger("ajaxStop");
+                        $('#sub-data').html(resp.html1);
+                        debugger;
+                        datalist = JSON.parse(resp.Data);
+
+                        setTimeout(function () {
+                            LoadChart(datalist);
+                           }, 500);
+
+                        //setTimeout(function () {
+                        //    // start Table
+                        //    $('table').DataTable({
+                        //        //paging: false,
+                        //        fixedHeader: true,
+                        //        //responsive: false,
+                        //        // scrollCollapse: false,
+                        //        "dom": '<"pull-left"f><"pull-right"l>tip',
+                        //        "pageLength": 100,
+                        //        "lengthChange": false,
+                        //        "buttons": [
+                        //            {
+                        //                extend: 'excel',
+                        //                text: 'Export excel',
+                        //                className: 'exportExcel',
+                        //                filename: 'Export excel',
+                        //                exportOptions: {
+                        //                    modifier: {
+                        //                        page: 'all'
+                        //                    }
+                        //                }
+                        //            }]
+                        //    });
+
+                        //}, 500);
+
+                    }
+                    else {
+                        $('#sub-data').html("Record Not Found !!");//TO DO
+                        $('#sub-data').addClass("text-danger");//TO DO
+                        jQuery.event.trigger("ajaxStop");
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#sub-data').html(errormsg);
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });
+        }
+
+        function LoadChart(res) {
+
+            var data = [['Module', 'Downloads']];
+            for (var i = 0; i < res.length; i++) {
+                var d = [res[i].Module, res[i].NoofDL];
+                data.push(d);
+            }
+            //const data = [
+            //    ['Food', 'Vitamin A'],
+            //    ['Beef Liver', 6421],
+            //    ['Lamb Liver', 2122],
+            //    ['Cod Liver Oil', 1350],
+            //    ['Mackerel', 388],
+            //    ['Tuna', 214]
+            //];
+            console.log(data);
+            Dashboards.board('container', {
+                dataPool: {
+                    connectors: [{
+                        id: 'sample',
+                        type: 'JSON',
+                        options: {
+                            data
+                        }
+                    }]
+                },
+                gui: {
+                    layouts: [{
+                        id: 'layout-1',
+                        rows: [{
+                            cells: [{
+                                responsive: {
+                                    small: {
+                                        width: '100%'
+                                    },
+                                    medium: {
+                                        width: '50%'
+                                    },
+                                    large: {
+                                        width: '50%'
+                                    }
+
+                                },
+                                id: 'dashboard-col-0'
+                            }, {
+                                responsive: {
+                                    small: {
+                                        width: '100%'
+                                    },
+                                    medium: {
+                                        width: '50%'
+                                    },
+                                    large: {
+                                        width: '50%'
+                                    }
+
+                                },
+                                id: 'dashboard-col-1'
+                            }]
+                        }]
+                    }]
+                },
+                components: [
+                    {
+                        cell: 'dashboard-col-0',
+                        connector: {
+                            id: 'sample'
+                        },
+                        type: 'Highcharts',
+                        sync: {
+                            highlight: true
+                        },
+                        columnAssignment: {
+                            Module: 'x',
+                            'Downloads': 'y'
+                        },
+                        title: {
+                            text: 'Downloads'
+                        },
+                        chartOptions: {
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                //text: 'in Various Foods',
+                                align: 'left',
+                                y: 10
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            chart: {
+                                animation: false,
+                                type: 'packedbubble',
+                                margin: 0,
+                                spacing: [0, 10, 10, 10]
+                            },
+                            plotOptions: {
+                                series: {
+                                    colorByPoint: true,
+                                    maxSize: '100%',
+                                    minSize: '40%',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{key}',
+                                        style: {
+                                            textOuline: '1px'
+                                        }
+                                    },
+                                    tooltip: {
+                                        headerFormat: '{point.key}:',
+                                        pointFormat: ' {point.y}'
+                                    }
+                                }
+                            }
+                        }
+                    }, {
+                        cell: 'dashboard-col-1',
+                        type: 'DataGrid',
+                        connector: {
+                            id: 'sample'
+                        },
+                        className: 'datagrid',
+                        editable: true,
+                        sync: {
+                            highlight: true
+                        }
+                    }
+                ]
+            }, true);
+
+            [...document.querySelectorAll('input[name="color-mode"]')]
+                .forEach(input => {
+                    input.addEventListener('click', e => {
+                        document.getElementById('container').className =
+                            e.target.value === 'none' ? '' : `highcharts-${e.target.value}`;
+                    });
+                });
+
+        }
+
+    </script>
+
+
+    @*<script>
+        $(document).ready(function () {
+            const data = [
+                ['Food', 'Vitamin A'],
+                ['Beef Liver', 6421],
+                ['Lamb Liver', 2122],
+                ['Cod Liver Oil', 1350],
+                ['Mackerel', 388],
+                ['Tuna', 214]
+            ];
+
+            Dashboards.board('container', {
+                dataPool: {
+                    connectors: [{
+                        id: 'sample',
+                        type: 'JSON',
+                        options: {
+                            data
+                        }
+                    }]
+                },
+                gui: {
+                    layouts: [{
+                        id: 'layout-1',
+                        rows: [{
+                            cells: [{
+                                responsive: {
+                                    small: {
+                                        width: '100%'
+                                    },
+                                    medium: {
+                                        width: '50%'
+                                    },
+                                    large: {
+                                        width: '50%'
+                                    }
+
+                                },
+                                id: 'dashboard-col-0'
+                            }, {
+                                responsive: {
+                                    small: {
+                                        width: '100%'
+                                    },
+                                    medium: {
+                                        width: '50%'
+                                    },
+                                    large: {
+                                        width: '50%'
+                                    }
+
+                                },
+                                id: 'dashboard-col-1'
+                            }]
+                        }]
+                    }]
+                },
+                components: [
+                    {
+                        cell: 'dashboard-col-0',
+                        connector: {
+                            id: 'sample'
+                        },
+                        type: 'Highcharts',
+                        sync: {
+                            highlight: true
+                        },
+                        columnAssignment: {
+                            Food: 'x',
+                            'Vitamin A': 'y'
+                        },
+                        title: {
+                            text: 'Vitamin A'
+                        },
+                        chartOptions: {
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: 'in Various Foods',
+                                align: 'left',
+                                y: 10
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            chart: {
+                                animation: false,
+                                type: 'packedbubble',
+                                margin: 0,
+                                spacing: [0, 10, 10, 10]
+                            },
+                            plotOptions: {
+                                series: {
+                                    colorByPoint: true,
+                                    maxSize: '100%',
+                                    minSize: '40%',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{key}',
+                                        style: {
+                                            textOuline: '1px'
+                                        }
+                                    },
+                                    tooltip: {
+                                        headerFormat: '{point.key}:',
+                                        pointFormat: ' {point.y}'
+                                    }
+                                }
+                            }
+                        }
+                    }, {
+                        cell: 'dashboard-col-1',
+                        type: 'DataGrid',
+                        connector: {
+                            id: 'sample'
+                        },
+                        className: 'datagrid',
+                        editable: true,
+                        sync: {
+                            highlight: true
+                        }
+                    }
+                ]
+            }, true);
+
+            [...document.querySelectorAll('input[name="color-mode"]')]
+                .forEach(input => {
+                    input.addEventListener('click', e => {
+                        document.getElementById('container').className =
+                            e.target.value === 'none' ? '' : `highcharts-${e.target.value}`;
+                    });
+                });
+
+
+        });
+    </script>*@
+
+}

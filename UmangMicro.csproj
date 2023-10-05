@@ -893,6 +893,8 @@
     <Content Include="Views\Report\_LastLoginData.cshtml" />
     <Content Include="Views\Home\Testimonials.cshtml" />
     <Content Include="Views\Master\Resource.cshtml" />
+    <Content Include="Views\Report\Resource.cshtml" />
+    <Content Include="Views\Report\_ResourceData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

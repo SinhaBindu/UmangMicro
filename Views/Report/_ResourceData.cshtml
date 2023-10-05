@@ -1,0 +1,60 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "User List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+<strong>Resource Download Lists</strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover dt-responsive display small" id="tbl" width="100%" style="vertical-align:middle;">
+                    <thead>
+                        <tr>
+                            <th>Sr No.</th>
+                            <th>Name</th>
+                            <th>Designation</th>
+                            <th>Organisation</th>
+                            <th>Email</th>
+                            <th>Contact No</th>
+                            <th>Age</th>
+                            <th>State</th>
+                            <th>District</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1;
+                            if (Model != null)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    <tr>
+                                        <td class="text-center">@(sno++)</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["Name"]</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["Designation"]</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["Organisation"]</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["Email"]</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["ContactNo"]</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["Age"]</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["State"]</td>
+                                        <td class="text-center" style="text-wrap:wrap;">@dr["District"]</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="9" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

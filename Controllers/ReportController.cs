@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -90,6 +91,42 @@ namespace UmangMicro.Controllers
                 string er = ex.Message;
                 return Json(new { IsSuccess = false, Data = "There was a communication error." }, JsonRequestBehavior.AllowGet); throw;
             }
+        }
+        public ActionResult Resource()
+        {
+            return View();
+        }
+        public ActionResult GetResource(string Sd="",string Ed="")
+        {
+            try
+            {
+                //dt = ds.Tables.Contains("Tables[0]") == true ? dt : ds.Tables[0];//dt1 = ds.Tables.Contains("Tables[1]") == true ? dt1 : ds.Tables[1];
+                bool IsCheck = false;
+                DataSet ds= SP_Model.GetSP_Resource();
+                DataTable dt = new DataTable();
+                DataTable dtDet = new DataTable();
+                if (ds.Tables.Count > 0)
+                {
+                    IsCheck = true;
+                    dt = ds.Tables[0]; dtDet = ds.Tables[1]; 
+                    var html_1 = ConvertViewToString("_ResourceData", dtDet);
+                    var res1 = Json(new { IsSuccess = IsCheck, html1 = html_1, Data = JsonConvert.SerializeObject(dt) }, JsonRequestBehavior.AllowGet);
+                    res1.MaxJsonLength = int.MaxValue;
+                    return res1;
+                }
+                var res = Json(new { IsSuccess = IsCheck, html1 = "Record Not Found !!" }, JsonRequestBehavior.AllowGet);
+                res.MaxJsonLength = int.MaxValue;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "There was a communication error." }, JsonRequestBehavior.AllowGet); throw;
+            }
+        }
+        public ActionResult RS()
+        {
+            return View();
         }
         private string ConvertViewToString(string viewName, object model)
         {

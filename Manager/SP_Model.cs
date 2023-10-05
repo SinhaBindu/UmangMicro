@@ -32,5 +32,11 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        public static DataSet GetSP_Resource()
+        {
+            StoredProcedure sp = new StoredProcedure("SP_ResourceData");
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
     }
 }

@@ -14,6 +14,5 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-       
     }
 }
