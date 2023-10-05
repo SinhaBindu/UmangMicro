@@ -359,7 +359,8 @@
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.DistrictEng, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.DistrictEng, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control", @required = "required" })
+                                @Html.EditorFor(model => model.DistrictEng, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @*@Html.DropDownListFor(model => model.DistrictEng, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control", @required = "required" })*@
                                 @Html.ValidationMessageFor(model => model.DistrictEng, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -368,7 +369,8 @@
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.DistrictHindi, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.DistrictHindi, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control", @required = "required" })
+                                @Html.EditorFor(model => model.DistrictHindi, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @*@Html.DropDownListFor(model => model.DistrictHindi, CommonModel.GetDistrict(false, 20), "Select", new { @class = "form-control", @required = "required" })*@
                                 @Html.ValidationMessageFor(model => model.DistrictHindi, "", new { @class = "text-danger" })
                             </div>
                         </div>

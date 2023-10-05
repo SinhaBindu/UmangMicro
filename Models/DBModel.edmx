@@ -180,6 +180,25 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="DeletedDt" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbl_Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation_Other" Type="nvarchar" MaxLength="500" />
+          <Property Name="Organisation" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Age" Type="nvarchar" MaxLength="10" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="District" Type="nvarchar" MaxLength="200" />
+          <Property Name="ResourceDownLoad" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+        </EntityType>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -219,6 +238,7 @@
           <EntitySet Name="tbl_CoursesDetail" EntityType="Self.tbl_CoursesDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_LoginDetail" EntityType="Self.tbl_LoginDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Registration" EntityType="Self.tbl_Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Resource" EntityType="Self.tbl_Resource" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
@@ -246,6 +266,7 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="tbl_Resource" EntityType="UM_DBModel.tbl_Resource" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -420,6 +441,25 @@
           <End Type="UM_DBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="UM_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="tbl_Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation_Other" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Organisation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ResourceDownLoad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -610,6 +650,26 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tbl_Resource">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_Resource">
+              <MappingFragment StoreEntitySet="tbl_Resource">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ResourceDownLoad" ColumnName="ResourceDownLoad" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+                <ScalarProperty Name="Designation_Other" ColumnName="Designation_Other" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -158,6 +158,7 @@
     <div id="headers">
         <div class="logo1"><a href="/"><img src="/Content/images/umang-logo.png" alt="Umang Logo" /></a></div>
         <div class="logo2"><a href="/"><img src="/Content/images/pci.png" alt="PCI" /></a></div>
+
     </div>
 </div>
 <div class="umang-credential">
@@ -166,6 +167,9 @@
     </div>
     <div class="login-form" id="loginForm">
         <h2>Login to <span>Umang</span></h2>
+        @*<h2><a href="~/Content/assets/images/com.pic.umang.apk">apk1</a></h2>
+
+        <h2><a href="~/Content/assets/images/com.pic.umang.apk" download>apk1</a></h2>*@
         <p>Welcome to Umang, please enter login details below to using the app</p>
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
@@ -182,11 +186,11 @@
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
             @*<div class="form-box">
-                    <div class="checkbox">
-                        @Html.CheckBoxFor(m => m.RememberMe)
-                        @Html.LabelFor(m => m.RememberMe)
-                    </div>
-                </div>*@
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+            </div>*@
             <input type="submit" value="Log in" class="btn-submit" />
             @*@Html.ActionLink("Register as a new user", "Register")*@
             <a href="~/Candidate/SelfReg">Register as a new user</a>

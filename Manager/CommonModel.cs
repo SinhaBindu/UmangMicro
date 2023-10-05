@@ -804,6 +804,15 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "अन्य", Text = "अन्य" });
             return list.OrderByDescending(x => x.Text).ToList();
         }
+        public static List<SelectListItem> GetResoDesignation()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "Homemaker", Text = "Homemaker" });
+            list.Add(new SelectListItem { Value = "Student ", Text = "Student " });
+            list.Add(new SelectListItem { Value = "Others", Text = "Others" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
         #endregion
 
         #region Reports
