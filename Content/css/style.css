@@ -4038,28 +4038,63 @@ img {
 .module-form {
     position: fixed;
     width: 40%;
-    top: 70px;
+    top: 40px;
     left: 28%;
     z-index: 9999999999;
     background: #fff;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     box-shadow: 0 0.6rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 25px;
-    height: 550px;
+    
+}
+.form-horizontal {
+    height: 490px;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding-right: 15px;
 }
-    .module-form h2 {
-        font-size: 25px;
-        line-height: 33px;
-        color: #00AEC4
+    .form-horizontal::-webkit-scrollbar-track {
+        background-color: #F5F5F5;
     }
-    #video {
-        position: relative;
-        margin-top: 50px;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
+
+    .form-horizontal::-webkit-scrollbar {
+        width: 4px;
+        background-color: #F5F5F5;
     }
+
+    .form-horizontal::-webkit-scrollbar-thumb {
+        background-color: #00AEC4;
+        border: 1px solid #00AEC4;
+    }
+.module-form h2 {
+    font-size: 19px;
+    line-height: 33px;
+    color: #00AEC4;
+    margin-top: 0px;
+    margin-bottom: 14px;
+}
+.module-form label {
+    text-align: left;
+    font-size: 12px !important;
+}
+#video {
+    position: relative;
+    margin-top: 50px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+.text-danger {
+    color: #FF3131;
+    font-size: 12px;
+    text-align: left !important;
+    display: block;
+}
+.module-type {
+    margin-left: 7px;
+    margin-right: 26px;
+    font-size: 13px;
+
+}
