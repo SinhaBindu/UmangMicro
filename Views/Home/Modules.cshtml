@@ -109,8 +109,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>ResourceModel</h4>
             <hr />
+            <strong id="msg" style="display:none;"></strong>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 <em class="text-danger">*</em> @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -145,7 +145,7 @@
             </div>
 
             <div class="form-group">
-                @*<em class="text-danger">*</em>*@ @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email ID", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -205,6 +205,7 @@
                     <input type="submit" value="Create" class="btn btn-info" id="btnSubmit" />
                 </div>
             </div>
+
 
             @{
                 if (ViewBag.RD != null)
@@ -280,19 +281,52 @@
         //        $('#td' + $(this).val()).css("background-color", "white");
         //    }
         //});
-
-        $("#btnSubmit").click(function () {
-            var ResourceDownLoad = [];
+        var vd = false;
+        $("#formid").on("submit", function (e) {
+            var formData = $(this).serialize();
+            e.preventDefault();
+            $('#msg').css('display', 'none'); $('#msg').val('');
+            var ResourceDownLoad = []; 
             $('input:checkbox:checked').each(function () {
                 ResourceDownLoad.push($(this).attr('value'));
             });
             if (ResourceDownLoad == 0) {
                 $('.error').show();
-                return false;
+                    vd = false
+                    return false;
             }
             $('.error').hide();
-            return true;
+            vd = true;
+           // return true;
         });
+        if (vd) {
+        
+            $.ajax({
+                type: "POST",
+                url: document.baseURI + "/Master/Resource",
+                //data: $('#formid').serialize(),
+                data: formData,
+                dataType: "json",
+                success: function (resp) {
+                    //alert(response['response']);
+                    if (resp.IsSuccess) {
+                        $('#msg').css('display', 'block');
+                        $('#msg').val(resp.Msg);
+                        $('#msg').css('color', '#008000');
+                    }
+                    else {
+                        $('#msg').css('display', 'block');
+                        $('#msg').val(resp.Msg);
+                        $('#msg').css('color', '#FF0000');
+                    }
+                },
+                error: function () {
+                    //alert('Error');
+                    $('#msg').css('display', 'none');
+                }
+            });
+            return false;
+        }
 
     });
 

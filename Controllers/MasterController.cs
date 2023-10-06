@@ -308,7 +308,7 @@ namespace UmangMicro.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Resource(ResourceModel model)
+        public JsonResult Resource(ResourceModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -316,7 +316,7 @@ namespace UmangMicro.Controllers
                 {
                     ModelState.AddModelError("", "Please select at-least one Resource Module.");
                 }
-                return View(model);
+                return Json(new { IsSuccess = false, Data = "", Msg = "Please select at-least one Resource Module." }, JsonRequestBehavior.AllowGet);
             }
             try
             {
@@ -343,6 +343,7 @@ namespace UmangMicro.Controllers
                     ModelState.Clear();
                     model = new ResourceModel();
                     ModelState.AddModelError("", "Record Save Successfully....");
+                    return Json(new { IsSuccess = true, Data = "",Msg= "Record Save Successfully...." }, JsonRequestBehavior.AllowGet);
                 }
 
                 //MultipleFileDownload obj = new MultipleFileDownload();
@@ -376,12 +377,14 @@ namespace UmangMicro.Controllers
                 //        }
                 //    }
                 //}
+                return Json(new { IsSuccess = false, Data = "", Msg = "There was a communication error." }, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception)
             {
+                return Json(new { IsSuccess = false, Data = "", Msg = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
-            return View(model);
+           // return View(model);
         }
         #endregion
 
