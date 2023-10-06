@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group">-->
             @*<em class="text-danger">*</em>*@ @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email ID", @required = "required" } })
@@ -87,9 +87,9 @@
         </div>
 
         <div class="form-group">
-            <em class="text-danger">*</em>  @Html.LabelFor(model => model.ResourceDownLoad, htmlAttributes: new { @class = "control-label col-md-2" })
+              @Html.LabelFor(model => model.ResourceDownLoad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.ResourceDownLoad, new { htmlAttributes = new { @class = "form-control", @placeholder = "Resource Download File", @required = "required" } })*@
+               @Html.EditorFor(model => model.ResourceDownLoad, new { htmlAttributes = new { @class = "form-control", @placeholder = "Resource Download File", @required = "required" } })
                 <div class="checkbox" id="RD">
                     <label>
                         <input type="checkbox" name="ResourceDownLoad" id="ResourceDownLoad1" class="chkclass" value="SHG" />SHG Module &nbsp;&nbsp;&nbsp;&nbsp;
