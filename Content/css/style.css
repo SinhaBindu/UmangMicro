@@ -3349,7 +3349,7 @@ img {
 
     .impact-stat h2 {
         font-size: 50px;
-        color: #222222;
+        color: #5B2C54;
         margin-top: 5px;
         margin-bottom: 30px;
     }
@@ -4038,7 +4038,7 @@ img {
 .module-form {
     position: fixed;
     width: 40%;
-    top: 120px;
+    top: 70px;
     left: 28%;
     z-index: 9999999999;
     background: #fff;
@@ -4046,12 +4046,20 @@ img {
     text-align: center;
     box-shadow: 0 0.6rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 25px;
+    height: 550px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-#video {
-    position: relative;
-    margin-top: 50px;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-}
+    .module-form h2 {
+        font-size: 25px;
+        line-height: 33px;
+        color: #00AEC4
+    }
+    #video {
+        position: relative;
+        margin-top: 50px;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+    }

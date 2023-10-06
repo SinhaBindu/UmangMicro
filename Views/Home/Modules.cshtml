@@ -15,8 +15,8 @@
     <img src="~/Content/images/slider/design-banner.jpg" alt="Aims & Objectives">
 </div>
 @*<div class="banner-title">
-    <h2><span>Umang Modules</span></h2>
-</div>*@
+        <h2><span>Umang Modules</span></h2>
+    </div>*@
 <div class="manage-achievement">
     <h2>Umang Modules</h2>
     <div class="left-bord"></div>
@@ -109,11 +109,10 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <hr />
             <strong id="msg" style="display:none;"></strong>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                <em class="text-danger">*</em> @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -121,7 +120,7 @@
             </div>
 
             <div class="form-group">
-                <em class="text-danger">*</em> @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Designation, CommonModel.GetResoDesignation(), "Select", new { @class = "form-control", @placeholder = "Designation", @required = "required" })
                     @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
@@ -129,7 +128,7 @@
             </div>
 
             <div class="form-group" style="display:none;" id="hd-desig">
-                <em class="text-danger">*</em>  @Html.LabelFor(model => model.Designation_Other, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Designation_Other, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Designation_Other, new { htmlAttributes = new { @class = "form-control", @placeholder = "Designation Other" } })
                     @Html.ValidationMessageFor(model => model.Designation_Other, "", new { @class = "text-danger" })
@@ -137,7 +136,7 @@
             </div>
 
             <div class="form-group">
-                <em class="text-danger">*</em>@Html.LabelFor(model => model.Organisation, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Organisation, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Organisation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Organisation", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Organisation, "", new { @class = "text-danger" })
@@ -153,7 +152,7 @@
             </div>
 
             <div class="form-group">
-                <em class="text-danger">*</em>   @Html.LabelFor(model => model.ContactNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ContactNo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact No", @maxlength = "10", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
@@ -161,7 +160,7 @@
             </div>
 
             <div class="form-group">
-                <em class="text-danger">*</em> @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @placeholder = "Age", @maxlength = "2", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
@@ -169,7 +168,7 @@
             </div>
 
             <div class="form-group">
-                <em class="text-danger">*</em> @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @placeholder = "State", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
@@ -177,7 +176,7 @@
             </div>
 
             <div class="form-group">
-                <em class="text-danger">*</em>  @Html.LabelFor(model => model.District, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.District, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "form-control", @placeholder = "District", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
@@ -185,9 +184,8 @@
             </div>
 
             <div class="form-group">
-                <em class="text-danger">*</em>  @Html.LabelFor(model => model.ResourceDownLoad, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ResourceDownLoad, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.ResourceDownLoad, new { htmlAttributes = new { @class = "form-control", @placeholder = "Resource Download File", @required = "required" } })*@
                     <div class="checkbox" id="RD">
                         <label>
                             <input type="checkbox" name="ResourceDownLoad" id="ResourceDownLoad1" class="chkclass" value="SHG" />SHG Module &nbsp;&nbsp;&nbsp;&nbsp;
@@ -206,129 +204,128 @@
                 </div>
             </div>
 
-
-            @{
-                if (ViewBag.RD != null)
+    @{
+        if (ViewBag.RD != null)
+        {
+            var spl = ViewBag.RD;
+            foreach (var item in spl)
+            {
+                if (item == "SHG")
                 {
-                    var spl = ViewBag.RD;
-                    foreach (var item in spl)
-                    {
-                        if (item == "SHG")
-                        {
-                            <h4><a href="~/ResourceFile/SHG.pdf" download>SHG</a></h4>
-                        }
-                        else if (item == "VO")
-                        {
-                            <h4><a href="~/ResourceFile/VO.pdf" download>VO</a></h4>
-                        }
-                        else if (item == "CLF")
-                        {
-                            <h4><a href="~/ResourceFile/CLF.pdf" download>CLF</a></h4>
-                        }
-                    }
+                    <h4><a href="~/ResourceFile/SHG.pdf" download>SHG</a></h4>
+                }
+                else if (item == "VO")
+                {
+                    <h4><a href="~/ResourceFile/VO.pdf" download>VO</a></h4>
+                }
+                else if (item == "CLF")
+                {
+                    <h4><a href="~/ResourceFile/CLF.pdf" download>CLF</a></h4>
                 }
             }
-
-        </div>
+        }
     }
-</div>
 
-<script>
-    'use strict';
-    const btnModule = document.querySelectorAll('.btn-module');
-    const moduleForm = document.querySelector('.module-form');
-    const modalOverlay = document.querySelector('.modal-overlay');
-    const modalClose = document.querySelector('.modal-close');
-    for (let i = 0; i < btnModule.length; i++) {
-        btnModule[i].addEventListener('click', function () {
-            console.log('logoo')
-            /*moduleForm.classList.remove('module-hidden');*/
-            modalOverlay.classList.remove('module-hidden');
-            moduleForm.classList.remove('module-hidden');
+    </div>
+}
+    </div>
+
+    <script>
+        'use strict';
+        const btnModule = document.querySelectorAll('.btn-module');
+        const moduleForm = document.querySelector('.module-form');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modalClose = document.querySelector('.modal-close');
+        for (let i = 0; i < btnModule.length; i++) {
+            btnModule[i].addEventListener('click', function () {
+                console.log('logoo')
+                /*moduleForm.classList.remove('module-hidden');*/
+                modalOverlay.classList.remove('module-hidden');
+                moduleForm.classList.remove('module-hidden');
+            })
+        }
+        modalClose.addEventListener('click', function () {
+            modalOverlay.classList.add('module-hidden');
+            moduleForm.classList.add('module-hidden');
         })
-    }
-    modalClose.addEventListener('click', function () {
-        modalOverlay.classList.add('module-hidden');
-        moduleForm.classList.add('module-hidden');
-    })
-</script>
-@Scripts.Render("~/bundles/jqueryval")
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
 
-<script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-        $('#Designation').change(function () {
-            $('#Designation_Other').val('');
-            if ($(this).val() == "Others") {
-                $('#hd-desig').show();
-                $('#Designation_Other').attr('required', 'required');
-            }
-            else {
-                $('#hd-desig').hide(); $('#Designation_Other').removeAttr('required');
-            }
-        });
-
-        //$('.chkclass').click(function () {
-        //    var getchkid = $(this).attr('id');
-        //    var isChecked = $('#' + getchkid).is(':checked');
-
-        //    if ($('#' + getchkid).is(':checked') == true) {
-        //        $('#td' + $(this).val()).css("color", "white");
-        //        $('#td' + $(this).val()).css("background-color", "blue");
-        //    }
-        //    else {
-        //        $('#td' + $(this).val()).css("color", "black");
-        //        $('#td' + $(this).val()).css("background-color", "white");
-        //    }
-        //});
-        var vd = false;
-        $("#formid").on("submit", function (e) {
-            var formData = $(this).serialize();
-            e.preventDefault();
-            $('#msg').css('display', 'none'); $('#msg').val('');
-            var ResourceDownLoad = []; 
-            $('input:checkbox:checked').each(function () {
-                ResourceDownLoad.push($(this).attr('value'));
+            $('#Designation').change(function () {
+                $('#Designation_Other').val('');
+                if ($(this).val() == "Others") {
+                    $('#hd-desig').show();
+                    $('#Designation_Other').attr('required', 'required');
+                }
+                else {
+                    $('#hd-desig').hide(); $('#Designation_Other').removeAttr('required');
+                }
             });
-            if (ResourceDownLoad == 0) {
-                $('.error').show();
+
+            //$('.chkclass').click(function () {
+            //    var getchkid = $(this).attr('id');
+            //    var isChecked = $('#' + getchkid).is(':checked');
+
+            //    if ($('#' + getchkid).is(':checked') == true) {
+            //        $('#td' + $(this).val()).css("color", "white");
+            //        $('#td' + $(this).val()).css("background-color", "blue");
+            //    }
+            //    else {
+            //        $('#td' + $(this).val()).css("color", "black");
+            //        $('#td' + $(this).val()).css("background-color", "white");
+            //    }
+            //});
+            var vd = false;
+            $("#formid").on("submit", function (e) {
+                var formData = $(this).serialize();
+                e.preventDefault();
+                $('#msg').css('display', 'none'); $('#msg').val('');
+                var ResourceDownLoad = [];
+                $('input:checkbox:checked').each(function () {
+                    ResourceDownLoad.push($(this).attr('value'));
+                });
+                if (ResourceDownLoad == 0) {
+                    $('.error').show();
                     vd = false
                     return false;
-            }
-            $('.error').hide();
-            vd = true;
-           // return true;
-        });
-        if (vd) {
-        
-            $.ajax({
-                type: "POST",
-                url: document.baseURI + "/Master/Resource",
-                //data: $('#formid').serialize(),
-                data: formData,
-                dataType: "json",
-                success: function (resp) {
-                    //alert(response['response']);
-                    if (resp.IsSuccess) {
-                        $('#msg').css('display', 'block');
-                        $('#msg').val(resp.Msg);
-                        $('#msg').css('color', '#008000');
-                    }
-                    else {
-                        $('#msg').css('display', 'block');
-                        $('#msg').val(resp.Msg);
-                        $('#msg').css('color', '#FF0000');
-                    }
-                },
-                error: function () {
-                    //alert('Error');
-                    $('#msg').css('display', 'none');
                 }
+                $('.error').hide();
+                vd = true;
+                // return true;
             });
-            return false;
-        }
+            if (vd) {
 
-    });
+                $.ajax({
+                    type: "POST",
+                    url: document.baseURI + "/Master/Resource",
+                    //data: $('#formid').serialize(),
+                    data: formData,
+                    dataType: "json",
+                    success: function (resp) {
+                        //alert(response['response']);
+                        if (resp.IsSuccess) {
+                            $('#msg').css('display', 'block');
+                            $('#msg').val(resp.Msg);
+                            $('#msg').css('color', '#008000');
+                        }
+                        else {
+                            $('#msg').css('display', 'block');
+                            $('#msg').val(resp.Msg);
+                            $('#msg').css('color', '#FF0000');
+                        }
+                    },
+                    error: function () {
+                        //alert('Error');
+                        $('#msg').css('display', 'none');
+                    }
+                });
+                return false;
+            }
+
+        });
 
 
-</script>
+    </script>
