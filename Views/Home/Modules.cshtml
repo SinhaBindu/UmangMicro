@@ -101,7 +101,7 @@
 <div class="modal-overlay module-hidden"></div>
 <div class="module-form module-hidden">
     <i class="fa fa-times modal-close"></i>
-    <h2>Download CLF module pdf option by filling a form</h2>
+    <h2>Download module pdf option by filling a form</h2>
     @using (Html.BeginForm("Resource", "Master", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -200,8 +200,8 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-3 col-md-9">
-                    <input type="submit" value="Create" class="btn btn-info" id="btnSubmit" />
+                <div class="col-md-12">
+                    <input type="submit" value="Submit" class="btn btn-info" id="btnSubmit" />
                 </div>
             </div>
 
