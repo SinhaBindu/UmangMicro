@@ -370,7 +370,7 @@ img {
     font-size: 48px;
     margin-bottom: 30px;
     line-height: 60px;
-    color: #222;
+    color: #00AEC4;
 }
 
 .clr-dark {
@@ -949,9 +949,10 @@ img {
 }
 
 .stage-process h4 {
-    font-size: 26px;
+    font-size: 33px;
     margin-bottom: 30px;
-    color: #0A5B66;
+    color: #222;
+    text-align: center;
     font-weight: bold;
 }
 
@@ -960,6 +961,7 @@ img {
     font-size: 16px;
     font-weight: normal;
     line-height: 27px;
+    text-align: center;
 }
 
 .callup img {
@@ -1552,11 +1554,11 @@ img {
 }
 
 .intervention-info {
-    background: #FEFEFC;
+    /*background: #FEFEFC;*/
     margin: auto;
     /*margin-top: 50px;*/
-    max-width: 1200px;
-    padding: 60px 20px 80px;
+    /*max-width: 1200px;*/
+    padding: 60px 0px 80px;
     border-radius: 0 0 10px 10px;
     /*height: 750px;*/
 }
@@ -2868,7 +2870,7 @@ img {
 }
 
 .umang-impact {
-    padding: 60px 20px 0;
+    padding: 20px 20px 0;
     background: #fff;
     position: relative;
 }
@@ -2887,7 +2889,7 @@ img {
     }
 
     .umang-manage h2 {
-        font-size: 40px;
+        font-size: 30px;
         margin-bottom: 55px;
         color: #222
     }
@@ -2974,7 +2976,7 @@ img {
         font-size: 40px;
         font-weight: 500;
         margin-bottom: 10px;
-        color: #222222;
+        color: #00AEC4;
         margin-top: 10px;
         letter-spacing: 0.6px
     }
@@ -3091,13 +3093,13 @@ img {
     width: 220px;
     height: 220px;
     border-radius: 100%;
-    border: 2px dashed #00AEC4;
+    border: 2px dashed #5B2C54;
     padding: 10px;
 }
 
     .title-round span {
         display: block;
-        background: #00AEC4;
+        background: #5B2C54;
         text-align: center;
         font-size: 29px;
         color: #fff;
@@ -3141,7 +3143,7 @@ img {
     margin-top: -5px;
     text-align: center;
     margin-right: 20px;
-    background: #B2BE30;
+    background: #00AEC4;
     margin-left: -50px;
     font-size: 28px;
     padding-top: 12px;
@@ -4044,4 +4046,12 @@ img {
     text-align: center;
     box-shadow: 0 0.6rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 25px;
+}
+#video {
+    position: relative;
+    margin-top: 50px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
 }

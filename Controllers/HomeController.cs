@@ -18,6 +18,11 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        public ActionResult StatusOfGirlInJharkhand()
+        {
+            return View();
+        }
+
         public ActionResult Modules()
         {
             return View();
