@@ -1,0 +1,117 @@
+﻿<style>
+    #ddmenu .current5 {
+        color: #00AEC4;
+    }
+</style>
+<div class="banner-manage">
+    <img src="~/Content/images/slider/design-banner.jpg" alt="Aims & Objectives">
+</div>
+<div class="banner-title">
+    <h2><span>Umang Modules</span></h2>
+</div>
+<div class="manage-achievement">
+    <h2>Umang Modules</h2>
+    <div class="left-bord"></div>
+    <p>A key component of Project Umang is its capacity building initiative through modular sessions for SHGs, VOs and CLFs. Umang intervention has designed specific packages for the three groups on issues around the ill-effects of child/early marriage, significance of girls’ education, child rights and entitlements, mother-daughter communication, and so on.</p>
+</div>
+<div class="video-section of-bg">
+    <div class="module-section">
+        <h3>SHG Module</h3>
+        <p>Capacity building design for SHGs includes 22 modular sessions spread over 24 months that aspire to enhance awareness, knowledge and communication/negotiation skills among SHG members.</p>
+        <div class="module-features">
+            <div class="module-graphic">
+                <img src="~/Content/images/modules/umang-shg.png" alt="Umang SHG" />
+            </div>
+            <div class="module-feat-list">
+                <h4 class="module-title1">Topics include</h4>
+                <ul>
+                    <li><b>Session 1-3:</b> Orientation towards the project and gender sensitization</li>
+                    <li><b>Session 4-6:</b> Mother-daughter communication & relationship</li>
+                    <li><b>Session 7-9:</b> Reproductive health and decision-making</li>
+                    <li><b>Session 10-12:</b> Nutritional requirements of adolescent girls</li>
+                    <li><b>Session 13–15:</b> Educational requirements towards agency development</li>
+                    <li><b>Session 16–18:</b> Laws & schemes for protection of child rights and prevention of child marriage</li>
+                    <li><b>Session 19–22:</b> Career choices for girls & avenues for financial independence</li>
+                </ul>
+                <a href="javascript:void(0)" class="module-pdf-1 btn-module">Click here to access full resource</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="video-section cd-bg">
+    <div class="module-section">
+        <h3>VO Module</h3>
+        <p>Umang has designed 21 modular sessions for VOs with the purpose of capacitating the members to raise concerns of adolescent girls (such as education and child marriage) at village level. These have been grouped under seven broad categories.</p>
+        <div class="module-features">
+            <div class="module-graphic">
+                <img src="~/Content/images/modules/umang-vo.png" alt="Umang VO" />
+            </div>
+            <div class="module-feat-list">
+                <h4 class="module-title1">Topics include</h4>
+                <ul>
+                    <li><b>Session 1-1b:</b> Our role and responsibilities</li>
+                    <li><b>Session 2-2b:</b> Gift of education</li>
+                    <li><b>Session 3-3b:</b> Child Marriage</li>
+                    <li><b>Session 4-4b:</b> Welfare schemes for education of adolescent girls</li>
+                    <li><b>Session 5-5b:</b> Participation of stakeholders for prevention of child marriage</li>
+                    <li><b>Session 6-6b:</b> Discussion on laws related to adolescent education (Right to Education), POCSO, Domestic Violence Act, etc</li>
+                    <li><b>Session 7-7b:</b> Identification of village level organization promoting adolescent education</li>
+                </ul>
+                <a href="javascript:void(0)" class="module-pdf-2 btn-module">Click here to access full resource</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="video-section cm-bg">
+    <div class="module-section">
+        <h3>CLF Module</h3>
+        <p>Umang intervention includes 14 modular sessions for CLFs with the objective of building collective leadership among CLF & SAC members for system-level engagement.</p>
+        <div class="module-features">
+            <div class="module-graphic">
+                <img src="~/Content/images/modules/umang-clf.png" alt="Umang CLF" />
+            </div>
+            <div class="module-feat-list">
+                <h4 class="module-title1">Topics include</h4>
+                <ul>
+                    <li><b>Session 1:</b> Current status of adolescent girls in Jharkhand and the role of CLF</li>
+                    <li><b>Session 2:</b> Welfare scheme related to adolescent education</li>
+                    <li><b>Session 3:</b> Awareness on existing laws on child marriage and sexual abuse</li>
+                    <li><b>Session 4:</b> Child Protection Committee</li>
+                    <li><b>Sessions 5, 6, 7, 8:</b> Childline 1098, Domestic Violence, Dowry, Women helpline</li>
+                    <li><b>Session 9:</b> Engagement with stakeholders on education & security of adolescent girls</li>
+                    <li><b>Session 10-11:</b> Data Collection & Analysis</li>
+                    <li><b>Session 12:</b> Discussion with block level officers</li>
+                    <li><b>Session 13:</b> Preparation of Demand Note, Advocacy</li>
+                    <li><b>Session 14:</b> Kishori Help Desk</li>
+                </ul>
+                <a href="javascript:void(0)" class="module-pdf-3 btn-module">Click here to access full resource</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popup Form -->
+<div class="modal-overlay module-hidden"></div>
+<div class="module-form module-hidden">
+    <i class="fa fa-times modal-close"></i>
+    <h2>Download CLF module pdf option by filling a form</h2>
+</div>
+
+<script>
+    'use strict';
+    const btnModule = document.querySelectorAll('.btn-module');
+    const moduleForm = document.querySelector('.module-form');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalClose = document.querySelector('.modal-close');
+    for (let i = 0; i < btnModule.length; i++) {
+        btnModule[i].addEventListener('click', function () {
+            console.log('logoo')
+            /*moduleForm.classList.remove('module-hidden');*/
+            modalOverlay.classList.remove('module-hidden');
+            moduleForm.classList.remove('module-hidden');
+        })
+    }
+    modalClose.addEventListener('click', function () {
+        modalOverlay.classList.add('module-hidden');
+        moduleForm.classList.add('module-hidden');
+    })
+</script>

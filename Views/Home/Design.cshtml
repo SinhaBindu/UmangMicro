@@ -38,12 +38,12 @@
             <h2>Theoretical Framework</h2>
             <div class="bords"></div>
             <p class="txt-style2">
-                    The Umang model has been conceptualised with a strategic interplay of women empowerment & leadership
-                    frameworks and socio-behavioural theories of change.
+                The Umang model has been conceptualised with a strategic interplay of women empowerment & leadership
+                frameworks and socio-behavioural theories of change.
             </p>
             <p>
                 It relies on <a href="javascript:void(0)"
-                                                                                     class="modal-open">
+                                class="modal-open">
                     Naila
                     Kabeer’s
                 </a>
@@ -135,9 +135,9 @@
         </div>
         <div class="influence-bg cluster-bg">
             <div class="intervention-info intervention-back">
-                <h2>Levels of Influence</h2>
+                <h2>Socio-ecological Model</h2>
                 <h3>
-                    The intervention design addresses the issue of child/early marriage through<br> Levels of Influence
+                    Umang works across all layers of the ‘Socio-ecological Model’, covering the entire spectrum of relationships & spaces shared by women & girls – from intrapersonal to public policy levels.
                 </h3>
                 <div class="div-block">
                     <div class="model-scroller">
@@ -229,9 +229,9 @@
                 </div>
                 <!-- FIXED BOX -->
             </div>
-        </div>        
+        </div>
     </div>
-
+    <!-- 5 STEPS -->
     <div class="umang-steps">
         <div class="stage-process">
             <div class="stage-title">
@@ -253,28 +253,38 @@
                     </a>
                 </h5>
             </div>
-            <div class="steps">
-                <div class="step1" data-aos="fade-right" data-aos-duration="1500">
+            <ul class="steps" id="steps">
+            <li class="step1" data-aos="fade-right" data-aos-duration="1500">
+                <a href="javascript:void(0)" class="callup">
                     <img src="~/Content/images/belief.png" alt="personal belief">
                     <p>Change in factual and normative personal belief</p>
-                </div>
-                <div class="step1" data-aos="fade-right" data-aos-duration="1500">
+                </a>
+            </li>
+            <li class="step1" data-aos="fade-right" data-aos-duration="1500">
+                <a href="javascript:void(0)" class="callup">
                     <img src="~/Content/images/directon.png" alt="personal belief">
                     <p>Collective decision to change</p>
-                </div>
-                <div class="step1" data-aos="fade-right" data-aos-duration="1500">
+                </a>
+            </li>
+            <li class="step1" data-aos="fade-right" data-aos-duration="1500">
+                <a href="javascript:void(0)" class="callup">
                     <img src="~/Content/images/non-compliance.png" alt="personal belief">
                     <p>Introduction of sanctions for non-compliance</p>
-                </div>
-                <div class="step1" data-aos="fade-right" data-aos-duration="1500">
+                </a>
+            </li>
+            <li class="step1" data-aos="fade-right" data-aos-duration="1500">
+                <a href="javascript:void(0)" class="callup">
                     <img src="~/Content/images/balance.png" alt="personal belief">
                     <p>Creation of normative expectations</p>
-                </div>
-                <div class="step1" data-aos="fade-right" data-aos-duration="1500">
+                </a>
+            </li>
+            <li class="step1" data-aos="fade-right" data-aos-duration="1500">
+                <a href="javascript:void(0)" class="callup">
                     <img src="~/Content/images/search.png" alt="personal belief">
                     <p>Creation of empirical expectations</p>
-                </div>
-            </div>
+                </a>
+            </li>
+        </ul>
         </div>
     </div>
     <div class="mother-daughter-steps">
@@ -405,8 +415,8 @@
                             child/early
                             marriage,
                             child rights laws, etc and motivating them to realise their potential as mothers. @*These
-                            mothers are
-                            better equipped to convince their husbands and families against child/early marriage.*@
+                                mothers are
+                                better equipped to convince their husbands and families against child/early marriage.*@
                         </h4>
                     </div>
                 </div>
@@ -425,8 +435,8 @@
                             around
                             their
                             children. @*They are also able to identify and support their daughters aspirations with
-                            complete
-                            conviction.*@
+                                complete
+                                conviction.*@
                         </h4>
                     </div>
                 </div>
@@ -513,11 +523,11 @@
         </p>
         <div class="shg-structure">
             @*<div class="women-around" data-aos="fade-right" data-aos-duration="2500" data-aos-delay="400">
-                <img src="~/Content/images/shg-women-group.png" alt="shg women group">
-            </div>
-            <div class="shg-arrow" data-aos="fade-right" data-aos-duration="2500" data-aos-delay="1200">
-                <img src="~/Content/images/shg-arrow.png" alt="shg arrow">
-            </div>*@
+                    <img src="~/Content/images/shg-women-group.png" alt="shg women group">
+                </div>
+                <div class="shg-arrow" data-aos="fade-right" data-aos-duration="2500" data-aos-delay="1200">
+                    <img src="~/Content/images/shg-arrow.png" alt="shg arrow">
+                </div>*@
             <div class="shg-3-step">
                 <div class="top-ar" data-aos="fade-up" data-aos-duration="2500" data-aos-delay="400">
                     <p>CLFs <br>5-40 VOs</p>
@@ -616,5 +626,10 @@
                 $(".hiddenTxt").slideUp();
             }
         });
+    });
+</script>
+<script>
+    $("#steps li a").hover(function () {
+        $(this).parent().prevAll().andSelf().addClass('selected').filter(':last').nextAll().removeClass('selected');
     });
 </script>

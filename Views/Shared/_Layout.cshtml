@@ -41,14 +41,15 @@
     @RenderBody()
     @Html.Partial("_Footer")
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
     <script src="~/Content/js/widgets.js"></script>
     <script src="~/Content/js/ddmm.js"></script>
     <!-- Smooth Scroll -->
-    <script type="text/javascript" src="~/Content/js/smoothscroll.js"></script>
+    @*<script type="text/javascript" src="~/Content/js/smoothscroll.js"></script>*@
     <!-- Product-Scroll -->
     <link href="~/Content/css/initcarousel-1.css" rel="stylesheet" />
     <script src="~/Content/js/amazingcarousel.js"></script>
@@ -63,6 +64,7 @@
             duration: 1000
         });
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
     @if (TempData["ToastMsg"] != null)
     {

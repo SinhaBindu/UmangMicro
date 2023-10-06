@@ -579,6 +579,9 @@
     <Content Include="Content\images\arrow-yellow.png" />
     <Content Include="Content\images\clf-icon.png" />
     <Content Include="Content\images\jharkhand-map.png" />
+    <Content Include="Content\images\modules\umang-clf.png" />
+    <Content Include="Content\images\modules\umang-shg.png" />
+    <Content Include="Content\images\modules\umang-vo.png" />
     <Content Include="Content\images\mother-daughter-6-steps\early-child-marriage.png" />
     <Content Include="Content\images\mother-daughter-6-steps\enabling-together.png" />
     <Content Include="Content\images\mother-daughter-6-steps\enricher.png" />
@@ -597,6 +600,7 @@
     <Content Include="Content\images\partners\icrw-logo.jpg" />
     <Content Include="Content\images\partners\jslps-logo.jpg" />
     <Content Include="Content\images\plus-icon.png" />
+    <Content Include="Content\images\quote-img.png" />
     <Content Include="Content\images\shg-icon.png" />
     <Content Include="Content\images\shgs-icon.png" />
     <Content Include="Content\images\theoratical--icon.png" />
@@ -862,7 +866,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\AimObjectives.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Design.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Intervention.cshtml" />
     <Content Include="Views\Home\JourneySoFar.cshtml" />
@@ -892,9 +895,15 @@
     <Content Include="Views\Report\LastLogin.cshtml" />
     <Content Include="Views\Report\_LastLoginData.cshtml" />
     <Content Include="Views\Home\Testimonials.cshtml" />
+
     <Content Include="Views\Master\Resource.cshtml" />
     <Content Include="Views\Report\Resource.cshtml" />
     <Content Include="Views\Report\_ResourceData.cshtml" />
+
+    <Content Include="Views\Home\Design.cshtml" />
+    <Content Include="Views\Home\AnimationFilm.cshtml" />
+    <Content Include="Views\Home\Modules.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

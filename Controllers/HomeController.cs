@@ -13,6 +13,16 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        public ActionResult AnimationFilm()
+        {
+            return View();
+        }
+
+        public ActionResult Modules()
+        {
+            return View();
+        }
+
         public ActionResult Testimonials()
         {
             return View();
