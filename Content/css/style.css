@@ -3248,10 +3248,11 @@ img {
 .video-list {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap
 }
 
 .side-vide {
-    width: 100%;
+    flex-basis: 31%;
     border: none;
 }
 
@@ -3823,7 +3824,7 @@ img {
 }
 
 .video-section {
-    padding: 40px 20px;
+    padding: 32px 20px 40px;
 }
 
 .video-type {
@@ -3864,9 +3865,25 @@ img {
     .video-manage h2 {
         color: #002C32;
         font-size: 22px;
-        margin-bottom: 16px;
+        margin-bottom: 22px;
+        margin-top: 0px;
     }
-
+.liner, .liner2, .liner3 {
+    width: 70px;
+    height: 6px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.liner {
+    background: #4CC8E1;
+}
+.liner2 {
+    background: #B9C15C;
+}
+.liner3 {
+    background: #D87250;
+}
 .txt-style2 {
     color: #000 !important;
     font-style: italic;
@@ -3997,12 +4014,24 @@ img {
 .cm-bg h4 {
     color: #1F8BCB;
 }
-    .module-features li {
-        list-style: none;
-        padding: 7px 0;
-        line-height: 27px;
-        font-size: 17px;
-    }
+.module-features li {
+    list-style: none;
+    padding: 7px 0 7px 15px;
+    border-radius: 10px ;
+    line-height: 27px;
+    font-size: 16px;
+    background: #fff;
+    margin-bottom: 9px;
+}
+.of-bg .module-features li {
+    border: 1px solid #FFEDE7
+}
+.cd-bg .module-features li {
+    border: 1px solid #F5F9C3
+}
+.cm-bg .module-features li {
+    border: 1px solid #E1F0F3
+}
     .module-graphic {
         flex: 2;
     }
@@ -4019,6 +4048,8 @@ img {
     padding: 8px 22px;    
     color: #fff;
     border-radius: 6px;
+    margin-top: 15px;
+    display: inline-block;
 }
 .module-pdf-1 {
     background: #C4278F;
@@ -4064,8 +4095,8 @@ img {
     }
 
     .form-horizontal::-webkit-scrollbar-thumb {
-        background-color: #00AEC4;
-        border: 1px solid #00AEC4;
+        background-color: #BADFE4;
+        border: 1px solid #BADFE4;
     }
 .module-form h2 {
     font-size: 19px;
@@ -4096,5 +4127,14 @@ img {
     margin-left: 7px;
     margin-right: 26px;
     font-size: 13px;
-
+}
+.text-dangers {
+    color: #FF3131;
+    font-size: 12px;
+}
+.txt-lft {
+    text-align: left !important;
+}
+.form-horizontal .control-label {
+    text-align: left;
 }
