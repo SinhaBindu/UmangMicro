@@ -10,6 +10,8 @@ using UmangMicro.Manager;
 using System.Web.UI;
 using SubSonic.Schema;
 using System.Data;
+using UmangMicro.Controllers;
+using System.Web.Security;
 
 namespace UmangMicro
 {
@@ -97,12 +99,44 @@ namespace UmangMicro
                 }
                 else
                 {
-                    HttpContext.Current.Response.RedirectToRoute("~/Account/Login", false);
+                    RouteCollection routes=new RouteCollection();
+                    routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+                    routes.MapRoute(
+                        name: "Default",
+                        url: "{controller}/{action}/{id}",
+                        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                    );
+                    //HttpContext.Current.Response.RedirectToRoute("~/Account/Login", false);
+
                     //HttpContext.Current.Response.Redirect("~/Account/Login", false);
                     //RewritePath
                     return null;
                 }
             }
         }
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+
+            Session["CUser"] = null;
+            if (HttpContext.Current != null)
+            {
+                //HttpContext.Current.Session.Add("CurrentCompany", "Company 1");
+                // HttpContext.Current.Session.Add("Connectionstring", "");
+            }
+            if (Session["CUser"] == null)
+            {
+                RouteCollection routes = new RouteCollection();
+                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+                routes.MapRoute(
+                    name: "Default",
+                    url: "{controller}/{action}/{id}",
+                    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                );
+            }
+        }
+
+
     }
 }
