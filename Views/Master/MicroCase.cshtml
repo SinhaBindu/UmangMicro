@@ -5,9 +5,10 @@
 }
 
 <style>
-    .tox-notification{
-        display:none!important;
+    .tox-notification {
+        display: none !important;
     }
+
     .tox-statusbar__branding {
         display: none !important;
     }
@@ -39,7 +40,7 @@
                             <div class="form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })
-                                @Html.TextAreaFor(model => model.Subject, new { @class = "form-control", @required = "required" ,@rows="5", @cols="10" })
+                                @Html.TextAreaFor(model => model.Subject, new { @class = "form-control", @required = "required", @rows = "5", @cols = "10" })
                                 @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -69,7 +70,7 @@
 
                     </div>
                 }
-              
+
             </div>
         </div>
     </div>
@@ -89,7 +90,56 @@
         //})
         $(function () {
             LoadEditor();
-        })
+            
+            /* Started Submitted Tab */
+            $("#formid").on("submit", function (event) {
+                event.preventDefault();
+                jQuery.event.trigger("ajaxStart");
+                debugger;
+                var isvalid = $("#formid").valid(); 
+                var formData = $(this).serialize();
+                if (isvalid) {
+                    $.ajax({
+                        type: "POST",
+                        url: document.baseURI + "/Master/MicroCase/",
+                        data: formData,
+                        //use contentType, processData for sure.
+                        //contentType: false,
+                        // processData: false,
+                        dataType: "json",
+                        //contentType: "application/json; charset=utf-8",
+                        success: function (resp) {
+                            //  CreateToasterMessage("Registration", resp.Message, resp.StatusType);
+                            if (resp.StatusType == "success") {
+                                toastr.success("Success", resp.Message);
+                                if (resp.Data == 1) {
+                                    var url = '@Url.Action("Login", "Account")';
+                                    window.location.href = url;
+                                }
+                                jQuery.event.trigger("ajaxStop");
+                            }
+                        },
+                        error: function (req, error) {
+                            if (error === 'error') { error = req.statusText; }
+                            var errormsg = 'There was a communication error: ' + error;
+                            // CreateToasterMessage("Error", errormsg, "error");
+                            toastr.error("Error", errormsg);
+                            jQuery.event.trigger("ajaxStop");
+                            return false;
+                        }
+
+                    });
+                }
+                else {
+                    //CreateToasterMessage("Error", "All Record Validate !!", "error");
+                    toastr.error("Error", "All Record Validate !!");
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });/*End Submitted Closed Tab  */
+
+        });
+
         function LoadEditor() {
             tinymce.init({
                 selector: '#HtmlEditor',
@@ -112,6 +162,11 @@
                 //codesample_global_prismjs: true
 
             });
+        }
+        function ClearInput() {
+            $('#Subject').val('');
+            $('#Photo').val('');
+            $('#HtmlEditor').val('');
         }
 
     </script>

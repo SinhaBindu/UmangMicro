@@ -17,6 +17,8 @@ using System.Drawing.Imaging;
 using System.IO.Compression;
 using System.Collections.Generic;
 using FileInfo = UmangMicro.Models.FileInfo;
+using IPEL.Manager;
+
 
 namespace UmangMicro.Controllers
 {
@@ -25,7 +27,7 @@ namespace UmangMicro.Controllers
     {
         UM_DBEntities db = new UM_DBEntities();
         JsonResponseData response = new JsonResponseData();
-        // int result = 0; bool CheckStatus = false;
+        int result = 0; bool CheckStatus = false;
         string MSG = string.Empty;
 
         #region Course Details Create,List,Update
@@ -388,10 +390,93 @@ namespace UmangMicro.Controllers
         //#endregion
 
         #region
-        public ActionResult MicroCase(int Id=0)
+        public ActionResult MicroCase(int Id = 0)
         {
             MicroCaseModel model = new MicroCaseModel();
             return View(model);
+        }
+        [HttpPost]
+        public ActionResult MicroCase(MicroCaseModel model)
+        {
+            JsonResponseData response = new JsonResponseData();
+            result = 0;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //var getdt = db.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
+                    //if (getdt.Any(x => x.MobileNo == model.MobileNo))
+                    //{
+                    //    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Registration No : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
+                    //    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                    //    resResponse1.MaxJsonLength = int.MaxValue;
+                    //    return resResponse1;
+                    //}
+                    var tbl = model.ID != 0 ? db.tbl_MicroCase.Find(model.ID) : new tbl_MicroCase();
+                    if (tbl != null)
+                    {
+                        tbl.Subject = !(string.IsNullOrWhiteSpace(model.Subject)) ? model.Subject.Trim() : null;
+                        tbl.HtmlEditor = !string.IsNullOrEmpty(model.HtmlEditor) ? model.HtmlEditor.Trim() : null;
+                        if (Request.Files != null && Request.Files.Count > 0)
+                        {
+                            var multiLinkPic = string.Empty;
+
+                            foreach (var item in Request.Files.AllKeys)
+                            {
+                                var postedFile = Request.Files[item];
+                                string extension = Path.GetExtension(postedFile.FileName);
+                                if (extension.ToUpper() == ".JPEG" || extension.ToUpper() == ".JPG"
+                                            || extension.ToUpper() == ".PNG" || extension.ToUpper() == "GIF")
+                                {
+                                    tbl.PhotoPath = !string.IsNullOrWhiteSpace(postedFile.FileName) ? CommonModel.SaveSingleFile(postedFile, "CaseStudy", tbl.ID.ToString()) : null;
+                                }
+                            }
+                        }
+
+                        tbl.IsActive = true;
+                        if (model.ID == 0)
+                        {
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                tbl.CreatedBy = MvcApplication.CUser.Id;
+                                tbl.CreatedOn = DateTime.Now;
+                            }
+                            db.tbl_MicroCase.Add(tbl);
+                        }
+                        else
+                        {
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                tbl.UpdatedOn = DateTime.Now;
+                                tbl.UpdatedBy = MvcApplication.CUser.Id;
+                            }
+                        }
+                        result = db.SaveChanges();
+                    }
+                    if (result > 0)
+                    {
+                        response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Data Submitted " + " Successfully.....", Data = null };
+                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                        resResponse1.MaxJsonLength = int.MaxValue;
+                        return resResponse1;
+                    }
+                }
+                else
+                {
+                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "All Record Required !!", Data = null };
+                    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                    resResponse1.MaxJsonLength = int.MaxValue;
+                    return resResponse1;
+                };
+            }
+            catch (Exception)
+            {
+                response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "There was a communication error.", Data = null };
+                var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                resResponse1.MaxJsonLength = int.MaxValue;
+                return resResponse1;
+            }
+            return View();
         }
         #endregion
 

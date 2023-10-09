@@ -313,13 +313,12 @@
                                 $('#div-hf').html(ht);
                                 ClearInput();
                             }
-
-
                         }
                         else {
                             $('#msg').html(resp.Message);
                             $('#msg').css('color', '#FF0000');
                         }
+                        $('#Name').focus();
                     },
                     error: function (req, error) {
                         if (error === 'error') { error = req.statusText; }
@@ -327,7 +326,7 @@
                         $('#msg').css('display', 'block'); $('#msg').focus();
                         $('#msg').html(errormsg);
                         $('#msg').css('color', '#FF0000');
-
+                        $('#Name').focus();
                         return false;
                     }
                 });
