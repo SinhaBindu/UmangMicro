@@ -1,0 +1,78 @@
+﻿@model List<UmangMicro.Models.tbl_MicroCase>
+@*@using System.Data*@
+@{
+    ViewBag.Title = "User List";
+    //DataTable dt = new DataTable();
+    //if (Model != null)
+    //{
+    //    dt = Model;
+    //}
+}
+
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+
+        <div class="table-responsive">
+            @*table card-table table-vcenter text-nowrap*@
+            <table class="table card-table table-vcenter text-nowrap" id="DataList">
+                <thead>
+                    <tr>
+                        <th>SrNo.</th>
+                        <th>Category</th>
+                        <th>Subject</th>
+                        <th>Photo</th>
+                        <th>Banner</th>
+                        @*<th>Case Studies Description</th>*@
+                        @*<th>PhotoPath</th>*@
+                        <th>Modify</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int sno = 1;
+                        if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                String TestString = item.HtmlEditor;
+                                StringWriter writer = new StringWriter();
+                                Server.HtmlEncode(TestString, writer);
+                                String EncodedString = writer.ToString();
+                                var Catg = UmangMicro.Manager.CommonModel.GetCategory().FirstOrDefault(x => x.Value == item.Category).Text;
+                                var PPath = UmangMicro.Manager.CommonModel.GetFileUrl(item.PhotoPath);
+                                var BPath = UmangMicro.Manager.CommonModel.GetFileUrl(item.BannerPath);
+                                <tr>
+                                    <td class="text-center">@(sno++)</td>
+                                    <td class="text-left" style="text-wrap:wrap;">@Catg</td>
+                                    <td class="text-left" style="text-wrap:wrap;">@item.Subject</td>
+                                    <td class="text-center">
+                                        @if (!string.IsNullOrWhiteSpace(PPath))
+                                        {
+                                            <a href="@PPath" target="_blank"><strong><i class="fa fa-download"></i></strong></a>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (!string.IsNullOrWhiteSpace(BPath))
+                                        {
+                                            <a href="@BPath" target="_blank"><strong><i class="fa fa-download"></i></strong></a>
+                                        }
+                                    </td>
+                                    <td title="Edit">
+                                        <a href="~/Master/MicroCase?id=@item.ID" style='font-size: medium;' class="btn btn-info">Edit <i class="fa fa-edit"></i></a>
+                                    </td>
+                                    @*<td class="text-left" style="text-wrap:wrap;">@EncodedString</td>*@
+                                    @*<td class="text-left">@EncodedString</td>*@
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="5" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

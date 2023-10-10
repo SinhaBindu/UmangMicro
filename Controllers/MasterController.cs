@@ -390,9 +390,43 @@ namespace UmangMicro.Controllers
         //#endregion
 
         #region
+        public ActionResult GetMicroCase()
+        {
+            try
+            {
+                bool IsCheck = false;
+                var tbllist = db.tbl_MicroCase.ToList(); //CommonModel.GetSPCutUserlist();
+                if (tbllist != null)
+                {
+                    IsCheck = true;
+                }
+                var html = ConvertViewToString("_MicroCaseData", tbllist);
+                var res = Json(new { IsSuccess = IsCheck, Data = html }, JsonRequestBehavior.AllowGet);
+                res.MaxJsonLength = int.MaxValue;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
+            }
+        }
         public ActionResult MicroCase(int Id = 0)
         {
             MicroCaseModel model = new MicroCaseModel();
+            if (Id > 0)
+            {
+                var tbl = db.tbl_MicroCase.Find(Id);
+                if (tbl != null)
+                {
+                    model.ID = tbl.ID;
+                    model.Subject = tbl.Subject;
+                    model.Category = tbl.Category;
+                    model.HtmlEditor = tbl.HtmlEditor;
+                    model.PhotoPath = tbl.PhotoPath;
+                    model.BannerPath = tbl.BannerPath;
+                }
+            }
             return View(model);
         }
         [HttpPost]
@@ -402,72 +436,69 @@ namespace UmangMicro.Controllers
             result = 0;
             try
             {
-                if (ModelState.IsValid)
+                var tbl = model.ID != 0 ? db.tbl_MicroCase.Find(model.ID) : new tbl_MicroCase();
+                if (tbl != null)
                 {
-                    //var getdt = db.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
-                    //if (getdt.Any(x => x.MobileNo == model.MobileNo))
-                    //{
-                    //    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Registration No : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
-                    //    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                    //    resResponse1.MaxJsonLength = int.MaxValue;
-                    //    return resResponse1;
-                    //}
-                    var tbl = model.ID != 0 ? db.tbl_MicroCase.Find(model.ID) : new tbl_MicroCase();
-                    if (tbl != null)
+                    tbl.Subject = !(string.IsNullOrWhiteSpace(model.Subject)) ? model.Subject.Trim() : null;
+                    tbl.Category = !(string.IsNullOrWhiteSpace(model.Category)) ? model.Category.Trim() : null;
+                    tbl.HtmlEditor = !string.IsNullOrEmpty(model.HtmlEditor) ? model.HtmlEditor.Trim() : null;
+                    tbl.IsActive = true;
+                    if (model.ID == 0)
                     {
-                        tbl.Subject = !(string.IsNullOrWhiteSpace(model.Subject)) ? model.Subject.Trim() : null;
-                        tbl.HtmlEditor = !string.IsNullOrEmpty(model.HtmlEditor) ? model.HtmlEditor.Trim() : null;
-                        if (Request.Files != null && Request.Files.Count > 0)
+                        if (User.Identity.IsAuthenticated)
                         {
-                            var multiLinkPic = string.Empty;
-
-                            foreach (var item in Request.Files.AllKeys)
+                            tbl.CreatedBy = MvcApplication.CUser.Id;
+                            tbl.CreatedOn = DateTime.Now;
+                        }
+                        db.tbl_MicroCase.Add(tbl);
+                    }
+                    else
+                    {
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            tbl.UpdatedOn = DateTime.Now;
+                            tbl.UpdatedBy = MvcApplication.CUser.Id;
+                        }
+                    }
+                    result = db.SaveChanges();
+                    if (Request.Files != null && Request.Files.Count > 0)
+                    {
+                        var multiLinkPic = string.Empty;
+                        foreach (var item in Request.Files.AllKeys)
+                        {
+                            var postedFile = Request.Files[item];
+                            string extension = Path.GetExtension(postedFile.FileName);
+                            if (extension.ToUpper() == ".JPEG" || extension.ToUpper() == ".JPG"
+                                        || extension.ToUpper() == ".PNG" || extension.ToUpper() == "GIF")
                             {
-                                var postedFile = Request.Files[item];
-                                string extension = Path.GetExtension(postedFile.FileName);
-                                if (extension.ToUpper() == ".JPEG" || extension.ToUpper() == ".JPG"
-                                            || extension.ToUpper() == ".PNG" || extension.ToUpper() == "GIF")
+                                if (item== "Banner")
+                                {
+                                    tbl.BannerPath = !string.IsNullOrWhiteSpace(postedFile.FileName) ? CommonModel.SaveSingleFile(postedFile, "CaseStudy", tbl.ID.ToString()) : null;
+                                }
+                                if (item == "Photo")
                                 {
                                     tbl.PhotoPath = !string.IsNullOrWhiteSpace(postedFile.FileName) ? CommonModel.SaveSingleFile(postedFile, "CaseStudy", tbl.ID.ToString()) : null;
                                 }
                             }
                         }
-
-                        tbl.IsActive = true;
-                        if (model.ID == 0)
-                        {
-                            if (User.Identity.IsAuthenticated)
-                            {
-                                tbl.CreatedBy = MvcApplication.CUser.Id;
-                                tbl.CreatedOn = DateTime.Now;
-                            }
-                            db.tbl_MicroCase.Add(tbl);
-                        }
-                        else
-                        {
-                            if (User.Identity.IsAuthenticated)
-                            {
-                                tbl.UpdatedOn = DateTime.Now;
-                                tbl.UpdatedBy = MvcApplication.CUser.Id;
-                            }
-                        }
                         result = db.SaveChanges();
                     }
-                    if (result > 0)
-                    {
-                        response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Data Submitted " + " Successfully.....", Data = null };
-                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                        resResponse1.MaxJsonLength = int.MaxValue;
-                        return resResponse1;
-                    }
                 }
-                else
+                if (result > 0)
                 {
-                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "All Record Required !!", Data = null };
+                    response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Data Submitted " + " Successfully.....", Data = null };
                     var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
                     resResponse1.MaxJsonLength = int.MaxValue;
                     return resResponse1;
-                };
+                }
+                //}
+                //else
+                //{
+                //    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "All Record Required !!", Data = null };
+                //    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                //    resResponse1.MaxJsonLength = int.MaxValue;
+                //    return resResponse1;
+                //};
             }
             catch (Exception)
             {

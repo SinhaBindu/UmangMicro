@@ -17,6 +17,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace UmangMicro.Manager
 {
@@ -134,7 +136,7 @@ namespace UmangMicro.Manager
         //    return role;
         //}
 
-       
+
 
         //public static class SessionLog
         //{
@@ -1823,5 +1825,19 @@ namespace UmangMicro.Manager
         }
 
         #endregion End of Base Line Common Functions
+
+        #region MicroSite Case
+        public static List<SelectListItem> GetCategory()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "1", Text = "Rising Star" });
+            list.Add(new SelectListItem { Value = "2", Text = "Changemaker" });
+            list.Add(new SelectListItem { Value = "3", Text = "Empowered" });
+            list.Add(new SelectListItem { Value = "4", Text = "Leadership" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        #endregion
+
     }
 }

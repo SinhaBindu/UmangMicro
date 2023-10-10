@@ -2,6 +2,12 @@
 @using UmangMicro.Manager
 @{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    var PPath = ""; var BPath = "";
+    if (Model.ID > 0)
+    {
+        PPath = UmangMicro.Manager.CommonModel.GetFileUrl(Model.PhotoPath);
+        BPath = UmangMicro.Manager.CommonModel.GetFileUrl(Model.BannerPath);
+    }
 }
 
 <style>
@@ -11,6 +17,12 @@
 
     .tox-statusbar__branding {
         display: none !important;
+    }
+
+    .ulcl {
+        columns: 6;
+        -webkit-columns: 6;
+        -moz-columns: 6;
     }
 </style>
 
@@ -22,9 +34,12 @@
                 @using (Html.BeginForm("MicroCase", "Master", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
                 {
                     <div class="form-row">
-                        <div class="col-md-12">
-                            <div style="text-align: center; font-weight: 700;">
+                        <div class="col-md-7">
+                            <div style="text-align: right; font-weight: 700;">
                                 <h4><strong>Add Case Studies</strong></h4>
+                            </div>
+                            <div class="col-md-5">
+                                <div id="div-download"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -35,27 +50,52 @@
                                 <div class="col-md-12">@Html.Partial("_Alerts")</div>
                             </div>
                         </div>
-
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(m => m.Category, CommonModel.GetCategory(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })
-                                @Html.TextAreaFor(model => model.Subject, new { @class = "form-control", @required = "required", @rows = "5", @cols = "10" })
+                                @Html.TextAreaFor(model => model.Subject, new { @class = "form-control", @required = "required", @rows = "3", @cols = "10" })
                                 @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-12">
+
+                        <div class="col-md-6">
                             <div class="position-relative form-group">
-                                <span class="text-danger">*</span>
-                                <label>Photo</label>
-                                <input type="file" name="Photo" id="Photo" accept="image/*" required class="form-control" />
+                                <span class="text-danger"></span>
+                                <label>Upload Photo (Image)</label>
+                                <input type="file" name="Photo" id="Photo" accept="image/*" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                                @if (!string.IsNullOrWhiteSpace(PPath))
+                                {
+                                    <a href="@PPath" target="_blank" id="PPath"><strong><i class="fa fa-download"></i></strong></a>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger"></span>
+                                <label>Upload Banner (Image)</label>
+                                <input type="file" name="Banner" id="Banner" accept="image/*" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.Banner, "", new { @class = "text-danger" })
+                                @if (!string.IsNullOrWhiteSpace(BPath))
+                                {
+                                    <a href="@BPath" target="_blank" id="BPath"><strong><i class="fa fa-download"></i></strong></a>
+                                }
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.HtmlEditor, htmlAttributes: new { @class = "" })
-                                <textarea id="HtmlEditor" name="HtmlEditor" required></textarea>
+                                <textarea id="HtmlEditor" name="HtmlEditor" required>@Model.HtmlEditor</textarea>
                                 @Html.ValidationMessageFor(model => model.HtmlEditor, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -69,12 +109,18 @@
                         </div>
 
                     </div>
+
+                    <div class="col-md-12">
+                        <div id="submission-data"></div>
+                    </div>
                 }
 
             </div>
         </div>
     </div>
 </div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -90,33 +136,64 @@
         //})
         $(function () {
             LoadEditor();
-            
+            BindData();
+
+            if ('@Model.ID' != '' && '@Model.ID' != '0') {
+            }
+            else {
+                ClearInput();
+            }
+
             /* Started Submitted Tab */
             $("#formid").on("submit", function (event) {
                 event.preventDefault();
-                jQuery.event.trigger("ajaxStart");
                 debugger;
-                var isvalid = $("#formid").valid(); 
-                var formData = $(this).serialize();
+                var isvalid = $("#formid").valid();
+                //var formData = $(this).serialize();
+                const formData = new FormData();
+                if (tinymce.EditorManager.get('HtmlEditor').getContent() === '') {
+                    toastr.error("Case Studies Description", "Case studies description can not be empty.", "error");
+                    isvalid = false; return false;
+                }
+                 formData.append('ID', '@Model.ID');
+                if ($('#Subject').val() === '' || $('#Category').val() === '') {
+                    isvalid = false; return false;
+                }
+                jQuery.event.trigger("ajaxStart");
+                if ($('#Subject').val() != '') {
+                    formData.append('Subject', $('#Subject').val());
+                }
+                if ($('#Category').val() != '') {
+                    formData.append('Category', $('#Category').val());
+                }
+                if (tinymce.EditorManager.get('HtmlEditor').getContent() != '') {
+                    //var htmlEditor=tinymce.EditorManager.get('HtmlEditor').getContent();
+                    let content = tinymce.get("HtmlEditor").getContent();
+                    //$("textarea[name=HtmlEditor]").val(content);
+                    formData.append('HtmlEditor', content);
+                }
+                if ($('#Banner').get(0).files.length != 0) {
+                    formData.append('Banner', $('#Banner')[0].files[0]);
+                }
+                if ($('#Photo').get(0).files.length != 0) {
+                    formData.append('Photo', $('#Photo')[0].files[0]);
+                }
+
                 if (isvalid) {
                     $.ajax({
                         type: "POST",
                         url: document.baseURI + "/Master/MicroCase/",
                         data: formData,
-                        //use contentType, processData for sure.
-                        //contentType: false,
-                        // processData: false,
-                        dataType: "json",
-                        //contentType: "application/json; charset=utf-8",
+                        processData: false,
+                        contentType: false,
                         success: function (resp) {
-                            //  CreateToasterMessage("Registration", resp.Message, resp.StatusType);
                             if (resp.StatusType == "success") {
                                 toastr.success("Success", resp.Message);
-                                if (resp.Data == 1) {
-                                    var url = '@Url.Action("Login", "Account")';
-                                    window.location.href = url;
-                                }
                                 jQuery.event.trigger("ajaxStop");
+                                ClearInput();
+                                BindData();
+                                var url = '@Url.Action("MicroCase", "Master")';
+                                window.location.href = url;
                             }
                         },
                         error: function (req, error) {
@@ -127,7 +204,6 @@
                             jQuery.event.trigger("ajaxStop");
                             return false;
                         }
-
                     });
                 }
                 else {
@@ -137,6 +213,61 @@
                     return false;
                 }
             });/*End Submitted Closed Tab  */
+
+
+            function BindData() {
+                jQuery.event.trigger("ajaxStart");
+                $('#submission-data').removeClass("text-danger");
+                var url = $('#submission-form').attr("action");
+                var formData = $('#submission-form').serialize();
+                $.ajax({
+                    url: document.baseURI + "/Master/GetMicroCase/",
+                    type: "Post",
+                    data: '',//{ 'District': District, 'Block': Block },
+                    success: function (resp) {
+                        if (resp.IsSuccess) {
+                            jQuery.event.trigger("ajaxStop");
+                            $('#submission-data').html(resp.Data);
+                            if ($.fn.dataTable.isDataTable('#DataList')) {
+                                $("#DataList").dataTable().fnDestroy();
+                            }
+                            table = $('#DataList').DataTable({
+                                //scrollY: "400px",
+                                //scrollX: true,
+                                //scrollCollapse: true,
+                                //paging: false,
+                                pageLength: 100,
+                                fixedColumns: {
+                                    leftColumns: 1,
+                                    rightColumns: 1
+                                },
+                                buttons: [{
+                                    extend: 'excel', text: '<span><i class="fa fa-download"></i>Export</span>', title: 'User Lists',//$('#IDDistrict option:selected').text() +
+                                    className: 'btn btn-primary button-icon mr-3 mt-1 mb-1',
+                                    filename: 'User List',
+                                    exportOptions: { modifier: { page: 'all' } }
+                                }],
+                            });
+                            $('.dataTables_filter input[type="search"]').css(
+                                { 'width': '500px', 'display': 'inline-block' }
+                            );
+                            $('#div-download').empty();
+                            //table.buttons().container().appendTo($('#div-download'));
+                        }
+                        else {
+                            $('#submission-data').html("Record Not Found !!");//TO DO
+                            $('#submission-data').addClass("text-danger");//TO DO
+                        }
+                    },
+                    error: function (req, error) {
+                        if (error === 'error') { error = req.statusText; }
+                        var errormsg = 'There was a communication error: ' + error;
+                        $('#submission-data').html(errormsg);
+                        jQuery.event.trigger("ajaxStop");
+                        return false;
+                    }
+                });
+            }
 
         });
 
@@ -166,7 +297,13 @@
         function ClearInput() {
             $('#Subject').val('');
             $('#Photo').val('');
-            $('#HtmlEditor').val('');
+            $('#Category').val('');
+            $('#PPath').attr('href','');
+            $('#BPath').attr('href', '');
+            $('#PPath').css('display', 'none');
+            $('#BPath').css('display', 'none');
+            var content = "";
+            tinymce.get("HtmlEditor").setContent(content);
         }
 
     </script>

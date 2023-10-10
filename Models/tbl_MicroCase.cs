@@ -16,8 +16,10 @@ namespace UmangMicro.Models
     {
         public int ID { get; set; }
         public string Subject { get; set; }
+        public string Category { get; set; }
         public string HtmlEditor { get; set; }
         public string PhotoPath { get; set; }
+        public string BannerPath { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
