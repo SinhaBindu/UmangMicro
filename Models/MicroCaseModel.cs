@@ -35,4 +35,15 @@ namespace UmangMicro.Models
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     }
+
+    public class CaseDetView
+    {
+        public int ID { get; set; }
+        public string MY { get; set; }
+        public string Subject { get; set; }
+        [AllowHtml]
+        public string Desp { get; set; }
+        public string Photo { get; set; }
+        public string Banner { get; set; }
+    }
 }

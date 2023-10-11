@@ -38,5 +38,13 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
+        public static DataSet GetSP_MicroCaseList(int Para,int CategId=0)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_GetMicroCaseList");
+            sp.Command.AddParameter("@Para", Para, DbType.Int32);
+            sp.Command.AddParameter("@CategId", CategId, DbType.Int32);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
     }
 }

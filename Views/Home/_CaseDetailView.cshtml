@@ -1,0 +1,20 @@
+﻿
+@using UmangMicro.Manager
+@using System.Data
+@{
+    ViewBag.Title = "Case Study";
+    DataTable dt = new DataTable();
+}
+<div class="row">
+    @{
+        if (Model != null)
+        {
+            dt = Model;
+            var html = dt.Rows[0]["HtmlEditor"].ToString();
+            <div class="col-md-12"><h4 class="text-center">@dt.Rows[0]["CategoryText"] @dt.Rows[0]["MY"]</h4></div>
+            <div class="col-md-12">@dt.Rows[0]["Subject"]</div>
+            <div class="col-md-12"><object>@Html.Raw(HttpUtility.HtmlDecode(html))</object></div>
+        }
+    }
+
+</div>

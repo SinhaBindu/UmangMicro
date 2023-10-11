@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UmangMicro.Manager;
 using UmangMicro.Models;
 using static UmangMicro.Manager.Enums;
 
@@ -10,7 +13,7 @@ namespace UmangMicro.Controllers
 {
     public class HomeController : Controller
     {
-        UM_DBEntities db=new UM_DBEntities();
+        UM_DBEntities db = new UM_DBEntities();
         public ActionResult Index()
         {
             return View();
@@ -73,7 +76,7 @@ namespace UmangMicro.Controllers
         [HttpPost]
         public JsonResult Resource(ResourceModel model)
         {
-            JsonResponseData response = new JsonResponseData(); 
+            JsonResponseData response = new JsonResponseData();
             if (!ModelState.IsValid)
             {
                 if (model.ResourceDownLoad.Count == 0)
@@ -163,13 +166,61 @@ namespace UmangMicro.Controllers
             // return View(model);
         }
         #endregion
-        //#region Home - Case Studies Module
-        //[HttpGet]
-        //public JsonResult CaseStudy()
-        //{
+        #region Home - Case Studies Module
+        //  [HttpGet]
+        public ActionResult CaseStudy()
+        {
+            DataSet ds = SP_Model.GetSP_MicroCaseList(1);
+            DataTable dt = new DataTable();
+            if (ds.Tables.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            return View(dt);
+        }
+        public ActionResult GetCaseList(int CategId)
+        {
+            JsonResponseData response = new JsonResponseData();
+            try
+            {
+                DataSet ds = SP_Model.GetSP_MicroCaseList(2, CategId);
+                DataTable dt = new DataTable();
+                if (ds.Tables.Count > 0)
+                {
+                    dt = ds.Tables[0];
 
-        //}
-        //#endregion
+                    var res = JsonConvert.SerializeObject(dt);
+                    response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "", Data = res };
+                    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                    resResponse1.MaxJsonLength = int.MaxValue;
+                    return resResponse1;
+                }
+                response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "", Data = null };
+                var resResponse2 = Json(response, JsonRequestBehavior.AllowGet);
+                resResponse2.MaxJsonLength = int.MaxValue;
+                return resResponse2;
+            }
+            catch (Exception)
+            {
+                response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "There was a communication error.", Data = null };
+                var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                resResponse1.MaxJsonLength = int.MaxValue;
+                return resResponse1;
+            }
+        }
+       // [ActionName("{AN}")]
+        public ActionResult CaseDetail(int Id=0,string AN="")
+        {
+            DataSet ds = SP_Model.GetSP_MicroCaseList(3, Id);
+            DataTable dt = new DataTable();
+            if (ds.Tables.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            return PartialView("_CaseDetailView",dt);
+        }
+
+        #endregion
 
     }
 }

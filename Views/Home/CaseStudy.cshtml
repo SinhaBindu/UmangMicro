@@ -1,0 +1,92 @@
+﻿@using UmangMicro.Manager
+@using System.Data
+@{
+    ViewBag.Title = "CaseStudy";
+    DataTable dt = new DataTable();
+}
+
+<h2 style="height:200px"></h2>
+<section class="section">
+    <div class="row">
+        @{
+            if (Model != null)
+            {
+                dt = Model;
+                //var grouped = from DataRow dr in dt.Rows orderby dr["Category"] group dr by dr["CategoryText"];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    <div class="col-md-4">
+                        <a href="javascript:void(0)" onclick="return GetCaseList('@dr["Category"]')">
+                            @dr["CategoryText"]
+                            <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="Alternate Text" />
+                        </a>
+                    </div>
+                }
+            }
+        }
+        <div class="col-md-4" id="div-list">
+            <table id="tblid">
+               
+            </table>
+        </div>
+    </div>
+</section>
+
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    var reslist = [];
+    $(document).ready(function () {
+       
+    });
+    function GetCaseList(CategId) {
+        $('#tblid').html("");
+        if (CategId) {
+            $.ajax({
+                type: "Get",
+                url: document.baseURI + "/Home/GetCaseList",
+                data: { CategId: CategId },
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.StatusType == "success") {
+                        var rlist = JSON.parse(resp.Data);
+                        var strhtml = $("#tblid");
+                        $('#tblid').append("<tr><th colspan='2' class='text-center'>" + rlist[0].CategoryText +"</th></tr><tr><th>Date</th><th>Subject</th></tr>");
+                        for (var i = 0; i < rlist.length; i++) {
+                            var stroncl =  "?Id="+ rlist[i].ID;
+                            var url = '@Url.Action("CaseDetail", "Home")';
+                              //onclick=\"return GetCaseview(" + rlist[i].ID + ",'" + rlist[i].CategoryText +"');\"
+                            $('#tblid').append("<tr><td> " +
+                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank'>"+ rlist[i].MY +"</a>"+
+                                "</td><td>"+
+                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank'>"+ rlist[i].Subject + "</a>" +
+                                "</td></tr>");
+                        }
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    //$('#msg').css('display', 'block'); $('#msg').focus();
+                    //$('#msg').html(errormsg);
+                   // $('#msg').css('color', '#FF0000');
+                   // $('#Name').focus();
+                    return false;
+                }
+            });
+        }
+
+    }
+    function GetCaseview(Id) {
+        debugger;
+        var AN = "Hello";
+        //$.post(document.baseURI + "/Master/CaseDetail", function (Id, AN) {
+        //   // alert("Data: " + data + "\nStatus: " + status);
+        //});
+        var url = '@Url.Action("CaseDetail", "Home")';
+        window.location.href = url + '?Id=' + Id + '&AN=' + AN;
+        window.EventTarget = "_blank";
+        //window.open(url + '?Id=' + Id + '&AN=' + AN, '_blank');
+    }
+</script>

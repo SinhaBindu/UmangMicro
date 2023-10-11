@@ -913,6 +913,9 @@
     <Content Include="Views\Home\StatusOfGirlInJharkhand.cshtml" />
     <Content Include="Views\Master\MicroCase.cshtml" />
     <Content Include="Views\Master\_MicroCaseData.cshtml" />
+    <Content Include="Views\Home\CaseStudy.cshtml" />
+    <Content Include="Views\Home\CaseDetail.cshtml" />
+    <Content Include="Views\Home\_CaseDetailView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
