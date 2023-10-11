@@ -18,6 +18,7 @@
                 <thead>
                     <tr>
                         <th>SrNo.</th>
+                        <th>Month/Year</th>
                         <th>Category</th>
                         <th>Subject</th>
                         <th>Photo</th>
@@ -34,6 +35,10 @@
                         {
                             foreach (var item in Model)
                             {
+                                //DateTime dt = item.Date.Value;
+                               // string m = dt.Month.ToString();
+                               // string y = dt.Year.ToString();
+                                string my = UmangMicro.Manager.CommonModel.FormateDtMY(item.Date.Value);
                                 String TestString = item.HtmlEditor;
                                 StringWriter writer = new StringWriter();
                                 Server.HtmlEncode(TestString, writer);
@@ -43,6 +48,7 @@
                                 var BPath = UmangMicro.Manager.CommonModel.GetFileUrl(item.BannerPath);
                                 <tr>
                                     <td class="text-center">@(sno++)</td>
+                                    <td class="text-left" style="text-wrap:wrap;">@my</td>
                                     <td class="text-left" style="text-wrap:wrap;">@Catg</td>
                                     <td class="text-left" style="text-wrap:wrap;">@item.Subject</td>
                                     <td class="text-center">

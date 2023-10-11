@@ -1680,6 +1680,17 @@ namespace UmangMicro.Manager
             }
             return dt;
         }
+        public static string FormateDtMY(DateTime date)
+        {
+            string dt = "";
+            if (date != null)
+            {
+                string m = date.Month.ToString();
+                string y = date.Year.ToString();
+                dt = Convert.ToDateTime(date).ToString("MMM-yyyy");
+            }
+            return dt;
+        }
         #endregion
 
         #region Sending Email

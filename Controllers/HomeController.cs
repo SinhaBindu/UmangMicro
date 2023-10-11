@@ -163,5 +163,13 @@ namespace UmangMicro.Controllers
             // return View(model);
         }
         #endregion
+        //#region Home - Case Studies Module
+        //[HttpGet]
+        //public JsonResult CaseStudy()
+        //{
+
+        //}
+        //#endregion
+
     }
 }

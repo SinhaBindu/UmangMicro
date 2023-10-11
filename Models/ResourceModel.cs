@@ -18,7 +18,7 @@ namespace UmangMicro.Models
         [Display (Name = "Designation Other")]
         public string Designation_Other { get; set; }
         [Display(Name = "Organisation")]
-        [Required]
+        //[Required]
         public string Organisation { get; set; }
         [EmailAddress]
         [Display(Name = "Email ID")]

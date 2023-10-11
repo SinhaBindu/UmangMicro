@@ -148,6 +148,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Subject" Type="nvarchar(max)" />
           <Property Name="Category" Type="nvarchar" MaxLength="200" />
+          <Property Name="Date" Type="date" />
           <Property Name="HtmlEditor" Type="nvarchar(max)" />
           <Property Name="PhotoPath" Type="nvarchar(max)" />
           <Property Name="BannerPath" Type="nvarchar(max)" />
@@ -485,6 +486,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Category" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="HtmlEditor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BannerPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -715,6 +717,7 @@
                 <ScalarProperty Name="BannerPath" ColumnName="BannerPath" />
                 <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
                 <ScalarProperty Name="HtmlEditor" ColumnName="HtmlEditor" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

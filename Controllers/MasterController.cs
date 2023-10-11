@@ -420,6 +420,7 @@ namespace UmangMicro.Controllers
                 if (tbl != null)
                 {
                     model.ID = tbl.ID;
+                    model.Date = tbl.Date.Value;
                     model.Subject = tbl.Subject;
                     model.Category = tbl.Category;
                     model.HtmlEditor = tbl.HtmlEditor;
@@ -439,6 +440,7 @@ namespace UmangMicro.Controllers
                 var tbl = model.ID != 0 ? db.tbl_MicroCase.Find(model.ID) : new tbl_MicroCase();
                 if (tbl != null)
                 {
+                    tbl.Date = model.Date.Value;  
                     tbl.Subject = !(string.IsNullOrWhiteSpace(model.Subject)) ? model.Subject.Trim() : null;
                     tbl.Category = !(string.IsNullOrWhiteSpace(model.Category)) ? model.Category.Trim() : null;
                     tbl.HtmlEditor = !string.IsNullOrEmpty(model.HtmlEditor) ? model.HtmlEditor.Trim() : null;

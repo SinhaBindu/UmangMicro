@@ -7,6 +7,7 @@
     {
         PPath = UmangMicro.Manager.CommonModel.GetFileUrl(Model.PhotoPath);
         BPath = UmangMicro.Manager.CommonModel.GetFileUrl(Model.BannerPath);
+        //var str = Model.Date != null ? Convert.ToDateTime(Model.Date.Value.ToString("dd-MMM-yyyy")) : Model.Date;
     }
 }
 
@@ -51,6 +52,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "" })
@@ -58,11 +66,11 @@
                                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })
-                                @Html.TextAreaFor(model => model.Subject, new { @class = "form-control", @required = "required", @rows = "3", @cols = "10" })
+                                @Html.TextAreaFor(model => model.Subject, new { @class = "form-control", @required = "required", @rows = "2", @cols = "10" })
                                 @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -124,7 +132,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
+    <script src="~/Scripts/JS/Master.js"></script>
     <!-- Include Editor JS files. -->
     <script src="https://cdn.tiny.cloud/1/sycl3w1d8npikolltg56dvhf7yiehfqo9a8sbnei0nokfddz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
@@ -139,6 +147,7 @@
             BindData();
 
             if ('@Model.ID' != '' && '@Model.ID' != '0') {
+                 $("#Date").val(moment('@Model.Date').format("DD-MMM-yyyy"));
             }
             else {
                 ClearInput();
@@ -155,11 +164,14 @@
                     toastr.error("Case Studies Description", "Case studies description can not be empty.", "error");
                     isvalid = false; return false;
                 }
-                 formData.append('ID', '@Model.ID');
-                if ($('#Subject').val() === '' || $('#Category').val() === '') {
+                formData.append('ID', '@Model.ID');
+                if ($('#Subject').val() === '' || $('#Category').val() === '' || $('#Date').val() === '') {
                     isvalid = false; return false;
                 }
                 jQuery.event.trigger("ajaxStart");
+                if ($('#Date').val() != '') {
+                    formData.append('Date', $('#Date').val());
+                }
                 if ($('#Subject').val() != '') {
                     formData.append('Subject', $('#Subject').val());
                 }
@@ -296,6 +308,7 @@
         }
         function ClearInput() {
             $('#Subject').val('');
+            $('#Date').val('');
             $('#Photo').val('');
             $('#Category').val('');
             $('#PPath').attr('href','');
