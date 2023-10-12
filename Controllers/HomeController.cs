@@ -118,7 +118,7 @@ namespace UmangMicro.Controllers
                     ModelState.Clear();
                     model = new ResourceModel();
                     ModelState.AddModelError("", "Record Save Successfully....");
-                    response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Submit Successfully.", Data = null };
+                    response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Submitted Successfully.", Data = null };
                     var resResponse2 = Json(response, JsonRequestBehavior.AllowGet);
                     resResponse2.MaxJsonLength = int.MaxValue;
                     return resResponse2;
