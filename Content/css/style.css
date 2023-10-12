@@ -2884,7 +2884,7 @@ img {
     margin: auto;
     max-width: 1200px;
     background: #fff;
-    padding: 0px 0px 80px;
+    padding: 0px 0px 50px;
     margin-top: 0px;
     text-align: center
 }
@@ -2894,9 +2894,9 @@ img {
     }
 
     .umang-manage h2 {
-        font-size: 30px;
-        margin-bottom: 55px;
-        color: #222
+        font-size: 27px;
+        margin-bottom: 35px;
+        color: #5B2C54
     }
 
     .umang-manage p {
@@ -2949,7 +2949,7 @@ img {
 }
 
 .data3 {
-    background: #FFF2ED
+    background: #FCF4FB
 }
 
 .data1 h4 {
@@ -2961,20 +2961,20 @@ img {
 }
 
 .data3 h4 {
-    color: #E7602B
+    color: #5B2C54
 }
 
 .quick-message {
     margin: auto;
     max-width: 1100px;
-    padding: 50px 0;
+    padding: 30px 0 20px;
     display: flex;
     gap: 50px;
     align-items: center
 }
 
 .quick-info {
-    flex: 1
+    flex: 2
 }
 
     .quick-info h1 {
@@ -2994,8 +2994,8 @@ img {
 }
 
 .quick-info p {
-    font-size: 19px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 28px;
     color: #414141;
     margin: 30px 0;
 }
@@ -3006,12 +3006,9 @@ img {
 }
 
     .quick-graphic img {
-        width: 50%;
+        width: 60%;
     }
 
-.girl-work {
-    margin-top: -40px
-}
 
 .woemn-confidence {
     margin-left: -60px;
@@ -3084,7 +3081,7 @@ img {
     }
 
 .objectives-content {
-    padding: 30px 0 40px;
+    padding: 0px 0 27px;
     margin: auto;
     max-width: 1100px;
     display: flex;
@@ -3123,7 +3120,7 @@ img {
     padding: 15px 25px;
     margin: 25px 0 !important;
     list-style: none;
-    font-size: 17px;
+    font-size: 16px;
     color: #000;
     position: relative;
     line-height: 27px;
@@ -3161,16 +3158,16 @@ img {
 }*/
 
 .video-testim {
-    padding: 90px 0;
+    padding: 60px 0;
     text-align: center;
     margin: auto;
     max-width: 1200px;
 }
 
     .video-testim h2 {
-        font-size: 45px;
+        font-size: 40px;
         margin-bottom: 80px;
-        color: #000;
+        color: #00AEC4;
         margin-top: 0px;
         text-align: left !important
     }
@@ -3214,7 +3211,7 @@ img {
 
 .vd1 h3 {
     background: #F9FEFF;
-    color: #00ADC3;
+    color: #5B2C54;
 }
 
 .vd2 h3 {
@@ -3229,8 +3226,8 @@ img {
 
 .video-round {
     float: left;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 100%;
     background: #00AEC4;
     margin-right: 30px;
@@ -3349,17 +3346,17 @@ img {
 }
 
 .impact-stat {
-    padding: 50px 0 60px;
+    padding: 40px 0 45px;
     margin: auto;
     max-width: 1200px;
     text-align: center;
 }
 
     .impact-stat h2 {
-        font-size: 50px;
-        color: #5B2C54;
+        font-size: 40px;
+        color: #00AEC4;
         margin-top: 5px;
-        margin-bottom: 30px;
+        margin-bottom: 23px;
     }
 
 .title-bg-center {
@@ -3374,8 +3371,8 @@ img {
 }
 
 .impact-stat p {
-    font-size: 19px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 28px;
     color: #3F3E3A !important;
     margin: auto;
 }
@@ -3385,7 +3382,7 @@ img {
     margin: auto;
     max-width: 960px;
     gap: 30px;
-    margin-top: 50px;
+    margin-top: 30px;
     justify-content: space-around;
     align-items: center
 }
@@ -3403,23 +3400,23 @@ img {
     }
 
 .impact-flex h4 {
-    font-size: 21px;
+    font-size: 19px;
     color: #454545;
-    line-height: 30px;
+    line-height: 29px;
     padding: 0 10px
 }
 
 .impact-flex img {
     width: 80px;
-    margin-bottom: 10px
+    margin-bottom: 2px
 }
 
 .data-1, .data-2, .data-3 {
     display: block;
     margin: auto;
-    width: 200px;
-    height: 200px;
-    margin-bottom: 30px;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 20px;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
@@ -3431,8 +3428,8 @@ img {
 }
 
 .data-2 {
-    width: 240px;
-    height: 240px;
+    width: 190px;
+    height: 190px;
     background: url('../images/umang-stat/green-strip.png') top center;
 }
 
@@ -3441,15 +3438,15 @@ img {
 }
 
     .data-1 h3, .data-3 h3 {
-        font-size: 50px;
+        font-size: 44px;
         font-weight: bold;
-        padding-top: 70px
+        padding-top: 57px
     }
 
 .data-2 h3 {
     font-size: 40px;
     font-weight: bold;
-    padding-top: 94px
+    padding-top: 75px
 }
 
 .data-1 h3 {
@@ -3461,7 +3458,7 @@ img {
 }
 
 .data-3 h3 {
-    color: #F3987A;
+    color: #5B2C54;
 }
 
 .lex {
@@ -3726,15 +3723,15 @@ img {
 }
 
     .partners h3 {
-        font-size: 35px;
-        color: #0090A3;
+        font-size: 27px;
+        color: #5B2C54;
         font-weight: 500;
         margin-bottom: 25px
     }
 
     .partners p {
         line-height: 26px;
-        font-size: 15px;
+        font-size: 16px;
     }
 
 .partner-list {
@@ -3765,8 +3762,10 @@ img {
         }
 
 .btn-more {
+    background: #F7F7F8;
     color: #00AEC4;
-    font-size: 16px;
+    padding: 4px 7px;
+    font-size: 14px;
     text-transform: uppercase;
     font-weight: 600;
     text-decoration: underline;

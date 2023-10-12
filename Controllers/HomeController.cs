@@ -24,6 +24,11 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        public ActionResult KishoriHelpDesk()
+        {
+            return View();
+        }
+
         public ActionResult StatusOfGirlInJharkhand()
         {
             return View();
