@@ -5,31 +5,36 @@
     DataTable dt = new DataTable();
 }
 
-<h2 style="height:200px"></h2>
-<section class="section">
+
+<section class="section" style="padding-top:5%;">
     <div class="row">
-        @{
-            if (Model != null)
-            {
-                dt = Model;
-                //var grouped = from DataRow dr in dt.Rows orderby dr["Category"] group dr by dr["CategoryText"];
-                foreach (DataRow dr in dt.Rows)
-                {
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" onclick="return GetCaseList('@dr["Category"]')">
-                            @dr["CategoryText"]
-                            <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="Alternate Text" />
-                        </a>
-                    </div>
+        <div class="col-md-6">
+            <div class="row">
+                @{
+                    if (Model != null)
+                    {
+                        dt = Model;
+                        //var grouped = from DataRow dr in dt.Rows orderby dr["Category"] group dr by dr["CategoryText"];
+                        foreach (DataRow dr in dt.Rows)
+                        {
+
+                            <div class="col-md-6">
+                                <a href="javascript:void(0)" onclick="return GetCaseList('@dr["Category"]')" style="padding:2%">
+                                    <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="Alternate Text" style="width:200px; height:100px;" />
+                                    <br />
+                                    <strong style="color: #337ab7;"> @dr["CategoryText"]</strong>
+                                </a>
+                            </div>
+                        }
+                    }
                 }
-            }
-        }
-        <div class="col-md-4" id="div-list">
-            <table id="tblid">
-               
-            </table>
+            </div>
+            </div>
+            <div class="col-md-6" id="div-list">
+                <table id="tblid" cellpadding="1" cellspacing="1">
+                </table>
+            </div>
         </div>
-    </div>
 </section>
 
 
@@ -38,7 +43,7 @@
 <script type="text/javascript">
     var reslist = [];
     $(document).ready(function () {
-       
+
     });
     function GetCaseList(CategId) {
         $('#tblid').html("");
@@ -52,15 +57,15 @@
                     if (resp.StatusType == "success") {
                         var rlist = JSON.parse(resp.Data);
                         var strhtml = $("#tblid");
-                        $('#tblid').append("<tr><th colspan='2' class='text-center'>" + rlist[0].CategoryText +"</th></tr><tr><th>Date</th><th>Subject</th></tr>");
+                        $('#tblid').append("<tr><th colspan='2' class='text-center' style='color: #337ab7;'>" + rlist[0].CategoryText +"</th></tr><tr style='border-bottom: 1px solid #000;'><th>Date</th><th>Subject</th></tr>");
                         for (var i = 0; i < rlist.length; i++) {
                             var stroncl =  "?Id="+ rlist[i].ID;
                             var url = '@Url.Action("CaseDetail", "Home")';
                               //onclick=\"return GetCaseview(" + rlist[i].ID + ",'" + rlist[i].CategoryText +"');\"
-                            $('#tblid').append("<tr><td> " +
-                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank'>"+ rlist[i].MY +"</a>"+
+                            $('#tblid').append("<tr style='border-bottom: 1px solid #000;'><td> " +
+                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank' style='text-decoration: none;'> <strong>" + rlist[i].MY +" </strong></a>"+
                                 "</td><td>"+
-                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank'>"+ rlist[i].Subject + "</a>" +
+                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank' style='text-decoration: none;'>"+ rlist[i].Subject + "</a>" +
                                 "</td></tr>");
                         }
                     }
