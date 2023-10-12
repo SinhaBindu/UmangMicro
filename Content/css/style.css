@@ -355,33 +355,35 @@ img {
 .aims-objective {
     margin: auto;
     max-width: 1200px;
-    padding: 110px 0 80px;
+    padding: 70px 0 30px;
     display: flex;
-    gap: 70px;
+    gap: 50px;
     text-align: justify;
     align-items: center;
 }
 
-.aims, .objectives {
-    flex: 1;
+.aims {
+    flex: 3;
 }
-
+.objectives {
+    flex: 2;
+}
 .aims-objective h2 {
-    font-size: 48px;
-    margin-bottom: 30px;
+    font-size: 40px;
+    margin-bottom: 10px;
     line-height: 60px;
     color: #00AEC4;
 }
 
 .clr-dark {
-    color: #000;
+    color: #5B2C54 !important;    
     font-weight: bold;
 }
 
 .aims-objective p {
     line-height: 27px;
-    font-size: 17px;
-    color: #3B3B3A;
+    font-size: 16px;
+    color: #000;
 }
 
 .object-bg p {
@@ -572,24 +574,24 @@ img {
 }
 
 .aim-box {
-    padding: 70px 20px 50px;
+    padding: 20px 20px 30px;
     background: url(../images/aim-box-trans-bg.jpg);
     background-attachment: fixed;
     text-align: center;
 }
 
     .aim-box h3 {
-        font-size: 25px;
+        font-size: 22px;
         margin-bottom: 40px;
-        line-height: 38px;
+        line-height: 35px;
         color: #fff;
     }
 
 .boxed {
     display: flex;
-    gap: 50px;
+    gap: 40px;
     margin: auto;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
     .boxed div {
@@ -3505,7 +3507,7 @@ img {
     background: none;
     color: #00AEC4;
     font-size: 15px;
-    margin-top: 20px
+    margin-top: 10px
 }
 
     .contentToggle:hover {
@@ -3830,7 +3832,7 @@ img {
 }
 
 .video-section {
-    padding: 32px 20px 40px;
+    padding: 65px 20px 60px;
 }
 
 .video-type {
