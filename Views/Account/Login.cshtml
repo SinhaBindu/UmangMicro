@@ -172,11 +172,11 @@
         </div>        
     </div>
     <div class="login-form" id="loginForm">
-        <h2>Login to <span>Umang</span></h2>
+        <h2>Career <span>Counselling</span></h2>
         @*<h2><a href="~/Content/assets/images/com.pic.umang.apk">apk1</a></h2>
 
         <h2><a href="~/Content/assets/images/com.pic.umang.apk" download>apk1</a></h2>*@
-        <p>Welcome to Umang, please enter login details below to using the app</p>
+        @*<p>Welcome to Umang, please enter login details below to using the app</p>*@
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -199,7 +199,7 @@
             </div>*@
             <input type="submit" value="Log in" class="btn-submit" />
             @*@Html.ActionLink("Register as a new user", "Register")*@
-            <a href="~/Candidate/SelfReg">Register as a new user</a>
+            @*<a href="~/Candidate/SelfReg">Register as a new user</a>*@
         }
     </div>
 </div>
