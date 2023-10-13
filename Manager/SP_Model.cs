@@ -46,5 +46,43 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
+        public static DataTable GetSP_DistrictList()
+        {
+            StoredProcedure sp = new StoredProcedure("SP_District");
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataTable GetSP_BlockList(string DistrictCode)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_Block");
+            sp.Command.AddParameter("@DistrictCode", DistrictCode, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataTable GetSP_PanchayatList(string DistrictCode, string BlockCode)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_Panchayat");
+            sp.Command.AddParameter("@DistrictCode", DistrictCode, DbType.String);
+            sp.Command.AddParameter("@BlockCode", BlockCode, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataTable GetSP_VillageList(string DistrictCode, string BlockCode, string PanchayatCode)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_Village");
+            sp.Command.AddParameter("@DistrictCode", DistrictCode, DbType.String);
+            sp.Command.AddParameter("@BlockCode", BlockCode, DbType.String);
+            sp.Command.AddParameter("@PanchayatCode", PanchayatCode, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataTable GetSP_SchoolList(string DistrictCode, string BlockCode)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_School");
+            sp.Command.AddParameter("@DistrictCode", DistrictCode, DbType.String);
+            sp.Command.AddParameter("@BlockCode", BlockCode, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
     }
 }

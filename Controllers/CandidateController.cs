@@ -58,14 +58,12 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
             }
         }
-
         [AllowAnonymous]
         public ActionResult SelfReg(int LangType = 1)
         {
             RegModel model = new RegModel();
             return View(model);
         }
-
         public ActionResult Reg(int LangType = 1, int Id = 0)
         {
             RegModel model = new RegModel();
@@ -84,24 +82,38 @@ namespace UmangMicro.Controllers
                     model.StateId = tbl.StateId;
                     model.DistrictId = tbl.DistrictId;
                     model.BlockId = tbl.BlockId;
-                    model.ClusterId = tbl.ClusterId;
-                    model.Village = tbl.Village;
-                    model.Visited = tbl.Visited;
+                    model.PanchayatId = tbl.PanchayatId;
+                    model.VillageId = tbl.VillageId;
+                    model.SchoolId = tbl.SchoolId;
+                    model.VillageOther = tbl.VillageOther;
                     model.DOB = tbl.DOB;
                     model.Age = tbl.Age;
                     model.MobileNo = tbl.MobileNo;
-                    model.IsSkillTraining = tbl.IsSkillTraining.Value;
-                    model.IsMarriage = tbl.IsMarriage.Value;
-                    model.IsStudy = tbl.IsStudy.Value;
-                    model.SocialClass = tbl.SocialClass;
-                    model.TillStudied = tbl.TillStudied;
-                    model.IsWork = tbl.IsWork.Value;
-                    model.Reason = tbl.Reason;
-                    model.IsPsychometric = tbl.IsPsychometric.Value;
-                    model.PsyYes_Result = tbl.PsyYes_Result;
-                    model.Advice = tbl.Advice;
-                    model.IsFollowUp = tbl.IsFollowUp;
-                    model.FollowUp = tbl.FollowUp;
+                    model.Cast = tbl.Cast;
+
+                    //model. = tbl.BlockId;
+                    //model.BlockId = tbl.BlockId;
+                    //model.BlockId = tbl.BlockId;
+                    //model.BlockId = tbl.BlockId; 
+                    //model.BlockId = tbl.BlockId;
+                    //model.ClusterId = tbl.ClusterId;
+                    //model.Village = tbl.Village;
+                    //model.Visited = tbl.Visited;
+                    //model.DOB = tbl.DOB;
+                    //model.Age = tbl.Age;
+                    //model.MobileNo = tbl.MobileNo;
+                    //model.IsSkillTraining = tbl.IsSkillTraining.Value;
+                    //model.IsMarriage = tbl.IsMarriage.Value;
+                    //model.IsStudy = tbl.IsStudy.Value;
+                    //model.SocialClass = tbl.SocialClass;
+                    //model.TillStudied = tbl.TillStudied;
+                    //model.IsWork = tbl.IsWork.Value;
+                    //model.Reason = tbl.Reason;
+                    //model.IsPsychometric = tbl.IsPsychometric.Value;
+                    //model.PsyYes_Result = tbl.PsyYes_Result;
+                    //model.Advice = tbl.Advice;
+                    //model.IsFollowUp = tbl.IsFollowUp;
+                    //model.FollowUp = tbl.FollowUp;
                 }
             }
             return View(model);
@@ -110,15 +122,16 @@ namespace UmangMicro.Controllers
         [HttpPost]
         public ActionResult Reg(RegModel model)
         {
+            UM_DBEntities db_ = new UM_DBEntities();
             JsonResponseData response = new JsonResponseData();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var getdt = db.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
-                    if (getdt.Any(x => x.MobileNo == model.MobileNo))
+                    var getdt = db_.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
+                    if (getdt.Any(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.DOB == model.DOB && model.ID == 0))
                     {
-                        response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Registration No : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
+                        response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Case ID : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
                         var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
                         resResponse1.MaxJsonLength = int.MaxValue;
                         return resResponse1;
@@ -131,28 +144,37 @@ namespace UmangMicro.Controllers
                         tbl.MotherName = !(string.IsNullOrWhiteSpace(model.MotherName)) ? model.MotherName.Trim() : model.MotherName;
                         tbl.FatherName = !(string.IsNullOrWhiteSpace(model.FatherName)) ? model.FatherName.Trim() : model.FatherName;
                         var sid = Convert.ToInt32(eState.Jharkhand);
-                        tbl.StateId = db.State_Mast.Where(x => x.ID == sid).FirstOrDefault().ID;
+                        tbl.StateId = db.State_Mast.Where(x => x.ID == sid).FirstOrDefault().ID.ToString();
                         tbl.DistrictId = model.DistrictId;
                         tbl.BlockId = model.BlockId;
-                        tbl.ClusterId = model.ClusterId;
-                        tbl.Village = !(string.IsNullOrWhiteSpace(model.Village)) ? model.Village.Trim() : model.Village;
-                        tbl.Visited = model.Visited;
+                        tbl.PanchayatId = model.PanchayatId;
+                        tbl.VillageId = model.VillageId;
+                        tbl.SchoolId = model.SchoolId;
+                        if ("990099" == model.VillageId)
+                        {
+                            tbl.VillageOther = !(string.IsNullOrWhiteSpace(model.VillageOther)) ? model.VillageOther.Trim() : model.VillageOther;
+                        }
                         tbl.DOB = model.DOB;
                         tbl.Age = model.Age;
                         tbl.MobileNo = !(string.IsNullOrWhiteSpace(model.MobileNo)) ? model.MobileNo.Trim() : model.MobileNo;
-                        tbl.IsSkillTraining = model.IsSkillTraining;
-                        tbl.IsMarriage = model.IsMarriage;
-                        tbl.IsStudy = model.IsStudy;
-                        tbl.SocialClass = !(string.IsNullOrWhiteSpace(model.SocialClass)) ? model.SocialClass.Trim() : model.SocialClass;
-                        tbl.TillStudied = model.TillStudied;
-                        tbl.IsWork = model.IsWork;
-                        tbl.Reason = model.Reason;
-                        tbl.IsPsychometric = model.IsPsychometric;
-                        tbl.PsyYes_Result = !(string.IsNullOrWhiteSpace(model.PsyYes_Result)) ? model.PsyYes_Result.Trim() : model.PsyYes_Result;
-                        tbl.Advice = model.Advice;
-                        tbl.IsFollowUp = model.IsFollowUp;
-                        tbl.FollowUp = !(string.IsNullOrWhiteSpace(model.FollowUp)) ? model.FollowUp.Trim() : model.FollowUp;
+                        tbl.Sex = "Female";//!(string.IsNullOrWhiteSpace(model.Sex)) ? model.Sex.Trim() : model.Sex;
+                        tbl.Cast = !(string.IsNullOrWhiteSpace(model.Cast)) ? model.Cast.Trim() : model.Cast;
                         tbl.IsActive = true; tbl.IsDeleted = false;
+
+                        //tbl.Visited = model.Visited;
+                        //tbl.IsSkillTraining = model.IsSkillTraining;
+                        //tbl.IsMarriage = model.IsMarriage;
+                        //tbl.IsStudy = model.IsStudy;
+                        //tbl.SocialClass = !(string.IsNullOrWhiteSpace(model.SocialClass)) ? model.SocialClass.Trim() : model.SocialClass;
+                        //tbl.TillStudied = model.TillStudied;
+                        //tbl.IsWork = model.IsWork;
+                        //tbl.Reason = model.Reason;
+                        //tbl.IsPsychometric = model.IsPsychometric;
+                        //tbl.PsyYes_Result = !(string.IsNullOrWhiteSpace(model.PsyYes_Result)) ? model.PsyYes_Result.Trim() : model.PsyYes_Result;
+                        //tbl.Advice = model.Advice;
+                        //tbl.IsFollowUp = model.IsFollowUp;
+                        //tbl.FollowUp = !(string.IsNullOrWhiteSpace(model.FollowUp)) ? model.FollowUp.Trim() : model.FollowUp;
+
                         if (model.ID == 0)
                         {
                             if (User.Identity.IsAuthenticated)
@@ -174,27 +196,18 @@ namespace UmangMicro.Controllers
                     }
                     if (results > 0)
                     {
-                        var taskres = CU_RegLogin(model, tbl.ID);
-
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully.<br /> <span> User Name : <strong>" + model.MobileNo + " </strong> </span> <br /> <span>Password :<strong>User@123</strong> </span>", Data = null };
-                            var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                            resResponse1.MaxJsonLength = int.MaxValue;
-                            return resResponse1;
+                        // var taskres = CU_RegLogin(model, tbl.ID);
+                        var case_id = db_.tbl_Registration.Where(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.DOB == model.DOB)?.FirstOrDefault().CaseID; //if (case_id != null) { }
+                        if (model.ID > 0) {
+                            response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, you have been Updated successfully ! \r\nPlease Note Your <br /> <span> Case ID : <strong>" + case_id + " </strong> </span>", Data = null };
+                            var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
+                            resResponse3.MaxJsonLength = int.MaxValue;
+                            return resResponse3;
                         }
-                        else
-                        {
-                            response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Registration" + " Successfully. <br /> <span> User Name : <strong>" + model.MobileNo + "</strong> </span> <br /> <span>Password :<strong>User@123</strong> </span>", Data = 1 };
-                            var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                            resResponse1.MaxJsonLength = int.MaxValue;
-                            return resResponse1;
-                        }
-
-                        //Success("Added Successfully !", true);
-                        //return RedirectToAction("CourseD", new { id = tbl.ID });
-                        // Success("Added Successfully !", true);
-                        // return RedirectToAction("Index");
+                        response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, you have been successfully registered! \r\nPlease Note Your <br /> <span> Case ID : <strong>" + case_id + " </strong> </span>", Data = null };
+                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                        resResponse1.MaxJsonLength = int.MaxValue;
+                        return resResponse1;
                     }
                 }
                 else
@@ -214,70 +227,76 @@ namespace UmangMicro.Controllers
             }
             return View();
         }
-        public string CU_RegLogin(RegModel model, int RegId)
-        {
-            UM_DBEntities dbe = new UM_DBEntities();
-            AspNetUser ur;
-            try
-            {
-                if (string.IsNullOrWhiteSpace(model.UseraspID) && RegId > 0)
-                {
-                    var user = new ApplicationUser { UserName = model.MobileNo, Email = model.MobileNo + "@gmail.com", PhoneNumber = model.MobileNo };
-                    var result = UserManager.CreateAsync(user, "User@123").Result;
-                    if (result.Succeeded)
-                    {
-                        ur = dbe.AspNetUsers.Find(user.Id);
-                        ur.RegId = RegId;
-                        ur.DistrictId = model.DistrictId;
-                        ur.BlockId = model.BlockId;
-                        ur.ClusterId = model.ClusterId;
-                        ur.Name = model.Name;
-                        var result1 = UserManager.AddToRole(user.Id, "User");
-                        int res = dbe.SaveChanges();
-                        if (res > 0)
-                        {
-                            var s = eAlertType.success.ToString();
-                            return s;
-                        }
-                    }
-                }
-                else if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(model.UseraspID) && RegId > 0)
-                {
-                    ur = db.AspNetUsers.Find(model.UseraspID);
-                    //ur.RegId = RegId;
-                    ur.UserName = model.MobileNo;
-                    ur.PhoneNumber = model.MobileNo;
-                    ur.Email = model.MobileNo + "@gmail.com";
-                    ur.PasswordHash = "User@123";
-                    ur.Name = model.Name;
-                    ur.DistrictId = model.DistrictId;
-                    ur.BlockId = model.BlockId;
-                    ur.ClusterId = model.ClusterId;
-                    var userRoles = UserManager.GetRoles(model.UseraspID);
-                    foreach (var item in userRoles)
-                    {
-                        if ("User" != item)
-                        {
-                            UserManager.RemoveFromRoles(model.UseraspID, item);
-                            UserManager.AddToRole(model.UseraspID, "User");
-                        }
-                    }
-                    int res = dbe.SaveChanges();
-                    if (res > 0)
-                    {
-                        var s = eAlertType.success.ToString();
-                        return s;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return eAlertType.error.ToString();
-            }
-            return eAlertType.error.ToString();
-        }
-
+        //public string CU_RegLogin(RegModel model, int RegId)
+        //{
+        //    UM_DBEntities dbe = new UM_DBEntities();
+        //    AspNetUser ur;
+        //    try
+        //    {
+        //        if (string.IsNullOrWhiteSpace(model.UseraspID) && RegId > 0)
+        //        {
+        //            var user = new ApplicationUser { UserName = model.MobileNo, Email = model.MobileNo + "@gmail.com", PhoneNumber = model.MobileNo };
+        //            var result = UserManager.CreateAsync(user, "User@123").Result;
+        //            if (result.Succeeded)
+        //            {
+        //                ur = dbe.AspNetUsers.Find(user.Id);
+        //                ur.RegId = RegId;
+        //                ur.DistrictId = model.DistrictId;
+        //                ur.BlockId = model.BlockId;
+        //                ur.ClusterId = model.PanchayatId;
+        //                ur.Name = model.Name;
+        //                var result1 = UserManager.AddToRole(user.Id, "User");
+        //                int res = dbe.SaveChanges();
+        //                if (res > 0)
+        //                {
+        //                    var s = eAlertType.success.ToString();
+        //                    return s;
+        //                }
+        //            }
+        //        }
+        //        else if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(model.UseraspID) && RegId > 0)
+        //        {
+        //            ur = db.AspNetUsers.Find(model.UseraspID);
+        //            //ur.RegId = RegId;
+        //            ur.UserName = model.MobileNo;
+        //            ur.PhoneNumber = model.MobileNo;
+        //            ur.Email = model.MobileNo + "@gmail.com";
+        //            ur.PasswordHash = "User@123";
+        //            ur.Name = model.Name;
+        //            ur.DistrictId = model.DistrictId;
+        //            ur.BlockId = model.BlockId;
+        //            ur.ClusterId = model.PanchayatId;
+        //            var userRoles = UserManager.GetRoles(model.UseraspID);
+        //            foreach (var item in userRoles)
+        //            {
+        //                if ("User" != item)
+        //                {
+        //                    UserManager.RemoveFromRoles(model.UseraspID, item);
+        //                    UserManager.AddToRole(model.UseraspID, "User");
+        //                }
+        //            }
+        //            int res = dbe.SaveChanges();
+        //            if (res > 0)
+        //            {
+        //                var s = eAlertType.success.ToString();
+        //                return s;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return eAlertType.error.ToString();
+        //    }
+        //    return eAlertType.error.ToString();
+        //}
         #endregion
+
+        //#region
+        //public ActionResult ()
+        //{
+        //    return View();
+        //}
+        //#endregion
         private string ConvertViewToString(string viewName, object model)
         {
             ViewData.Model = model;

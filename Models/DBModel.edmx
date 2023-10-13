@@ -168,27 +168,18 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="MotherName" Type="nvarchar" MaxLength="200" />
           <Property Name="FatherName" Type="nvarchar" MaxLength="200" />
-          <Property Name="StateId" Type="int" />
-          <Property Name="DistrictId" Type="int" />
-          <Property Name="BlockId" Type="int" />
-          <Property Name="ClusterId" Type="int" />
-          <Property Name="Village" Type="nvarchar" MaxLength="300" />
-          <Property Name="Visited" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="20" />
+          <Property Name="Cast" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchoolId" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateId" Type="nvarchar" MaxLength="50" />
+          <Property Name="DistrictId" Type="nvarchar" MaxLength="50" />
+          <Property Name="BlockId" Type="nvarchar" MaxLength="50" />
+          <Property Name="PanchayatId" Type="nvarchar" MaxLength="50" />
+          <Property Name="VillageId" Type="nvarchar" MaxLength="50" />
+          <Property Name="VillageOther" Type="nvarchar" MaxLength="2000" />
           <Property Name="DOB" Type="date" />
           <Property Name="Age" Type="nvarchar" MaxLength="50" />
           <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsSkillTraining" Type="int" />
-          <Property Name="IsMarriage" Type="int" />
-          <Property Name="IsStudy" Type="int" />
-          <Property Name="SocialClass" Type="nvarchar" MaxLength="500" />
-          <Property Name="TillStudied" Type="nvarchar" MaxLength="500" />
-          <Property Name="IsWork" Type="int" />
-          <Property Name="Reason" Type="nvarchar(max)" />
-          <Property Name="IsPsychometric" Type="int" />
-          <Property Name="PsyYes_Result" Type="nvarchar(max)" />
-          <Property Name="Advice" Type="nvarchar" MaxLength="500" />
-          <Property Name="IsFollowUp" Type="int" />
-          <Property Name="FollowUp" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedDt" Type="datetime" />
@@ -277,7 +268,6 @@
           <EntitySet Name="Dist_Mast" EntityType="UM_DBModel.Dist_Mast" />
           <EntitySet Name="State_Mast" EntityType="UM_DBModel.State_Mast" />
           <EntitySet Name="tbl_LoginDetail" EntityType="UM_DBModel.tbl_LoginDetail" />
-          <EntitySet Name="tbl_Registration" EntityType="UM_DBModel.tbl_Registration" />
           <EntitySet Name="tbl_CoursesDetail" EntityType="UM_DBModel.tbl_CoursesDetail" />
           <EntitySet Name="AspNetUsers" EntityType="UM_DBModel.AspNetUser" />
           <AssociationSet Name="AspNetUserRoles" Association="UM_DBModel.AspNetUserRoles">
@@ -286,6 +276,7 @@
           </AssociationSet>
           <EntitySet Name="tbl_Resource" EntityType="UM_DBModel.tbl_Resource" />
           <EntitySet Name="tbl_MicroCase" EntityType="UM_DBModel.tbl_MicroCase" />
+          <EntitySet Name="tbl_Registration" EntityType="UM_DBModel.tbl_Registration" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -345,45 +336,6 @@
           <Property Name="UserId" Type="Guid" />
           <Property Name="LoginDt" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="tbl_Registration">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegDate" Type="DateTime" Precision="0" />
-          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="MotherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FatherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="StateId" Type="Int32" />
-          <Property Name="DistrictId" Type="Int32" />
-          <Property Name="BlockId" Type="Int32" />
-          <Property Name="ClusterId" Type="Int32" />
-          <Property Name="Village" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Visited" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DOB" Type="DateTime" Precision="0" />
-          <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsSkillTraining" Type="Int32" />
-          <Property Name="IsMarriage" Type="Int32" />
-          <Property Name="IsStudy" Type="Int32" />
-          <Property Name="SocialClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="TillStudied" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IsWork" Type="Int32" />
-          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsPsychometric" Type="Int32" />
-          <Property Name="PsyYes_Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Advice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IsFollowUp" Type="Int32" />
-          <Property Name="FollowUp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="DeletedDt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tbl_CoursesDetail">
           <Key>
@@ -496,6 +448,36 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="tbl_Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegDate" Type="DateTime" Precision="0" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Cast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlockId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PanchayatId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VillageId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VillageOther" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedDt" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -562,46 +544,6 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LoginDt" ColumnName="LoginDt" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_Registration">
-            <EntityTypeMapping TypeName="UM_DBModel.tbl_Registration">
-              <MappingFragment StoreEntitySet="tbl_Registration">
-                <ScalarProperty Name="DeletedDt" ColumnName="DeletedDt" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
-                <ScalarProperty Name="UpdatedBY" ColumnName="UpdatedBY" />
-                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="FollowUp" ColumnName="FollowUp" />
-                <ScalarProperty Name="IsFollowUp" ColumnName="IsFollowUp" />
-                <ScalarProperty Name="Advice" ColumnName="Advice" />
-                <ScalarProperty Name="PsyYes_Result" ColumnName="PsyYes_Result" />
-                <ScalarProperty Name="IsPsychometric" ColumnName="IsPsychometric" />
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="IsWork" ColumnName="IsWork" />
-                <ScalarProperty Name="TillStudied" ColumnName="TillStudied" />
-                <ScalarProperty Name="SocialClass" ColumnName="SocialClass" />
-                <ScalarProperty Name="IsStudy" ColumnName="IsStudy" />
-                <ScalarProperty Name="IsMarriage" ColumnName="IsMarriage" />
-                <ScalarProperty Name="IsSkillTraining" ColumnName="IsSkillTraining" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Visited" ColumnName="Visited" />
-                <ScalarProperty Name="Village" ColumnName="Village" />
-                <ScalarProperty Name="ClusterId" ColumnName="ClusterId" />
-                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
-                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
-                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -720,6 +662,37 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Registration">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_Registration">
+              <MappingFragment StoreEntitySet="tbl_Registration">
+                <ScalarProperty Name="DeletedDt" ColumnName="DeletedDt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBY" ColumnName="UpdatedBY" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="VillageOther" ColumnName="VillageOther" />
+                <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+                <ScalarProperty Name="PanchayatId" ColumnName="PanchayatId" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Cast" ColumnName="Cast" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

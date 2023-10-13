@@ -738,6 +738,23 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "2", Text = "Hindi" });
             return list.OrderByDescending(x => x.Text).ToList();
         }
+        public static List<SelectListItem> GetSexType()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "Female", Text = "Female" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetCastType()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "1", Text = "Gen" });
+            list.Add(new SelectListItem { Value = "2", Text = "SC" });
+            list.Add(new SelectListItem { Value = "3", Text = "ST" });
+            list.Add(new SelectListItem { Value = "4", Text = "OBC" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
         public static List<SelectListItem> GetYesNo()
         {
             List<SelectListItem> list = new List<SelectListItem>();

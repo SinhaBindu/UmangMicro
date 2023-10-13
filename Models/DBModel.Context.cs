@@ -31,10 +31,10 @@ namespace UmangMicro.Models
         public virtual DbSet<Dist_Mast> Dist_Mast { get; set; }
         public virtual DbSet<State_Mast> State_Mast { get; set; }
         public virtual DbSet<tbl_LoginDetail> tbl_LoginDetail { get; set; }
-        public virtual DbSet<tbl_Registration> tbl_Registration { get; set; }
         public virtual DbSet<tbl_CoursesDetail> tbl_CoursesDetail { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<tbl_Resource> tbl_Resource { get; set; }
         public virtual DbSet<tbl_MicroCase> tbl_MicroCase { get; set; }
+        public virtual DbSet<tbl_Registration> tbl_Registration { get; set; }
     }
 }

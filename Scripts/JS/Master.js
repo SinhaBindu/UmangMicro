@@ -131,8 +131,9 @@ function getAge(dateString) {
     if (age.days > 1) dayString = " days";
     else dayString = " day";
 
-
-    if ((age.years > 0) && (age.months > 0) && (age.days > 0))
+    if ((age.years > 15) && (age.months > 0) && (age.days > 0))
+        ageString = age.years + yearString + ", " + age.months + monthString + ", and " + age.days + dayString + " old.";
+   else if ((age.years > 0) && (age.months > 0) && (age.days > 0))
         ageString = age.years + yearString + ", " + age.months + monthString + ", and " + age.days + dayString + " old.";
     else if ((age.years == 0) && (age.months == 0) && (age.days > 0))
         ageString = "Only " + age.days + dayString + " old!";
@@ -146,7 +147,8 @@ function getAge(dateString) {
         ageString = age.years + yearString + " and " + age.days + dayString + " old.";
     else if ((age.years == 0) && (age.months > 0) && (age.days == 0))
         ageString = age.months + monthString + " old.";
-    else ageString = "Oops! Could not calculate age!";
+   // else ageString = "Oops! Could not calculate age!";
+    else ageString = ""; //toastr.error("Error", "Can't be valid date.");
 
     return ageString;
 }
@@ -282,8 +284,6 @@ function BindState(Ele) {
     });
     $('#' + Ele).trigger("chosen:updated");
 }
-
-
 function BindDistrict(Ele, Sel) {
     
     $('#' + Ele).empty();
@@ -313,7 +313,6 @@ function BindDistrict(Ele, Sel) {
     });
     $('#' + Ele).trigger("chosen:updated");
 }
-
 function BindBlock(Ele, Sel) {
     $('#' + Ele).empty();
     $('#' + Ele).prop("disabled", false);
@@ -389,7 +388,6 @@ function OnChangeBlock(Ele, Sel) {
     }
 }
 
-
 //function BindReferToList(ElementId, SelectedValue) {
 //    $('#' + ElementId).empty();
 //    //$('#' + ElementId).prop("disabled", false);
@@ -457,8 +455,6 @@ function BindddlOutListPop(ElementId, SelectedValue) {
     });
     $('#' + ElementId).trigger("chosen:updated");
 }
-
-
 
 function BindOrganization(ElementId, SelectedValue) {
     //console.log('select value-'+SelectedValue);
@@ -760,7 +756,6 @@ function BindTypeOfActivity(ElementId, ActivityID, SelectedValue) {
     $('#' + ElementId).trigger("chosen:updated");
 }
 
-
 function BindActivityProgressPic(FDid, TDid) {
     var FDv = $('#' + FDid).val();
     var TDv = $('#' + TDid).val();
@@ -790,7 +785,6 @@ function BindActivityProgressPic(FDid, TDid) {
     });
     
 }
-
 
 //function BindOrganization(ElementId, SelectedValue) {
 //    $('#' + ElementId).empty();
@@ -860,8 +854,6 @@ function BindActivityProgressPic(FDid, TDid) {
 //    $('#' + ElementId).trigger("chosen:updated");
 //}
 
-
-
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -887,3 +879,168 @@ function printDiv(elem) {
     mywindow.close();
     return true;
 }
+
+/* -------------------------------------------- Bind DDL Code -------------------------------*/
+function GetDistrict(Ele, Sel) {
+
+    $('#' + Ele).empty();
+    $('#' + Ele).prop("disabled", false);
+    $('#' + Ele).append($("<option>").val('').text('Select'));
+    $.ajax({
+        url: document.baseURI + "/Master/GetDistList",
+        type: "Post",
+        data: '',//JSON.stringify({ '': Sel }),
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.IsSuccess) {
+                var data = JSON.parse(resp.res);
+                $.each(data, function (i, exp) {
+                    $('#' + Ele).append($("<option>").val(exp.Value).text(exp.Text));
+                });
+            }
+        },
+        error: function (req, error) {
+            if (error === 'error') { error = req.statusText; }
+            var errormsg = 'There was a communication error: ' + error;
+            //Do To Message display
+        }
+    });
+    $('#' + Ele).trigger("chosen:updated");
+}
+function GetBlock(Ele, Sel,Para1) {
+    $('#' + Ele).empty();
+    $('#' + Ele).prop("disabled", false);
+    $('#' + Ele).append($("<option>").val('').text('Select'));
+    $.ajax({
+        url: document.baseURI + "/Master/GetBlckList",
+        type: "Post",
+        data: JSON.stringify({ 'DistrictId': Para1 }),
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.IsSuccess) {
+                var data = JSON.parse(resp.res);
+                $.each(data, function (i, exp) {
+                    $('#' + Ele).append($("<option>").val(exp.Value).text(exp.Text));
+                });
+            }
+        },
+        error: function (req, error) {
+            if (error === 'error') { error = req.statusText; }
+            var errormsg = 'There was a communication error: ' + error;
+            //Do To Message display
+        }
+    });
+    $('#' + Ele).trigger("chosen:updated");
+}
+function GetPanchayat(Ele, Sel,Para1,Para2) {
+    $('#' + Ele).empty();
+    $('#' + Ele).prop("disabled", false);
+    $('#' + Ele).append($("<option>").val('').text('Select'));
+    $.ajax({
+        url: document.baseURI + "/Master/GetPanchayatList",
+        type: "Post",
+        data: JSON.stringify({ 'DistrictId': Para1, 'BlockId': Para2 }),
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.IsSuccess) {
+                var data = JSON.parse(resp.res);
+                $.each(data, function (i, exp) {
+                    $('#' + Ele).append($("<option>").val(exp.Value).text(exp.Text));
+                });
+            }
+        },
+        error: function (req, error) {
+            if (error === 'error') { error = req.statusText; }
+            var errormsg = 'There was a communication error: ' + error;
+            //Do To Message display
+        }
+    });
+    $('#' + Ele).trigger("chosen:updated");
+}
+function GetVillage(Ele, Sel, Para1, Para2, Para3) {
+    $('#' + Ele).empty();
+    $('#' + Ele).prop("disabled", false);
+    $('#' + Ele).append($("<option>").val('').text('Select'));
+    $.ajax({
+        url: document.baseURI + "/Master/GetVillageList",
+        type: "Post",
+        data: JSON.stringify({ 'DistrictId': Para1, 'BlockId': Para2, 'PanchayatId': Para3 }),
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.IsSuccess) {
+                var data = JSON.parse(resp.res);
+                $.each(data, function (i, exp) {
+                    $('#' + Ele).append($("<option>").val(exp.Value).text(exp.Text));
+                });
+            }
+        },
+        error: function (req, error) {
+            if (error === 'error') { error = req.statusText; }
+            var errormsg = 'There was a communication error: ' + error;
+            //Do To Message display
+        }
+    });
+    $('#' + Ele).trigger("chosen:updated");
+}
+
+function GetSchool(Ele, Sel, Para1, Para2) {
+    $('#' + Ele).empty();
+    $('#' + Ele).prop("disabled", false);
+    $('#' + Ele).append($("<option>").val('').text('Select'));
+    $.ajax({
+        url: document.baseURI + "/Master/GetSchoolList",
+        type: "Post",
+        data: JSON.stringify({ 'DistrictId': Para1, 'BlockId': Para2 }),
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.IsSuccess) {
+                var data = JSON.parse(resp.res);
+                $.each(data, function (i, exp) {
+                    $('#' + Ele).append($("<option>").val(exp.Value).text(exp.Text));
+                });
+            }
+        },
+        error: function (req, error) {
+            if (error === 'error') { error = req.statusText; }
+            var errormsg = 'There was a communication error: ' + error;
+            //Do To Message display
+        }
+    });
+    $('#' + Ele).trigger("chosen:updated");
+}
+
+function OnChagDistricts(Ele, Sel) {
+    if (Sel != 'undefined') {
+        var d = Ele;
+        GetBlock(Ele, '', Sel);
+    }
+}
+function OnChagBlocks(Ele, Sel, Para1,Para2) {
+    if (Sel != 'undefined') {
+        var d = Ele;
+        GetPanchayat(Ele, '', Para1, Para2);
+        
+    }
+}
+function OnChagPanchayats(Ele, Sel, Para1, Para2,Para3) {
+    if (Sel != 'undefined') {
+        var d = Ele;
+        GetVillage(Ele, '', Para1, Para2,Para3);
+    }
+}
+

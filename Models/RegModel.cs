@@ -19,6 +19,7 @@ namespace UmangMicro.Models
         }
         public RegModel(string name) { }
         public int ID { get; set; }
+        public string CaseID { get; set; }
         public string UseraspID { get; set; }
         [Required]
         [Display(Name="Registration Date")]
@@ -32,54 +33,63 @@ namespace UmangMicro.Models
         //[StringLength(100, MinimumLength = 3)]
          [Required]
         public string MotherName { get; set; }
-       // [Required]
-        public Nullable<int> StateId { get; set; }
+        public string StateId { get; set; }
         [Required]
-        public Nullable<int> DistrictId { get; set; }
+        public string DistrictId { get; set; }
         [Required]
-        public Nullable<int> BlockId { get; set; }
+        public string BlockId { get; set; }
         [Required]
-        public Nullable<int> ClusterId { get; set; }
+        public string PanchayatId { get; set; }
          [Required]
-        //[StringLength(100, MinimumLength = 3)]
-        public string Village { get; set; }
-        //[Required]
-        public string CaseID { get; set; }
+        public string VillageId { get; set; }
+        [Display(Name = "Village Other")]
+        public string VillageOther { get; set; }
         [Required]
-        public string Visited { get; set; }
+        [Display(Name = "School Name")]
+        public string SchoolId { get; set; }
+        [Required]
+        [Display(Name = "Sex")]
+        public string Sex { get; set; }
+        [Display(Name = "Social Category")]
+        [Required]
+        public string Cast { get; set; }
         [Required]
         public Nullable<System.DateTime> DOB { get; set; }
-       [Required]
+        [Required]
         public string Age { get; set; }
-         [Required]
+         //[Required]
         //[Range(Int32.MinValue, 10)]
         //[Range(3000, 10000000, ErrorMessage = "Salary must be between 3000 and 10000000")]
         public string MobileNo { get; set; }
-         [Required]
-        public int IsSkillTraining { get; set; }
-        [Required]
-        public int IsMarriage { get; set; }
-        [Required]
-        public int IsStudy { get; set; }
-        [Required]
-        public string SocialClass { get; set; }
-        [Required]
-        public string TillStudied { get; set; }
-        [Required]
-        public int IsWork { get; set; }
-        [Required]
-        public string Reason { get; set; }
-        [Required]
-        public int IsPsychometric { get; set; }
-        //[RequiredIf("IsPsychometric", true, ErrorMessageResourceName = "PsyYes_Result")]
-        public string PsyYes_Result { get; set; }
-        [Required]
-        public string Advice { get; set; }
-        [Required]
-        public Nullable<int> IsFollowUp { get; set; }
-        public bool IsFollowUpCheck { get; set; }
-        //[RequiredIf("IsFollowUpCheck", true, ErrorMessageResourceName = "FollowUp")]
-        public string FollowUp { get; set; }
+        
+        //[Required]
+        //public string Visited { get; set; }
+        
+        //[Required]
+        //public int IsSkillTraining { get; set; }
+        //[Required]
+        //public int IsMarriage { get; set; }
+        //[Required]
+        //public int IsStudy { get; set; }
+        //[Required]
+        //public string SocialClass { get; set; }
+        //[Required]
+        //public string TillStudied { get; set; }
+        //[Required]
+        //public int IsWork { get; set; }
+        //[Required]
+        //public string Reason { get; set; }
+        //[Required]
+        //public int IsPsychometric { get; set; }
+        ////[RequiredIf("IsPsychometric", true, ErrorMessageResourceName = "PsyYes_Result")]
+        //public string PsyYes_Result { get; set; }
+        //[Required]
+        //public string Advice { get; set; }
+        //[Required]
+        //public Nullable<int> IsFollowUp { get; set; }
+        //public bool IsFollowUpCheck { get; set; }
+        ////[RequiredIf("IsFollowUpCheck", true, ErrorMessageResourceName = "FollowUp")]
+        //public string FollowUp { get; set; }
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDt { get; set; }
@@ -112,7 +122,7 @@ namespace UmangMicro.Models
                 String CN = String.Empty;
                 if (LanguangeType == 1)
                 {
-                    CN = "Father Name";
+                    CN = "Father's Name";
                 }
                 else
                 {
@@ -128,7 +138,7 @@ namespace UmangMicro.Models
                 String CN = String.Empty;
                 if (LanguangeType == 1)
                 {
-                    CN = "Mother Name";
+                    CN = "Mother's Name";
                 }
                 else
                 {
@@ -192,11 +202,11 @@ namespace UmangMicro.Models
                 String CN = String.Empty;
                 if (LanguangeType == 1)
                 {
-                    CN = "Cluster";
+                    CN = "Panchayat";
                 }
                 else
                 {
-                    CN = "समूह का नाम";
+                    CN = "पंचायत";
                 }
                 return CN;
             }

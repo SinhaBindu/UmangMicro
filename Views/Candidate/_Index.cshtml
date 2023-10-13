@@ -1,6 +1,7 @@
 ﻿@*@model IEnumerable<KGBV_JH.Models.tbl_HR>*@
 @using System.Data
 @using UmangMicro.Models
+@using UmangMicro.Manager
 @{
     UM_DBEntities db = new UM_DBEntities();
     DataTable dt = new DataTable();
@@ -32,14 +33,15 @@
                         <th class="text-center">Name</th>
                         <th class="text-center">Mother Name</th>
                         <th class="text-center">Father Name</th>
+                        <th class="text-center">School</th>
                         <th class="text-center">District</th>
                         <th class="text-center">Block</th>
-                        <th class="text-center">Cluster</th>
+                        <th class="text-center">Panchayat</th>
                         <th class="text-center">Village</th>
-                        <th class="text-center">Visited</th>
                         <th class="text-center">DOB</th>
                         <th class="text-center">Age</th>
-                        <th class="text-center">Mobile No</th>
+                        <th class="text-center">Social <br /> Category</th>
+                        <th class="text-center">Sex</th>
                         <th class="text-center">Modify</th>
                         @*<th class="text-center">Reported Date</th>*@
                         @*@if (!IsViewer) {<th class="text-center">Modify</th>}*@
@@ -53,6 +55,7 @@
                             var sno = 1;
                             foreach (DataRow dr in dt.Rows)
                             {
+                                var cast = CommonModel.GetCastType()?.FirstOrDefault(x => x.Value.ToLower() == dr["Cast"].ToString().ToLower()).Text;
                                 <tr>
                                     <td class="text-center">@(sno++)</td>
                                     <td class="text-center">@dr["RegDate"]</td>
@@ -62,14 +65,15 @@
                                     <td class="text-left">@dr["Name"]</td>
                                     <td class="text-left">@dr["MotherName"]</td>
                                     <td class="text-left">@dr["FatherName"]</td>
+                                    <td class="text-left">@dr["school_name"]</td>
                                     <td class="text-left">@dr["DistName"]</td>
                                     <td class="text-left">@dr["BlockName"]</td>
                                     <td class="text-left">@dr["ClusterName"]</td>
                                     <td class="text-left">@dr["Village"]</td>
-                                    <td class="text-left">@dr["Visited"]</td>
-                                    <td class="text-left">@dr["DOB"]</td>
+                                    <td class="text-center">@dr["DOB"]</td>
                                     <td class="text-left">@dr["Age"]</td>
-                                    <td class="text-left">@dr["MobileNo"]</td>
+                                    <td class="text-center">@cast</td>
+                                    <td class="text-center">@dr["Sex"]</td>
                                     <td class="text-center">
                                         <a title="Edit" href="~/Candidate/Reg?LangType=1&&Id=@dr["ID"]" class="btn btn-info btn-sm">Edit <i class="fa fa-edit"></i></a>
                                     </td>

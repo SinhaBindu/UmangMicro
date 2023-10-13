@@ -17,12 +17,9 @@
     </div>
 </div>
 
-
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
-   
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -33,56 +30,76 @@
                 window.location.href = url + '?LangType='+$(this).val();
                 });
 
-                BindDistrict('DistrictId', 20);
+                GetDistrict('DistrictId');
                 $('#DistrictId').change(function () {
-                    OnChangeDistrict('BlockId', $('#DistrictId').val());
+                    OnChagDistricts('BlockId', $('#DistrictId').val());
                 });
                 $('#BlockId').change(function () {
-                    OnChangeBlock('ClusterId', $('#BlockId').val());
+                    OnChagBlocks('PanchayatId', '', $('#DistrictId').val(), $('#BlockId').val());
+                    GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                });
+                $('#PanchayatId').change(function () {
+                    OnChagPanchayats('VillageId', '', $('#DistrictId').val(), $('#BlockId').val(), $('#PanchayatId').val());
                 });
                 $('#DOB').change(function () {
                     $('#Age').val(getAge($(this).val()));
                 });
-                $('input[name=IsFollowUp]').click(function () {
-                    $('#FollowUp').val('');
-                    if ($(this).val() == "1") {
-                        $('#div-flwup').show();
-                    }
-                    else {
-                        $('#div-flwup').hide();
-                    }
+                $('#VillageId').change(function () {
+                    $('#VillageOther').val('');
+                        if ($(this).val() == "990099") {
+                            $('#div-villg').show();
+                            ('#VillageOther').attr('required', 'required');
+                         }
+                         else {
+                            $('#div-villg').hide();
+                            $('#VillageOther').removeAttr('required');
+                         }
                 });
-                $('input[name=IsPsychometric]').change(function () {
-                    $('#PsyYes_Result').val('');
-                    if ($(this).val() == "1") {
-                        $('#div-psyr').show();
-                    }
-                    else {
-                        $('#div-psyr').hide();
-                    }
-                });
+
+                //$('input[name=IsFollowUp]').click(function () {
+                //    $('#FollowUp').val('');
+                //    if ($(this).val() == "1") {
+                //        $('#div-flwup').show();
+                //    }
+                //    else {
+                //        $('#div-flwup').hide();
+                //    }
+                //});
+                //$('input[name=IsPsychometric]').change(function () {
+                //    $('#PsyYes_Result').val('');
+                //    if ($(this).val() == "1") {
+                //        $('#div-psyr').show();
+                //    }
+                //    else {
+                //        $('#div-psyr').hide();
+                //    }
+                //});
 
                 if ('@Model.ID' != '0' && '@Model.ID' != '') {
                     $('#DistrictId').val('@Model.DistrictId');
-                        OnChangeDistrict('BlockId', '@Model.DistrictId');
-                        $('#BlockId').val('@Model.BlockId');
-                        OnChangeBlock('ClusterId', '@Model.BlockId');
-                    $('#ClusterId').val('@Model.ClusterId');
-                     $("#RegDate").val(moment('@Model.RegDate').format("DD-MMM-yyyy"));
-                     $("#DOB").val(moment('@Model.DOB').format("DD-MMM-yyyy"));
+                    OnChagDistricts('BlockId', '@Model.DistrictId');
+                    $('#BlockId').val('@Model.BlockId');
+                    OnChagBlocks('PanchayatId', '','@Model.DistrictId', '@Model.BlockId');
+                    $('#PanchayatId').val('@Model.PanchayatId');
+                    OnChagPanchayats('VillageId', '','@Model.DistrictId', '@Model.BlockId', '@Model.PanchayatId');
+                    $('#VillageId').val('@Model.VillageId');
+                    GetSchool('SchoolId', '', '@Model.DistrictId', '@Model.BlockId');
+                    $('#SchoolId').val('@Model.SchoolId');
+                    $("#RegDate").val(moment('@Model.RegDate').format("DD-MMM-yyyy"));
+                    $("#DOB").val(moment('@Model.DOB').format("DD-MMM-yyyy"));
                     //$("#DOB").val('@Model.DOB').toISOString().split('T')[0];
-                    if ($('input[name=IsPsychometric]:checked').val()=="1") {
-                        $('#div-psyr').show();
-                    }
-                    else {
-                        $('#div-psyr').hide();
-                    }
-                    if ($('input[name=IsFollowUp]:checked').val() == "1") {
-                        $('#div-flwup').show();
-                    }
-                    else {
-                        $('#div-flwup').hide();
-                    }
+                    //if ($('input[name=IsPsychometric]:checked').val()=="1") {
+                    //    $('#div-psyr').show();
+                    //}
+                    //else {
+                    //    $('#div-psyr').hide();
+                    //}
+                    //if ($('input[name=IsFollowUp]:checked').val() == "1") {
+                    //    $('#div-flwup').show();
+                    //}
+                    //else {
+                    //    $('#div-flwup').hide();
+                    //}
             };
 
             //$('#submit').click(function (e) {
@@ -167,9 +184,12 @@
                             toastr.success("Success", resp.Message);
                             if (resp.Data == 1) {
                                 var url = '@Url.Action("Login", "Account")';
-                                 window.location.href = url;
+                                window.location.href = url;
                             }
                             jQuery.event.trigger("ajaxStop");
+                        }
+                        else {
+                            toastr.error("Error", resp.Message);
                         }
                     },
                     error: function (req, error) {
@@ -192,9 +212,7 @@
 
         });
 
-
-
-              //type: 'POST',
+         //type: 'POST',
              //contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
             //processData: false, // NEEDED, DON'T OMIT THIS
            //Other options like success and etc
@@ -230,7 +248,6 @@
             //        //$('#global-loader').css('background', 'transparent').css('display', 'none');
             //    }
             //});
-
 
     </script>
 

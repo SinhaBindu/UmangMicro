@@ -20,27 +20,18 @@ namespace UmangMicro.Models
         public string Name { get; set; }
         public string MotherName { get; set; }
         public string FatherName { get; set; }
-        public Nullable<int> StateId { get; set; }
-        public Nullable<int> DistrictId { get; set; }
-        public Nullable<int> BlockId { get; set; }
-        public Nullable<int> ClusterId { get; set; }
-        public string Village { get; set; }
-        public string Visited { get; set; }
+        public string Sex { get; set; }
+        public string Cast { get; set; }
+        public string SchoolId { get; set; }
+        public string StateId { get; set; }
+        public string DistrictId { get; set; }
+        public string BlockId { get; set; }
+        public string PanchayatId { get; set; }
+        public string VillageId { get; set; }
+        public string VillageOther { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string Age { get; set; }
         public string MobileNo { get; set; }
-        public Nullable<int> IsSkillTraining { get; set; }
-        public Nullable<int> IsMarriage { get; set; }
-        public Nullable<int> IsStudy { get; set; }
-        public string SocialClass { get; set; }
-        public string TillStudied { get; set; }
-        public Nullable<int> IsWork { get; set; }
-        public string Reason { get; set; }
-        public Nullable<int> IsPsychometric { get; set; }
-        public string PsyYes_Result { get; set; }
-        public string Advice { get; set; }
-        public Nullable<int> IsFollowUp { get; set; }
-        public string FollowUp { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDt { get; set; }

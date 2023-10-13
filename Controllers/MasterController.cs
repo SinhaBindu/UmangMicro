@@ -242,6 +242,93 @@ namespace UmangMicro.Controllers
             }
         }
 
+        #region
+        public ActionResult GetDistList()
+        {
+            try
+            {
+                var items = SP_Model.GetSP_DistrictList();
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetBlckList(string DistrictId)
+        {
+            try
+            {
+                var items = SP_Model.GetSP_BlockList(DistrictId);
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetPanchayatList(string DistrictId, string BlockId)
+        {
+            try
+            {
+                var items = SP_Model.GetSP_PanchayatList(DistrictId, BlockId);
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetVillageList(string DistrictId, string BlockId,string PanchayatId)
+        {
+            try
+            {
+                var items = SP_Model.GetSP_VillageList(DistrictId, BlockId, PanchayatId);
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetSchoolList(string DistrictId, string BlockId)
+        {
+            try
+            {
+                var items = SP_Model.GetSP_SchoolList(DistrictId, BlockId);
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
         // GET: Master
         public ActionResult UserDetaillist()
         {
