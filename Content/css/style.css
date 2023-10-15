@@ -631,27 +631,27 @@ img {
 }
 
 .imfluence-plus-1 {
-    top: 22px;
-    right: 155px;
+    top: 21px;
+    right: 170px;
 }
 
 .imfluence-plus-2 {
-    top: 12px;
-    right: 145px;
+    top: 28px;
+    right: 138px;
 }
 
 .imfluence-plus-3 {
-    top: 22px;
-    left: 85px;
+    top: 32px;
+    left: 87px;
 }
 
 .imfluence-plus-4 {
-    top: 26px;
+    top: 32px;
     right: 42px;
 }
 
 .imfluence-plus-5 {
-    top: 51px;
+    top: 35px;
     left: -5px;
 }
 
@@ -777,7 +777,7 @@ img {
 }
 
 .umang-design {
-    padding: 60px 20px;
+    padding: 40px 20px;
     margin: auto;
     max-width: 1200px;
 }
@@ -799,20 +799,23 @@ img {
 
 .umang-design h2 {
     text-align: center;
-    font-size: 45px;
+    font-size: 40px;
     margin-bottom: 20px;
-    color: #222
+    color: #00AEC4
 }
 
 .umang-design h3 {
-    margin-bottom: 30px;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #00AEC4;
 }
 
 .umang-design p {
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
-    line-height: 28px;
-    color: #000;
+    line-height: 25px;
+    color: #838282;
     margin-bottom: 16px;
 }
 
@@ -926,8 +929,8 @@ img {
 }
 
 .umang-steps {
-    background: #FFFCF6;
-    padding: 70px 20px;
+    background: #FEFFF1;
+    padding: 10px 20px 40px;
     color: #fff;
 }
 
@@ -949,20 +952,18 @@ img {
     display: flex;
     gap: 20px;
 }
-
 .stage-process h4 {
-    font-size: 33px;
+    font-size: 29px;
     margin-bottom: 30px;
-    color: #222;
+    color: #5B2C54;
     text-align: center;
-    font-weight: bold;
 }
 
 .stage-process h5 {
     color: #838282;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: normal;
-    line-height: 27px;
+    line-height: 25px;
     text-align: center;
 }
 
@@ -992,8 +993,9 @@ img {
     width: 100%;
     text-align: center;
     padding: 20px 10px 15px;
-    border-radius: 8px;
+    border-radius: 8px;    
 }
+    
 .selected {
     background: #fff;
 }
@@ -1002,39 +1004,48 @@ img {
         font-weight: bold;
     }
 
-    .step1 img, .step2 img, .step3 img, .step4 img, .step5 img {
-        width: 95px;
-        margin: auto;
-    }
-
+.step1 img, .step2 img, .step3 img, .step4 img, .step5 img {
+    width: 95px;
+    margin: auto;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+.step1:hover img {
+    transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05); /* IE 9 */
+}
 .umang-relation {
     display: flex;
     position: relative;
-    margin-top: 60px;
-    border-radius: 20px;
+    margin-top: 20px;
     gap: 80px;
     align-items: center
 }
 
 .mother-daughter {
-    flex: 3;
+    flex: 2;
 }
 
 .umang-relation-point {
     flex: 2;
 }
 
-.mother-daughter img {
+/*.mother-daughter img {
     border-radius: 20px;
-}
+}*/
 
 .umang-relation-point p {
     padding: 5px 0px;
     margin: 12px 0 12px;
     color: #000;
     text-align: left;
-    font-size: 20px;
-    line-height: 31px
+    font-size: 17px;
+    line-height: 27px
 }
 
 .umang-relation-point ul {
@@ -1562,11 +1573,10 @@ img {
 
 .intervention-info {
     /*background: #FEFEFC;*/
-    margin: auto;
+    /*margin: auto;*/
     /*margin-top: 50px;*/
     /*max-width: 1200px;*/
-    padding: 60px 0px 80px;
-    border-radius: 0 0 10px 10px;
+    padding: 20px 0px 20px;
     /*height: 750px;*/
 }
 
@@ -1586,7 +1596,7 @@ img {
     -webkit-overflow-scrolling: touch;
     position: relative;
     padding-bottom: 20px;
-    margin-top: 40px;
+    margin-top: 0px;
 }
 
     .div-block::-webkit-scrollbar {
@@ -1643,19 +1653,18 @@ img {
 }
 
 .intervention-info h2 {
-    font-size: 33px;
+    font-size: 29px;
     margin-bottom: 15px;
-    color: #222;
+    color: #5B2C54;
     font-weight: 600
 }
 
 .intervention-info h3 {
-    font-size: 21px;
-    font-style: italic;
-    margin-bottom: 45px;
+    font-size: 15px;
+    margin-bottom: 25px;
     font-weight: normal;
-    color: #222222;
-    line-height: 31px;
+    color: #838282;
+    line-height: 25px;
 }
 
 .div-block p {
@@ -1663,7 +1672,11 @@ img {
     font-weight: bold;
     font-size: 15px;
 }
-
+.div-block .info-graph1 p {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 14px !important;
+}
     .div-block p span {
         font-weight: normal;
         font-style: italic;
@@ -1673,32 +1686,32 @@ img {
     text-align: center;
     cursor: pointer;
     margin: auto;
-    width: 200px;
-    height: 201px;
+    width: 140px;
+    height: 141px;
     background-image: url('../images/influence/info-1.png');
-    margin-top: -200px;
+    margin-top: -140px;
     position: relative;
     z-index: 11;
 }
 
     .info-graph1 p {
-        padding-top: 80px;
+        padding-top: 40px;
     }
 
 .info-graph2 {
     text-align: center;
     cursor: pointer;
     margin: auto;
-    width: 330px;
-    height: 291px;
+    width: 250px;
+    height: 220px;
     background-image: url('../images/influence/info-2.png');
-    margin-top: -293px;
+    margin-top: -223px;
     position: relative;
     z-index: 11;
 }
 
     .info-graph2 p {
-        padding-top: 30px;
+        padding-top: 37px;
     }
 
 .g2 p {
@@ -1709,16 +1722,16 @@ img {
     text-align: center;
     cursor: pointer;
     margin: auto;
-    width: 440px;
-    height: 405px;
+    width: 340px;
+    height: 313px;
     background-image: url('../images/influence/info-3.png');
-    margin-top: -404px;
+    margin-top: -312px;
     position: relative;
     z-index: 11;
 }
 
     .info-graph3 p {
-        padding-top: 17px;
+        padding-top: 35px;
     }
 
 .g3 p {
@@ -1729,10 +1742,10 @@ img {
     text-align: center;
     cursor: pointer;
     margin: auto;
-    width: 550px;
-    height: 494px;
+    width: 430px;
+    height: 387px;
     background-image: url('../images/influence/info-4.png');
-    margin-top: -495px;
+    margin-top: -389px;
     position: relative;
     z-index: 11;
 }
@@ -1749,15 +1762,15 @@ img {
     text-align: center;
     cursor: pointer;
     margin: auto;
-    width: 650px;
-    height: 586px;
+    width: 500px;
+    height: 451px;
     background-image: url('../images/influence/info-5.png');
     position: relative;
     z-index: 11;
 }
 
     .info-graph5 p {
-        padding-top: 25px;
+        padding-top: 22px;
     }
 
 .g5 p {
@@ -1843,37 +1856,37 @@ img {
 
 .arrow-right-5 {
     position: absolute;
-    width: 270px;
-    left: -270px;
-    top: 30px;
+    width: 220px;
+    left: -230px;
+    top: 15px;
 }
 
 .arrow-right-4 {
     position: absolute;
-    width: 270px;
-    left: -265px;
-    top: 15px;
+    width: 220px;
+    left: -245px;
+    top: 22px;
 }
 
 .arrow-left-3 {
     position: absolute;
-    width: 270px;
-    right: -262px;
-    top: 15px;
+    width: 220px;
+    right: -242px;
+    top: 12px;
 }
 
 .arrow-right-2 {
     position: absolute;
-    width: 270px;
-    left: -270px;
-    top: 16px;
+    width: 220px;
+    left: -240px;
+    top: 14px;
 }
 
 .arrow-left-1 {
     position: absolute;
-    width: 270px;
-    right: -265px;
-    top: 16px;
+    width: 220px;
+    right: -235px;
+    top: 13px;
 }
 
 .block-fixed-5 {
@@ -1891,7 +1904,7 @@ img {
 }
 
 .block-fixed-4 {
-    top: 100px;
+    top: 70px;
     right: 10px;
 }
 
@@ -1905,7 +1918,7 @@ img {
 }
 
 .block-fixed-3 {
-    top: 190px;
+    top: 160px;
     left: 5px;
 }
 
@@ -1919,7 +1932,7 @@ img {
 }
 
 .block-fixed-2 {
-    top: 310px;
+    top: 250px;
     right: 5px;
 }
 
@@ -1933,7 +1946,7 @@ img {
 }
 
 .block-fixed-1 {
-    top: 420px;
+    top: 330px;
     left: 20px;
 }
 
@@ -2046,7 +2059,7 @@ img {
     max-width: 1200px;
 }
 
-    .district-block h3, .umang-design h3 {
+    .district-block h3 {
         text-align: center;
         font-size: 32px;
         color: #0A5B66;
@@ -2096,7 +2109,9 @@ img {
 .img-box {
     overflow: hidden;
 }
-
+.primary-bgss {
+    background: #FEFFF1
+}
 .pilot-1:hover, .pilot-2:hover {
     transform: scale(1.05);
     -moz-transform: scale(1.05);
@@ -2108,15 +2123,15 @@ img {
 .design-graph {
     margin: auto;
     max-width: 1200px;
-    padding: 50px 0px 40px;
-    background: #fff;
-    border-radius: 10px 10px 0 0;
+    padding: 1px 0px 10px;
+    background: #FEFFF1;
+    /*border-radius: 10px 10px 0 0;*/
 }
 
     .design-graph h2 {
         text-align: center;
-        color: #000;
-        font-size: 32px;
+        color: #5B2C54;
+        font-size: 29px;
         margin-bottom: 30px;
     }
 
@@ -2755,11 +2770,11 @@ img {
     }
 
 .influence-bg {
-    background: #FEFEFC !important;
+    background: #FEFFF1 !important;
 }
 
 .intervention-back {
-    background: #FEFEFC !important;
+    background: #FEFFF1 !important;
     /*height: 960px;*/
 }
 
@@ -2768,7 +2783,7 @@ img {
     }
 
     .intervention-back h3 {
-        color: #222 !important;
+        color: #838282 !important;
     }
 
 .landing-message {
@@ -3551,9 +3566,9 @@ img {
 
 .influence-round {
     position: relative;
-    width: 635px;
-    height: 600px;
-    margin: auto;
+    width: 500.15px;
+    height: 500.15px;
+    /*margin: auto;*/
 }
 
 .round-1, .round-2, .round-3, .round-4, .round-5, .round-6 {
@@ -3561,39 +3576,40 @@ img {
 }
 
 .round-1 {
-    width: 310.55px;
+    width: 244.62px;
     margin-left: 170px;
 }
 
 .round-2 {
-    width: 173px;
-    margin: -78px 0 0 55px;
+    width: 136.59px;
+    margin: -65px 0 0 80px;
 }
 
 .round-3 {
-    width: 254px;
-    margin: -15px 0 0 66px;
+    width: 200.22px;
+    margin: -13px 0 0 90px;
 }
 
 .round-4 {
-    width: 266px;
-    margin: -167px 0 0 314px;
+    width: 209.57px;
+    margin: -133px 0 0 285px;
 }
 
 .round-5 {
-    width: 158px;
-    margin: -367px 0 0 525px;
+    width: 124.92px;
+    margin: -291px 0 0 450px;
 }
 
 .round-6 {
-    width: 200px;
-    margin: -483px 0 0 476px;
+    width: 160.75px;
+    margin: -383px 0 0 410px;
 }
 
 .influence-round p {
     padding: 0px 22px 6px 22px;
     font-size: 14px;
     text-align: center;
+    line-height: 21px
 }
 
 .influence-round h3 {
@@ -3603,7 +3619,8 @@ img {
     padding: 40px 47px 0;
     line-height: 26px;
     margin-bottom: 10px;
-    font-weight: bold
+    font-weight: bold;
+    color: #5B2C54
 }
 
 .fa-circle {
@@ -3614,12 +3631,12 @@ img {
 .round-content, .round-1-content, .round-2-content, .round-3-content, .round-4-content, .round-5-content, .round-6-content {
     position: absolute;
     background: #F7F7F7;
-    height: 310px;
-    width: 310px;
+    height: 290px;
+    width: 290px;
     border-radius: 100%;
     z-index: 2;
-    top: 160px;
-    left: 213px;
+    top: 102px;
+    left: 183px;
     opacity: 0;
     visibility: hidden;
     border: 5px solid #fff;
