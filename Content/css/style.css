@@ -634,17 +634,25 @@ img {
     top: 21px;
     right: 170px;
 }
-
+.gp1 {
+    top: 16px;
+}
 .imfluence-plus-2 {
     top: 28px;
     right: 138px;
 }
-
+.gp2 {
+    top: 26px;
+    right: 130px;
+}
 .imfluence-plus-3 {
     top: 32px;
     left: 87px;
 }
-
+.gp3 {
+    top: 29px;
+    left: 65px;
+}
 .imfluence-plus-4 {
     top: 32px;
     right: 42px;
@@ -654,7 +662,9 @@ img {
     top: 35px;
     left: -5px;
 }
-
+.gp5 {
+    left: -10px;
+}
 .plus-icon, .minus-icon {
     position: relative;
     display: block;
@@ -1671,6 +1681,7 @@ img {
     margin: 0px;
     font-weight: bold;
     font-size: 15px;
+    line-height: 17px !important
 }
 .div-block .info-graph1 p {
     margin: 0px;
@@ -1680,6 +1691,7 @@ img {
     .div-block p span {
         font-weight: normal;
         font-style: italic;
+        font-size: 11px;        
     }
 
 .info-graph1 {
@@ -1696,6 +1708,7 @@ img {
 
     .info-graph1 p {
         padding-top: 40px;
+        /*color: #DBEFFF*/
     }
 
 .info-graph2 {
