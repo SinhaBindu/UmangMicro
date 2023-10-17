@@ -917,6 +917,7 @@
     <Content Include="Views\Home\CaseDetail.cshtml" />
     <Content Include="Views\Home\_CaseDetailView.cshtml" />
     <Content Include="Views\Home\KishoriHelpDesk.cshtml" />
+    <Content Include="Views\Home\CaseStudyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

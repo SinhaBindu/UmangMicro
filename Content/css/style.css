@@ -3000,7 +3000,7 @@ img {
     max-width: 1100px;
     padding: 30px 0 20px;
     display: flex;
-    gap: 50px;
+    gap: 30px;
     align-items: center
 }
 
@@ -3038,7 +3038,8 @@ img {
 }
 
     .quick-graphic img {
-        width: 60%;
+        width: 100%;
+        border-radius: 5px;
     }
 
 
@@ -4196,8 +4197,8 @@ img {
     margin-bottom: 10px
 }
 .log-boxes {
-    border: 12px solid #fff;
-    max-width: 900px;
+    border: 7px solid #fff;
+    max-width: 720px;
     margin: auto
 }
 .page-txt-banner {
@@ -4321,3 +4322,75 @@ img {
         background: #2C0B27;
         color: #fff;
     }
+.cs-list-bg {
+    background: #F1F1F1;
+    padding: 80px 20px;
+    margin: 0px;
+}
+    .cs-list-bg h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 34px;
+        color: #00B0C4
+    }
+    .cs-category-list {
+        margin: auto;
+        max-width: 1200px;
+        display: flex;
+        gap: 20px;
+    }
+    .cs-category-list a {
+        text-decoration: none;
+    }
+.cs-list {
+    transition: all 0.5s ease;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 3px -2px rgba(0,0,0,0.1), 0 3px 4px 0 rgba(0,0,0,0.14), 0 1px 8px 0 rgba(0,0,0,0.12);
+}
+.cs-list img {
+    border-radius: 5px 5px 0 0;
+}
+.box-gap {
+    padding: 12px 20px 20px;
+}
+.cs-list h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+.cs-list p {
+    color: #444;
+    margin-bottom: 20px;
+}
+.cs-list-link {
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+}
+.cs-list:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.cs-date {
+    font-size: 12px;
+    color: #888
+}
+.brick {
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+.img-zoomer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+.cs-list:hover .img-zoomer {
+    transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+}

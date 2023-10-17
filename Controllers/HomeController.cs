@@ -24,6 +24,11 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        public ActionResult CaseStudyList()
+        {
+            return View();
+        }
+
         public ActionResult KishoriHelpDesk()
         {
             return View();
