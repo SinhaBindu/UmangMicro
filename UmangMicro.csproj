@@ -584,6 +584,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\arrow-maroon.png" />
     <Content Include="Content\images\arrow-yellow.png" />
+    <Content Include="Content\images\case-study-icon.png" />
     <Content Include="Content\images\clf-icon.png" />
     <Content Include="Content\images\jharkhand-map.png" />
     <Content Include="Content\images\modules\umang-clf.png" />

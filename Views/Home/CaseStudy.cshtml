@@ -5,38 +5,98 @@
     DataTable dt = new DataTable();
 }
 
+<div class="page-txt-banner">
+    <img src="~/Content/images/case-study-icon.png" alt="case study icon" class="banner-icon" />
+    <h2>Case Studies</h2>
+</div>
 
-<section class="section" style="padding-top:5%;">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                @{
-                    if (Model != null)
-                    {
-                        dt = Model;
-                        //var grouped = from DataRow dr in dt.Rows orderby dr["Category"] group dr by dr["CategoryText"];
-                        foreach (DataRow dr in dt.Rows)
-                        {
-
-                            <div class="col-md-6">
-                                <a href="javascript:void(0)" onclick="return GetCaseList('@dr["Category"]')" style="padding:2%">
-                                    <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="Alternate Text" style="width:200px; height:100px;" />
-                                    <br />
-                                    <strong style="color: #337ab7;"> @dr["CategoryText"]</strong>
-                                </a>
-                            </div>
-                        }
-                    }
-                }
+<section class="case-section">
+    <div class="case-study-list">
+        <div class="case-study-box cs-bgr1">
+            <div class="cs-number"><span>3</span> Case Studies</div>
+            <div class="innovate-title">
+                <h4>Rising Star</h4>
             </div>
-            </div>
-            <div class="col-md-6" id="div-list">
-                <table id="tblid" cellpadding="1" cellspacing="1">
-                </table>
+            <div class="hide-case-studies">
+                <h3>Rising Star</h3>
+                <p>
+                    For imparting knowledge, skills and confidence among SHG
+                    members, Umang team designed 21 modular sessions for SHGs covering topics such as
+                    ill-effects of child marriage, importance of girls’ education, child rights and
+                    entitlements, mother-daughter communication, etc.
+                </p>
+                <a href="#" class="cs-btn">View All</a>
             </div>
         </div>
+        <div class="case-study-box cs-bgr2">
+            <div class="cs-number"><span>12</span> Case Studies</div>
+            <div class="innovate-title">
+                <h4>Change Maker</h4>
+            </div>
+            <div class="hide-case-studies">
+                <h3>Change Maker</h3>
+                <p>
+                    For imparting knowledge, skills and confidence among SHG
+                    members, Umang team designed 21 modular sessions for SHGs covering topics such as
+                    ill-effects of child marriage, importance of girls’ education, child rights and
+                    entitlements, mother-daughter communication, etc.
+                </p>
+                <a href="#" class="cs-btn">View All</a>
+            </div>
+        </div>
+        <div class="case-study-box cs-bgr3">
+            <div class="cs-number"><span>5</span> Case Studies</div>
+            <div class="innovate-title">
+                <h4>Change Maker</h4>
+            </div>
+            <div class="hide-case-studies">
+                <h3>Change Maker</h3>
+                <p>
+                    For imparting knowledge, skills and confidence among SHG
+                    members, Umang team designed 21 modular sessions for SHGs covering topics such as
+                    ill-effects of child marriage, importance of girls’ education, child rights and
+                    entitlements, mother-daughter communication, etc.
+                </p>
+                <a href="#" class="cs-btn">View All</a>
+            </div>
+        </div>
+        <div class="case-study-box cs-bgr4">
+            <div class="cs-number"><span>8</span> Case Studies</div>
+            <div class="innovate-title">
+                <h4>Change Maker</h4>
+            </div>
+            <div class="hide-case-studies">
+                <h3>Rising Star</h3>
+                <p>
+                    For imparting knowledge, skills and confidence among SHG
+                    members, Umang team designed 21 modular sessions for SHGs covering topics such as
+                    ill-effects of child marriage, importance of girls’ education, child rights and
+                    entitlements, mother-daughter communication, etc.
+                </p>
+                <a href="#" class="cs-btn">View All</a>
+            </div>
+        </div>
+        @*@{
+            if (Model != null)
+            {
+                dt = Model;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    <div class="case-study-box">
+                        <a href="javascript:void(0)" onclick="return GetCaseList('@dr["Category"]')">
+                            <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="Alternate Text" />
+                            <strong> @dr["CategoryText"]</strong>
+                        </a>
+                    </div>
+                }
+            }
+        }*@
+    </div>
+    @*<div id="div-list">
+            <table id="tblid" cellpadding="1" cellspacing="1">
+            </table>
+        </div>*@
 </section>
-
 
 @Scripts.Render("~/bundles/jqueryval")
 
