@@ -10,6 +10,63 @@
 <h2 style="height:200px"></h2>
 <section class="section">
     <div class="row">
-        @Html.Partial("_CaseDetailView")
+        @*@Html.Partial("_CaseDetailView")*@
+        <div id="subdata"></div>
     </div>
 </section>
+
+
+
+<script type="text/javascript">
+    var reslist = [];
+    $(document).ready(function () {
+      $.ajax({
+        url: '@Url.Action("CaseDetaildata", "Home")',
+        data: { Id:'@ViewBag.Id',AN:'@ViewBag.AN'  },
+        type: 'POST',
+        success: function (data) {
+            $("#subdata").html(data);
+          }
+      });
+    
+    });
+    @*function GetCaseList(CategId) {
+        $('#tblid').html("");
+        if (CategId) {
+            $.ajax({
+                type: "post",
+                url: document.baseURI + "/Home/CaseDetail",
+                data: { CategId: CategId },
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.StatusType == "success") {
+                        var rlist = JSON.parse(resp.Data);
+                        var strhtml = $("#tblid");
+                        $('#tblid').append("<tr><th colspan='2' class='text-center' style='color: #337ab7;'>" + rlist[0].CategoryText +"</th></tr><tr style='border-bottom: 1px solid #000;'><th>Date</th><th>Subject</th></tr>");
+                        for (var i = 0; i < rlist.length; i++) {
+                            var stroncl =  "?Id="+ rlist[i].ID;
+                            var url = '@Url.Action("CaseDetail", "Home")';
+                              //onclick=\"return GetCaseview(" + rlist[i].ID + ",'" + rlist[i].CategoryText +"');\"
+                            $('#tblid').append("<tr style='border-bottom: 1px solid #000;'><td> " +
+                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank' style='text-decoration: none;'> <strong>" + rlist[i].MY +" </strong></a>"+
+                                "</td><td>"+
+                                "<a href='" + document.baseURI + url + stroncl + "' target='_blank' style='text-decoration: none;'>"+ rlist[i].Subject + "</a>" +
+                                "</td></tr>");
+                        }
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    //$('#msg').css('display', 'block'); $('#msg').focus();
+                    //$('#msg').html(errormsg);
+                   // $('#msg').css('color', '#FF0000');
+                   // $('#Name').focus();
+                    return false;
+                }
+            });
+        }
+
+    }*@
+
+</script>

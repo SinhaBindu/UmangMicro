@@ -218,8 +218,14 @@ namespace UmangMicro.Controllers
                 return resResponse1;
             }
         }
-       // [ActionName("{AN}")]
-        public ActionResult CaseDetail(int Id=0,string AN="")
+        // [ActionName("{AN}")]
+        public ActionResult CaseDetail(int Id = 0, string AN = "")
+        {
+            ViewBag.Id=Id; ViewBag.AN=AN;   
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CaseDetaildata(int Id = 0, string AN = "")
         {
             DataSet ds = SP_Model.GetSP_MicroCaseList(3, Id);
             DataTable dt = new DataTable();
@@ -227,7 +233,7 @@ namespace UmangMicro.Controllers
             {
                 dt = ds.Tables[0];
             }
-            return PartialView("_CaseDetailView",dt);
+            return PartialView("_CaseDetailView", dt);
         }
 
         #endregion
