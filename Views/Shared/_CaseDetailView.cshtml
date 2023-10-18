@@ -11,6 +11,7 @@
         {
             dt = Model;
             var html = dt.Rows[0]["HtmlEditor"].ToString();
+
             <div class="cs-title">
                 <h4>@dt.Rows[0]["CategoryText"] @dt.Rows[0]["MY"]</h4>
             </div>
@@ -19,6 +20,13 @@
                 <img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" />
                 <object>@Html.Raw(HttpUtility.HtmlDecode(html))</object>
             </div>
+
+            <div class="col-md-12"><h4 class="text-center">@dt.Rows[0]["CategoryText"]</h4></div>
+            <div class="col-md-12"><span class="text-center">@dt.Rows[0]["MY"]</span></div>
+            <div class="col-md-12"><h5>@dt.Rows[0]["Subject"]</h5></div>
+            <div class="col-md-12"><img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" /></div>
+            <div class="col-md-12"><object>@Html.Raw(HttpUtility.HtmlDecode(html))</object></div>
+
         }
     }
 </div>

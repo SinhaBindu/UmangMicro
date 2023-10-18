@@ -16,7 +16,7 @@ namespace UmangMicro.Models
         public int ID { get; set; }
         [Display(Name = "Date")]
         public Nullable<DateTime> Date { get; set; }
-        [Display(Name = "Subject")]
+        [Display(Name = "Title")]
         public string Subject { get; set; }
         [Display(Name = "Category")]
         public string Category { get; set; }
