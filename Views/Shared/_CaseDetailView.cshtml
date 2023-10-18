@@ -5,17 +5,20 @@
     ViewBag.Title = "Case Study";
     DataTable dt = new DataTable();
 }
-<div class="row">
+<div class="cs-details">
     @{
         if (Model != null)
         {
             dt = Model;
             var html = dt.Rows[0]["HtmlEditor"].ToString();
-            <div class="col-md-12"><h4 class="text-center">@dt.Rows[0]["CategoryText"] @dt.Rows[0]["MY"]</h4></div>
-            <div class="col-md-12">@dt.Rows[0]["Subject"]</div>
-            <div class="col-md-12"><img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" /></div>
-            <div class="col-md-12"><object>@Html.Raw(HttpUtility.HtmlDecode(html))</object></div>
+            <div class="cs-title">
+                <h4>@dt.Rows[0]["CategoryText"] @dt.Rows[0]["MY"]</h4>
+            </div>
+            @*<div class="col-md-12">@dt.Rows[0]["Subject"]</div>*@
+            <div class="cs-content">
+                <img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" />
+                <object>@Html.Raw(HttpUtility.HtmlDecode(html))</object>
+            </div>
         }
     }
-
 </div>

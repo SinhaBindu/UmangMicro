@@ -4229,16 +4229,16 @@ img {
     min-height: 430px;
 }
 .cs-bgr1 {
-    background: url('../images/activities/activity-1.png') top center no-repeat;
+    background: url('../images/case-study/rising-star.jpeg') top center no-repeat;
 }
 .cs-bgr2 {
-    background: url('../images/activities/activity-2.png') top center no-repeat;
+    background: url('../images/case-study/change-makers.jpeg') top center no-repeat;
 }
 .cs-bgr3 {
-    background: url('../images/activities/activity-3.png') top center no-repeat;
+    background: url('../images/case-study/leadership.jpg') top center no-repeat;
 }
 .cs-bgr4 {
-    background: url('../images/activities/activity-4.png') top center no-repeat;
+    background: url('../images/case-study/empowered.jpeg') top center no-repeat;
 }
 .hide-case-studies {
     opacity: 0;
@@ -4310,10 +4310,14 @@ img {
     line-height: 24px;
 }
 .cs-btn {
-    padding: 7px 22px;
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    bottom: 30px;
+    text-align: center;
+    padding: 7px 0px;
     background: #5B2C54;
     color: #fff;
-    margin-left: 22px;
     border-radius: 6px;
     font-size: 13px;
 }
@@ -4343,6 +4347,8 @@ img {
         text-decoration: none;
     }
 .cs-list {
+    flex-basis: 32%;
+    flex-wrap: wrap;
     transition: all 0.5s ease;
     background: #fff;
     border-radius: 5px;
@@ -4393,4 +4399,39 @@ img {
     -webkit-transform: scale(1.05);
     -o-transform: scale(1.05);
     -ms-transform: scale(1.05);
+}
+.cs-details-page {
+    margin: auto;
+    padding: 50px 0px;
+    background: #fff;
+}
+.cs-details {
+    margin: auto;
+}
+.cs-title {
+    padding: 70px 20px 30px;
+    text-align: center;
+    
+}
+    .cs-title h4 {
+        max-width: 950px;
+        margin: auto;
+        font-size: 44px;
+        color: #000;
+        font-weight: 600;
+        margin-bottom: 0px;
+    }
+.cs-content {
+    margin: auto;
+    max-width: 950px;
+    padding: 40px 0;
+}
+.cs-content object img {
+    float: left;
+    width: 33%;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+.cs-content p {
+    font-size: 16px !important;
 }

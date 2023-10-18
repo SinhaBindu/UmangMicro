@@ -585,6 +585,11 @@
     <Content Include="Content\images\arrow-maroon.png" />
     <Content Include="Content\images\arrow-yellow.png" />
     <Content Include="Content\images\case-study-icon.png" />
+    <Content Include="Content\images\case-study\change-makers.jpeg" />
+    <Content Include="Content\images\case-study\empowered.jpeg" />
+    <Content Include="Content\images\case-study\leadership.jpg" />
+    <Content Include="Content\images\case-study\Vandana-Murmu.jpeg" />
+    <Content Include="Content\images\case-study\rising-star.jpeg" />
     <Content Include="Content\images\clf-icon.png" />
     <Content Include="Content\images\jharkhand-map.png" />
     <Content Include="Content\images\modules\umang-clf.png" />
