@@ -29,39 +29,39 @@
                                         @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name", @required = "required" })
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(m => m.Email, new { @class = "" })
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @required = "required" })
-                                    </div>
-                                </div>
+                                @*<div class="col-md-6">
+                                        <div class="position-relative form-group">
+                                            <span class="text-danger">*</span>
+                                            @Html.LabelFor(m => m.Email, new { @class = "" })
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @required = "required" })
+                                        </div>
+                                    </div>*@
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <span class="text-danger">*</span>
                                         @Html.LabelFor(m => m.PhoneNumber, new { @class = "" })
-                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number", @maxlength = "10", @required = "required" })
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number", @maxlength = "10", @required = "required", @readonly = "readonly" })
                                     </div>
                                 </div>
+                                @*<div class="col-md-6">
+                                        <div class="position-relative form-group">
+                                            <span class="text-danger">*</span>
+                                            @Html.LabelFor(m => m.DistrictId, new { @class = "" })
+                                            @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group">
+                                            <span class="text-danger">*</span>
+                                            @Html.LabelFor(m => m.BlockId, new { @class = "" })
+                                            @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                        </div>
+                                    </div>*@
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <span class="text-danger">*</span>
-                                        @Html.LabelFor(m => m.DistrictId, new { @class = "" })
-                                        @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(m => m.BlockId, new { @class = "" })
-                                        @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(m => m.ClusterId, new { @class = "" })
-                                        @Html.DropDownListFor(m => m.ClusterId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                        @Html.LabelFor(m => m.SchoolId, new { @class = "" })
+                                        @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), null, new { @class = "form-control", @required = "required" })
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -79,24 +79,26 @@
                                         </div>
                                     </div>*@
 
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(m => m.Password, new { @class = "" })
-                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
+                                @*<div class="col-md-6">
+                                        <div class="position-relative form-group">
+                                            <span class="text-danger">*</span>
+                                            @Html.LabelFor(m => m.Password, new { @class = "" })
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "" })
-                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", @required = "required" })
-                                    </div>
-                                </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group">
+                                            <span class="text-danger">*</span>
+                                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "" })
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", @required = "required" })
+                                        </div>
+                                    </div>*@
                                 <div class="break"></div>
-                                <div class="mt-4 d-flex align-items-center">
-                                    <div class="ml-auto">
-                                        <input type="submit" class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-small" value="Register" />
+                                <div class="col-md-6 offset-lg-1">
+                                    <div class="mt-4 d-flex align-items-center">
+                                        <div class="ml-auto">
+                                            <input type="submit" class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-small" value="Register" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -126,20 +128,20 @@
 
     <script type="text/javascript">
     $(document).ready(function () {
-            BindDistrict('DistrictId', 20);
-            $('#DistrictId').change(function () {
-                OnChangeDistrict('BlockId', $('#DistrictId').val());
-            });
-            $('#BlockId').change(function () {
-                OnChangeBlock('ClusterId', $('#BlockId').val());
-            });
-            if ('@Model.Id' != '0' && '@Model.Id' != '') {
-                $('#DistrictId').val('@Model.DistrictId');
-                OnChangeDistrict('BlockId', '@Model.DistrictId');
+            //BindDistrict('DistrictId', 20);
+            //$('#DistrictId').change(function () {
+            //    OnChangeDistrict('BlockId', $('#DistrictId').val());
+            //});
+            //$('#BlockId').change(function () {
+            //    OnChangeBlock('ClusterId', $('#BlockId').val());
+            //});
+            @*if ('@Model.Id' != '0' && '@Model.Id' != '') {
+               // $('#DistrictId').val('@Model.DistrictId');
+              //  OnChangeDistrict('BlockId', '@Model.DistrictId');
                 $('#BlockId').val('@Model.BlockId');
                 OnChangeBlock('ClusterId', '@Model.BlockId');
                 $('#ClusterId').val('@Model.ClusterId');
-            }
+            }*@
         });
     </script>
 

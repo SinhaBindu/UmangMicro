@@ -40,6 +40,7 @@ namespace UmangMicro.Models
         public string CreatedBY { get; set; }
         public Nullable<System.DateTime> CreatedDt { get; set; }
         public Nullable<int> RegId { get; set; }
+        public Nullable<int> SchoolId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }

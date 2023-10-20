@@ -168,8 +168,8 @@ namespace UmangMicro.Controllers
             UM_DBEntities dbe = new UM_DBEntities();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.PhoneNumber.Trim(), Email = model.PhoneNumber.Trim() + "@gmail.com", PhoneNumber = model.PhoneNumber.Trim() };
+                var result = await UserManager.CreateAsync(user, model.PhoneNumber.Trim());
                 if (result.Succeeded)
                 {
                     var uptbl = dbe.AspNetUsers.Find(user.Id);
@@ -178,11 +178,12 @@ namespace UmangMicro.Controllers
                         //Role mapping
                         var result1 = UserManager.AddToRole(user.Id, model.Role);
 
-                        uptbl.Name = model.Name;
+                        uptbl.Name = model.Name.Trim();
                         uptbl.StateId = 20;
-                        uptbl.DistrictId = model.DistrictId;
-                        uptbl.BlockId = model.BlockId;
-                        uptbl.ClusterId = model.ClusterId;
+                        //uptbl.DistrictId = model.DistrictId;
+                        //uptbl.BlockId = model.BlockId;
+                        //uptbl.ClusterId = model.ClusterId;
+                        uptbl.SchoolId = model.SchoolId;
                         uptbl.CreatedBY = user.Id;
                         uptbl.CreatedDt = DateTime.Now;
                         dbe.SaveChanges();
@@ -218,11 +219,12 @@ namespace UmangMicro.Controllers
                 {
                     Id = user.Id,
                     Name = user.Name,
-                    Email = user.Email,
+                    //Email = user.Email,
                     PhoneNumber = user.PhoneNumber,
-                    DistrictId = user.DistrictId.Value,
-                    BlockId = user.BlockId.Value,
-                    ClusterId = user.ClusterId.Value,
+                    //DistrictId = user.DistrictId.Value,
+                    //BlockId = user.BlockId.Value,
+                    //ClusterId = user.ClusterId.Value,
+                    SchoolId = user.SchoolId.Value,
                     Role = user.AspNetRoles.FirstOrDefault().Name
                 };
                 return View(model);
@@ -247,14 +249,15 @@ namespace UmangMicro.Controllers
                 var user = dbe.AspNetUsers.Find(model.Id);
                 if (user != null)
                 {
-                    if (!dbe.AspNetUsers.Any(x => x.Email == model.Email && x.Id != model.Id))
+                    if (!dbe.AspNetUsers.Any(x => x.PhoneNumber == model.PhoneNumber && x.Id != model.Id))
                     {
-                        user.UserName = user.Email = model.Email;
-                        user.PhoneNumber = model.PhoneNumber;
+                        //user.UserName = model.PhoneNumber;
+                        //user.Email = model.PhoneNumber+"@gmail.com";
+                        // user.PhoneNumber = model.PhoneNumber;
                         user.Name = model.Name;
-                        user.DistrictId = model.DistrictId;
-                        user.BlockId = model.BlockId;
-                        user.ClusterId = model.ClusterId;
+                        //user.DistrictId = model.DistrictId;
+                        //user.BlockId = model.BlockId;
+                        user.SchoolId = model.SchoolId;
                         user.CreatedBY = user.Id;
                         dbe.SaveChanges();
 

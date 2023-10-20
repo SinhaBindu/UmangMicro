@@ -79,6 +79,7 @@ namespace UmangMicro.Controllers
                     model.Name = tbl.Name;
                     model.MotherName = tbl.MotherName;
                     model.FatherName = tbl.FatherName;
+                    model.ClassId = tbl.ClassId;
                     model.StateId = tbl.StateId;
                     model.DistrictId = tbl.DistrictId;
                     model.BlockId = tbl.BlockId;
@@ -150,6 +151,7 @@ namespace UmangMicro.Controllers
                         tbl.PanchayatId = model.PanchayatId;
                         tbl.VillageId = model.VillageId;
                         tbl.SchoolId = model.SchoolId;
+                        tbl.ClassId = model.ClassId;
                         if ("990099" == model.VillageId)
                         {
                             tbl.VillageOther = !(string.IsNullOrWhiteSpace(model.VillageOther)) ? model.VillageOther.Trim() : model.VillageOther;

@@ -1,0 +1,431 @@
+﻿@model UmangMicro.Models.CHModel
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "Case History";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                @using (Html.BeginForm("CaseHistory", "Counsellor", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
+                {
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div style="text-align: center; font-weight: 700;">
+                                <h4><strong>Case History </strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.CaseID, CommonModel.GetCaseID(), null, new { @class = "form-control selectpicker" })
+                                @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.TypeCounsellor, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.TypeCounsellor, CommonModel.GetTypeCounsellor(), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TypeCounsellor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.TypeQuery, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.TypeQuery, CommonModel.GetTypeQuery(), null, new { @id = "TypeQuery", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TypeQuery, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.KeyWords, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.KeyWords, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.ValidationMessageFor(model => model.KeyWords, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="hd-tenth" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Study10th, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.Study10th, CommonModel.GetInterested(), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Study10th, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="hd-twelfth" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Study12th, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.Study12th, CommonModel.GetInterested(), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Study12th, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.Subject, CommonModel.GetSubject(), null, new { @class = "form-control", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div id="hd-Test" style="display:none;">
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.Counselling, htmlAttributes: new { @class = "" })
+                                    @Html.DropDownListFor(model => model.Counselling, CommonModel.GetCounselling(), null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Counselling, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.IsPsychometric, htmlAttributes: new { @class = "" })
+                                    @*@Html.DropDownListFor(model => model.IsPsychometric, CommonModel.GetYesNo(), null, new { @class = "form-control" })*@
+                                    <div class="checkbox">
+                                        @foreach (var item in CommonModel.GetYesNo())
+                                        {
+                                            @Html.RadioButtonFor(model => model.IsPsychometric, item.Value, new { id = "IsPsychometric" + item.Value, @required = "required" }) @item.Text
+                                        }
+                                        @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.Psychometric, htmlAttributes: new { @class = "" })
+                                    @Html.DropDownListFor(model => model.Psychometric, CommonModel.GetPsychometric(), null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Psychometric, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="">Suggestion</label>
+                            <div class="card-body">
+                                <ul class="tabs-animated-shadow tabs-animated nav">
+                                    <li class="nav-item" style="display:none;" id="li-tab0">
+                                        <a role="tab" class="nav-link" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
+                                            <span>Courses Details</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="display:none;" id="li-tab1">
+                                        <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="true">
+                                            <span>Skill Training</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="display:none;" id="li-tab2">
+                                        <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
+                                            <span>Schemes</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="display:none;" id="li-tab3">
+                                        <a role="tab" class="nav-link" id="tab-c-3" data-toggle="tab" href="#tab-animated-3" aria-selected="false">
+                                            <span>Scholarships</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
+                                        <p class="mb-0">
+                                            <div id="sub-data" class="col-md-12"></div>
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane active" id="tab-animated-1" role="tabpanel">
+                                        <p class="mb-0">
+                                            <div id="sub-data1" class="col-md-12"></div>
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane active" id="tab-animated-2" role="tabpanel">
+                                        <p class="mb-0">
+                                            <div id="sub-data2" class="col-md-12"></div>
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane active" id="tab-animated-3" role="tabpanel">
+                                        <p class="mb-0">
+                                            <div id="sub-data3" class="col-md-12"></div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.IsFollow, htmlAttributes: new { @class = "" })
+                                @*@Html.DropDownListFor(model => model.IsFollow, CommonModel.GetYesNo(), null, new { @class = "form-control" })*@
+                                @*@Html.ValidationMessageFor(model => model.IsFollow, "", new { @class = "text-danger" })*@
+
+                                @*@Html.LabelFor(model => model.IsFollow, htmlAttributes: new { @class = "" })*@
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetYesNo())
+                                    {
+                                        @Html.RadioButtonFor(model => model.IsFollow, item.Value, new { id = "IsFollow" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                    @Html.ValidationMessageFor(model => model.IsFollow, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsFollow, "", new { @class = "text-danger" })
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="hd-MY" style="display:none;">
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
+                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.FM, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(model => model.FM, CommonModel.GetMonth(), null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.FM, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
+                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.FY, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(model => model.FY, CommonModel.GetYear(), null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.FY, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.IsGoalClear, htmlAttributes: new { @class = "" })
+                                @*@Html.DropDownListFor(model => model.IsGoalClear, CommonModel.GetYesNo(), null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IsGoalClear, "", new { @class = "text-danger" })*@
+                                @*@Html.LabelFor(model => model.IsGoalClear, htmlAttributes: new { @class = "" })*@
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetYesNo())
+                                    {
+                                        @Html.RadioButtonFor(model => model.IsGoalClear, item.Value, new { id = "IsGoalClear" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                    @Html.ValidationMessageFor(model => model.IsGoalClear, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsGoalClear, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="position-relative form-group" style="margin-left: 50% !important;">
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="~/Counsellor/CaseHistory" class="btn btn-info text-white">Reset</a>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/JS/Master.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker({
+                liveSearch: true,
+                showSubtext: true
+            });
+            $('select[name=Subject]').multiselect({
+                includeSelectAllOption: true
+            });
+
+
+            $('input[name=IsFollow]').click(function () {
+                if ($(this).val() == "1") {
+                    $('#hd-MY').show();
+                }
+                else {
+                    $('#hd-MY').hide();
+                }
+            });
+
+            $('select[name=TypeQuery]').change(function () {
+                $('#li-tab0').hide(); $('#li-tab1').hide(); $('#li-tab2').hide(); $('#li-tab3').hide();
+                $('#sub-data').hide(); $('#sub-data2').hide(); $('#sub-data3').hide();
+                BindData(); $('#hd-Test').hide();
+
+                if ($(this).val() == "1" || $(this).val() == "2") {
+                    $('#hd-Test').show();
+                    $('#li-tab0').show();
+                    $('#sub-data').show();
+                }
+                else if ($(this).val() == "3") {
+                    $('#li-tab3').show();
+                    $('#sub-data3').show();
+                }
+                else if ($(this).val() == "4") {
+                    $('#li-tab2').show();
+                    $('#sub-data2').show();
+                }
+                else {
+                    $('#hd-Test').hide();
+                }
+            });
+
+            $('select[name=CaseID]').change(function () {
+                //var clno = BindClassNo($(this).val(),"");
+                var clno = "";
+                $.ajax({
+                    url: document.baseURI + "/Counsellor/GetClassno",
+                    type: "Post",
+                    data: JSON.stringify({ 'CaseId': $(this).val() }),
+                    contentType: "application/json; charset=utf-8",
+                    global: false,
+                    async: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.IsSuccess) {
+                            clno = JSON.parse(resp.res);
+                        }
+                    },
+                    error: function (req, error) {
+                        if (error === 'error') { error = req.statusText; }
+                        var errormsg = 'There was a communication error: ' + error;
+                        //Do To Message display
+                    }
+                });
+                if (clno=="10") {
+                    $('#hd-tenth').show();
+                    $('#hd-twelfth').hide();
+                }
+                else if (clno == "11" || clno == "12") {
+                    $('#hd-tenth').hide();
+                    $('#hd-twelfth').show();
+               }
+                else {
+                    $('#hd-tenth').hide();
+                    $('#hd-twelfth').hide();
+                }
+            });
+
+             $("#formid").on("submit", function (event) {
+                     event.preventDefault();
+                     jQuery.event.trigger("ajaxStart");
+                     debugger;
+                     //var formDataJson = $('#formid').serialize();//formData.append('tax_file', $('input[type=file]')[0].files[0]);
+                     //var vl = $("#formid").validate();
+                     ////var formData = new FormData($('#formid')[0]);
+                     var isvalid = $("#formid").valid(); //$('#formid').validate();
+                     var formData = $(this).serialize();
+                     if (isvalid) {
+                         $.ajax({
+                             type: "POST",
+                             url: document.baseURI + "/Counsellor/CaseHistory/",
+                             data: formData,
+                             //use contentType, processData for sure.
+                             //contentType: false,
+                             // processData: false,
+                             dataType: "json",
+                             //contentType: "application/json; charset=utf-8",
+                             success: function (resp) {
+                                 //  CreateToasterMessage("Registration", resp.Message, resp.StatusType);
+                                 if (resp.StatusType == "success") {
+                                     toastr.success("Success", resp.Message);
+                                     if (resp.Data == 1) {
+                                         var url = '@Url.Action("Login", "Account")';
+                                         window.location.href = url;
+                                     }
+                                     jQuery.event.trigger("ajaxStop");
+                                 }
+                                 else {
+                                     toastr.error("Error", resp.Message);
+                                 }
+                             },
+                             error: function (req, error) {
+                                 if (error === 'error') { error = req.statusText; }
+                                 var errormsg = 'There was a communication error: ' + error;
+                                 // CreateToasterMessage("Error", errormsg, "error");
+                                 toastr.error("Error", errormsg);
+                                 jQuery.event.trigger("ajaxStop");
+                                 return false;
+                             }
+
+                         });
+                     }
+                     else {
+                         //CreateToasterMessage("Error", "All Record Validate !!", "error");
+                         toastr.error("Error", "All Record Validate !!");
+                         jQuery.event.trigger("ajaxStop");
+                         return false;
+                     }
+
+                 });
+
+        });
+
+        function BindData() {
+            $('#sub-data').html(''); $('#sub-data1').html(''); $('#sub-data2').html(''); $('#sub-data3').html('');
+            //jQuery.event.trigger("ajaxStart");
+            $('#submission-data').removeClass("text-danger");
+            var url = $('#submission-form').attr("action");
+            var formData = $('#submission-form').serialize();
+            $.ajax({
+                url: document.baseURI + "/Report/GetCoursesDetail/",
+                type: "Post",
+                data: '',//{ 'District': District, 'Block': Block },
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        //jQuery.event.trigger("ajaxStop");
+                        $('#sub-data1').html(resp.html1);
+                        $('#sub-data2').html(resp.html2);
+                        $('#sub-data3').html(resp.html3);
+                        $('#sub-data').html(resp.html4);
+
+                        setTimeout(function () {
+
+                            // start Table
+                            $('table').DataTable({
+                                //paging: false,
+                                fixedHeader: true,
+                                responsive: true,
+                                //responsive: false,
+                                // scrollCollapse: false,
+                                "dom": '<"pull-left"f><"pull-right"l>tip',
+                                "pageLength": 100,
+                                "lengthChange": false,
+                                "buttons": [
+                                    {
+                                        extend: 'excel',
+                                        text: 'Export excel',
+                                        className: 'exportExcel',
+                                        filename: 'Export excel',
+                                        exportOptions: {
+                                            modifier: {
+                                                page: 'all'
+                                            }
+                                        }
+                                    }]
+
+                            });
+
+                            $("#tab-animated-1").removeClass('active');
+                            $("#tab-animated-2").removeClass('active');
+                            $("#tab-animated-3").removeClass('active');
+
+                        }, 500);
+
+                        // $('table tbody').on('click', 'td', function () {
+                        //     ////alert(table.cell(this).data());
+                        // });
+
+                    }
+                    else {
+                        $('#submission-data').html("Record Not Found !!");//TO DO
+                        $('#submission-data').addClass("text-danger");//TO DO
+                        // jQuery.event.trigger("ajaxStop");
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#submission-data').html(errormsg);
+                    //jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });
+        }
+
+    </script>
+}
+

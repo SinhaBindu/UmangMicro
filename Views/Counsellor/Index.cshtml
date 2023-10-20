@@ -1,0 +1,211 @@
+﻿@model UmangMicro.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<style>
+    .dataTables_wrapper {
+        padding: 5px;
+    }
+
+    .card-table thead tr th {
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+    }
+
+    .card-table tbody tr td {
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+    }
+   
+    h2 {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    table caption {
+        padding: .5em 0;
+    }
+
+    table.dataTable th,
+    table.dataTable td {
+        white-space: nowrap;
+        font-size: 10pt;
+    }
+
+    .p {
+        text-align: center;
+        padding-top: 140px;
+        font-size: 14px;
+    }
+
+    .dataTables_filter {
+        font-size: large !important;
+        font-weight: normal !important;
+        /*margin-left: 3% !important;*/
+    }
+
+    input[type="search"] {
+        height: 50px !important;
+        width:690px !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div id="div-download"></div>
+                <!-- PAGE-HEADER END -->
+                @using (Html.BeginForm("GetCoursesDetail", "Report", FormMethod.Post, new { id = "submission-form" }))
+                {
+                    <div class="form-row">
+                        @*<div class="col-md-12">
+                                <div style="text-align: center; font-weight: 700;">
+                                    <h4><strong>Compendium List</strong></h4>
+                                </div>
+                            </div>*@
+                        <div class="col-md-12">
+                            <div class="">
+                                <div class="card-body">
+                                    <ul class="tabs-animated-shadow tabs-animated nav">
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link active" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
+                                                <span>Courses Details</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="true">
+                                                <span>Skill Training</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
+                                                <span>Schemes</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a role="tab" class="nav-link" id="tab-c-3" data-toggle="tab" href="#tab-animated-3" aria-selected="false">
+                                                <span>Scholarships</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-1" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data1" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-2" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data2" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-3" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data3" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<link href="~/Content/StyleSheet1.scss" />*@
+    @*<link rel='stylesheet' href='https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css'>*@
+
+    <script>
+        $(document).ready(function () {
+            BindData();
+        });
+
+        function BindData() {
+            $('#sub-data').html(''); $('#sub-data1').html(''); $('#sub-data2').html(''); $('#sub-data3').html('');
+            //jQuery.event.trigger("ajaxStart");
+            $('#submission-data').removeClass("text-danger");
+            var url = $('#submission-form').attr("action");
+            var formData = $('#submission-form').serialize();
+            $.ajax({
+                url: url,
+                type: "Post",
+                data: '',//{ 'District': District, 'Block': Block },
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        //jQuery.event.trigger("ajaxStop");
+                        $('#sub-data1').html(resp.html1);
+                        $('#sub-data2').html(resp.html2);
+                        $('#sub-data3').html(resp.html3);
+                        $('#sub-data').html(resp.html4);
+
+                        setTimeout(function () {
+
+                            // start Table
+                            $('table').DataTable({
+                                //paging: false,
+                                fixedHeader: true,
+                                responsive: true,
+                                //responsive: false,
+                               // scrollCollapse: false,
+                                "dom": '<"pull-left"f><"pull-right"l>tip',
+                                "pageLength": 100,
+                                "lengthChange": false,
+                                "buttons": [
+                                    {
+                                        extend: 'excel',
+                                        text: 'Export excel',
+                                        className: 'exportExcel',
+                                        filename: 'Export excel',
+                                        exportOptions: {
+                                            modifier: {
+                                                page: 'all'
+                                            }
+                                        }
+                                    }]
+
+                            });
+
+                            $("#tab-animated-1").removeClass('active');
+                            $("#tab-animated-2").removeClass('active');
+                            $("#tab-animated-3").removeClass('active');
+
+                        }, 500);
+
+                       
+                       // $('table tbody').on('click', 'td', function () {
+                        //     ////alert(table.cell(this).data());
+                        // });
+
+                    }
+                    else {
+                        $('#submission-data').html("Record Not Found !!");//TO DO
+                        $('#submission-data').addClass("text-danger");//TO DO
+                        // jQuery.event.trigger("ajaxStop");
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#submission-data').html(errormsg);
+                    //jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });
+        }
+
+    </script>
+}

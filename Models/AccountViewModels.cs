@@ -66,33 +66,35 @@ namespace UmangMicro.Models
     public class RegisterViewModel
     {
         public string Id { get; set; }
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+      //  [Required]
+        //[EmailAddress]
+        [Display(Name = "User Name")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
+       // [Required]
+       // [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+      //  [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         [Display(Name = "Mobile No")]
         public string PhoneNumber { get; set; }
         [Display(Name = "Mobile No Confirmed")]
         public string PhoneNumberConfirmed { get; set; }
-        [Display(Name = "State")]
-        public int? StateId { get; set; }
-        [Display(Name = "District")]
-        public int? DistrictId { get; set; }
-        [Display(Name = "Block")]
-        public int? BlockId { get; set; }
-        [Display(Name = "Cluster")]
-        public int? ClusterId { get; set; }
+        [Display(Name = "School Name")]
+        public int? SchoolId { get; set; }
+        //[Display(Name = "State")]
+        //public int? StateId { get; set; }
+        //[Display(Name = "District")]
+        //public int? DistrictId { get; set; }
+        //[Display(Name = "Block")]
+        //public int? BlockId { get; set; }
+        //[Display(Name = "Cluster")]
+        //public int? ClusterId { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }
         [Display(Name = "Role")]
@@ -103,33 +105,37 @@ namespace UmangMicro.Models
     public class UserEditViewModel
     {
         public string Id { get; set; }
-        [Required]
-        [EmailAddress]
+       // [Required]
+       // [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
+        //[Required]
+        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        //[DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         [Display(Name = "Mobile No")]
         public string PhoneNumber { get; set; }
         [Display(Name = "Mobile No Confirmed")]
         public string PhoneNumberConfirmed { get; set; }
-        [Display(Name = "State")]
-        public int? StateId { get; set; }
-        [Display(Name = "District")]
-        public int? DistrictId { get; set; }
-        [Display(Name = "Block")]
-        public int? BlockId { get; set; }
-        [Display(Name = "Cluster")]
-        public int? ClusterId { get; set; }
+        //[Display(Name = "State")]
+        //public int? StateId { get; set; }
+        //[Display(Name = "District")]
+        //public int? DistrictId { get; set; }
+        //[Display(Name = "Block")]
+        //public int? BlockId { get; set; }
+        //[Display(Name = "Cluster")]
+        //public int? ClusterId { get; set; }
+
+        [Display(Name = "School Name")]
+        public int? SchoolId { get; set; }
+      
         [Display(Name = "Name")]
         public string Name { get; set; }
         [Display(Name = "Role")]

@@ -37,12 +37,12 @@
                                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name", @required = "required" })
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span> @Html.LabelFor(m => m.Email, new { @class = "" })
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @required = "required" })
-                            </div>
-                        </div>
+                        @*<div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span> @Html.LabelFor(m => m.Email, new { @class = "" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @required = "required" })
+                                </div>
+                            </div>*@
 
                         <div class="col-md-6">
                             <div class="position-relative form-group">
@@ -52,22 +52,22 @@
                         </div>
                         <div class="col-md-6">
                             <div class="position-relative form-group">
-                                <span class="text-danger">*</span> @Html.LabelFor(m => m.DistrictId, new { @class = "" })
-                                @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                <span class="text-danger">*</span> @Html.LabelFor(m => m.SchoolId, new { @class = "" })
+                                @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), null, new { @class = "form-control", @required = "required" })
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span> @Html.LabelFor(m => m.BlockId, new { @class = "" })
-                                @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                        @*<div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span> @Html.LabelFor(m => m.BlockId, new { @class = "" })
+                                    @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span> @Html.LabelFor(m => m.ClusterId, new { @class = "" })
-                                @Html.DropDownListFor(m => m.ClusterId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                            </div>
-                        </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span> @Html.LabelFor(m => m.ClusterId, new { @class = "" })
+                                    @Html.DropDownListFor(m => m.ClusterId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>*@
 
                         <div class="col-md-6">
                             <div class="position-relative form-group">
@@ -76,30 +76,30 @@
                             </div>
                         </div>
 
-
-                        <div class="col-md-6">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span> @Html.LabelFor(m => m.Password, new { @class = "" })
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
+                        @*<div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span> @Html.LabelFor(m => m.Password, new { @class = "" })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @required = "required" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span>  @Html.LabelFor(m => m.ConfirmPassword, new { @class = "" })
-                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", @required = "required" })
-                            </div>
-                        </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span>  @Html.LabelFor(m => m.ConfirmPassword, new { @class = "" })
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", @required = "required" })
+                                </div>
+                            </div>*@
                         <div class="break"></div>
-                        <div class="mt-4 d-flex align-items-center">
-                            @*<h5 class="mb-0">Already have an account? <a href="javascript:void(0);" class="text-primary">Sign in</a></h5>*@
-                            <div class="ml-auto">
-                                <input type="submit" class="btn btn-primary" value="Register" />
+                        <div class="col-md-6 offset-lg-5">
+                            <div class="mt-4 d-flex align-items-center">
+                                @*<h5 class="mb-0">Already have an account? <a href="javascript:void(0);" class="text-primary">Sign in</a></h5>*@
+                                <div class="">
+                                    <input type="submit" class="btn btn-primary" value="Register" />
+                                </div>
                             </div>
                         </div>
                         @*<div class="text-center pt-3">
                                 <p class="text-dark mb-0">Already registered?<a href="~/Account/Login" class="text-primary ml-1">Log In now</a></p>
                             </div>*@
-
 
                     </div>
                 }
@@ -117,13 +117,13 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            BindDistrict('DistrictId', 20);
-            $('#DistrictId').change(function () {
-                OnChangeDistrict('BlockId', $('#DistrictId').val());
-            });
-            $('#BlockId').change(function () {
-                OnChangeBlock('ClusterId', $('#BlockId').val());
-            });
+            // BindDistrict('DistrictId', 20);
+            //$('#DistrictId').change(function () {
+            //    OnChangeDistrict('BlockId', $('#DistrictId').val());
+            //});
+            //$('#BlockId').change(function () {
+            //    OnChangeBlock('ClusterId', $('#BlockId').val());
+            //});
         });
     </script>
 

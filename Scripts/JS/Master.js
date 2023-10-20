@@ -1044,3 +1044,26 @@ function OnChagPanchayats(Ele, Sel, Para1, Para2,Para3) {
     }
 }
 
+function BindClassNo(CaseId,sele) {
+    $.ajax({
+        url: document.baseURI + "/Counsellor/GetClassno",
+        type: "Post",
+        data: JSON.stringify({ 'CaseId': CaseId }),
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.IsSuccess) {
+                sele = JSON.parse(resp.res);
+                return sele;
+            }
+        },
+        error: function (req, error) {
+            if (error === 'error') { error = req.statusText; }
+            var errormsg = 'There was a communication error: ' + error;
+            //Do To Message display
+        }
+    });
+}
+

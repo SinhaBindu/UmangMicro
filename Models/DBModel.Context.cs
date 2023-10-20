@@ -32,9 +32,12 @@ namespace UmangMicro.Models
         public virtual DbSet<State_Mast> State_Mast { get; set; }
         public virtual DbSet<tbl_LoginDetail> tbl_LoginDetail { get; set; }
         public virtual DbSet<tbl_CoursesDetail> tbl_CoursesDetail { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<tbl_Resource> tbl_Resource { get; set; }
         public virtual DbSet<tbl_MicroCase> tbl_MicroCase { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<tbl_Registration> tbl_Registration { get; set; }
+        public virtual DbSet<tbl_CaseHistory> tbl_CaseHistory { get; set; }
+        public virtual DbSet<Month_Master> Month_Master { get; set; }
+        public virtual DbSet<Year_Master> Year_Master { get; set; }
     }
 }

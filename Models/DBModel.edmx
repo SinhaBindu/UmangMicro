@@ -44,6 +44,7 @@
           <Property Name="CreatedBY" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedDt" Type="datetime" />
           <Property Name="RegId" Type="int" />
+          <Property Name="SchoolId" Type="int" />
         </EntityType>
         <EntityType Name="Block_Mast">
           <Key>
@@ -79,6 +80,13 @@
           <Property Name="DistName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="Month_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="MonthName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="State_Mast">
           <Key>
             <PropertyRef Name="ID" />
@@ -86,6 +94,33 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="StateName" Type="nvarchar" MaxLength="20" />
           <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_CaseHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="GudID" Type="uniqueidentifier" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeCounsellor" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeQuery" Type="nvarchar" MaxLength="50" />
+          <Property Name="KeyWords" Type="nvarchar(max)" />
+          <Property Name="Study10th" Type="nvarchar" MaxLength="100" />
+          <Property Name="Study12th" Type="nvarchar" MaxLength="100" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="Counselling" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsPsychometric" Type="nvarchar" MaxLength="50" />
+          <Property Name="Psychometric" Type="nvarchar" MaxLength="50" />
+          <Property Name="Suggestion" Type="nvarchar(max)" />
+          <Property Name="IsFollow" Type="nvarchar" MaxLength="50" />
+          <Property Name="FM" Type="nvarchar" MaxLength="50" />
+          <Property Name="FY" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsGoalClear" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_CoursesDetail">
           <Key>
@@ -169,6 +204,7 @@
           <Property Name="MotherName" Type="nvarchar" MaxLength="200" />
           <Property Name="FatherName" Type="nvarchar" MaxLength="200" />
           <Property Name="Sex" Type="nvarchar" MaxLength="20" />
+          <Property Name="ClassId" Type="int" />
           <Property Name="Cast" Type="nvarchar" MaxLength="50" />
           <Property Name="SchoolId" Type="nvarchar" MaxLength="50" />
           <Property Name="StateId" Type="nvarchar" MaxLength="50" />
@@ -207,6 +243,13 @@
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="Year_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Year" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -242,12 +285,15 @@
           <EntitySet Name="Block_Mast" EntityType="Self.Block_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cluster_Mast" EntityType="Self.Cluster_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dist_Mast" EntityType="Self.Dist_Mast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Month_Master" EntityType="Self.Month_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State_Mast" EntityType="Self.State_Mast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CaseHistory" EntityType="Self.tbl_CaseHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CoursesDetail" EntityType="Self.tbl_CoursesDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_LoginDetail" EntityType="Self.tbl_LoginDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_MicroCase" EntityType="Self.tbl_MicroCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Registration" EntityType="Self.tbl_Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Resource" EntityType="Self.tbl_Resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Year_Master" EntityType="Self.Year_Master" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
@@ -269,14 +315,17 @@
           <EntitySet Name="State_Mast" EntityType="UM_DBModel.State_Mast" />
           <EntitySet Name="tbl_LoginDetail" EntityType="UM_DBModel.tbl_LoginDetail" />
           <EntitySet Name="tbl_CoursesDetail" EntityType="UM_DBModel.tbl_CoursesDetail" />
+          <EntitySet Name="tbl_Resource" EntityType="UM_DBModel.tbl_Resource" />
+          <EntitySet Name="tbl_MicroCase" EntityType="UM_DBModel.tbl_MicroCase" />
           <EntitySet Name="AspNetUsers" EntityType="UM_DBModel.AspNetUser" />
+          <EntitySet Name="tbl_Registration" EntityType="UM_DBModel.tbl_Registration" />
           <AssociationSet Name="AspNetUserRoles" Association="UM_DBModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="tbl_Resource" EntityType="UM_DBModel.tbl_Resource" />
-          <EntitySet Name="tbl_MicroCase" EntityType="UM_DBModel.tbl_MicroCase" />
-          <EntitySet Name="tbl_Registration" EntityType="UM_DBModel.tbl_Registration" />
+          <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
+          <EntitySet Name="Month_Master" EntityType="UM_DBModel.Month_Master" />
+          <EntitySet Name="Year_Master" EntityType="UM_DBModel.Year_Master" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -382,36 +431,6 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="AspNetUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="StateId" Type="Int32" />
-          <Property Name="DistrictId" Type="Int32" />
-          <Property Name="BlockId" Type="Int32" />
-          <Property Name="ClusterId" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
-          <Property Name="RegId" Type="Int32" />
-          <NavigationProperty Name="AspNetRoles" Relationship="UM_DBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-        </EntityType>
-        <Association Name="AspNetUserRoles">
-          <End Type="UM_DBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="UM_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-        </Association>
         <EntityType Name="tbl_Resource">
           <Key>
             <PropertyRef Name="Id" />
@@ -448,6 +467,33 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="BlockId" Type="Int32" />
+          <Property Name="ClusterId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="RegId" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" />
+          <NavigationProperty Name="AspNetRoles" Relationship="UM_DBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
         <EntityType Name="tbl_Registration">
           <Key>
             <PropertyRef Name="ID" />
@@ -459,6 +505,7 @@
           <Property Name="MotherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="FatherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Sex" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ClassId" Type="Int32" />
           <Property Name="Cast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SchoolId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StateId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -477,6 +524,51 @@
           <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="DeletedDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="AspNetUserRoles">
+          <End Type="UM_DBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="UM_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="tbl_CaseHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="GudID" Type="Guid" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeCounsellor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeQuery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Study10th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Study12th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Counselling" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsPsychometric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Psychometric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Suggestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsFollow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsGoalClear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Month_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MonthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Year_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -594,40 +686,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="UM_DBModel.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="RegId" ColumnName="RegId" />
-                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
-                <ScalarProperty Name="CreatedBY" ColumnName="CreatedBY" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ClusterId" ColumnName="ClusterId" />
-                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="UM_DBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="tbl_Resource">
             <EntityTypeMapping TypeName="UM_DBModel.tbl_Resource">
               <MappingFragment StoreEntitySet="tbl_Resource">
@@ -666,6 +724,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="UM_DBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="RegId" ColumnName="RegId" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBY" ColumnName="CreatedBY" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClusterId" ColumnName="ClusterId" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_Registration">
             <EntityTypeMapping TypeName="UM_DBModel.tbl_Registration">
               <MappingFragment StoreEntitySet="tbl_Registration">
@@ -687,12 +772,65 @@
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="Cast" ColumnName="Cast" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="FatherName" ColumnName="FatherName" />
                 <ScalarProperty Name="MotherName" ColumnName="MotherName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CaseID" ColumnName="CaseID" />
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="UM_DBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="tbl_CaseHistory">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CaseHistory">
+              <MappingFragment StoreEntitySet="tbl_CaseHistory">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsGoalClear" ColumnName="IsGoalClear" />
+                <ScalarProperty Name="FY" ColumnName="FY" />
+                <ScalarProperty Name="FM" ColumnName="FM" />
+                <ScalarProperty Name="IsFollow" ColumnName="IsFollow" />
+                <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
+                <ScalarProperty Name="Psychometric" ColumnName="Psychometric" />
+                <ScalarProperty Name="IsPsychometric" ColumnName="IsPsychometric" />
+                <ScalarProperty Name="Counselling" ColumnName="Counselling" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Study12th" ColumnName="Study12th" />
+                <ScalarProperty Name="Study10th" ColumnName="Study10th" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="TypeQuery" ColumnName="TypeQuery" />
+                <ScalarProperty Name="TypeCounsellor" ColumnName="TypeCounsellor" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GudID" ColumnName="GudID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Month_Master">
+            <EntityTypeMapping TypeName="UM_DBModel.Month_Master">
+              <MappingFragment StoreEntitySet="Month_Master">
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Year_Master">
+            <EntityTypeMapping TypeName="UM_DBModel.Year_Master">
+              <MappingFragment StoreEntitySet="Year_Master">
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

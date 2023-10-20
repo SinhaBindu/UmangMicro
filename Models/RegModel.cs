@@ -57,7 +57,10 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> DOB { get; set; }
         [Required]
         public string Age { get; set; }
-         //[Required]
+        [Display(Name = "Class")]
+        [Required]
+        public Nullable<int> ClassId { get; set; }
+        //[Required]
         //[Range(Int32.MinValue, 10)]
         //[Range(3000, 10000000, ErrorMessage = "Salary must be between 3000 and 10000000")]
         public string MobileNo { get; set; }

@@ -1867,5 +1867,162 @@ namespace UmangMicro.Manager
         }
         #endregion
 
+        #region Counselling Case History
+        public static List<SelectListItem> GetTypeCounsellor()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "1", Text = "Teacher" });
+            list.Add(new SelectListItem { Value = "2", Text = "PCI Representative" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetTypeQuery()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "1", Text = "Career Counselling" });
+            list.Add(new SelectListItem { Value = "2", Text = "Educational Pathways" });
+            list.Add(new SelectListItem { Value = "3", Text = "Scholarships" });
+            list.Add(new SelectListItem { Value = "4", Text = "Schemes" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetClass()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "6", Text = "6" });
+            list.Add(new SelectListItem { Value = "7", Text = "7" });
+            list.Add(new SelectListItem { Value = "8", Text = "8" });
+            list.Add(new SelectListItem { Value = "9", Text = "9" });
+            list.Add(new SelectListItem { Value = "10", Text = "10" });
+            list.Add(new SelectListItem { Value = "11", Text = "11" });
+            list.Add(new SelectListItem { Value = "12", Text = "12" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetInterested()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "three month", Text = "three month" });
+            list.Add(new SelectListItem { Value = "six month", Text = "six month" });
+            list.Add(new SelectListItem { Value = "1 year", Text = "1 year" });
+            list.Add(new SelectListItem { Value = "2 years", Text = "2 years" });
+            list.Add(new SelectListItem { Value = "3 years", Text = "3 years" });
+            list.Add(new SelectListItem { Value = "4 years", Text = "4 years" });
+            list.Add(new SelectListItem { Value = "5 years", Text = "5 years" });
+            list.Add(new SelectListItem { Value = "7 years or more", Text = "7 years or more" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetSubject()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "Engish", Text = "Engish" });
+            list.Add(new SelectListItem { Value = "Hindi", Text = "Hindi" });
+            list.Add(new SelectListItem { Value = "Science", Text = "Science" });
+            list.Add(new SelectListItem { Value = "Maths", Text = "Maths" });
+            list.Add(new SelectListItem { Value = "History & Civics", Text = "History & Civics" });
+            list.Add(new SelectListItem { Value = "Geography", Text = "Geography" });
+            list.Add(new SelectListItem { Value = "Physical Education", Text = "Physical Education" });
+            list.Add(new SelectListItem { Value = "Physics-Chemistry-Biology", Text = "Physics-Chemistry-Biology" });
+            list.Add(new SelectListItem { Value = "Economics", Text = "Economics" });
+            list.Add(new SelectListItem { Value = "Computer Science", Text = "Computer Science" });
+            list.Add(new SelectListItem { Value = "Commerce", Text = "Commerce" });
+            list.Add(new SelectListItem { Value = "Arts", Text = "Arts" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetSchoolList()
+        {
+            DataTable dt = SP_Model.GetSP_SchoolList("", "");
+            List<SelectListItem> lists = new List<SelectListItem>();
+            lists.Add(new SelectListItem { Value = "", Text = "Select" });
+            foreach (DataRow dr in dt.Rows)
+            {
+                lists.Add(new SelectListItem { Value = dr["Value"].ToString(), Text = dr["Text"].ToString() });
+            }
+            return lists.OrderBy(x => x.Value).ToList();
+        }
+        public static List<SelectListItem> GetCaseID(bool isAddedSelect = true)
+        {
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    var items = new SelectList(dbe.tbl_Registration, "CaseID", "CaseID").OrderBy(x => x.Text).ToList();
+                    if (isAddedSelect)
+                    {
+                        items.Insert(0, new SelectListItem { Value = "", Text = "Select" });
+                    }
+                    return items;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return null;
+        }
+        public static List<SelectListItem> GetCounselling()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "Career Compendium", Text = "Career Compendium" });
+            list.Add(new SelectListItem { Value = "Pscholmetric (RIASEC) test", Text = "Pscholmetric (RIASEC) test" });
+            list.Add(new SelectListItem { Value = "IEC material", Text = "State Career Portal" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetPsychometric()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "", Text = "Select" });
+            list.Add(new SelectListItem { Value = "Realistic", Text = "Realistic" });
+            list.Add(new SelectListItem { Value = "Pscholmetric (RIASEC) test", Text = "Pscholmetric (RIASEC) test" });
+            list.Add(new SelectListItem { Value = "Investigative", Text = "Investigative" });
+            list.Add(new SelectListItem { Value = "Social", Text = "Social" });
+            list.Add(new SelectListItem { Value = "Enterprising", Text = "Enterprising" });
+            list.Add(new SelectListItem { Value = "Conventional", Text = "Conventional" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> GetMonth(bool isAddedSelect=true)
+        {
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    var items = new SelectList(dbe.Month_Master, "ID", "MonthName").OrderBy(x => x.Value).ToList();
+                    if (isAddedSelect)
+                    {
+                        items.Insert(0, new SelectListItem { Value = "", Text = "Select" });
+                    }
+                    return items;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return null;
+        }
+        public static List<SelectListItem> GetYear(bool isAddedSelect = true)
+        {
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    var items = new SelectList(dbe.Year_Master, "ID", "Year").OrderBy(x => x.Text).ToList();
+                    if (isAddedSelect)
+                    {
+                        items.Insert(0, new SelectListItem { Value = "", Text = "Select" });
+                    }
+                    return items;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return null;
+        }
+        #endregion
     }
 }

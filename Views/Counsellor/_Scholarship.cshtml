@@ -1,0 +1,56 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "User List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+<strong>Scholarships</strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover dt-responsive display" id="DataList2" width="100%">
+                    <thead>
+                        <tr>
+                            <th>SrNo.</th>
+                            <th>Name of Scholarship</th>
+                            <th>Category</th>
+                            <th>Eligibility</th>
+                            <th>Institutions Eligibility</th>
+                            <th>Remarks</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1;
+                            if (Model != null)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    <tr>
+                                        <td class="text-center">@(sno++)</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["NameScholarship"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Category"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Eligibility"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["InstitutionsEligibility"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Remarks"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Amount"]</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="7" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

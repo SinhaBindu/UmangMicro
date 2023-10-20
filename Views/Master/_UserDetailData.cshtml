@@ -18,12 +18,13 @@
                     <tr>
                         <th>SrNo.</th>
                         <th>Name</th>
-                        <th>Email</th>
+                        @*<th>Email</th>*@
                         <th>Role</th>
-                        <th>District</th>
-                        <th>Block</th>
-                        <th>Cluster</th>
-                        <th>Help Desk <br />Name</th>
+                        @*<th>District</th>
+                            <th>Block</th>*@
+                        <th>Phone No</th>
+                        <th>School</th>
+                        @*<th>Help Desk <br />Name</th>*@
                         <th>Date of Register</th>
                         <th>Modify</th>
                         <th>Status</th>
@@ -39,13 +40,14 @@
                                 <tr>
                                     <td class="text-center">@(sno++)</td>
                                     <td class="text-left">@dr["Name"]</td>
-                                    <td class="text-left">@dr["UserName"]</td>
-                                    <td class="text-left">@dr["Role"]</td>
-                                    <td class="text-left">@dr["DistName"]</td>
-                                    <td class="text-left">@dr["BlockName"]</td>
-                                    <td class="text-left">@dr["ClusterName"]</td>
-                                    <td class="text-left">@dr["HelpDeskName"]</td>
-                                    <td class="text-left">@dr["RegisterDt"]</td>
+                                    @*<td class="text-left">@dr["UserName"]</td>*@
+                                    <td class="text-center">@dr["Role"]</td>
+                                    @*<td class="text-left">@dr["DistName"]</td>
+                                        <td class="text-left">@dr["BlockName"]</td>*@
+                                    <td class="text-center">@dr["PhoneNumber"]</td>
+                                    <td class="text-center">@dr["school_name"]</td>
+                                    @*<td class="text-left">@dr["HelpDeskName"]</td>*@
+                                    <td class="text-center">@dr["RegisterDt"]</td>
                                     <td title="Edit">
                                         <a href="~/account/EditUser?id=@dr["Id"]" style='font-size: medium;'>Edit <i class="fa fa-edit"></i></a>
                                     </td>
