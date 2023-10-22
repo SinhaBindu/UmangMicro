@@ -1451,7 +1451,7 @@ img {
         padding: 0 0px 20px;
         text-align: center;
         font-size: 32px;
-        color: #222;
+        color: #5B2C54;
         margin-bottom: 20px;
         font-weight: 600;
     }
@@ -1667,9 +1667,10 @@ img {
 }
 
 .intervention-info h2 {
-    font-size: 29px;
+    font-size: 32px;
     margin-bottom: 15px;
     color: #5B2C54 !important;
+    font-weight: 600;
 }
 .design-graph p {
     font-size: 17px;
@@ -2049,7 +2050,7 @@ img {
         font-size: 32px;
         font-weight: 600;
         text-align: center;
-        color: #222;
+        color: #5B2C54;
         margin-bottom: 50px;
     }
 
@@ -4441,4 +4442,7 @@ img {
 }
 .cs-content p {
     font-size: 16px !important;
+}
+.under-content {
+    height: 400px;
 }
