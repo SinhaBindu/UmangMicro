@@ -23,7 +23,9 @@
 .grey-bg {
     background: #F6FAFD;
 }
-
+.top-spacer {
+    padding-top: 53px;
+}
 * {
     margin: 0;
     padding: 0;
@@ -429,11 +431,13 @@ img {
 }
 
 .design-bg {
-    background: #fff;
+    background: #210A1E;
     text-align: center;
     padding: 60px 20px 70px;
 }
-
+    .design-bg h2 {
+        color: #FBC982;
+    }
     .design-bg h3 {
         font-size: 32px;
     }
@@ -810,7 +814,7 @@ img {
 .umang-design h2 {
     text-align: center;
     font-size: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #00AEC4
 }
 
@@ -825,7 +829,7 @@ img {
     font-size: 18px;
     text-align: center;
     line-height: 28px;
-    color: #838282;
+    color: #fff;
     margin-bottom: 16px;
 }
 
@@ -1125,7 +1129,7 @@ img {
 
 .umang-partnership {
     display: block;
-    padding: 60px 20px;
+    padding: 90px 20px 40px;
     background: #FFFBF2;
     text-align: center;
 }
@@ -1982,20 +1986,20 @@ img {
 .district-data {
     display: flex;
     gap: 30px;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .district-1, .district-2 {
     flex: 1;
     text-align: left !important;
-    padding: 15px 20px 12px;
+    padding: 10px 20px 5px;
     border-radius: 10px;
 }
 
     .district-1 h3, .district-2 h3 {
         font-size: 20px;
         font-weight: 700;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
         margin-top: 0;
     }
 
@@ -2014,7 +2018,6 @@ img {
 
         .district-1 p span, .district-2 p span {
             font-style: italic;
-            font-size: 15px;
         }
 
 .district-1 {
@@ -2022,7 +2025,7 @@ img {
 }
 
 .district-2 {
-    background: #FEFFF1;
+    background: #F3FEFF;
 }
 
 .blocks {
@@ -2386,10 +2389,13 @@ img {
 
 .map-control {
     display: flex;
-    margin-top: 30px;
+    margin-top: 5px;
 }
-
+.jh-map {
+    flex: 2
+}
 .jh-district {
+    /*flex: 1;*/
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -2416,78 +2422,78 @@ img {
 }
 
 .map1 {
-    top: 130px;
-    left: 72px;
+    top: 190px;
+    left: 92px;
 }
 
 .map2 {
-    top: 65px;
-    left: 152px;
+    top: 90px;
+    left: 201px;
 }
 
 .map3 {
-    top: 5px;
-    right: 83px;
+    top: 9px;
+    right: 95px;
 }
 
 .map4 {
-    top: 8px;
-    left: 120px;
+    top: 18px;
+    left: 155px;
 }
 
 .map5 {
-    top: 60px;
-    left: 105px;
+    top: 85px;
+    left: 125px;
 }
 
 .map6 {
-    top: 105px;
-    left: 75px;
+    top: 144px;
+    left: 122px;
 }
 
 .map7 {
-    top: 80px;
-    right: 90px;
+    top: 90px;
+    right: 120px;
 }
 
 .map8 {
-    top: 160px;
+    top: 190px;
     left: 90px;
 }
 
 .map9 {
-    top: 160px;
-    right: 90px;
+    top: 190px;
+    right: 125px;
 }
 
 .map10 {
-    top: 55px;
-    right: 35px;
+    top: 70px;
+    right: 40px;
 }
 
 .map11 {
-    top: 2px;
-    left: 56px;
+    top: 8px;
+    left: 63px;
 }
 
 .map12 {
-    top: 30px;
-    left: 35px;
+    top: 36px;
+    left: 38px;
 }
 
 .map13 {
-    top: 80px;
-    left: 85px;
+    top: 70px;
+    left: 125px;
 }
 
 .map14 {
-    top: 80px;
-    right: 80px;
+    top: 90px;
+    right: 104px;
 }
 
 .map15 {
-    top: 40px;
-    left: 140px;
+    top: 58px;
+    left: 170px;
 }
 
 .zoom-in-zoom-out {
@@ -2567,7 +2573,7 @@ img {
 
     .txt-ar h4 {
         font-size: 20px;
-        color: #000;
+        color: #5B2C54;
         font-weight: bold;
     }
 
@@ -2792,9 +2798,9 @@ img {
     /*height: 960px;*/
 }
 
-    .intervention-back h2 {
+    /*.intervention-back h2 {
         color: #222 !important;
-    }
+    }*/
 
     .intervention-back h3 {
         color: #838282 !important;
@@ -4153,13 +4159,14 @@ img {
     text-align: left;
     font-size: 12px !important;
 }
+.video-banner {
+    margin: auto;
+    max-width: 1024px;
+    padding: 70px 0 20px;
+}
 #video {
     position: relative;
-    margin-top: 50px;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    width: 100%;
 }
 .text-danger {
     color: #FF3131;
@@ -4198,7 +4205,7 @@ img {
 }
 .log-boxes {
     border: 7px solid #fff;
-    max-width: 720px;
+    max-width: 670px;
     margin: auto
 }
 .page-txt-banner {

@@ -603,6 +603,7 @@
     <Content Include="Content\images\case-study\rising-star.jpeg" />
     <Content Include="Content\images\clf-icon.png" />
     <Content Include="Content\images\jharkhand-map.png" />
+    <Content Include="Content\images\module-banner.jpg" />
     <Content Include="Content\images\modules\umang-clf.png" />
     <Content Include="Content\images\modules\umang-shg.png" />
     <Content Include="Content\images\modules\umang-vo.png" />

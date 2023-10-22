@@ -12,9 +12,10 @@
             dt = Model;
             var html = dt.Rows[0]["HtmlEditor"].ToString();
 
-            <div class="cs-title">
-                <h4>@dt.Rows[0]["CategoryText"] @dt.Rows[0]["MY"]</h4>
-            </div>
+        <div class="cs-title">
+            <h4>@dt.Rows[0]["CategoryText"]</h4>
+            <h4> @dt.Rows[0]["MY"]</h4>
+        </div>
             @*<div class="col-md-12">@dt.Rows[0]["Subject"]</div>*@
             <div class="cs-content">
                 <img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" />
