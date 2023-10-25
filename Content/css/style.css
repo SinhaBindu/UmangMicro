@@ -4446,3 +4446,46 @@ img {
 .under-content {
     height: 400px;
 }
+.cs-categ {
+    font-size: 15px;
+    margin-right: 15px;
+    padding: 3px 12px;
+    background: #FFF0FD;
+    border-radius: 4px;
+}
+.cs-dated {
+    padding: 3px 12px;
+    background: #F8F8F8;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.cs-dated .fa {
+    margin-right: 8px
+}
+.blurOut {
+    animation-name: fade-in-out;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes fade-in-out {
+    0% {
+        letter-spacing: -0.5em;
+        filter: blur(12px) opacity(0%);
+    }
+
+    30% {
+        letter-spacing: 0;
+        filter: blur(0) opacity(1);
+    }
+
+    70% {
+        letter-spacing: 0;
+        filter: blur(0) opacity(1);
+    }
+
+    100% {
+        letter-spacing: -0.5em;
+        filter: blur(12px) opacity(0%);
+    }
+}
