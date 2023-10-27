@@ -208,6 +208,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,6 +262,7 @@
     </Compile>
     <Compile Include="Models\Extension.cs" />
     <Compile Include="Models\FilterModel.cs" />
+    <Compile Include="Models\FormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MicroCaseModel.cs" />
@@ -268,8 +270,15 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MultipleFileDownload.cs" />
+    <Compile Include="Models\QuestionRIASEC.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RegModel.cs" />
     <Compile Include="Models\ResourceModel.cs" />
+    <Compile Include="Models\RIASEC_Guided.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\State_Mast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -289,6 +298,12 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Resource.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_RIASECTest.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_RIASEC_Main.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ValidateFile.cs" />
@@ -786,6 +801,7 @@
     <Content Include="Content\js\video\jquery-1.7.2.min.js" />
     <Content Include="Content\js\video\skrollr.js" />
     <Content Include="Content\js\widgets.js" />
+    <Content Include="Content\assets\select2.min.css" />
     <Content Include="Content\video\animation-test-video.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -840,7 +856,11 @@
     <Content Include="ResourceFile\CLF.pdf" />
     <Content Include="ResourceFile\SHG.pdf" />
     <Content Include="ResourceFile\VO.pdf" />
+
     <Content Include="Content\download\WomenRiseUpAgainstChildMarriage_PCI_F.pdf" />
+
+    <Content Include="Content\assets\autocompleteDropdown.scss" />
+
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -852,7 +872,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JS\jquery.autocompleteDropdown.js" />
     <Content Include="Scripts\JS\Master.js" />
+    <Content Include="Scripts\JS\select2.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\TreeTable.js" />
@@ -940,6 +962,11 @@
     <Content Include="Views\Counsellor\_Scholarship.cshtml" />
     <Content Include="Views\Counsellor\_Scheme.cshtml" />
     <Content Include="Views\Counsellor\Index.cshtml" />
+    <Content Include="Views\Counsellor\_SkillTrain.cshtml" />
+    <Content Include="Views\Counsellor\_CD.cshtml" />
+    <Content Include="Views\Test\Add.cshtml" />
+    <Content Include="Views\Test\_ViewData.cshtml" />
+    <Content Include="Views\Counsellor\_RTOCData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

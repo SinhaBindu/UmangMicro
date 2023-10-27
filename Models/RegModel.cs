@@ -22,7 +22,7 @@ namespace UmangMicro.Models
         public string CaseID { get; set; }
         public string UseraspID { get; set; }
         [Required]
-        [Display(Name="Registration Date")]
+        [Display(Name= "Date Of Registration")]
         public Nullable<System.DateTime> RegDate { get; set; }
          [Required]
         //[StringLength(100, MinimumLength = 3)]
@@ -57,7 +57,7 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> DOB { get; set; }
         [Required]
         public string Age { get; set; }
-        [Display(Name = "Class")]
+        [Display(Name = "Class Name")]
         [Required]
         public Nullable<int> ClassId { get; set; }
         //[Required]
@@ -109,7 +109,7 @@ namespace UmangMicro.Models
                 String CN = String.Empty;
                 if (LanguangeType == 1)
                 {
-                    CN = "Name";
+                    CN = "Student Name";
                 }
                 else
                 {
@@ -173,7 +173,7 @@ namespace UmangMicro.Models
                 String CN = String.Empty;
                 if (LanguangeType == 1)
                 {
-                    CN = "District";
+                    CN = "School District";
                 }
                 else
                 {
@@ -189,7 +189,7 @@ namespace UmangMicro.Models
                 String CN = String.Empty;
                 if (LanguangeType == 1)
                 {
-                    CN = "Block";
+                    CN = "School Block";
                 }
                 else
                 {

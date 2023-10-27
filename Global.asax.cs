@@ -60,8 +60,8 @@ namespace UmangMicro
                                 User.District = dr["DistName"].ToString();
                                 User.BlockId = dr["BkId"].ToString();
                                 User.Block = dr["BlockName"].ToString();
-                                User.ClusterId = dr["CId"].ToString();
-                                User.Cluster = dr["ClusterName"].ToString();
+                                User.SchoolId = dr["SId"].ToString();
+                                User.SchoolN = dr["school_name"].ToString();
 
                             }
                         }

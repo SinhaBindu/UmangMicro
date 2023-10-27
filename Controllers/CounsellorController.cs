@@ -1,7 +1,10 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,6 +23,121 @@ namespace UmangMicro.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult GetRIASEClList(string CaseID = "")
+        {
+            try
+            {
+                var items = SP_Model.GetSP_RIASECList(CaseID);
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult RIASECldata(string Para = "")
+        {
+            DataTable dt = SP_Model.GetSP_RIASECGuidData(Para);
+            if (dt.Rows.Count > 0)
+            {
+                return PartialView("_RTOCData", dt);
+            }
+            return PartialView("_RTOCData", dt);
+        }
+        public ActionResult GetStudentlList(string Para = "", string SearchBy = "")
+        {
+            try
+            {
+                var items = SP_Model.GetSP_StudentList(Para, SearchBy);
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetSearchByCD()
+        {
+            try
+            {
+                DataSet ds = SP_Model.GetSP_SearchBYCD();
+                if (ds.Tables.Count > 0)
+                {
+                    var data = JsonConvert.SerializeObject(ds);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetCoursesDetail(SearchModel DList)
+        {
+            try
+            {
+                var resdata = this.Request.Unvalidated.Form["DList"];
+                bool IsCheck = false;
+                DataTable dt = new DataTable();
+                DataTable dt1 = new DataTable();
+                DataTable dt2 = new DataTable();
+                DataTable dt3 = new DataTable();
+                DataSet ds=new DataSet();   
+                if (resdata != null)
+                {
+                    var model = JsonConvert.DeserializeObject<SearchModel>(resdata);
+                    ds = SP_Model.GetComdSearchlist(model);
+                }
+                //dt = ds.Tables.Contains("Tables[0]") == true ? dt : ds.Tables[0];//dt1 = ds.Tables.Contains("Tables[1]") == true ? dt1 : ds.Tables[1];
+                
+                if (ds.Tables.Count > 0)
+                {
+                    IsCheck = true;
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        dt = ds.Tables[0];
+                    }
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        dt1 = ds.Tables[1];
+                    }
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        dt2 = ds.Tables[2];
+                    }
+                    if (ds.Tables[3].Rows.Count > 0)
+                    {
+                        dt3 = ds.Tables[3];
+                    }
+                }
+                var html_1 = ConvertViewToString("_SkillTrain", dt);
+                var html_2 = ConvertViewToString("_Scheme", dt1);
+                var html_3 = ConvertViewToString("_Scholarship", dt2);
+                var html_4 = ConvertViewToString("_CD", dt3);
+                //var html3 = ConvertViewToString("_UserDetailData", tbllist);
+                var res = Json(new { IsSuccess = IsCheck, html1 = html_1, html2 = html_2, html3 = html_3, html4 = html_4 }, JsonRequestBehavior.AllowGet);
+                res.MaxJsonLength = int.MaxValue;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "There was a communication error." }, JsonRequestBehavior.AllowGet); throw;
+            }
         }
         public ActionResult GetClassno(string CaseId)
         {
@@ -40,7 +158,7 @@ namespace UmangMicro.Controllers
         }
         public ActionResult CaseHistory(int Id = 0)
         {
-            CHModel model=new CHModel();
+            CHModel model = new CHModel();
             return View(model);
         }
         [HttpPost]
@@ -152,6 +270,17 @@ namespace UmangMicro.Controllers
                 return resResponse1;
             }
             return View();
+        }
+        private string ConvertViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewEngineResult vResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext vContext = new ViewContext(this.ControllerContext, vResult.View, ViewData, new TempDataDictionary(), writer);
+                vResult.View.Render(vContext, writer);
+                return writer.ToString();
+            }
         }
 
     }

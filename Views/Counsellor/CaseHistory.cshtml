@@ -3,145 +3,302 @@
 @{
     ViewBag.Title = "Case History";
 }
+
+<style>
+    .dataTables_filter {
+        font-size: large !important;
+        font-weight: normal !important;
+        /*margin-left: 3% !important;*/
+    }
+
+    input[aria-controls="DataList_0"] {
+        height: 50px !important;
+        width: 690px !important;
+    }
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 @using (Html.BeginForm("CaseHistory", "Counsellor", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
                 {
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.Id)
                     <div class="form-row">
                         <div class="col-md-12">
                             <div style="text-align: center; font-weight: 700;">
-                                <h4><strong>Case History </strong></h4>
+                                <h4><strong>Case History (Student Counselling) </strong></h4>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="frame">
+                            <div class="countdown"></div>
+                            @Html.HiddenFor(m => m.StratTime)
+                        </div>
+                        <div class="col-md-3">
                             <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.CaseID, CommonModel.GetCaseID(), null, new { @class = "form-control selectpicker" })
+                                <label>Search By : </label>
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetTypeCase())
+                                    {
+                                        @Html.RadioButtonFor(model => model.TypeCase, item.Value, new { id = "TypeCase" + item.Value, @required = "required" }) @item.Text
+                                    }
+                                    @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label></label>
+                                @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="position-relative form-group mt-sm-4">
+                                <a href="javascript:void(0);" onclick="return GetStudData('CaseID')" class="btn btn-info text-white">Search</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
                                 @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.DOC, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.DOC, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
+                                @Html.ValidationMessageFor(model => model.DOC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.ClassId, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.ClassId, CommonModel.GetClass(), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="div-stud" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span>Student Name : <strong id="lsn"></strong></span>
+                                <span>DOB : <strong id="ldob"></strong></span>
+                                <span>Registration Date : <strong id="lregdt"></strong></span>
+                                <span>School Name : <strong id="lsch"></strong></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.TypeCounsellor, htmlAttributes: new { @class = "" })
                                 @Html.DropDownListFor(model => model.TypeCounsellor, CommonModel.GetTypeCounsellor(), null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.TypeCounsellor, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-3">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.TypeQuery, htmlAttributes: new { @class = "" })
                                 @Html.DropDownListFor(model => model.TypeQuery, CommonModel.GetTypeQuery(), null, new { @id = "TypeQuery", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.TypeQuery, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Subject, CommonModel.GetSubject(), null, new { @class = "form-control", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.KeyWords, htmlAttributes: new { @class = "" })
-                                @Html.EditorFor(model => model.KeyWords, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                @Html.TextAreaFor(model => model.KeyWords, new { @class = "form-control", @required = "required", @rows = "4", @col = "12" })
                                 @Html.ValidationMessageFor(model => model.KeyWords, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-12" id="hd-tenth" style="display:none;">
+                        <div class="col-md-6" id="hd-tenth" style="display:none;">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Study10th, htmlAttributes: new { @class = "" })
                                 @Html.DropDownListFor(model => model.Study10th, CommonModel.GetInterested(), null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Study10th, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-12" id="hd-twelfth" style="display:none;">
+                        <div class="col-md-6" id="hd-twelfth" style="display:none;">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Study12th, htmlAttributes: new { @class = "" })
                                 @Html.DropDownListFor(model => model.Study12th, CommonModel.GetInterested(), null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Study12th, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-12">
+
+                        @*<div id="hd-Test" style="display:none;">*@
+                        <div class="col-md-6 hd-Test">
                             <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.Subject, CommonModel.GetSubject(), null, new { @class = "form-control", @multiple = "multiple" })
-                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Counselling, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.Counselling, CommonModel.GetCounselling(), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Counselling, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div id="hd-Test" style="display:none;">
-                            <div class="col-md-12">
-                                <div class="position-relative form-group">
-                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.Counselling, htmlAttributes: new { @class = "" })
-                                    @Html.DropDownListFor(model => model.Counselling, CommonModel.GetCounselling(), null, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Counselling, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="position-relative form-group">
-                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.IsPsychometric, htmlAttributes: new { @class = "" })
-                                    @*@Html.DropDownListFor(model => model.IsPsychometric, CommonModel.GetYesNo(), null, new { @class = "form-control" })*@
-                                    <div class="checkbox">
-                                        @foreach (var item in CommonModel.GetYesNo())
-                                        {
-                                            @Html.RadioButtonFor(model => model.IsPsychometric, item.Value, new { id = "IsPsychometric" + item.Value, @required = "required" }) @item.Text
-                                        }
-                                        @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
-                                    </div>
+                        <div class="col-md-6 hd-Test">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.IsPsychometric, htmlAttributes: new { @class = "" })
+                                @*@Html.DropDownListFor(model => model.IsPsychometric, CommonModel.GetYesNo(), null, new { @class = "form-control" })*@
+                                <div class="checkbox">
+                                    @foreach (var item in CommonModel.GetYesNo())
+                                    {
+                                        @Html.RadioButtonFor(model => model.IsPsychometric, item.Value, new { id = "IsPsychometric" + item.Value, @required = "required" }) @item.Text
+                                    }
                                     @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
                                 </div>
+                                @Html.ValidationMessageFor(model => model.IsPsychometric, "", new { @class = "text-danger" })
                             </div>
-                            <div class="col-md-12">
-                                <div class="position-relative form-group">
-                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.Psychometric, htmlAttributes: new { @class = "" })
-                                    @Html.DropDownListFor(model => model.Psychometric, CommonModel.GetPsychometric(), null, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Psychometric, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6 hd-Test" id="div-psy" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Psychometric, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.Psychometric, CommonModel.GetPsychometric(), null, new { @class = "form-control", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.Psychometric, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @*</div>*@
+
+                        <div class="col-md-12" id="div-TestRes" style="display:none">
+                            <strong>
+                                Result of Psychometric test
+                                <input type="checkbox" name="chkAllRC" id="chkAllRC" value="" /> All RIASEC List
+                            </strong>
+                            <div id="RToCResData" style="height:200px !important; overflow:scroll;"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card-body">
+                                <div style="height:300px !important; overflow:scroll;">
+                                    <ul class="tabs-animated-shadow tabs-animated nav">
+                                        <li class="nav-item" style="display:none;" id="li-tab0">
+                                            <a role="tab" class="nav-link" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
+                                                <span>Courses Details</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" style="display:none;" id="li-tab1">
+                                            <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="true">
+                                                <span>Skill Training</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" style="display:none;" id="li-tab2">
+                                            <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
+                                                <span>Schemes</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" style="display:none;" id="li-tab3">
+                                            <a role="tab" class="nav-link" id="tab-c-3" data-toggle="tab" href="#tab-animated-3" aria-selected="false">
+                                                <span>Scholarships</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
+                                            <div class="col-md-12" id="dv-scd" style="display:none;">
+                                                <div class="col-md-6">
+                                                    <a href="javascript:void(0);" class="btn btn-info text-white" id="btnscd" name="btnscd">Search</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="display:none;" id="dv-checdkall">
+                                                <input type="checkbox" name="chkcn" id="chkcdAll" value="" />All &nbsp;
+                                                <input type="checkbox" name="chkcn" id="chkcn" value="" />Course Name &nbsp;
+                                                <input type="checkbox" name="chkct" id="chkct" value="" />Course Type &nbsp;
+                                                <input type="checkbox" name="chkjo" id="chkjo" value="" />Job Opportunity &nbsp;
+                                                <input type="checkbox" name="chkcd" id="chkcd" value="" />Course Duration &nbsp;
+                                                <input type="checkbox" name="chke" id="chke" value="" />Eligibility &nbsp;
+                                                <input type="checkbox" name="chkmi" id="chkmi" value="" />Medium Instruction &nbsp;
+                                                <input type="checkbox" name="chkcu" id="chkcu" value="" />Institute &nbsp;
+                                                <input type="checkbox" name="chklc" id="chklc" value="" />Location
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6" id="dv-cn" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Course Name</label>
+                                                        <textarea type="text" name="sby_cn" id="sby_cn" size="50" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" id="dv-ct" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Course Type</label>
+                                                        <textarea type="text" name="sby_ct" id="sby_ct" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" id="dv-jo" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Job Opportunity</label>
+                                                        <textarea type="text" name="sby_jo" id="sby_jo" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" id="dv-cd" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Course Duration</label>
+                                                        <textarea type="text" name="sby_cd" id="sby_cd" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" id="dv-e" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Eligibility</label>
+                                                        <textarea type="text" name="sby_e" id="sby_e" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" id="dv-mi" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Medium Instruction</label>
+                                                        <textarea type="text" name="sby_mi" id="sby_mi" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" id="dv-cu" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Institute</label>
+                                                        <textarea type="text" name="sby_cu" id="sby_cu" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" id="dv-lc" style="display:none;">
+                                                    <div class="position-relative form-group">
+                                                        <label>Location</label>
+                                                        <textarea type="text" name="sby_lc" id="sby_lc" autocomplete="" rows="1" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="mb-0">
+                                                <div id="sub-data" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-1" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data1" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-2" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data2" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane active" id="tab-animated-3" role="tabpanel">
+                                            <p class="mb-0">
+                                                <div id="sub-data3" class="col-md-12"></div>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label class="">Suggestion</label>
-                            <div class="card-body">
-                                <ul class="tabs-animated-shadow tabs-animated nav">
-                                    <li class="nav-item" style="display:none;" id="li-tab0">
-                                        <a role="tab" class="nav-link" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
-                                            <span>Courses Details</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="display:none;" id="li-tab1">
-                                        <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="true">
-                                            <span>Skill Training</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="display:none;" id="li-tab2">
-                                        <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
-                                            <span>Schemes</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="display:none;" id="li-tab3">
-                                        <a role="tab" class="nav-link" id="tab-c-3" data-toggle="tab" href="#tab-animated-3" aria-selected="false">
-                                            <span>Scholarships</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
-                                        <p class="mb-0">
-                                            <div id="sub-data" class="col-md-12"></div>
-                                        </p>
-                                    </div>
-                                    <div class="tab-pane active" id="tab-animated-1" role="tabpanel">
-                                        <p class="mb-0">
-                                            <div id="sub-data1" class="col-md-12"></div>
-                                        </p>
-                                    </div>
-                                    <div class="tab-pane active" id="tab-animated-2" role="tabpanel">
-                                        <p class="mb-0">
-                                            <div id="sub-data2" class="col-md-12"></div>
-                                        </p>
-                                    </div>
-                                    <div class="tab-pane active" id="tab-animated-3" role="tabpanel">
-                                        <p class="mb-0">
-                                            <div id="sub-data3" class="col-md-12"></div>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            @Html.LabelFor(model => model.Suggestion, htmlAttributes: new { @class = "" })
+                            @Html.TextAreaFor(model => model.Suggestion, new { @class = "form-control", @required = "required", @rows = "4", @col = "12" })
+                            @Html.ValidationMessageFor(model => model.Suggestion, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.Recommendation, htmlAttributes: new { @class = "" })
+                            @Html.TextAreaFor(model => model.Recommendation, new { @class = "form-control", @required = "required", @rows = "4", @col = "12" })
+                            @Html.ValidationMessageFor(model => model.Recommendation, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-6">
                             <div class="position-relative form-group">
@@ -159,25 +316,21 @@
                                 </div>
                                 @Html.ValidationMessageFor(model => model.IsFollow, "", new { @class = "text-danger" })
 
-
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div id="hd-MY" style="display:none;">
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.FM, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(model => model.FM, CommonModel.GetMonth(), null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.FM, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.FY, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(model => model.FY, CommonModel.GetYear(), null, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.FY, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+
+                        <div class="col-md-3 hd-MY" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.FM, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.FM, CommonModel.GetMonth(), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FM, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3 hd-MY" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.FY, htmlAttributes: new { @class = "" })
+                                @Html.DropDownListFor(model => model.FY, CommonModel.GetYear(), null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FY, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -219,36 +372,107 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
+    @*<script src="https://cdnjs.code.jquery.com/jquery.min.js"></script>*@
+    @*<link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css" />*@
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <script type="text/javascript">
+        var StudDList = []; RIASECl3Val = [];
+        var RCSList = [];
         $(document).ready(function () {
-            $('.selectpicker').selectpicker({
-                liveSearch: true,
-                showSubtext: true
-            });
+
+            loopRC();
+
+            CountTime();
+
+            function updateDisplay() {
+                //Formated Display
+                phrs = hrs < 10 ? '0' + hrs : hrs;
+                pmin = min < 10 ? '0' + min : min;
+                psec = sec < 10 ? '0' + sec : sec;
+                pms = ms < 10 ? '0' + ms : ms;
+                //Output
+                document.querySelector('.hrs').innerText = phrs;
+                document.querySelector('.min').innerText = pmin;
+                document.querySelector('.sec').innerText = psec;
+                document.querySelector('.ms').innerText = pms;
+            }
+
+            $('#btnscd').on('click', function () {
+                BindData(1);
+            })
+
             $('select[name=Subject]').multiselect({
+                columns: 2,
                 includeSelectAllOption: true
             });
+            $('select[name=Psychometric]').multiselect({
+                includeSelectAllOption: true,
+                columns: 2,
+                //afterSelect: function () {
+                //    var selections = [];
+                //    $("select[name=Psychometric] option:selected").each(function () {
+                //        var optionValue = $(this).val();
+                //        var optionText = $(this).text();
 
+                //        selections.push(optionValue);
+                //    });
+
+                    // use array "selections" here..
+               // }
+
+            });
+
+            //$('input[name=Searchtxt]').change(function () {
+            //    GetStudData("CaseID");
+            //});
+
+            //$('#DataList2 thead tr').clone(true).appendTo('#DataList2 thead');
+            //$('#DataList2 thead tr:eq(1) th').each(function (i) {
+            //    var title = $(this).text();
+            //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+
+            //    $('input', this).on('keyup change', function () {
+            //        if (table.column(i).search() !== this.value) {
+            //            table
+            //                .column(i)
+            //                .search(this.value)
+            //                .draw();
+            //        }
+            //    });
+            //});
 
             $('input[name=IsFollow]').click(function () {
+                $('#FM').val('-1'); $('#FY').val('-1');
                 if ($(this).val() == "1") {
-                    $('#hd-MY').show();
+                    $('.hd-MY').show();
+                    $('#FM').attr('required', 'required'); $('#FY').attr('required', 'required');
                 }
                 else {
-                    $('#hd-MY').hide();
+                    $('.hd-MY').hide();
+                    $('#FM').removeAttr('required'); $('#FY').removeAttr('required');
                 }
             });
 
             $('select[name=TypeQuery]').change(function () {
                 $('#li-tab0').hide(); $('#li-tab1').hide(); $('#li-tab2').hide(); $('#li-tab3').hide();
                 $('#sub-data').hide(); $('#sub-data2').hide(); $('#sub-data3').hide();
-                BindData(); $('#hd-Test').hide();
+                BindData(); $('.hd-Test').hide();
 
                 if ($(this).val() == "1" || $(this).val() == "2") {
-                    $('#hd-Test').show();
+                    $('.hd-Test').show();
                     $('#li-tab0').show();
+                    $('#li-tab1').show();
                     $('#sub-data').show();
+                    GetRIASEClData(); GetSearchCD(); $('#dv-checdkall').show();
+                  //  $('#sby_cn').autocompleteDropdown();
                 }
                 else if ($(this).val() == "3") {
                     $('#li-tab3').show();
@@ -259,45 +483,166 @@
                     $('#sub-data2').show();
                 }
                 else {
-                    $('#hd-Test').hide();
+                    $('.hd-Test').hide();
                 }
             });
 
             $('select[name=CaseID]').change(function () {
+
+                $('#div-stud').hide();
                 //var clno = BindClassNo($(this).val(),"");
-                var clno = "";
-                $.ajax({
-                    url: document.baseURI + "/Counsellor/GetClassno",
-                    type: "Post",
-                    data: JSON.stringify({ 'CaseId': $(this).val() }),
-                    contentType: "application/json; charset=utf-8",
-                    global: false,
-                    async: false,
-                    dataType: "json",
-                    success: function (resp) {
-                        if (resp.IsSuccess) {
-                            clno = JSON.parse(resp.res);
-                        }
-                    },
-                    error: function (req, error) {
-                        if (error === 'error') { error = req.statusText; }
-                        var errormsg = 'There was a communication error: ' + error;
-                        //Do To Message display
+                //$.ajax({
+                //    url: document.baseURI + "/Counsellor/GetClassno",
+                //    type: "Post",
+                //    data: JSON.stringify({ 'CaseId': $(this).val() }),
+                //    contentType: "application/json; charset=utf-8",
+                //    global: false,
+                //    async: false,
+                //    dataType: "json",
+                //    success: function (resp) {
+                //        if (resp.IsSuccess) {
+                //            clno = JSON.parse(resp.res);
+                //        }
+                //    },
+                //    error: function (req, error) {
+                //        if (error === 'error') { error = req.statusText; }
+                //        var errormsg = 'There was a communication error: ' + error;
+                //        //Do To Message display
+                //    }
+                //});
+                var fd = StudDList.filter(x => x.CaseID == $('#CaseID').val());
+                if (fd.length > 0) {
+                    $('#div-stud').show();
+                    $('#lsn').html(fd[0].Name);
+                    $('#ldob').html(fd[0].DOB);
+                    $('#lregdt').html(fd[0].RegDate);
+                    $('#lsch').html(fd[0].school_name);
+                    $('#ClassId').val(fd[0].ClassId);
+                    if (fd[0].ClassId == "10") {
+                        $('#hd-tenth').show();
+                        $('#hd-twelfth').hide();
                     }
-                });
-                if (clno=="10") {
+                    else if (fd[0].ClassId == "11" || fd[0].ClassId == "12") {
+                        $('#hd-tenth').hide();
+                        $('#hd-twelfth').show();
+                    }
+                    else {
+                        $('#hd-tenth').hide();
+                        $('#hd-twelfth').hide();
+                    }
+                }
+            });
+
+            $('select[name=ClassId]').change(function () {
+                if ($(this).val() == "10") {
                     $('#hd-tenth').show();
                     $('#hd-twelfth').hide();
                 }
-                else if (clno == "11" || clno == "12") {
+                else if ($(this).val() == "11" || $(this).val() == "12") {
                     $('#hd-tenth').hide();
                     $('#hd-twelfth').show();
-               }
+                }
                 else {
                     $('#hd-tenth').hide();
                     $('#hd-twelfth').hide();
                 }
             });
+
+            $('input[name=IsPsychometric]').click(function () {
+                if ($(this).val() == "1") {
+                    if ($('select[name=Counselling]').val() == "2") {
+                        $('#div-TestRes').show();
+                        $('#div-psy').show();
+                        RToCData();//Tools used for counselling
+                        //for (var i = 0; i < RCSList.length; i++) {
+                        //    var st = RIASECl3Val.join(",");
+                        //}
+                        var sjoin = ((RIASECl3Val.join(",")).split(','));
+                            $('select[name=Psychometric]').val(sjoin).multiselect('refresh');
+                    }
+                    else {
+                        toastr.error("Error", "Please select - Tools used for counselling (Pscholmetric (RIASEC) test)");
+                    }
+                }
+                else {
+                    $('#div-TestRes').hide();
+                    $('#div-psy').hide();
+                }
+            });
+            $("#chkAllRC").on("click", function () {
+                if ($("#chkAllRC").prop("checked")) {
+                    RToCData(true);
+                    HideSearchCD();
+                }
+                else
+                    RToCData(false);
+            });
+            $("#chkcn").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-cn").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-cn").hide();
+            });
+            $("#chkct").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-ct").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-ct").hide();
+            });
+            $("#chkjo").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-jo").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-jo").hide();
+            });
+            $("#chkcd").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-cd").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-cd").hide();
+            });
+            $("#chke").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-e").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-e").hide();
+            });
+            $("#chkmi").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-mi").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-mi").hide();
+            });
+            $("#chkcu").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-cu").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-cu").hide();
+            });
+            $("#chklc").on("click", function () {
+                if ($(this).prop("checked")) {
+                    $("#dv-lc").show(); HideSearchCD();
+                }
+                else
+                    $("#dv-lc").hide();
+            });
+            $("#chkcdAll").on("click", function () {
+                if ($(this).prop("checked")) {
+                    BindData(1, "all");
+                    $('#btnscd').show();
+                }
+                else
+                    $('#sub-data').html('');
+                $('#btnscd').hide();
+            });
+
 
              $("#formid").on("submit", function (event) {
                      event.preventDefault();
@@ -353,17 +698,38 @@
                  });
 
         });
-
-        function BindData() {
+        function HideSearchEmpty() {
             $('#sub-data').html(''); $('#sub-data1').html(''); $('#sub-data2').html(''); $('#sub-data3').html('');
+        }
+        function BindData(Paratbl,dataall="") {
+            HideSearchEmpty();
             //jQuery.event.trigger("ajaxStart");
             $('#submission-data').removeClass("text-danger");
             var url = $('#submission-form').attr("action");
             var formData = $('#submission-form').serialize();
+            debugger;
+            var formData = new FormData();
+            var sby_cn = $('#sby_cn').val();
+            var sby_ct = $('#sby_ct').val();
+            var sby_jo = $('#sby_jo').val();
+            var sby_cd = $('#sby_cd').val();
+            var sby_e =  $('#sby_e').val();
+            var sby_mi = $('#sby_mi').val();
+            var sby_cu = $('#sby_cu').val();
+            var sby_lc = $('#sby_lc').val();
+            var DList = {
+                Para1: sby_cn, Para2: sby_ct, Para3: sby_jo, Para4: sby_cd,
+                Para5: sby_e, Para6: sby_mi, Para7: sby_cu, Para8: sby_lc, Paratbl: Paratbl, ParaAll: dataall
+            };
+            formData.append('DList', JSON.stringify(DList));
             $.ajax({
-                url: document.baseURI + "/Report/GetCoursesDetail/",
+                url: document.baseURI + "/Counsellor/GetCoursesDetail/",
+                data: JSON.stringify(DList),//{ 'District': District, 'Block': Block },
                 type: "Post",
-                data: '',//{ 'District': District, 'Block': Block },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function (resp) {
                     if (resp.IsSuccess) {
                         //jQuery.event.trigger("ajaxStop");
@@ -382,7 +748,7 @@
                                 //responsive: false,
                                 // scrollCollapse: false,
                                 "dom": '<"pull-left"f><"pull-right"l>tip',
-                                "pageLength": 100,
+                                "pageLength": 10,
                                 "lengthChange": false,
                                 "buttons": [
                                     {
@@ -399,6 +765,7 @@
 
                             });
 
+                            $("#tab-animated-0").removeClass('active');
                             $("#tab-animated-1").removeClass('active');
                             $("#tab-animated-2").removeClass('active');
                             $("#tab-animated-3").removeClass('active');
@@ -426,6 +793,348 @@
             });
         }
 
+        function GetStudData(Ele) {
+            $('#' + Ele).empty();
+            $('#' + Ele).prop("disabled", false);
+            $('#' + Ele).append($("<option>").val('').text('Select'));
+            var Para = $('input[name="TypeCase"]:checked').val();
+            $.ajax({
+                url: document.baseURI + "/Counsellor/GetStudentlList",
+                type: "Post",
+                data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }),
+                contentType: "application/json; charset=utf-8",
+                global: false,
+                async: false,
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        StudDList = JSON.parse(resp.res);
+                        $.each(StudDList, function (i, exp) {
+                            $('#' + Ele).append($("<option>").val(exp.CaseID).text(exp.CaseID +' - ' + exp.Name));
+                        });
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    //Do To Message display
+                }
+            });
+            $('#' + Ele).trigger("chosen:updated");
+        }
+
+        function GetRIASEClData() {
+            RIASECl3Val = [];
+            var CaseID = $('select[name=CaseID]').val();
+            $.ajax({
+                url: document.baseURI + "/Counsellor/GetRIASEClList",
+                type: "Post",
+                data: JSON.stringify({ 'CaseID': CaseID }),
+                contentType: "application/json; charset=utf-8",
+                global: false,
+                async: false,
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        RIASEClList = JSON.parse(resp.res);
+                        $.each(RIASEClList, function (i, exp) {
+                            if (i<=2) {
+                                RIASECl3Val.push(exp.QuestionCode);
+                            }
+
+                        });
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    //Do To Message display
+                }
+            });
+
+        }
+
+        function RToCData(AllRC) {
+            var RC3Val = AllRC == true? "": RIASECl3Val.join(",");
+             $.ajax({
+               url: '@Url.Action("RIASECldata", "Counsellor")',
+                 data: { Para: RC3Val  },
+               type: 'POST',
+               success: function (data) {
+                   $("#RToCResData").html(data);
+                 }
+             });
+        }
+
+        function loopRC() {
+            RCSList = [];
+            RCSList.push({ sln: "1", stn: 'R', fulln:'REALISTIC'})
+            RCSList.push({ sln: "2", stn: 'I', fulln:'INVESTIGATIVE'})
+            RCSList.push({ sln: "3", stn: 'A', fulln:'ARTISTIC'})
+            RCSList.push({ sln: "4", stn: 'S', fulln:'SOCIAL'})
+            RCSList.push({ sln: "5", stn: 'E', fulln:'ENTERPRISING'})
+            RCSList.push({ sln: "6", stn: 'C', fulln:'CONVENTIONAL'})
+        }
+
+        function GetSearchCD() {
+            $.ajax({
+                url: document.baseURI + "/Counsellor/GetSearchByCD",
+                type: "Post",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                global: false,
+                async: false,
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        debugger;
+                        var CDList = JSON.parse(resp.res);
+                        var cn = [], ct = [], jo=[], cd=[], e=[], mi=[], cu=[], lc=[];
+                        $.each(CDList.Table, function (i, exp) {
+                            cn.push(exp.CN);
+                        });
+                        $.each(CDList.Table1, function (i, exp) {
+                            ct.push(exp.CT);
+                        });
+                        $.each(CDList.Table2, function (i, exp) {
+                            jo.push(exp.JO);
+                        });
+                        $.each(CDList.Table3, function (i, exp) {
+                            cd.push(exp.CD);
+                        });
+                        $.each(CDList.Table4, function (i, exp) {
+                            e.push(exp.EB);
+                        });
+                        $.each(CDList.Table5, function (i, exp) {
+                            mi.push(exp.MI);
+                        });
+                        $.each(CDList.Table6, function (i, exp) {
+                            cu.push(exp.CU);
+                        });
+                        $.each(CDList.Table7, function (i, exp) {
+                            lc.push(exp.LC);
+                        });
+
+                        //var scnjoin = ((cn.join(",")).split(','));
+                        $("#sby_cn")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        cn, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+                        $("#sby_ct")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        ct, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+                        $("#sby_jo")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        jo, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+                        $("#sby_cd")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        cd, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+                        $("#sby_e")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        e, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+                        $("#sby_mi")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        mi, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+                        $("#sby_cu")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        cu, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+                        $("#sby_lc")
+                            .autocomplete({
+                                minLength: 0,
+                                source: function (request, response) {
+                                    response($.ui.autocomplete.filter(
+                                        lc, extractLast(request.term)));
+                                },
+                                focus: function () {
+                                    return false;
+                                },
+                                select: function (event, ui) {
+                                    var terms = split(this.value);
+                                    // remove the current input
+                                    terms.pop();
+                                    // add the selected item
+                                    terms.push(ui.item.value);
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    this.value = terms.join(", ");
+                                    return false;
+                                }
+                            });
+
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    //Do To Message display
+                }
+            });
+            //$('#sby_cn').trigger("chosen:updated");
+        }
+
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+        function extractLast(term) {
+            return split(term).pop();
+        }
+        function HideSearchCD() {
+            $('#dv-scd').show();
+        }
+        function CountTime() {
+            var timer2 = "0:05";
+            var interval = setInterval(function () {
+                var timer = timer2.split(':');
+                //by parsing integer, I avoid all extra string processing
+                var minutes = parseInt(timer[0], 10);
+                var seconds = parseInt(timer[1], 10);
+                --seconds;
+                minutes = (seconds < 0) ? --minutes : minutes;
+                console.log(minutes, seconds);
+                seconds = (seconds < 0) ? 59 : seconds;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                //minutes = (minutes < 10) ?  minutes : minutes;
+                if (minutes < 0) {
+                    clearInterval(interval);
+                } else {
+                    $('.countdown').html(minutes + ':' + seconds);
+                    $('#StratTime').val(minutes + ':' + seconds);
+                    timer2 = minutes + ':' + seconds;
+                }
+            }, 60000);
+        }
     </script>
 }
 

@@ -1,0 +1,97 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "User List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+
+<strong>Skill Training</strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                @*table card-table table-vcenter text-nowrap*@
+                <table class="table table-bordered table-hover dt-responsive display" id="DataList" width="100%">
+                    <thead class="">
+                        <tr>
+                            @*<th>SrNo.</th>*@
+                            <th></th>
+                            <th>Name of the Course</th>
+                            <th>Course Type</th>
+                            <th>Job Opportunity</th>
+                            <th>Course Duration</th>
+                            <th>Short Description of Course</th>
+                            <th>Eligibility</th>
+                            <th>Marks Criteria</th>
+                            <th>Admission Process</th>
+                            <th>Medium of Instructions</th>
+                            <th>Hostel Availability</th>
+                            <th>Available Scholarships</th>
+                            <th>Category</th>
+                            <th>College/University/Institute</th>
+                            <th>Fee Structure</th>
+                            <th>Status of Institution</th>
+                            <th>District</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1;
+                            if (Model != null)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    <tr>
+                                        @*<td class="text-center">@(sno++)</td>*@
+                                        <td class="text-center"><input type="checkbox" name="Chk_@dr["ID"]" id="Chk_@dr["ID"]" value="" /></td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["NameCourse"]</td>
+                                        <td class="text-left">@dr["CourseType"]</td>
+                                        <td class="text-left">@dr["JobOppty"]</td>
+                                        <td class="text-left">@dr["CorseDur"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["ShortDesCourse"]</td>
+                                        <td class="text-left">@dr["Eligibility"]</td>
+                                        <td class="text-left">@dr["MarksCriteria"]</td>
+                                        <td class="text-left">@dr["AdmissionProcess"]</td>
+                                        <td class="text-left">@dr["MediumInstructions"]</td>
+                                        <td class="text-left">@dr["HostelAvailability"]</td>
+                                        <td class="text-left">@dr["AvailableScholarships"]</td>
+                                        <td class="text-left">@dr["Category"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["CollegeUniversityInstitute"]</td>
+                                        <td class="text-left">@dr["FeeStructure"]</td>
+                                        <td class="text-left">@dr["StatusInstitution"]</td>
+                                        <td class="text-left">@dr["District"]</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="17" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script>
+        new DataTable('#DataList', {
+            responsive: {
+                details: {
+                    display: DataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return 'Details for ' + data[0] + ' ' + data[1];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
+                }
+            }
+        });
+    </script>*@

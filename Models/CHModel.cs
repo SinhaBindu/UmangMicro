@@ -8,10 +8,16 @@ namespace UmangMicro.Models
 {
     public class CHModel
     {
+        public string TypeCase { get; set; }
+        public string Searchtxt { get; set; }
+        [Display(Name = "Date of counselling")]
+        public DateTime? DOC { get; set; }
         public Nullable<System.Guid> GudID { get; set; }
         public int Id { get; set; }
         [Display (Name ="Case ID")]
         public string CaseID { get; set; }
+        [Display(Name = "Class Name")]
+        public string ClassId { get; set; }
         [Display(Name = "Type of counsellor")]
         public string TypeCounsellor { get; set; }
         [Display(Name = "Type of Query")]
@@ -30,7 +36,7 @@ namespace UmangMicro.Models
         public string IsPsychometric { get; set; }
         [Display(Name = "Result of Psychometric test")]
         public string Psychometric { get; set; }
-        [Display(Name = "")]
+        [Display(Name = "Areas of improvement")]
         public string Suggestion { get; set; }
         [Display(Name = "Follow up")]
         public string IsFollow { get; set; }
@@ -40,6 +46,10 @@ namespace UmangMicro.Models
         public string FY { get; set; }
         [Display(Name = "Is the career goal clear to counseleee after the session")]
         public string IsGoalClear { get; set; }
+        [Display (Name = "Counselling advice/ recommendations")]
+        public string Recommendation { get; set; }
+        public DateTime StratTime { get; set; }
+        public DateTime EndTime { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }

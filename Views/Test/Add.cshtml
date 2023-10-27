@@ -1,0 +1,523 @@
+﻿@model  UmangMicro.Models.QesRes
+@using UmangMicro.Manager
+@*@model  List<KGBV_JH.Models.HRModel>*@
+@using UmangMicro.Models;
+@{
+    ViewBag.Title = "RIASEC Test";
+    ViewBag.TitleIcon = "fa fa-user";
+    ViewBag.SemiTitle = "RIASEC Test";
+    ViewBag.SemiTitleLink = "~/";
+    string IsSadmin = string.Empty;
+    var idreadyonly = Model.Id != 0 ? "style=pointer-events:none;" : "";
+}
+
+@helper BindQueston(List<UmangMicro.Models.FormModel> list)
+{
+    if (list != null)
+    {
+        var ii = 0;
+        Model.Qlist = list;
+        var pvsection = "";
+        foreach (var item in Model.Qlist.ToList())
+        {
+            <div>
+                <div class="form-group q-design">
+                    @*@if ((item.SectionType.Trim()).ToLower() != (pvsection.Trim()).ToLower() || pvsection == "")
+                        {
+                            <div class="col-md-12 q-title"><strong>@item.SectionType</strong></div>
+                        }*@
+
+                    <span class="control-label col-md-3">@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
+                    <div class="col-md-8 q-check-input">
+                        @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
+                        @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
+                        @Html.HiddenFor(m => m.Qlist[ii].ControlType)
+                        @Html.HiddenFor(m => m.Qlist[ii].ControlInputType)
+                        @Html.HiddenFor(m => m.Qlist[ii].SectionType)
+
+                        @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
+                        new
+                        {
+                            @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
+                            @data_QIndex = ii,
+                            @data_qcode = Model.Qlist[ii].QuestionCode,
+                            @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
+                            onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
+                        })
+                        <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label><br>
+
+                    </div>
+                </div>
+            </div>
+            pvsection = (item.SectionType.Trim());
+            ii++;
+        }
+    }
+}
+
+
+<div id="page-content">
+    <div class="genral-form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    @using (Html.BeginForm("Add", "Test", FormMethod.Post, new { @class = "panel-body form-horizontal form-padding loader", enctype = "multipart/form-data", @id = "FormSubmit" }))
+                    {
+                        <div class="col-md-12">
+                            @Html.Partial("_Alerts")
+                            <strong class="msgerror" style="font-size:16px !important;"></strong>
+                        </div>
+                        <div class="panel-bodys">
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.Id)
+                            <input type="hidden" name="sid" id="sid" value="@Model.SchoolId" />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-users spacerright2"></i>RIASEC Test</p>
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
+                                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label>Search By : </label>
+                                    <div class="checkbox">
+                                        @foreach (var item in CommonModel.GetTypeCase())
+                                        {
+                                            @Html.RadioButtonFor(model => model.TypeCase, item.Value, new { id = "TypeCase" + item.Value, @required = "required" }) @item.Text
+                                        }
+                                        @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label></label>
+                                    @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control" } })
+
+                                    @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="position-relative form-group mt-sm-4">
+                                    <a href="javascript:void(0);" onclick="return GetStudData('CaseID')" class="btn btn-info text-white">Search</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
+                                    @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-1">School</label>
+                                <div class="col-md-3" @idreadyonly>
+                                    @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
+                                </div>
+                            </div>
+
+
+                            @{
+                                if (Model != null)
+                                {
+                                    @BindQueston(Model.Qlist)
+                                }
+                            }
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3 pull-right">
+                                    <span class="">
+                                        <button type="submit" class="previous btn btn-primary btn-lg" id="btnsubmit">Submit</button>
+                                        <a href="~/Test/Add" class="btn btn-info btn-lg">Reset</a>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script src="~/Scripts/JS/Master.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var StudDList = [];
+        var PartTimeSumtxt = 0;
+        $(document).ready(function () {
+
+            //$('.mchck').multiselect({
+            //    includeSelectAllOption: true
+            //});
+
+
+            $('select[name=CaseID]').change(function () {
+                $('#div-stud').hide();
+
+                var fd = StudDList.filter(x => x.CaseID == $('#CaseID').val());
+                if (fd.length > 0) {
+                    $('#div-stud').show();
+                    $('#lsn').html(fd[0].Name);
+                    $('#ldob').html(fd[0].DOB);
+                    $('#lregdt').html(fd[0].RegDate);
+                    $('#lsch').html(fd[0].school_name);
+                    $('#ClassId').val(fd[0].ClassId);
+                    if (fd[0].ClassId == "10") {
+                        $('#hd-tenth').show();
+                        $('#hd-twelfth').hide();
+                    }
+                    else if (fd[0].ClassId == "11" || fd[0].ClassId == "12") {
+                        $('#hd-tenth').hide();
+                        $('#hd-twelfth').show();
+                    }
+                    else {
+                        $('#hd-tenth').hide();
+                        $('#hd-twelfth').hide();
+                    }
+                }
+            });
+
+            if ('@Model' != 'null') {
+                if ('@Model.Id' != '0') {
+                    setTimeout(function () {
+                        $('#FrequencyId').val('@Model.FrequencyId');
+                        $('#SchoolId').val('@Model.SchoolId');
+
+                        //$('#FrequencyId').data('select2').destroy();
+                        //$('#FrequencyId').attr('readonly', true);
+                        $('#FrequencyId').trigger('change');
+                        $('#SchoolId').trigger('change');
+                       // $('#SchoolId').css({ "pointer-events": "none", "touch-action": "none", "background": "#ede6e6" });
+
+                    }, 2000);
+                    // $('#FrequencyId').val('@Model.FrequencyId');
+
+                }
+            }
+
+            if ('@User.IsInRole("JEPC_Counsellor")' == "True" || '@User.IsInRole("PCI_Counsellor")' == "True" || '@User.IsInRole("Admin")' == "True") {
+                @*setTimeout(function () {
+                    $('#SchoolId').val('@CommonModel.SessionLog.SchoolId_fk');
+                    //$('#sid').val('@CommonModel.SessionLog.SchoolId_fk');
+                    $('#SchoolId').trigger('change');
+                    //$("#SchoolId").prop("disabled", true);
+                    $('#SchoolId').attr("disabled", true);
+                }, 2000);*@
+                $('#SchoolId').css({ "pointer-events": "none", "touch-action": "none", "background": "#ede6e6" });
+                $('#SchoolId').trigger('change');
+            }
+            Load();
+
+
+            @*$(document).on("click", "#btnsubmit", function (ev) {
+                ev.preventDefault();
+                //var p = $(this).attr('formid');
+                debugger;
+                var parsedData = @Html.Raw(Json.Encode(Model));
+                var formData = $('#formid').serialize()
+                console.log(JSON.stringify(formData));
+                $.ajax({
+                    //contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: "POST",
+                    url: '/HR/Add',
+                    data: formData,
+                    success: function (res) {
+                        //psummodal.find("#prv1").empty();
+                        //psummodal.find("#prv1").html(res);
+                    },
+                    error: function (xhr) {
+                        //alert('errorLoad');
+                    }
+                });
+            });*@
+
+            //$("#btnDraft").click(function (e) {
+            //    e.preventDefault();
+            //    debugger;
+            //    //Serialize the form datas.
+            //    var valdata = $("#FormSubmit").serialize();
+            //    //to get alert popup
+            //    //alert(valdata);
+            //    //valdata.append(Draft: true);
+            //    //var PostData = JSON.stringify({ model: valdata, IS_Draft:1 });
+            //    $.ajax({
+            //        url: "/HR/Add",
+            //        type: "POST",
+            //        dataType: 'json',
+            //        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            //        data: valdata,
+            //        success: function (resp) {
+            //        }
+            //    });
+
+            //});
+            $('#FormSubmit').validate({
+                errorClass: 'help-block animation-slideDown',
+                errorElement: 'div',
+                errorPlacement: function (error, e) {
+                    e.parents('.form-group > div').append(error);
+                },
+                highlight: function (e) {
+
+                    $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                    $(e).closest('.help-block').remove();
+                },
+                success: function (e) {
+                    e.closest('.form-group').removeClass('has-success has-error');
+                    e.closest('.help-block').remove();
+                },
+                rules: {
+                    CB_DeparturePlace: {
+                        required: true
+                    },
+                    CB_DestinationPlace: {
+                        required: true
+                    },
+
+                    CB_NumberofPassenger: {
+                        required: true,
+                        number: true
+                    },
+
+                    CB_Customer: {
+                        required: true
+                    }
+                }
+            });
+
+            $('#FormSubmit').submit(function (e) {
+                debugger;
+                e.preventDefault();
+                $("#panel-load").show();
+                setTimeout(function () {
+                    $('span[id^=error_]').hide();
+                    var valid = $('#FormSubmit').valid();
+
+                    //var chkList = $("input[type=checkbox]", $("input[type=checkbox]").parent().parent(':visible'));
+                    //var chkDataList = [];
+                    //$.each(chkList, function (i, item) {
+                    //    chkDataList.push({ qcode: $(item).data('qcode'), id: item.id, checked: $(item).is(":checked") });
+                    //});
+                    //var chkGroup = groupBy(chkDataList, 'qcode');
+                    //$.each(chkGroup, function (i, item) {
+                    //    if (!item.filter(x => x.checked).length) {
+                    //        $('#error_' + item[0].qcode).show();
+                    //        valid = false;
+                    //    }
+                    //});
+
+                    if (valid) {
+                        $('.msgerror').hide();
+                        debugger;
+                        //Serialize the form datas.
+                        var valdata = $("#FormSubmit").serialize();
+                        //to get alert popup
+                        //alert(valdata);
+                        //valdata.append(Draft: true);
+                        //var PostData = JSON.stringify({ model: valdata, IS_Draft:1 });
+                        $.ajax({
+                            url: "/Test/Add",
+                            type: "POST",
+                            dataType: 'json',
+                            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                            data: valdata,
+                            success: function (resp) {
+                                if (resp.IsSuccess) {
+                                    toastr.success('Success', resp.msg);
+                                    var html = $(resp.htmlData);
+                                    var hiddenList = $('input[type="hidden"]', html);
+                                    $.each(hiddenList, function (i, item) {
+                                        console.log(item);
+                                        if (item.id) {
+                                            var hf = $('#' + item.id);
+                                            if (hf) {
+                                                $(hf).val($(item).val());
+                                                $(hf).val($(item).val());
+                                            }
+                                        }
+                                    });
+                                }
+                                else {
+                                    toastr.error('Danger', resp.msg);
+                                }
+                                $("#panel-load").hide();
+                            }
+                        });
+                    }
+                    else {
+                        $("#panel-load").hide();
+                        var input = $('.input-validation-error:first');
+                        if (input) {
+                            input.focus();
+                        }
+                        toastr.error('Error', "Please fill all required fields!!");
+                        return false;
+                    }
+                }, 100);
+            });//form end submited closed
+
+        });
+
+        function GetStudData(Ele) {
+            $('#' + Ele).empty();
+            $('#' + Ele).prop("disabled", false);
+            $('#' + Ele).append($("<option>").val('').text('Select'));
+            var Para = $('input[name="TypeCase"]:checked').val();
+            $.ajax({
+                url: document.baseURI + "/Counsellor/GetStudentlList",
+                type: "Post",
+                data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }),
+                contentType: "application/json; charset=utf-8",
+                global: false,
+                async: false,
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        StudDList = JSON.parse(resp.res);
+                        $.each(StudDList, function (i, exp) {
+                            $('#' + Ele).append($("<option>").val(exp.CaseID).text(exp.CaseID + ' - ' + exp.Name));
+                        });
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    //Do To Message display
+                }
+            });
+            $('#' + Ele).trigger("chosen:updated");
+        }
+
+        const groupBy = (array, key) => {
+            // Return the end result
+            return array.reduce((result, currentValue) => {
+                // If an array already present for key, push it to the array. Else create an array and push the object
+                (result[currentValue[key]] = result[currentValue[key]] || []).push(
+                    currentValue
+                );
+                // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+                return result;
+            }, {}); // empty object is the initial value for result object
+        };
+        function CheckIfAnyOptionSelected(sectionId) {
+            var isAnyOptionOpted = false;
+            $('input:checkbox.' + sectionId).each(function () {
+                var sThisVal = (this.checked ? $(this).val() : "");
+                if (sThisVal) {
+                    isAnyOptionOpted = true;
+                    return isAnyOptionOpted;
+                }
+            });
+            $('input:radio.' + sectionId).each(function () {
+                var sThisVal = (this.checked ? $(this).val() : "");
+                if (sThisVal) {
+                    isAnyOptionOpted = true;
+                    return isAnyOptionOpted;
+                }
+            });
+            //$("." + sectionId).find("input:checked").each(function () {
+            //    isAnyOptionOpted = true;
+            //    return isAnyOptionOpted;
+            //});
+            return isAnyOptionOpted;
+        }
+
+
+        function Load() {
+            var form = $("#FormSubmit");
+            //var chcklist = $('input[type="checkbox"]', form);
+            //$.each(chcklist, function (i, item) {
+            //    if ($(item).is(':checked')) {
+            //        var qindex = $(item).data('qindex');
+            //        var optindex = $(item).data('optindex');
+            //        var inp = $(`#Qlist_${qindex}__OptionList_${optindex}__InputText`);
+            //        if (inp) {
+            //            $(inp).css('display', 'block').attr('required', 'required');
+            //        }
+            //    }
+            //});
+
+            var radiolist = $('input[type="radio"]', form);
+            $.each(radiolist, function (i, item) {
+                var isselected = $(item).prop('checked');
+                var qcode = $(item).data('qcode');
+                var depans = $(item).data('depans');
+                var val = $(item).val();
+                if (isselected && val == depans) {
+                    $('.' + qcode).css('display', 'block');
+                }
+            });
+        }
+
+        //var ChildControlTypeId, Sel, Chck;
+        function OnChgTargetcontrol(ControlTypeId, ControlTypeId1, Sel, Chck, Ele) {
+            var id = Ele.id;
+            IsCheck = $("#" + id ).is(':checked');
+            //var ContTypeId = $('#' + ControlTypeId);
+            if (IsCheck) {
+                $('.' + ControlTypeId).css('display', 'block');
+                $('.' + ControlTypeId1).css('display', 'block');
+                $('#' + ControlTypeId).css('display', 'block');
+                $('#' + ControlTypeId1).css('display', 'block');
+                $('#' + ControlTypeId).attr('required', 'required');
+                $('#' + ControlTypeId1).attr('required', 'required');
+
+            }
+            else {
+                $('.' + ControlTypeId).css('display', 'none');
+                $('.' + ControlTypeId1).css('display', 'none');
+                $('#' + ControlTypeId).css('display', 'none');
+                $('#' + ControlTypeId1).css('display', 'none');
+                $('#' + ControlTypeId).val('');
+                $('#' + ControlTypeId1).val('');
+                $('#' + ControlTypeId).removeAttr('required');
+                $('#' + ControlTypeId1).removeAttr('required');
+            }
+            CheckBoxTextOnchag();
+        }
+
+        function OnChangeRadio(QuestionCode, SelVal, DepandAns ,Ele) {
+           // debugger;
+           // var clname = $('.' + QuestionCode).attr('class');
+            var clname = $('.' + QuestionCode).attr('class') == undefined ? null : $('.' + QuestionCode).attr('class');
+            if (clname) {
+                clname = clname.split(' ');
+            }
+            if (clname != null) {
+                //depeded Question
+                if (SelVal == DepandAns && QuestionCode == clname[0]) {
+                    $('.' + QuestionCode).css('display', 'block');
+                }
+                else {
+                    $('.' + QuestionCode).prop("checked", false);
+                    $('.' + QuestionCode).css('display', 'none');
+                    $('.txt' + QuestionCode).css('display', 'none');
+                    $('.txt' + QuestionCode).val('');
+                }
+
+            }
+            else {
+                $('.txt' + QuestionCode).css('display', 'none');
+                $('.txt' + QuestionCode).val('');
+                $('.' + QuestionCode).prop('checked', false);
+                $('.' + QuestionCode).val('');
+                $('.' + QuestionCode).css('display', 'none');
+            }
+           // CheckBoxTextOnchag();
+        }
+
+    </script>
+
+
+}

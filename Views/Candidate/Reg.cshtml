@@ -35,11 +35,11 @@
                     OnChagDistricts('BlockId', $('#DistrictId').val());
                 });
                 $('#BlockId').change(function () {
-                    OnChagBlocks('PanchayatId', '', $('#DistrictId').val(), $('#BlockId').val());
+                   // OnChagBlocks('PanchayatId', '', $('#DistrictId').val(), $('#BlockId').val());
                     GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
                 });
                 $('#PanchayatId').change(function () {
-                    OnChagPanchayats('VillageId', '', $('#DistrictId').val(), $('#BlockId').val(), $('#PanchayatId').val());
+                    //OnChagPanchayats('VillageId', '', $('#DistrictId').val(), $('#BlockId').val(), $('#PanchayatId').val());
                 });
                 $('#DOB').change(function () {
                     $('#Age').val(getAge($(this).val()));

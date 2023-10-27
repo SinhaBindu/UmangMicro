@@ -87,6 +87,42 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="MonthName" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="QuestionRIASEC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuestionHindi" Type="nvarchar(max)" />
+          <Property Name="Section" Type="nvarchar" MaxLength="50" />
+          <Property Name="ControlType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ques_Order" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="OrderBy" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RIASEC_Guided">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectionShortEng" Type="nvarchar" MaxLength="50" />
+          <Property Name="SectionNameEng" Type="nvarchar" MaxLength="2000" />
+          <Property Name="TypeofSectionEng" Type="nvarchar(max)" />
+          <Property Name="SectionDetailNoEng" Type="nvarchar" MaxLength="50" />
+          <Property Name="SectionDetailEng" Type="nvarchar(max)" />
+          <Property Name="SectionShortHindi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SectionNameHindi" Type="nvarchar" MaxLength="2000" />
+          <Property Name="TypeofSectionHindi" Type="nvarchar(max)" />
+          <Property Name="SectionDetailNoHindi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SectionDetailHindi" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="State_Mast">
           <Key>
             <PropertyRef Name="ID" />
@@ -243,6 +279,39 @@
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbl_RIASEC_Main">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GudId" Type="uniqueidentifier" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestDate" Type="date" />
+          <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DistrictId" Type="nvarchar" MaxLength="50" />
+          <Property Name="BlockId" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchoolId" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_RIASECTest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GudId" Type="uniqueidentifier" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RIASEC_ID_fk" Type="int" />
+          <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuestionID" Type="int" />
+          <Property Name="QuestionCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="Year_Master">
           <Key>
             <PropertyRef Name="ID" />
@@ -286,6 +355,8 @@
           <EntitySet Name="Cluster_Mast" EntityType="Self.Cluster_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dist_Mast" EntityType="Self.Dist_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Month_Master" EntityType="Self.Month_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionRIASEC" EntityType="Self.QuestionRIASEC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RIASEC_Guided" EntityType="Self.RIASEC_Guided" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State_Mast" EntityType="Self.State_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CaseHistory" EntityType="Self.tbl_CaseHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CoursesDetail" EntityType="Self.tbl_CoursesDetail" Schema="dbo" store:Type="Tables" />
@@ -293,6 +364,8 @@
           <EntitySet Name="tbl_MicroCase" EntityType="Self.tbl_MicroCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Registration" EntityType="Self.tbl_Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Resource" EntityType="Self.tbl_Resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RIASEC_Main" EntityType="Self.tbl_RIASEC_Main" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RIASECTest" EntityType="Self.tbl_RIASECTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Year_Master" EntityType="Self.Year_Master" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -326,6 +399,10 @@
           <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
           <EntitySet Name="Month_Master" EntityType="UM_DBModel.Month_Master" />
           <EntitySet Name="Year_Master" EntityType="UM_DBModel.Year_Master" />
+          <EntitySet Name="QuestionRIASECs" EntityType="UM_DBModel.QuestionRIASEC" />
+          <EntitySet Name="RIASEC_Guided" EntityType="UM_DBModel.RIASEC_Guided" />
+          <EntitySet Name="tbl_RIASEC_Main" EntityType="UM_DBModel.tbl_RIASEC_Main" />
+          <EntitySet Name="tbl_RIASECTest" EntityType="UM_DBModel.tbl_RIASECTest" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -569,6 +646,75 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QuestionRIASEC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ques_Order" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="OrderBy" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RIASEC_Guided">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionShortEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SectionNameEng" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="TypeofSectionEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SectionDetailNoEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SectionDetailEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SectionShortHindi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SectionNameHindi" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="TypeofSectionHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SectionDetailNoHindi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SectionDetailHindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_RIASEC_Main">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GudId" Type="Guid" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestDate" Type="DateTime" Precision="0" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlockId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_RIASECTest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GudId" Type="Guid" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RIASEC_ID_fk" Type="Int32" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionID" Type="Int32" />
+          <Property Name="QuestionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -832,6 +978,79 @@
               <MappingFragment StoreEntitySet="Year_Master">
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionRIASECs">
+            <EntityTypeMapping TypeName="UM_DBModel.QuestionRIASEC">
+              <MappingFragment StoreEntitySet="QuestionRIASEC">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Ques_Order" ColumnName="Ques_Order" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="QuestionHindi" ColumnName="QuestionHindi" />
+                <ScalarProperty Name="QuestionCode" ColumnName="QuestionCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIASEC_Guided">
+            <EntityTypeMapping TypeName="UM_DBModel.RIASEC_Guided">
+              <MappingFragment StoreEntitySet="RIASEC_Guided">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SectionDetailHindi" ColumnName="SectionDetailHindi" />
+                <ScalarProperty Name="SectionDetailNoHindi" ColumnName="SectionDetailNoHindi" />
+                <ScalarProperty Name="TypeofSectionHindi" ColumnName="TypeofSectionHindi" />
+                <ScalarProperty Name="SectionNameHindi" ColumnName="SectionNameHindi" />
+                <ScalarProperty Name="SectionShortHindi" ColumnName="SectionShortHindi" />
+                <ScalarProperty Name="SectionDetailEng" ColumnName="SectionDetailEng" />
+                <ScalarProperty Name="SectionDetailNoEng" ColumnName="SectionDetailNoEng" />
+                <ScalarProperty Name="TypeofSectionEng" ColumnName="TypeofSectionEng" />
+                <ScalarProperty Name="SectionNameEng" ColumnName="SectionNameEng" />
+                <ScalarProperty Name="SectionShortEng" ColumnName="SectionShortEng" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RIASEC_Main">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_RIASEC_Main">
+              <MappingFragment StoreEntitySet="tbl_RIASEC_Main">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="TestDate" ColumnName="TestDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GudId" ColumnName="GudId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RIASECTest">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_RIASECTest">
+              <MappingFragment StoreEntitySet="tbl_RIASECTest">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="QuestionCode" ColumnName="QuestionCode" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="RIASEC_ID_fk" ColumnName="RIASEC_ID_fk" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GudId" ColumnName="GudId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
