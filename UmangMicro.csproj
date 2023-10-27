@@ -840,6 +840,7 @@
     <Content Include="ResourceFile\CLF.pdf" />
     <Content Include="ResourceFile\SHG.pdf" />
     <Content Include="ResourceFile\VO.pdf" />
+    <Content Include="Content\download\WomenRiseUpAgainstChildMarriage_PCI_F.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
