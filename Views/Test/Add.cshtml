@@ -12,168 +12,176 @@
 }
 <style>
     .question-set {
+        margin: auto;
+        max-width: 650px;
+        border-radius: 10px;
+        border-top: 10px solid #6A4566;
+        margin-top: 20px;
+        background: #FAFCFE;
+        padding: 10px 20px 4px;
+    }
+        .question-set span {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+    .top-form {
+        padding: 15px;
+        background: #FAFCFE;
+        margin-bottom: 15px;
+        border-radius: 5px 5px 0 0;
+    }
+    .gapper {
+        padding: 10px 20px;
         display: flex;
-        gap: 30px;
     }
 </style>
-<div class="question-set">
-    @helper BindQueston(List<UmangMicro.Models.FormModel> list)
-    {
-        if (list != null)
-        {
-            var ii = 0;
-            Model.Qlist = list;
-            var pvsection = "";
-            foreach (var item in Model.Qlist.ToList())
-            {
-
-                if (ii < 21)
-                {
-                    <div class="question-list">
-                        <span>@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
-                        <div class="q-check-input">
-                            @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
-                            @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
-                            @Html.HiddenFor(m => m.Qlist[ii].ControlType)
-                            @Html.HiddenFor(m => m.Qlist[ii].ControlInputType)
-                            @Html.HiddenFor(m => m.Qlist[ii].SectionType)
-
-                            @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
-                            new
-                            {
-                                @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
-                                @data_QIndex = ii,
-                                @data_qcode = Model.Qlist[ii].QuestionCode,
-                                @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
-                                onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
-                            })
-                            <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label>
-                        </div>
-                    </div>
-                }
-                if (ii > 21)
-                {
-                    <div class="question-list">
-                        <span>@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
-                        <div class="q-check-input">
-                            @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
-                            @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
-                            @Html.HiddenFor(m => m.Qlist[ii].ControlType)
-                            @Html.HiddenFor(m => m.Qlist[ii].ControlInputType)
-                            @Html.HiddenFor(m => m.Qlist[ii].SectionType)
-
-                            @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
-                            new
-                            {
-                                @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
-                                @data_QIndex = ii,
-                                @data_qcode = Model.Qlist[ii].QuestionCode,
-                                @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
-                                onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
-                            })
-                            <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label>
-                        </div>
-                    </div>
-                }
-
-                pvsection = (item.SectionType.Trim());
-                ii++;
-            }
-        }
-
-    }
+<div class="admin-breadcrumb">
+    <h3>RIASEC Test</h3>
+    <div class="crumb">
+        <a href="/">Dashboard</a> / RIASEC Test
+    </div>
 </div>
-
-<div id="page-content">
-    <div class="genral-form">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel">
-                    @using (Html.BeginForm("Add", "Test", FormMethod.Post, new { @class = "panel-body form-horizontal form-padding loader", enctype = "multipart/form-data", @id = "FormSubmit" }))
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                    @helper BindQueston(List<UmangMicro.Models.FormModel> list)
                     {
-                        <div class="col-md-12">
-                            @Html.Partial("_Alerts")
-                            <strong class="msgerror" style="font-size:16px !important;"></strong>
-                        </div>
-                        <div class="panel-bodys">
-                            @Html.AntiForgeryToken()
-                            @Html.HiddenFor(m => m.Id)
-                            <input type="hidden" name="sid" id="sid" value="@Model.SchoolId" />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-users spacerright2"></i>RIASEC Test</p>
-                            <div class="col-md-3">
-                                <div class="position-relative form-group">
-                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "" })
-                                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
-                                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="position-relative form-group">
-                                    <label>Search By : </label>
-                                    <div class="checkbox">
-                                        @foreach (var item in CommonModel.GetTypeCase())
-                                        {
-                                            @Html.RadioButtonFor(model => model.TypeCase, item.Value, new { id = "TypeCase" + item.Value, @required = "required" }) @item.Text
-                                        }
-                                        @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
-                                    </div>
-                                    @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="position-relative form-group">
-                                    <label></label>
-                                    @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control" } })
+                        if (list != null)
+                        {
+                            var ii = 0;
+                            Model.Qlist = list;
+                            var pvsection = "";
+                            foreach (var item in Model.Qlist.ToList())
+                            {
+                    <div class="question-set">
+                        <div class="question-list">
+                            <span>@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
+                            <div class="q-check-input">
+                                @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
+                                @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
+                                @Html.HiddenFor(m => m.Qlist[ii].ControlType)
+                                @Html.HiddenFor(m => m.Qlist[ii].ControlInputType)
+                                @Html.HiddenFor(m => m.Qlist[ii].SectionType)
 
-                                    @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="position-relative form-group mt-sm-4">
-                                    <a href="javascript:void(0);" onclick="return GetStudData('CaseID')" class="btn btn-info text-white">Search</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="position-relative form-group">
-                                    <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
-                                    @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
-                                    @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-1">School</label>
-                                <div class="col-md-3" @idreadyonly>
-                                    @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
-                                </div>
-                            </div>
-
-
-                            @{
-                                if (Model != null)
+                                @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
+                                new
                                 {
-                                    @BindQueston(Model.Qlist)
-                                }
+                                    @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
+                                    @data_QIndex = ii,
+                                    @data_qcode = Model.Qlist[ii].QuestionCode,
+                                    @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
+                                    onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
+                                })
+                                <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label>
+                            </div>
+                        </div>
+                    </div>
+                                pvsection = (item.SectionType.Trim());
+                                ii++;
                             }
-                            <div class="form-group">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-3 pull-right">
-                                    <span class="">
-                                        <button type="submit" class="previous btn btn-primary btn-lg" id="btnsubmit">Submit</button>
-                                        <a href="~/Test/Add" class="btn btn-info btn-lg">Reset</a>
-                                    </span>
+                        }
 
+                    }
+
+                <div id="page-content">
+                    <div class="genral-form">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel">
+                                    @using (Html.BeginForm("Add", "Test", FormMethod.Post, new { @class = "panel-body form-horizontal form-padding loader", enctype = "multipart/form-data", @id = "FormSubmit" }))
+                                    {
+                                        <div class="col-md-12">
+                                            @Html.Partial("_Alerts")
+                                            <strong class="msgerror" style="font-size:16px !important;"></strong>
+                                        </div>
+                                        <div class="panel-bodys">
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(m => m.Id)
+                                            <input type="hidden" name="sid" id="sid" value="@Model.SchoolId" />
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="top-form">
+                                            <div class="gapper">
+                                                <div class="col-md-3">
+                                                    <div class="position-relative form-group">
+                                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "" })
+                                                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
+                                                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="position-relative form-group">
+                                                        <label>Search By : </label>
+                                                        <div class="checkbox">
+                                                            @foreach (var item in CommonModel.GetTypeCase())
+                                                            {
+                                                                @Html.RadioButtonFor(model => model.TypeCase, item.Value, new { id = "TypeCase" + item.Value, @required = "required" }) @item.Text
+                                                            }
+                                                            @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="position-relative form-group">
+                                                        <label></label>
+                                                        @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                        @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="position-relative form-group mt-sm-4">
+                                                        <a href="javascript:void(0);" onclick="return GetStudData('CaseID')" class="btn btn-info text-white">Search</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gapper">
+                                                <div class="col-md-4">
+                                                    <div class="position-relative form-group">
+                                                        <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
+                                                        @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
+                                                        @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <label class="control-label">School</label>
+                                                        <div @idreadyonly>
+                                                            @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            @{
+                                                if (Model != null)
+                                                {
+                                                    @BindQueston(Model.Qlist)
+                                                }
+                                            }
+                                            <div class="form-group">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-3 pull-right">
+                                                    <span class="">
+                                                        <button type="submit" class="previous btn btn-primary btn-lg" id="btnsubmit">Submit</button>
+                                                        <a href="~/Test/Add" class="btn btn-info btn-lg">Reset</a>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
-                    }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 @section Scripts
 {
     <script src="~/Scripts/JS/Master.js"></script>
