@@ -29,7 +29,6 @@
                 @using (Html.BeginForm("CaseHistory", "Counsellor", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
                 {
                     @Html.HiddenFor(m => m.Id)
-                    @Html.HiddenFor(m => m.Id)
                     <div class="form-row">
                         <div class="frame">
                             <div class="countdown"></div>
@@ -64,7 +63,7 @@
                         <div class="col-md-6">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
+                                @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -78,7 +77,7 @@
                         <div class="col-md-3">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.ClassId, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.ClassId, CommonModel.GetClass(), null, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.ClassId, CommonModel.GetClass(), null, new { @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -88,27 +87,34 @@
                                 <span>DOB : <strong id="ldob"></strong></span>
                                 <span>Registration Date : <strong id="lregdt"></strong></span>
                                 <span>School Name : <strong id="lsch"></strong></span>
+                                <span id="sg-ch" style="display:none;">
+                                    No Of Case History : 
+                                    <strong id="Noofch">
+                                        <a href="#" id="NoofchLink"></a> 
+                                    </strong>
+                                    
+                                </span>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.TypeCounsellor, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.TypeCounsellor, CommonModel.GetTypeCounsellor(), null, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.TypeCounsellor, CommonModel.GetTypeCounsellor(), null, new { @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.TypeCounsellor, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.TypeQuery, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.TypeQuery, CommonModel.GetTypeQuery(), null, new { @id = "TypeQuery", @class = "form-control" })
+                                @Html.DropDownListFor(model => model.TypeQuery, CommonModel.GetTypeQuery(), null, new { @id = "TypeQuery", @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.TypeQuery, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.Subject, CommonModel.GetSubject(), null, new { @class = "form-control", @multiple = "multiple" })
+                                @Html.DropDownListFor(model => model.Subject, CommonModel.GetSubject(), null, new { @class = "form-control", @multiple = "multiple", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -135,14 +141,14 @@
                         </div>
 
                         @*<div id="hd-Test" style="display:none;">*@
-                        <div class="col-md-6 hd-Test">
+                        <div class="col-md-6 hd-Test" style="display:none;">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Counselling, htmlAttributes: new { @class = "" })
                                 @Html.DropDownListFor(model => model.Counselling, CommonModel.GetCounselling(), null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Counselling, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-6 hd-Test">
+                        <div class="col-md-6 hd-Test" style="display:none;">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.IsPsychometric, htmlAttributes: new { @class = "" })
                                 @*@Html.DropDownListFor(model => model.IsPsychometric, CommonModel.GetYesNo(), null, new { @class = "form-control" })*@
@@ -164,136 +170,156 @@
                             </div>
                         </div>
                         @*</div>*@
-
                         <div class="col-md-12" id="div-TestRes" style="display:none">
-                            <strong>
-                                Result of Psychometric test
-                                <input type="checkbox" name="chkAllRC" id="chkAllRC" value="" /> All RIASEC List
-                            </strong>
-                            <div id="RToCResData" style="height:200px !important; overflow:scroll;"></div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="card-body">
-                                <div style="height:300px !important; overflow:scroll;">
-                                    <ul class="tabs-animated-shadow tabs-animated nav">
-                                        <li class="nav-item" style="display:none;" id="li-tab0">
-                                            <a role="tab" class="nav-link" id="tab-c-0" data-toggle="tab" href="#tab-animated-0" aria-selected="true">
-                                                <span>Courses Details</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item" style="display:none;" id="li-tab1">
-                                            <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1" aria-selected="true">
-                                                <span>Skill Training</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item" style="display:none;" id="li-tab2">
-                                            <a role="tab" class="nav-link" id="tab-c-2" data-toggle="tab" href="#tab-animated-2" aria-selected="false">
-                                                <span>Schemes</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item" style="display:none;" id="li-tab3">
-                                            <a role="tab" class="nav-link" id="tab-c-3" data-toggle="tab" href="#tab-animated-3" aria-selected="false">
-                                                <span>Scholarships</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
-                                            <div class="col-md-12" id="dv-scd" style="display:none;">
-                                                <div class="col-md-6">
-                                                    <a href="javascript:void(0);" class="btn btn-info text-white" id="btnscd" name="btnscd">Search</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12" style="display:none;" id="dv-checdkall">
-                                                <input type="checkbox" name="chkcn" id="chkcdAll" value="" />All &nbsp;
-                                                <input type="checkbox" name="chkcn" id="chkcn" value="" />Course Name &nbsp;
-                                                <input type="checkbox" name="chkct" id="chkct" value="" />Course Type &nbsp;
-                                                <input type="checkbox" name="chkjo" id="chkjo" value="" />Job Opportunity &nbsp;
-                                                <input type="checkbox" name="chkcd" id="chkcd" value="" />Course Duration &nbsp;
-                                                <input type="checkbox" name="chke" id="chke" value="" />Eligibility &nbsp;
-                                                <input type="checkbox" name="chkmi" id="chkmi" value="" />Medium Instruction &nbsp;
-                                                <input type="checkbox" name="chkcu" id="chkcu" value="" />Institute &nbsp;
-                                                <input type="checkbox" name="chklc" id="chklc" value="" />Location
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-sm-6" id="dv-cn" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Course Name</label>
-                                                        <textarea type="text" name="sby_cn" id="sby_cn" size="50" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6" id="dv-ct" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Course Type</label>
-                                                        <textarea type="text" name="sby_ct" id="sby_ct" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6" id="dv-jo" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Job Opportunity</label>
-                                                        <textarea type="text" name="sby_jo" id="sby_jo" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6" id="dv-cd" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Course Duration</label>
-                                                        <textarea type="text" name="sby_cd" id="sby_cd" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6" id="dv-e" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Eligibility</label>
-                                                        <textarea type="text" name="sby_e" id="sby_e" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6" id="dv-mi" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Medium Instruction</label>
-                                                        <textarea type="text" name="sby_mi" id="sby_mi" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6" id="dv-cu" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Institute</label>
-                                                        <textarea type="text" name="sby_cu" id="sby_cu" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6" id="dv-lc" style="display:none;">
-                                                    <div class="position-relative form-group">
-                                                        <label>Location</label>
-                                                        <textarea type="text" name="sby_lc" id="sby_lc" autocomplete="" rows="1" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="mb-0">
-                                                <div id="sub-data" class="col-md-12"></div>
-                                            </p>
-                                        </div>
-                                        <div class="tab-pane active" id="tab-animated-1" role="tabpanel">
-                                            <p class="mb-0">
-                                                <div id="sub-data1" class="col-md-12"></div>
-                                            </p>
-                                        </div>
-                                        <div class="tab-pane active" id="tab-animated-2" role="tabpanel">
-                                            <p class="mb-0">
-                                                <div id="sub-data2" class="col-md-12"></div>
-                                            </p>
-                                        </div>
-                                        <div class="tab-pane active" id="tab-animated-3" role="tabpanel">
-                                            <p class="mb-0">
-                                                <div id="sub-data3" class="col-md-12"></div>
-                                            </p>
-                                        </div>
-                                    </div>
+                            <p>
+                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Psychometric test details
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    <strong>
+                                        Result of Psychometric test
+                                        <input type="checkbox" name="chkAllRC" id="chkAllRC" value="" /> All RIASEC List
+                                    </strong>
+                                    <div id="RToCResData" style="height:200px !important; overflow:scroll;"></div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-12" id="div-comde" style="display:none">
+                            <p>
+                                <a class="btn btn-primary" id="btnCD" style="display:none;" data-toggle="collapse" href="#collaps_CD" role="button" aria-expanded="false" aria-controls="collaps_CD">
+                                    Courses Details
+                                </a>
+                                <a class="btn btn-primary" id="btnST" style="display:none;" data-toggle="collapse" href="#collaps_ST" role="button" aria-expanded="false" aria-controls="collaps_ST">
+                                    Skill Training
+                                </a>
+                                <a class="btn btn-primary" id="btnSSP" style="display:none;" data-toggle="collapse" href="#collaps_SSP" role="button" aria-expanded="false" aria-controls="collaps_SSP">
+                                    Scholarships
+                                </a>
+                                <a class="btn btn-primary" id="btnSHE" style="display:none;" data-toggle="collapse" href="#collaps_SHE" role="button" aria-expanded="false" aria-controls="collaps_SHE">
+                                    Schemes
+                                </a>
+                            </p>
+
+                            <div class="collapse" id="collaps_CD">
+
+                                <div class="col-md-12" id="dv-scd" style="display:none;">
+                                    <div class="col-md-6">
+                                        <a href="javascript:void(0);" class="btn btn-info text-white btnscdst " id="btnscd" name="btnscd">Search</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="display:none;" id="dv-checdkall">
+                                    <input type="checkbox" class="" name="chckcd" id="chkcdAll" value="1" />All &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chkcn" value="2" />Course Name &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chkct" value="3" />Course Type &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chkjo" value="4" />Job Opportunity &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chkcd" value="5" />Course Duration &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chke" value="6" />Eligibility &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chkmi" value="7" />Medium Instruction &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chkcu" value="8" />Institute &nbsp;
+                                    <input type="checkbox" class="" name="chckcd" id="chklc" value="9" />Location
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" id="dv-cn" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Course Name</label>
+                                            <textarea type="text" name="sby_cn" id="sby_cn" size="50" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" id="dv-ct" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Course Type</label>
+                                            <textarea type="text" name="sby_ct" id="sby_ct" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" id="dv-jo" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Job Opportunity</label>
+                                            <textarea type="text" name="sby_jo" id="sby_jo" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" id="dv-cd" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Course Duration</label>
+                                            <textarea type="text" name="sby_cd" id="sby_cd" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" id="dv-e" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Eligibility</label>
+                                            <textarea type="text" name="sby_e" id="sby_e" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" id="dv-mi" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Medium Instruction</label>
+                                            <textarea type="text" name="sby_mi" id="sby_mi" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" id="dv-cu" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Institute</label>
+                                            <textarea type="text" name="sby_cu" id="sby_cu" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" id="dv-lc" style="display:none;">
+                                        <div class="position-relative form-group">
+                                            <label>Location</label>
+                                            <textarea type="text" name="sby_lc" id="sby_lc" autocomplete="" rows="1" cols="50"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0">
+                                    <div id="sub-data" class="col-md-12"></div>
+                                </p>
+
+                            </div>
+
+                            <div class="collapse" id="collaps_ST">
+
+                                <div class="col-md-12" id="dv-st" style="display:none;">
+                                    <div class="col-md-6">
+                                        <a href="javascript:void(0);" class="btn btn-info text-white btnscdst" id="btnsst" name="btnsst">Search</a>
+                                    </div>
+                                </div>
+                                <p class="mb-0">
+                                    <div id="sub-data1" class="col-md-12"></div>
+                                </p>
+
+                            </div>
+                            <div class="collapse" id="collaps_SSP">
+
+                                <div class="col-md-12" id="dv-ssp" style="display:none;">
+                                    <div class="col-md-6">
+                                        <a href="javascript:void(0);" class="btn btn-info text-white" id="btnsssp" name="btnsssp">Search</a>
+                                    </div>
+                                </div>
+                                <p class="mb-0">
+                                    <div id="sub-data2" class="col-md-12"></div>
+                                </p>
+
+                            </div>
+                            <div class="collapse" id="collaps_SHE">
+
+                                <div class="col-md-12" id="dv-sm" style="display:none;">
+                                    <div class="col-md-6">
+                                        <a href="javascript:void(0);" class="btn btn-info text-white" id="btnssm" name="btnssm">Search</a>
+                                    </div>
+                                </div>
+                                <p class="mb-0">
+                                    <div id="sub-data3" class="col-md-12"></div>
+                                </p>
+
+                            </div>
+
+                        </div>
+
                         <div class="col-md-12">
-                            @Html.LabelFor(model => model.Suggestion, htmlAttributes: new { @class = "" })
-                            @Html.TextAreaFor(model => model.Suggestion, new { @class = "form-control", @required = "required", @rows = "4", @col = "12" })
-                            @Html.ValidationMessageFor(model => model.Suggestion, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.AreasImprovement, htmlAttributes: new { @class = "" })
+                            @Html.TextAreaFor(model => model.AreasImprovement, new { @class = "form-control", @required = "required", @rows = "4", @col = "12" })
+                            @Html.ValidationMessageFor(model => model.AreasImprovement, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-12">
                             @Html.LabelFor(model => model.Recommendation, htmlAttributes: new { @class = "" })
@@ -372,12 +398,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
-    @*<script src="https://cdnjs.code.jquery.com/jquery.min.js"></script>*@
-    @*<link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
-        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css" />*@
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
@@ -405,8 +425,20 @@
                 document.querySelector('.ms').innerText = pms;
             }
 
-            $('#btnscd').on('click', function () {
+            if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                $('#TypeCounsellor').val(('@MvcApplication.CUser.RoleId').toLowerCase());
+                $('#TypeCounsellor').attr("style", "pointer-events: none;");
+            }
+
+            $('.btnscdst').on('click', function () {
                 BindData(1);
+            })
+
+            $('#btnsssp').on('click', function () {
+                BindData(3);
+            })
+            $('#btnssm').on('click', function () {
+                BindData(4);
             })
 
             $('select[name=Subject]').multiselect({
@@ -430,25 +462,6 @@
 
             });
 
-            //$('input[name=Searchtxt]').change(function () {
-            //    GetStudData("CaseID");
-            //});
-
-            //$('#DataList2 thead tr').clone(true).appendTo('#DataList2 thead');
-            //$('#DataList2 thead tr:eq(1) th').each(function (i) {
-            //    var title = $(this).text();
-            //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-
-            //    $('input', this).on('keyup change', function () {
-            //        if (table.column(i).search() !== this.value) {
-            //            table
-            //                .column(i)
-            //                .search(this.value)
-            //                .draw();
-            //        }
-            //    });
-            //});
-
             $('input[name=IsFollow]').click(function () {
                 $('#FM').val('-1'); $('#FY').val('-1');
                 if ($(this).val() == "1") {
@@ -465,21 +478,28 @@
                 $('#li-tab0').hide(); $('#li-tab1').hide(); $('#li-tab2').hide(); $('#li-tab3').hide();
                 $('#sub-data').hide(); $('#sub-data2').hide(); $('#sub-data3').hide();
                 BindData(); $('.hd-Test').hide();
+                $('#div-comde').show();
+                $('#btnCD').hide();
+                $('#btnST').hide();
+                $('#btnSSP').hide();
+                $('#btnSHE').hide();
 
                 if ($(this).val() == "1" || $(this).val() == "2") {
                     $('.hd-Test').show();
                     $('#li-tab0').show();
                     $('#li-tab1').show();
                     $('#sub-data').show();
+                    $('#btnCD').show();
+                    $('#btnST').show();
                     GetRIASEClData(); GetSearchCD(); $('#dv-checdkall').show();
                   //  $('#sby_cn').autocompleteDropdown();
                 }
                 else if ($(this).val() == "3") {
-                    $('#li-tab3').show();
-                    $('#sub-data3').show();
+                    $('#li-tab2').show();
+                    $('#sub-data2').show(); $('#btnSSP').show();
                 }
                 else if ($(this).val() == "4") {
-                    $('#li-tab2').show();
+                    $('#li-tab3').show(); $('#btnSHE').show();
                     $('#sub-data2').show();
                 }
                 else {
@@ -488,34 +508,14 @@
             });
 
             $('select[name=CaseID]').change(function () {
-
                 $('#div-stud').hide();
-                //var clno = BindClassNo($(this).val(),"");
-                //$.ajax({
-                //    url: document.baseURI + "/Counsellor/GetClassno",
-                //    type: "Post",
-                //    data: JSON.stringify({ 'CaseId': $(this).val() }),
-                //    contentType: "application/json; charset=utf-8",
-                //    global: false,
-                //    async: false,
-                //    dataType: "json",
-                //    success: function (resp) {
-                //        if (resp.IsSuccess) {
-                //            clno = JSON.parse(resp.res);
-                //        }
-                //    },
-                //    error: function (req, error) {
-                //        if (error === 'error') { error = req.statusText; }
-                //        var errormsg = 'There was a communication error: ' + error;
-                //        //Do To Message display
-                //    }
-                //});
                 var fd = StudDList.filter(x => x.CaseID == $('#CaseID').val());
                 if (fd.length > 0) {
+                    CaseHistoryCount("", fd[0].CaseID);
                     $('#div-stud').show();
                     $('#lsn').html(fd[0].Name);
-                    $('#ldob').html(fd[0].DOB);
-                    $('#lregdt').html(fd[0].RegDate);
+                    $('#ldob').html(moment(fd[0].DOB).format("DD-MMM-YYYY"));
+                    $('#lregdt').html(moment(fd[0].RegDate).format("DD-MMM-YYYY"));
                     $('#lsch').html(fd[0].school_name);
                     $('#ClassId').val(fd[0].ClassId);
                     if (fd[0].ClassId == "10") {
@@ -561,14 +561,20 @@
                             $('select[name=Psychometric]').val(sjoin).multiselect('refresh');
                     }
                     else {
+                        $('input[name="IsPsychometric"]').removeAttr("checked");
                         toastr.error("Error", "Please select - Tools used for counselling (Pscholmetric (RIASEC) test)");
                     }
                 }
                 else {
+                    if ($('select[name=Counselling]').val() == "2") {
+                        $('input[name="IsPsychometric"]').removeAttr("checked");
+                        $('input[id="IsPsychometric1"]').attr("checked", true);
+                    }
                     $('#div-TestRes').hide();
                     $('#div-psy').hide();
                 }
             });
+
             $("#chkAllRC").on("click", function () {
                 if ($("#chkAllRC").prop("checked")) {
                     RToCData(true);
@@ -577,137 +583,224 @@
                 else
                     RToCData(false);
             });
-            $("#chkcn").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-cn").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-cn").hide();
-            });
-            $("#chkct").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-ct").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-ct").hide();
-            });
-            $("#chkjo").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-jo").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-jo").hide();
-            });
-            $("#chkcd").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-cd").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-cd").hide();
-            });
-            $("#chke").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-e").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-e").hide();
-            });
-            $("#chkmi").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-mi").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-mi").hide();
-            });
-            $("#chkcu").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-cu").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-cu").hide();
-            });
-            $("#chklc").on("click", function () {
-                if ($(this).prop("checked")) {
-                    $("#dv-lc").show(); HideSearchCD();
-                }
-                else
-                    $("#dv-lc").hide();
-            });
-            $("#chkcdAll").on("click", function () {
-                if ($(this).prop("checked")) {
-                    BindData(1, "all");
-                    $('#btnscd').show();
-                }
-                else
-                    $('#sub-data').html('');
-                $('#btnscd').hide();
+
+            $('input[name="chckcd"]').on("click", function () {
+                debugger;
+                $('input[name="chckcd"]:checked').each(function (i,exp) {
+                    debugger;
+                    HideSearchCD();
+                    //all
+                    if (exp.value == "1") {
+                        if ($(this).prop("checked")) {
+                            $('input[name="chckcd"]').removeAttr('checked', false);
+                            $("#chkcdAll").prop('checked', true);
+                            $('#btnscd').hide();
+                            BindData(1, "all");
+                        }
+                        else {
+                            $('#chkcdAll').removeAttr('checked', false);
+                            $('#sub-data').html('');
+                            $('#btnscd').show();
+                        }
+                    }
+
+                    if (exp.value == "2")
+                        if ($(this).prop("checked"))
+                            $("#dv-cn").show();
+                        else
+                            $("#dv-cn").hide();
+
+                    if (exp.value == "3")
+                        if ($(this).prop("checked"))
+                            $("#dv-ct").show();
+                        else
+                            $("#dv-ct").hide();
+                    if (exp.value == "4")
+                        if ($(this).prop("checked"))
+                            $("#dv-jo").show();
+                        else
+                            $("#dv-jo").hide();
+                    if (exp.value == "5")
+                        if ($(this).prop("checked"))
+                            $("#dv-cd").show();
+                        else
+                            $("#dv-cd").hide();
+                    if (exp.value == "6")
+                        if ($(this).prop("checked"))
+                            $("#dv-e").show();
+                        else
+                            $("#dv-e").hide();
+                    if (exp.value == "7")
+                        if ($(this).prop("checked"))
+                            $("#dv-mi").show();
+                        else
+                            $("#dv-mi").hide();
+                    if (exp.value == "8")
+                        if ($(this).prop("checked"))
+                            $("#dv-cu").show();
+                        else
+                            $("#dv-cu").hide();
+                    if (exp.value == "9")
+                        if ($(this).prop("checked"))
+                            $("#dv-lc").show();
+                        else
+                            $("#dv-lc").hide();
+                });
             });
 
+            /* Start Submitted Data */
+            $("#formid").on("submit", function (event) {
+                event.preventDefault();
+                var bResponse = confirm('Are you sure you want to exit?');
+                if (bResponse === true) {
+                    jQuery.event.trigger("ajaxStart");
+                    debugger;
+                    var isvalid = Inputisvalid();//("#formid").valid();
+                    if (isvalid) {
+                    var phyjoin = ($('#Psychometric').val()).join(',');
+                    var Subjectjoin = ($('#Subject').val()).join(',');
+                    var formData = new FormData();
+                    formData.append('CaseID', $('#CaseID').val());
+                    formData.append('DOC', $('#DOC').val());
+                    formData.append('ClassId', $('#ClassId').val());
+                    formData.append('TypeCounsellor', $('#TypeCounsellor').val());
+                    formData.append('TypeQuery', $('#TypeQuery').val());
+                    formData.append('Study10th', $('#Study10th').val());
+                    formData.append('Study11th', $('#Study11th').val());
+                    formData.append('Subject', Subjectjoin);
+                    formData.append('KeyWords', $('#KeyWords').val());
+                    formData.append('Counselling', $('#Counselling').val());
+                    formData.append('IsPsychometric', $('input[name=IsPsychometric]:checked').val());
+                    if ($('input[name=IsPsychometric]:checked').val() == "1") {
+                        formData.append('Psychometric', phyjoin);
+                    }
+                    else {
+                        formData.append('Psychometric', '');
+                    }
+                    formData.append('AreasImprovement', $('#AreasImprovement').val());
+                    formData.append('Recommendation', $('#Recommendation').val());
+                    formData.append('IsFollow', $('input[name=IsFollow]:checked').val());
+                    if ($('input[name=IsFollow]:checked').val() == "1") {
+                        formData.append('FM', $('select[name=FM]').val());
+                        formData.append('FY', $('select[name=FY]').val());
+                    }
+                    else {
+                        formData.append('FM', ''); formData.append('FY', '');
+                    }
+                    formData.append('IsGoalClear', $('input[name=IsGoalClear]:checked').val());
 
-             $("#formid").on("submit", function (event) {
-                     event.preventDefault();
-                     jQuery.event.trigger("ajaxStart");
-                     debugger;
-                     //var formDataJson = $('#formid').serialize();//formData.append('tax_file', $('input[type=file]')[0].files[0]);
-                     //var vl = $("#formid").validate();
-                     ////var formData = new FormData($('#formid')[0]);
-                     var isvalid = $("#formid").valid(); //$('#formid').validate();
-                     var formData = $(this).serialize();
-                     if (isvalid) {
-                         $.ajax({
-                             type: "POST",
-                             url: document.baseURI + "/Counsellor/CaseHistory/",
-                             data: formData,
-                             //use contentType, processData for sure.
-                             //contentType: false,
-                             // processData: false,
-                             dataType: "json",
-                             //contentType: "application/json; charset=utf-8",
-                             success: function (resp) {
-                                 //  CreateToasterMessage("Registration", resp.Message, resp.StatusType);
-                                 if (resp.StatusType == "success") {
-                                     toastr.success("Success", resp.Message);
-                                     if (resp.Data == 1) {
-                                         var url = '@Url.Action("Login", "Account")';
-                                         window.location.href = url;
-                                     }
-                                     jQuery.event.trigger("ajaxStop");
-                                 }
-                                 else {
-                                     toastr.error("Error", resp.Message);
-                                 }
-                             },
-                             error: function (req, error) {
-                                 if (error === 'error') { error = req.statusText; }
-                                 var errormsg = 'There was a communication error: ' + error;
-                                 // CreateToasterMessage("Error", errormsg, "error");
-                                 toastr.error("Error", errormsg);
-                                 jQuery.event.trigger("ajaxStop");
-                                 return false;
-                             }
+                    debugger;
+                    var CH_PHY_List = [], CH_CD_List = [], CH_SkillT_List = [],
+                        CH_SSP_List = [], CH_SM_List = [];
+                    let tablephy = $('#DataList1').DataTable();
+                    tablephy.$('input:checked').each(function (i, row) {
+                        var CH_id = $(row).attr('data-id') || 0;
+                        var data_ChPhyId = $(row).attr('data-ChPhyId') || 0;
+                        var PsyTestSname = $(row).attr('data-name') || '';
+                        var RIASECid = $(row, 'input[type=checkbox]').val();
+                        CH_PHY_List.push({
+                            ID: data_ChPhyId,
+                            CaseId: $('#CaseID').val(),
+                            RIASEC_Guided_Id: RIASECid,
+                            CaseHistoryId: $('#Id').val(),
+                            PsychometricTestId: PsyTestSname,
+                        });
+                    });
 
-                         });
-                     }
-                     else {
-                         //CreateToasterMessage("Error", "All Record Validate !!", "error");
-                         toastr.error("Error", "All Record Validate !!");
-                         jQuery.event.trigger("ajaxStop");
-                         return false;
-                     }
+                    let table1 = $('#DataListCD').DataTable();
+                    table1.$('input:checked').each(function (i, row) {
+                        var id = $(row).attr('data-id') || 0;
+                        var CourDId = $(row, 'input[type=checkbox]').val();
+                        CH_CD_List.push({
+                            ID: parseInt(id),
+                            CaseId: $('#CaseID').val(),
+                            CourseD_Id: CourDId,
+                            CaseHistoryId: $('#Id').val(),
+                        });
+                    });
+                    let table2 = $('#DataListST').DataTable();
+                    table2.$('input:checked').each(function (i, row) {
+                        var id = $(row).attr('data-id') || 0;
+                        var SkillT_Id = $(row, 'input[type=checkbox]').val();
+                        CH_SkillT_List.push({
+                            ID: parseInt(id),
+                            CaseId: $('#CaseID').val(),
+                            SkillT_Id: SkillT_Id,
+                            CaseHistoryId: $('#Id').val(),
+                        });
+                    });
+                    let table3 = $('#DataListSSP').DataTable();
+                    table3.$('input:checked').each(function (i, row) {
+                        var id = $(row).attr('data-id') || 0;
+                        var Scholarship_Id = $(row, 'input[type=checkbox]').val();
+                        CH_SSP_List.push({
+                            ID: parseInt(id),
+                            CaseId: $('#CaseID').val(),
+                            Scholarship_Id: Scholarship_Id,
+                            CaseHistoryId: $('#Id').val(),
+                        });
+                    });
+                    let table4 = $('#DataListSCME').DataTable();
+                    table4.$('input:checked').each(function (i, row) {
+                        var id = $(row).attr('data-id') || 0;
+                        var Scheme_Id = $(row, 'input[type=checkbox]').val();
+                        CH_SM_List.push({
+                            ID: parseInt(id),
+                            CaseId: $('#CaseID').val(),
+                            Scheme_Id: Scheme_Id,
+                            CaseHistoryId: $('#Id').val(),
+                        });
+                    });
 
-                 });
+                    debugger;
+                    formData.append('CH_PHY_model', JSON.stringify(CH_PHY_List));
+                    formData.append('CH_CD_model', JSON.stringify(CH_CD_List));
+                    formData.append('CH_SkillT_model', JSON.stringify(CH_SkillT_List));
+                    formData.append('CH_SSP_model', JSON.stringify(CH_SSP_List));
+                    formData.append('CH_SM_model', JSON.stringify(CH_SM_List));
+                    $.ajax({
+                        type: "POST",
+                        url: document.baseURI + "/Counsellor/CaseHistory/",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (resp) {
+                            if (resp.StatusType == "success") {
+                                toastr.success("Success", resp.Message);
+                                jQuery.event.trigger("ajaxStop");
+                            }
+                            else {
+                                toastr.error("Error", resp.Message);
+                            }
+                        },
+                        error: function (req, error) {
+                            if (error === 'error') { error = req.statusText; }
+                            var errormsg = 'There was a communication error: ' + error;
+                            toastr.error("Error", errormsg);
+                            jQuery.event.trigger("ajaxStop");
+                            return false;
+                        }
 
-        });
+                    });
+                }
+                }
+                return bResponse;
+            });//End Submit Data
+
+        });//
+
         function HideSearchEmpty() {
             $('#sub-data').html(''); $('#sub-data1').html(''); $('#sub-data2').html(''); $('#sub-data3').html('');
         }
-        function BindData(Paratbl,dataall="") {
+        function BindData(Paratbl, dataall = "") {
+            debugger;
             HideSearchEmpty();
             //jQuery.event.trigger("ajaxStart");
             $('#submission-data').removeClass("text-danger");
             var url = $('#submission-form').attr("action");
-            var formData = $('#submission-form').serialize();
-            debugger;
+            //var formData = $('#submission-form').serialize();
+
             var formData = new FormData();
             var sby_cn = $('#sby_cn').val();
             var sby_ct = $('#sby_ct').val();
@@ -724,7 +817,7 @@
             formData.append('DList', JSON.stringify(DList));
             $.ajax({
                 url: document.baseURI + "/Counsellor/GetCoursesDetail/",
-                data: JSON.stringify(DList),//{ 'District': District, 'Block': Block },
+                //data: JSON.stringify(DList),//{ 'District': District, 'Block': Block },
                 type: "Post",
                 data: formData,
                 cache: false,
@@ -733,10 +826,10 @@
                 success: function (resp) {
                     if (resp.IsSuccess) {
                         //jQuery.event.trigger("ajaxStop");
-                        $('#sub-data1').html(resp.html1);
-                        $('#sub-data2').html(resp.html2);
-                        $('#sub-data3').html(resp.html3);
-                        $('#sub-data').html(resp.html4);
+                        $('#sub-data').html(resp.html_CD);//Course Details
+                        $('#sub-data1').html(resp.html_ST);//Skill Training
+                        $('#sub-data2').html(resp.html_SSP);//Schemes
+                        $('#sub-data3').html(resp.html_SM);//Scholarshhip
 
                         setTimeout(function () {
 
@@ -775,7 +868,6 @@
                         // $('table tbody').on('click', 'td', function () {
                         //     ////alert(table.cell(this).data());
                         // });
-
                     }
                     else {
                         $('#submission-data').html("Record Not Found !!");//TO DO
@@ -798,29 +890,56 @@
             $('#' + Ele).prop("disabled", false);
             $('#' + Ele).append($("<option>").val('').text('Select'));
             var Para = $('input[name="TypeCase"]:checked').val();
-            $.ajax({
-                url: document.baseURI + "/Counsellor/GetStudentlList",
-                type: "Post",
-                data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }),
-                contentType: "application/json; charset=utf-8",
-                global: false,
-                async: false,
-                dataType: "json",
-                success: function (resp) {
-                    if (resp.IsSuccess) {
-                        StudDList = JSON.parse(resp.res);
-                        $.each(StudDList, function (i, exp) {
-                            $('#' + Ele).append($("<option>").val(exp.CaseID).text(exp.CaseID +' - ' + exp.Name));
-                        });
+            if (Para != undefined) {
+                $.ajax({
+                    url: document.baseURI + "/Counsellor/GetStudentlList",
+                    type: "Post",
+                    data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }),
+                    contentType: "application/json; charset=utf-8",
+                    global: false,
+                    async: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.IsSuccess) {
+                            StudDList = JSON.parse(resp.res);
+                            $.each(StudDList, function (i, exp) {
+                                $('#' + Ele).append($("<option>").val(exp.CaseID).text(exp.CaseID + ' - ' + exp.Name));
+                            });
+                        }
+                    },
+                    error: function (req, error) {
+                        if (error === 'error') { error = req.statusText; }
+                        var errormsg = 'There was a communication error: ' + error;
+                        //Do To Message display
                     }
-                },
-                error: function (req, error) {
-                    if (error === 'error') { error = req.statusText; }
-                    var errormsg = 'There was a communication error: ' + error;
-                    //Do To Message display
+                });
+                $('#' + Ele).trigger("chosen:updated");
+            }
+            else {
+                toastr.error("Error", "Please check Search By : Name, Case, Date of birth.");
+            }
+
+        }
+
+        function CaseHistoryCount(RowId = "", CaseID = "") {
+            debugger;
+            RowId = RowId == "" ? "" : RowId;
+            CaseID = CaseID == "" ? "" : CaseID;
+            $.ajax({
+            url: '@Url.Action("GetCaseHistoryCount", "Counsellor")',
+            data: { RowId: RowId, CaseID: CaseID  },
+            type: 'POST',
+                success: function (resp) {
+                    var noofch = resp.res;
+                    if (noofch != undefined && noofch!='') {
+                        $('#sg-ch').show();
+                        $('#NoofchLink').attr('href', document.baseURI+"/Counsellor/CaseHDetail?RowId=" + RowId + "&&" + "CaseID=" + CaseID);
+                        $('#NoofchLink').text(noofch);
+                    }
+                    else
+                        $('#sg-ch').hide();
                 }
             });
-            $('#' + Ele).trigger("chosen:updated");
         }
 
         function GetRIASEClData() {
@@ -877,230 +996,230 @@
         }
 
         function GetSearchCD() {
-            $.ajax({
-                url: document.baseURI + "/Counsellor/GetSearchByCD",
-                type: "Post",
-                data: '',
-                contentType: "application/json; charset=utf-8",
-                global: false,
-                async: false,
-                dataType: "json",
-                success: function (resp) {
-                    if (resp.IsSuccess) {
-                        debugger;
-                        var CDList = JSON.parse(resp.res);
-                        var cn = [], ct = [], jo=[], cd=[], e=[], mi=[], cu=[], lc=[];
-                        $.each(CDList.Table, function (i, exp) {
-                            cn.push(exp.CN);
-                        });
-                        $.each(CDList.Table1, function (i, exp) {
-                            ct.push(exp.CT);
-                        });
-                        $.each(CDList.Table2, function (i, exp) {
-                            jo.push(exp.JO);
-                        });
-                        $.each(CDList.Table3, function (i, exp) {
-                            cd.push(exp.CD);
-                        });
-                        $.each(CDList.Table4, function (i, exp) {
-                            e.push(exp.EB);
-                        });
-                        $.each(CDList.Table5, function (i, exp) {
-                            mi.push(exp.MI);
-                        });
-                        $.each(CDList.Table6, function (i, exp) {
-                            cu.push(exp.CU);
-                        });
-                        $.each(CDList.Table7, function (i, exp) {
-                            lc.push(exp.LC);
-                        });
+                $.ajax({
+                    url: document.baseURI + "/Counsellor/GetSearchByCD",
+                    type: "Post",
+                    data: '',
+                    contentType: "application/json; charset=utf-8",
+                    global: false,
+                    async: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.IsSuccess) {
 
-                        //var scnjoin = ((cn.join(",")).split(','));
-                        $("#sby_cn")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        cn, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            var CDList = JSON.parse(resp.res);
+                            var cn = [], ct = [], jo = [], cd = [], e = [], mi = [], cu = [], lc = [];
+                            $.each(CDList.Table, function (i, exp) {
+                                cn.push(exp.CN);
                             });
-                        $("#sby_ct")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        ct, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            $.each(CDList.Table1, function (i, exp) {
+                                ct.push(exp.CT);
                             });
-                        $("#sby_jo")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        jo, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            $.each(CDList.Table2, function (i, exp) {
+                                jo.push(exp.JO);
                             });
-                        $("#sby_cd")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        cd, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            $.each(CDList.Table3, function (i, exp) {
+                                cd.push(exp.CD);
                             });
-                        $("#sby_e")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        e, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            $.each(CDList.Table4, function (i, exp) {
+                                e.push(exp.EB);
                             });
-                        $("#sby_mi")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        mi, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            $.each(CDList.Table5, function (i, exp) {
+                                mi.push(exp.MI);
                             });
-                        $("#sby_cu")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        cu, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            $.each(CDList.Table6, function (i, exp) {
+                                cu.push(exp.CU);
                             });
-                        $("#sby_lc")
-                            .autocomplete({
-                                minLength: 0,
-                                source: function (request, response) {
-                                    response($.ui.autocomplete.filter(
-                                        lc, extractLast(request.term)));
-                                },
-                                focus: function () {
-                                    return false;
-                                },
-                                select: function (event, ui) {
-                                    var terms = split(this.value);
-                                    // remove the current input
-                                    terms.pop();
-                                    // add the selected item
-                                    terms.push(ui.item.value);
-                                    // add placeholder to get the comma-and-space at the end
-                                    terms.push("");
-                                    this.value = terms.join(", ");
-                                    return false;
-                                }
+                            $.each(CDList.Table7, function (i, exp) {
+                                lc.push(exp.LC);
                             });
 
+                            //var scnjoin = ((cn.join(",")).split(','));
+                            $("#sby_cn")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            cn, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+                            $("#sby_ct")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            ct, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+                            $("#sby_jo")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            jo, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+                            $("#sby_cd")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            cd, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+                            $("#sby_e")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            e, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+                            $("#sby_mi")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            mi, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+                            $("#sby_cu")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            cu, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+                            $("#sby_lc")
+                                .autocomplete({
+                                    minLength: 0,
+                                    source: function (request, response) {
+                                        response($.ui.autocomplete.filter(
+                                            lc, extractLast(request.term)));
+                                    },
+                                    focus: function () {
+                                        return false;
+                                    },
+                                    select: function (event, ui) {
+                                        var terms = split(this.value);
+                                        // remove the current input
+                                        terms.pop();
+                                        // add the selected item
+                                        terms.push(ui.item.value);
+                                        // add placeholder to get the comma-and-space at the end
+                                        terms.push("");
+                                        this.value = terms.join(", ");
+                                        return false;
+                                    }
+                                });
+
+                        }
+                    },
+                    error: function (req, error) {
+                        if (error === 'error') { error = req.statusText; }
+                        var errormsg = 'There was a communication error: ' + error;
+                        //Do To Message display
                     }
-                },
-                error: function (req, error) {
-                    if (error === 'error') { error = req.statusText; }
-                    var errormsg = 'There was a communication error: ' + error;
-                    //Do To Message display
-                }
-            });
+                });
             //$('#sby_cn').trigger("chosen:updated");
         }
 
@@ -1135,6 +1254,36 @@
                 }
             }, 60000);
         }
+
+        function Inputisvalid() {
+            var isvald = true;
+            if ($('#CaseID').val() == "-1" || $('#CaseID').val() == "0" || $('#CaseID').val() == "") {
+                toastr.error("Error", 'Please Select Option CaseID');
+                isvald = false;
+            }
+            if ($('#ClassId').val() == "-1" || $('#ClassId').val() == "0" || $('#ClassId').val()=="") {
+                toastr.error("Error", 'Please Select Option Class');
+                isvald = false;
+            }
+            if ($('#TypeCounsellor').val() == "-1" || $('#TypeCounsellor').val() == "0" || $('#TypeCounsellor').val() =="") {
+                toastr.error("Error", 'Please Select Option Type of counsellor');
+                isvald = false;
+            }
+            if ($('#Subject').val() == "-1" || $('#Subject').val() == "0" || $('#Subject').val() =="") {
+                toastr.error("Error", 'Please Select Choice Subject');
+                isvald = false;
+            }
+            //if ($('#Counselling').val() == "-1" || $('#Counselling').val() == "-0") {
+            //    toastr.error("Error", 'Please Select Counselling');
+            //    isvald = false;
+            //}
+            //if ($('#Counselling').val() == "-1" || $('#Counselling').val() == "-0") {
+            //    toastr.error("Error", 'Please Select Counselling');
+            //    isvald = false;
+            //}
+            return isvald;
+        }
+
     </script>
 }
 

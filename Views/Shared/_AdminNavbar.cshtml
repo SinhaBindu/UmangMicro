@@ -15,6 +15,11 @@
                 <ul>
                     <li><a href="~/Candidate/Reg">Student Registration</a></li>
                     <li><a href="~/Candidate/Index">Student Reg. Edit</a></li>
+                    <li>
+                        <a href="~/Counsellor/CaseHistory">
+                            Add Case History
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -32,29 +37,48 @@
                     <li><a href="~/Master/UserDetaillist">User List</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:void(0)">Report</a>
+                <ul>
+                    <li><a href="~/Report/LastLogin">Login Details</a></li>
+                    <li><a href="~/Report/Resource">Resource Download</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="~/Master/MicroCase">
+                    Add Case Studies
+                </a>
+            </li>
+            <li>
+                <a href="~/Test/Add">
+                    Pscholmetric (RIASEC)
+                </a>
+            </li>
         }
-        <li>
-            <a href="javascript:void(0)">Report</a>
-            <ul>
-                <li><a href="~/Report/LastLogin">Login Details</a></li>
-                <li><a href="~/Report/Resource">Resource Download</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="~/Counsellor/CaseHistory">
-                Add Case History
-            </a>
-        </li>
-        <li>
-            <a href="~/Master/MicroCase">
-                Add Case Studies
-            </a>
-        </li>
-        <li>
-            <a href="~/Test/Add">
-                Pscholmetric (RIASEC)
-            </a>
-        </li>
+        @if (HttpContext.Current.User.IsInRole("PCI_Representative") || HttpContext.Current.User.IsInRole("Teacher"))
+        {
+            <li>
+                <a href="javascript:void(0)">Counselling</a>
+                <ul>
+                    <li><a href="~/Candidate/Reg">Student Registration</a></li>
+                    <li><a href="~/Candidate/Index">Student Reg. Edit</a></li>
+                    <li>
+                        <a href="~/Counsellor/CaseHistory">
+                            Add Case History
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="~/Test/Add">
+                    Pscholmetric (RIASEC)
+                </a>
+            </li>
+
+        }
+
+
     </ul>
 </div>
 

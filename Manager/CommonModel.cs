@@ -115,13 +115,13 @@ namespace UmangMicro.Manager
                 {
                     return "State";
                 }
-                else if (HttpContext.Current.User.IsInRole("Cluster"))
+                else if (HttpContext.Current.User.IsInRole("Teacher"))
                 {
-                    return "Cluster";
+                    return "Teacher";
                 }
-                else if (HttpContext.Current.User.IsInRole("User"))
+                else if (HttpContext.Current.User.IsInRole("PCI_Representative"))
                 {
-                    return "User";
+                    return "PCI_Representative";
                 }
                 else if (HttpContext.Current.User.IsInRole("Viewer"))
                 {
@@ -1872,9 +1872,9 @@ namespace UmangMicro.Manager
         {
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "-1", Text = "Select" });
-            list.Add(new SelectListItem { Value = "1", Text = "Teacher" });
-            list.Add(new SelectListItem { Value = "2", Text = "PCI Representative" });
-            return list.OrderBy(x => Convert.ToInt32(x.Value.ToString())).ToList();
+            list.Add(new SelectListItem { Value = "2CAC5128-08C7-4B95-8C6A-DB61E6B40376".ToLower(), Text = "Teacher" });
+            list.Add(new SelectListItem { Value = "D3CE11F6-847E-4158-91DB-C4EB555A9BD4".ToLower(), Text = "PCI Representative" });
+            return list.OrderBy(x => x.Value.ToString()).ToList();
         }
         public static List<SelectListItem> GetTypeQuery()
         {
@@ -1985,43 +1985,45 @@ namespace UmangMicro.Manager
         }
         public static List<SelectListItem> GetMonth(bool isAddedSelect = true)
         {
+            List<SelectListItem> listItems = new List<SelectListItem>();
             try
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    var items = new SelectList(dbe.Month_Master, "ID", "MonthName").OrderBy(x => x.Value).ToList();
+                    listItems = new SelectList(dbe.Month_Master, "ID", "MonthName").OrderBy(x => x.Value).ToList();
                     if (isAddedSelect)
                     {
-                        items.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
                     }
-                    return items;
+                    return listItems;
                 }
             }
             catch (Exception)
             {
                 throw;
             }
-            return null;
+            return listItems;
         }
         public static List<SelectListItem> GetYear(bool isAddedSelect = true)
         {
+            List<SelectListItem> listItems = new List<SelectListItem>();
             try
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    var items = new SelectList(dbe.Year_Master, "ID", "Year").OrderBy(x => x.Text).ToList();
+                    listItems = new SelectList(dbe.Year_Master, "ID", "Year").OrderBy(x => x.Text).ToList();
                     if (isAddedSelect)
                     {
-                        items.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
                     }
-                    return items;
+                    return listItems;
                 }
             }
             catch (Exception)
             {
                 throw;
             }
-            return null;
+            return listItems;
         }
         public static List<SelectListItem> GetTypeCase()
         {

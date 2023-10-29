@@ -14,7 +14,7 @@
         <div class="card">
             <div class="table-responsive">
                 @*table card-table table-vcenter text-nowrap*@
-                <table class="table table-bordered table-hover dt-responsive display" id="DataList_0" width="100%">
+                <table class="table table-bordered table-hover dt-responsive display" id="DataListCD" width="100%">
                     <thead class="">
                         <tr>
                             <th>SrNo.</th>
@@ -55,14 +55,16 @@
                     </thead>
                     <tbody>
                         @{
-                            int sno = 1;
+                            int sno = 1; int indx = 0;
                             if (Model != null)
                             {
                                 foreach (DataRow dr in dt.Rows)
                                 {
                                     <tr>
                                         <td class="text-center" style="cursor:pointer;">@(sno++)</td>
-                                        <td class="text-center"><input type="checkbox" name="Chk_@dr["ID"]" id="Chk_@dr["ID"]" value="" /></td>
+                                        <td class="text-center">
+                                        <input type="checkbox" data-id="@dr["CH_Id"]" name="Chk_@indx" id="Chk_@indx" value="@dr["ID"]" />
+                                        </td>
                                         @*<td class="text-left" style="text-wrap: wrap;">@dr["NameCourseHindi"]</td>*@
                                         <td class="text-left">@dr["NameCourseEng"]</td>
                                         @*<td class="text-left">@dr["CourseTypeHindi"]</td>*@
@@ -96,7 +98,9 @@
                                         @*<td class="text-left">@dr["DistrictHindi"]</td>*@
                                         <td class="text-left">@dr["DistrictEng"]</td>
                                     </tr>
+                                    indx++;
                                 }
+
                             }
                             else
                             {

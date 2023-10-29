@@ -1,0 +1,503 @@
+﻿@*@model UmangMicro.Models.CHModel*@
+@using System.Data
+@using UmangMicro.Manager
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    DataSet ds = new DataSet();
+    DataTable dtm = new DataTable();
+    DataTable dtrc = new DataTable();
+    DataTable dtcd = new DataTable();
+    DataTable dtst = new DataTable();
+    DataTable dtssp = new DataTable();
+    DataTable dtsm = new DataTable();
+
+}
+<style>
+    :root {
+        --primary: #227093;
+        --secondary: #ff5252;
+        --background: #eee;
+        --highlight: #ffda79;
+        /* Theme color */
+        --theme: var(--primary);
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    /* Core styles/functionality */
+    .tab input {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .tab__content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.35s;
+    }
+
+    .tab input:checked ~ .tab__content {
+        max-height: 100%;
+    }
+
+    /* Visual styles */
+    .accordion {
+        color: var(--theme);
+        border: 2px solid;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .tab__label,
+    .tab__close {
+        display: flex;
+        color: white;
+        background: var(--theme);
+        cursor: pointer;
+    }
+
+    .tab__label {
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+        .tab__label::after {
+            content: "\276F";
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            transform: rotate(90deg);
+            transition: all 0.35s;
+        }
+
+    .tab input:checked + .tab__label::after {
+        transform: rotate(270deg);
+    }
+
+    .tab__content p {
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .tab__close {
+        justify-content: flex-end;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .accordion--radio {
+        --theme: var(--secondary);
+    }
+
+    /* Arrow animation */
+    .tab input:not(:checked) + .tab__label:hover::after {
+        animation: bounce .5s infinite;
+    }
+
+    @@keyframes bounce {
+        25% {
+            transform: rotate(90deg) translate(.25rem);
+        }
+
+        75% {
+            transform: rotate(90deg) translate(-.25rem);
+        }
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                @{
+                    if (Model != null)
+                    {
+                        ds = Model; int indx = 1;
+                        if (ds.Tables.Count > 0)
+                        {
+                            dtm = ds.Tables[0];
+                            dtrc = ds.Tables[1];
+                            dtcd = ds.Tables[2];
+                            dtst = ds.Tables[3];
+                            dtssp = ds.Tables[4];
+                            dtsm = ds.Tables[5];
+
+                            <section class="accordion">
+                                @foreach (DataRow dr in dtm.Rows)
+                                {
+                                    <div class="row" style="overflow:scroll;padding-left:3%; ">
+                                        <div class="tab">
+                                            <input type="checkbox" name="accordion-1" id="cb_@indx" checked>
+                                            <label for="cb_@indx" class="tab__label">Case History #@indx</label>
+
+                                            <div class="tab__content">
+                                                <div class="row">
+                                                    <div class="col-md-12"><h4>Basic Details</h4></div>
+                                                    <div class="col-md-2">Case ID : <strong>@dr["CaseID"]</strong></div>
+                                                    <div class="col-md-2">Student Name : <strong>@dr["Studentname"]</strong></div>
+                                                    <div class="col-md-2">Date Of Birth & Age : <strong>@(CommonModel.FormateDtDMY(dr["DOB"].ToString())) &nbsp; @dr["Age"]</strong></div>
+                                                    <div class="col-md-2">School Name : <strong>@dr["school_name"]</strong></div>
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-12"><hr /></div>
+                                                    <div class="col-md-12"><h4>Case History Details</h4></div>
+                                                    <div class="col-md-2">Date of counselling : <strong>@(CommonModel.FormateDtDMY(dr["DOC"].ToString()))</strong></div>
+                                                    <div class="col-md-2">Class Name : <strong>@dr["ClassId"]</strong></div>
+                                                    <div class="col-md-3">Type of counsellor : <strong>@dr["TypeCollorName"]</strong></div>
+                                                    <div class="col-md-3">Type of Query : <strong>@dr["Query"]</strong></div>
+                                                    <div class="col-md-3">Which Subject is your favourite : <strong>@dr["SubjectName"]</strong></div>
+                                                    <div class="col-md-4">
+                                                        Please write your query using
+                                                        key words like stream of education interested to pursue, particular subject
+                                                        around which you seek information, interest, etc. : <strong>@dr["KeyWords"]</strong>
+                                                    </div>
+                                                    @if (!string.IsNullOrWhiteSpace(dr["Study_10th"].ToString()))
+                                                    {
+                                                        <div class="col-md-4">
+                                                            How long do would you be interested to study after 10th standard
+                                                            (if counselee is studying under 10th) : <strong>@dr["Study_10th"]</strong>
+                                                        </div>
+                                                    }
+                                                    @if (!string.IsNullOrWhiteSpace(dr["Study_12th"].ToString()))
+                                                    {
+                                                        <div class="col-md-4">
+                                                            How long do would you be interested to study after 12th standard
+                                                            (if counselee is studying in 11th and 12th) : <strong>@dr["Study_12th"]</strong>
+                                                        </div>
+                                                    }
+                                                    @if (dr["TypeQuery"].ToString() == "1" || dr["TypeQuery"].ToString() == "2")
+                                                    {
+                                                        <div class="col-md-3">Tools used for counselling : <strong>@dr["ColingName"]</strong></div>
+                                                        <div class="col-md-3">Conducted psychometric Test : <strong>@dr["IsPsychometricName"]</strong></div>
+                                                        <div class="col-md-4">Result of Psychometric test : <strong>@dr["RCName"]</strong></div>
+                                                    }
+                                                    @if (dtrc.Rows.Count > 0)
+                                                    {
+                                                        int sno = 0;
+                                                        <div class="col-md-12">
+                                                            <h5> Result of Psychometric Details</h5>
+                                                            <table class="table table-bordered table-hover dt-responsive display" id="DataList1" width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>SrNo.</th>
+                                                                        <th>Section</th>
+                                                                        <th>Type Of Subject</th>
+                                                                        <th>Subject Details</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (DataRow dr1 in dtrc.Rows)
+                                                                    {
+                                                                        <tr>
+                                                                            <td class="text-center">@(sno++)</td>
+                                                                            <td class="text-left" style="text-wrap: wrap;">@(dr1["SectionShortEng"] +"-"+ dr1["SectionNameEng"])</td>
+                                                                            <td class="text-left" style="text-wrap: wrap;">@dr1["TypeofSectionEng"]</td>
+                                                                            <td class="text-left" style="text-wrap: wrap;">@(dr1["SectionDetailNoEng"] +"-"+ dr1["SectionDetailEng"])</td>
+                                                                        </tr>
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    }
+                                                    @if (dr["TypeQuery"].ToString() == "1" || dr["TypeQuery"].ToString() == "2")
+                                                    {
+                                                        if (dtcd.Rows.Count > 0)
+                                                        {
+                                                            int sno = 0;
+                                                            <div class="col-md-12">
+                                                                <h5> Courses Details </h5>
+                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListCD" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>SrNo.</th>
+                                                                            <th>Name of the Course</th>
+                                                                            <th>Course Type</th>
+                                                                            <th>Job Opportunity</th>
+                                                                            <th>Course Duration</th>
+                                                                            <th>Short Description of Course</th>
+                                                                            <th>Eligibility</th>
+                                                                            <th>Marks Criteria</th>
+                                                                            <th>Admission Process</th>
+                                                                            <th>Medium of Instructions</th>
+                                                                            <th>Hostel Availability</th>
+                                                                            <th>Available Scholarships </th>
+                                                                            <th>College/<br />University/Institute</th>
+                                                                            <th>Fee Structure</th>
+                                                                            <th>Status of Institution</th>
+                                                                            <th>District</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach (DataRow dr1 in dtcd.Rows)
+                                                                        {
+                                                                            <tr>
+                                                                                <td class="text-center" style="cursor:pointer;">@(sno++)</td>
+                                                                                <td class="text-left">@dr1["NameCourseEng"]</td>
+                                                                                <td class="text-left">@dr1["CourseTypeEng"]</td>
+                                                                                <td class="text-left">@dr1["JobOpportunityEng"]</td>
+                                                                                <td class="text-left">@dr1["CourseDurationEng"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["ShortDescriptionCourseEng"]</td>
+                                                                                <td class="text-left">@dr1["EligibilityEng"]</td>
+                                                                                <td class="text-left">@dr1["MarksCriteriaEng"]</td>
+                                                                                <td class="text-left">@dr1["AdmissionProcessEng"]</td>
+                                                                                <td class="text-left">@dr1["MediumInstructionEng"]</td>
+                                                                                <td class="text-left">@dr1["HostelAvailabilityEng"]</td>
+                                                                                <td class="text-left">@dr1["AvailableScholarshipEng"]</td>
+                                                                                <td class="text-left">@dr1["College_Unvty_InstEng"]</td>
+                                                                                <td class="text-left">@dr1["FeeStructureEng"]</td>
+                                                                                <td class="text-left">@dr1["StatusInstitutionEng"]</td>
+                                                                                <td class="text-left">@dr1["DistrictEng"]</td>
+                                                                            </tr>
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        }
+
+                                                        if (dtst.Rows.Count > 0)
+                                                        {
+                                                            int sno = 0;
+                                                            <div class="col-md-12">
+                                                                <h5> Skill Training Details </h5>
+                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListST" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            @*<th>SrNo.</th>*@
+                                                                            <th></th>
+                                                                            <th>Name of the Course</th>
+                                                                            <th>Course Type</th>
+                                                                            <th>Job Opportunity</th>
+                                                                            <th>Course Duration</th>
+                                                                            <th>Short Description of Course</th>
+                                                                            <th>Eligibility</th>
+                                                                            <th>Marks Criteria</th>
+                                                                            <th>Admission Process</th>
+                                                                            <th>Medium of Instructions</th>
+                                                                            <th>Hostel Availability</th>
+                                                                            <th>Available Scholarships</th>
+                                                                            <th>College/University/Institute</th>
+                                                                            <th>Fee Structure</th>
+                                                                            <th>Status of Institution</th>
+                                                                            <th>District</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach (DataRow dr1 in dtst.Rows)
+                                                                        {
+                                                                            <tr>
+                                                                                <td class="text-center">@(sno++)</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["NameCourse"]</td>
+                                                                                <td class="text-left">@dr1["CourseType"]</td>
+                                                                                <td class="text-left">@dr1["JobOppty"]</td>
+                                                                                <td class="text-left">@dr1["CorseDur"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["ShortDesCourse"]</td>
+                                                                                <td class="text-left">@dr1["Eligibility"]</td>
+                                                                                <td class="text-left">@dr1["MarksCriteria"]</td>
+                                                                                <td class="text-left">@dr1["AdmissionProcess"]</td>
+                                                                                <td class="text-left">@dr1["MediumInstructions"]</td>
+                                                                                <td class="text-left">@dr1["HostelAvailability"]</td>
+                                                                                <td class="text-left">@dr1["AvailableScholarships"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["CollegeUniversityInstitute"]</td>
+                                                                                <td class="text-left">@dr1["FeeStructure"]</td>
+                                                                                <td class="text-left">@dr1["StatusInstitution"]</td>
+                                                                                <td class="text-left">@dr1["District"]</td>
+                                                                            </tr>
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        }
+                                                    }
+                                                    @if (dr["TypeQuery"].ToString() == "3")
+                                                    {
+                                                        if (dtssp.Rows.Count > 0)
+                                                        {
+                                                            int sno = 0;
+                                                            <div class="col-md-12">
+                                                                <h5> Scholarship Details </h5>
+                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListSSP" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>SrNo.</th>
+                                                                            <th></th>
+                                                                            <th>Name of Scholarship</th>
+                                                                            <th>Category</th>
+                                                                            <th>Eligibility</th>
+                                                                            <th>Institutions Eligibility</th>
+                                                                            <th>Remarks</th>
+                                                                            <th>Amount</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach (DataRow dr1 in dtssp.Rows)
+                                                                        {
+                                                                            <tr>
+                                                                                <td class="text-center">@(sno++)</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["NameScholarship"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Category"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Eligibility"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["InstitutionsEligibility"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Remarks"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Amount"]</td>
+                                                                            </tr>
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        }
+                                                    }
+                                                    @if (dr["TypeQuery"].ToString() == "3")
+                                                    {
+                                                        if (dtssp.Rows.Count > 0)
+                                                        {
+                                                            int sno = 0;
+                                                            <div class="col-md-12">
+                                                                <h5> Schemes Details </h5>
+                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListSM" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>SrNo.</th>
+                                                                            <th></th>
+                                                                            <th>Name of Scheme</th>
+                                                                            <th>Objective</th>
+                                                                            <th>Eligibility</th>
+                                                                            <th>Benefit</th>
+                                                                            <th>Remarks</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach (DataRow dr1 in dtsm.Rows)
+                                                                        {
+                                                                            <tr>
+                                                                                <td class="text-center">@(sno++)</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["NameofScheme"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Objective"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Eligibility"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Benefit"]</td>
+                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Remarks"]</td>
+                                                                            </tr>
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        }
+                                                    }
+
+                                                    <div class="col-md-12">Areas of improvement : <strong>@dr["AreasImprovement"]</strong></div>
+                                                    <div class="col-md-12">Counselling advice/ recommendations : <strong>@dr["Recommendation"]</strong></div>
+
+                                                    <div class="col-md-6">
+                                                        Follow up : <strong>@dr["IsFollowName"]</strong>
+                                                        @if (dr["IsFollow"].ToString() == "1")
+                                                        {
+                                                            <span>Month : <strong>@dr["MonthName"].ToString()</strong></span>
+                                                            <span>Year : <strong>@dr["FY"].ToString()</strong></span>
+                                                        }
+                                                    </div>
+                                                    <div class="col-md-2">Is the career goal clear to counseleee after the session : <strong>@dr["IsGoalClearName"]</strong></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    indx++;
+                                }
+
+                            </section>
+                        }
+
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<link href="~/Content/StyleSheet1.scss" />*@
+    @*<link rel='stylesheet' href='https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css'>*@
+
+    <script>
+                                                                                                                            //$(document).ready(function () {
+                                                                                                                            //    BindData();
+                                                                                                                            //});
+
+                                                                                                                            //function BindData() {
+                                                                                                                            //    $('#sub-data').html(''); $('#sub-data1').html(''); $('#sub-data2').html(''); $('#sub-data3').html('');
+                                                                                                                            //    //jQuery.event.trigger("ajaxStart");
+                                                                                                                            //    $('#submission-data').removeClass("text-danger");
+                                                                                                                            //    var url = $('#submission-form').attr("action");
+                                                                                                                            //    var formData = $('#submission-form').serialize();
+                                                                                                                            //    $.ajax({
+                                                                                                                            //        url: url,
+                                                                                                                            //        type: "Post",
+                                                                                                                            //        data: '',//{ 'District': District, 'Block': Block },
+                                                                                                                            //        success: function (resp) {
+                                                                                                                            //            if (resp.IsSuccess) {
+                                                                                                                            //                //jQuery.event.trigger("ajaxStop");
+                                                                                                                            //                $('#sub-data1').html(resp.html1);
+                                                                                                                            //                $('#sub-data2').html(resp.html2);
+                                                                                                                            //                $('#sub-data3').html(resp.html3);
+                                                                                                                            //                $('#sub-data').html(resp.html4);
+
+                                                                                                                            //                setTimeout(function () {
+
+                                                                                                                            //                    // start Table
+                                                                                                                            //                    $('table').DataTable({
+                                                                                                                            //                        //paging: false,
+                                                                                                                            //                        fixedHeader: true,
+                                                                                                                            //                        responsive: true,
+                                                                                                                            //                        //responsive: false,
+                                                                                                                            //                       // scrollCollapse: false,
+                                                                                                                            //                        "dom": '<"pull-left"f><"pull-right"l>tip',
+                                                                                                                            //                        "pageLength": 100,
+                                                                                                                            //                        "lengthChange": false,
+                                                                                                                            //                        "buttons": [
+                                                                                                                            //                            {
+                                                                                                                            //                                extend: 'excel',
+                                                                                                                            //                                text: 'Export excel',
+                                                                                                                            //                                className: 'exportExcel',
+                                                                                                                            //                                filename: 'Export excel',
+                                                                                                                            //                                exportOptions: {
+                                                                                                                            //                                    modifier: {
+                                                                                                                            //                                        page: 'all'
+                                                                                                                            //                                    }
+                                                                                                                            //                                }
+                                                                                                                            //                            }]
+
+                                                                                                                            //                    });
+
+                                                                                                                            //                    $("#tab-animated-1").removeClass('active');
+                                                                                                                            //                    $("#tab-animated-2").removeClass('active');
+                                                                                                                            //                    $("#tab-animated-3").removeClass('active');
+
+                                                                                                                            //                }, 500);
+
+
+                                                                                                                            //               // $('table tbody').on('click', 'td', function () {
+                                                                                                                            //                //     ////alert(table.cell(this).data());
+                                                                                                                            //                // });
+
+                                                                                                                            //            }
+                                                                                                                            //            else {
+                                                                                                                            //                $('#submission-data').html("Record Not Found !!");//TO DO
+                                                                                                                            //                $('#submission-data').addClass("text-danger");//TO DO
+                                                                                                                            //                // jQuery.event.trigger("ajaxStop");
+                                                                                                                            //            }
+                                                                                                                            //        },
+                                                                                                                            //        error: function (req, error) {
+                                                                                                                            //            if (error === 'error') { error = req.statusText; }
+                                                                                                                            //            var errormsg = 'There was a communication error: ' + error;
+                                                                                                                            //            $('#submission-data').html(errormsg);
+                                                                                                                            //            //jQuery.event.trigger("ajaxStop");
+                                                                                                                            //            return false;
+                                                                                                                            //        }
+                                                                                                                            //    });
+                                                                                                                            //}
+
+    </script>
+}

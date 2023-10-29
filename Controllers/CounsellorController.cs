@@ -24,7 +24,26 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-
+        public ActionResult CaseHDetail(string RowId = "", string CaseID = "")
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(CaseID))
+                {
+                    ds = SP_Model.GetSP_CaseHistoryDetails(RowId, CaseID);
+                    if (ds.Tables.Count > 0)
+                    {
+                        return View(ds);
+                    }
+                }
+                return View(ds);
+            }
+            catch (Exception)
+            {
+                return View(ds);
+            }
+        }
         public ActionResult GetRIASEClList(string CaseID = "")
         {
             try
@@ -69,6 +88,23 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult GetCaseHistoryCount(string RowId = "", string CaseID = "")
+        {
+            try
+            {
+                var items = SP_Model.GetSP_CaseHistoryCount(RowId, CaseID);
+                if (items != null && items.Rows.Count > 0)
+                {
+                    var data = JsonConvert.SerializeObject(items.Rows[0]["NoofCaseHistory"]);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult GetSearchByCD()
         {
             try
@@ -90,46 +126,55 @@ namespace UmangMicro.Controllers
         {
             try
             {
+
                 var resdata = this.Request.Unvalidated.Form["DList"];
                 bool IsCheck = false;
                 DataTable dt = new DataTable();
                 DataTable dt1 = new DataTable();
                 DataTable dt2 = new DataTable();
                 DataTable dt3 = new DataTable();
-                DataSet ds=new DataSet();   
+                DataSet ds = new DataSet();
                 if (resdata != null)
                 {
                     var model = JsonConvert.DeserializeObject<SearchModel>(resdata);
                     ds = SP_Model.GetComdSearchlist(model);
+
+                    if (ds.Tables.Count > 0)
+                    {
+                        IsCheck = true;
+                        if (model.Paratbl == "1")
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                dt = ds.Tables[0];
+                            }
+                            if (ds.Tables[1].Rows.Count > 0)
+                            {
+                                dt1 = ds.Tables[1];
+                            }
+                        }
+                        if (model.Paratbl == "3")
+                        {
+                            if (ds.Tables[2].Rows.Count > 0)
+                            {
+                                dt2 = ds.Tables[2];
+                            }
+                        }
+                        if (model.Paratbl == "4")
+                        {
+                            if (ds.Tables[3].Rows.Count > 0)
+                            {
+                                dt3 = ds.Tables[3];
+                            }
+                        }
+                    }
                 }
-                //dt = ds.Tables.Contains("Tables[0]") == true ? dt : ds.Tables[0];//dt1 = ds.Tables.Contains("Tables[1]") == true ? dt1 : ds.Tables[1];
-                
-                if (ds.Tables.Count > 0)
-                {
-                    IsCheck = true;
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        dt = ds.Tables[0];
-                    }
-                    if (ds.Tables[1].Rows.Count > 0)
-                    {
-                        dt1 = ds.Tables[1];
-                    }
-                    if (ds.Tables[2].Rows.Count > 0)
-                    {
-                        dt2 = ds.Tables[2];
-                    }
-                    if (ds.Tables[3].Rows.Count > 0)
-                    {
-                        dt3 = ds.Tables[3];
-                    }
-                }
-                var html_1 = ConvertViewToString("_SkillTrain", dt);
-                var html_2 = ConvertViewToString("_Scheme", dt1);
-                var html_3 = ConvertViewToString("_Scholarship", dt2);
-                var html_4 = ConvertViewToString("_CD", dt3);
+                var htmlCD = ConvertViewToString("_CD", dt);
+                var htmlST = ConvertViewToString("_SkillTrain", dt1);
+                var htmlSSP = ConvertViewToString("_Scholarship", dt2);
+                var htmlSM = ConvertViewToString("_Scheme", dt3);
                 //var html3 = ConvertViewToString("_UserDetailData", tbllist);
-                var res = Json(new { IsSuccess = IsCheck, html1 = html_1, html2 = html_2, html3 = html_3, html4 = html_4 }, JsonRequestBehavior.AllowGet);
+                var res = Json(new { IsSuccess = IsCheck, html_CD = htmlCD, html_ST = htmlST, html_SM = htmlSM, html_SSP = htmlSSP }, JsonRequestBehavior.AllowGet);
                 res.MaxJsonLength = int.MaxValue;
                 return res;
             }
@@ -159,6 +204,10 @@ namespace UmangMicro.Controllers
         public ActionResult CaseHistory(int Id = 0)
         {
             CHModel model = new CHModel();
+            if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
+            {
+                model.TypeCounsellor = MvcApplication.CUser.RoleId;
+            }
             return View(model);
         }
         [HttpPost]
@@ -169,98 +218,197 @@ namespace UmangMicro.Controllers
             JsonResponseData response = new JsonResponseData();
             try
             {
-                if (ModelState.IsValid)
+                var resPHYlist = this.Request.Unvalidated.Form["CH_PHY_model"];
+                var resCDlist = this.Request.Unvalidated.Form["CH_CD_model"];
+                var resSTlist = this.Request.Unvalidated.Form["CH_SkillT_model"];
+                var resSSPlist = this.Request.Unvalidated.Form["CH_SSP_model"];
+                var resSMlist = this.Request.Unvalidated.Form["CH_SM_model"];
+
+                //if (ModelState.IsValid)
+                //{
+                //var getdt = db_.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
+                //if (getdt.Any(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.DOB == model.DOB && model.ID == 0))
+                //{
+                //    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Case ID : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
+                //    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                //    resResponse1.MaxJsonLength = int.MaxValue;
+                //    return resResponse1;
+                //}
+                var tbl = model.Id != 0 ? db.tbl_CaseHistory.Find(model.Id) : new tbl_CaseHistory();
+                if (tbl != null)
                 {
-                    //var getdt = db_.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
-                    //if (getdt.Any(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.DOB == model.DOB && model.ID == 0))
-                    //{
-                    //    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Case ID : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
-                    //    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                    //    resResponse1.MaxJsonLength = int.MaxValue;
-                    //    return resResponse1;
-                    //}
-                    var tbl = model.Id != 0 ? db.tbl_CaseHistory.Find(model.Id) : new tbl_CaseHistory();
-                    if (tbl != null)
+                    tbl.GudID = Guid.NewGuid();
+                    tbl.CountdownStart = model.CountdownStart;
+                    tbl.CountdownEnd = model.CountdownEnd;
+                    tbl.DOC = model.DOC;
+                    tbl.CaseID = !(string.IsNullOrWhiteSpace(model.CaseID)) ? model.CaseID.Trim() : model.CaseID;
+                    tbl.ClassId = Convert.ToInt32(model.ClassId);
+                    tbl.TypeCounsellor = !(string.IsNullOrWhiteSpace(model.TypeCounsellor)) ? model.TypeCounsellor.Trim() : model.TypeCounsellor;
+                    tbl.TypeQuery = model.TypeQuery;
+                    tbl.KeyWords = model.KeyWords;
+                    tbl.Study10th = model.Study10th;
+                    tbl.Study12th = model.Study12th;
+                    tbl.Subject = model.Subject;
+                    tbl.Counselling = model.Counselling;
+                    tbl.IsPsychometric = model.IsPsychometric;
+                    tbl.Psychometric = model.Psychometric;
+                    tbl.Recommendation = model.Recommendation;
+                    tbl.AreasImprovement = model.AreasImprovement;
+                    tbl.IsFollow = model.IsFollow;
+                    if (model.IsFollow == "1")
                     {
-                        //tbl.RegDate = model.RegDate;
-                        //tbl.Name = !(string.IsNullOrWhiteSpace(model.Name)) ? model.Name.Trim() : model.Name;
-                        //tbl.MotherName = !(string.IsNullOrWhiteSpace(model.MotherName)) ? model.MotherName.Trim() : model.MotherName;
-                        //tbl.FatherName = !(string.IsNullOrWhiteSpace(model.FatherName)) ? model.FatherName.Trim() : model.FatherName;
-                        //var sid = Convert.ToInt32(eState.Jharkhand);
-                        //tbl.StateId = db.State_Mast.Where(x => x.ID == sid).FirstOrDefault().ID.ToString();
-                        //tbl.DistrictId = model.DistrictId;
-                        //tbl.BlockId = model.BlockId;
-                        //tbl.PanchayatId = model.PanchayatId;
-                        //tbl.VillageId = model.VillageId;
-                        //tbl.SchoolId = model.SchoolId;
-                        //if ("990099" == model.VillageId)
-                        //{
-                        //    tbl.VillageOther = !(string.IsNullOrWhiteSpace(model.VillageOther)) ? model.VillageOther.Trim() : model.VillageOther;
-                        //}
-                        //tbl.DOB = model.DOB;
-                        //tbl.Age = model.Age;
-                        //tbl.MobileNo = !(string.IsNullOrWhiteSpace(model.MobileNo)) ? model.MobileNo.Trim() : model.MobileNo;
-                        //tbl.Sex = "Female";//!(string.IsNullOrWhiteSpace(model.Sex)) ? model.Sex.Trim() : model.Sex;
-                        //tbl.Cast = !(string.IsNullOrWhiteSpace(model.Cast)) ? model.Cast.Trim() : model.Cast;
-                        //tbl.IsActive = true; tbl.IsDeleted = false;
+                        tbl.FM = model.FM;
+                        tbl.FY = model.FY;
+                    }
+                    tbl.IsGoalClear = model.IsGoalClear;
+                    tbl.IsActive = true;
 
-                        //tbl.Visited = model.Visited;
-                        //tbl.IsSkillTraining = model.IsSkillTraining;
-                        //tbl.IsMarriage = model.IsMarriage;
-                        //tbl.IsStudy = model.IsStudy;
-                        //tbl.SocialClass = !(string.IsNullOrWhiteSpace(model.SocialClass)) ? model.SocialClass.Trim() : model.SocialClass;
-                        //tbl.TillStudied = model.TillStudied;
-                        //tbl.IsWork = model.IsWork;
-                        //tbl.Reason = model.Reason;
-                        //tbl.IsPsychometric = model.IsPsychometric;
-                        //tbl.PsyYes_Result = !(string.IsNullOrWhiteSpace(model.PsyYes_Result)) ? model.PsyYes_Result.Trim() : model.PsyYes_Result;
-                        //tbl.Advice = model.Advice;
-                        //tbl.IsFollowUp = model.IsFollowUp;
-                        //tbl.FollowUp = !(string.IsNullOrWhiteSpace(model.FollowUp)) ? model.FollowUp.Trim() : model.FollowUp;
-
-                        if (model.Id == 0)
+                    if (model.Id == 0)
+                    {
+                        if (User.Identity.IsAuthenticated)
                         {
-                            if (User.Identity.IsAuthenticated)
-                            {
-                                tbl.CreatedBy = User.Identity.Name;
-                            }
-                            tbl.CreatedOn = DateTime.Now;
-                            db.tbl_CaseHistory.Add(tbl);
+                            tbl.CreatedBy = MvcApplication.CUser.Id;
                         }
-                        else
+                        tbl.CreatedOn = DateTime.Now;
+                        db.tbl_CaseHistory.Add(tbl);
+                    }
+                    else
+                    {
+                        if (User.Identity.IsAuthenticated)
                         {
-                            if (User.Identity.IsAuthenticated)
-                            {
-                                tbl.UpdatedBy = User.Identity.Name;
-                            }
-                            tbl.UpdatedOn = DateTime.Now;
+                            tbl.UpdatedBy = MvcApplication.CUser.Id;
                         }
+                        tbl.UpdatedOn = DateTime.Now;
+                    }
+                    results = db.SaveChanges();
+                }
+                if (results > 0)
+                {
+                    if (resPHYlist != null)
+                    {
+                        var mlist = JsonConvert.DeserializeObject<List<CH_Psychometric_Model>>(resPHYlist);
+                        tbl_CH_Psychometric tbl_Psy;
+                        List<tbl_CH_Psychometric> tbl_list = new List<tbl_CH_Psychometric>();
+                        foreach (var m in mlist)
+                        {
+                            tbl_Psy = new tbl_CH_Psychometric()
+                            {
+                                CaseHistoryId = tbl.Id.ToString(),
+                                CaseId = tbl.CaseID,
+                                RIASEC_Guided_Id = m.RIASEC_Guided_Id,
+                                PsychometricTestId = m.PsychometricTestId,
+                                CreatedBy = MvcApplication.CUser.Id,
+                                CreatedOn = DateTime.Now,
+                                IsActive = true
+                            };
+                            tbl_list.Add(tbl_Psy);
+                        }
+                        db.tbl_CH_Psychometric.AddRange(tbl_list);
                         results = db.SaveChanges();
                     }
-                    if (results > 0)
+                    if (resCDlist != null)
                     {
-                        // var taskres = CU_RegLogin(model, tbl.ID);
-                        var case_id = db_.tbl_Registration.Where(x => x.CaseID == model.CaseID.Trim())?.FirstOrDefault().CaseID; //if (case_id != null) { }
-                        if (model.Id > 0)
+                        var mlist = JsonConvert.DeserializeObject<List<CH_CourseD_Model>>(resCDlist);
+                        tbl_CH_CourseD tbl_;
+                        List<tbl_CH_CourseD> tbl_list = new List<tbl_CH_CourseD>();
+                        foreach (var m in mlist)
                         {
-                            response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, you have been Updated successfully ! \r\nPlease Note Your <br /> <span> Case ID : <strong>" + case_id + " </strong> </span>", Data = null };
-                            var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
-                            resResponse3.MaxJsonLength = int.MaxValue;
-                            return resResponse3;
+                            tbl_ = new tbl_CH_CourseD()
+                            {
+                                CaseHistoryId = tbl.Id.ToString(),
+                                CaseId = tbl.CaseID,
+                                CourseD_Id = m.CourseD_Id,
+                                CreatedBy = MvcApplication.CUser.Id,
+                                CreatedOn = DateTime.Now,
+                                IsActive = true
+                            };
+                            tbl_list.Add(tbl_);
                         }
-                        response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, you have been successfully case history registered! \r\nPlease Note Your <br /> <span> Case ID : <strong>" + case_id + " </strong> </span>", Data = null };
-                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                        resResponse1.MaxJsonLength = int.MaxValue;
-                        return resResponse1;
+                        db.tbl_CH_CourseD.AddRange(tbl_list);
+                        results = db.SaveChanges();
                     }
+                    if (resSTlist != null)
+                    {
+                        var mlist = JsonConvert.DeserializeObject<List<CH_SkillT_Model>>(resSTlist);
+                        tbl_CH_SkillT tbl_;
+                        List<tbl_CH_SkillT> tbl_list = new List<tbl_CH_SkillT>();
+                        foreach (var m in mlist)
+                        {
+                            tbl_ = new tbl_CH_SkillT()
+                            {
+                                CaseHistoryId = tbl.Id.ToString(),
+                                CaseId = tbl.CaseID,
+                                SkillT_Id = m.SkillT_Id,
+                                CreatedBy = MvcApplication.CUser.Id,
+                                CreatedOn = DateTime.Now,
+                                IsActive = true
+                            };
+                            tbl_list.Add(tbl_);
+                        }
+                        db.tbl_CH_SkillT.AddRange(tbl_list);
+                        results = db.SaveChanges();
+                    }
+                    if (resSSPlist != null)
+                    {
+                        var mlist = JsonConvert.DeserializeObject<List<CH_Scholarship_Model>>(resSSPlist);
+                        tbl_CH_Scholarship tbl_;
+                        List<tbl_CH_Scholarship> tbl_list = new List<tbl_CH_Scholarship>();
+                        foreach (var m in mlist)
+                        {
+                            tbl_ = new tbl_CH_Scholarship()
+                            {
+                                CaseHistoryId = tbl.Id.ToString(),
+                                CaseId = tbl.CaseID,
+                                Scholarship_Id = m.Scholarship_Id,
+                                CreatedBy = MvcApplication.CUser.Id,
+                                CreatedOn = DateTime.Now,
+                                IsActive = true
+                            };
+                            tbl_list.Add(tbl_);
+                        }
+                        db.tbl_CH_Scholarship.AddRange(tbl_list);
+                        results = db.SaveChanges();
+                    }
+                    if (resSMlist != null)
+                    {
+                        var mlist = JsonConvert.DeserializeObject<List<CH_Scheme_Model>>(resSMlist);
+                        tbl_CH_Scheme tbl_;
+                        List<tbl_CH_Scheme> tbl_list = new List<tbl_CH_Scheme>();
+                        foreach (var m in mlist)
+                        {
+                            tbl_ = new tbl_CH_Scheme()
+                            {
+                                CaseHistoryId = tbl.Id.ToString(),
+                                CaseId = tbl.CaseID,
+                                Scheme_Id = m.Scheme_Id,
+                                CreatedBy = MvcApplication.CUser.Id,
+                                CreatedOn = DateTime.Now,
+                                IsActive = true
+                            };
+                            tbl_list.Add(tbl_);
+                        }
+                        db.tbl_CH_Scheme.AddRange(tbl_list);
+                        results = db.SaveChanges();
+                    }
+
+                    response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, Case History Details Submitted successfully ! \r\n Your <br /> <span> Case ID : <strong>" + tbl.CaseID + " </strong> </span>", Data = null };
+                    var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
+                    resResponse3.MaxJsonLength = int.MaxValue;
+                    return resResponse3;
+
                 }
-                else
-                {
-                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "All Record Required !!", Data = null };
-                    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                    resResponse1.MaxJsonLength = int.MaxValue;
-                    return resResponse1;
-                };
+                //response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, you have been successfully case history registered! \r\nPlease Note Your <br /> <span> Case ID : <strong>" + tbl.CaseID + " </strong> </span>", Data = null };
+                //var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                //resResponse1.MaxJsonLength = int.MaxValue;
+                //return resResponse1;
+                //}
+                //else
+                //{
+                //    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "All Record Required !!", Data = null };
+                //    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                //    resResponse1.MaxJsonLength = int.MaxValue;
+                //    return resResponse1;
+                //};
             }
             catch (Exception)
             {

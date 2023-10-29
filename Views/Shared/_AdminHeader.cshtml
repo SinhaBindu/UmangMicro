@@ -19,7 +19,7 @@
                         </a>
                         <ul>
                             <h3>@u.Name</h3>
-                            <li><a href="#">My Account</a></li>
+                            @*<li><a href="#">My Account</a></li>*@
                             @if (Request.IsAuthenticated)
                             {
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -51,7 +51,7 @@
                         </a>
                         <ul>
                             <h3>@u.Name</h3>
-                            <li><a href="#">My Account</a></li>
+                            @*<li><a href="#">My Account</a></li>*@
                             @if (Request.IsAuthenticated)
                             {
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

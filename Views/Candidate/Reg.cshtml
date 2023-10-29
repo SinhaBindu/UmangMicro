@@ -4,6 +4,12 @@
     ViewBag.Title = "Reg";
 }
 
+<div class="admin-breadcrumb">
+    <h3>Student Registration</h3>
+    <div class="crumb">
+        <a href="/">Dashboard</a> / Counselling
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -24,13 +30,24 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            GetDistrict('DistrictId');
+            if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                $('#DistrictId').attr("style", "pointer-events: none;");
+                OnChagDistricts('BlockId', $('#DistrictId').val());
+                $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
+                $('#BlockId').attr("style", "pointer-events: none;");
+                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
+                $('#SchoolId').attr("style", "pointer-events: none;");
+                }
+
             $('#LanguangeType').change(function () {
 
                 var url = '@Url.Action("Reg", "Candidate")';
                 window.location.href = url + '?LangType='+$(this).val();
                 });
 
-                GetDistrict('DistrictId');
                 $('#DistrictId').change(function () {
                     OnChagDistricts('BlockId', $('#DistrictId').val());
                 });

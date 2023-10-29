@@ -86,6 +86,7 @@ namespace UmangMicro.Models
         public string CaseID { get; set; }
         public string TypeCase { get; set; }
         public string Searchtxt { get; set; }
+        [Display(Name = "Date Of RIASEC Test")]
         public DateTime? Date { get; set; }
         public int? YearId { get; set; }
         public int? FrequencyId { get; set; }

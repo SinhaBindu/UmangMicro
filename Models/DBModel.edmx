@@ -137,7 +137,11 @@
           </Key>
           <Property Name="GudID" Type="uniqueidentifier" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountdownStart" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountdownEnd" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOC" Type="datetime" />
           <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClassId" Type="int" />
           <Property Name="TypeCounsellor" Type="nvarchar" MaxLength="50" />
           <Property Name="TypeQuery" Type="nvarchar" MaxLength="50" />
           <Property Name="KeyWords" Type="nvarchar(max)" />
@@ -146,12 +150,86 @@
           <Property Name="Subject" Type="nvarchar(max)" />
           <Property Name="Counselling" Type="nvarchar" MaxLength="200" />
           <Property Name="IsPsychometric" Type="nvarchar" MaxLength="50" />
-          <Property Name="Psychometric" Type="nvarchar" MaxLength="50" />
-          <Property Name="Suggestion" Type="nvarchar(max)" />
+          <Property Name="Psychometric" Type="nvarchar(max)" />
+          <Property Name="Recommendation" Type="nvarchar(max)" />
+          <Property Name="AreasImprovement" Type="nvarchar(max)" />
           <Property Name="IsFollow" Type="nvarchar" MaxLength="50" />
           <Property Name="FM" Type="nvarchar" MaxLength="50" />
           <Property Name="FY" Type="nvarchar" MaxLength="50" />
           <Property Name="IsGoalClear" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CH_CourseD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseHistoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CaseId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourseD_Id" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CH_Psychometric">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseHistoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CaseId" Type="nvarchar" MaxLength="50" />
+          <Property Name="RIASEC_Guided_Id" Type="int" />
+          <Property Name="PsychometricTestId" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CH_Scheme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseHistoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CaseId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Scheme_Id" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CH_Scholarship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseHistoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CaseId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Scholarship_Id" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CH_SkillT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseHistoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CaseId" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillT_Id" Type="int" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedOn" Type="datetime" />
@@ -359,6 +437,11 @@
           <EntitySet Name="RIASEC_Guided" EntityType="Self.RIASEC_Guided" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State_Mast" EntityType="Self.State_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CaseHistory" EntityType="Self.tbl_CaseHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CH_CourseD" EntityType="Self.tbl_CH_CourseD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CH_Psychometric" EntityType="Self.tbl_CH_Psychometric" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CH_Scheme" EntityType="Self.tbl_CH_Scheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CH_Scholarship" EntityType="Self.tbl_CH_Scholarship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CH_SkillT" EntityType="Self.tbl_CH_SkillT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CoursesDetail" EntityType="Self.tbl_CoursesDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_LoginDetail" EntityType="Self.tbl_LoginDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_MicroCase" EntityType="Self.tbl_MicroCase" Schema="dbo" store:Type="Tables" />
@@ -396,13 +479,18 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
           <EntitySet Name="Month_Master" EntityType="UM_DBModel.Month_Master" />
           <EntitySet Name="Year_Master" EntityType="UM_DBModel.Year_Master" />
           <EntitySet Name="QuestionRIASECs" EntityType="UM_DBModel.QuestionRIASEC" />
           <EntitySet Name="RIASEC_Guided" EntityType="UM_DBModel.RIASEC_Guided" />
           <EntitySet Name="tbl_RIASEC_Main" EntityType="UM_DBModel.tbl_RIASEC_Main" />
           <EntitySet Name="tbl_RIASECTest" EntityType="UM_DBModel.tbl_RIASECTest" />
+          <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
+          <EntitySet Name="tbl_CH_Psychometric" EntityType="UM_DBModel.tbl_CH_Psychometric" />
+          <EntitySet Name="tbl_CH_Scheme" EntityType="UM_DBModel.tbl_CH_Scheme" />
+          <EntitySet Name="tbl_CH_Scholarship" EntityType="UM_DBModel.tbl_CH_Scholarship" />
+          <EntitySet Name="tbl_CH_SkillT" EntityType="UM_DBModel.tbl_CH_SkillT" />
+          <EntitySet Name="tbl_CH_CourseD" EntityType="UM_DBModel.tbl_CH_CourseD" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -606,33 +694,6 @@
           <End Type="UM_DBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="UM_DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="tbl_CaseHistory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="GudID" Type="Guid" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TypeCounsellor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TypeQuery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Study10th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Study12th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Counselling" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsPsychometric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Psychometric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Suggestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsFollow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsGoalClear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Month_Master">
           <Key>
             <PropertyRef Name="ID" />
@@ -710,6 +771,111 @@
           <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="QuestionID" Type="Int32" />
           <Property Name="QuestionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CaseHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="GudID" Type="Guid" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountdownStart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountdownEnd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOC" Type="DateTime" Precision="3" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="TypeCounsellor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeQuery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Study10th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Study12th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Counselling" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsPsychometric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Psychometric" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Recommendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AreasImprovement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsFollow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsGoalClear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CH_Psychometric">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseHistoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RIASEC_Guided_Id" Type="Int32" />
+          <Property Name="PsychometricTestId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CH_Scheme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseHistoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Scheme_Id" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CH_Scholarship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseHistoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Scholarship_Id" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CH_SkillT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseHistoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillT_Id" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CH_CourseD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseHistoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseD_Id" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
@@ -937,34 +1103,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="tbl_CaseHistory">
-            <EntityTypeMapping TypeName="UM_DBModel.tbl_CaseHistory">
-              <MappingFragment StoreEntitySet="tbl_CaseHistory">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsGoalClear" ColumnName="IsGoalClear" />
-                <ScalarProperty Name="FY" ColumnName="FY" />
-                <ScalarProperty Name="FM" ColumnName="FM" />
-                <ScalarProperty Name="IsFollow" ColumnName="IsFollow" />
-                <ScalarProperty Name="Suggestion" ColumnName="Suggestion" />
-                <ScalarProperty Name="Psychometric" ColumnName="Psychometric" />
-                <ScalarProperty Name="IsPsychometric" ColumnName="IsPsychometric" />
-                <ScalarProperty Name="Counselling" ColumnName="Counselling" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="Study12th" ColumnName="Study12th" />
-                <ScalarProperty Name="Study10th" ColumnName="Study10th" />
-                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
-                <ScalarProperty Name="TypeQuery" ColumnName="TypeQuery" />
-                <ScalarProperty Name="TypeCounsellor" ColumnName="TypeCounsellor" />
-                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GudID" ColumnName="GudID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Month_Master">
             <EntityTypeMapping TypeName="UM_DBModel.Month_Master">
               <MappingFragment StoreEntitySet="Month_Master">
@@ -1051,6 +1189,117 @@
                 <ScalarProperty Name="RIASEC_ID_fk" ColumnName="RIASEC_ID_fk" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="GudId" ColumnName="GudId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CaseHistory">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CaseHistory">
+              <MappingFragment StoreEntitySet="tbl_CaseHistory">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsGoalClear" ColumnName="IsGoalClear" />
+                <ScalarProperty Name="FY" ColumnName="FY" />
+                <ScalarProperty Name="FM" ColumnName="FM" />
+                <ScalarProperty Name="IsFollow" ColumnName="IsFollow" />
+                <ScalarProperty Name="AreasImprovement" ColumnName="AreasImprovement" />
+                <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
+                <ScalarProperty Name="Psychometric" ColumnName="Psychometric" />
+                <ScalarProperty Name="IsPsychometric" ColumnName="IsPsychometric" />
+                <ScalarProperty Name="Counselling" ColumnName="Counselling" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Study12th" ColumnName="Study12th" />
+                <ScalarProperty Name="Study10th" ColumnName="Study10th" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="TypeQuery" ColumnName="TypeQuery" />
+                <ScalarProperty Name="TypeCounsellor" ColumnName="TypeCounsellor" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="DOC" ColumnName="DOC" />
+                <ScalarProperty Name="CountdownEnd" ColumnName="CountdownEnd" />
+                <ScalarProperty Name="CountdownStart" ColumnName="CountdownStart" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GudID" ColumnName="GudID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CH_Psychometric">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_Psychometric">
+              <MappingFragment StoreEntitySet="tbl_CH_Psychometric">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PsychometricTestId" ColumnName="PsychometricTestId" />
+                <ScalarProperty Name="RIASEC_Guided_Id" ColumnName="RIASEC_Guided_Id" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CH_Scheme">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_Scheme">
+              <MappingFragment StoreEntitySet="tbl_CH_Scheme">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Scheme_Id" ColumnName="Scheme_Id" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CH_Scholarship">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_Scholarship">
+              <MappingFragment StoreEntitySet="tbl_CH_Scholarship">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Scholarship_Id" ColumnName="Scholarship_Id" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CH_SkillT">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_SkillT">
+              <MappingFragment StoreEntitySet="tbl_CH_SkillT">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SkillT_Id" ColumnName="SkillT_Id" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CH_CourseD">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_CourseD">
+              <MappingFragment StoreEntitySet="tbl_CH_CourseD">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CourseD_Id" ColumnName="CourseD_Id" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

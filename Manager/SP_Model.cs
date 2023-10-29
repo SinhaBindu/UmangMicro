@@ -113,7 +113,6 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
-
         public static DataSet GetComdSearchlist(SearchModel DList)
         {
             StoredProcedure sp = new StoredProcedure("SP_ComdSearchlist");
@@ -133,6 +132,26 @@ namespace UmangMicro.Manager
                 return ds;
             }
             return ds;
+        }
+        public static DataSet GetSP_CaseHistoryDetails(string RowId, string CaseID)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_CaseHistoryDetails");
+            sp.Command.AddParameter("@RowId", RowId, DbType.String);
+            sp.Command.AddParameter("@CaseID", CaseID, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            if (ds.Tables.Count > 0)
+            {
+                return ds;
+            }
+            return ds;
+        }
+        public static DataTable GetSP_CaseHistoryCount(string RowId, string CaseID)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_CaseHistoryCount");
+            sp.Command.AddParameter("@RowId", RowId, DbType.String);
+            sp.Command.AddParameter("@CaseID", CaseID, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
         }
     }
 }

@@ -83,6 +83,7 @@ namespace UmangMicro.Controllers
             {
                 case SignInStatus.Success:
                     string id = User.Identity.GetUserId();
+                    Session["CUser"] = null;
                     if (!string.IsNullOrWhiteSpace(id))
                     {
                         tbl_LoginDetail tbl = new tbl_LoginDetail();

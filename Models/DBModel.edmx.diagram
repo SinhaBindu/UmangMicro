@@ -17,13 +17,18 @@
         <EntityTypeShape EntityType="UM_DBModel.AspNetUser" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_Registration" Width="1.5" PointX="7.375" PointY="7.75" />
         <AssociationConnector Association="UM_DBModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_CaseHistory" Width="1.5" PointX="9.375" PointY="5.75" />
         <EntityTypeShape EntityType="UM_DBModel.Month_Master" Width="1.5" PointX="11.375" PointY="5.75" />
         <EntityTypeShape EntityType="UM_DBModel.Year_Master" Width="1.5" PointX="11.375" PointY="8.75" />
         <EntityTypeShape EntityType="UM_DBModel.QuestionRIASEC" Width="1.5" PointX="9.375" PointY="11.75" />
         <EntityTypeShape EntityType="UM_DBModel.RIASEC_Guided" Width="1.5" PointX="11.375" PointY="11.75" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_RIASEC_Main" Width="1.5" PointX="12.375" PointY="0.75" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_RIASECTest" Width="1.5" PointX="13.375" PointY="5.75" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CaseHistory" Width="1.5" PointX="13.375" PointY="9.75" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Psychometric" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Scheme" Width="1.5" PointX="5.375" PointY="14.75" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Scholarship" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_SkillT" Width="1.5" PointX="15.375" PointY="8.75" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_CourseD" Width="1.5" PointX="14.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

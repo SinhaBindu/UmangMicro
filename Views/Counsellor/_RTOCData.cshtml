@@ -24,18 +24,21 @@
                     </thead>
                     <tbody>
                         @{
-                            int sno = 1;
+                            int sno = 1; int indx = 0;
                             if (Model != null)
                             {
                                 foreach (DataRow dr in dt.Rows)
                                 {
                                     <tr>
                                         @*<td class="text-center">@(sno++)</td>*@
-                                        <td class="text-center"><input type="checkbox" name="Chk_@dr["ID"]" id="Chk_@dr["ID"]" value="" /></td>
+                                        <td class="text-center">
+                                            <input type="checkbox" data-id="@dr["CH_Id"]" data-name="@dr["SectionShortEng"]" data-ChPhyId="@dr["CH_Psy_Id"]" name="Chk_@indx" id="Chk_@indx" value="@dr["ID"]" />
+                                        </td>
                                         <td class="text-left" style="text-wrap: wrap;">@(dr["SectionShortEng"] +"-"+ dr["SectionNameEng"])</td>
                                         <td class="text-left" style="text-wrap: wrap;">@dr["TypeofSectionEng"]</td>
                                         <td class="text-left" style="text-wrap: wrap;">@(dr["SectionDetailNoEng"] +"-"+ dr["SectionDetailEng"])</td>
                                     </tr>
+                                    indx++;
                                 }
                             }
                             else

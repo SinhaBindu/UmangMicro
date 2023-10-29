@@ -237,6 +237,7 @@
     <Compile Include="Models\Block_Mast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CaseHistoryModel.cs" />
     <Compile Include="Models\CHModel.cs" />
     <Compile Include="Models\Cluster_Mast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -283,6 +284,21 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_CaseHistory.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_CH_CourseD.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_CH_Psychometric.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_CH_Scheme.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_CH_Scholarship.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_CH_SkillT.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_CoursesDetail.cs">
@@ -966,6 +982,7 @@
     <Content Include="Views\Test\Add.cshtml" />
     <Content Include="Views\Test\_ViewData.cshtml" />
     <Content Include="Views\Counsellor\_RTOCData.cshtml" />
+    <Content Include="Views\Counsellor\CaseHDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

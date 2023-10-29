@@ -16,7 +16,11 @@ namespace UmangMicro.Models
     {
         public Nullable<System.Guid> GudID { get; set; }
         public int Id { get; set; }
+        public string CountdownStart { get; set; }
+        public string CountdownEnd { get; set; }
+        public Nullable<System.DateTime> DOC { get; set; }
         public string CaseID { get; set; }
+        public Nullable<int> ClassId { get; set; }
         public string TypeCounsellor { get; set; }
         public string TypeQuery { get; set; }
         public string KeyWords { get; set; }
@@ -26,7 +30,8 @@ namespace UmangMicro.Models
         public string Counselling { get; set; }
         public string IsPsychometric { get; set; }
         public string Psychometric { get; set; }
-        public string Suggestion { get; set; }
+        public string Recommendation { get; set; }
+        public string AreasImprovement { get; set; }
         public string IsFollow { get; set; }
         public string FM { get; set; }
         public string FY { get; set; }
@@ -36,5 +41,7 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<System.DateTime> DeletedOn { get; set; }
     }
 }
