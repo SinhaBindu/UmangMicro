@@ -28,9 +28,35 @@
     <script src="~/Content/js/submenu-2.js"></script>
     <script src="~/Content/js/submenu.js" type="text/javascript"></script>
     <style>
-        input[type="radio"] {
-            margin: 0 2px 0 10px;
+        .containers {
+            max-width: 1220px !important;
+            margin: auto
         }
+        .dataTables_filter {
+            margin-bottom: 15px !important;
+        }
+        .break {
+            display: block;
+            clear: both;
+            height: 20px;
+        }
+        .admin-breadcrumb {
+            margin: auto;
+            max-width: 1220px;
+            padding: 0px 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+            .admin-breadcrumb h3 {
+                margin: 0px;
+                font-size: 28px;
+                color: #6A4566;
+                font-weight: bold;
+            }
+            input[type="radio"] {
+                margin: 0 2px 0 10px;
+            }
 
         table > thead > tr > th {
             /*background-color: #227681 !important;*/
@@ -292,8 +318,6 @@
     <script>
         $('.select2').select2();
     </script>
-
-
 
     @*<script src='https://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js'></script>
         <script src='https://cdn.datatables.net/responsive/1.0.4/js/dataTables.responsive.js'></script>*@
