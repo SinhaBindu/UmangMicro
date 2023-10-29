@@ -45,25 +45,32 @@
         }
     }
 </style>
-
-<div class="main-card mb-3 card">
-    <div class="card-body">
-        <div id="div-download"></div>
-        @using (Html.BeginForm("GetResource", "Report", FormMethod.Post, new { id = "submission-form" }))
-        {
-
-            <div id="container"></div>
-            <div class="breaker"></div>
-            <div class="col-md-12">
-                <div class="col-sm-12" id="sub-data">
-                </div>
-            </div>
-
-
-        }
-
+<div class="admin-breadcrumb">
+    <h3>Resource Download</h3>
+    <div class="crumb">
+        <a href="/">Dashboard</a> / Resource Download
     </div>
 </div>
+<div class="containers">
+    <div class="card">
+        <div class="card-body">
+            <div id="div-download"></div>
+            @using (Html.BeginForm("GetResource", "Report", FormMethod.Post, new { id = "submission-form" }))
+            {
+                <div id="container"></div>
+                <div class="breaker"></div>
+                <div class="col-md-12">
+                    <div class="col-sm-12" id="sub-data">
+                    </div>
+                </div>
+
+
+            }
+
+        </div>
+    </div>
+</div>
+
 
 
 @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">

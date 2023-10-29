@@ -17,7 +17,12 @@
         padding: 8px 10px !important;
     }
 </style>
-
+<div class="admin-breadcrumb">
+    <h3>Teacher/Counsellor Registration List</h3>
+    <div class="crumb">
+        <a href="/">Dashboard</a> / User Detail List
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -27,12 +32,6 @@
                 <!-- PAGE-HEADER END -->
                 @using (Html.BeginForm("GetUserDetailData", "Master", FormMethod.Post, new { id = "submission-form" }))
                 {
-
-                    <div class="col-md-12">
-                        <div style="text-align: center; font-weight: 700;">
-                            <h4><strong>Teacher/Counsellor Registration List</strong></h4>
-                        </div>
-                    </div>
                     <div class="col-md-12">
                         <div id="submission-data">
                         </div>

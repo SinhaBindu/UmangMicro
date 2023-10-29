@@ -11,7 +11,12 @@
         -moz-columns: 4;
     }
 </style>
-
+<div class="admin-breadcrumb">
+    <h3>Add Courses</h3>
+    <div class="crumb">
+        <a href="/">Dashboard</a> / Add Courses
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -19,11 +24,6 @@
                 @using (Html.BeginForm("CourseD", "Master", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
                 {
                     <div class="form-row">
-                        <div class="col-md-12">
-                            <div style="text-align: center; font-weight: 700;">
-                                <h4><strong>Add Courses</strong></h4>
-                            </div>
-                        </div>
                         <div class="col-md-12">
                             <div class="position-relative form-group">
                                 @Html.HiddenFor(model => model.ID)

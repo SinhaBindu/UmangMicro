@@ -16,7 +16,12 @@
         width: 690px !important;
     }
 </style>
-
+<div class="admin-breadcrumb">
+    <h3>Case History (Student Counselling)</h3>
+    <div class="crumb">
+        <a href="/">Dashboard</a> / Case History
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -26,11 +31,6 @@
                     @Html.HiddenFor(m => m.Id)
                     @Html.HiddenFor(m => m.Id)
                     <div class="form-row">
-                        <div class="col-md-12">
-                            <div style="text-align: center; font-weight: 700;">
-                                <h4><strong>Case History (Student Counselling) </strong></h4>
-                            </div>
-                        </div>
                         <div class="frame">
                             <div class="countdown"></div>
                             @Html.HiddenFor(m => m.StratTime)

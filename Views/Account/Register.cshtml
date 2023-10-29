@@ -12,7 +12,12 @@
         -moz-columns: 6;
     }
 </style>
-
+<div class="admin-breadcrumb">
+    <h3>Teacher/Counsellor Registration</h3>
+    <div class="crumb">
+        <a href="/">Dashboard</a> / Registration
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -20,11 +25,6 @@
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data" }))
                 {
                     <div class="form-row">
-                        <div class="col-md-12">
-                            <div style="text-align: center; font-weight: 700;">
-                                <h4><strong>Teacher/Counsellor Registration</strong></h4>
-                            </div>
-                        </div>
                         <div class="col-md-12">
                             <div class="position-relative form-group">
                                 @Html.AntiForgeryToken()
