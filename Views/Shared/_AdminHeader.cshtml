@@ -4,7 +4,71 @@
     var u = MvcApplication.CUser;
 }
 
-<div class="app-header header-shadow">
+<div class="admin-header">
+    <div class="header-mob-show">
+        <div class="admin-logo">
+            <a href="/"><img src="~/Content/images/pci.png" class="logo-icon" alt="pci logo" /></a>
+        </div>
+        <div class="admin-user">
+            <div id="primary_nav_wrap">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="~/Content/images/UserLogin.png" class="user-icon" />
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul>
+                            <h3>@u.Name</h3>
+                            <li><a href="#">My Account</a></li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <li><a class="btn-pill btn-shadow btn-shine btn btn-lg" href="javascript:document.getElementById('logoutForm').submit()" style="background: #2BBFCE !important; color:#ffffff !important; "><i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="header-block">
+        <div class="admin-logo web-show">
+            <a href="/"><img src="~/Content/images/pci.png" class="logo-icon" alt="pci logo" /></a>
+        </div>
+        <div class="admin-navigation">
+            @Html.Partial("_AdminNavbar")
+        </div>
+        <div class="admin-user web-show">
+            <div id="primary_nav_wrap">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="~/Content/images/UserLogin.png" class="user-icon" />
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul>
+                            <h3>@u.Name</h3>
+                            <li><a href="#">My Account</a></li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <li><a class="btn-pill btn-shadow btn-shine btn btn-lg" href="javascript:document.getElementById('logoutForm').submit()" style="background: #2BBFCE !important; color:#ffffff !important; "><i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="app-header header-shadow">
     <div class="app-header__logo">
         <div class="logo-src"></div>
         <div class="header__pane ml-auto">
@@ -37,7 +101,6 @@
     </div>
     <div class="app-header__content">
         <div class="app-header-right">
-
             <div class="header-btn-lg pr-0">
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
@@ -54,23 +117,17 @@
                                             <div class="menu-header-content text-left">
                                                 <div class="widget-content p-0">
                                                     <div class="widget-content-wrapper">
-                                                        @*<div class="widget-content-left mr-3">
-                                                                <img width="42" class="rounded-circle" src="~/Content/images/UserLogin.png" alt="">
-                                                            </div>*@
                                                         <div class="widget-content-left">
                                                             <div class="widget-heading">
                                                               @u.Name
                                                             </div>
-                                                            @*<div class="widget-subheading opacity-8">A short profile description</div>*@
                                                         </div>
                                                         <div class="widget-content-right mr-2">
-                                                            @*<button class="btn-pill btn-shadow btn-shine btn btn-focus btn-lg">Logout</button>*@
                                                             @if (Request.IsAuthenticated)
                                                             {
                                                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                                                 {
                                                                     @Html.AntiForgeryToken()
-                                                                    @*<button class="btn-pill btn-shadow btn-shine btn btn-focus btn-lg">Logout</button>*@
                                                                     <a  class="btn-pill btn-shadow btn-shine btn btn-lg" href="javascript:document.getElementById('logoutForm').submit()" style="background: #2BBFCE !important; color:#ffffff !important; "><i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out</a>
                                                                 }
                                                             }
@@ -80,14 +137,12 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
+</div>*@

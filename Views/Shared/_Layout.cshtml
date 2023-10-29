@@ -32,10 +32,8 @@
                 $("html, body").animate({ scrollTop: 0 }, 600);
                 return false;
             });
-
         });
-    </script>
-    
+    </script>    
 </head>
 <body>
     @Html.Partial("_Header")
@@ -57,20 +55,16 @@
     <script src="~/Content/js/initcarousel-1.js"></script>
     <!-- Content Animate Code -->
     <script src="~/Content/js/aos.js"></script>
-
-
     <script>
         AOS.init({
             easing: 'ease-out-back',
             duration: 1000
         });
     </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
     @if (TempData["ToastMsg"] != null)
     {
         <script>
-
             var success = @((TempData["ToastMsg"] != null).ToString().ToLower());
             if (success == true) {
                 var jsonToast = JSON.parse(decodeHtml('@TempData["ToastMsg"]'));
@@ -79,7 +73,6 @@
             $(function () {
                 $("#tooltip").text($(this).attr('alt'));
             });
-
         </script>
     }
 </body>

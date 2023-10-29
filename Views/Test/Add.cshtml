@@ -10,51 +10,79 @@
     string IsSadmin = string.Empty;
     var idreadyonly = Model.Id != 0 ? "style=pointer-events:none;" : "";
 }
-
-@helper BindQueston(List<UmangMicro.Models.FormModel> list)
-{
-    if (list != null)
-    {
-        var ii = 0;
-        Model.Qlist = list;
-        var pvsection = "";
-        foreach (var item in Model.Qlist.ToList())
-        {
-            <div>
-                <div class="form-group q-design">
-                    @*@if ((item.SectionType.Trim()).ToLower() != (pvsection.Trim()).ToLower() || pvsection == "")
-                        {
-                            <div class="col-md-12 q-title"><strong>@item.SectionType</strong></div>
-                        }*@
-
-                    <span class="control-label col-md-3">@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
-                    <div class="col-md-8 q-check-input">
-                        @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
-                        @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
-                        @Html.HiddenFor(m => m.Qlist[ii].ControlType)
-                        @Html.HiddenFor(m => m.Qlist[ii].ControlInputType)
-                        @Html.HiddenFor(m => m.Qlist[ii].SectionType)
-
-                        @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
-                        new
-                        {
-                            @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
-                            @data_QIndex = ii,
-                            @data_qcode = Model.Qlist[ii].QuestionCode,
-                            @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
-                            onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
-                        })
-                        <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label><br>
-
-                    </div>
-                </div>
-            </div>
-            pvsection = (item.SectionType.Trim());
-            ii++;
-        }
+<style>
+    .question-set {
+        display: flex;
+        gap: 30px;
     }
-}
+</style>
+<div class="question-set">
+    @helper BindQueston(List<UmangMicro.Models.FormModel> list)
+    {
+        if (list != null)
+        {
+            var ii = 0;
+            Model.Qlist = list;
+            var pvsection = "";
+            foreach (var item in Model.Qlist.ToList())
+            {
 
+                if (ii < 21)
+                {
+                    <div class="question-list">
+                        <span>@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
+                        <div class="q-check-input">
+                            @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
+                            @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
+                            @Html.HiddenFor(m => m.Qlist[ii].ControlType)
+                            @Html.HiddenFor(m => m.Qlist[ii].ControlInputType)
+                            @Html.HiddenFor(m => m.Qlist[ii].SectionType)
+
+                            @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
+                            new
+                            {
+                                @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
+                                @data_QIndex = ii,
+                                @data_qcode = Model.Qlist[ii].QuestionCode,
+                                @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
+                                onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
+                            })
+                            <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label>
+                        </div>
+                    </div>
+                }
+                if (ii > 21)
+                {
+                    <div class="question-list">
+                        <span>@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
+                        <div class="q-check-input">
+                            @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
+                            @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
+                            @Html.HiddenFor(m => m.Qlist[ii].ControlType)
+                            @Html.HiddenFor(m => m.Qlist[ii].ControlInputType)
+                            @Html.HiddenFor(m => m.Qlist[ii].SectionType)
+
+                            @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
+                            new
+                            {
+                                @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
+                                @data_QIndex = ii,
+                                @data_qcode = Model.Qlist[ii].QuestionCode,
+                                @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
+                                onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
+                            })
+                            <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label>
+                        </div>
+                    </div>
+                }
+
+                pvsection = (item.SectionType.Trim());
+                ii++;
+            }
+        }
+
+    }
+</div>
 
 <div id="page-content">
     <div class="genral-form">

@@ -593,6 +593,7 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\fonts.css" />
     <Content Include="Content\css\initcarousel-1.css" />
+    <Content Include="Content\css\menu-responsive.css" />
     <Content Include="Content\css\milestone.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\sass-compiled.css" />
@@ -797,6 +798,7 @@
     <Content Include="Content\js\smartphoto.js" />
     <Content Include="Content\js\smoothscroll.js" />
     <Content Include="Content\js\submenu-2.js" />
+    <Content Include="Content\js\submenu.js" />
     <Content Include="Content\js\video\combined.js" />
     <Content Include="Content\js\video\jquery-1.7.2.min.js" />
     <Content Include="Content\js\video\skrollr.js" />
@@ -856,11 +858,8 @@
     <Content Include="ResourceFile\CLF.pdf" />
     <Content Include="ResourceFile\SHG.pdf" />
     <Content Include="ResourceFile\VO.pdf" />
-
     <Content Include="Content\download\WomenRiseUpAgainstChildMarriage_PCI_F.pdf" />
-
     <Content Include="Content\assets\autocompleteDropdown.scss" />
-
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

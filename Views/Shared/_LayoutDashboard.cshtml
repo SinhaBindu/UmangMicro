@@ -23,7 +23,10 @@
     <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
     @*<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />*@
     <link href="~/Content/assets/select2.min.css" rel="stylesheet" />
-
+    <!-- Menu -->
+    <link href="~/Content/css/menu-responsive.css" rel="stylesheet" />
+    <script src="~/Content/js/submenu-2.js"></script>
+    <script src="~/Content/js/submenu.js" type="text/javascript"></script>
     <style>
         input[type="radio"] {
             margin: 0 2px 0 10px;
@@ -37,7 +40,7 @@
         }
 
         .form-row {
-            padding: 2% 2% 0% 2% !important;
+            padding: 2% 0% 0% 0% !important;
         }
 
         fieldset.scheduler-border {
@@ -56,6 +59,134 @@
             padding: 0 10px;
             border-bottom: none;
         }
+
+        .admin-header {
+            padding: 10px 20px;
+            background: #2BBFCE;
+            margin-bottom: 20px;
+        }
+
+        .header-block {
+            margin: auto;
+            padding: 0 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 60px;
+            padding: 5px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        #primary_nav_wrap {
+            /*margin-top: 20px;*/
+        }
+
+            #primary_nav_wrap ul {
+                list-style: none;
+                position: relative;
+                float: left;
+                margin: 0;
+                padding: 0;
+            }
+
+                #primary_nav_wrap ul:hover {
+                    color: #222;
+                }
+
+            #primary_nav_wrap a {
+                display: block;
+                color: #222;
+                text-decoration: none;
+                font-size: 15px;
+                line-height: 20px;
+                padding: 0 15px;
+            }
+
+                #primary_nav_wrap a:hover {
+                    color: #000;
+                }
+
+            #primary_nav_wrap ul li {
+                position: relative;
+                float: left;
+                margin: 0;
+                padding: 0;
+            }
+
+            #primary_nav_wrap ul ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 15px;
+                background: #fff;
+                padding: 15px 20px;
+                border-radius: 10px;
+                z-index: 99999;
+                border-top: 2px solid #F30;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
+
+                #primary_nav_wrap ul ul li {
+                    float: none;
+                    width: 150px;
+                }
+
+                #primary_nav_wrap ul ul a {
+                    line-height: 120%;
+                    color: #222;
+                    margin-bottom: 8px;
+                    padding: 8px 20px
+                }
+
+                    #primary_nav_wrap ul ul a:hover {
+                        background: #F3F3F3;
+                        border-radius: 10px;
+                    }
+
+        .user-icon {
+            width: 40px;
+            border-radius: 20px;
+        }
+
+        #primary_nav_wrap ul li:hover > ul {
+            display: block
+        }
+
+        #primary_nav_wrap .fa-angle-down {
+            color: #fff;
+            margin-left: 10px;
+            font-size: 20px;
+        }
+
+        #primary_nav_wrap h3 {
+            text-align: center;
+            font-size: 22px;
+            color: #6A4566;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .header-mob-show {
+            display: none
+        }
+        @@media all and (max-width: 1000px) {
+            .header-block {
+                display: block;
+                width: 100%;
+            }
+            .web-show {
+                display: none;
+            }
+            .header-mob-show {
+                display: flex;
+                justify-content:space-between;
+                align-items: center;
+            }
+        }
+        
     </style>
 
 </head>
@@ -67,10 +198,9 @@
 
     <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
         @Html.Partial("_AdminHeader")
-
-        <div class="app-main">
-
-            <div class="app-sidebar sidebar-shadow">
+        
+        <div class="app-mains">
+            @*<div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
                     <div class="logo-src"></div>
                     <div class="header__pane ml-auto">
@@ -102,9 +232,9 @@
                     </span>
                 </div>
                 @Html.Partial("_AdminNavbar")
-            </div>
+            </div>*@
 
-            <div class="app-main__outer">
+            <div class="app-main__outers">
                 <div class="app-main__inner">
                     @RenderBody()
                 </div>
