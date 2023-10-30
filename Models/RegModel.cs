@@ -38,9 +38,9 @@ namespace UmangMicro.Models
         public string DistrictId { get; set; }
         [Required]
         public string BlockId { get; set; }
-        [Required]
+        //[Required]
         public string PanchayatId { get; set; }
-         [Required]
+         //[Required]
         public string VillageId { get; set; }
         [Display(Name = "Village Other")]
         public string VillageOther { get; set; }

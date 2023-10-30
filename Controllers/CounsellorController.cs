@@ -207,6 +207,7 @@ namespace UmangMicro.Controllers
             if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
             {
                 model.TypeCounsellor = MvcApplication.CUser.RoleId;
+                model.StratTime = DateTime.Now;
             }
             return View(model);
         }
@@ -234,12 +235,16 @@ namespace UmangMicro.Controllers
                 //    resResponse1.MaxJsonLength = int.MaxValue;
                 //    return resResponse1;
                 //}
+
                 var tbl = model.Id != 0 ? db.tbl_CaseHistory.Find(model.Id) : new tbl_CaseHistory();
                 if (tbl != null)
                 {
+                    var regid = db.tbl_Registration.Where(x => x.CaseID == model.CaseID)?.FirstOrDefault();
                     tbl.GudID = Guid.NewGuid();
-                    tbl.CountdownStart = model.CountdownStart;
-                    tbl.CountdownEnd = model.CountdownEnd;
+                    tbl.Reg_Id_fk = regid.ID;
+                    tbl.RIASECTest_Id_fk = model.RIASECTest_Id_fk;
+                    //tbl.CountdownStart = model.CountdownStart;
+                    //tbl.CountdownEnd = model.CountdownEnd;
                     tbl.DOC = model.DOC;
                     tbl.CaseID = !(string.IsNullOrWhiteSpace(model.CaseID)) ? model.CaseID.Trim() : model.CaseID;
                     tbl.ClassId = Convert.ToInt32(model.ClassId);
@@ -247,11 +252,18 @@ namespace UmangMicro.Controllers
                     tbl.TypeQuery = model.TypeQuery;
                     tbl.KeyWords = model.KeyWords;
                     tbl.Study10th = model.Study10th;
-                    tbl.Study12th = model.Study12th;
+                    if (!(string.IsNullOrWhiteSpace(model.CaseID)) && (model.CaseID=="11" || model.CaseID == "12"))
+                    {
+                        tbl.Study12th = model.Study12th;
+                    }
                     tbl.Subject = model.Subject;
+                    if (model.TypeQuery=="1" || model.TypeQuery == "2")
+                    {
+                        tbl.IsPsychometric = model.IsPsychometric;
+                        tbl.Psychometric = model.Psychometric;
+                    }
                     tbl.Counselling = model.Counselling;
-                    tbl.IsPsychometric = model.IsPsychometric;
-                    tbl.Psychometric = model.Psychometric;
+                   
                     tbl.Recommendation = model.Recommendation;
                     tbl.AreasImprovement = model.AreasImprovement;
                     tbl.IsFollow = model.IsFollow;
@@ -270,6 +282,9 @@ namespace UmangMicro.Controllers
                             tbl.CreatedBy = MvcApplication.CUser.Id;
                         }
                         tbl.CreatedOn = DateTime.Now;
+                        tbl.StratTime = model.StratTime;
+                        tbl.EndTime = DateTime.Now;
+                        tbl.FormSubmitTime = ((tbl.EndTime.Value - tbl.StratTime.Value).TotalSeconds.ToString());
                         db.tbl_CaseHistory.Add(tbl);
                     }
                     else

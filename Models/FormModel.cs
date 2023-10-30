@@ -94,6 +94,7 @@ namespace UmangMicro.Models
         public List<FormModel> Qlist { get; set; }
         public int Para { get; set; }
         public int SchoolType { get; set; }
+        [Display(Name = "School")]
         public int SchoolId { get; set; }
         public int DistrictId { get; set; }
         public int BlockId { get; set; }
@@ -107,6 +108,8 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string UpdatedBy { get; set; }
         public string UpdatedOn { get; set; }
+        public string FD { get; set; }
+        public string TD { get; set; }
 
 
     }

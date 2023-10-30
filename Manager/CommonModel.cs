@@ -107,15 +107,15 @@ namespace UmangMicro.Manager
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                if (HttpContext.Current.User.IsInRole("Admin"))
-                {
-                    return "Admin";
-                }
-                else if (HttpContext.Current.User.IsInRole("State"))
-                {
-                    return "State";
-                }
-                else if (HttpContext.Current.User.IsInRole("Teacher"))
+                //if (HttpContext.Current.User.IsInRole("Admin"))
+                //{
+                //    return "Admin";
+                //}
+                //else if (HttpContext.Current.User.IsInRole("State"))
+                //{
+                //    return "State";
+                //}
+                if (HttpContext.Current.User.IsInRole("Teacher"))
                 {
                     return "Teacher";
                 }
@@ -123,10 +123,10 @@ namespace UmangMicro.Manager
                 {
                     return "PCI_Representative";
                 }
-                else if (HttpContext.Current.User.IsInRole("Viewer"))
-                {
-                    return "Viewer";
-                }
+                //else if (HttpContext.Current.User.IsInRole("Viewer"))
+                //{
+                //    return "Viewer";
+                //}
             }
             return "All";
         }
@@ -1935,7 +1935,7 @@ namespace UmangMicro.Manager
         {
             DataTable dt = SP_Model.GetSP_SchoolList("", "");
             List<SelectListItem> lists = new List<SelectListItem>();
-            lists.Add(new SelectListItem { Value = "", Text = "Select" });
+            //lists.Add(new SelectListItem { Value = "", Text = "Select" });
             foreach (DataRow dr in dt.Rows)
             {
                 lists.Add(new SelectListItem { Value = dr["Value"].ToString(), Text = dr["Text"].ToString() });

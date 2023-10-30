@@ -1,16 +1,17 @@
-﻿@model  UmangMicro.Models.FilterCanReg
-@using UmangMicro.Models
+﻿@model  UmangMicro.Models.QesRes
+@using UmangMicro.Models;
+@using UmangMicro.Manager;
 @*@model IEnumerable<KGBV_JH.Models.QesRes>*@
 @{
-    ViewBag.Title = "Registration List";
+    ViewBag.Title = "RIASEC Test List";
     ViewBag.TitleIcon = "fa fa-user";
-    ViewBag.SemiTitle = "Registration List";
+    ViewBag.SemiTitle = "RIASEC Test List";
     ViewBag.SemiTitleLink = "/";
 }
 <div class="admin-breadcrumb">
-    <h3>Student Registration List</h3>
+    <h3>RIASEC Test List</h3>
     <div class="crumb">
-        <a href="~/Candidate/Reg">Student Registration</a> / Student Registration List
+        <a href="~/Test/Add">RIASEC Test</a> / RIASEC Test List
     </div>
 </div>
 <div class="containers">
@@ -19,7 +20,7 @@
             <div id="div-download"></div>
             @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
             {
-                <div class="row ">                   
+                <div class="row ">
 
                     <div class="col-md-12">
                         <div class="position-relative form-group">
@@ -31,21 +32,50 @@
                             <legend class="scheduler-border">Search  :</legend>
                             <div class="row">
 
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <div class="position-relative form-group">
-                                        <label class="tar-pull-manage2">From Date :  <span class="text-danger">*</span> </label>
+                                        @*<label>Search By : </label>*@
+                                        <div class="checkbox">
+                                            @foreach (var item in CommonModel.GetTypeCase())
+                                            {
+                                                @Html.RadioButtonFor(model => model.TypeCase, item.Value, new { id = "TypeCase" + item.Value, @required = "required" }) @item.Text
+                                            }
+                                            @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
+                                        @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control", @placeholder= "Search By : Name,CaseID,DOB" } })
+                                        @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<div class="col-md-2">
+                                        <div class="position-relative form-group mt-sm-4">
+                                            <a href="javascript:void(0);" onclick="return GetStudData('CaseID')" class="btn btn-info text-white">Search</a>
+                                        </div>
+                                    </div>*@
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <label class="tar-pull-manage2">From Date :  </label>
                                         <div id="demo-dp-range">
-                                            @Html.EditorFor(model => model.FD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                                            @Html.EditorFor(model => model.FD, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "From Date" } })
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
-                                        <label class="tar-pull-manage2">To Date : <span class="text-danger">*</span></label>
+                                        <label class="tar-pull-manage2">To Date : </label>
                                         <div id="demo-dp-range">
-                                            @Html.EditorFor(model => model.TD, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required" } })
+                                            @Html.EditorFor(model => model.TD, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "To Date" } })
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-2">
+                                        @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), null, new { @class = "form-control select2" })
+                                        @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-md-4">
                                     <label class="mt-3"></label>
@@ -72,8 +102,6 @@
                 </div>
             }
 
-
-
             @*<div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12" id="sub-data-view">
@@ -98,6 +126,13 @@
     <script>
         $(document).ready(function () {
 
+            //GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+            //$('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
+            //$('#SchoolId').attr("style", "pointer-events: none;");
+             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                     $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
+                     $('#SchoolId').trigger('change');
+                }
             $('#formid').submit(function (e) {
                 e.preventDefault();
                 LoadReport();
@@ -112,20 +147,24 @@
             $('#sub-data').removeClass("text-danger");
             var id = '#formid'
             var url = $(id).attr("action");
-            var FD = $("#FD").val() == "" ? "" : $("#FD").val();
-            var TD = $("#TD").val() == "" ? "" : $("#TD").val();
+            var Sdt = $("#FD").val() == "" ? "" : $("#FD").val();
+            var Edt = $("#TD").val() == "" ? "" : $("#TD").val();
+            var SchoolId = $("#SchoolId").val() == "" ? "" : $("#SchoolId").val();
+            var Para = $('input[name="TypeCase"]:checked').val();
+            if (Para == undefined) { Para = "" };
             $.ajax({
                 // url: url,
-                url: document.baseURI + "/Candidate/GetIndex",
+                url: document.baseURI + "/Test/GetIndexList",
                 type: "POST",
-                data: { 'FD': FD, 'TD': TD },
+                data: { 'Para': Para, 'CaseIDNameDOB': $('input[name=Searchtxt]').val(), 'Sdt': Sdt, 'Edt': Edt, 'SchoolId': SchoolId },
+                //{ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }
                 // contentType: "application/json",
                 // dataType: "json",
                 // contentType: "application/json; charset=utf-8",
                 //async: false,
                 success: function (resp) {
                     if (resp.IsSuccess) {
-                        $('#sub-data').html(resp.Data); $('#sub-data').addClass("text-black");
+                        $('#sub-data').html(resp.res); $('#sub-data').addClass("text-black");
                         jQuery.event.trigger("ajaxStop");
 
                         if ($.fn.dataTable.isDataTable('#DataList')) {

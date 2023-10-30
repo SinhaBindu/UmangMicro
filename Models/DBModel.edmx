@@ -57,6 +57,19 @@
           <Property Name="BlockName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UmangMS.dbo.BlockMaster_N' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BlockMaster_N">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DistrictCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BlockCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BlockNameEng" Type="nvarchar" MaxLength="200" />
+          <Property Name="BlockNameHin" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="Cluster_Mast">
           <Key>
             <PropertyRef Name="IDpk" />
@@ -78,6 +91,18 @@
           <Property Name="StateId" Type="int" />
           <Property Name="Dist_Code" Type="nvarchar" MaxLength="20" />
           <Property Name="DistName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DistrictMaster_N">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="DistNameEng" Type="nvarchar" MaxLength="200" />
+          <Property Name="DistNameHin" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Month_Master">
@@ -123,6 +148,20 @@
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="SchoolMaster_N">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="udise_sch_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="district_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="block_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="school_name" Type="nvarchar" MaxLength="500" />
+          <Property Name="TypeofSchool" Type="nvarchar" MaxLength="50" />
+          <Property Name="DistrictCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BlockCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="State_Mast">
           <Key>
             <PropertyRef Name="ID" />
@@ -137,10 +176,13 @@
           </Key>
           <Property Name="GudID" Type="uniqueidentifier" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CountdownStart" Type="nvarchar" MaxLength="50" />
-          <Property Name="CountdownEnd" Type="nvarchar" MaxLength="50" />
-          <Property Name="DOC" Type="datetime" />
+          <Property Name="Reg_Id_fk" Type="int" />
+          <Property Name="RIASECTest_Id_fk" Type="int" />
           <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="FormSubmitTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="StratTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="DOC" Type="datetime" />
           <Property Name="ClassId" Type="int" />
           <Property Name="TypeCounsellor" Type="nvarchar" MaxLength="50" />
           <Property Name="TypeQuery" Type="nvarchar" MaxLength="50" />
@@ -184,6 +226,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RIASECTest_Id_fk" Type="int" />
           <Property Name="CaseHistoryId" Type="nvarchar" MaxLength="50" />
           <Property Name="CaseId" Type="nvarchar" MaxLength="50" />
           <Property Name="RIASEC_Guided_Id" Type="int" />
@@ -378,9 +421,10 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="GudId" Type="uniqueidentifier" />
+          <Property Name="GudId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RIASEC_ID_fk" Type="int" />
+          <Property Name="Reg_ID_fk" Type="int" />
           <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
           <Property Name="QuestionID" Type="int" />
           <Property Name="QuestionCode" Type="nvarchar" MaxLength="50" />
@@ -435,6 +479,7 @@
           <EntitySet Name="Month_Master" EntityType="Self.Month_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionRIASEC" EntityType="Self.QuestionRIASEC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RIASEC_Guided" EntityType="Self.RIASEC_Guided" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolMaster_N" EntityType="Self.SchoolMaster_N" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State_Mast" EntityType="Self.State_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CaseHistory" EntityType="Self.tbl_CaseHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CH_CourseD" EntityType="Self.tbl_CH_CourseD" Schema="dbo" store:Type="Tables" />
@@ -450,6 +495,25 @@
           <EntitySet Name="tbl_RIASEC_Main" EntityType="Self.tbl_RIASEC_Main" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_RIASECTest" EntityType="Self.tbl_RIASECTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Year_Master" EntityType="Self.Year_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlockMaster_N" EntityType="Self.BlockMaster_N" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BlockMaster_N].[ID] AS [ID], 
+    [BlockMaster_N].[DistrictCode] AS [DistrictCode], 
+    [BlockMaster_N].[BlockCode] AS [BlockCode], 
+    [BlockMaster_N].[BlockNameEng] AS [BlockNameEng], 
+    [BlockMaster_N].[BlockNameHin] AS [BlockNameHin], 
+    [BlockMaster_N].[IsActive] AS [IsActive]
+    FROM [dbo].[BlockMaster_N] AS [BlockMaster_N]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DistrictMaster_N" EntityType="Self.DistrictMaster_N" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DistrictMaster_N].[ID] AS [ID], 
+    [DistrictMaster_N].[DisCode] AS [DisCode], 
+    [DistrictMaster_N].[DistNameEng] AS [DistNameEng], 
+    [DistrictMaster_N].[DistNameHin] AS [DistNameHin], 
+    [DistrictMaster_N].[IsActive] AS [IsActive]
+    FROM [dbo].[DistrictMaster_N] AS [DistrictMaster_N]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
@@ -484,13 +548,16 @@
           <EntitySet Name="QuestionRIASECs" EntityType="UM_DBModel.QuestionRIASEC" />
           <EntitySet Name="RIASEC_Guided" EntityType="UM_DBModel.RIASEC_Guided" />
           <EntitySet Name="tbl_RIASEC_Main" EntityType="UM_DBModel.tbl_RIASEC_Main" />
-          <EntitySet Name="tbl_RIASECTest" EntityType="UM_DBModel.tbl_RIASECTest" />
-          <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
-          <EntitySet Name="tbl_CH_Psychometric" EntityType="UM_DBModel.tbl_CH_Psychometric" />
           <EntitySet Name="tbl_CH_Scheme" EntityType="UM_DBModel.tbl_CH_Scheme" />
           <EntitySet Name="tbl_CH_Scholarship" EntityType="UM_DBModel.tbl_CH_Scholarship" />
           <EntitySet Name="tbl_CH_SkillT" EntityType="UM_DBModel.tbl_CH_SkillT" />
           <EntitySet Name="tbl_CH_CourseD" EntityType="UM_DBModel.tbl_CH_CourseD" />
+          <EntitySet Name="tbl_CH_Psychometric" EntityType="UM_DBModel.tbl_CH_Psychometric" />
+          <EntitySet Name="SchoolMaster_N" EntityType="UM_DBModel.SchoolMaster_N" />
+          <EntitySet Name="BlockMaster_N" EntityType="UM_DBModel.BlockMaster_N" />
+          <EntitySet Name="DistrictMaster_N" EntityType="UM_DBModel.DistrictMaster_N" />
+          <EntitySet Name="tbl_RIASECTest" EntityType="UM_DBModel.tbl_RIASECTest" />
+          <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -761,71 +828,6 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="tbl_RIASECTest">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="GudId" Type="Guid" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RIASEC_ID_fk" Type="Int32" />
-          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="QuestionID" Type="Int32" />
-          <Property Name="QuestionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="tbl_CaseHistory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="GudID" Type="Guid" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CountdownStart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CountdownEnd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DOC" Type="DateTime" Precision="3" />
-          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ClassId" Type="Int32" />
-          <Property Name="TypeCounsellor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TypeQuery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Study10th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Study12th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Counselling" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsPsychometric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Psychometric" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Recommendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AreasImprovement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsFollow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsGoalClear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="DeletedOn" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="tbl_CH_Psychometric">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CaseHistoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CaseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RIASEC_Guided_Id" Type="Int32" />
-          <Property Name="PsychometricTestId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="tbl_CH_Scheme">
           <Key>
             <PropertyRef Name="ID" />
@@ -881,6 +883,111 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CH_Psychometric">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RIASECTest_Id_fk" Type="Int32" />
+          <Property Name="CaseHistoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RIASEC_Guided_Id" Type="Int32" />
+          <Property Name="PsychometricTestId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SchoolMaster_N">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="udise_sch_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="district_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="block_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="school_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TypeofSchool" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlockCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BlockMaster_N">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DistrictCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlockCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlockNameEng" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BlockNameHin" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DistrictMaster_N">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DistNameEng" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DistNameHin" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_RIASECTest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GudId" Type="Guid" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RIASEC_ID_fk" Type="Int32" />
+          <Property Name="Reg_ID_fk" Type="Int32" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionID" Type="Int32" />
+          <Property Name="QuestionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CaseHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="GudID" Type="Guid" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reg_Id_fk" Type="Int32" />
+          <Property Name="RIASECTest_Id_fk" Type="Int32" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FormSubmitTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StratTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="DOC" Type="DateTime" Precision="3" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="TypeCounsellor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeQuery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Study10th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Study12th" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Counselling" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsPsychometric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Psychometric" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Recommendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AreasImprovement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsFollow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsGoalClear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1175,74 +1282,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_RIASECTest">
-            <EntityTypeMapping TypeName="UM_DBModel.tbl_RIASECTest">
-              <MappingFragment StoreEntitySet="tbl_RIASECTest">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="QuestionCode" ColumnName="QuestionCode" />
-                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
-                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
-                <ScalarProperty Name="RIASEC_ID_fk" ColumnName="RIASEC_ID_fk" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="GudId" ColumnName="GudId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_CaseHistory">
-            <EntityTypeMapping TypeName="UM_DBModel.tbl_CaseHistory">
-              <MappingFragment StoreEntitySet="tbl_CaseHistory">
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsGoalClear" ColumnName="IsGoalClear" />
-                <ScalarProperty Name="FY" ColumnName="FY" />
-                <ScalarProperty Name="FM" ColumnName="FM" />
-                <ScalarProperty Name="IsFollow" ColumnName="IsFollow" />
-                <ScalarProperty Name="AreasImprovement" ColumnName="AreasImprovement" />
-                <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
-                <ScalarProperty Name="Psychometric" ColumnName="Psychometric" />
-                <ScalarProperty Name="IsPsychometric" ColumnName="IsPsychometric" />
-                <ScalarProperty Name="Counselling" ColumnName="Counselling" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="Study12th" ColumnName="Study12th" />
-                <ScalarProperty Name="Study10th" ColumnName="Study10th" />
-                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
-                <ScalarProperty Name="TypeQuery" ColumnName="TypeQuery" />
-                <ScalarProperty Name="TypeCounsellor" ColumnName="TypeCounsellor" />
-                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
-                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
-                <ScalarProperty Name="DOC" ColumnName="DOC" />
-                <ScalarProperty Name="CountdownEnd" ColumnName="CountdownEnd" />
-                <ScalarProperty Name="CountdownStart" ColumnName="CountdownStart" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GudID" ColumnName="GudID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_CH_Psychometric">
-            <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_Psychometric">
-              <MappingFragment StoreEntitySet="tbl_CH_Psychometric">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PsychometricTestId" ColumnName="PsychometricTestId" />
-                <ScalarProperty Name="RIASEC_Guided_Id" ColumnName="RIASEC_Guided_Id" />
-                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
-                <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_CH_Scheme">
             <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_Scheme">
               <MappingFragment StoreEntitySet="tbl_CH_Scheme">
@@ -1300,6 +1339,117 @@
                 <ScalarProperty Name="CaseId" ColumnName="CaseId" />
                 <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CH_Psychometric">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_Psychometric">
+              <MappingFragment StoreEntitySet="tbl_CH_Psychometric">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PsychometricTestId" ColumnName="PsychometricTestId" />
+                <ScalarProperty Name="RIASEC_Guided_Id" ColumnName="RIASEC_Guided_Id" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CaseHistoryId" ColumnName="CaseHistoryId" />
+                <ScalarProperty Name="RIASECTest_Id_fk" ColumnName="RIASECTest_Id_fk" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolMaster_N">
+            <EntityTypeMapping TypeName="UM_DBModel.SchoolMaster_N">
+              <MappingFragment StoreEntitySet="SchoolMaster_N">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BlockCode" ColumnName="BlockCode" />
+                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+                <ScalarProperty Name="TypeofSchool" ColumnName="TypeofSchool" />
+                <ScalarProperty Name="school_name" ColumnName="school_name" />
+                <ScalarProperty Name="block_name" ColumnName="block_name" />
+                <ScalarProperty Name="district_name" ColumnName="district_name" />
+                <ScalarProperty Name="udise_sch_code" ColumnName="udise_sch_code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlockMaster_N">
+            <EntityTypeMapping TypeName="UM_DBModel.BlockMaster_N">
+              <MappingFragment StoreEntitySet="BlockMaster_N">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BlockNameHin" ColumnName="BlockNameHin" />
+                <ScalarProperty Name="BlockNameEng" ColumnName="BlockNameEng" />
+                <ScalarProperty Name="BlockCode" ColumnName="BlockCode" />
+                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DistrictMaster_N">
+            <EntityTypeMapping TypeName="UM_DBModel.DistrictMaster_N">
+              <MappingFragment StoreEntitySet="DistrictMaster_N">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DistNameHin" ColumnName="DistNameHin" />
+                <ScalarProperty Name="DistNameEng" ColumnName="DistNameEng" />
+                <ScalarProperty Name="DisCode" ColumnName="DisCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RIASECTest">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_RIASECTest">
+              <MappingFragment StoreEntitySet="tbl_RIASECTest">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="QuestionCode" ColumnName="QuestionCode" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="Reg_ID_fk" ColumnName="Reg_ID_fk" />
+                <ScalarProperty Name="RIASEC_ID_fk" ColumnName="RIASEC_ID_fk" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GudId" ColumnName="GudId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CaseHistory">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_CaseHistory">
+              <MappingFragment StoreEntitySet="tbl_CaseHistory">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsGoalClear" ColumnName="IsGoalClear" />
+                <ScalarProperty Name="FY" ColumnName="FY" />
+                <ScalarProperty Name="FM" ColumnName="FM" />
+                <ScalarProperty Name="IsFollow" ColumnName="IsFollow" />
+                <ScalarProperty Name="AreasImprovement" ColumnName="AreasImprovement" />
+                <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
+                <ScalarProperty Name="Psychometric" ColumnName="Psychometric" />
+                <ScalarProperty Name="IsPsychometric" ColumnName="IsPsychometric" />
+                <ScalarProperty Name="Counselling" ColumnName="Counselling" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Study12th" ColumnName="Study12th" />
+                <ScalarProperty Name="Study10th" ColumnName="Study10th" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="TypeQuery" ColumnName="TypeQuery" />
+                <ScalarProperty Name="TypeCounsellor" ColumnName="TypeCounsellor" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="DOC" ColumnName="DOC" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StratTime" ColumnName="StratTime" />
+                <ScalarProperty Name="FormSubmitTime" ColumnName="FormSubmitTime" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="RIASECTest_Id_fk" ColumnName="RIASECTest_Id_fk" />
+                <ScalarProperty Name="Reg_Id_fk" ColumnName="Reg_Id_fk" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GudID" ColumnName="GudID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

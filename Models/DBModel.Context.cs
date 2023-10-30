@@ -41,12 +41,15 @@ namespace UmangMicro.Models
         public virtual DbSet<QuestionRIASEC> QuestionRIASECs { get; set; }
         public virtual DbSet<RIASEC_Guided> RIASEC_Guided { get; set; }
         public virtual DbSet<tbl_RIASEC_Main> tbl_RIASEC_Main { get; set; }
-        public virtual DbSet<tbl_RIASECTest> tbl_RIASECTest { get; set; }
-        public virtual DbSet<tbl_CaseHistory> tbl_CaseHistory { get; set; }
-        public virtual DbSet<tbl_CH_Psychometric> tbl_CH_Psychometric { get; set; }
         public virtual DbSet<tbl_CH_Scheme> tbl_CH_Scheme { get; set; }
         public virtual DbSet<tbl_CH_Scholarship> tbl_CH_Scholarship { get; set; }
         public virtual DbSet<tbl_CH_SkillT> tbl_CH_SkillT { get; set; }
         public virtual DbSet<tbl_CH_CourseD> tbl_CH_CourseD { get; set; }
+        public virtual DbSet<tbl_CH_Psychometric> tbl_CH_Psychometric { get; set; }
+        public virtual DbSet<SchoolMaster_N> SchoolMaster_N { get; set; }
+        public virtual DbSet<BlockMaster_N> BlockMaster_N { get; set; }
+        public virtual DbSet<DistrictMaster_N> DistrictMaster_N { get; set; }
+        public virtual DbSet<tbl_RIASECTest> tbl_RIASECTest { get; set; }
+        public virtual DbSet<tbl_CaseHistory> tbl_CaseHistory { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,6 +17,24 @@ namespace UmangMicro.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult GetIndexList(string Para="", string CaseIDNameDOB = "",string Sdt = "", string Edt = "", string SchoolId = "")
+        {
+            try
+            {
+                var items = SP_Model.GetSP_RCTestRes_List(Para, CaseIDNameDOB, Sdt, Edt, SchoolId);
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    var html = ConvertViewToString("_RCTestList", items);
+                    return Json(new { IsSuccess = true, res = html }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
         }
         public ActionResult Add(int? Id)
         {
@@ -105,7 +124,10 @@ namespace UmangMicro.Controllers
                             }
                             if (model.Id == 0)
                             {
+                                var disblck = db.SchoolMaster_N.Where(x => x.ID == model.SchoolId)?.FirstOrDefault();
                                 maintbl.GudId = Guid.NewGuid();
+                                maintbl.DistrictId = disblck.DistrictCode;
+                                maintbl.BlockId = disblck.BlockCode;
                                 maintbl.SchoolId = model.SchoolId.ToString();
                                 maintbl.CaseID = model.CaseID.ToString();
                                 maintbl.TestDate = model.Date;
@@ -121,6 +143,7 @@ namespace UmangMicro.Controllers
                                 maintbl.IsActive = true;
                             }
                             result += db.SaveChanges();
+                            var regid = db.tbl_Registration.Where(x=>x.CaseID==model.CaseID)?.FirstOrDefault();
                             foreach (var item in model.Qlist.ToList())
                             {
                                 if (!string.IsNullOrWhiteSpace(item.Answer) && item.ControlType.ToLower() == "radiobutton")
@@ -130,6 +153,7 @@ namespace UmangMicro.Controllers
                                         if (item.Answer == item.SectionType)
                                         {
                                             tbl_childTest.GudId = Guid.NewGuid();
+                                            tbl_childTest.Reg_ID_fk =regid.ID;
                                             tbl_childTest.CaseID = model.CaseID.ToString();
                                             tbl_childTest.RIASEC_ID_fk = maintbl.ID;
                                             tbl_childTest.QuestionID = item.QuestionId_pk;
@@ -297,7 +321,6 @@ namespace UmangMicro.Controllers
 
             return roots;
         }
-
         private static void AddChild(FormModel node, Dictionary<string, List<FormModel>> source)
         {
             if (source.ContainsKey(node.QuestionCode))
@@ -311,6 +334,9 @@ namespace UmangMicro.Controllers
                 node.ChildQuestionList = new List<FormModel>();
             }
         }
+
+      
+
         private string ConvertViewToString(string viewName, object model)
         {
             ViewData.Model = model;

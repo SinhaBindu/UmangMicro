@@ -234,6 +234,9 @@
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlockMaster_N.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Block_Mast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -258,6 +261,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DistrictMaster_N.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dist_Mast.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -277,6 +283,9 @@
     <Compile Include="Models\RegModel.cs" />
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Models\RIASEC_Guided.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolMaster_N.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchModel.cs" />
@@ -330,6 +339,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\accordionCSS.css" />
     <Content Include="Content\assets\fonts\AD.svg" />
     <Content Include="Content\assets\fonts\AE.svg" />
     <Content Include="Content\assets\fonts\AF.svg" />
@@ -875,7 +885,7 @@
     <Content Include="ResourceFile\SHG.pdf" />
     <Content Include="ResourceFile\VO.pdf" />
     <Content Include="Content\download\WomenRiseUpAgainstChildMarriage_PCI_F.pdf" />
-    <Content Include="Content\assets\autocompleteDropdown.scss" />
+    <None Include="Content\assets\autocompleteDropdown.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -983,6 +993,9 @@
     <Content Include="Views\Test\_ViewData.cshtml" />
     <Content Include="Views\Counsellor\_RTOCData.cshtml" />
     <Content Include="Views\Counsellor\CaseHDetail.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\_RCTestList.cshtml" />
+    <Content Include="Views\Test\RCResultDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

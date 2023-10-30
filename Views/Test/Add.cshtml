@@ -42,7 +42,7 @@
 <div class="admin-breadcrumb">
     <h3>RIASEC Test</h3>
     <div class="crumb">
-        <a href="/">Dashboard</a> / RIASEC Test
+        <a href="~/Test/Index"> RIASEC Test List</a> / RIASEC Test
     </div>
 </div>
 <div class="container">
@@ -151,9 +151,19 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label class="control-label">School</label>
-                                                            <div @idreadyonly>
-                                                                @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
-                                                            </div>
+                                                            @if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
+                                                            {
+                                                                <div @idreadyonly style=pointer-events:none;>
+                                                                    @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div @idreadyonly>
+                                                                    @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
+                                                                </div>
+                                                            }
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -204,7 +214,7 @@
                   //$('#SchoolId').css({ "pointer-events": "none", "touch-action": "none", "background": "#ede6e6" });
                 // $('#SchoolId').select2({ disabled: 'readonly' });
                  $('#SchoolId').trigger('change');
-                 
+
             }
 
             $('select[name=CaseID]').change(function () {
@@ -252,7 +262,7 @@
             }*@
 
             Load();
-            
+
             $('#FormSubmit').validate({
                 errorClass: 'help-block animation-slideDown',
                 errorElement: 'div',

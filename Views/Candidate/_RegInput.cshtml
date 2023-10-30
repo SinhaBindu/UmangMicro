@@ -81,7 +81,7 @@
     <div class="col-md-6" style="display:none;">
         <div class="position-relative form-group">
             @Html.Label(Model.DisplayClId, htmlAttributes: new { @class = "" })<span class="text-danger">*</span>
-            @Html.DropDownListFor(m => m.PanchayatId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+            @Html.DropDownListFor(m => m.PanchayatId, new List<SelectListItem>(), null, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.PanchayatId, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -89,7 +89,7 @@
     <div class="col-md-6" style="display:none;">
         <div class="position-relative form-group">
             @Html.Label(Model.DisplayVillageTxt, htmlAttributes: new { @class = "" })<span class="text-danger">*</span>
-            @Html.DropDownListFor(m => m.VillageId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+            @Html.DropDownListFor(m => m.VillageId, new List<SelectListItem>(), null, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.VillageId, "", new { @class = "text-danger" })
         </div>
     </div>

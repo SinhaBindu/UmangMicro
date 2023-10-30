@@ -26,14 +26,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="col-md-12 text-center">
+                    <strong> Time Duration :</strong>  <strong class="countdown"></strong>
+                </div>
                 @using (Html.BeginForm("CaseHistory", "Counsellor", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
                 {
                     @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.RIASECTest_Id_fk)
+                    @Html.HiddenFor(m => m.StratTime)
                     <div class="form-row">
-                        <div class="frame">
-                            <div class="countdown"></div>
-                            @Html.HiddenFor(m => m.StratTime)
-                        </div>
+
                         <div class="col-md-3">
                             <div class="position-relative form-group">
                                 <label>Search By : </label>
@@ -88,11 +90,11 @@
                                 <span>Registration Date : <strong id="lregdt"></strong></span>
                                 <span>School Name : <strong id="lsch"></strong></span>
                                 <span id="sg-ch" style="display:none;">
-                                    No Of Case History : 
+                                    No Of Case History :
                                     <strong id="Noofch">
-                                        <a href="#" id="NoofchLink"></a> 
+                                        <a href="#" id="NoofchLink"></a>
                                     </strong>
-                                    
+
                                 </span>
                             </div>
                         </div>
@@ -363,7 +365,7 @@
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.IsGoalClear, htmlAttributes: new { @class = "" })
                                 @*@Html.DropDownListFor(model => model.IsGoalClear, CommonModel.GetYesNo(), null, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.IsGoalClear, "", new { @class = "text-danger" })*@
+                        @Html.ValidationMessageFor(model => model.IsGoalClear, "", new { @class = "text-danger" })*@
                                 @*@Html.LabelFor(model => model.IsGoalClear, htmlAttributes: new { @class = "" })*@
                                 <div class="checkbox">
                                     @foreach (var item in CommonModel.GetYesNo())
@@ -404,7 +406,7 @@
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <script type="text/javascript">
-        var StudDList = []; RIASECl3Val = [];
+        var StudDList = []; RIASECl3Val = []; RIASEC_ID_Pk = [];
         var RCSList = [];
         $(document).ready(function () {
 
@@ -660,6 +662,7 @@
                     var phyjoin = ($('#Psychometric').val()).join(',');
                     var Subjectjoin = ($('#Subject').val()).join(',');
                     var formData = new FormData();
+                    formData.append('StratTime', $('#StratTime').val());
                     formData.append('CaseID', $('#CaseID').val());
                     formData.append('DOC', $('#DOC').val());
                     formData.append('ClassId', $('#ClassId').val());
@@ -959,9 +962,10 @@
                         $.each(RIASEClList, function (i, exp) {
                             if (i<=2) {
                                 RIASECl3Val.push(exp.QuestionCode);
+                                RIASEC_ID_Pk = exp.RIASEC_ID_Pk;
                             }
-
                         });
+                        $('#RIASECTest_Id_fk').val(RIASEC_ID_Pk);
                     }
                 },
                 error: function (req, error) {
@@ -1233,26 +1237,27 @@
             $('#dv-scd').show();
         }
         function CountTime() {
+            var stime = new Date($('#StratTime').val());
             var timer2 = "0:05";
+            var seconds = 0;
+            var minutes = 0;
             var interval = setInterval(function () {
-                var timer = timer2.split(':');
+                seconds++;
+               // var timer = timer2.split(':');
                 //by parsing integer, I avoid all extra string processing
-                var minutes = parseInt(timer[0], 10);
-                var seconds = parseInt(timer[1], 10);
-                --seconds;
-                minutes = (seconds < 0) ? --minutes : minutes;
-                console.log(minutes, seconds);
-                seconds = (seconds < 0) ? 59 : seconds;
-                seconds = (seconds < 10) ? '0' + seconds : seconds;
-                //minutes = (minutes < 10) ?  minutes : minutes;
-                if (minutes < 0) {
-                    clearInterval(interval);
-                } else {
-                    $('.countdown').html(minutes + ':' + seconds);
-                    $('#StratTime').val(minutes + ':' + seconds);
-                    timer2 = minutes + ':' + seconds;
+                //var minutes = parseInt(timer[0], 10);
+                //var seconds = parseInt(timer[1], 10);
+                //--seconds;
+                //minutes = (seconds < 0) ? --minutes : minutes;
+                //console.log(minutes, seconds);
+                if (seconds > 59) {
+                    minutes++;
+                    seconds = 0;
                 }
-            }, 60000);
+               // seconds = (seconds > 59) ? 0 : seconds;
+                //seconds = (seconds < 10) ? '0' + seconds : seconds;
+                $('.countdown').html(minutes + ':' + seconds);
+            }, 1000);
         }
 
         function Inputisvalid() {

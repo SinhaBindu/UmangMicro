@@ -20,6 +20,8 @@ namespace UmangMicro.Models
         public DateTime? DOC { get; set; }
         public Nullable<System.Guid> GudID { get; set; }
         public int Id { get; set; }
+        public int Reg_Id_fk { get; set; }
+        public int RIASECTest_Id_fk { get; set; }
         [Display (Name ="Case ID")]
         [Required]
         public string CaseID { get; set; }
@@ -58,6 +60,7 @@ namespace UmangMicro.Models
         public string FY { get; set; }
         [Display(Name = "Is the career goal clear to counseleee after the session")]
         public string IsGoalClear { get; set; }
+        public string FormSubmitTime { get; set; }
         public DateTime StratTime { get; set; }
         public DateTime EndTime { get; set; }
         public Nullable<bool> IsActive { get; set; }

@@ -12,18 +12,12 @@ namespace UmangMicro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_CH_Psychometric
+    public partial class DistrictMaster_N
     {
         public int ID { get; set; }
-        public Nullable<int> RIASECTest_Id_fk { get; set; }
-        public string CaseHistoryId { get; set; }
-        public string CaseId { get; set; }
-        public Nullable<int> RIASEC_Guided_Id { get; set; }
-        public string PsychometricTestId { get; set; }
+        public string DisCode { get; set; }
+        public string DistNameEng { get; set; }
+        public string DistNameHin { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public string UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
     }
 }

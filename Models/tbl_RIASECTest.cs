@@ -14,9 +14,10 @@ namespace UmangMicro.Models
     
     public partial class tbl_RIASECTest
     {
-        public Nullable<System.Guid> GudId { get; set; }
+        public System.Guid GudId { get; set; }
         public int ID { get; set; }
         public Nullable<int> RIASEC_ID_fk { get; set; }
+        public Nullable<int> Reg_ID_fk { get; set; }
         public string CaseID { get; set; }
         public Nullable<int> QuestionID { get; set; }
         public string QuestionCode { get; set; }

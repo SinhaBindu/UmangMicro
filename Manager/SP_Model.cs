@@ -153,5 +153,24 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        public static DataTable GetSP_RCTestRes_List(string Para, string CaseIDNameDOB, string Sdt, string Edt, string SchoolId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_RIASECTestRes_List");
+            sp.Command.AddParameter("@Para", Para, DbType.String);
+            sp.Command.AddParameter("@CaseIDNameDOB", CaseIDNameDOB, DbType.String);
+            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@SchoolId", SchoolId, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataTable GetSP_RCTestRes_Detail(string RowId, string CaseID)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_RIASECTestResult_Details");
+            sp.Command.AddParameter("@RowId", RowId, DbType.String);
+            sp.Command.AddParameter("@CaseID", CaseID, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
     }
 }

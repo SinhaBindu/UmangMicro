@@ -23,6 +23,21 @@
                 </ul>
             </li>
             <li>
+                <a href="javascript:void(0)">Pscholmetric (RIASEC)</a>
+                <ul>
+                    <li>
+                        <a href="~/Test/Add">
+                            Pscholmetric (RIASEC)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Test/Index">
+                            Pscholmetric (RIASEC) Result
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="javascript:void(0)">Compendium</a>
                 <ul>
                     <li><a href="~/Report/Index">Compendium Search</a></li>
@@ -49,11 +64,7 @@
                     Add Case Studies
                 </a>
             </li>
-            <li>
-                <a href="~/Test/Add">
-                    Pscholmetric (RIASEC)
-                </a>
-            </li>
+
         }
         @if (HttpContext.Current.User.IsInRole("PCI_Representative") || HttpContext.Current.User.IsInRole("Teacher"))
         {
@@ -67,17 +78,24 @@
                             Add Case History
                         </a>
                     </li>
-
                 </ul>
             </li>
             <li>
-                <a href="~/Test/Add">
-                    Pscholmetric (RIASEC)
-                </a>
+                <a href="javascript:void(0)">Pscholmetric (RIASEC)</a>
+                <ul>
+                    <li>
+                        <a href="~/Test/Add">
+                            Pscholmetric (RIASEC)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Test/Index">
+                            Pscholmetric (RIASEC) Result
+                        </a>
+                    </li>
+                </ul>
             </li>
-
         }
-
 
     </ul>
 </div>

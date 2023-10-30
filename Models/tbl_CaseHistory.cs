@@ -16,10 +16,13 @@ namespace UmangMicro.Models
     {
         public Nullable<System.Guid> GudID { get; set; }
         public int Id { get; set; }
-        public string CountdownStart { get; set; }
-        public string CountdownEnd { get; set; }
-        public Nullable<System.DateTime> DOC { get; set; }
+        public Nullable<int> Reg_Id_fk { get; set; }
+        public Nullable<int> RIASECTest_Id_fk { get; set; }
         public string CaseID { get; set; }
+        public string FormSubmitTime { get; set; }
+        public Nullable<System.DateTime> StratTime { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
+        public Nullable<System.DateTime> DOC { get; set; }
         public Nullable<int> ClassId { get; set; }
         public string TypeCounsellor { get; set; }
         public string TypeQuery { get; set; }
