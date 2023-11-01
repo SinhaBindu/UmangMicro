@@ -2924,7 +2924,8 @@ img {
     background: #fff;
     padding: 0px 0px 50px;
     margin-top: 0px;
-    text-align: center
+    text-align: center;
+    
 }
 
     .umang-manage img {
@@ -2934,7 +2935,8 @@ img {
     .umang-manage h2 {
         font-size: 27px;
         margin-bottom: 35px;
-        color: #5B2C54
+        color: #5B2C54;
+        font-weight: 600;
     }
 
     .umang-manage p {
@@ -3008,7 +3010,8 @@ img {
     padding: 30px 0 20px;
     display: flex;
     gap: 30px;
-    align-items: center
+    align-items: center;
+    text-align: center;
 }
 
 .quick-info {
@@ -3029,6 +3032,7 @@ img {
     height: 6px;
     background: #FFF9C6;
     margin-bottom: 35px;
+    margin: auto;
 }
 
 .quick-info p {
@@ -3398,7 +3402,13 @@ img {
         margin-top: 5px;
         margin-bottom: 23px;
     }
-
+    .impact-stat h4 {
+        font-size: 27px;
+        margin-bottom: 35px;
+        color: #5B2C54;
+        margin-top: 30px;
+        font-weight: 600;
+    }
 .title-bg-center {
     width: 150px;
     height: 50px;
@@ -4488,4 +4498,14 @@ img {
         letter-spacing: -0.5em;
         filter: blur(12px) opacity(0%);
     }
+}
+.partner-logo {
+    width: 55%;
+    padding: 4px;
+    background: #fff;
+    border-radius: 5px;
+}
+.foot p {
+    margin: 0px 0 !important;
+    padding: 4px 0px 4px 0px;
 }
