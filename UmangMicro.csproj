@@ -606,6 +606,8 @@
     <Content Include="Content\assets\images\vline.gif" />
     <Content Include="Content\assets\JS\main.d810cf0ae7f39f28f336.js" />
     <Content Include="Content\assets\main.css" />
+    <Content Include="Content\assets\mgaccordion.css" />
+    <Content Include="Scripts\JS\mgaccordion.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

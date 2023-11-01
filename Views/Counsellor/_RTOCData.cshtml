@@ -7,12 +7,136 @@
         dt = Model;
     }
 }
+
+<style>
+
+
+
+    .multilevel-accordion-menu .is-accordion-submenu-parent a {
+        background: #4d5158;
+    }
+
+    .multilevel-accordion-menu .is-accordion-submenu a {
+        background: #35383d;
+    }
+
+    .multilevel-accordion-menu .sublevel-1 {
+        text-indent: 1rem;
+    }
+
+    .multilevel-accordion-menu .sublevel-2 {
+        text-indent: 2rem;
+    }
+
+    .multilevel-accordion-menu .sublevel-3 {
+        text-indent: 3rem;
+    }
+
+    .multilevel-accordion-menu .sublevel-4 {
+        text-indent: 4rem;
+    }
+
+    .multilevel-accordion-menu .sublevel-5 {
+        text-indent: 5rem;
+    }
+
+    .multilevel-accordion-menu .sublevel-6 {
+        text-indent: 6rem;
+    }
+
+    .multilevel-accordion-menu a {
+        color: #fefefe;
+        box-shadow: inset 0 -1px #41444a;
+    }
+
+        .multilevel-accordion-menu a::after {
+            border-color: #fefefe transparent transparent;
+        }
+
+    .multilevel-accordion-menu .menu > li:not(.menu-text) > a {
+        padding: 1.2rem 1rem;
+    }
+
+    .multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="true"] a.subitem::before {
+        content: "\f016";
+        font-family: FontAwesome;
+        margin-right: 1rem;
+    }
+
+    .multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="true"] a::before {
+        content: "\f07c";
+        font-family: FontAwesome;
+        margin-right: 1rem;
+    }
+
+    .multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="false"] a::before {
+        content: "\f07b";
+        font-family: FontAwesome;
+        margin-right: 1rem;
+    }
+</style>
+<link href="~/Content/assets/mgaccordion.css" rel="stylesheet" />
+
 @*<strong>Schemes</strong>*@
 <div class="row row-deck">
     <div class="col-lg-12 col-md-12">
         <div class="card">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover dt-responsive display" id="DataList1" width="100%">
+
+                <nav class="my-menu">
+                    <ul class="my-nav">
+                        <li><a href="#" title="">Accordion Menu</a></li>
+                        <li>
+                            <a href="#" title="">Mercedes</a>
+                            <ul>
+                                <li><a href="#">All Mercedes</a></li>
+                                <li><a href="#">All family cars</a></li>
+                                <li><a href="#">All sport cars</a></li>
+                                <li>
+                                    <a href="#">Family</a>
+                                    <ul>
+                                        <li><a href="#">xyz</a></li>
+                                        <li><a href="#">qwe</a></li>
+                                        <li><a href="#">tre</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Sport</a>
+                                    <ul>
+                                        <li><a href="#">poi</a></li>
+                                        <li><a href="#">lkj</a></li>
+                                        <li><a href="#">slk</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Lamborghini</a>
+                            <ul>
+                                <li><a href="#">Diablo</a></li>
+                                <li><a href="#">Murcielago</a></li>
+                                <li><a href="#">nonso</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Ferrari</a>
+                            <ul>
+                                <li><a href="#">Testarossa</a></li>
+                                <li><a href="#">boh</a></li>
+                                <li>
+                                    <a href="#">mah</a>
+                                    <ul>
+                                        <li><a href="#">Testarossa</a></li>
+                                        <li><a href="#">Testarossa</a></li>
+                                        <li><a href="#">Testarossa</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <table class="table table-bordered table-hover dt-responsive display" id="DataListRC" width="100%">
                     <thead>
                         <tr>
                             @*<th>SrNo.</th>*@
@@ -53,3 +177,43 @@
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/JS/mgaccordion.js"></script>
+<!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+<script>
+    $(document).ready(function () {
+        $('.my-nav').mgaccordion();
+        $('.my-nav2').mgaccordion({
+            theme: 'tree',
+            leaveOpen: true
+        });
+    });
+</script>
+<script>
+    try {
+        fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
+            return true;
+        }).catch(function (e) {
+            var carbonScript = document.createElement("script");
+            carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+            carbonScript.id = "_carbonads_js";
+            document.getElementById("carbon-block").appendChild(carbonScript);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
