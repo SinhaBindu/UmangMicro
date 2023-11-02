@@ -338,12 +338,14 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Subject" Type="nvarchar(max)" />
           <Property Name="Category" Type="nvarchar" MaxLength="200" />
           <Property Name="Date" Type="date" />
           <Property Name="HtmlEditor" Type="nvarchar(max)" />
           <Property Name="PhotoPath" Type="nvarchar(max)" />
           <Property Name="BannerPath" Type="nvarchar(max)" />
+          <Property Name="DocumentPath" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedOn" Type="datetime" />
@@ -698,6 +700,8 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
@@ -1128,6 +1132,8 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySetMapping Name="tbl_MicroCase">
             <EntityTypeMapping TypeName="UM_DBModel.tbl_MicroCase">
               <MappingFragment StoreEntitySet="tbl_MicroCase">
+                <ScalarProperty Name="DocumentPath" ColumnName="DocumentPath" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />

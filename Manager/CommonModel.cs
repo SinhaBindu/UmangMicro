@@ -524,7 +524,7 @@ namespace UmangMicro.Manager
                 string file_extension = Path.GetExtension(files.FileName).ToLower();
                 string filenamewithoutext = Path.GetFileNameWithoutExtension(files.FileName);
                 Stream strmStream = files.InputStream;
-                if (IsValidImage(strmStream) == true || file_extension == ".pdf" || file_extension == ".docx" || file_extension == ".doc" || file_extension == ".dotx" || file_extension == ".dot" || file_extension == ".pptx" || file_extension == ".ppt" || file_extension == ".rar" || file_extension == ".zip" || file_extension == ".xls" || file_extension == ".xlsx")
+                if (IsValidImage(strmStream) == true || file_extension == ".pdf" || file_extension == ".docx" || file_extension == ".doc" || file_extension == ".dotx" || file_extension == ".dot" || file_extension == ".pptx" || file_extension == ".ppt" || file_extension == ".rar" || file_extension == ".zip" || file_extension == ".xls" || file_extension == ".xlsx" || file_extension == ".jpeg" || file_extension == ".png" || file_extension == ".jpg")
                 {
                     //URL = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/" + Module + "/" + RegNo + "/"));
                     URL = "~/Uploads/" + RegNo + "/";
@@ -548,7 +548,6 @@ namespace UmangMicro.Manager
 
             return filepath;
         }
-
         public static string DeleteSingleFile(HttpPostedFileBase files, string Module, string RegNo)
         {
             //ToDo: Add code to delete single file from directory
@@ -559,7 +558,6 @@ namespace UmangMicro.Manager
 
             return filepath;
         }
-
         public static string SaveSingleFile(HttpPostedFileBase files, string Module, string RegNo, string CustomFileName)
         {
             string URL = "";
@@ -1967,7 +1965,7 @@ namespace UmangMicro.Manager
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "-1", Text = "Select" });
             list.Add(new SelectListItem { Value = "1", Text = "Career Compendium" });
-            list.Add(new SelectListItem { Value = "2", Text = "Pscholmetric (RIASEC) test" });
+            list.Add(new SelectListItem { Value = "2", Text = "Psychometric (RIASEC) test" });
             list.Add(new SelectListItem { Value = "3", Text = "State Career Portal" });
             return list.OrderBy(x => Convert.ToInt32(x.Value.ToString())).ToList();
         }

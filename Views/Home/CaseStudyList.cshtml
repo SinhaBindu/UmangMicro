@@ -1,58 +1,51 @@
-﻿<div class="cs-list-bg">
-    <h2>Recent Rising Star Case Studies</h2>
+﻿@using System.Data;
+@using UmangMicro.Manager;
+@{
+    DataSet ds = new DataSet();
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        ds = Model;
+        dt = ds.Tables[0];
+    }
+}
+<div class="cs-list-bg">
+    @if (dt.Rows.Count > 0)
+    {
+        <h2>Recent <strong style="text-decoration: underline; color: #5b2c54 !important; ">@dt.Rows[0]["CategoryText"].ToString()</strong> Case Studies</h2>
+    }
+    else
+    {
+        <h2>Recent Case Studies</h2>
+    }
     <div class="cs-category-list">
-        <a href="https://umang.pcidigitals.in/Home/CaseDetail?Id=1" class="cs-list">
-            <div class="brick"> 
-                <span class="img-zoomer">
-                    <img src="~/Content/images/case-study/Vandana-Murmu.jpeg" alt="" />
-                </span> 
-            </div>            
-            <div class="box-gap">
-                <span class="cs-date"><i class="fa fa-clock-o"></i> 13 Oct 2023</span>
-                <h3>Trust Her Talent</h3>
-                <p>A mother’s grit determination for prioritising her daughter’s schooling despite myriad challenges at her end pays off with the latter’s unprecedented success in sports</p>
-                <span class="cs-list-link"><i class="fa fa-arrow-right"></i> Read the story</span>
-            </div>
-        </a>
-        <a href="https://umang.pcidigitals.in/Home/CaseDetail?Id=1" class="cs-list">
-            <div class="brick">
-                <span class="img-zoomer">
-                    <img src="~/Content/images/case-study/Vandana-Murmu.jpeg" alt="" />
-                </span>
-            </div>
-            <div class="box-gap">
-                <span class="cs-date"><i class="fa fa-clock-o"></i> 09 Sep 2023</span>
-                <h3>Trust Her Talent</h3>
-                <p>A mother’s grit determination for prioritising her daughter’s schooling despite myriad challenges at her end pays off with the latter’s unprecedented success in sports</p>
-                <span class="cs-list-link"><i class="fa fa-arrow-right"></i> Read the story</span>
-            </div>
-        </a>
-        <a href="https://umang.pcidigitals.in/Home/CaseDetail?Id=1" class="cs-list">
-            <div class="brick">
-                <span class="img-zoomer">
-                    <img src="~/Content/images/case-study/Vandana-Murmu.jpeg" alt="" />
-                </span>
-            </div>
-            <div class="box-gap">
-                <span class="cs-date"><i class="fa fa-clock-o"></i> 05 Aug 2023</span>
-                <h3>Trust Her Talent</h3>
-                <p>A mother’s grit determination for prioritising her daughter’s schooling despite myriad challenges at her end pays off with the latter’s unprecedented success in sports</p>
-                <span class="cs-list-link"><i class="fa fa-arrow-right"></i> Read the story</span>
-            </div>
-        </a>
-        <a href="https://umang.pcidigitals.in/Home/CaseDetail?Id=1" class="cs-list">
-            <div class="brick"> 
-                <span class="img-zoomer">
-                    <img src="~/Content/images/case-study/Vandana-Murmu.jpeg" alt="" />
-                </span> 
-            </div>            
-            <div class="box-gap">
-                <span class="cs-date"><i class="fa fa-clock-o"></i> 15 Jul 2023</span>
-                <h3>Trust Her Talent</h3>
-                <p>A mother’s grit determination for prioritising her daughter’s schooling despite myriad challenges at her end pays off with the latter’s unprecedented success in sports</p>
-                <span class="cs-list-link"><i class="fa fa-arrow-right"></i> Read the story</span>
-            </div>
-        </a>
+        @{
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    <a href="~/Home/CaseDetail?Id=@dr["ID"].ToString()" class="cs-list">
+                        <div class="brick">
+                            <span class="img-zoomer">
+                                @*<img src="~/Content/images/case-study/Vandana-Murmu.jpeg" alt="" />*@
+                                <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="" style="width: 400px; height: 200px;" />
+                            </span>
+                        </div>
+                        <div class="box-gap">
+                            <span class="cs-date"><i class="fa fa-clock-o"></i> @dr["DOCS"].ToString()</span>
+                            <h3>@dr["Title"].ToString()</h3>
+                            <p>@dr["Subject"].ToString()</p>
+                            <span class="cs-list-link"><i class="fa fa-arrow-right"></i> Read the story</span>
+                        </div>
+                    </a>
+                }
+            }
+            else
+            {
+                <h4 class="text-center font-weight-bold">Case study not available.</h4>
+            }
+        }
+
     </div>
 </div>
 

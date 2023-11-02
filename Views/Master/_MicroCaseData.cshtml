@@ -18,11 +18,13 @@
                 <thead>
                     <tr>
                         <th>SrNo.</th>
-                        <th>Month/Year</th>
+                        <th>Date</th>
                         <th>Category</th>
                         <th>Subject</th>
+                        <th>Title</th>
                         <th>Photo</th>
                         <th>Banner</th>
+                        <th>Document</th>
                         @*<th>Case Studies Description</th>*@
                         @*<th>PhotoPath</th>*@
                         <th>Modify</th>
@@ -36,9 +38,9 @@
                             foreach (var item in Model)
                             {
                                 //DateTime dt = item.Date.Value;
-                               // string m = dt.Month.ToString();
-                               // string y = dt.Year.ToString();
-                                string my = UmangMicro.Manager.CommonModel.FormateDtMY(item.Date.Value);
+                                // string m = dt.Month.ToString();
+                                // string y = dt.Year.ToString();
+                                string my = UmangMicro.Manager.CommonModel.FormateDtDMY(item.Date.Value.ToString());
                                 String TestString = item.HtmlEditor;
                                 StringWriter writer = new StringWriter();
                                 Server.HtmlEncode(TestString, writer);
@@ -46,10 +48,12 @@
                                 var Catg = UmangMicro.Manager.CommonModel.GetCategory().FirstOrDefault(x => x.Value == item.Category).Text;
                                 var PPath = UmangMicro.Manager.CommonModel.GetFileUrl(item.PhotoPath);
                                 var BPath = UmangMicro.Manager.CommonModel.GetFileUrl(item.BannerPath);
+                                var DPath = UmangMicro.Manager.CommonModel.GetFileUrl(item.DocumentPath);
                                 <tr>
                                     <td class="text-center">@(sno++)</td>
                                     <td class="text-left" style="text-wrap:wrap;">@my</td>
                                     <td class="text-left" style="text-wrap:wrap;">@Catg</td>
+                                    <td class="text-left" style="text-wrap:wrap;">@item.Title</td>
                                     <td class="text-left" style="text-wrap:wrap;">@item.Subject</td>
                                     <td class="text-center">
                                         @if (!string.IsNullOrWhiteSpace(PPath))
@@ -63,6 +67,12 @@
                                             <a href="@BPath" target="_blank"><strong><i class="fa fa-download"></i></strong></a>
                                         }
                                     </td>
+                                    <td class="text-center">
+                                        @if (!string.IsNullOrWhiteSpace(DPath))
+                                        {
+                                            <a href="@DPath" target="_blank"><strong><i class="fa fa-download"></i></strong></a>
+                                        }
+                                    </td>
                                     <td title="Edit">
                                         <a href="~/Master/MicroCase?id=@item.ID" style='font-size: medium;' class="btn btn-info">Edit <i class="fa fa-edit"></i></a>
                                     </td>
@@ -73,7 +83,7 @@
                         }
                         else
                         {
-                            <tr><td colspan="5" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            <tr><td colspan="6" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
                         }
                     }
 

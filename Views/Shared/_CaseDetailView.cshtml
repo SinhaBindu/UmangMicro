@@ -12,24 +12,27 @@
             dt = Model;
             var html = dt.Rows[0]["HtmlEditor"].ToString();
 
-        <div class="cs-title">
-            <h4>Trust Her Talent</h4>
-        </div>
+            <div class="cs-title">
+                <h4>@dt.Rows[0]["Title"].ToString()</h4>
+            </div>
             <div class="cs-content">
                 <p>
                     <span class="cs-categ">@dt.Rows[0]["CategoryText"]</span>
-                    <span class="cs-dated"><i class="fa fa-clock-o"></i>@dt.Rows[0]["MY"]</span>
+                    <span class="cs-dated"><i class="fa fa-clock-o"></i>@dt.Rows[0]["DOCS"]</span>
                 </p>
                 <img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" />
-                <object>@Html.Raw(HttpUtility.HtmlDecode(html))</object>
+                <div style="margin-top:2%!important;">
+                    <h5>@dt.Rows[0]["Subject"].ToString()</h5>
+                    <object>
+                        @Html.Raw(HttpUtility.HtmlDecode(html))
+                    </object>
+                    @if (!string.IsNullOrWhiteSpace(dt.Rows[0]["DPath"].ToString()))
+                    {
+                        <h4><a href="@(CommonModel.GetBaseUrl()+dt.Rows[0]["DPath"])" download="download"><i class="fa fa-download"></i> Download Document</a></h4>
+                    }
+                </div>
+                
             </div>
-
-            @*<div class="col-md-12"><h4 class="text-center">@dt.Rows[0]["CategoryText"]</h4></div>
-                <div class="col-md-12"><span class="text-center">@dt.Rows[0]["MY"]</span></div>*@
-                @*<div class="col-md-12"><h5>@dt.Rows[0]["Subject"]</h5></div>
-                <div class="col-md-12"><img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" /></div>
-                <div class="col-md-12"><object>@Html.Raw(HttpUtility.HtmlDecode(html))</object></div>*@
-
         }
     }
 </div>

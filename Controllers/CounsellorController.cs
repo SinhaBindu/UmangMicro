@@ -282,9 +282,9 @@ namespace UmangMicro.Controllers
                             tbl.CreatedBy = MvcApplication.CUser.Id;
                         }
                         tbl.CreatedOn = DateTime.Now;
-                        tbl.StratTime = model.StratTime;
-                        tbl.EndTime = DateTime.Now;
-                        tbl.FormSubmitTime = ((tbl.EndTime.Value - tbl.StratTime.Value).TotalSeconds.ToString());
+                        //tbl.StratTime = model.StratTime;
+                        //tbl.EndTime = DateTime.Now;
+                        //tbl.FormSubmitTime = ((tbl.EndTime.Value - tbl.StratTime.Value).TotalSeconds.ToString());
                         db.tbl_CaseHistory.Add(tbl);
                     }
                     else

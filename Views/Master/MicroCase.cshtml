@@ -2,11 +2,12 @@
 @using UmangMicro.Manager
 @{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
-    var PPath = ""; var BPath = "";
+    var PPath = ""; var BPath = ""; var DPath = "";
     if (Model.ID > 0)
     {
         PPath = UmangMicro.Manager.CommonModel.GetFileUrl(Model.PhotoPath);
         BPath = UmangMicro.Manager.CommonModel.GetFileUrl(Model.BannerPath);
+        DPath = UmangMicro.Manager.CommonModel.GetFileUrl(Model.DocumentPath);
         //var str = Model.Date != null ? Convert.ToDateTime(Model.Date.Value.ToString("dd-MMM-yyyy")) : Model.Date;
     }
 }
@@ -67,20 +68,28 @@
                             <div class="form-group">
                                 <span class="text-danger">*</span>
                                 @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(m => m.Category, CommonModel.GetCategory(), null, new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(m => m.Category, CommonModel.GetCategory(), "Select", new { @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span class="text-danger">*</span>
+                                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "" })
+                                @Html.TextAreaFor(model => model.Title, new { @class = "form-control", @required = "required", @rows = "2", @cols = "10" })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @*<span class="text-danger">*</span>*@
                                 @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "" })
                                 @Html.TextAreaFor(model => model.Subject, new { @class = "form-control", @required = "required", @rows = "2", @cols = "10" })
-                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                @*@Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })*@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="position-relative form-group">
                                 <span class="text-danger"></span>
                                 <label>Upload Photo (Image)</label>
@@ -92,7 +101,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="position-relative form-group">
                                 <span class="text-danger"></span>
                                 <label>Upload Banner (Image)</label>
@@ -101,6 +110,18 @@
                                 @if (!string.IsNullOrWhiteSpace(BPath))
                                 {
                                     <a href="@BPath" target="_blank" id="BPath"><strong><i class="fa fa-download"></i></strong></a>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="position-relative form-group">
+                                <span class="text-danger"></span>
+                                <label>Upload Document (PDF)</label>
+                                <input type="file" name="Document" id="Document" accept="application/pdf" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })
+                                @if (!string.IsNullOrWhiteSpace(DPath))
+                                {
+                                    <a href="@DPath" target="_blank" id="DPath"><strong><i class="fa fa-download"></i></strong></a>
                                 }
                             </div>
                         </div>
@@ -133,8 +154,6 @@
     </div>
 </div>
 
-
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
@@ -142,11 +161,13 @@
     <script src="https://cdn.tiny.cloud/1/sycl3w1d8npikolltg56dvhf7yiehfqo9a8sbnei0nokfddz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
+
         //new FroalaEditor('textarea#froala-editor');
         //new FroalaEditor('textarea#froala-editor', {
         //    heightMin: 800,
         //    heightMax: 1000
         //})
+
         $(function () {
             LoadEditor();
             BindData();
@@ -177,6 +198,9 @@
                 if ($('#Date').val() != '') {
                     formData.append('Date', $('#Date').val());
                 }
+                if ($('#Title').val() != '') {
+                    formData.append('Title', $('#Title').val());
+                }
                 if ($('#Subject').val() != '') {
                     formData.append('Subject', $('#Subject').val());
                 }
@@ -194,6 +218,9 @@
                 }
                 if ($('#Photo').get(0).files.length != 0) {
                     formData.append('Photo', $('#Photo')[0].files[0]);
+                }
+                if ($('#Document').get(0).files.length != 0) {
+                    formData.append('Document', $('#Document')[0].files[0]);
                 }
 
                 if (isvalid) {
@@ -230,7 +257,6 @@
                     return false;
                 }
             });/*End Submitted Closed Tab  */
-
 
             function BindData() {
                 jQuery.event.trigger("ajaxStart");

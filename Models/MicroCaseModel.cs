@@ -16,8 +16,10 @@ namespace UmangMicro.Models
         public int ID { get; set; }
         [Display(Name = "Date")]
         public Nullable<DateTime> Date { get; set; }
-        [Display(Name = "Title")]
+        [Display(Name = "Subject")]
         public string Subject { get; set; }
+        [Display(Name = "Title")]
+        public string Title { get; set; }
         [Display(Name = "Category")]
         public string Category { get; set; }
         [Display(Name = "Case Studies Description")]
@@ -29,6 +31,9 @@ namespace UmangMicro.Models
         [Display(Name = "Upload Banner")]
         public HttpPostedFile Banner { get; set; }
         public string BannerPath { get; set; }
+        [Display(Name = "Document")]
+        public string Document { get; set; }
+        public string DocumentPath { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }

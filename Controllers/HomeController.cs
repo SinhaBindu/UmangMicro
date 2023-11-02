@@ -24,9 +24,16 @@ namespace UmangMicro.Controllers
             return View();
         }
 
-        public ActionResult CaseStudyList()
+        public ActionResult CaseStudyList(string CategId = "")
         {
-            return View();
+            CategId = !string.IsNullOrWhiteSpace(CategId) ? CategId : "0";
+            ViewBag.CategId = CategId;
+            DataSet ds= SP_Model.GetMC_CaseStudyList(CategId);
+            if (ds.Tables.Count > 0)
+            {
+                return View(ds);
+            }
+            return View(ds);
         }
 
         public ActionResult KishoriHelpDesk()
@@ -180,11 +187,16 @@ namespace UmangMicro.Controllers
         //  [HttpGet]
         public ActionResult CaseStudy()
         {
-            DataSet ds = SP_Model.GetSP_MicroCaseList(1);
-            DataTable dt = new DataTable();
-            if (ds.Tables.Count > 0)
+            //DataSet ds = SP_Model.GetSP_MicroCaseList(1);
+            //DataTable dt = new DataTable();
+            //if (ds.Tables.Count > 0)
+            //{
+            //    dt = ds.Tables[0];
+            //}
+            DataTable dt = SP_Model.GetSP_MicroCase_Summary();
+            if (dt.Rows.Count > 0)
             {
-                dt = ds.Tables[0];
+                return View(dt);
             }
             return View(dt);
         }

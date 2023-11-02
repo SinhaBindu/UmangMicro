@@ -33,6 +33,7 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        #region
         public static DataSet GetSP_Resource()
         {
             StoredProcedure sp = new StoredProcedure("SP_ResourceData");
@@ -47,6 +48,20 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
+        public static DataTable GetSP_MicroCase_Summary()
+        {
+            StoredProcedure sp = new StoredProcedure("SP_MicroCase_Summary");
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataSet GetMC_CaseStudyList(string CategId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_MicroC_CaseStudyList");
+            sp.Command.AddParameter("@CategId", CategId, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
+        #endregion
         public static DataTable GetSP_DistrictList()
         {
             StoredProcedure sp = new StoredProcedure("SP_District");
@@ -172,5 +187,7 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+       
+
     }
 }

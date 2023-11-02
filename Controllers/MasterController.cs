@@ -525,8 +525,10 @@ namespace UmangMicro.Controllers
                 {
                     model.ID = tbl.ID;
                     model.Date = tbl.Date.Value;
+                    model.Title = tbl.Title;
                     model.Subject = tbl.Subject;
                     model.Category = tbl.Category;
+                    model.DocumentPath = tbl.DocumentPath;
                     model.HtmlEditor = tbl.HtmlEditor;
                     model.PhotoPath = tbl.PhotoPath;
                     model.BannerPath = tbl.BannerPath;
@@ -545,6 +547,7 @@ namespace UmangMicro.Controllers
                 if (tbl != null)
                 {
                     tbl.Date = model.Date.Value;  
+                    tbl.Title = !(string.IsNullOrWhiteSpace(model.Title)) ? model.Title.Trim() : null;
                     tbl.Subject = !(string.IsNullOrWhiteSpace(model.Subject)) ? model.Subject.Trim() : null;
                     tbl.Category = !(string.IsNullOrWhiteSpace(model.Category)) ? model.Category.Trim() : null;
                     tbl.HtmlEditor = !string.IsNullOrEmpty(model.HtmlEditor) ? model.HtmlEditor.Trim() : null;
@@ -575,9 +578,13 @@ namespace UmangMicro.Controllers
                             var postedFile = Request.Files[item];
                             string extension = Path.GetExtension(postedFile.FileName);
                             if (extension.ToUpper() == ".JPEG" || extension.ToUpper() == ".JPG"
-                                        || extension.ToUpper() == ".PNG" || extension.ToUpper() == "GIF")
+                                        || extension.ToUpper() == ".PNG" || extension.ToUpper() == ".GIF" || extension.ToUpper() == ".PDF" || extension.ToUpper() == ".DOC" || extension.ToUpper() == ".DOCX")
                             {
-                                if (item== "Banner")
+                                if (item== "Document")
+                                {
+                                    tbl.DocumentPath = !string.IsNullOrWhiteSpace(postedFile.FileName) ? CommonModel.SaveSingleFile(postedFile, "CaseStudyDocument", tbl.ID.ToString()) : null;
+                                }
+                                if (item == "Banner")
                                 {
                                     tbl.BannerPath = !string.IsNullOrWhiteSpace(postedFile.FileName) ? CommonModel.SaveSingleFile(postedFile, "CaseStudy", tbl.ID.ToString()) : null;
                                 }
@@ -616,7 +623,6 @@ namespace UmangMicro.Controllers
             return View();
         }
         #endregion
-
 
     }
 }

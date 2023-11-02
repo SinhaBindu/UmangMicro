@@ -26,5 +26,7 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string Title { get; set; }
+        public string DocumentPath { get; set; }
     }
 }
