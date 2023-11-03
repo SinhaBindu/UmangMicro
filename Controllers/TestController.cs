@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -334,9 +335,6 @@ namespace UmangMicro.Controllers
                 node.ChildQuestionList = new List<FormModel>();
             }
         }
-
-      
-
         private string ConvertViewToString(string viewName, object model)
         {
             ViewData.Model = model;
@@ -349,5 +347,27 @@ namespace UmangMicro.Controllers
             }
         }
         #endregion
+        public ActionResult RCResultDetail(string RowId = "", string CaseID = "")
+        {
+            DataSet ds = new DataSet();
+            //DataTable dt = new DataTable();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(CaseID))
+                {
+                    ds = SP_Model.GetSP_RCTestRes_Detail(RowId, CaseID);
+                    if (ds.Tables.Count > 0)
+                    {
+                        return View(ds);
+                    }
+                }
+                return View(ds);
+            }
+            catch (Exception)
+            {
+                return View(ds);
+            }
+        }
+
     }
 }

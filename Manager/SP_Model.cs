@@ -179,15 +179,17 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
-        public static DataTable GetSP_RCTestRes_Detail(string RowId, string CaseID)
+        public static DataSet GetSP_RCTestRes_Detail(string RowId, string CaseID)
         {
-            StoredProcedure sp = new StoredProcedure("SP_RIASECTestResult_Details");
+            StoredProcedure sp = new StoredProcedure("SP_RToCTestResult_Details");
             sp.Command.AddParameter("@RowId", RowId, DbType.String);
             sp.Command.AddParameter("@CaseID", CaseID, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
         }
-       
+        
+        
+        
 
     }
 }

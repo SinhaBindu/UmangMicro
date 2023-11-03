@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using UmangMicro.Manager;
 using UmangMicro.Models;
+using static System.Net.WebRequestMethods;
 using static UmangMicro.Manager.Enums;
 
 namespace UmangMicro.Controllers
@@ -16,6 +17,11 @@ namespace UmangMicro.Controllers
         UM_DBEntities db = new UM_DBEntities();
         public ActionResult Index()
         {
+            var strurl= CommonModel.GetBaseUrl();
+            if (strurl== "https://hbh.pcidigitals.in/")
+            {
+                return RedirectToAction("Login","Account");
+            }
             return View();
         }
 
