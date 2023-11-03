@@ -28,7 +28,7 @@
                     </object>
                     @if (!string.IsNullOrWhiteSpace(dt.Rows[0]["DPath"].ToString()))
                     {
-                        <h4><a href="@(CommonModel.GetBaseUrl()+dt.Rows[0]["DPath"])" download="download"><i class="fa fa-download"></i> Download Document</a></h4>
+                        <a href="@(CommonModel.GetBaseUrl()+dt.Rows[0]["DPath"])" download="download" class="cs-download-btn"><i class="fa fa-download"></i> Download Case Study</a>
                     }
                 </div>
                 
