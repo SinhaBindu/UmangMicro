@@ -12,7 +12,7 @@
 <div class="cs-list-bg">
     @if (dt.Rows.Count > 0)
     {
-        <h2>Recent <strong style="text-decoration: underline; color: #5b2c54 !important; ">@dt.Rows[0]["CategoryText"].ToString()</strong> Case Studies</h2>
+        <h2>Recent <strong style="text-decoration: underline; color: #00AEC4 !important; ">@dt.Rows[0]["CategoryText"].ToString()</strong> Case Studies</h2>
     }
     else
     {
@@ -28,13 +28,13 @@
                         <div class="brick">
                             <span class="img-zoomer">
                                 @*<img src="~/Content/images/case-study/Vandana-Murmu.jpeg" alt="" />*@
-                                <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="" style="width: 400px; height: 200px;" />
+                                <img src="@(CommonModel.GetBaseUrl()+dr["PPath"])" alt="" />
                             </span>
                         </div>
                         <div class="box-gap">
                             <span class="cs-date"><i class="fa fa-clock-o"></i> @dr["DOCS"].ToString()</span>
                             <h3>@dr["Title"].ToString()</h3>
-                            <p>@dr["Subject"].ToString()</p>
+                            <p class="text-trim">@dr["Subject"].ToString()</p>
                             <span class="cs-list-link"><i class="fa fa-arrow-right"></i> Read the story</span>
                         </div>
                     </a>

@@ -4230,8 +4230,10 @@ img {
 }
 .page-txt-banner h2 {
     margin: 0px;
-    padding-top: 10px;
-    color: #0093A6
+    padding-top: 30px;
+    color: #5B2C54;
+    margin-bottom: 5px;
+    font-size: 34px;
 }
 .case-study-list {
     margin: auto;
@@ -4345,21 +4347,23 @@ img {
         color: #fff;
     }
 .cs-list-bg {
-    background: #F1F1F1;
+    background: #FFFBDA;
     padding: 80px 20px;
     margin: 0px;
 }
     .cs-list-bg h2 {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 65px;
         font-size: 34px;
-        color: #00B0C4
+        color: #5B2C54
     }
     .cs-category-list {
         margin: auto;
         max-width: 1200px;
         display: flex;
         gap: 20px;
+        flex-wrap: wrap;
+        justify-content:space-evenly
     }
     .cs-category-list a {
         text-decoration: none;
@@ -4375,12 +4379,21 @@ img {
 .cs-list img {
     border-radius: 5px 5px 0 0;
 }
+.text-trim {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 .box-gap {
     padding: 12px 20px 20px;
 }
 .cs-list h3 {
     font-size: 22px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    line-height: 30px !important;
+    margin-top: 5px;
 }
 .cs-list p {
     color: #444;
@@ -4390,6 +4403,9 @@ img {
     font-size: 12px;
     letter-spacing: 0.6px;
     font-weight: 600;
+    padding: 4px 8px;
+    background: #F1F3F4;
+    color: #696A6C
 }
 .cs-list:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -4417,6 +4433,9 @@ img {
     -webkit-transform: scale(1.05);
     -o-transform: scale(1.05);
     -ms-transform: scale(1.05);
+}
+.img-zoomer img {
+    min-height: 200px
 }
 .cs-details-page {
     margin: auto;
@@ -4447,7 +4466,7 @@ img {
 .cs-content object img {
     float: left;
     width: 33%;
-    margin-right: 30px;
+    margin-right: 30px !important;
     margin-bottom: 20px;
 }
 .cs-content p {
@@ -4509,3 +4528,20 @@ img {
     margin: 0px 0 !important;
     padding: 4px 0px 4px 0px;
 }
+.cs-content h5 {
+    margin-bottom: 20px;
+    line-height: 26px;
+}
+.cs-download-btn {
+    padding: 10px 32px;
+    border-radius: 10px;
+    background: #00AEC4;
+    color: #fff;
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 40px;
+}
+    .cs-download-btn:hover {
+        background: #DDE76D;
+        text-decoration: none;
+    }
