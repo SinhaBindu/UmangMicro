@@ -607,6 +607,8 @@
     <Content Include="Content\assets\JS\main.d810cf0ae7f39f28f336.js" />
     <Content Include="Content\assets\main.css" />
     <Content Include="Content\assets\mgaccordion.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\images\login-icon.png" />
     <Content Include="Scripts\JS\mgaccordion.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -998,6 +1000,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\_RCTestList.cshtml" />
     <Content Include="Views\Test\RCResultDetail.cshtml" />
+    <Content Include="Views\Account\UmangLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

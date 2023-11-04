@@ -63,6 +63,12 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult UmangLogin()
+        {
+            return View();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]

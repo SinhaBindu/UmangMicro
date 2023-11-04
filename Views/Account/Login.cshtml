@@ -41,7 +41,7 @@
         gap: 10px;
         align-items: center;
         margin: auto;
-        
+
         background: #fff;
     }
     .graphic-design {
@@ -157,15 +157,21 @@
         border-radius: .25rem;
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
     }
+    .login-icon {
+        width: 120px;
+        margin-bottom: 30px
+    }
+    @@media screen and (max-width:768px) {
+        .umang-credential {
+            flex-direction: column;
+        }
+    }
+    @@media screen and (max-width:550px) {
+        .login-icon {
+            display: none;
+        }
+    }
 </style>
-
-@*<div id="wrappers">
-    <div id="headers">
-        <div class="logo1"><a href="/"><img src="/Content/images/umang-logo.png" alt="Umang Logo" /></a></div>
-        <div class="logo2"><a href="/"><img src="/Content/images/pci.png" alt="PCI" /></a></div>
-
-    </div>
-</div>*@
 <div class="umang-credential">
     <div class="login-graphic">
         <div class="graphic-design">
@@ -173,6 +179,7 @@
         </div>        
     </div>
     <div class="login-form" id="loginForm">
+        <img src="~/Content/images/login-icon.png" alt="Login Icon" class="login-icon" />
         <h2>Career <span>Counselling</span></h2>
         @*<h2><a href="~/Content/assets/images/com.pic.umang.apk">apk1</a></h2>
 
