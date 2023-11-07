@@ -41,6 +41,7 @@ body {
     /*font-family: 'Source Sans Pro', sans-serif;*/
     /*font-family: 'Noto Sans', sans-serif;*/
     font-family: 'Inter', sans-serif;
+    /*font-family: "Open Sans", sans-serif;*/
     font-weight: 300;
     color: #333;
     background-color: #fff;
@@ -272,18 +273,22 @@ img {
     font-size: 17px !important;
     margin-right: 8px;
 }
-
-.social-tab {
-    font-size: 15px;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    float: left;
-    padding-top: 5px;
-    background: #DDE76D;
-    border-radius: 50px;
-    margin-right: 10px;
-}
+    .fa-map-marker {
+        margin-bottom: 20px;
+        float: left;
+        margin-top: 3px;
+    }
+    .social-tab {
+        font-size: 15px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        float: left;
+        padding-top: 5px;
+        background: #DDE76D;
+        border-radius: 50px;
+        margin-right: 10px;
+    }
 
     .social-tab:hover {
         background: #F3987A;
@@ -3036,8 +3041,8 @@ img {
 }
 
 .quick-info p {
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 20px;
+    line-height: 32px;
     color: #5B2C54;
     margin: 30px 0;
     font-weight: bold;
@@ -3260,12 +3265,12 @@ img {
 
 .vd2 h3 {
     background: #FBFFD0;
-    color: #B3BD47;
+    /*color: #B3BD47;*/
 }
 
 .vd3 h3 {
     background: #FFF6F3;
-    color: #F3987A;
+    /*color: #F3987A;*/
 }
 
 .video-round {
@@ -3373,6 +3378,7 @@ img {
 
 .txt-bold {
     font-weight: bold;
+    color: #5B2C54;
 }
 
 .banner-text a {
@@ -3423,7 +3429,7 @@ img {
 .impact-stat p {
     font-size: 18px;
     line-height: 29px;
-    color: #3F3E3A !important;
+    color: #000 !important;
     margin: auto;
 }
 
@@ -3816,16 +3822,15 @@ img {
 .btn-more {
     background: #F7F7F8;
     color: #00AEC4;
-    padding: 4px 7px;
+    padding: 5px 11px;
     font-size: 14px;
-    text-transform: uppercase;
-    font-weight: 600;
-    text-decoration: underline;
+    border-radius: 5px;
 }
 
     .btn-more:hover {
         text-decoration: none;
         color: #00AEC4;
+        text-decoration: underline;
     }
 
 .social__content {
@@ -4471,6 +4476,8 @@ img {
 }
 .cs-content p {
     font-size: 16px !important;
+    color: #222 !important;
+    line-height: 27px !important;
 }
 .under-content {
     height: 400px;
@@ -4530,7 +4537,9 @@ img {
 }
 .cs-content h5 {
     margin-bottom: 20px;
-    line-height: 26px;
+    line-height: 31px;
+    font-size: 22px;
+    color: #00AEC4;
 }
 .cs-download-btn {
     padding: 10px 32px;
@@ -4545,3 +4554,6 @@ img {
         background: #DDE76D;
         text-decoration: none;
     }
+.cs-details {
+    border-bottom: none !important;
+}

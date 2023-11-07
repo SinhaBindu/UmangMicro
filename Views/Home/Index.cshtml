@@ -1,11 +1,11 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@*<style>
+<style>
     #ddmenu .current {
         color: #00AEC4;
     }
-</style>*@
+</style>
 <!-- Image Zoom Banner -->
 <link href="~/Content/css/simp.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="~/Content/js/1-simp-lib.min.js"></script>
@@ -20,6 +20,8 @@
                 <li data-target="#homeCarousel" data-slide-to="1" class=""> </li>
                 <li data-target="#homeCarousel" data-slide-to="2" class=""> </li>
                 <li data-target="#homeCarousel" data-slide-to="3" class=""> </li>
+                <li data-target="#homeCarousel" data-slide-to="4" class=""> </li>
+                <li data-target="#homeCarousel" data-slide-to="5" class=""> </li>
             </ol>
             <div class="carousel-inner">
                 <div class="item active">
@@ -34,6 +36,12 @@
                 <div class="item">
                     <a href="~/Home/Intervention#level-of-influence"><img class="img-responsive" width="100%" height="768" alt="" src="~/Content/images/slider/slide-4.jpg" /></a>
                 </div>
+                <div class="item">
+                    <a href="javascript:void(0)"><img class="img-responsive" width="100%" height="768" alt="" src="~/Content/images/slider/slide-5.jpg" /></a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0)"><img class="img-responsive" width="100%" height="768" alt="" src="~/Content/images/slider/slide-6.jpg" /></a>
+                </div>
             </div>
         </div>
     </div>
@@ -44,7 +52,7 @@
         <div class="quick-info">
             <h1>Aim & <span class="txt-clr">Objectives</span></h1>
             <div class="border-bottom"></div>
-            <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Project Umang aims to reduce incidence of child/early marriage in high-prevalence districts in Jharkhand and empower adolescent girls.</p>
+            <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Umang aims to reduce incidence of child/early marriage in high-prevalence districts in Jharkhand and empower adolescent girls.</p>
         </div>
         @*<div class="quick-graphic">
             <img src="~/Content/images/umang-cover.jpg" alt="girl art design" class="girl-work" />
@@ -60,7 +68,7 @@
         <ul>
             <li class="obj-bgr-1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="250"><span class="obj-icon1"><i class="fa fa-female"></i></span> Capacitate women collectives for create an enabling environment & encourage adolescent girls to fulfil their aspirations.</li>
             <li class="obj-bgr-2" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><span class="obj-icon2"><i class="fa fa-child"></i></span> Establish a scalable & sustainable model for addressing child/early marriage through SHG platform</li>
-            <a href="~/Home/AimObjectives" class="btn-more" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Read More ></a>
+            <a href="~/Home/AimObjectives" class="btn-more" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Learn More</a>
         </ul>
     </div>
     
@@ -91,21 +99,21 @@
     <div class="impact-stat">
         <h2 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">We celebrate</h2>
         <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Since its inception in 2019, Umang has been empowering mothers, who are able to stand against child/early marriage and nurture the aspirations of their daughters, thus enhancing prospects of a better future for <span class="txt-bold">46,000+ adolescent girls</span> in Godda & Jamtara.</p>
-        <h4 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="140">Output</h4>
+        @*<h4 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="140">Output</h4>*@
         <div class="impact-flex" data-module="countup">
             <div class="imp-1" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
                 <img src="~/Content/images/umang-stat/child-marriage.png" alt="Child/early marriages averted" />
                 <div class="data-1">
                     <h3><span class="stat-number" data-countup-number="250">250</span></h3>
                 </div>
-                <h4 class="blurOut">Child/early marriages <br />averted</h4>
+                <h4>Child/early marriages <br />averted</h4>
             </div>
             <div class="imp-2" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="200">
                 <img src="~/Content/images/umang-stat/women-capatited.png" alt="Women capacitated" />
                 <div class="data-2">
                     <h3><span class="stat-number" data-countup-number="1,76,000">1,76,000</span></h3>
                 </div>
-                <h4 class="blurOut">Women <br />capacitated</h4>
+                <h4>Women <br />capacitated</h4>
             </div>
             <div class="imp-3" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="300">
                 <img src="~/Content/images/umang-stat/girl-education.png" alt="Girls re-enrolled
@@ -113,7 +121,7 @@
                 <div class="data-3">
                     <h3><span class="stat-number" data-countup-number="300">300</span></h3>
                 </div>
-                <h4 class="blurOut">
+                <h4>
                     Girls re-enrolled<br />
                     in schools
                 </h4>
@@ -130,17 +138,17 @@
             <div class="data1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="150">
                 <img src="~/Content/images/shgs-icon.png" alt="child marriage" />
                 <h4 data-countup-number="12,000">12,000</h4>
-                <h5 class="blurOut">SHGs</h5>
+                <h5>SHGs</h5>
             </div>
             <div class="data2" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="250">
                 <img src="~/Content/images/vo-icon.png" alt="child marriage" />
                 <h4 data-countup-number="1200">1200</h4>
-                <h5 class="blurOut">VOs</h5>
+                <h5>VOs</h5>
             </div>
             <div class="data3" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="350">
                 <img src="~/Content/images/clf-icon.png" alt="child marriage" />
                 <h4 data-countup-number="50">50</h4>
-                <h5 class="blurOut">CLFs</h5>
+                <h5>CLFs</h5>
             </div>
         </div>
     </div>
