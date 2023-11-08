@@ -2318,31 +2318,31 @@ img {
     position: absolute;
     width: 128px;
     height: 128px;
-    background: rgba(246, 239, 180, 0.8);
-    border: 1px solid #325176;
+    background: rgba(90, 117, 154, 0.4);
+    border: 1px solid #5A759A;
     text-align: center;
     color: #1F334A;
     font-weight: bold;
     border-radius: 100%;
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .round-achieve {
-    top: 0px;
+    top: 7px;
     left: 120px;
     padding-top: 43px
 }
 
 .round-resource {
     top: 90px;
-    left: 65px;
+    left: 70px;
     padding-top: 34px
 }
 
 .round-agency {
     top: 90px;
-    right: 55px;
+    right: 58px;
     padding-top: 43px
 }
 
@@ -4479,9 +4479,12 @@ img {
     color: #222 !important;
     line-height: 27px !important;
 }
-.under-content {
-    height: 400px;
-}
+    /*.cs-content p span {
+        font-size: 16px !important
+    }*/
+    .under-content {
+        height: 400px;
+    }
 .cs-categ {
     font-size: 15px;
     margin-right: 15px;

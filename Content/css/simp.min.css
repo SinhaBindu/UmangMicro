@@ -343,7 +343,7 @@ transform:scale(1)
 }
 @media screen and (min-width:1025px) {
 .carousel-indicators {
-	bottom: 10px !important
+	bottom: 6px !important
 }
 }
 @media all and (max-width: 1050px) {
