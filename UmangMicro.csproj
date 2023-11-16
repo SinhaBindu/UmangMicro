@@ -609,6 +609,7 @@
     <Content Include="Content\assets\mgaccordion.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\images\login-icon.png" />
+    <Content Include="Content\images\shg-ico.png" />
     <Content Include="Scripts\JS\mgaccordion.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
