@@ -4560,6 +4560,7 @@ img {
         color: #000;
         font-weight: 600;
         margin-bottom: 0px;
+        font-family: 'Satisfy', cursive;
     }
 
 .cs-content {
@@ -4681,6 +4682,7 @@ img {
     margin: auto;
     text-align: center;
     display: flex;
+    gap: 10px;
     align-items: center;
 }
 
@@ -4791,12 +4793,13 @@ img {
 }
 .shg-session, .vo-session, .clf-session {
     margin: auto;
+    margin-top: 8px;
 }
 .shg-session img {
     width: 30px;
 }
 .vo-session, .clf-session {
-    margin-top: 14px;
+    margin-top: 17px;
     text-align: center;
 }
         .vo-session span {
@@ -4808,13 +4811,15 @@ img {
             font-weight: bold;
             padding-top: 3px;
             font-size: 12px;
+            border-radius: 4px;
         }
     .clf-session span {
         display: inline-block;
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         background: #2EB6DB;
         border-radius: 100%;
+        margin: 0 3px;
     }
 .point-details {
     margin: auto;
@@ -4840,7 +4845,7 @@ img {
 .lgd-symbol {
     flex: 1;
     padding: 10px;
-    background: #F2EBD6;
+    background: #FFFBF0;
     border-right: 2px solid #00AEC4;
     height: 70px
 }
@@ -4850,7 +4855,7 @@ img {
 .lgd-text {
     padding: 10px;
     flex: 1;
-    background: #D3E5EF;
+    background: #F3FBFF;
     color: #24576D;
     height: 70px;
     font-weight: bold;
@@ -4891,7 +4896,7 @@ img {
     height: 60px;
     border: 3px solid #DADCE0;
     border-bottom: none;
-    width: 720px;
+    width: 820px;
     margin-left: 235px;
     margin-bottom: 40px;
     text-align: center;
