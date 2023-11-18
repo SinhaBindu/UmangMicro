@@ -2342,8 +2342,8 @@ img {
 
 .round-achieve, .round-resource, .round-agency {
     position: absolute;
-    width: 128px;
-    height: 128px;
+    width: 140px;
+    height: 140px;
     background: rgba(90, 117, 154, 0.4);
     border: 1px solid #5A759A;
     text-align: center;
@@ -2355,21 +2355,21 @@ img {
 }
 
 .round-achieve {
-    top: 7px;
+    top: 2px;
     left: 120px;
     padding-top: 43px
 }
 
 .round-resource {
     top: 90px;
-    left: 70px;
-    padding-top: 34px
+    left: 65px;
+    padding-top: 44px
 }
 
 .round-agency {
     top: 90px;
-    right: 58px;
-    padding-top: 43px
+    right: 54px;
+    padding-top: 50px
 }
 
 .peer-network, .ability-define, .enhance-life {
@@ -4557,7 +4557,7 @@ img {
         max-width: 950px;
         margin: auto;
         font-size: 44px;
-        color: #000;
+        color: #5B2C54;
         font-weight: 600;
         margin-bottom: 0px;
         font-family: 'Satisfy', cursive;
@@ -4652,6 +4652,7 @@ img {
     line-height: 31px;
     font-size: 22px;
     color: #00AEC4;
+    font-family: 'Satisfy', cursive;
 }
 
 .cs-download-btn {
