@@ -1160,9 +1160,9 @@ img {
 }
 
     .umang-partnership p {
-        font-size: 21px;
+        font-size: 20px;
         line-height: 33px;
-        padding: 15px 120px;
+        padding: 15px 50px;
     }
 
 .umang-partnership-box {
@@ -2550,9 +2550,8 @@ img {
 
 .shg-structure {
     display: flex;
-    max-width: 370px;
+    max-width: 1024px;
     margin: auto;
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -2562,42 +2561,47 @@ img {
     align-items: center;
     text-align: center;
     margin-top: 40px;
+    flex: 1;
 }
-
+.shg-step-details {
+    flex: 1;
+}
 .top-ar {
-    width: 120px;
-    height: 111px;
+    width: 160px;
+    height: 148px;
     background-image: url('../images/top-ar.png');
+    margin-bottom: 4px;
 }
 
 .mdl-ar {
-    width: 245px;
-    height: 113px;
+    width: 327px;
+    height: 151px;
     background-image: url('../images/mdl-ar.png');
+    margin-bottom: 4px;
 }
 
 .bot-ar {
-    width: 370px;
-    height: 113px;
+    width: 495px;
+    height: 151px;
     background-image: url('../images/bot-ar.png');
 }
 
 .top-ar p {
-    padding-top: 41px;
-    font-size: 14px;
-    line-height: 22px;
+    padding-top: 65px;
+    font-size: 19px;
+    line-height: 24px;
 }
 
 .mdl-ar p {
-    padding-top: 30px;
-    font-size: 14px;
-    line-height: 22px;
+    padding-top: 52px;
+    font-size: 19px;
+    line-height: 26px;
 }
 
 .bot-ar p {
-    padding-top: 30px;
-    font-size: 14px;
-    line-height: 22px;
+    padding-top: 52px;
+    font-size: 22px;
+    line-height: 29px;
     color: #fff;
 }
 
@@ -4710,12 +4714,13 @@ img {
     position: relative;
     flex-basis: 130px;
     height: 48.5px;
-    background: #FCCA83;
-    background: url('../images/timeline-bg.png') left center no-repeat;
+    /*background: #FFF1DE;*/
+    /*background: url('../images/timeline-bg.png') left center no-repeat;*/
+    background: url('../images/timeline-quarter-bg.png') left center no-repeat;
 }
 
 .base-study {
-    background: url('../images/baseline-bg.png') left center no-repeat;
+    background: url('../images/endline-bg.png') left center no-repeat;
 }
 
 .end-study {
@@ -4746,12 +4751,17 @@ img {
 .quarter-7 {
     background: #4EDAC4;
 }*/
-.baseline-fixed, .endline-fixed, .holiday-fixed, .quarter-1-fixed, .quarter-2-fixed, .quarter-3-fixed, .quarter-4-fixed, .quarter-5-fixed, .quarter-6-fixed, .quarter-7-fixed {
+.baseline-fixed, .endline-fixed {
     position: absolute;
     text-align: center;
-    /*top: -130px;
-    left: -6px;*/
     width: 100%
+}
+.quarter-1-fixed, .quarter-2-fixed, .quarter-3-fixed, .quarter-4-fixed, .quarter-5-fixed, .quarter-6-fixed, .quarter-7-fixed {
+    display: flex;
+    gap: 6px;
+    justify-content:space-evenly;
+    align-items: center;
+    padding-left: 23px;
 }
 .baseline-fixed {
     top: -120px;
@@ -4765,14 +4775,14 @@ img {
     top: -125px;
     left: -6px;
 }
-.quarter-1-fixed, .quarter-3-fixed, .quarter-5-fixed, .quarter-7-fixed {
+/*.quarter-1-fixed, .quarter-3-fixed, .quarter-5-fixed, .quarter-7-fixed {
     top: 40px;
     left: 0px;
 }
 .quarter-2-fixed, .quarter-4-fixed, .quarter-6-fixed {
     top: 40px;
     left: 0px;
-}
+}*/
 .text-title-1 {
     font-size: 12px;
     color: #666;
@@ -4788,7 +4798,7 @@ img {
     margin: auto;
 }
 .baseine-liner {
-    background: #DDE76D;
+    background: #00AEC4;
 }
 .endline-liner {
     background: #00AEC4;
@@ -4806,61 +4816,73 @@ img {
         display: inline-block;
         width: 25px;
         height: 25px;
-        background: #B24132;
+        background: #C43892;
         border-radius: 100%;
-        margin: 20px 3px 0;
+        /*margin: 20px 3px 0;*/
+        font-weight: bold;
+        padding-top: 4px;
+        font-size: 12px;
+        color: #fff;
     }
 .vo-session, .clf-session {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     text-align: center;
 }
     .vo-session span {
         display: inline-block;
         width: 25px;
         height: 25px;
-        background: #976700;
+        background: #88AB2D;
         color: #fff;
         font-weight: bold;
         padding-top: 4px;
         font-size: 12px;
         border-radius: 100%;
-        margin: -7px 3px 0 3px;
+        /*margin: -7px 3px 0 3px;*/
     }
     .clf-session span {
         display: inline-block;
         width: 25px;
         height: 25px;
-        background: #355900;
+        background: #1F8BCB;
         border-radius: 100%;
-        margin: 4px 3px 0;
+        color: #fff;
+        font-weight: bold;
+        padding-top: 4px;
+        font-size: 12px;
+        /*margin: 4px 3px 0;*/
     }
+.legend-control {
+    display: flex;
+    justify-content: right;
+}
 .point-details {
-    margin: auto;
-    max-width: 700px;
+    /*float: right;*/
+    width: 270px;
     border: 2px solid #00AEC4;
-    margin-top: 160px
+    margin-top: 50px
 }
     .point-details h4 {
         text-align: center;
-        font-size: 24px;
+        font-size: 18px;
         background: #8EC14E;
         color: #fff;
-        border-bottom: 2px solid #00AEC4;
+        border-bottom: 1px solid #00AEC4;
         margin: 0px;
-        padding: 13px 20px;
+        padding: 10px 20px;
     }
 .legend-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #00AEC4;
+    border-bottom: 1px solid #00AEC4;
 }
 .lgd-symbol {
     flex: 1;
     padding: 10px;
     background: #FFFBF0;
-    border-right: 2px solid #00AEC4;
-    height: 70px
+    border-right: 1px solid #00AEC4;
+    text-align: center;
 }
     .lgd-symbol img {
         width: 80px;
@@ -4870,9 +4892,10 @@ img {
     flex: 1;
     background: #F3FBFF;
     color: #24576D;
-    height: 70px;
     font-weight: bold;
-    padding-top: 25px;
+    font-size: 15px;
+    text-align: center;
+    height: 47px;
 }
 .quarter-title {
     position: absolute;
@@ -4918,10 +4941,15 @@ img {
 }
 .timeline-course h3 {
     font-size: 19px;
+    font-weight: bold
 }
-.course-control {
-    margin-top: -127px;
-}
+    .timeline-course h3 span {
+        font-weight: normal;
+        font-size: 15px;
+    }
+    .course-control {
+        margin-top: -127px;
+    }
 .corse-line {
     margin: auto;
     width: 3px;
@@ -4940,7 +4968,7 @@ img {
     background: #FCCA83;
 }
 .base-dot {
-    background: #DDE76D;
+    background: #00AEC4;
 }
 .end-dot {
     background: #00AEC4;
@@ -4948,22 +4976,25 @@ img {
 }
 .svg-box {
     display: block;
-    width: 45px;
-    height: 45px;
-    background: #B24132;
+    width: 28px;
+    height: 28px;
+    background: #C43892;
     border-radius: 100%;
+    margin: auto;
 }
 .vo-box {
     display: block;
-    width: 45px;
-    height: 45px;
-    background: #976700;
+    width: 28px;
+    height: 28px;
+    background: #88AB2D;
     border-radius: 100%;
+    margin: auto;
 }
 .clf-box {
     display: block;
-    width: 45px;
-    height: 45px;
+    width: 28px;
+    height: 28px;
     border-radius: 100%;
-    background: #355900
+    background: #1F8BCB;
+    margin: auto;
 }
