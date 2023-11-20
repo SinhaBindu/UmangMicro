@@ -853,7 +853,6 @@ img {
     color: #fff;
     margin-bottom: 16px;
 }
-
 .bordr-lft {
     width: 120px;
     height: 4px;
@@ -2553,6 +2552,7 @@ img {
     max-width: 1024px;
     margin: auto;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .shg-3-step {
@@ -2561,36 +2561,126 @@ img {
     align-items: center;
     text-align: center;
     margin-top: 40px;
-    flex: 1;
+    /*flex: 1;*/
 }
 .shg-step-details {
     flex: 1;
+}
+.shg-title {
+    font-size: 21px;
+    color: #5B2C54;
+    font-style: italic;
+    margin-left: 586px;
+    margin-bottom: -30px;
+}
+.reach-clf, .reach-vo, .reach-shg {
+    position: relative;
+    width: 460px;
+    text-align: left
+}
+.reach-clf {
+    margin-top: -100px;
+    margin-left: 350px;
+}
+.reach-vo {
+    margin-top: -110px;
+    margin-left: 436px;
+}
+.reach-shg {
+    margin-top: -110px;
+    margin-left: 520px;
+}
+    .reach-clf img, .reach-vo img, .reach-shg img {
+        width: 270px;
+        position: absolute;
+        left: -266px;
+        top: 10px
+    }
+.shg-3-step h5 {
+    font-size: 28px;
+    color: #000;
+}
+.shg-3-step li {
+    list-style: disc;
+    padding: 2px 0 4px 2px;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #000;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+.top-ar:hover li, .mdl-ar:hover li, .bot-ar:hover li {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+}
+.reach-clf:hover > .shg-3-step .top-ar {
+    transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+}
+.shg-3-step li span {
+    font-weight: bold;
 }
 .top-ar {
     width: 160px;
     height: 148px;
     background-image: url('../images/top-ar.png');
     margin-bottom: 4px;
+    cursor: pointer;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
 }
-
+    
 .mdl-ar {
     width: 327px;
     height: 151px;
     background-image: url('../images/mdl-ar.png');
     margin-bottom: 4px;
+    cursor: pointer;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
 }
 
 .bot-ar {
     width: 495px;
     height: 151px;
     background-image: url('../images/bot-ar.png');
+    cursor: pointer;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
 }
-
-.top-ar p {
-    padding-top: 65px;
-    font-size: 19px;
-    line-height: 24px;
+.top-ar:hover, .mdl-ar:hover, .bot-ar:hover {
+    transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
 }
+    
+    .umang-design .shg-structure .top-ar p {
+        padding-top: 65px;
+        font-size: 19px;
+        line-height: 24px;
+        color: #000 !important;
+    }
 
 .mdl-ar p {
     padding-top: 52px;

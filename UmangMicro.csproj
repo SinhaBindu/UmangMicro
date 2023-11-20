@@ -611,6 +611,7 @@
     <Content Include="Content\images\baseline-bg.png" />
     <Content Include="Content\images\endline-bg.png" />
     <Content Include="Content\images\login-icon.png" />
+    <Content Include="Content\images\reched-arrow.png" />
     <Content Include="Content\images\shg-ico.png" />
     <Content Include="Content\images\timeline-bg.png" />
     <Content Include="Scripts\JS\mgaccordion.js" />
