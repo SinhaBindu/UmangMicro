@@ -4785,10 +4785,10 @@ img {
 }*/
 .text-title-1 {
     font-size: 12px;
-    color: #666;
+    color: #5B2C54;
     line-height: 20px;
     margin-top: 5px;
-    background: #FBFDFF;
+    background: #FFEDFC;
     border-radius: 5px;
     padding: 6px;
 }
@@ -4798,10 +4798,10 @@ img {
     margin: auto;
 }
 .baseine-liner {
-    background: #00AEC4;
+    background: #5B2C54;
 }
 .endline-liner {
-    background: #00AEC4;
+    background: #5B2C54;
 }
 .holiday-liner {
     background: #2BB8D6;
@@ -4857,45 +4857,45 @@ img {
     justify-content: right;
 }
 .point-details {
-    /*float: right;*/
-    width: 270px;
-    border: 2px solid #00AEC4;
-    margin-top: 50px
+    width: 160px;
+    border: 1px solid #D8DADB;
+    margin-top: 30px
 }
     .point-details h4 {
         text-align: center;
-        font-size: 18px;
-        background: #8EC14E;
-        color: #fff;
-        border-bottom: 1px solid #00AEC4;
+        font-size: 16px;
+        background: #F1F3F4;
+        color: #313232;
+        border-bottom: 1px solid #D8DADB;
         margin: 0px;
-        padding: 10px 20px;
+        padding: 7px 20px;
     }
 .legend-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #00AEC4;
+    /*border-bottom: 1px solid #00AEC4;*/
 }
 .lgd-symbol {
-    flex: 1;
-    padding: 10px;
-    background: #FFFBF0;
-    border-right: 1px solid #00AEC4;
+    width: 50px;
+    padding: 10px 5px;
+    background: #FDFFE5;
+    border-bottom: 2px solid #fff;
     text-align: center;
 }
     .lgd-symbol img {
         width: 80px;
     }
 .lgd-text {
-    padding: 10px;
+    padding: 11px 5px;
     flex: 1;
-    background: #F3FBFF;
+    background: #FDFFE5;
+    border-bottom: 2px solid #fff;
     color: #24576D;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
-    height: 47px;
+    /*height: 38px;*/
 }
 .quarter-title {
     position: absolute;
@@ -4968,32 +4968,32 @@ img {
     background: #FCCA83;
 }
 .base-dot {
-    background: #00AEC4;
+    background: #5B2C54;
 }
 .end-dot {
-    background: #00AEC4;
+    background: #5B2C54;
     margin-top: 0px;
 }
 .svg-box {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     background: #C43892;
     border-radius: 100%;
     margin: auto;
 }
 .vo-box {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     background: #88AB2D;
     border-radius: 100%;
     margin: auto;
 }
 .clf-box {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     border-radius: 100%;
     background: #1F8BCB;
     margin: auto;
