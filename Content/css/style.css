@@ -1153,7 +1153,7 @@ img {
 
 .umang-partnership {
     display: block;
-    padding: 90px 20px 40px;
+    padding: 80px 20px 20px;
     background: #FFFBF2;
     text-align: center;
 }
@@ -4770,7 +4770,7 @@ img {
 
 .cool-timeline {
     margin: 10px 0px;
-    padding: 160px 20px 70px;
+    padding: 140px 20px 70px;
 }
 
 .all-month {
@@ -4781,40 +4781,41 @@ img {
     align-items: center;
 }
 
-.month-list {
-    /*padding: 2px 3px;
-    background: #fff;
-    margin: 0 2px;
-    width: 24px;
-    text-align: center;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #000;*/
-}
 .month-title {
     margin-right: 10px;
     color: #5B2C54;
     font-weight: bold;
 }
-.base-study, .end-study, .train-holiday, .quarter-1, .quarter-2, .quarter-3, .quarter-4, .quarter-5, .quarter-6, .quarter-7 {
-    /*border-radius: 30px;*/
-    /*padding: 6px 17px;*/
+.quarter-1, .quarter-2, .quarter-3, .quarter-4, .quarter-5, .quarter-6, .quarter-7 {
     display: flex;
     position: relative;
-    flex-basis: 130px;
+    flex-basis: 116px;
     height: 48.5px;
-    /*background: #FFF1DE;*/
     /*background: url('../images/timeline-bg.png') left center no-repeat;*/
     background: url('../images/timeline-quarter-bg.png') left center no-repeat;
+    margin-left: -6px;
 }
 
 .base-study {
     background: url('../images/endline-bg.png') left center no-repeat;
+    display: flex;
+    position: relative;
+    flex-basis: 116px;
+    height: 48.5px;
 }
 
 .end-study {
     background: url('../images/endline-bg.png') left center no-repeat;
+    display: flex;
+    position: relative;
+    flex-basis: 116px;
+    height: 48.5px;
+}
+.timeline-training {
+    width: 28px;
+    height: 49px;
+    margin-left: -6px;
+    background: url('../images/training-bg.png') left center no-repeat;
 }
 /*
 .train-holiday {
@@ -4851,7 +4852,7 @@ img {
     gap: 6px;
     justify-content:space-evenly;
     align-items: center;
-    padding-left: 23px;
+    padding-left: 21px;
 }
 .baseline-fixed {
     top: -120px;
@@ -4898,14 +4899,15 @@ img {
 }
 .shg-session, .vo-session, .clf-session {
     margin: auto;
+    margin-top: 12px;
 }
 .shg-session img {
     width: 30px;
 }
     .shg-session span {
         display: inline-block;
-        width: 25px;
-        height: 25px;
+        width: 22px;
+        height: 22px;
         background: #C43892;
         border-radius: 100%;
         /*margin: 20px 3px 0;*/
@@ -4920,8 +4922,8 @@ img {
 }
     .vo-session span {
         display: inline-block;
-        width: 25px;
-        height: 25px;
+        width: 22px;
+        height: 22px;
         background: #88AB2D;
         color: #fff;
         font-weight: bold;
@@ -4932,8 +4934,8 @@ img {
     }
     .clf-session span {
         display: inline-block;
-        width: 25px;
-        height: 25px;
+        width: 22px;
+        height: 22px;
         background: #1F8BCB;
         border-radius: 100%;
         color: #fff;
@@ -5022,7 +5024,7 @@ img {
 }*/
 .timeline-course {
     height: 55px;
-    border: 3px solid #FCCA83;
+    border: 3px solid #FFF1DE;
     border-bottom: none;
     width: 830px;
     margin-left: 235px;
@@ -5030,8 +5032,8 @@ img {
     text-align: center;
 }
 .timeline-course h3 {
-    font-size: 19px;
-    font-weight: bold
+    font-size: 18px;
+    /*font-weight: bold*/
 }
     .timeline-course h3 span {
         font-weight: normal;
@@ -5044,8 +5046,8 @@ img {
     margin: auto;
     width: 3px;
     height: 60px;
-    background: #FCCA83;
-    margin-top: -4px;
+    background: #FFF1DE;
+    margin-top: -6px;
 }
 .corse-dot, .base-dot, .end-dot {
     margin: auto;
@@ -5055,7 +5057,7 @@ img {
     border-radius: 100%
 }
 .corse-dot {
-    background: #FCCA83;
+    background: #FFF1DE;
 }
 .base-dot {
     background: #5B2C54;
@@ -5087,4 +5089,31 @@ img {
     border-radius: 100%;
     background: #1F8BCB;
     margin: auto;
+}
+/*.sect-objectives {
+    background: #FFF2FD
+}*/
+.theory-of-chnages {
+    background: #FFF2FD;
+    padding: 70px 20px
+}
+.pink-clr {
+    color: #C43892;
+    font-weight: bold !important;
+    font-size: 21px !important;
+}
+.green-clr {
+    color: #88AB2D;
+    font-weight: bold !important;
+    font-size: 21px !important;
+}
+.blue-clr {
+    color: #1F8BCB;
+    font-weight: bold !important;
+    font-size: 21px !important;
+}
+.facil-training {
+    color: #F59678;
+    font-weight: bold !important;
+    font-size: 21px !important;
 }
