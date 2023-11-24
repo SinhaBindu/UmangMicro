@@ -4810,6 +4810,7 @@ img {
     position: relative;
     flex-basis: 116px;
     height: 48.5px;
+    margin-left: -6px;
 }
 .timeline-training {
     width: 28px;
@@ -5093,15 +5094,28 @@ img {
 /*.sect-objectives {
     background: #FFF2FD
 }*/
+.umang-roadmap {
+    padding: 70px 20px;
+    background: #FCFCFC
+}
 .theory-of-chnages {
-    background: #FFF2FD;
-    padding: 70px 20px
+    background: url('../images/umang-road.png') bottom center no-repeat #FCFCFC;    
+    height: 700px;
+    position: relative;
 }
-.pink-clr {
-    color: #C43892;
-    font-weight: bold !important;
-    font-size: 21px !important;
-}
+    .theory-of-chnages h2 {
+        font-size: 32px;
+        font-weight: 600;
+        color: #5B2C54;
+        padding-bottom: 30px;
+        background: url('../images/umang-theory-title-bg.png') bottom left no-repeat;
+        margin-bottom: 30px;
+    }
+    .pink-clr {
+        color: #C43892;
+        font-weight: bold !important;
+        font-size: 21px !important;
+    }
 .green-clr {
     color: #88AB2D;
     font-weight: bold !important;
@@ -5117,3 +5131,104 @@ img {
     font-weight: bold !important;
     font-size: 21px !important;
 }
+.empowering-member {
+    width: 240px;
+    height: 231px;
+    background: #5CE1E6;
+    background: url('../images/empowering-bg.png');
+    text-align: center;
+}
+    .empowering-member p {
+        padding: 41px 40px 0 35px;
+        color: #0D1F20;
+        font-size: 14px;
+        line-height: 28px;
+        font-weight: 600;
+    }
+.value-the-child {
+    position: absolute;
+    right: 40px;
+    width: 220px;
+    padding: 40px 15px 0px;
+    border-bottom: 10px solid #5B2C54;
+    background: #EAE4E9;
+    border-radius: 100px 100px 0 0;
+}
+    .value-the-child h3 {
+        font-size: 17px;
+        text-align: center;
+        margin-top: 5px;
+        border-bottom: 2px solid #FAC982;
+        padding-bottom: 8px;
+        font-weight: 600;
+    }
+    .value-the-child li {
+        margin-left: 20px;
+        font-size: 11px;
+        color: #000000;
+        padding: 3px 0;
+        font-weight: 600;
+    }
+.empowered-fixed, .system-level-fixed, .community-level-fixed, .household-level-fixed, .kishori-help-desk-fixed {
+    position: absolute;
+    right: 70px;
+    top: 0px;
+    width: 200px;
+    text-align: center;
+    color: #000;
+}
+.system-level-fixed {
+    right: 370px;
+    top: 70px;
+}
+.community-level-fixed {
+    right: 660px;
+    top: 220px;
+}
+.household-level-fixed {
+    left: 120px;
+    top: 340px;
+}
+.kishori-help-desk-fixed {
+    right: 440px;
+    top: 390px;
+}
+.umang-theory-icon {
+    width: 90px;
+}
+.theory-arrow-down {
+    width: 10px;
+    display: block;
+    margin: auto;
+}
+.empowered-line {
+    display: block;
+    margin: auto;
+    width: 2px;
+    height: 40px;
+    background: #FBC982;
+}
+.empowered-fixed h4, .system-level-fixed h4, .community-level-fixed h4, .household-level-fixed h4, .kishori-help-desk-fixed h4 {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.empowered-fixed p, .system-level-fixed p, .community-level-fixed p, .household-level-fixed p, .kishori-help-desk-fixed p {
+    font-size: 13px;
+    font-weight: 600
+}
+.slider-text {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+    .slider-text h1 {
+        font-family: 'Inter', sans-serif;
+        color: #FAC982;
+        font-weight: 700;
+    }
+    .slider-text p {
+        font-family: 'Lora', serif;
+        font-size: 17px
+    }

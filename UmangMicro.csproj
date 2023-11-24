@@ -614,6 +614,7 @@
     <Content Include="Content\images\reched-arrow.png" />
     <Content Include="Content\images\shg-ico.png" />
     <Content Include="Content\images\timeline-bg.png" />
+    <Content Include="Content\images\umang-road.png" />
     <Content Include="Scripts\JS\mgaccordion.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
