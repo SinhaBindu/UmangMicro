@@ -11,7 +11,6 @@
         {
             dt = Model;
             var html = dt.Rows[0]["HtmlEditor"].ToString();
-
             <div class="cs-title">
                 <h4>@dt.Rows[0]["Title"].ToString()</h4>
             </div>
@@ -19,6 +18,10 @@
                 <p>
                     <span class="cs-categ">@dt.Rows[0]["CategoryText"]</span>
                     <span class="cs-dated"><i class="fa fa-clock-o"></i>@dt.Rows[0]["DOCS"]</span>
+                    @if (!string.IsNullOrWhiteSpace(dt.Rows[0]["DPath"].ToString()))
+                    {
+                       <a href="@(CommonModel.GetBaseUrl()+dt.Rows[0]["DPath"])" download="download" class="cs-download"><i class="fa fa-file-pdf-o"></i>Download</a>
+                    }
                 </p>
                 <img src="@(CommonModel.GetBaseUrl()+dt.Rows[0]["BPath"])" alt="Alternate Text" />
                 <div style="margin-top:2%!important;">
@@ -26,12 +29,11 @@
                     <object>
                         @Html.Raw(HttpUtility.HtmlDecode(html))
                     </object>
-                    @if (!string.IsNullOrWhiteSpace(dt.Rows[0]["DPath"].ToString()))
+                    @*@if (!string.IsNullOrWhiteSpace(dt.Rows[0]["DPath"].ToString()))
                     {
                         <a href="@(CommonModel.GetBaseUrl()+dt.Rows[0]["DPath"])" download="download" class="cs-download-btn"><i class="fa fa-download"></i> Download Case Study</a>
-                    }
+                    }*@
                 </div>
-                
             </div>
         }
     }

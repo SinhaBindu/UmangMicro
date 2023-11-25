@@ -1904,36 +1904,71 @@ img {
 .arrow-right-5 {
     position: absolute;
     width: 220px;
-    left: -230px;
-    top: 15px;
+    left: -250px;
+    top: 8px;
 }
 
 .arrow-right-4 {
     position: absolute;
     width: 220px;
     left: -245px;
-    top: 22px;
+    top: 20px;
 }
 
 .arrow-left-3 {
     position: absolute;
     width: 220px;
     right: -242px;
-    top: 12px;
+    top: 7px;
 }
 
 .arrow-right-2 {
     position: absolute;
     width: 220px;
-    left: -240px;
-    top: 14px;
+    left: -260px;
+    top: 12px;
 }
 
 .arrow-left-1 {
     position: absolute;
     width: 220px;
+    right: -245px;
+    top: 12px;
+}
+
+.arrow-right-10 {
+    position: absolute;
+    width: 220px;
+    left: -230px;
+    top: 12px;
+}
+
+.arrow-right-9 {
+    position: absolute;
+    width: 220px;
+    left: -245px;
+    top: 22px;
+}
+
+.arrow-left-8 {
+    position: absolute;
+    width: 220px;
+    right: -242px;
+    top: 10px;
+}
+
+.arrow-right-7 {
+    position: absolute;
+    width: 220px;
+    left: -240px;
+    top: 11px;
+}
+
+.arrow-left-6 {
+    position: absolute;
+    width: 220px;
     right: -235px;
-    top: 13px;
+    top: 12px;
 }
 
 .block-fixed-5 {
@@ -2259,19 +2294,19 @@ img {
 .pl1 {
     position: absolute;
     top: -10px;
-    left: 50px
+    left: 60px
 }
 
 .pl2 {
     position: absolute;
     bottom: -10px;
-    left: 50px
+    left: 58px
 }
 
 .pl3 {
     position: absolute;
     bottom: -10px;
-    left: 50px
+    left: 63px
 }
 
 .bgr3 {
@@ -2495,8 +2530,8 @@ img {
 }
 
 .map9 {
-    top: 190px;
-    right: 125px;
+    top: 200px;
+    right: 106px;
 }
 
 .map10 {
@@ -4654,7 +4689,8 @@ img {
         color: #5B2C54;
         font-weight: 600;
         margin-bottom: 0px;
-        font-family: 'Satisfy', cursive;
+        font-family: 'Amiri', serif;
+        /*font-family: 'Satisfy', cursive;*/
     }
 
 .cs-content {
@@ -4746,27 +4782,40 @@ img {
     line-height: 31px;
     font-size: 22px;
     color: #00AEC4;
-    font-family: 'Satisfy', cursive;
+    font-family: 'Amiri', serif;
 }
-
-.cs-download-btn {
-    padding: 10px 32px;
-    border-radius: 10px;
+.cs-download {
     background: #00AEC4;
+    padding: 4px 12px;
+    border-radius: 5px;
     color: #fff;
-    font-size: 20px;
-    display: inline-block;
-    margin-top: 40px;
+    float: right;
 }
+    .cs-download:hover {
+        background: #DDE76D;
+        text-decoration: none;
+    }
+.cs-download .fa {
+    margin-right: 10px
+}
+    .cs-download-btn {
+        padding: 10px 32px;
+        border-radius: 10px;
+        background: #00AEC4;
+        color: #fff;
+        font-size: 20px;
+        display: inline-block;
+        margin-top: 40px;
+    }
 
     .cs-download-btn:hover {
         background: #DDE76D;
         text-decoration: none;
     }
-
-.cs-details {
-    border-bottom: none !important;
-}
+        
+        .cs-details {
+            border-bottom: none !important;
+        }
 
 .cool-timeline {
     margin: 10px 0px;
@@ -5099,6 +5148,8 @@ img {
     background: #FCFCFC
 }
 .theory-of-chnages {
+    margin: auto;
+    width: 100%;
     background: url('../images/umang-road.png') bottom center no-repeat #FCFCFC;    
     height: 700px;
     position: relative;
@@ -5107,9 +5158,8 @@ img {
         font-size: 32px;
         font-weight: 600;
         color: #5B2C54;
-        padding-bottom: 30px;
-        background: url('../images/umang-theory-title-bg.png') bottom left no-repeat;
-        margin-bottom: 30px;
+        padding-bottom: 15px;
+        margin-bottom: 0px;
     }
     .pink-clr {
         color: #C43892;
@@ -5171,7 +5221,7 @@ img {
     }
 .empowered-fixed, .system-level-fixed, .community-level-fixed, .household-level-fixed, .kishori-help-desk-fixed {
     position: absolute;
-    right: 70px;
+    right: 50px;
     top: 0px;
     width: 200px;
     text-align: center;
