@@ -1685,7 +1685,10 @@ img {
     overflow-y: hidden;
     overflow-x: scroll;
 }
-
+.umang-theory-scroll {
+    margin: auto;
+    max-width: 1200px;
+}
 .intervention-info h2, .intervention-info h3 {
     text-align: center;
 }
@@ -4786,10 +4789,11 @@ img {
 }
 .cs-download {
     background: #00AEC4;
-    padding: 4px 12px;
+    padding: 3px 12px;
     border-radius: 5px;
     color: #fff;
     float: right;
+    margin-top: -5px;
 }
     .cs-download:hover {
         background: #DDE76D;
@@ -5148,11 +5152,11 @@ img {
     background: #FCFCFC
 }
 .theory-of-chnages {
-    margin: auto;
-    width: 100%;
-    background: url('../images/umang-road.png') bottom center no-repeat #FCFCFC;    
+    background: url('../images/umang-road.png') bottom center no-repeat #FCFCFC;
     height: 700px;
     position: relative;
+    max-width: 1200px;
+    margin: auto;
 }
     .theory-of-chnages h2 {
         font-size: 32px;
