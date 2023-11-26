@@ -258,11 +258,32 @@
         }
         .theory-box {
             display: flex;
+            margin-bottom: 30px;
+        }
+        .empowering-member {
+            width: 240px;
+            margin: auto;
+            margin-bottom: 45px;
+        }
+        .theory-of-chnages {
+            height: auto;
+            background: none;
+        }
+        .web-view {
+            display: none;
+        }
+        .mob-view {
+            display: block;
         }
         .objectives-matter {
             gap: 20px;
         }
-
+        .value-the-child {
+            position: unset;
+            right: unset;
+            top: unset;
+            margin: auto;
+        }
         .impact-flex h4 {
             font-size: 19px;
             line-height: 29px;
@@ -416,6 +437,13 @@
     }
 
     @media all and (max-width: 768px) {
+        .theory-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
         .banner-text h2 {
             font-size: 38px;
         }

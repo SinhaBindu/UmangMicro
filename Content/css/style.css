@@ -5165,11 +5165,14 @@ img {
         padding-bottom: 15px;
         margin-bottom: 0px;
     }
-    .pink-clr {
-        color: #C43892;
-        font-weight: bold !important;
-        font-size: 21px !important;
-    }
+.mob-view {
+    display: none;
+}
+.pink-clr {
+    color: #C43892;
+    font-weight: bold !important;
+    font-size: 21px !important;
+}
 .green-clr {
     color: #88AB2D;
     font-weight: bold !important;
