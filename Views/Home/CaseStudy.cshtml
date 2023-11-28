@@ -7,10 +7,11 @@
     if (Model != null)
     {
         dt = Model;
-        linkr = !string.IsNullOrWhiteSpace(dt.Rows[0]["NoofCaseStudy"].ToString()) ? dt.Rows[0]["Category"].ToString() : "0";
-        linkc = !string.IsNullOrWhiteSpace(dt.Rows[1]["NoofCaseStudy"].ToString()) ? dt.Rows[1]["Category"].ToString() : "0";
-        linke = !string.IsNullOrWhiteSpace(dt.Rows[2]["NoofCaseStudy"].ToString()) ? dt.Rows[2]["Category"].ToString() : "0";
-        linkl = !string.IsNullOrWhiteSpace(dt.Rows[3]["NoofCaseStudy"].ToString()) ? dt.Rows[3]["Category"].ToString() : "0";
+        linkr = !string.IsNullOrWhiteSpace(dt.Rows[0]["Category"].ToString()) ? dt.Rows[0]["Category"].ToString() : "0";
+        linkc = !string.IsNullOrWhiteSpace(dt.Rows[1]["Category"].ToString()) ? dt.Rows[1]["Category"].ToString() : "0";
+        linke = !string.IsNullOrWhiteSpace(dt.Rows[2]["Category"].ToString()) ? dt.Rows[2]["Category"].ToString() : "0";
+        linkl = !string.IsNullOrWhiteSpace(dt.Rows[3]["Category"].ToString()) ? dt.Rows[3]["Category"].ToString() : "0";
+    
     }
 }
 

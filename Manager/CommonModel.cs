@@ -1047,7 +1047,7 @@ namespace UmangMicro.Manager
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    var items = new SelectList(dbe.AspNetRoles, "Name", "Name").OrderBy(x => x.Text).ToList();
+                    var items = new SelectList(dbe.AspNetRoles.Where(x=>x.Id.ToLower() == "2CAC5128-08C7-4B95-8C6A-DB61E6B40376" || x.Id.ToLower() == "D3CE11F6-847E-4158-91DB-C4EB555A9BD4"), "Name", "Name").OrderBy(x => x.Text).ToList();
                     if (isAddedSelect)
                     {
                         items.Insert(0, new SelectListItem { Value = "", Text = "Select" });

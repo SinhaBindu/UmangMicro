@@ -76,7 +76,6 @@ namespace UmangMicro.Controllers
             return View();
         }
 
-
         public ActionResult Journeysofar()
         {
             return View();

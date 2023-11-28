@@ -59,11 +59,7 @@
                     @*<li><a href="~/Report/Resource">Resource Download</a></li>*@
                 </ul>
             </li>
-            <li>
-                <a href="~/Master/MicroCase">
-                    Add Case Studies
-                </a>
-            </li>
+
 
         }
         @if (HttpContext.Current.User.IsInRole("PCI_Representative") || HttpContext.Current.User.IsInRole("Teacher"))
@@ -94,6 +90,19 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+        }
+        @if (HttpContext.Current.User.IsInRole("Umang"))
+        {
+            <li>
+                <a href="~/Master/MicroCase">
+                    Add Case Studies
+                </a>
+            </li>
+            <li>
+                <a href="~/Report/Resource">
+                    Resource Download
+                </a>
             </li>
         }
 
