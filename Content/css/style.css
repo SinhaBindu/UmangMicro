@@ -380,13 +380,15 @@ img {
 .objectives {
     flex: 2;
 }
-
-.aims-objective h2 {
-    font-size: 40px;
-    margin-bottom: 10px;
-    line-height: 60px;
-    color: #00AEC4;
-}
+    .objectives img {
+        border-radius: 10px;
+    }
+    .aims-objective h2 {
+        font-size: 40px;
+        margin-bottom: 10px;
+        line-height: 60px;
+        color: #00AEC4;
+    }
 
 .clr-dark {
     color: #5B2C54 !important;
@@ -4822,12 +4824,21 @@ img {
         }
 
 .cool-timeline {
-    margin: 10px 0px;
-    padding: 140px 20px 70px;
+    margin: auto;
+    max-width: 1220px;
+    padding: 140px 10px 70px;
     height: 650px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
-
+.timeline-scroller {
+    width: 1200px;
+    max-width: unset;
+    margin: auto;
+}
 .all-month {
+    max-width: 1190px;
     margin: auto;
     text-align: center;
     display: flex;
@@ -5071,7 +5082,7 @@ img {
     border: 3px solid #FFF1DE;
     border-bottom: none;
     width: 830px;
-    margin-left: 235px;
+    margin-left: 175px;
     margin-bottom: 35px;
     text-align: center;
 }
