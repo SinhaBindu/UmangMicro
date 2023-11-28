@@ -3,13 +3,85 @@
     #ddmenu .current {
         color: #00AEC4;
     }
+
+    .shg-appear {
+        position: relative;
+        z-index: 99;
+        margin: auto;
+        max-width: 1000px;
+        margin-top: -13px;
+    }
+
+        .shg-appear p {
+            margin: 0px;
+            font-weight: 600;
+            font-size: 11px;
+            padding: 5px;
+        }
+
+    .shg-1, .shg-2, .shg-3, .shg-4, .shg-5, .shg-6, .shg-7 {
+        width: 120px;
+        text-align: center;
+        float: left;
+    }
+
+    .shg-1 {
+        margin-left: 52px;
+    }
+
+    .shg-2 {
+        margin-left: 16px;
+    }
+    .shg-3 {
+        margin-left: 16px;
+    }
+    .shg-4 {
+        margin-left: 15px;
+    }
+    .shg-5 {
+        margin-left: 17px;
+    }
+    .shg-6 {
+        margin-left: 17px;
+    }
+    .shg-7 {
+        margin-left: 16px;
+    }
+    .shg-appear p {
+        padding: 7px;
+        border-radius: 5px;
+        background: #FFE1F4;
+        color: #5A2B53;
+    }
+
+    .liners1, .liners2 {
+        display: block;
+        margin: auto;
+        width: 3px;
+        background: #FFDFF4;
+    }
+    .liners1 {
+        height: 50px;
+    }
+    .liners2 {
+        height: 130px;
+    }
+    .shg-appear {
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s ease;
+    }
+    .timeline_appear {
+        opacity: 1;
+        visibility: visible;
+    }
 </style>
 <!-- Banner -->
 @*<div class="banner-manage"><img src="~/Content/images/slider/journey-so-far.jpg" alt="journey so far banner"></div>
 
-<div class="banner-title">
-    <h2><span>Umang Roadmap</span></h2>
-</div>*@
+    <div class="banner-title">
+        <h2><span>Umang Roadmap</span></h2>
+    </div>*@
 <!-- TIMELINE -->
 <div class="umang-partnership">
     <h2>Umang Roadmap</h2>
@@ -35,10 +107,13 @@
                 <div class="baseine-liner"></div>
             </div>
         </div>
-        <div class="timeline-training"></div>
+        @*<div class="timeline-training"></div>*@
         <div class="quarter-1">
             <div class="quarter-title"><h3 class="tl1">Quarter 1</h3></div>
             <div class="quarter-1-fixed">
+                <div class="tr-session">
+                    <span></span>
+                </div>
                 <div class="shg-session">
                     <span></span>
                 </div>
@@ -50,10 +125,13 @@
                 </div>
             </div>
         </div>
-        <div class="timeline-training"></div>
+        @*<div class="timeline-training"></div>*@
         <div class="quarter-2">
             <div class="quarter-title"><h3 class="tl2">Quarter 2</h3></div>
             <div class="quarter-2-fixed">
+                <div class="tr-session">
+                    <span></span>
+                </div>
                 <div class="shg-session">
                     <span></span>
                 </div>
@@ -65,10 +143,13 @@
                 </div>
             </div>
         </div>
-        <div class="timeline-training"></div>
+        @*<div class="timeline-training"></div>*@
         <div class="quarter-3">
             <div class="quarter-title"><h3 class="tl3">Quarter 3</h3></div>
             <div class="quarter-3-fixed">
+                <div class="tr-session">
+                    <span></span>
+                </div>
                 <div class="shg-session">
                     <span></span>
                 </div>
@@ -80,10 +161,13 @@
                 </div>
             </div>
         </div>
-        <div class="timeline-training"></div>
+        @*<div class="timeline-training"></div>*@
         <div class="quarter-4">
             <div class="quarter-title"><h3 class="tl4">Quarter 4</h3></div>
             <div class="quarter-4-fixed">
+                <div class="tr-session">
+                    <span></span>
+                </div>
                 <div class="shg-session">
                     <span></span>
                 </div>
@@ -95,10 +179,13 @@
                 </div>
             </div>
         </div>
-        <div class="timeline-training"></div>
+        @*<div class="timeline-training"></div>*@
         <div class="quarter-5">
             <div class="quarter-title"><h3 class="tl5">Quarter 5</h3></div>
             <div class="quarter-5-fixed">
+                <div class="tr-session">
+                    <span></span>
+                </div>
                 <div class="shg-session">
                     <span></span>
                 </div>
@@ -110,10 +197,13 @@
                 </div>
             </div>
         </div>
-        <div class="timeline-training"></div>
+        @*<div class="timeline-training"></div>*@
         <div class="quarter-6">
             <div class="quarter-title"><h3 class="tl6">Quarter 6</h3></div>
             <div class="quarter-6-fixed">
+                <div class="tr-session">
+                    <span></span>
+                </div>
                 <div class="shg-session">
                     <span></span>
                 </div>
@@ -125,10 +215,13 @@
                 </div>
             </div>
         </div>
-        <div class="timeline-training"></div>
+        @*<div class="timeline-training"></div>*@
         <div class="quarter-7">
             <div class="quarter-title"><h3 class="tl7">Quarter 7</h3></div>
             <div class="quarter-7-fixed">
+                <div class="tr-session">
+                    <span></span>
+                </div>
                 <div class="shg-session">
                     <span></span>
                 </div>
@@ -139,9 +232,6 @@
                     <span></span>
                 </div>
             </div>
-            <div class="month-list"></div>
-            <div class="month-list"></div>
-            <div class="month-list"></div>
         </div>
         <div class="end-study">
             <div class="endline-fixed">
@@ -149,132 +239,39 @@
                 <div class="end-dot"></div>
                 <div class="endline-liner"></div>
             </div>
-            <div class="month-list"></div>
-            <div class="month-list"></div>
-            <div class="month-list"></div>
         </div>
     </div>
-    @*<div class="legend-control">
-        <div class="point-details">
-            <h4>Legend</h4>
-            <div class="legend-list">
-                <div class="lgd-symbol"><span class="svg-box"></span></div>
-                <div class="lgd-text">SHG Sessions</div>
-            </div>
-            <div class="legend-list">
-                <div class="lgd-symbol"><span class="vo-box"></span></div>
-                <div class="lgd-text">VO Sessions</div>
-            </div>
-            <div class="legend-list">
-                <div class="lgd-symbol"><span class="clf-box"></span></div>
-                <div class="lgd-text">CLF Sessions</div>
-            </div>
+    <div class="shg-appear">
+        <div class="shg-1">
+            <span class="liners1"></span>
+            <p>Role of VO</p>
         </div>
-    </div>*@
+        <div class="shg-2">
+            <span class="liners2"></span>
+            <p>Identifying challenges of girls' education</p>
+        </div>
+        <div class="shg-3">
+            <span class="liners1"></span>
+            <p>Child Marriage</p>
+        </div>
+        <div class="shg-4">
+            <span class="liners2"></span>
+            <p>Welfare schemes for girls' education</p>
+        </div>
+        <div class="shg-5">
+            <span class="liners1"></span>
+            <p>Engagement with external stakeholders village level and community meetings for prevention of child marriage</p>
+        </div>
+        <div class="shg-6">
+            <span class="liners2"></span>
+            <p>Discussion on laws related to adolescent education (Right to Education), POCSO, Domestic Violence Act, etcAwareness on Right to Education</p>
+        </div>
+        <div class="shg-7">
+            <span class="liners1"></span>
+            <p>Identification of village level bodies such as BLCPC</p>
+        </div>
+    </div>
 </div>
-@*<div class="milestone">
-    <div class="timeline">
-        <div class="timeline-list left">
-            <div class="content">
-
-                <h2>2019</h2>
-                <p>
-                    <b>OCT 23, 2019</b><br><span>MoU signed with JSLPS</span>
-                </p>
-            </div>
-        </div>
-        <div class="timeline-list left">
-            <div class="content">
-                <h2>2020</h2>
-                <p>
-                    <b>COVID-19</b> <br /> <span>Impact on Project</span>
-                </p>
-            </div>
-        </div>
-        <div class="timeline-list right">
-            <div class="content">
-                <h2>Q1 '21</h2>
-                <p>
-                    <b>JAN-MAR’21</b> <br> <span>Baseline Study</span>
-                </p>
-            </div>
-        </div>
-        <div class="timeline-list left">
-            <div class="content">
-                <h2>Q2 '21</h2>
-                <p>
-                    <b>PILOT PHASE</b><br> <span>Focus on Sustainability.</span>
-                </p>
-            </div>
-        </div>
-        <div class="timeline-list right">
-            <div class="content">
-                <h2>Q3 '21</h2>
-            </div>
-        </div>
-        <div class="timeline-list left">
-            <div class="content">
-                <h2>Q4 '21</h2>
-            </div>
-        </div>
-        <div class="timeline-list right">
-            <div class="content">
-                <h2>Q1 '22</h2>
-            </div>
-        </div>
-        <div class="timeline-list left">
-            <div class="content">
-                <h2>Q2 '22</h2>
-            </div>
-        </div>
-        <div class="timeline-list right">
-            <div class="content">
-                <h2>Q3 '22</h2>
-                <p>
-                    <b>JULY 2022<br> 1st Kishori Help Desk</b><br>
-                    <span>launched at Dumariya, Godda</span>
-                </p>
-            </div>
-        </div>
-        <div class="timeline-list left">
-            <div class="content">
-                <h2>Q4 '22</h2>
-                <p>
-                    <b>PILOT PHASE</b><br><span>Implementation completed</span>
-                </p>
-            </div>
-        </div>
-        <div class="timeline-list right">
-            <div class="content">
-                <h2>Q1 '23</h2>
-                <p>
-                    <b>JAN-MAR’23</b><br><span>Endline Study</span>
-                </p>
-            </div>
-        </div>
-        <div class="timeline-list left">
-            <div class="content">
-                <h2>2023</h2>
-                <p>
-                    <b>Our Mission</b> <br><span>Continue</span>
-                </p>
-            </div>
-        </div>
-        <div class="fixed-timeline">
-            <div class="arrow-up"></div>
-            <p>21-month Intervention</p>
-            <div class="arrow-down"></div>
-        </div>
-    </div>
-</div>*@
-<!-- PARTNERSHIP -->
-@*<div class="umang-partnership-box">
-    <div class="partnership-block">
-        <p data-aos="fade-up" data-aos-duration="1500">
-            Umang is implemented by PCI India in partnership with the International Centre for Research on Women (ICRW) and Jharkhand State Livelihood Promotion Society (JSLPS), under the Dept of Rural Development, Govt of Jharkhand, with support from Global Communities.
-        </p>
-    </div>
-</div>*@
 <div class="continue-box">
     <a href="~/Home/AimObjectives" class="link-box">
         <img src="~/Content/images/quick-link/aim.png" alt="Aim & Objective icon" />
@@ -289,3 +286,14 @@
         <p>Intervention</p>
     </a>
 </div>
+
+<script>
+    $(".shg-session").hover(
+        function () {
+            $(".shg-appear").addClass("timeline_appear");
+        },
+        function () {
+            $(".shg-appear").removeClass("timeline_appear");
+        }
+    );
+</script>

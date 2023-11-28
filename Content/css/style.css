@@ -4824,6 +4824,7 @@ img {
 .cool-timeline {
     margin: 10px 0px;
     padding: 140px 20px 70px;
+    height: 650px;
 }
 
 .all-month {
@@ -4842,8 +4843,8 @@ img {
 .quarter-1, .quarter-2, .quarter-3, .quarter-4, .quarter-5, .quarter-6, .quarter-7 {
     display: flex;
     position: relative;
-    flex-basis: 116px;
-    height: 48.5px;
+    flex-basis: 143px;
+    height: 49px;
     /*background: url('../images/timeline-bg.png') left center no-repeat;*/
     background: url('../images/timeline-quarter-bg.png') left center no-repeat;
     margin-left: -6px;
@@ -4951,53 +4952,42 @@ img {
 .holiday-liner {
     background: #2BB8D6;
 }
-.shg-session, .vo-session, .clf-session {
+.shg-session, .vo-session, .clf-session, .tr-session {
     margin: auto;
     margin-top: 12px;
 }
 .shg-session img {
     width: 30px;
 }
-    .shg-session span {
+    .shg-session span, .vo-session span, .clf-session span, .tr-session span {
         display: inline-block;
         width: 22px;
         height: 22px;
-        background: #C43892;
         border-radius: 100%;
-        /*margin: 20px 3px 0;*/
         font-weight: bold;
         padding-top: 4px;
         font-size: 12px;
         color: #fff;
+        cursor: pointer;
+    }
+    .shg-session span {
+        background: #C43892;
     }
 .vo-session, .clf-session {
-    /*margin-top: 10px;*/
     text-align: center;
 }
     .vo-session span {
-        display: inline-block;
-        width: 22px;
-        height: 22px;
         background: #88AB2D;
-        color: #fff;
-        font-weight: bold;
-        padding-top: 4px;
-        font-size: 12px;
-        border-radius: 100%;
-        /*margin: -7px 3px 0 3px;*/
     }
     .clf-session span {
-        display: inline-block;
-        width: 22px;
-        height: 22px;
         background: #1F8BCB;
-        border-radius: 100%;
-        color: #fff;
-        font-weight: bold;
-        padding-top: 4px;
-        font-size: 12px;
-        /*margin: 4px 3px 0;*/
     }
+.tr-session span {
+    background: #F59678;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+}
 .legend-control {
     display: flex;
     justify-content: right;
