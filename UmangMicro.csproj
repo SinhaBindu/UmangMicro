@@ -609,10 +609,15 @@
     <Content Include="Content\assets\mgaccordion.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\images\baseline-bg.png" />
+    <Content Include="Content\images\career-option.png" />
+    <Content Include="Content\images\education-pathways.png" />
     <Content Include="Content\images\endline-bg.png" />
     <Content Include="Content\images\login-icon.png" />
+    <Content Include="Content\images\mental-health.png" />
     <Content Include="Content\images\reched-arrow.png" />
     <Content Include="Content\images\shg-ico.png" />
+    <Content Include="Content\images\skill-training.png" />
+    <Content Include="Content\images\skills-training.png" />
     <Content Include="Content\images\timeline-bg.png" />
     <Content Include="Content\images\umang-road.png" />
     <Content Include="Scripts\JS\mgaccordion.js" />
