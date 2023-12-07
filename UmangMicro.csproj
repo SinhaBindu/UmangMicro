@@ -602,11 +602,15 @@
     <Content Include="Content\assets\images\icons-rtl.gif" />
     <Content Include="Content\assets\images\icons.gif" />
     <Content Include="Content\assets\images\loading.gif" />
+    <Content Include="Content\assets\images\minus.png" />
+    <Content Include="Content\assets\images\plus.png" />
     <Content Include="Content\assets\images\vline-rtl.gif" />
     <Content Include="Content\assets\images\vline.gif" />
     <Content Include="Content\assets\JS\main.d810cf0ae7f39f28f336.js" />
     <Content Include="Content\assets\main.css" />
     <Content Include="Content\assets\mgaccordion.css" />
+    <Content Include="Content\assets\TreeTable.css" />
+    <Content Include="Content\assets\TreeTable.js" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\images\baseline-bg.png" />
     <Content Include="Content\images\career-option.png" />

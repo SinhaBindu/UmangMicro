@@ -19,11 +19,11 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-        public ActionResult GetIndexList(string Para="", string CaseIDNameDOB = "",string Sdt = "", string Edt = "", string SchoolId = "")
+        public ActionResult GetIndexList(string Para="", string SearchBy = "", string DOB="", string Sdt = "", string Edt = "", string SchoolId = "")
         {
             try
             {
-                var items = SP_Model.GetSP_RCTestRes_List(Para, CaseIDNameDOB, Sdt, Edt, SchoolId);
+                var items = SP_Model.GetSP_RCTestRes_List(Para, SearchBy,DOB, Sdt, Edt, SchoolId);
                 if (items != null)
                 {
                     var data = JsonConvert.SerializeObject(items);

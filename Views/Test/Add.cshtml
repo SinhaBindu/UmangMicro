@@ -129,8 +129,8 @@
                                                     <div class="col-md-4">
                                                         <div class="position-relative form-group">
                                                             <label></label>
-                                                            @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control" } })
-
+                                                            @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                                            &nbsp;&nbsp;&nbsp;&nbsp; @Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style="display:none;" } })
                                                             @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
@@ -205,6 +205,17 @@
         var PartTimeSumtxt = 0;
         $(document).ready(function () {
 
+            $('input[name=TypeCase]').click(function () {
+                if ($(this).val() == "1") {
+                    $('#DOBtxt').show();
+                    $('#DOBtxt').attr('required', 'required');
+                }
+                else {
+                    $('#DOBtxt').hide(); $('#DOB').val('');
+                    $('#DOBtxt').removeAttr('required');
+                }
+            });
+
             //$('.mchck').multiselect({
             //    includeSelectAllOption: true
             //});
@@ -223,6 +234,8 @@
                 var fd = StudDList.filter(x => x.CaseID == $('#CaseID').val());
                 if (fd.length > 0) {
                     $('#div-stud').show();
+                    $('#SchoolId').val((fd[0].SchoolId).toLowerCase());
+                    $('#SchoolId').trigger('change');
                     $('#lsn').html(fd[0].Name);
                     $('#ldob').html(fd[0].DOB);
                     $('#lregdt').html(fd[0].RegDate);
@@ -376,7 +389,7 @@
             $.ajax({
                 url: document.baseURI + "/Counsellor/GetStudentlList",
                 type: "Post",
-                data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }),
+                data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val(), 'DOB': $('input[name=DOBtxt]').val() }),
                 contentType: "application/json; charset=utf-8",
                 global: false,
                 async: false,
@@ -387,6 +400,7 @@
                         $.each(StudDList, function (i, exp) {
                             $('#' + Ele).append($("<option>").val(exp.CaseID).text(exp.CaseID + ' - ' + exp.Name));
                         });
+
                     }
                 },
                 error: function (req, error) {

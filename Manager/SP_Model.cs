@@ -18,6 +18,8 @@ namespace UmangMicro.Manager
             StoredProcedure sp = new StoredProcedure("SP_RegList");
             sp.Command.AddParameter("@FD", SD, DbType.String);
             sp.Command.AddParameter("@TD", ED, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
@@ -100,11 +102,12 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
-        public static DataTable GetSP_StudentList(string Para, string SearchBy)
+        public static DataTable GetSP_StudentList(string Para, string SearchBy, string DOB)
         {
             StoredProcedure sp = new StoredProcedure("SP_StudentList");
             sp.Command.AddParameter("@Para", Para, DbType.String);
             sp.Command.AddParameter("@SearchBy", SearchBy, DbType.String);
+            sp.Command.AddParameter("@DOB", DOB, DbType.String);
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
@@ -115,12 +118,12 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
-        public static DataTable GetSP_RIASECGuidData(string Para)
+        public static DataSet GetSP_RIASECGuidData(string Para)
         {
             StoredProcedure sp = new StoredProcedure("SP_RIASEC_GuidedList");
             sp.Command.AddParameter("@Para", Para, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
         }
         public static DataSet GetSP_SearchBYCD()
         {
@@ -168,14 +171,17 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
-        public static DataTable GetSP_RCTestRes_List(string Para, string CaseIDNameDOB, string Sdt, string Edt, string SchoolId)
+        public static DataTable GetSP_RCTestRes_List(string Para, string SearchBy,string DOB, string Sdt, string Edt, string SchoolId)
         {
-            StoredProcedure sp = new StoredProcedure("SP_RIASECTestRes_List");
-            sp.Command.AddParameter("@Para", Para, DbType.String);
-            sp.Command.AddParameter("@CaseIDNameDOB", CaseIDNameDOB, DbType.String);
+            StoredProcedure sp = new StoredProcedure("SP_RToCTestRes_List");
+            //sp.Command.AddParameter("@Para", Para, DbType.String);
+            //sp.Command.AddParameter("@CaseIDNameDOB", SearchBy, DbType.String);
+            //sp.Command.AddParameter("@DOB", DOB, DbType.String);
             sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
             sp.Command.AddParameter("@Edt", Edt, DbType.String);
             sp.Command.AddParameter("@SchoolId", SchoolId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
@@ -188,8 +194,7 @@ namespace UmangMicro.Manager
             return ds;
         }
         
-        
-        
+
 
     }
 }

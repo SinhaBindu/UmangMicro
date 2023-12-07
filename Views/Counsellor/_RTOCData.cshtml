@@ -1,17 +1,20 @@
 ﻿@using System.Data
 @{
-    ViewBag.Title = "User List";
-    DataTable dt = new DataTable();
+    DataSet ds = new DataSet();
+    DataTable dtg = new DataTable();
+    DataTable dtm = new DataTable();
     if (Model != null)
     {
-        dt = Model;
+        ds = Model;
+        dtg = ds.Tables[0];
+        dtm = ds.Tables[1];
     }
+    DataView view = new DataView(dtg.Select("SectionNameEng<>'All' And TypeofSectionEng<>'_ALL'").CopyToDataTable());
+    DataTable dtsn = view.ToTable(true, "SectionNameEng");
+    DataTable dtts = view.ToTable(true, "TypeofSectionEng");
 }
 
 <style>
-
-
-
     .multilevel-accordion-menu .is-accordion-submenu-parent a {
         background: #4d5158;
     }
@@ -83,64 +86,11 @@
         <div class="card">
             <div class="table-responsive">
 
-                <nav class="my-menu">
-                    <ul class="my-nav">
-                        <li><a href="#" title="">Accordion Menu</a></li>
-                        <li>
-                            <a href="#" title="">Mercedes</a>
-                            <ul>
-                                <li><a href="#">All Mercedes</a></li>
-                                <li><a href="#">All family cars</a></li>
-                                <li><a href="#">All sport cars</a></li>
-                                <li>
-                                    <a href="#">Family</a>
-                                    <ul>
-                                        <li><a href="#">xyz</a></li>
-                                        <li><a href="#">qwe</a></li>
-                                        <li><a href="#">tre</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Sport</a>
-                                    <ul>
-                                        <li><a href="#">poi</a></li>
-                                        <li><a href="#">lkj</a></li>
-                                        <li><a href="#">slk</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Lamborghini</a>
-                            <ul>
-                                <li><a href="#">Diablo</a></li>
-                                <li><a href="#">Murcielago</a></li>
-                                <li><a href="#">nonso</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Ferrari</a>
-                            <ul>
-                                <li><a href="#">Testarossa</a></li>
-                                <li><a href="#">boh</a></li>
-                                <li>
-                                    <a href="#">mah</a>
-                                    <ul>
-                                        <li><a href="#">Testarossa</a></li>
-                                        <li><a href="#">Testarossa</a></li>
-                                        <li><a href="#">Testarossa</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-
                 <table class="table table-bordered table-hover dt-responsive display" id="DataListRC" width="100%">
                     <thead>
                         <tr>
                             @*<th>SrNo.</th>*@
-                            <th></th>
+                            @*<th></th>*@
                             <th>Section</th>
                             <th>Type Of Subject</th>
                             <th>Subject Details</th>
@@ -151,28 +101,85 @@
                             int sno = 1; int indx = 0;
                             if (Model != null)
                             {
-                                foreach (DataRow dr in dt.Rows)
+                                foreach (DataRow dr in dtg.Rows)
                                 {
-                                    <tr>
-                                        @*<td class="text-center">@(sno++)</td>*@
-                                        <td class="text-center">
-                                            <input type="checkbox" data-id="@dr["CH_Id"]" data-name="@dr["SectionShortEng"]" data-ChPhyId="@dr["CH_Psy_Id"]" name="Chk_@indx" id="Chk_@indx" value="@dr["ID"]" />
-                                        </td>
-                                        <td class="text-left" style="text-wrap: wrap;">@(dr["SectionShortEng"] +"-"+ dr["SectionNameEng"])</td>
-                                        <td class="text-left" style="text-wrap: wrap;">@dr["TypeofSectionEng"]</td>
-                                        <td class="text-left" style="text-wrap: wrap;">@(dr["SectionDetailNoEng"] +"-"+ dr["SectionDetailEng"])</td>
-                                    </tr>
-                                    indx++;
+                                    string SectionNameEng = Convert.ToString(dr["SectionNameEng"]);
+                                    string TypeofSectionEng = Convert.ToString(dr["TypeofSectionEng"]);
+
+                                    if (TypeofSectionEng.ToLower() == "_all" && SectionNameEng.ToLower() != "all")
+                                    {
+                                        <tr style="color:#1b6907;">
+                                            <td data-title="SectionNameEng" class="@("SectionNameEng-" + SectionNameEng.Replace(" ", "_").ToLower())">@SectionNameEng</td>
+                                            <td data-title="TypeofSectionEng"></td>
+                                            <td data-title=""></td>
+                                        </tr>
+                                    }
+
+                                    else if (TypeofSectionEng.ToLower() != "_all")
+                                    {
+                                        var dtsdetails = dtm.AsEnumerable()?.Where(x => x.Field<string>("SectionNameEng") == dr["SectionNameEng"].ToString() && x.Field<string>("TypeofSectionEng") == dr["TypeofSectionEng"].ToString()).CopyToDataTable();
+
+                                        <tr class="@("SectionNameEng-" + SectionNameEng.Replace(" ", "_").ToLower())" style="color:#0000FF;">
+                                            <td data-title="SectionNameEng"></td>
+                                            <td data-title="TypeofSectionEng" class="@("TypeofSectionEng-" + TypeofSectionEng.Replace(" ", "_").ToLower())">@TypeofSectionEng</td>
+                                            <td data-title=""></td>
+                                        </tr>
+
+                                        {
+                                            if (dtsdetails != null)
+                                            {
+                                                foreach (DataRow dr1 in dtsdetails.Rows)
+                                                {
+                                                    <tr class="@("TypeofSectionEng-" + TypeofSectionEng.Replace(" ", "_").ToLower())" style="color:#0000FF;">
+                                                        <td data-title="SectionNameEng"></td>
+                                                        <td data-title="TypeofSectionEng"></td>
+                                                        <td>
+                                                            <input type="checkbox" data-id="@dr1["CH_Id"]" data-name="@dr1["SectionShortEng"]" data-ChPhyId="@dr1["CH_Psy_Id"]" name="Chk_@indx" id="Chk_@indx" value="@dr1["ID"]" />
+                                                            <a href="javascript:void(0);" onclick="return BindData('1', '', '@dr1["SectionDetailEng"]');">
+                                                                <p>@dr1["SectionDetailNoEng"] . @dr1["SectionDetailEng"]</p>
+                                                            </a>
+                                                           
+
+                                                        </td>
+                                                    </tr>
+                                                    indx++;
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <tr style="font-size:14px;">
+                                            <td data-title=""></td>
+                                            <td data-title=""><strong></strong></td>
+                                            <td data-title=""><strong></strong></td>
+                                        </tr>
+                                    }
+
                                 }
-                            }
-                            else
-                            {
-                                <tr><td colspan="4" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
                             }
                         }
 
                     </tbody>
+
                 </table>
+                @{
+                    foreach (DataRow dr in dtsn.Rows)
+                    {
+                        string group = "SectionNameEng-" + Convert.ToString(dr["SectionNameEng"]).ToLower();
+                        <script>
+                                CreateGroup('@group');
+                        </script>
+                    }
+                    foreach (DataRow dr in dtts.Rows)
+                    {
+                        string group = "TypeofSectionEng-" + Convert.ToString(dr["TypeofSectionEng"]).Replace(" ", "_").ToLower();
+                        <script>
+                            CreateGroup('@group');
+                        </script>
+                    }
+                }
             </div>
         </div>
     </div>

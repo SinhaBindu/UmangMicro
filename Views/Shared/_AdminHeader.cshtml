@@ -18,10 +18,10 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul>
-                            <h3>@u.Name</h3>
                             @*<li><a href="#">My Account</a></li>*@
                             @if (Request.IsAuthenticated)
                             {
+                                <h3>@u.Name</h3>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                 {
                                     @Html.AntiForgeryToken()
@@ -50,10 +50,10 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul>
-                            <h3>@u.Name</h3>
                             @*<li><a href="#">My Account</a></li>*@
                             @if (Request.IsAuthenticated)
                             {
+                                <h3>@u.Name</h3>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                 {
                                     @Html.AntiForgeryToken()

@@ -240,6 +240,7 @@
         #cssmenu ul {
             width: 100%;
             display: none;
+            top:40px;
         }
 
         #cssmenu.align-center > ul,

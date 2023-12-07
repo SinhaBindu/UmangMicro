@@ -15,6 +15,7 @@ namespace UmangMicro.Models
         public string CountdownStart { get; set; }
         public string CountdownEnd { get; set; }
         public string TypeCase { get; set; }
+        public string DOBtxt { get; set; }
         public string Searchtxt { get; set; }
         [Display(Name = "Date of counselling")]
         public DateTime? DOC { get; set; }

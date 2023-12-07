@@ -1,0 +1,39 @@
+﻿/*table, tr, td, th
+{
+    border: 1px solid black;
+    border-collapse:collapse;
+}*/
+
+
+img.button_open {
+    background-image: url('../assets/images/minus.png');
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+    img.button_open:after {
+        /*background-image: url('../images/minus.png');*/
+        background-image: url('../assets/images/minus.png');
+        background-repeat: no-repeat;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+
+img.button_closed {
+    background-image: url('../assets/images/plus.png');
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+    img.button_closed:after {
+        background-image: url('../assets/images/plus.png');
+        background-repeat: no-repeat;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }

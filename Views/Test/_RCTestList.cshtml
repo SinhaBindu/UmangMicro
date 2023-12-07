@@ -33,16 +33,16 @@
                             {
                                 foreach (DataRow dr in dt.Rows)
                                 {
-                                                <tr>
-                                                    <td class="text-center">@(sno++)</td>
-                                                    <td class="text-center" style="text-wrap: wrap;">@dr["NoofTimeRCTestRes"]</td>
-                                                    <td class="text-center" style="text-wrap: wrap;">@dr["CaseID"]</td>
-                                                    <td class="text-center" style="text-wrap: wrap;">@(CommonModel.FormateDtDMY(dr["maxTestDate"].ToString()))</td>
-                                                    <td class="text-left" style="text-wrap: wrap;">@dr["Sname"]</td>
-                                                    <td class="text-left" style="text-wrap: wrap;">@dr["district_name"]</td>
-                                                    <td class="text-left" style="text-wrap: wrap;">@dr["block_name"]</td>
-                                                    <td class="text-left" style="text-wrap: wrap;">@dr["school_name"]</td>
-                                                </tr>
+                                    <tr>
+                                        <td class="text-center">@(sno++)</td>
+                                        <td class="text-center" style="text-wrap: wrap;"><a href="~/Test/RCResultDetail?=?RowId=0&&CaseID=@dr["CaseID"]"><strong>@dr["NoofTimeRCTestRes"]</strong></a></td>
+                                        <td class="text-center" style="text-wrap: wrap;">@dr["CaseID"]</td>
+                                        <td class="text-center" style="text-wrap: wrap;">@(CommonModel.FormateDtDMY(dr["maxTestDate"].ToString()))</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["Sname"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["district_name"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["block_name"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;">@dr["school_name"]</td>
+                                    </tr>
                                     indx++;
                                 }
                             }

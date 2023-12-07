@@ -119,10 +119,10 @@ namespace UmangMicro.Manager
                 {
                     return "Teacher";
                 }
-                else if (HttpContext.Current.User.IsInRole("PCI_Representative"))
-                {
-                    return "PCI_Representative";
-                }
+                //else if (HttpContext.Current.User.IsInRole("PCI_Representative"))
+                //{
+                //    return "PCI_Representative";
+                //}
                 //else if (HttpContext.Current.User.IsInRole("Viewer"))
                 //{
                 //    return "Viewer";
@@ -1963,7 +1963,7 @@ namespace UmangMicro.Manager
         public static List<SelectListItem> GetCounselling()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "-1", Text = "Select" });
+            //list.Add(new SelectListItem { Value = "-1", Text = "Select" });
             list.Add(new SelectListItem { Value = "1", Text = "Career Compendium" });
             list.Add(new SelectListItem { Value = "2", Text = "Psychometric (RIASEC) test" });
             list.Add(new SelectListItem { Value = "3", Text = "State Career Portal" });
@@ -2027,9 +2027,9 @@ namespace UmangMicro.Manager
         {
             List<SelectListItem> list = new List<SelectListItem>();
             //list.Add(new SelectListItem { Value = "0", Text = "Select" });
-            list.Add(new SelectListItem { Value = "1", Text = "Name" });
+            list.Add(new SelectListItem { Value = "1", Text = "Name & DOB" });
             list.Add(new SelectListItem { Value = "2", Text = "Case ID" });
-            list.Add(new SelectListItem { Value = "3", Text = "DOB" });
+            //list.Add(new SelectListItem { Value = "3", Text = "DOB" });
             return list.OrderBy(x => Convert.ToInt32(x.Value.ToString())).ToList();
             #endregion
         }

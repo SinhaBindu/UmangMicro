@@ -7,7 +7,7 @@
 
 <div id="cssmenu">
     <ul>
-        @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("State"))
+        @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("State") || HttpContext.Current.User.IsInRole("PCI_Representative"))
         {
             <li class="menu-hide">&nbsp;</li>
             <li>
@@ -59,12 +59,11 @@
                     @*<li><a href="~/Report/Resource">Resource Download</a></li>*@
                 </ul>
             </li>
-
-
         }
-        @if (HttpContext.Current.User.IsInRole("PCI_Representative") || HttpContext.Current.User.IsInRole("Teacher"))
+        @if (HttpContext.Current.User.IsInRole("Teacher"))
         {
-            <li>
+           
+            <li >
                 <a href="javascript:void(0)">Counselling</a>
                 <ul>
                     <li><a href="~/Candidate/Reg">Student Registration</a></li>

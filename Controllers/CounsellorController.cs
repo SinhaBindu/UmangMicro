@@ -61,21 +61,24 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+        //Result of Psychometric test
         [HttpPost]
         public ActionResult RIASECldata(string Para = "")
         {
-            DataTable dt = SP_Model.GetSP_RIASECGuidData(Para);
-            if (dt.Rows.Count > 0)
+            Para = "1";
+            DataSet ds = SP_Model.GetSP_RIASECGuidData(Para);
+            if (ds.Tables.Count > 0)
             {
-                return PartialView("_RTOCData", dt);
+                return PartialView("_RTOCData", ds);
             }
-            return PartialView("_RTOCData", dt);
+            return PartialView("_RTOCData", ds);
         }
-        public ActionResult GetStudentlList(string Para = "", string SearchBy = "")
+        //Student Search
+        public ActionResult GetStudentlList(string Para = "", string SearchBy = "", string DOB = "")
         {
             try
             {
-                var items = SP_Model.GetSP_StudentList(Para, SearchBy);
+                var items = SP_Model.GetSP_StudentList(Para, SearchBy, DOB);
                 if (items != null)
                 {
                     var data = JsonConvert.SerializeObject(items);
@@ -251,10 +254,13 @@ namespace UmangMicro.Controllers
                     tbl.TypeCounsellor = !(string.IsNullOrWhiteSpace(model.TypeCounsellor)) ? model.TypeCounsellor.Trim() : model.TypeCounsellor;
                     tbl.TypeQuery = model.TypeQuery;
                     tbl.KeyWords = model.KeyWords;
-                    tbl.Study10th = model.Study10th;
-                    if (!(string.IsNullOrWhiteSpace(model.CaseID)) && (model.CaseID=="11" || model.CaseID == "12"))
+                    if (!(string.IsNullOrWhiteSpace(model.ClassId)) && (model.ClassId == "11" || model.ClassId == "12"))
                     {
                         tbl.Study12th = model.Study12th;
+                    }
+                    else
+                    {
+                        tbl.Study10th = model.Study10th;
                     }
                     tbl.Subject = model.Subject;
                     if (model.TypeQuery=="1" || model.TypeQuery == "2")

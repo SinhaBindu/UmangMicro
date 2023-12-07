@@ -18,7 +18,7 @@ namespace UmangMicro.Controllers
         public ActionResult Index()
         {
             var strurl= CommonModel.GetBaseUrl();
-            if (strurl== "https://hbh.pcidigitals.in/")
+            if (strurl== "https://hbh.pcidigitals.in" || strurl== "https://hbh.pcidigitals.in/")
             {
                 return RedirectToAction("Login","Account");
             }

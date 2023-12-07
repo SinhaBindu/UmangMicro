@@ -5,8 +5,15 @@
     DataSet ds = new DataSet();
     DataTable dt1 = new DataTable();
     DataTable dt2 = new DataTable();
+    DataTable dt3 = new DataTable();
 
 }
+<div class="admin-breadcrumb">
+    <h3>Result of Psychometric test</h3>
+    <div class="crumb">
+        <a href="~/Test/Index">Result Psychometric List</a> / Result of Psychometric test
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
@@ -15,11 +22,12 @@
                 @{
                     if (Model != null)
                     {
-                        ds = Model; int indx = 1;
+                        ds = Model; int indx = 1; int Row3Max = 0;
                         if (ds.Tables.Count > 0)
                         {
                             dt1 = ds.Tables[0];
                             dt2 = ds.Tables[1];
+                            dt3 = ds.Tables[2];
 
                             <section class="accordion">
                                 @foreach (DataRow dr in dt1.Rows)
@@ -27,12 +35,39 @@
                                     <div class="row" style="overflow:scroll;padding-left:3%; ">
                                         <div class="tab">
                                             <input type="checkbox" name="accordion-1" id="cb_@indx" checked>
-                                            <label for="cb_@indx" class="tab__label">RIASEC Test #@indx</label>
-
-                                            <div class="tab__content">
-                                                <div class="row">
-                                                </div>
-                                            </div>
+                                            <label for="cb_@indx" class="tab__label">RIASEC Test Result  #@indx Case ID : @dr["CaseID"] </label>
+                                            @{
+                                                var dt4 = dt2.AsEnumerable()?.Where(x => x.Field<int>("ID") == Convert.ToInt32(dr["ID"])).CopyToDataTable();
+                                                var dt5 = dt3.AsEnumerable()?.Where(x => x.Field<int>("RId") == Convert.ToInt32(dr["ID"])).CopyToDataTable();
+                                                if (dt4.Rows.Count > 0)
+                                                {
+                                                    Row3Max = 0;
+                                                    <div class="tab__content">
+                                                        <div class="row">
+                                                            @foreach (DataRow dr1 in dt4.Rows)
+                                                            {
+                                                                if (dr1["ID"].ToString() == dr["ID"].ToString())
+                                                                {
+                                                                    <div class="col-md-6">@dr1["Ques_Order"]. @dr1["QuestionHindi"]</div>
+                                                                    <div class="col-md-6">@dr1["Section"]</div>
+                                                                }
+                                                            }
+                                                            <div class="col-md-12"><hr /></div>
+                                                            <div class="col-md-12"><strong>Result of Psychometric test</strong></div>
+                                                            @foreach (DataRow dr2 in dt5.Rows)
+                                                            {
+                                                                Row3Max++;
+                                                                if (dr2["RId"].ToString() == dr["ID"].ToString())
+                                                                {
+                                                                <div class="col-md-12">
+                                                                    <strong> @Row3Max .  @dr2["SectionNameEng"]</strong>
+                                                                </div>
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
                                         </div>
                                     </div>
                                     indx++;

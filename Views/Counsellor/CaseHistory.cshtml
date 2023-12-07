@@ -16,6 +16,7 @@
         width: 690px !important;
     }
 </style>
+
 <div class="admin-breadcrumb">
     <h3>Case History (Student Counselling)</h3>
     <div class="crumb">
@@ -53,7 +54,8 @@
                         <div class="col-md-6">
                             <div class="position-relative form-group">
                                 <label></label>
-                                @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                &nbsp;&nbsp;&nbsp;&nbsp; @Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style = "display:none;" } })
                                 @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -145,7 +147,7 @@
                         <div class="col-md-6 hd-Test" style="display:none;">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Counselling, htmlAttributes: new { @class = "" })
-                                @Html.DropDownListFor(model => model.Counselling, CommonModel.GetCounselling(), null, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Counselling, CommonModel.GetCounselling(), null, new { @class = "form-control", @multiple = "multiple" })
                                 @Html.ValidationMessageFor(model => model.Counselling, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -168,6 +170,7 @@
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Psychometric, htmlAttributes: new { @class = "" })
                                 @Html.DropDownListFor(model => model.Psychometric, CommonModel.GetPsychometric(), null, new { @class = "form-control", @multiple = "multiple" })
                                 @Html.ValidationMessageFor(model => model.Psychometric, "", new { @class = "text-danger" })
+                                <br />Result of Psychometric test :<strong id="lblPsyResultMax3"></strong>
                             </div>
                         </div>
                         @*</div>*@
@@ -181,9 +184,10 @@
                                 <div class="card card-body">
                                     <strong>
                                         Result of Psychometric test
-                                        <input type="checkbox" name="chkAllRC" id="chkAllRC" value="" /> All RIASEC List
+                                        <input type="checkbox" name="chkAllRC" id="chkAllRC" value="" style="display:none;" /> All RIASEC List
                                     </strong>
-                                    <div id="RToCResData" style="height:200px !important; overflow:scroll;"></div>
+                                    @*style="height:200px !important; overflow:scroll;"*@
+                                    <div id="RToCResData"></div>
                                 </div>
                             </div>
                         </div>
@@ -426,6 +430,17 @@
                 document.querySelector('.ms').innerText = pms;
             }
 
+            $('input[name=TypeCase]').click(function () {
+                if ($(this).val() == "1") {
+                    $('#DOBtxt').show();
+                    $('#DOBtxt').attr('required', 'required'); 
+                }
+                else {
+                    $('#DOBtxt').hide();  $('#DOB').val('');
+                    $('#DOBtxt').removeAttr('required');
+                }
+            });
+
             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
                 $('#TypeCounsellor').val(('@MvcApplication.CUser.RoleId').toLowerCase());
                 $('#TypeCounsellor').attr("style", "pointer-events: none;");
@@ -445,6 +460,10 @@
             $('select[name=Subject]').multiselect({
                 columns: 2,
                 includeSelectAllOption: true
+            });
+            $('select[name=Counselling]').multiselect({
+                includeSelectAllOption: true,
+                columns: 2,
             });
             $('select[name=Psychometric]').multiselect({
                 includeSelectAllOption: true,
@@ -478,7 +497,8 @@
             $('select[name=TypeQuery]').change(function () {
                 $('#li-tab0').hide(); $('#li-tab1').hide(); $('#li-tab2').hide(); $('#li-tab3').hide();
                 $('#sub-data').hide(); $('#sub-data2').hide(); $('#sub-data3').hide();
-                BindData(); $('.hd-Test').hide();
+                BindData();
+                $('.hd-Test').hide();
                 $('#div-comde').show();
                 $('#btnCD').hide();
                 $('#btnST').hide();
@@ -551,7 +571,7 @@
 
             $('input[name=IsPsychometric]').click(function () {
                 if ($(this).val() == "1") {
-                    if ($('select[name=Counselling]').val() == "2") {
+                    //if ($('select[name=Counselling]').val() == "2") {
                         $('#div-TestRes').show();
                         $('#div-psy').show();
                         RToCData();//Tools used for counselling
@@ -560,17 +580,18 @@
                         //}
                         var sjoin = ((RIASECl3Val.join(",")).split(','));
                             $('select[name=Psychometric]').val(sjoin).multiselect('refresh');
-                    }
-                    else {
-                        $('input[name="IsPsychometric"]').removeAttr("checked");
-                        toastr.error("Error", "Please select - Tools used for counselling (Pscholmetric (RIASEC) test)");
-                    }
+                            
+                    //}
+                    //else {
+                    //    $('input[name="IsPsychometric"]').removeAttr("checked");
+                    //   // toastr.error("Error", "Please select - Tools used for counselling (Pscholmetric (RIASEC) test)");
+                    //}
                 }
                 else {
-                    if ($('select[name=Counselling]').val() == "2") {
-                        $('input[name="IsPsychometric"]').removeAttr("checked");
-                        $('input[id="IsPsychometric1"]').attr("checked", true);
-                    }
+                    //if ($('select[name=Counselling]').val() == "2") {
+                    //    $('input[name="IsPsychometric"]').removeAttr("checked");
+                    //    $('input[id="IsPsychometric1"]').attr("checked", true);
+                    //}
                     $('#div-TestRes').hide();
                     $('#div-psy').hide();
                 }
@@ -588,7 +609,7 @@
             $('input[name="chckcd"]').on("click", function () {
                 debugger;
                 $('input[name="chckcd"]:checked').each(function (i,exp) {
-                    debugger;
+                    debugger; $('#btnscd').show();
                     HideSearchCD();
                     //all
                     if (exp.value == "1") {
@@ -652,142 +673,157 @@
             /* Start Submitted Data */
             $("#formid").on("submit", function (event) {
                 event.preventDefault();
-                var bResponse = confirm('Are you sure you want to exit?');
-                if (bResponse === true) {
-                    jQuery.event.trigger("ajaxStart");
-                    debugger;
-                    var isvalid = Inputisvalid();//("#formid").valid();
-                    if (isvalid) {
-                    var phyjoin = ($('#Psychometric').val()).join(',');
-                    var Subjectjoin = ($('#Subject').val()).join(',');
-                    var formData = new FormData();
-                    formData.append('StratTime', $('#StratTime').val());
-                    formData.append('CaseID', $('#CaseID').val());
-                    formData.append('DOC', $('#DOC').val());
-                    formData.append('ClassId', $('#ClassId').val());
-                    formData.append('TypeCounsellor', $('#TypeCounsellor').val());
-                    formData.append('TypeQuery', $('#TypeQuery').val());
-                    formData.append('Study10th', $('#Study10th').val());
-                    formData.append('Study11th', $('#Study11th').val());
-                    formData.append('Subject', Subjectjoin);
-                    formData.append('KeyWords', $('#KeyWords').val());
-                    formData.append('Counselling', $('#Counselling').val());
-                    formData.append('IsPsychometric', $('input[name=IsPsychometric]:checked').val());
-                    if ($('input[name=IsPsychometric]:checked').val() == "1") {
-                        formData.append('Psychometric', phyjoin);
-                    }
-                    else {
-                        formData.append('Psychometric', '');
-                    }
-                    formData.append('AreasImprovement', $('#AreasImprovement').val());
-                    formData.append('Recommendation', $('#Recommendation').val());
-                    formData.append('IsFollow', $('input[name=IsFollow]:checked').val());
-                    if ($('input[name=IsFollow]:checked').val() == "1") {
-                        formData.append('FM', $('select[name=FM]').val());
-                        formData.append('FY', $('select[name=FY]').val());
-                    }
-                    else {
-                        formData.append('FM', ''); formData.append('FY', '');
-                    }
-                    formData.append('IsGoalClear', $('input[name=IsGoalClear]:checked').val());
+                if ($('#CaseID').val() != '' && $('#DOC').val() != '' && $('#ClassId').val() != ''
+                    && $('#TypeCounsellor').val() != '' && $('#TypeQuery').val() != '' && $('#Subject').val() != ''
+                    && $('#KeyWords').val() != '' && $('#AreasImprovement').val() != '' && $('#Recommendation').val() != ''
+                ) {
 
-                    debugger;
-                    var CH_PHY_List = [], CH_CD_List = [], CH_SkillT_List = [],
-                        CH_SSP_List = [], CH_SM_List = [];
-                    let tablephy = $('#DataList1').DataTable();
-                    tablephy.$('input:checked').each(function (i, row) {
-                        var CH_id = $(row).attr('data-id') || 0;
-                        var data_ChPhyId = $(row).attr('data-ChPhyId') || 0;
-                        var PsyTestSname = $(row).attr('data-name') || '';
-                        var RIASECid = $(row, 'input[type=checkbox]').val();
-                        CH_PHY_List.push({
-                            ID: data_ChPhyId,
-                            CaseId: $('#CaseID').val(),
-                            RIASEC_Guided_Id: RIASECid,
-                            CaseHistoryId: $('#Id').val(),
-                            PsychometricTestId: PsyTestSname,
-                        });
-                    });
+                    var bResponse = confirm('Are you sure you want to submitted form & exist?');
+                    if (bResponse === true) {
+                        jQuery.event.trigger("ajaxStart");
+                        debugger;
 
-                    let table1 = $('#DataListCD').DataTable();
-                    table1.$('input:checked').each(function (i, row) {
-                        var id = $(row).attr('data-id') || 0;
-                        var CourDId = $(row, 'input[type=checkbox]').val();
-                        CH_CD_List.push({
-                            ID: parseInt(id),
-                            CaseId: $('#CaseID').val(),
-                            CourseD_Id: CourDId,
-                            CaseHistoryId: $('#Id').val(),
-                        });
-                    });
-                    let table2 = $('#DataListST').DataTable();
-                    table2.$('input:checked').each(function (i, row) {
-                        var id = $(row).attr('data-id') || 0;
-                        var SkillT_Id = $(row, 'input[type=checkbox]').val();
-                        CH_SkillT_List.push({
-                            ID: parseInt(id),
-                            CaseId: $('#CaseID').val(),
-                            SkillT_Id: SkillT_Id,
-                            CaseHistoryId: $('#Id').val(),
-                        });
-                    });
-                    let table3 = $('#DataListSSP').DataTable();
-                    table3.$('input:checked').each(function (i, row) {
-                        var id = $(row).attr('data-id') || 0;
-                        var Scholarship_Id = $(row, 'input[type=checkbox]').val();
-                        CH_SSP_List.push({
-                            ID: parseInt(id),
-                            CaseId: $('#CaseID').val(),
-                            Scholarship_Id: Scholarship_Id,
-                            CaseHistoryId: $('#Id').val(),
-                        });
-                    });
-                    let table4 = $('#DataListSCME').DataTable();
-                    table4.$('input:checked').each(function (i, row) {
-                        var id = $(row).attr('data-id') || 0;
-                        var Scheme_Id = $(row, 'input[type=checkbox]').val();
-                        CH_SM_List.push({
-                            ID: parseInt(id),
-                            CaseId: $('#CaseID').val(),
-                            Scheme_Id: Scheme_Id,
-                            CaseHistoryId: $('#Id').val(),
-                        });
-                    });
 
-                    debugger;
-                    formData.append('CH_PHY_model', JSON.stringify(CH_PHY_List));
-                    formData.append('CH_CD_model', JSON.stringify(CH_CD_List));
-                    formData.append('CH_SkillT_model', JSON.stringify(CH_SkillT_List));
-                    formData.append('CH_SSP_model', JSON.stringify(CH_SSP_List));
-                    formData.append('CH_SM_model', JSON.stringify(CH_SM_List));
-                    $.ajax({
-                        type: "POST",
-                        url: document.baseURI + "/Counsellor/CaseHistory/",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function (resp) {
-                            if (resp.StatusType == "success") {
-                                toastr.success("Success", resp.Message);
-                                jQuery.event.trigger("ajaxStop");
+                        var isvalid = Inputisvalid();//("#formid").valid();
+                        if (isvalid) {
+                            var phyjoin = ($('#Psychometric').val()).join(',');
+                            var Counsellingjoin = ($('#Counselling').val()).join(',');
+                            var Subjectjoin = ($('#Subject').val()).join(',');
+                            var formData = new FormData();
+                            formData.append('StratTime', $('#StratTime').val());
+                            formData.append('CaseID', $('#CaseID').val());
+                            formData.append('RIASECTest_Id_fk', $('#RIASECTest_Id_fk').val());
+                            formData.append('DOC', $('#DOC').val());
+                            formData.append('ClassId', $('#ClassId').val());
+                            formData.append('TypeCounsellor', $('#TypeCounsellor').val());
+                            formData.append('TypeQuery', $('#TypeQuery').val());
+                            formData.append('Study10th', $('#Study10th').val());
+                            formData.append('Study11th', $('#Study11th').val());
+                            formData.append('Subject', Subjectjoin);
+                            formData.append('KeyWords', $('#KeyWords').val());
+                            formData.append('Counselling', Counsellingjoin);
+                            formData.append('IsPsychometric', $('input[name=IsPsychometric]:checked').val());
+                            if ($('input[name=IsPsychometric]:checked').val() == "1") {
+                                formData.append('Psychometric', phyjoin);
                             }
                             else {
-                                toastr.error("Error", resp.Message);
+                                formData.append('Psychometric', '');
                             }
-                        },
-                        error: function (req, error) {
-                            if (error === 'error') { error = req.statusText; }
-                            var errormsg = 'There was a communication error: ' + error;
-                            toastr.error("Error", errormsg);
-                            jQuery.event.trigger("ajaxStop");
-                            return false;
-                        }
+                            formData.append('AreasImprovement', $('#AreasImprovement').val());
+                            formData.append('Recommendation', $('#Recommendation').val());
+                            formData.append('IsFollow', $('input[name=IsFollow]:checked').val());
+                            if ($('input[name=IsFollow]:checked').val() == "1") {
+                                formData.append('FM', $('select[name=FM]').val());
+                                formData.append('FY', $('select[name=FY]').val());
+                            }
+                            else {
+                                formData.append('FM', ''); formData.append('FY', '');
+                            }
+                            formData.append('IsGoalClear', $('input[name=IsGoalClear]:checked').val());
 
-                    });
+                            debugger;
+                            var CH_PHY_List = [], CH_CD_List = [], CH_SkillT_List = [],
+                                CH_SSP_List = [], CH_SM_List = [];
+                            let tablephy = $('#DataList1').DataTable();
+                            tablephy.$('input:checked').each(function (i, row) {
+                                var CH_id = $(row).attr('data-id') || 0;
+                                var data_ChPhyId = $(row).attr('data-ChPhyId') || 0;
+                                var PsyTestSname = $(row).attr('data-name') || '';
+                                var RIASECid = $(row, 'input[type=checkbox]').val();
+                                CH_PHY_List.push({
+                                    ID: data_ChPhyId,
+                                    CaseId: $('#CaseID').val(),
+                                    RIASEC_Guided_Id: RIASECid,
+                                    CaseHistoryId: $('#Id').val(),
+                                    PsychometricTestId: PsyTestSname,
+                                });
+                            });
+
+                            let table1 = $('#DataListCD').DataTable();
+                            table1.$('input:checked').each(function (i, row) {
+                                var id = $(row).attr('data-id') || 0;
+                                var CourDId = $(row, 'input[type=checkbox]').val();
+                                CH_CD_List.push({
+                                    ID: parseInt(id),
+                                    CaseId: $('#CaseID').val(),
+                                    CourseD_Id: CourDId,
+                                    CaseHistoryId: $('#Id').val(),
+                                });
+                            });
+                            let table2 = $('#DataListST').DataTable();
+                            table2.$('input:checked').each(function (i, row) {
+                                var id = $(row).attr('data-id') || 0;
+                                var SkillT_Id = $(row, 'input[type=checkbox]').val();
+                                CH_SkillT_List.push({
+                                    ID: parseInt(id),
+                                    CaseId: $('#CaseID').val(),
+                                    SkillT_Id: SkillT_Id,
+                                    CaseHistoryId: $('#Id').val(),
+                                });
+                            });
+                            let table3 = $('#DataListSSP').DataTable();
+                            table3.$('input:checked').each(function (i, row) {
+                                var id = $(row).attr('data-id') || 0;
+                                var Scholarship_Id = $(row, 'input[type=checkbox]').val();
+                                CH_SSP_List.push({
+                                    ID: parseInt(id),
+                                    CaseId: $('#CaseID').val(),
+                                    Scholarship_Id: Scholarship_Id,
+                                    CaseHistoryId: $('#Id').val(),
+                                });
+                            });
+                            let table4 = $('#DataListSCME').DataTable();
+                            table4.$('input:checked').each(function (i, row) {
+                                var id = $(row).attr('data-id') || 0;
+                                var Scheme_Id = $(row, 'input[type=checkbox]').val();
+                                CH_SM_List.push({
+                                    ID: parseInt(id),
+                                    CaseId: $('#CaseID').val(),
+                                    Scheme_Id: Scheme_Id,
+                                    CaseHistoryId: $('#Id').val(),
+                                });
+                            });
+
+                            debugger;
+                            formData.append('CH_PHY_model', JSON.stringify(CH_PHY_List));
+                            formData.append('CH_CD_model', JSON.stringify(CH_CD_List));
+                            formData.append('CH_SkillT_model', JSON.stringify(CH_SkillT_List));
+                            formData.append('CH_SSP_model', JSON.stringify(CH_SSP_List));
+                            formData.append('CH_SM_model', JSON.stringify(CH_SM_List));
+                            $.ajax({
+                                type: "POST",
+                                url: document.baseURI + "/Counsellor/CaseHistory/",
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: function (resp) {
+                                    if (resp.StatusType == "success") {
+                                        toastr.success("Success", resp.Message);
+                                        jQuery.event.trigger("ajaxStop");
+                                    }
+                                    else {
+                                        toastr.error("Error", resp.Message);
+                                    }
+                                },
+                                error: function (req, error) {
+                                    if (error === 'error') { error = req.statusText; }
+                                    var errormsg = 'There was a communication error: ' + error;
+                                    toastr.error("Error", errormsg);
+                                    jQuery.event.trigger("ajaxStop");
+                                    return false;
+                                }
+
+                            });
+                        }
+                    }
+                    return bResponse;
+
                 }
-                }
-                return bResponse;
+                else {
+                        toastr.error('Error', "Please fill all required fields!!");
+                    }
+
             });//End Submit Data
 
         });//
@@ -795,14 +831,14 @@
         function HideSearchEmpty() {
             $('#sub-data').html(''); $('#sub-data1').html(''); $('#sub-data2').html(''); $('#sub-data3').html('');
         }
-        function BindData(Paratbl, dataall = "") {
+        function BindData(Paratbl, dataall = "", sby_cnlinksearch="") {
             debugger;
             HideSearchEmpty();
             //jQuery.event.trigger("ajaxStart");
             $('#submission-data').removeClass("text-danger");
             var url = $('#submission-form').attr("action");
             //var formData = $('#submission-form').serialize();
-
+          
             var formData = new FormData();
             var sby_cn = $('#sby_cn').val();
             var sby_ct = $('#sby_ct').val();
@@ -812,6 +848,10 @@
             var sby_mi = $('#sby_mi').val();
             var sby_cu = $('#sby_cu').val();
             var sby_lc = $('#sby_lc').val();
+            if (sby_cnlinksearch != "") {
+                sby_cn = sby_cnlinksearch;
+            }
+
             var DList = {
                 Para1: sby_cn, Para2: sby_ct, Para3: sby_jo, Para4: sby_cd,
                 Para5: sby_e, Para6: sby_mi, Para7: sby_cu, Para8: sby_lc, Paratbl: Paratbl, ParaAll: dataall
@@ -832,11 +872,23 @@
                         $('#sub-data1').html(resp.html_ST);//Skill Training
                         $('#sub-data2').html(resp.html_SSP);//Schemes
                         $('#sub-data3').html(resp.html_SM);//Scholarshhip
+                        if ($.fn.dataTable.isDataTable('#DataListCD')) {
+                            $("#DataListCD").dataTable().fnDestroy();
+                        }
+                        if ($.fn.dataTable.isDataTable('#DataListSCME')) {
+                            $("#DataListSCME").dataTable().fnDestroy();
+                        }
+                        if ($.fn.dataTable.isDataTable('#DataListSSP')) {
+                            $("#DataListSSP").dataTable().fnDestroy();
+                        }
+                        if ($.fn.dataTable.isDataTable('#DataListST')) {
+                            $("#DataListST").dataTable().fnDestroy();
+                        }
 
                         setTimeout(function () {
 
                             // start Table
-                            $('table').DataTable({
+                            $('.tbl').DataTable({
                                 //paging: false,
                                 fixedHeader: true,
                                 responsive: true,
@@ -896,7 +948,7 @@
                 $.ajax({
                     url: document.baseURI + "/Counsellor/GetStudentlList",
                     type: "Post",
-                    data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }),
+                    data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val(), 'DOB': $('input[name=DOBtxt]').val() }),
                     contentType: "application/json; charset=utf-8",
                     global: false,
                     async: false,
@@ -945,7 +997,8 @@
         }
 
         function GetRIASEClData() {
-            RIASECl3Val = [];
+            debugger;
+            RIASECl3Val = []; $('#lblPsyResultMax3').html("");
             var CaseID = $('select[name=CaseID]').val();
             $.ajax({
                 url: document.baseURI + "/Counsellor/GetRIASEClList",
@@ -958,12 +1011,16 @@
                 success: function (resp) {
                     if (resp.IsSuccess) {
                         RIASEClList = JSON.parse(resp.res);
+                        var rowmax3 = 0;
                         $.each(RIASEClList, function (i, exp) {
+                            rowmax3++;
                             if (i<=2) {
                                 RIASECl3Val.push(exp.QuestionCode);
                                 RIASEC_ID_Pk = exp.RIASEC_ID_Pk;
+                                $('#lblPsyResultMax3').append(rowmax3+". " + exp.SectionNameEng +" ");
                             }
                         });
+                        
                         $('#RIASECTest_Id_fk').val(RIASEC_ID_Pk);
                     }
                 },
@@ -982,7 +1039,8 @@
                url: '@Url.Action("RIASECldata", "Counsellor")',
                  data: { Para: RC3Val  },
                type: 'POST',
-               success: function (data) {
+                 success: function (data) {
+                     debugger;
                    $("#RToCResData").html(data);
                    //var table = $('#DataListRC').dataTable({
                    //    "sDom": "Ttfrip",

@@ -1,6 +1,7 @@
 ﻿@*@model UmangMicro.Models.CHModel*@
 @using System.Data
 @using UmangMicro.Manager
+@using System.Linq
 @{
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
     DataSet ds = new DataSet();
@@ -33,6 +34,7 @@
                             <section class="accordion">
                                 @foreach (DataRow dr in dtm.Rows)
                                 {
+
                                     <div class="row" style="overflow:scroll;padding-left:3%; ">
                                         <div class="tab">
                                             <input type="checkbox" name="accordion-1" id="cb_@indx" checked>
@@ -80,7 +82,9 @@
                                                     }
                                                     @if (dtrc.Rows.Count > 0)
                                                     {
-                                                        int sno = 0;
+                                                        var dtrc1 = dtrc.Rows.Count > 0 ? dtrc.AsEnumerable()?.Where(x => x.Field<string>("CaseHistoryId") == dr["Id"].ToString()).CopyToDataTable() : null;
+
+                                                        int sno = 1;
                                                         <div class="col-md-12">
                                                             <h5> Result of Psychometric Details</h5>
                                                             <table class="table table-bordered table-hover dt-responsive display" id="DataList1" width="100%">
@@ -93,7 +97,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    @foreach (DataRow dr1 in dtrc.Rows)
+                                                                    @foreach (DataRow dr1 in dtrc1.Rows)
                                                                     {
                                                                         <tr>
                                                                             <td class="text-center">@(sno++)</td>
@@ -110,183 +114,232 @@
                                                     {
                                                         if (dtcd.Rows.Count > 0)
                                                         {
-                                                            int sno = 0;
-                                                            <div class="col-md-12">
-                                                                <h5> Courses Details </h5>
-                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListCD" width="100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>SrNo.</th>
-                                                                            <th>Name of the Course</th>
-                                                                            <th>Course Type</th>
-                                                                            <th>Job Opportunity</th>
-                                                                            <th>Course Duration</th>
-                                                                            <th>Short Description of Course</th>
-                                                                            <th>Eligibility</th>
-                                                                            <th>Marks Criteria</th>
-                                                                            <th>Admission Process</th>
-                                                                            <th>Medium of Instructions</th>
-                                                                            <th>Hostel Availability</th>
-                                                                            <th>Available Scholarships </th>
-                                                                            <th>College/<br />University/Institute</th>
-                                                                            <th>Fee Structure</th>
-                                                                            <th>Status of Institution</th>
-                                                                            <th>District</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @foreach (DataRow dr1 in dtcd.Rows)
-                                                                        {
-                                                                            <tr>
-                                                                                <td class="text-center" style="cursor:pointer;">@(sno++)</td>
-                                                                                <td class="text-left">@dr1["NameCourseEng"]</td>
-                                                                                <td class="text-left">@dr1["CourseTypeEng"]</td>
-                                                                                <td class="text-left">@dr1["JobOpportunityEng"]</td>
-                                                                                <td class="text-left">@dr1["CourseDurationEng"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["ShortDescriptionCourseEng"]</td>
-                                                                                <td class="text-left">@dr1["EligibilityEng"]</td>
-                                                                                <td class="text-left">@dr1["MarksCriteriaEng"]</td>
-                                                                                <td class="text-left">@dr1["AdmissionProcessEng"]</td>
-                                                                                <td class="text-left">@dr1["MediumInstructionEng"]</td>
-                                                                                <td class="text-left">@dr1["HostelAvailabilityEng"]</td>
-                                                                                <td class="text-left">@dr1["AvailableScholarshipEng"]</td>
-                                                                                <td class="text-left">@dr1["College_Unvty_InstEng"]</td>
-                                                                                <td class="text-left">@dr1["FeeStructureEng"]</td>
-                                                                                <td class="text-left">@dr1["StatusInstitutionEng"]</td>
-                                                                                <td class="text-left">@dr1["DistrictEng"]</td>
-                                                                            </tr>
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        }
+                                                            DataTable dtcd_1 = new DataTable();
+                                                            int sno = 1;
+                                                            var dtcd1 = dtcd.Rows.Count > 0 ?
+                                                            dtcd.AsEnumerable()?.Where(x => x.Field<string>("CaseHistoryId") == dr["Id"].ToString())
+                                                            : null;
+                                                            if (dtcd1 != null)
+                                                            {
+                                                                dtcd_1 = dtcd1.Any() ? dtcd1.CopyToDataTable() : dtcd_1.Clone();
 
-                                                        if (dtst.Rows.Count > 0)
-                                                        {
-                                                            int sno = 0;
-                                                            <div class="col-md-12">
-                                                                <h5> Skill Training Details </h5>
-                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListST" width="100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            @*<th>SrNo.</th>*@
-                                                                            <th></th>
-                                                                            <th>Name of the Course</th>
-                                                                            <th>Course Type</th>
-                                                                            <th>Job Opportunity</th>
-                                                                            <th>Course Duration</th>
-                                                                            <th>Short Description of Course</th>
-                                                                            <th>Eligibility</th>
-                                                                            <th>Marks Criteria</th>
-                                                                            <th>Admission Process</th>
-                                                                            <th>Medium of Instructions</th>
-                                                                            <th>Hostel Availability</th>
-                                                                            <th>Available Scholarships</th>
-                                                                            <th>College/University/Institute</th>
-                                                                            <th>Fee Structure</th>
-                                                                            <th>Status of Institution</th>
-                                                                            <th>District</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @foreach (DataRow dr1 in dtst.Rows)
-                                                                        {
-                                                                            <tr>
-                                                                                <td class="text-center">@(sno++)</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["NameCourse"]</td>
-                                                                                <td class="text-left">@dr1["CourseType"]</td>
-                                                                                <td class="text-left">@dr1["JobOppty"]</td>
-                                                                                <td class="text-left">@dr1["CorseDur"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["ShortDesCourse"]</td>
-                                                                                <td class="text-left">@dr1["Eligibility"]</td>
-                                                                                <td class="text-left">@dr1["MarksCriteria"]</td>
-                                                                                <td class="text-left">@dr1["AdmissionProcess"]</td>
-                                                                                <td class="text-left">@dr1["MediumInstructions"]</td>
-                                                                                <td class="text-left">@dr1["HostelAvailability"]</td>
-                                                                                <td class="text-left">@dr1["AvailableScholarships"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["CollegeUniversityInstitute"]</td>
-                                                                                <td class="text-left">@dr1["FeeStructure"]</td>
-                                                                                <td class="text-left">@dr1["StatusInstitution"]</td>
-                                                                                <td class="text-left">@dr1["District"]</td>
-                                                                            </tr>
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                                if (dtcd_1.Rows.Count > 0)
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        <h5> Courses Details </h5>
+                                                                        <table class="table table-bordered table-hover dt-responsive display" id="DataListCD" width="100%">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>SrNo.</th>
+                                                                                    <th>Name of the Course</th>
+                                                                                    <th>Course Type</th>
+                                                                                    <th>Job Opportunity</th>
+                                                                                    <th>Course Duration</th>
+                                                                                    <th>Short Description of Course</th>
+                                                                                    <th>Eligibility</th>
+                                                                                    <th>Marks Criteria</th>
+                                                                                    <th>Admission Process</th>
+                                                                                    <th>Medium of Instructions</th>
+                                                                                    <th>Hostel Availability</th>
+                                                                                    <th>Available Scholarships </th>
+                                                                                    <th>College/<br />University/Institute</th>
+                                                                                    <th>Fee Structure</th>
+                                                                                    <th>Status of Institution</th>
+                                                                                    <th>District</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach (DataRow dr1 in dtcd_1.Rows)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td class="text-center" style="cursor:pointer;">@(sno++)</td>
+                                                                                        <td class="text-left">@dr1["NameCourseEng"]</td>
+                                                                                        <td class="text-left">@dr1["CourseTypeEng"]</td>
+                                                                                        <td class="text-left">@dr1["JobOpportunityEng"]</td>
+                                                                                        <td class="text-left">@dr1["CourseDurationEng"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["ShortDescriptionCourseEng"]</td>
+                                                                                        <td class="text-left">@dr1["EligibilityEng"]</td>
+                                                                                        <td class="text-left">@dr1["MarksCriteriaEng"]</td>
+                                                                                        <td class="text-left">@dr1["AdmissionProcessEng"]</td>
+                                                                                        <td class="text-left">@dr1["MediumInstructionEng"]</td>
+                                                                                        <td class="text-left">@dr1["HostelAvailabilityEng"]</td>
+                                                                                        <td class="text-left">@dr1["AvailableScholarshipEng"]</td>
+                                                                                        <td class="text-left">@dr1["College_Unvty_InstEng"]</td>
+                                                                                        <td class="text-left">@dr1["FeeStructureEng"]</td>
+                                                                                        <td class="text-left">@dr1["StatusInstitutionEng"]</td>
+                                                                                        <td class="text-left">@dr1["DistrictEng"]</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                            }
                                                         }
+                                                    }
+
+                                                    @if (dtst.Rows.Count > 0)
+                                                    {
+                                                        DataTable dtst_1 = new DataTable();
+                                                        int sno = 1;
+                                                        var dtst1 = dtst.Rows.Count > 0 ?
+                                                        dtst.AsEnumerable()?.Where(x => x.Field<string>("CaseHistoryId") == dr["Id"].ToString())
+                                                        : null;
+                                                        if (dtst1 != null)
+                                                        {
+                                                            dtst_1 = dtst1.Any() ? dtst1.CopyToDataTable() : dtst_1.Clone();
+
+                                                            if (dtst_1.Rows.Count > 0)
+                                                            {
+                                                                <div class="col-md-12">
+                                                                    <h5> Skill Training Details </h5>
+                                                                    <table class="table table-bordered table-hover dt-responsive display" id="DataListST" width="100%">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                @*<th>SrNo.</th>*@
+                                                                                <th></th>
+                                                                                <th>Name of the Course</th>
+                                                                                <th>Course Type</th>
+                                                                                <th>Job Opportunity</th>
+                                                                                <th>Course Duration</th>
+                                                                                <th>Short Description of Course</th>
+                                                                                <th>Eligibility</th>
+                                                                                <th>Marks Criteria</th>
+                                                                                <th>Admission Process</th>
+                                                                                <th>Medium of Instructions</th>
+                                                                                <th>Hostel Availability</th>
+                                                                                <th>Available Scholarships</th>
+                                                                                <th>College/University/Institute</th>
+                                                                                <th>Fee Structure</th>
+                                                                                <th>Status of Institution</th>
+                                                                                <th>District</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach (DataRow dr1 in dtst_1.Rows)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td class="text-center">@(sno++)</td>
+                                                                                    <td class="text-left" style="text-wrap: wrap;">@dr1["NameCourse"]</td>
+                                                                                    <td class="text-left">@dr1["CourseType"]</td>
+                                                                                    <td class="text-left">@dr1["JobOppty"]</td>
+                                                                                    <td class="text-left">@dr1["CorseDur"]</td>
+                                                                                    <td class="text-left" style="text-wrap: wrap;">@dr1["ShortDesCourse"]</td>
+                                                                                    <td class="text-left">@dr1["Eligibility"]</td>
+                                                                                    <td class="text-left">@dr1["MarksCriteria"]</td>
+                                                                                    <td class="text-left">@dr1["AdmissionProcess"]</td>
+                                                                                    <td class="text-left">@dr1["MediumInstructions"]</td>
+                                                                                    <td class="text-left">@dr1["HostelAvailability"]</td>
+                                                                                    <td class="text-left">@dr1["AvailableScholarships"]</td>
+                                                                                    <td class="text-left" style="text-wrap: wrap;">@dr1["CollegeUniversityInstitute"]</td>
+                                                                                    <td class="text-left">@dr1["FeeStructure"]</td>
+                                                                                    <td class="text-left">@dr1["StatusInstitution"]</td>
+                                                                                    <td class="text-left">@dr1["District"]</td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
                                                     }
                                                     @if (dr["TypeQuery"].ToString() == "3")
                                                     {
                                                         if (dtssp.Rows.Count > 0)
                                                         {
-                                                            int sno = 0;
-                                                            <div class="col-md-12">
-                                                                <h5> Scholarship Details </h5>
-                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListSSP" width="100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>SrNo.</th>
-                                                                            <th></th>
-                                                                            <th>Name of Scholarship</th>
-                                                                            <th>Category</th>
-                                                                            <th>Eligibility</th>
-                                                                            <th>Institutions Eligibility</th>
-                                                                            <th>Remarks</th>
-                                                                            <th>Amount</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @foreach (DataRow dr1 in dtssp.Rows)
-                                                                        {
-                                                                            <tr>
-                                                                                <td class="text-center">@(sno++)</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["NameScholarship"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Category"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Eligibility"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["InstitutionsEligibility"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Remarks"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Amount"]</td>
-                                                                            </tr>
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                            DataTable dtssp_1 = new DataTable();
+                                                            int sno = 1;
+                                                            var dtssp1 = dtssp.Rows.Count > 0 ?
+                                                            dtssp.AsEnumerable()?.Where(x => x.Field<string>("CaseHistoryId") == dr["Id"].ToString())
+                                                            : null;
+                                                            if (dtssp1 != null)
+                                                            {
+                                                                dtssp_1 = dtssp1.Any() ? dtssp1.CopyToDataTable() : dtssp_1.Clone();
+
+                                                                if (dtssp_1.Rows.Count > 0)
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        <h5> Scholarship Details </h5>
+                                                                        <table class="table table-bordered table-hover dt-responsive display" id="DataListSSP" width="100%">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>SrNo.</th>
+                                                                                    <th></th>
+                                                                                    <th>Name of Scholarship</th>
+                                                                                    <th>Category</th>
+                                                                                    <th>Eligibility</th>
+                                                                                    <th>Institutions Eligibility</th>
+                                                                                    <th>Remarks</th>
+                                                                                    <th>Amount</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach (DataRow dr1 in dtssp_1.Rows)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td class="text-center">@(sno++)</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["NameScholarship"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Category"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Eligibility"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["InstitutionsEligibility"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Remarks"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Amount"]</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                     @if (dr["TypeQuery"].ToString() == "3")
                                                     {
-                                                        if (dtssp.Rows.Count > 0)
+                                                        if (dtsm.Rows.Count > 0)
                                                         {
-                                                            int sno = 0;
-                                                            <div class="col-md-12">
-                                                                <h5> Schemes Details </h5>
-                                                                <table class="table table-bordered table-hover dt-responsive display" id="DataListSM" width="100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>SrNo.</th>
-                                                                            <th></th>
-                                                                            <th>Name of Scheme</th>
-                                                                            <th>Objective</th>
-                                                                            <th>Eligibility</th>
-                                                                            <th>Benefit</th>
-                                                                            <th>Remarks</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @foreach (DataRow dr1 in dtsm.Rows)
-                                                                        {
-                                                                            <tr>
-                                                                                <td class="text-center">@(sno++)</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["NameofScheme"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Objective"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Eligibility"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Benefit"]</td>
-                                                                                <td class="text-left" style="text-wrap: wrap;">@dr1["Remarks"]</td>
-                                                                            </tr>
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                            DataTable dtsm_1 = new DataTable();
+                                                            int sno = 1;
+                                                            var dtsm1 = dtsm.Rows.Count > 0 ?
+                                                            dtsm.AsEnumerable()?.Where(x => x.Field<string>("CaseHistoryId") == dr["Id"].ToString())
+                                                            : null;
+                                                            if (dtsm1 != null)
+                                                            {
+                                                                dtsm_1 = dtsm1.Any() ? dtsm1.CopyToDataTable() : dtsm_1.Clone();
+
+                                                                if (dtsm_1.Rows.Count > 0)
+                                                                {
+                                                                    <div class="col-md-12">
+                                                                        <h5> Schemes Details </h5>
+                                                                        <table class="table table-bordered table-hover dt-responsive display" id="DataListSM" width="100%">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>SrNo.</th>
+                                                                                    <th></th>
+                                                                                    <th>Name of Scheme</th>
+                                                                                    <th>Objective</th>
+                                                                                    <th>Eligibility</th>
+                                                                                    <th>Benefit</th>
+                                                                                    <th>Remarks</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach (DataRow dr1 in dtsm_1.Rows)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td class="text-center">@(sno++)</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["NameofScheme"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Objective"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Eligibility"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Benefit"]</td>
+                                                                                        <td class="text-left" style="text-wrap: wrap;">@dr1["Remarks"]</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                }
+                                                            }
                                                         }
                                                     }
 

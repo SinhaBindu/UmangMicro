@@ -181,7 +181,7 @@ namespace UmangMicro.Controllers
                         {
                             if (User.Identity.IsAuthenticated)
                             {
-                                tbl.CreatedBy = User.Identity.Name;
+                                tbl.CreatedBy = MvcApplication.CUser.Id;
                             }
                             tbl.CreatedDt = DateTime.Now;
                             db.tbl_Registration.Add(tbl);
@@ -190,7 +190,7 @@ namespace UmangMicro.Controllers
                         {
                             if (User.Identity.IsAuthenticated)
                             {
-                                tbl.UpdatedBY = User.Identity.Name;
+                                tbl.UpdatedBY = MvcApplication.CUser.Id;
                             }
                             tbl.UpdatedDt = DateTime.Now;
                         }
@@ -310,6 +310,7 @@ namespace UmangMicro.Controllers
                 return writer.ToString();
             }
         }
+
 
     }
 }

@@ -32,7 +32,7 @@
                             <legend class="scheduler-border">Search  :</legend>
                             <div class="row">
 
-                                <div class="col-md-5">
+                                <div class="col-md-5" style="display:none;">
                                     <div class="position-relative form-group">
                                         @*<label>Search By : </label>*@
                                         <div class="checkbox">
@@ -45,9 +45,10 @@
                                         @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="display:none;">
                                     <div class="position-relative form-group">
-                                        @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control", @placeholder= "Search By : Name,CaseID,DOB" } })
+                                        @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        &nbsp;&nbsp;&nbsp;&nbsp; @Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style = "display:none;" } })
                                         @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -74,7 +75,7 @@
                                 </div>
                                 <div class="col-md-2">
                                         @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), null, new { @class = "form-control select2" })
+                                        @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), "All", new { @class = "form-control select2" })
                                         @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-md-4">
@@ -125,13 +126,23 @@
 
     <script>
         $(document).ready(function () {
-
+            $('input[name=TypeCase]').click(function () {
+                if ($(this).val() == "1") {
+                    $('#DOBtxt').show();
+                    $('#DOBtxt').attr('required', 'required');
+                }
+                else {
+                    $('#DOBtxt').hide(); $('#DOB').val('');
+                    $('#DOBtxt').removeAttr('required');
+                }
+            });
             //GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
             //$('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
             //$('#SchoolId').attr("style", "pointer-events: none;");
              if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
                      $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
-                     $('#SchoolId').trigger('change');
+                 $('#SchoolId').trigger('change');
+                 $("#SchoolId").select2({ disabled: 'readonly' });
                 }
             $('#formid').submit(function (e) {
                 e.preventDefault();
@@ -156,7 +167,7 @@
                 // url: url,
                 url: document.baseURI + "/Test/GetIndexList",
                 type: "POST",
-                data: { 'Para': Para, 'CaseIDNameDOB': $('input[name=Searchtxt]').val(), 'Sdt': Sdt, 'Edt': Edt, 'SchoolId': SchoolId },
+                data: { 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val(), 'DOB': $('input[name=DOBtxt]').val(), 'Sdt': Sdt, 'Edt': Edt, 'SchoolId': SchoolId },
                 //{ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }
                 // contentType: "application/json",
                 // dataType: "json",
