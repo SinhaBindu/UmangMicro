@@ -15,17 +15,44 @@
             padding-bottom: 20px;
         }
 </style>
+<!-- Image Zoom Banner -->
+<link href="~/Content/css/simp.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Content/js/1-simp-lib.min.js"></script>
+<script type="text/javascript" src="~/Content/js/2-simp-lib.min.js"></script>
 <!-- Banner -->
-<div class="top-spacer"></div>
-@*<div class="banner-title">
-    <h2>Kishori HelpDesk</h2>
-    <p>A safe space for adolescent girls to seek counselling and solutions to their queries</p>
-    <div class="left-bord"></div>
-</div>*@
-<img src="~/Content/images/kishori-banner.jpg" alt="Kishori HelpDesk banner" />
+@*<div class="top-spacer"></div>*@
+<!-- Banner -->
+<div class="zoomer-banner">
+    <div class="carousel-container">
+        <div class="weather-time-widget-holder"> </div>
+        <div id="homeCarousel" class="carousel slide simple-carousel carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" width="100%" height="100%" alt="" src="~/Content/images/kishori-banner.jpg" />
+                    <div class="slider-text">
+                        <h1>Kishori HelpDesk</h1>
+                        <p>A safe space for adolescent girls to seek counselling and solutions to their queries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="kishori-banner">
+        <div class="banner-pic"></div>
+        <div class="banner-content">
+            <div class="title-cont">
+                <h2>Kishori HelpDesk</h2>
+            </div>
+            <div class="title-detail">
+                <h3>A safe space for adolescent girls to seek counselling and solutions to their queries</h3>
+            </div>
+        </div>
+    </div>*@
+@*<img src="~/Content/images/kishori-banner.jpg" alt="Kishori HelpDesk banner" />*@
 @*<div class="under-content"></div>*@
 <div class="kishori-help-desk-box">
-    <p>Kishori (meaning adolescent girl) Help Desk is the unique space for adolescent girls & their parents to get guidance and support on various issues pertaining to their growing up years and the pathways they choose in life. Located at CLF offices, Help Desk addresses the gap between educational & career aspirations among adolescent girls and guides them through a healthy passage to adulthood.</p>
+    <p>Kishori <b>(meaning adolescent girl)</b> Help Desk is the unique space for adolescent girls & their parents to get guidance and support on various issues pertaining to their growing up years and the pathways they choose in life. Located at CLF offices, Help Desk addresses the gap between educational & career aspirations among adolescent girls and guides them through a healthy passage to adulthood.</p>
     <p style="text-align: center" class="pink-dark">Offers counselling on</p>
     <div class="help-desk-option">
         <div class="box-1">
@@ -38,14 +65,18 @@
         </div>
         <div class="box-1">
             <img src="~/Content/images/mental-health.png" alt="Mental Health and SRHR" class="kishoori-option-icon" />
-            <h4>Mental Health and SRHR* issues <span class="lighter">(*Sexual and reproductive health and rights)</span></h4>
+            <h4>
+                Mental Health & SRHR issues <i class="fa fa-info-circle"></i>
+                <span class="social__tooltip social__tooltip-bottom">*Sexual and reproductive health and rights</span>
+            </h4>
         </div>
         <div class="box-1">
             <img src="~/Content/images/skills-training.png" alt="Skills Trainings" class="kishoori-option-icon" />
             <h4>Skills Trainings</h4>
         </div>
     </div>
-    <p>Trained counsellors offer complete guidance and career counselling to adolescent girls with a scientific approach using John Holland’s RIASEC Test (psychometric analysis of understanding aptitude & personality types as Realistic, Investigative, Artistic, Social, Enterprising and Conventional) . Moreover, girls are guided and linked to various schemes and scholarship and guided about available courses with the help of a detailed compendium, especially designed for the project.</p>
+    <p>Trained counsellors offer complete guidance and career counselling to adolescent girls with a scientific approach using <a href="https://openpsychometrics.org/tests/RIASEC/" target="_blank">John Holland’s RIASEC Test</a> (psychometric analysis of understanding aptitude & personality types as Realistic, Investigative, Artistic, Social, Enterprising and Conventional) . 
+    Moreover, girls are guided and linked to various schemes and scholarship and guided about available courses with the help of a detailed compendium, especially designed for the project.</p>
     <p class="pink-dark">Initiated in July 2022, a total of 12 Kishori Help Desks have been institutionalised so far in Godda Sadar and Nala blocks, that have together offered counselling to more than 650 adolescent girls.</p>
     <div class="genesis-box">
         <div class="genesis-border">
