@@ -38,6 +38,11 @@
         padding: 10px 20px;
         display: flex;
     }
+    @@media all and (max-width:900px) {
+        .gapper {
+            flex-direction: column;
+        }
+    }
 </style>
 <div class="admin-breadcrumb">
     <h3>RIASEC Test</h3>
@@ -105,7 +110,7 @@
                                             <input type="hidden" name="sid" id="sid" value="@Model.SchoolId" />
                                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                             <div class="top-form">
-                                                <div class="gapper">
+                                                <div class="gapper gipper">
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group">
                                                             <span class="text-danger">*</span>@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "" })
@@ -115,14 +120,19 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group">
-                                                            <label>Search By : </label>
-                                                            <div class="checkbox">
-                                                                @foreach (var item in CommonModel.GetTypeCase())
-                                                                {
-                                                                    @Html.RadioButtonFor(model => model.TypeCase, item.Value, new { id = "TypeCase" + item.Value, @required = "required" }) @item.Text
-                                                                }
-                                                                @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
-                                                            </div>
+                                                            <label>
+                                                                
+                                                                <div class="checkbox">
+                                                                    Search By :
+                                                                    @foreach (var item in CommonModel.GetTypeCase())
+                                                                    {
+                                                                        @Html.RadioButtonFor(model => model.TypeCase, item.Value, new { id = "TypeCase" + item.Value, @required = "required" }) @item.Text
+                                                                    }
+                                                                    @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </label>                                                            
+                                                           @Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style="display:none;" } })
+
                                                             @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
@@ -130,7 +140,7 @@
                                                         <div class="position-relative form-group">
                                                             <label></label>
                                                             @Html.EditorFor(model => model.Searchtxt, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                                                            &nbsp;&nbsp;&nbsp;&nbsp; @Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style="display:none;" } })
+                                                            <!--&nbsp;&nbsp;&nbsp;&nbsp;--> @*@Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style="display:none;" } })*@
                                                             @Html.ValidationMessageFor(model => model.Searchtxt, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>

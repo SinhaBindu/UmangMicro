@@ -240,7 +240,7 @@
         #cssmenu ul {
             width: 100%;
             display: none;
-            top:40px;
+            top:0px;
         }
 
         #cssmenu.align-center > ul,
@@ -261,7 +261,7 @@
                 width: 100%;
                 color: #000;
                 margin-left: 0px;
-                padding: 12px 15px 12px 15px;
+                padding: 18px 15px 18px 15px;
                 border-bottom: 1px solid #B8B8B8;
                 border-radius: 0px;
                 border-top: none;
