@@ -38,9 +38,15 @@
         padding: 10px 20px;
         display: flex;
     }
+    .select2 {
+        width: 90% !important;
+    }
     @@media all and (max-width:900px) {
         .gapper {
             flex-direction: column;
+        }
+        .select2 {
+            width: 100% !important;
         }
     }
 </style>
@@ -120,8 +126,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group">
-                                                            <label>
-                                                                
+                                                            <label>                                                                
                                                                 <div class="checkbox">
                                                                     Search By :
                                                                     @foreach (var item in CommonModel.GetTypeCase())
@@ -151,14 +156,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="gapper">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="position-relative form-group">
                                                             <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
                                                             @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
                                                             @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label">School</label>
                                                             @if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
