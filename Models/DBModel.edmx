@@ -409,6 +409,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="GudId" Type="uniqueidentifier" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TestDate" Type="date" />
+          <Property Name="Reg_Id_fk" Type="int" />
           <Property Name="CaseID" Type="nvarchar" MaxLength="50" />
           <Property Name="DistrictId" Type="nvarchar" MaxLength="50" />
           <Property Name="BlockId" Type="nvarchar" MaxLength="50" />
@@ -549,7 +550,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="Year_Master" EntityType="UM_DBModel.Year_Master" />
           <EntitySet Name="QuestionRIASECs" EntityType="UM_DBModel.QuestionRIASEC" />
           <EntitySet Name="RIASEC_Guided" EntityType="UM_DBModel.RIASEC_Guided" />
-          <EntitySet Name="tbl_RIASEC_Main" EntityType="UM_DBModel.tbl_RIASEC_Main" />
           <EntitySet Name="tbl_CH_Scheme" EntityType="UM_DBModel.tbl_CH_Scheme" />
           <EntitySet Name="tbl_CH_Scholarship" EntityType="UM_DBModel.tbl_CH_Scholarship" />
           <EntitySet Name="tbl_CH_SkillT" EntityType="UM_DBModel.tbl_CH_SkillT" />
@@ -560,6 +560,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="DistrictMaster_N" EntityType="UM_DBModel.DistrictMaster_N" />
           <EntitySet Name="tbl_RIASECTest" EntityType="UM_DBModel.tbl_RIASECTest" />
           <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
+          <EntitySet Name="tbl_RIASEC_Main" EntityType="UM_DBModel.tbl_RIASEC_Main" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -815,23 +816,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="tbl_RIASEC_Main">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="GudId" Type="Guid" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TestDate" Type="DateTime" Precision="0" />
-          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DistrictId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BlockId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SchoolId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="tbl_CH_Scheme">
           <Key>
             <PropertyRef Name="ID" />
@@ -992,6 +976,24 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_RIASEC_Main">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GudId" Type="Guid" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestDate" Type="DateTime" Precision="0" />
+          <Property Name="Reg_Id_fk" Type="Int32" />
+          <Property Name="CaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlockId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1270,24 +1272,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_RIASEC_Main">
-            <EntityTypeMapping TypeName="UM_DBModel.tbl_RIASEC_Main">
-              <MappingFragment StoreEntitySet="tbl_RIASEC_Main">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
-                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
-                <ScalarProperty Name="TestDate" ColumnName="TestDate" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="GudId" ColumnName="GudId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_CH_Scheme">
             <EntityTypeMapping TypeName="UM_DBModel.tbl_CH_Scheme">
               <MappingFragment StoreEntitySet="tbl_CH_Scheme">
@@ -1456,6 +1440,25 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
                 <ScalarProperty Name="Reg_Id_fk" ColumnName="Reg_Id_fk" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="GudID" ColumnName="GudID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RIASEC_Main">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_RIASEC_Main">
+              <MappingFragment StoreEntitySet="tbl_RIASEC_Main">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="Reg_Id_fk" ColumnName="Reg_Id_fk" />
+                <ScalarProperty Name="TestDate" ColumnName="TestDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GudId" ColumnName="GudId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

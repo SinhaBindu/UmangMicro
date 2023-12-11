@@ -2,6 +2,7 @@
 @using UmangMicro.Manager
 @{
     ViewBag.Title = "Case History";
+    Model.StratTime = DateTime.Now;
 }
 
 <style>
@@ -23,7 +24,7 @@
 <div class="admin-breadcrumb">
     <h3>Case History (Student Counselling)</h3>
     <div class="crumb">
-        <a href="/">Dashboard</a> / Case History
+        <a href="~/Counsellor/CaseHistoryList">Case History List</a> / Add Case History 
     </div>
 </div>
 <div class="container">
@@ -727,7 +728,7 @@
                             debugger;
                             var CH_PHY_List = [], CH_CD_List = [], CH_SkillT_List = [],
                                 CH_SSP_List = [], CH_SM_List = [];
-                            let tablephy = $('#DataList1').DataTable();
+                            let tablephy = $('#DataListRC').DataTable();
                             tablephy.$('input:checked').each(function (i, row) {
                                 var CH_id = $(row).attr('data-id') || 0;
                                 var data_ChPhyId = $(row).attr('data-ChPhyId') || 0;

@@ -8,7 +8,7 @@
         dt = Model;
     }
 }
-<strong>RIASEC Test</strong>
+@*<strong>RIASEC Test</strong>*@
 <div class="row row-deck">
     <div class="col-lg-12 col-md-12">
         <div class="card">
@@ -17,13 +17,12 @@
                     <thead>
                         <tr>
                             <th>SrNo.</th>
-                            <th>No of <br />RIASEC Test</th>
-                            <th>CaseID</th>
-                            <th>Test Date</th>
-                            <th>Student Name</th>
                             <th>District</th>
                             <th>Block</th>
                             <th>School</th>
+                            <th>Reported By</th>
+                            <th>Reported Date</th>
+                            <th>Phone Number</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,20 +34,19 @@
                                 {
                                     <tr>
                                         <td class="text-center">@(sno++)</td>
-                                        <td class="text-center" style="text-wrap: wrap;"><a href="~/Test/RCResultDetail?=?RowId=0&&CaseID=@dr["CaseID"]"><strong>@dr["NoofTimeRCTestRes"]</strong></a></td>
-                                        <td class="text-center" style="text-wrap: wrap;">@dr["CaseID"]</td>
-                                        <td class="text-center" style="text-wrap: wrap;">@(CommonModel.FormateDtDMY(dr["maxTestDate"].ToString()))</td>
-                                        <td class="text-left" style="text-wrap: wrap;">@dr["Sname"]</td>
                                         <td class="text-left" style="text-wrap: wrap;">@dr["district_name"]</td>
                                         <td class="text-left" style="text-wrap: wrap;">@dr["block_name"]</td>
                                         <td class="text-left" style="text-wrap: wrap;">@dr["school_name"]</td>
+                                        <td class="text-left" style="text-wrap: wrap;"><strong>@dr["ReportedBy"]</strong></td>
+                                        <td class="text-center" ><strong>@(CommonModel.FormateDtDMY(dr["ReportedDate"].ToString()))</strong></td>
+                                        <td class="text-center" ><strong>@dr["PhoneNumber"]</strong></td>
                                     </tr>
                                     indx++;
                                 }
                             }
                             else
                             {
-                                <tr><td colspan="8" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                                <tr><td colspan="9" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
                             }
                         }
 

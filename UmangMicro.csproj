@@ -1025,8 +1025,17 @@
     <Content Include="Views\Test\_RCTestList.cshtml" />
     <Content Include="Views\Test\RCResultDetail.cshtml" />
     <Content Include="Views\Account\UmangLogin.cshtml" />
+
     <Content Include="Views\Home\StatusOfGirl.cshtml" />
     <Content Include="Views\Home\CEFMIssue.cshtml" />
+
+    <Content Include="Views\Counsellor\CaseHistoryList.cshtml" />
+    <Content Include="Views\Report\_CaseHReportList.cshtml" />
+    <Content Include="Views\Report\CaseHReportedList.cshtml" />
+    <Content Include="Views\Report\_CaseHReportListold.cshtml" />
+    <Content Include="Views\Counsellor\_CaseHList.cshtml" />
+    <Content Include="Views\Report\Dashboard.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

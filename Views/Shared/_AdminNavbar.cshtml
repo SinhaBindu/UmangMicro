@@ -20,6 +20,7 @@
                             Add Case History
                         </a>
                     </li>
+                   
                 </ul>
             </li>
             <li>
@@ -27,7 +28,7 @@
                 <ul>
                     <li>
                         <a href="~/Test/Add">
-                            Psychometric (RIASEC)
+                            Psychometric (RIASEC) Test
                         </a>
                     </li>
                     <li>
@@ -56,14 +57,23 @@
                 <a href="javascript:void(0)">Report</a>
                 <ul>
                     <li><a href="~/Report/LastLogin">Login Details</a></li>
-                    @*<li><a href="~/Report/Resource">Resource Download</a></li>*@
+                    <li>
+                        <a href="~/Counsellor/CaseHistoryList">
+                            Case History List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Report/CaseHReportedList">
+                            Case History Reported By
+                        </a>
+                    </li>
                 </ul>
             </li>
         }
         @if (HttpContext.Current.User.IsInRole("Teacher"))
         {
-           
-            <li >
+
+            <li>
                 <a href="javascript:void(0)">Counselling</a>
                 <ul>
                     <li><a href="~/Candidate/Reg">Student Registration</a></li>
@@ -80,12 +90,27 @@
                 <ul>
                     <li>
                         <a href="~/Test/Add">
-                            Psychometric (RIASEC)
+                            Psychometric (RIASEC) Test
                         </a>
                     </li>
                     <li>
                         <a href="~/Test/Index">
                             Psychometric (RIASEC) Result
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">Report</a>
+                <ul>
+                    <li>
+                        <a href="~/Counsellor/CaseHistoryList">
+                            Case History List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Report/CaseHReportedList">
+                            Case History Reported By
                         </a>
                     </li>
                 </ul>

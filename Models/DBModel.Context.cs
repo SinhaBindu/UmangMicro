@@ -40,7 +40,6 @@ namespace UmangMicro.Models
         public virtual DbSet<Year_Master> Year_Master { get; set; }
         public virtual DbSet<QuestionRIASEC> QuestionRIASECs { get; set; }
         public virtual DbSet<RIASEC_Guided> RIASEC_Guided { get; set; }
-        public virtual DbSet<tbl_RIASEC_Main> tbl_RIASEC_Main { get; set; }
         public virtual DbSet<tbl_CH_Scheme> tbl_CH_Scheme { get; set; }
         public virtual DbSet<tbl_CH_Scholarship> tbl_CH_Scholarship { get; set; }
         public virtual DbSet<tbl_CH_SkillT> tbl_CH_SkillT { get; set; }
@@ -51,5 +50,6 @@ namespace UmangMicro.Models
         public virtual DbSet<DistrictMaster_N> DistrictMaster_N { get; set; }
         public virtual DbSet<tbl_RIASECTest> tbl_RIASECTest { get; set; }
         public virtual DbSet<tbl_CaseHistory> tbl_CaseHistory { get; set; }
+        public virtual DbSet<tbl_RIASEC_Main> tbl_RIASEC_Main { get; set; }
     }
 }

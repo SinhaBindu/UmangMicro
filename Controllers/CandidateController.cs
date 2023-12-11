@@ -15,6 +15,7 @@ using Antlr.Runtime.Misc;
 using UmangMicro.Controllers;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace UmangMicro.Controllers
 {
@@ -140,6 +141,7 @@ namespace UmangMicro.Controllers
                     var tbl = model.ID != 0 ? db.tbl_Registration.Find(model.ID) : new tbl_Registration();
                     if (tbl != null)
                     {
+
                         tbl.RegDate = model.RegDate;
                         tbl.Name = !(string.IsNullOrWhiteSpace(model.Name)) ? model.Name.Trim() : model.Name;
                         tbl.MotherName = !(string.IsNullOrWhiteSpace(model.MotherName)) ? model.MotherName.Trim() : model.MotherName;
@@ -310,7 +312,6 @@ namespace UmangMicro.Controllers
                 return writer.ToString();
             }
         }
-
-
+        
     }
 }

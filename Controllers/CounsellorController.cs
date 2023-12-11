@@ -230,14 +230,20 @@ namespace UmangMicro.Controllers
 
                 //if (ModelState.IsValid)
                 //{
-                //var getdt = db_.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
-                //if (getdt.Any(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.DOB == model.DOB && model.ID == 0))
-                //{
-                //    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Case ID : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
-                //    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
-                //    resResponse1.MaxJsonLength = int.MaxValue;
-                //    return resResponse1;
-                //}
+                if (db_.tbl_CaseHistory.Any(x => x.CaseID == model.CaseID && x.CreatedOn.ToDateTimeDDMMYYYY() == DateTime.Now.Date.ToDateTimeDDMMYYYY()))
+                {
+                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Case History Detail.<br /> <span> Case ID : <strong>" + model.CaseID + " </strong>  </span>", Data = null };
+                    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                    resResponse1.MaxJsonLength = int.MaxValue;
+                    return resResponse1;
+                }
+                if (db_.tbl_CaseHistory.Any(x => x.CaseID == model.CaseID && x.DOC.Value == model.DOC.Value))
+                {
+                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Case History Detail.<br /> <span> Case ID : <strong>" + model.CaseID + " </strong>  </span>", Data = null };
+                    var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                    resResponse1.MaxJsonLength = int.MaxValue;
+                    return resResponse1;
+                }
 
                 var tbl = model.Id != 0 ? db.tbl_CaseHistory.Find(model.Id) : new tbl_CaseHistory();
                 if (tbl != null)
@@ -258,18 +264,18 @@ namespace UmangMicro.Controllers
                     {
                         tbl.Study12th = model.Study12th;
                     }
-                    else
+                    else if (!(string.IsNullOrWhiteSpace(model.ClassId)) && (model.ClassId == "10"))
                     {
                         tbl.Study10th = model.Study10th;
                     }
                     tbl.Subject = model.Subject;
-                    if (model.TypeQuery=="1" || model.TypeQuery == "2")
+                    if (model.TypeQuery == "1" || model.TypeQuery == "2")
                     {
                         tbl.IsPsychometric = model.IsPsychometric;
                         tbl.Psychometric = model.Psychometric;
                     }
                     tbl.Counselling = model.Counselling;
-                   
+
                     tbl.Recommendation = model.Recommendation;
                     tbl.AreasImprovement = model.AreasImprovement;
                     tbl.IsFollow = model.IsFollow;
@@ -288,9 +294,9 @@ namespace UmangMicro.Controllers
                             tbl.CreatedBy = MvcApplication.CUser.Id;
                         }
                         tbl.CreatedOn = DateTime.Now;
-                        //tbl.StratTime = model.StratTime;
-                        //tbl.EndTime = DateTime.Now;
-                        //tbl.FormSubmitTime = ((tbl.EndTime.Value - tbl.StratTime.Value).TotalSeconds.ToString());
+                        tbl.StratTime = model.StratTime;
+                        tbl.EndTime = DateTime.Now;
+                        tbl.FormSubmitTime = ((tbl.EndTime.Value - tbl.StratTime.Value).TotalSeconds.ToString());
                         db.tbl_CaseHistory.Add(tbl);
                     }
                     else
@@ -314,6 +320,7 @@ namespace UmangMicro.Controllers
                         {
                             tbl_Psy = new tbl_CH_Psychometric()
                             {
+                                RIASECTest_Id_fk = model.RIASECTest_Id_fk,
                                 CaseHistoryId = tbl.Id.ToString(),
                                 CaseId = tbl.CaseID,
                                 RIASEC_Guided_Id = m.RIASEC_Guided_Id,
@@ -440,6 +447,32 @@ namespace UmangMicro.Controllers
             }
             return View();
         }
+        public ActionResult CaseHistoryList()
+        {
+            return View();
+        }
+        public ActionResult GetCaseHList(string Para = "", string SearchBy = "", string DOB = "", string Sdt = "", string Edt = "", string DistrictId = "", string BlockId = "")
+        {
+            try
+            {
+                DistrictId = DistrictId=="0" ? string.Empty : DistrictId;
+                BlockId = BlockId == "0" ? string.Empty : BlockId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
+                var items = SP_Model.GetSP_CaseHList(Para, SearchBy, DOB, Sdt, Edt,  DistrictId.ToUpper(),BlockId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    var html = ConvertViewToString("_CaseHList", items);
+                    return Json(new { IsSuccess = true, res = html }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
         private string ConvertViewToString(string viewName, object model)
         {
             ViewData.Model = model;
@@ -451,6 +484,5 @@ namespace UmangMicro.Controllers
                 return writer.ToString();
             }
         }
-
     }
 }

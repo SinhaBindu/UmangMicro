@@ -17,6 +17,7 @@ namespace UmangMicro.Models
         public Nullable<System.Guid> GudId { get; set; }
         public int ID { get; set; }
         public Nullable<System.DateTime> TestDate { get; set; }
+        public Nullable<int> Reg_Id_fk { get; set; }
         public string CaseID { get; set; }
         public string DistrictId { get; set; }
         public string BlockId { get; set; }

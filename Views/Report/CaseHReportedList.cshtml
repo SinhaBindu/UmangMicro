@@ -3,22 +3,28 @@
 @using UmangMicro.Manager;
 @*@model IEnumerable<KGBV_JH.Models.QesRes>*@
 @{
-    ViewBag.Title = "RIASEC Test List";
+    ViewBag.Title = " Case History Reported By List";
     ViewBag.TitleIcon = "fa fa-user";
-    ViewBag.SemiTitle = "RIASEC Test List";
+    ViewBag.SemiTitle = " Case History Reported By List";
     ViewBag.SemiTitleLink = "/";
 }
+<style>
+    input[aria-controls="DataList_0"] {
+        height: 50px !important;
+        width: 690px !important;
+    }
+</style>
 <div class="admin-breadcrumb">
-    <h3>RIASEC Test List</h3>
+    <h3>Case History Reported By List</h3>
     <div class="crumb">
-        <a href="~/Test/Add">Psychometric RIASEC Test</a> / RIASEC Test List
+        <a href="~/Counsellor/CaseHistory">Case History</a> /  Case History Reported By List
     </div>
 </div>
 <div class="containers">
     <div class="card">
         <div class="card-body">
             <div id="div-download"></div>
-            @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("GetCaseHReportedList", "Report", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
             {
                 <div class="row ">
 
@@ -73,12 +79,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })
-                                    @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), "All", new { @class = "form-control select2" })
-                                    @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        @Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), "All", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
+
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        @Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), "All", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<div class="col-md-2">
+                                        @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })
+                                        @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), "All", new { @class = "form-control select2" })
+                                        @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                                    </div>*@
+                                <div class="col-md-2">
                                     <label class="mt-3"></label>
                                     <div class="clearfix"></div>
                                     <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />
@@ -93,9 +114,8 @@
 
                 <div class="breaker"></div>
                 <div class="col-md-12">
-                        <div class="col-sm-12" id="sub-data">
-
-                        </div>
+                    <div class="col-sm-12" id="sub-data">
+                    </div>
                 </div>
             }
 
@@ -106,8 +126,6 @@
                         </div>
                     </div>
                 </div>*@
-
-
 
         </div>
     </div>
@@ -122,6 +140,11 @@
 
     <script>
         $(document).ready(function () {
+
+            GetDistrict('DistrictId');
+            $("#DistrictId option[value='']").remove();
+            $('#DistrictId').append(`<option value="0">ALL</option>`);
+            $("#DistrictId").val("0");
             $('input[name=TypeCase]').click(function () {
                 if ($(this).val() == "1") {
                     $('#DOBtxt').show();
@@ -135,11 +158,26 @@
             //GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
             //$('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
             //$('#SchoolId').attr("style", "pointer-events: none;");
-             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
-                     $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
-                 $('#SchoolId').trigger('change');
-                 $("#SchoolId").select2({ disabled: 'readonly' });
-                }
+            if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                    $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                    $('#DistrictId').attr("style", "pointer-events: none;");
+                    OnChagDistricts('BlockId', $('#DistrictId').val());
+                    $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
+                    $('#BlockId').attr("style", "pointer-events: none;");
+                     @*$('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());*@
+                      //$('#SchoolId').trigger('change');
+                     //$("#SchoolId").select2({ disabled: 'readonly' });
+                $('#DistrictId').trigger('change');
+                //$("#DistrictId").select2({ disabled: 'readonly' });
+                $('#BlockId').trigger('change');
+                //$("#BlockId").select2({ disabled: 'readonly' });
+            }
+            $('#DistrictId').change(function () {
+                OnChagDistricts('BlockId', $('#DistrictId').val());
+                $("#BlockId option[value='']").remove();
+                $('#BlockId').append(`<option value="0">ALL</option>`);
+                $("#BlockId").val("0");
+            });
             $('#formid').submit(function (e) {
                 e.preventDefault();
                 LoadReport();
@@ -156,14 +194,15 @@
             var url = $(id).attr("action");
             var Sdt = $("#FD").val() == "" ? "" : $("#FD").val();
             var Edt = $("#TD").val() == "" ? "" : $("#TD").val();
-            var SchoolId = $("#SchoolId").val() == "" ? "" : $("#SchoolId").val();
+            var DistrictId = $("#DistrictId").val() == "" ? "" : $("#DistrictId").val();
+            var BlockId = $("#BlockId").val() == "" ? "" : $("#BlockId").val();
             var Para = $('input[name="TypeCase"]:checked').val();
             if (Para == undefined) { Para = "" };
             $.ajax({
                 // url: url,
-                url: document.baseURI + "/Test/GetIndexList",
+                url: document.baseURI + "/Report/GetCaseHReportedList",
                 type: "POST",
-                data: { 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val(), 'DOB': $('input[name=DOBtxt]').val(), 'Sdt': Sdt, 'Edt': Edt, 'SchoolId': SchoolId },
+                data: { 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val(), 'DOB': $('input[name=DOBtxt]').val(), 'Sdt': Sdt, 'Edt': Edt, 'DistrictId': DistrictId, 'BlockId': BlockId },
                 //{ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }
                 // contentType: "application/json",
                 // dataType: "json",
@@ -185,7 +224,7 @@
                             // scrollCollapse: false,
                             "dom": '<"pull-left"f><"pull-right"l>tip',
                             "pageLength": 10,
-                            //"lengthChange": false,
+                           // "lengthChange": false,
                             fixedColumns: {
                                 leftColumns: 1,
                                 rightColumns: 1
@@ -200,7 +239,7 @@
                         $('.dataTables_filter input[type="search"]').css(
                             { 'width': '500px', 'display': 'inline-block' }
                         );
-                        $('#div-download').empty();
+                        //$('#div-download').empty();
                         //table.buttons().container().appendTo($('#div-download'));
                     }
                     else {

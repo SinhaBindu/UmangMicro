@@ -632,7 +632,7 @@ namespace UmangMicro.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Report");
+            return RedirectToAction("Dashboard", "Report");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

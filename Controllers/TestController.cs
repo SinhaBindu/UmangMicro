@@ -116,6 +116,7 @@ namespace UmangMicro.Controllers
                         tbl_RIASECTest tbl_childTest = new tbl_RIASECTest();
                         if (model.Qlist != null)
                         {
+                            var regid = db.tbl_Registration.Where(x => x.CaseID == model.CaseID)?.FirstOrDefault();
                             if (model.Id != 0)
                             {
                                 if (db_.tbl_RIASEC_Main.Any(x => x.SchoolId == (model.SchoolId.ToString()) && x.CaseID == model.CaseID && x.TestDate == model.Date && model.Id == 0))
@@ -130,6 +131,7 @@ namespace UmangMicro.Controllers
                                 maintbl.DistrictId = disblck.DistrictCode;
                                 maintbl.BlockId = disblck.BlockCode;
                                 maintbl.SchoolId = model.SchoolId.ToString();
+                                maintbl.Reg_Id_fk = regid.ID;
                                 maintbl.CaseID = model.CaseID.ToString();
                                 maintbl.TestDate = model.Date;
                                 maintbl.CreatedBy = MvcApplication.CUser.Id.ToString();
@@ -144,7 +146,7 @@ namespace UmangMicro.Controllers
                                 maintbl.IsActive = true;
                             }
                             result += db.SaveChanges();
-                            var regid = db.tbl_Registration.Where(x=>x.CaseID==model.CaseID)?.FirstOrDefault();
+                            //var regid = db.tbl_Registration.Where(x=>x.CaseID==model.CaseID)?.FirstOrDefault();
                             foreach (var item in model.Qlist.ToList())
                             {
                                 if (!string.IsNullOrWhiteSpace(item.Answer) && item.ControlType.ToLower() == "radiobutton")

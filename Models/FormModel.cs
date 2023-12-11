@@ -97,7 +97,9 @@ namespace UmangMicro.Models
         public int SchoolType { get; set; }
         [Display(Name = "School")]
         public int SchoolId { get; set; }
+        [Display(Name = "District")]
         public int DistrictId { get; set; }
+        [Display(Name = "Block")]
         public int BlockId { get; set; }
         public string DISECODE { get; set; }
         public int EmpId { get; set; }

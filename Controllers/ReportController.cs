@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 using UmangMicro.Manager;
 
 namespace UmangMicro.Controllers
@@ -16,6 +17,32 @@ namespace UmangMicro.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+        public ActionResult GetDashboard(string Sdt, string Edt, string DistrictId, string BlockId)
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                BlockId = BlockId == "0" ? string.Empty : BlockId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
+                var items = SP_Model.GetSP_DashboardData(Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    //var html = ConvertViewToString("_CaseHList", items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
         }
         public ActionResult GetCoursesDetail(string Parame)
         {
@@ -127,6 +154,32 @@ namespace UmangMicro.Controllers
         public ActionResult RS()
         {
             return View();
+        }
+        public ActionResult CaseHReportedList()
+        {
+            return View();
+        }
+        public ActionResult GetCaseHReportedList(string Para = "", string SearchBy = "", string DOB = "", string Sdt = "", string Edt = "", string DistrictId = "", string BlockId = "")
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                BlockId = BlockId == "0" ? string.Empty : BlockId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
+                var items = SP_Model.GetSP_CaseHReportedByList(Para, SearchBy, DOB, Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    var html = ConvertViewToString("_CaseHReportList", items);
+                    return Json(new { IsSuccess = true, res = html }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
         }
         private string ConvertViewToString(string viewName, object model)
         {

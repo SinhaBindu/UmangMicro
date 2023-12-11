@@ -22,7 +22,7 @@
                 @{
                     if (Model != null)
                     {
-                        ds = Model; int indx = 1; int Row3Max = 0;
+                        ds = Model; int indx = 1; int Row3Max = 0; int Sno1 = 1;
                         if (ds.Tables.Count > 0)
                         {
                             dt1 = ds.Tables[0];
@@ -59,9 +59,9 @@
                                                                 Row3Max++;
                                                                 if (dr2["RId"].ToString() == dr["ID"].ToString())
                                                                 {
-                                                                <div class="col-md-12">
-                                                                    <strong> @Row3Max .  @dr2["SectionNameEng"]</strong>
-                                                                </div>
+                                                                    <div class="col-md-12">
+                                                                        <strong> @Row3Max .  @dr2["SectionNameEng"]</strong>
+                                                                    </div>
                                                                 }
                                                             }
                                                         </div>
