@@ -30,6 +30,16 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        public ActionResult CEFMIssue()
+        {
+            return View();
+        }
+
+        public ActionResult StatusOfGirl()
+        {
+            return View();
+        }
+
         public ActionResult CaseStudyList(string CategId = "")
         {
             CategId = !string.IsNullOrWhiteSpace(CategId) ? CategId : "0";
