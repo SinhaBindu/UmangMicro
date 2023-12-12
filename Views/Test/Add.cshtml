@@ -86,9 +86,22 @@
                                             @data_QIndex = ii,
                                             @data_qcode = Model.Qlist[ii].QuestionCode,
                                             @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
-                                            onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
+                                            //onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
                                         })
+
                                         <label for="@item.SectionType.ToLower()" class="q-lable">@item.SectionType</label>
+
+                                        @Html.RadioButtonFor(m => m.Qlist[ii].Answer, Model.Qlist[ii].SectionType,
+                                        new
+                                        {
+                                            @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
+                                            @data_QIndex = ii,
+                                            @data_qcode = Model.Qlist[ii].QuestionCode,
+                                            @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
+                                            onchange = "OnChangeRadio('" + @item.QuestionCode +"', this)",
+                                        })
+
+                                        <label for="@(item.SectionType.ToLower()+"_Rest")" class="q-lable">@("Rest")</label>
                                     </div>
                                 </div>
                             </div>
@@ -520,32 +533,35 @@
         }
 
         function OnChangeRadio(QuestionCode, SelVal, DepandAns ,Ele) {
-           // debugger;
+            debugger;
+            $('.QuestCode' + QuestionCode).prop('checked', false);
+            $('.QuestCode' + QuestionCode).val('');
+            //$('.QuestCode' + QuestionCode).removeAttr('checked');
            // var clname = $('.' + QuestionCode).attr('class');
-            var clname = $('.' + QuestionCode).attr('class') == undefined ? null : $('.' + QuestionCode).attr('class');
-            if (clname) {
-                clname = clname.split(' ');
-            }
-            if (clname != null) {
-                //depeded Question
-                if (SelVal == DepandAns && QuestionCode == clname[0]) {
-                    $('.' + QuestionCode).css('display', 'block');
-                }
-                else {
-                    $('.' + QuestionCode).prop("checked", false);
-                    $('.' + QuestionCode).css('display', 'none');
-                    $('.txt' + QuestionCode).css('display', 'none');
-                    $('.txt' + QuestionCode).val('');
-                }
+            //var clname = $('.' + QuestionCode).attr('class') == undefined ? null : $('.' + QuestionCode).attr('class');
+            //if (clname) {
+            //    clname = clname.split(' ');
+            //}
+            //if (clname != null) {
+            //    //depeded Question
+            //    if (SelVal == DepandAns && QuestionCode == clname[0]) {
+            //        $('.' + QuestionCode).css('display', 'block');
+            //    }
+            //    else {
+            //        $('.' + QuestionCode).prop("checked", false);
+            //        $('.' + QuestionCode).css('display', 'none');
+            //        $('.txt' + QuestionCode).css('display', 'none');
+            //        $('.txt' + QuestionCode).val('');
+            //    }
 
-            }
-            else {
-                $('.txt' + QuestionCode).css('display', 'none');
-                $('.txt' + QuestionCode).val('');
-                $('.' + QuestionCode).prop('checked', false);
-                $('.' + QuestionCode).val('');
-                $('.' + QuestionCode).css('display', 'none');
-            }
+            //}
+            //else {
+            //    $('.txt' + QuestionCode).css('display', 'none');
+            //    $('.txt' + QuestionCode).val('');
+            //    $('.' + QuestionCode).prop('checked', false);
+            //    $('.' + QuestionCode).val('');
+            //    $('.' + QuestionCode).css('display', 'none');
+            //}
            // CheckBoxTextOnchag();
         }
 

@@ -70,7 +70,7 @@ namespace UmangMicro.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public async Task<ActionResult> UmangLogin(LoginViewModel model, string returnUrl)
         {
             UM_DBEntities dbe = new UM_DBEntities();
@@ -574,6 +574,11 @@ namespace UmangMicro.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            if (User.IsInRole("Umang"))
+            {
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                return RedirectToAction("UmangLogin", "Account");
+            }
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login", "Account");
         }
