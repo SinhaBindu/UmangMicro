@@ -5219,7 +5219,7 @@ img {
 
 .theory-of-chnages {
     background: url('../images/umang-road.png') bottom center no-repeat #FCFCFC;
-    height: 700px;
+    height: 580px;
     position: relative;
     max-width: 1200px;
     margin: auto;
@@ -5263,7 +5263,7 @@ img {
 
 .empowering-member {
     width: 240px;
-    height: 231px;
+    height: 217px;
     background: #5CE1E6;
     background: url('../images/empowering-bg.png');
     text-align: center;
@@ -5307,7 +5307,7 @@ img {
 .empowered-fixed, .system-level-fixed, .community-level-fixed, .household-level-fixed, .kishori-help-desk-fixed {
     position: absolute;
     right: 50px;
-    top: 0px;
+    top: 10px;
     width: 200px;
     text-align: center;
     color: #000;
@@ -5315,22 +5315,22 @@ img {
 
 .system-level-fixed {
     right: 370px;
-    top: 170px;
+    top: 120px;
 }
 
 .community-level-fixed {
     right: 660px;
-    top: 350px;
+    top: 300px;
 }
 
 .household-level-fixed {
-    left: 120px;
-    top: 420px;
+    left: 150px;
+    top: 350px;
 }
 
 .kishori-help-desk-fixed {
     right: 440px;
-    top: 390px;
+    top: 340px;
 }
 
 .umang-theory-icon {
