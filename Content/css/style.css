@@ -5511,11 +5511,14 @@ img {
 
 .kishori-help-desk-box a {
     text-decoration: underline;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .pink-dark {
     line-height: 27px;
-    font-size: 17px;
+    font-size: 19px !important;
+    margin-bottom: 12px;
     color: #5B2C54 !important;
     font-weight: bold;
 }
@@ -5534,26 +5537,43 @@ img {
 }
 
 .genesis-box {
-    background: #FBC982;
-    border-radius: 10px;
-    padding: 15px;
-    margin-top: 30px;
-    margin-bottom: 40px;
+    background: #FFFCF6;
+    padding: 35px 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
-
-.genesis-border {
-    border: 2px solid #fff;
-    padding: 5px 15px 15px;
-    border-radius: 10px;
-}
-
-    .genesis-border p {
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 24px;
-        color: #472F0C;
+    .genesis-box h3 {
+        text-align: center;
+        font-size: 38px;
+        margin-bottom: 50px;
+        color: #337AB7;
     }
-
+    .genesis-border {
+        margin: auto;
+        max-width: 1200px;
+        display: flex;
+        gap: 80px;
+        align-items: center;
+    }
+.genesis-pic {
+    flex: 2;
+}
+.genesis-content {
+    flex: 3;
+}
+.genesis-pic img {
+    border-radius: 250px 250px 0 0;
+}
+.genesis-border p {
+    font-size: 18px;
+    line-height: 34px;
+    color: #472F0C;
+}
+.bold-girl {
+    font-size: 20px;
+    font-weight: bold;
+    color: #337AB7;
+}
 .kishori-offered {
     padding-left: 20px;
     border-left: 5px solid #F5F5F5
