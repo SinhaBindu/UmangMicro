@@ -23,5 +23,6 @@ namespace UmangMicro.Models
         public string DistrictCode { get; set; }
         public string BlockCode { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string school_name_OLD { get; set; }
     }
 }

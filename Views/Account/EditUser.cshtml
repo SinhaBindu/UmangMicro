@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
+<div class="admin-breadcrumb">
+    <h3>Teacher/Counsellor Registration</h3>
+    <div class="crumb">
+        <a href="~/Master/UserDetaillist">User Detail List</a> / Edit Registration
+    </div>
+</div>
 <div class="app-container app-theme-white body-tabs-shadow">
     <div class="app-container">
         <div class="h-100">
@@ -25,6 +31,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
+                                        <span class="text-danger">*</span>
+                                        @Html.LabelFor(m => m.Role, new { @class = "" })
+                                        @Html.DropDownListFor(m => m.Role, CommonModel.GetRolesByLoggedinUser(), null, new { @class = "form-control", @required = "required" })
+                                        @*, @readonly = "true"*@
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
                                         <span class="text-danger">*</span> @Html.LabelFor(m => m.Name, new { @class = "" })
                                         @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name", @required = "required" })
                                     </div>
@@ -40,10 +54,21 @@
                                     <div class="position-relative form-group">
                                         <span class="text-danger">*</span>
                                         @Html.LabelFor(m => m.PhoneNumber, new { @class = "" })
-                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number", @maxlength = "10", @required = "required", @readonly = "readonly" })
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new
+                                        {
+                                            @class = "form-control",
+                                            @placeholder = "Phone Number",
+                                            @maxlength = "10",
+                                            @required = "required",
+                                            onkeypress = "return IsNumeric(event);",
+                                            ondrop = "return false;",
+                                            onpaste = "return false;"
+                                          })
+                                        <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span>
                                     </div>
                                 </div>
                                 @*<div class="col-md-6">
+                                      @readonly = "readonly",
                                         <div class="position-relative form-group">
                                             <span class="text-danger">*</span>
                                             @Html.LabelFor(m => m.DistrictId, new { @class = "" })
@@ -57,21 +82,21 @@
                                             @Html.DropDownListFor(m => m.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
                                         </div>
                                     </div>*@
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="div-dis">
                                     <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
+                                        <span class="text-danger" id="rqdis" style="display:none;">*</span> @Html.LabelFor(m => m.DistrictId, new { @class = "" })
+                                        @Html.DropDownListFor(m => m.DistrictId, new List<SelectListItem>(), "Select", new { @class = "form-control select2" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="div-sch">
+                                    <div class="position-relative form-group">
+                                        <span class="text-danger" id="rqsch" style="display:none;">*</span>
                                         @Html.LabelFor(m => m.SchoolId, new { @class = "" })
-                                        @Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), null, new { @class = "form-control", @required = "required" })
+                                        @*@Html.DropDownListFor(m => m.SchoolId, CommonModel.GetSchoolList(), null, new { @class = "form-control select2" })*@
+                                        @Html.DropDownListFor(m => m.SchoolId, new List<SelectListItem>(), null, new { @class = "form-control select2" })
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group">
-                                        <span class="text-danger">*</span>
-                                        @Html.LabelFor(m => m.Role, new { @class = "" })
-                                        @Html.DropDownListFor(m => m.Role, CommonModel.GetRolesByLoggedinUser(), null, new { @class = "form-control", @required = "required" })
-                                        @*, @readonly = "true"*@
-                                    </div>
-                                </div>
+
                                 @*<div class="form-group">
                                         <div class="wrap-form-control validate-input">
                                             @Html.DropDownListFor(m => m.LocationID, CommonModel.GetLocationsByLoggedinUser(), null, new { @class = "form-control", @required = "required" })
@@ -126,23 +151,102 @@
     <script src="~/Scripts/JS/Master.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
-            //BindDistrict('DistrictId', 20);
+            BindDistrict('DistrictId', 20);
             //$('#DistrictId').change(function () {
             //    OnChangeDistrict('BlockId', $('#DistrictId').val());
             //});
             //$('#BlockId').change(function () {
             //    OnChangeBlock('ClusterId', $('#BlockId').val());
             //});
-            @*if ('@Model.Id' != '0' && '@Model.Id' != '') {
+        if ('@Model.Id' != '0' && '@Model.Id' != '') {
+            debugger;
                // $('#DistrictId').val('@Model.DistrictId');
               //  OnChangeDistrict('BlockId', '@Model.DistrictId');
-                $('#BlockId').val('@Model.BlockId');
-                OnChangeBlock('ClusterId', '@Model.BlockId');
-                $('#ClusterId').val('@Model.ClusterId');
-            }*@
+               // $('#BlockId').val('@Model.BlockId');
+              //  OnChangeBlock('ClusterId', '@Model.BlockId');
+              ///  $('#ClusterId').val('');
+            if ($("#Role").val() == "Teacher") {
+                   $('#rqdis').show(''); $('#rqsch').show('');
+                   $('#div-dis').show(''); $('#div-sch').show('');
+
+                    $('#DistrictId').val('@Model.DistrictId');
+                    $('#DistrictId').trigger('change');
+                    GetSchool("SchoolId", "", '@Model.DistrictId', "");
+                    $('#SchoolId').val('@Model.SchoolId');
+                    $('#SchoolId').trigger('change');
+
+                    $('#SchoolId').attr('required', 'required');
+                    $('#DistrictId').attr('required', 'required');
+                    
+                  
+                }
+                else if ($("#Role").val() == "Consultant") {
+
+                    $('#DistrictId').val('@Model.DistrictId');
+                    $('#DistrictId').trigger('change');
+                    GetSchool("SchoolId", "", "0", "");
+                   // $('#SchoolId').val('@Model.SchoolId');
+                   // $('#SchoolId').trigger('change');
+
+                    $('#SchoolId').removeAttr('required');
+                    $('#DistrictId').attr('required', 'required');
+                    $('#rqdis').show(''); $('#rqsch').hide('');
+                    $('#SchoolId').val('');
+                    $('#div-dis').show(''); $('#div-sch').hide('');
+                }
+                else {
+                    $('#DistrictId').val(''); $('#SchoolId').val('');
+                    $('#SchoolId').removeAttr('required');
+                    $('#DistrictId').removeAttr('required');
+                    $('#rqdis').hide(''); $('#rqsch').hide('');
+                    $('#SchoolId').val(''); $('#DistrictId').val('');
+                    BindDistrict('DistrictId', 20); GetSchool("SchoolId", "", "0", "");
+                    $('#div-dis').hide(''); $('#div-sch').hide('');
+                }
+
+            }
+       
+        $('#DistrictId').change(function () {
+            //OnChangeDistrict('BlockId', $('#DistrictId').val());
+            GetSchool("SchoolId", "", $(this).val(), "");
         });
-    </script>
+
+        $('#Role').change(function () {
+            if ($(this).val() == "Teacher") {
+                $('#SchoolId').attr('required', 'required');
+                $('#DistrictId').attr('required', 'required');
+                $('#rqdis').show(''); $('#rqsch').show('');
+                $('#div-dis').show(''); $('#div-sch').show('');
+            }
+            else if ($(this).val() == "Consultant") {
+                $('#SchoolId').removeAttr('required');
+                $('#DistrictId').attr('required', 'required');
+                $('#rqdis').show(''); $('#rqsch').hide('');
+                $('#SchoolId').val('');
+                GetSchool("SchoolId", "", "0", "");
+                $('#div-dis').show(''); $('#div-sch').hide('');
+            }
+            else {
+                $('#SchoolId').removeAttr('required');
+                $('#DistrictId').removeAttr('required');
+                $('#rqdis').hide(''); $('#rqsch').hide('');
+                $('#SchoolId').val(''); $('#DistrictId').val('');
+                BindDistrict('DistrictId', 20); GetSchool("SchoolId", "", "0", "");
+                $('#div-dis').hide(''); $('#div-sch').hide('');
+            }
+        });
+
+    });
+        var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        function IsNumeric(e) {
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            document.getElementById("error").style.display = ret ? "none" : "inline";
+            return ret;
+        }
+</script>
 
 }

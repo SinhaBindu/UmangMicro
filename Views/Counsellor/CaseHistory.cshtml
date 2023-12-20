@@ -301,9 +301,9 @@
                             <div class="collapse" id="collaps_SSP">
 
                                 <div class="col-md-12" id="dv-ssp" style="display:none;">
-                                    <div class="col-md-6">
+                                    @*<div class="col-md-6">
                                         <a href="javascript:void(0);" class="btn btn-info text-white" id="btnsssp" name="btnsssp">Search</a>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <p class="mb-0">
                                     <div id="sub-data2" class="col-md-12"></div>
@@ -313,9 +313,9 @@
                             <div class="collapse" id="collaps_SHE">
 
                                 <div class="col-md-12" id="dv-sm" style="display:none;">
-                                    <div class="col-md-6">
+                                    @*<div class="col-md-6">
                                         <a href="javascript:void(0);" class="btn btn-info text-white" id="btnssm" name="btnssm">Search</a>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <p class="mb-0">
                                     <div id="sub-data3" class="col-md-12"></div>
@@ -417,6 +417,10 @@
         var RCSList = [];
         $(document).ready(function () {
 
+            if ('@Model.TypeCase' === '2' && '@Model.CaseID' === $('input[name=Searchtxt]').val()) {
+                GetStudData('CaseID');
+            }
+
             loopRC();
 
             CountTime();
@@ -437,7 +441,7 @@
             $('input[name=TypeCase]').click(function () {
                 if ($(this).val() == "1") {
                     $('#DOBtxt').show();
-                    $('#DOBtxt').attr('required', 'required'); 
+                    $('#DOBtxt').attr('required', 'required');
                 }
                 else {
                     $('#DOBtxt').hide();  $('#DOB').val('');
@@ -451,14 +455,14 @@
             }
 
             $('.btnscdst').on('click', function () {
-                BindData(1);
+                BindData(1, "all");
             })
 
             $('#btnsssp').on('click', function () {
-                BindData(3);
+                 BindData(3, "all");
             })
             $('#btnssm').on('click', function () {
-                BindData(4);
+                BindData(4, "all");
             })
 
             $('select[name=Subject]').multiselect({
@@ -501,13 +505,13 @@
             $('select[name=TypeQuery]').change(function () {
                 $('#li-tab0').hide(); $('#li-tab1').hide(); $('#li-tab2').hide(); $('#li-tab3').hide();
                 $('#sub-data').hide(); $('#sub-data2').hide(); $('#sub-data3').hide();
-                BindData();
+               // BindData();
                 $('.hd-Test').hide();
                 $('#div-comde').show();
                 $('#btnCD').hide();
                 $('#btnST').hide();
                 $('#btnSSP').hide();
-                $('#btnSHE').hide();
+                $('#btnSHE').hide(); $('#dv-checdkall').hide();
 
                 if ($(this).val() == "1" || $(this).val() == "2") {
                     $('.hd-Test').show();
@@ -522,18 +526,21 @@
                 else if ($(this).val() == "3") {
                     $('#li-tab2').show();
                     $('#sub-data2').show(); $('#btnSSP').show();
+                    BindData(3, "all");
                 }
                 else if ($(this).val() == "4") {
                     $('#li-tab3').show(); $('#btnSHE').show();
-                    $('#sub-data2').show();
+                    $('#sub-data3').show(); BindData(4, "all");
                 }
                 else {
                     $('.hd-Test').hide();
                 }
             });
 
+
             $('select[name=CaseID]').change(function () {
                 $('#div-stud').hide();
+                BindStudentDetailClear();
                 var fd = StudDList.filter(x => x.CaseID == $('#CaseID').val());
                 if (fd.length > 0) {
                     CaseHistoryCount("", fd[0].CaseID);
@@ -584,7 +591,7 @@
                         //}
                         var sjoin = ((RIASECl3Val.join(",")).split(','));
                             $('select[name=Psychometric]').val(sjoin).multiselect('refresh');
-                            
+
                     //}
                     //else {
                     //    $('input[name="IsPsychometric"]').removeAttr("checked");
@@ -677,6 +684,7 @@
             /* Start Submitted Data */
             $("#formid").on("submit", function (event) {
                 event.preventDefault();
+
                 if ($('#CaseID').val() != '' && $('#DOC').val() != '' && $('#ClassId').val() != ''
                     && $('#TypeCounsellor').val() != '' && $('#TypeQuery').val() != '' && $('#Subject').val() != ''
                     && $('#KeyWords').val() != '' && $('#AreasImprovement').val() != '' && $('#Recommendation').val() != ''
@@ -690,7 +698,10 @@
 
                         var isvalid = Inputisvalid();//("#formid").valid();
                         if (isvalid) {
-                            var phyjoin = ($('#Psychometric').val()).join(',');
+                            var phyjoin = "";
+                            if ($('input[name=IsPsychometric]:checked').val()=="1") {
+                                phyjoin = ($('#Psychometric').val()).join(',');
+                            }
                             var Counsellingjoin = ($('#Counselling').val()).join(',');
                             var Subjectjoin = ($('#Subject').val()).join(',');
                             var formData = new FormData();
@@ -742,6 +753,11 @@
                                     PsychometricTestId: PsyTestSname,
                                 });
                             });
+                            if ($('input[name=IsPsychometric]:checked').val() == "1" && CH_PHY_List.length==0) {
+                                toastr.error("Error", "Please choice at least one RIASEC Guided Subject list.");
+                                return false;
+                            }
+
 
                             let table1 = $('#DataListCD').DataTable();
                             table1.$('input:checked').each(function (i, row) {
@@ -789,7 +805,14 @@
                             });
 
                             debugger;
-                            formData.append('CH_PHY_model', JSON.stringify(CH_PHY_List));
+                            if ($('input[name=IsPsychometric]:checked').val() == "1")
+                            { formData.append('CH_PHY_model', JSON.stringify(CH_PHY_List)); }
+                            else { formData.append('CH_PHY_model', JSON.stringify(CH_PHY_List = [])); }
+                            if (CH_CD_List.length == 0 && CH_SkillT_List == 0 && CH_SSP_List == 0 && CH_SM_List.length==0) {
+                                toastr.error("Error", "Please choice at least one Compendium data.");
+                                return false;
+                            }
+
                             formData.append('CH_CD_model', JSON.stringify(CH_CD_List));
                             formData.append('CH_SkillT_model', JSON.stringify(CH_SkillT_List));
                             formData.append('CH_SSP_model', JSON.stringify(CH_SSP_List));
@@ -842,7 +865,7 @@
             $('#submission-data').removeClass("text-danger");
             var url = $('#submission-form').attr("action");
             //var formData = $('#submission-form').serialize();
-          
+
             var formData = new FormData();
             var sby_cn = $('#sby_cn').val();
             var sby_ct = $('#sby_ct').val();
@@ -874,8 +897,8 @@
                         //jQuery.event.trigger("ajaxStop");
                         $('#sub-data').html(resp.html_CD);//Course Details
                         $('#sub-data1').html(resp.html_ST);//Skill Training
-                        $('#sub-data2').html(resp.html_SSP);//Schemes
-                        $('#sub-data3').html(resp.html_SM);//Scholarshhip
+                        $('#sub-data2').html(resp.html_SSP);//Scholarshhip
+                        $('#sub-data3').html(resp.html_SM);//Schemes
                         if ($.fn.dataTable.isDataTable('#DataListCD')) {
                             $("#DataListCD").dataTable().fnDestroy();
                         }
@@ -916,10 +939,10 @@
 
                             });
 
-                            $("#tab-animated-0").removeClass('active');
-                            $("#tab-animated-1").removeClass('active');
-                            $("#tab-animated-2").removeClass('active');
-                            $("#tab-animated-3").removeClass('active');
+                            $("#collaps_CD").removeClass('active');
+                            $("#collaps_ST").removeClass('active');
+                            $("#collaps_SSP").removeClass('active');
+                            $("#collaps_SHE").removeClass('active');
 
                         }, 500);
 
@@ -944,6 +967,7 @@
         }
 
         function GetStudData(Ele) {
+            BindStudentDetailClear();
             $('#' + Ele).empty();
             $('#' + Ele).prop("disabled", false);
             $('#' + Ele).append($("<option>").val('').text('Select'));
@@ -1024,7 +1048,7 @@
                                 $('#lblPsyResultMax3').append(rowmax3+". " + exp.SectionNameEng +" ");
                             }
                         });
-                        
+
                         $('#RIASECTest_Id_fk').val(RIASEC_ID_Pk);
                     }
                 },
@@ -1360,6 +1384,18 @@
             //    isvald = false;
             //}
             return isvald;
+        }
+        function BindStudentDetailClear() {
+            $('#div-stud').hide();
+            CaseHistoryCount("", 0);
+            $('#div-stud').hide();
+            $('#lsn').html("");
+            $('#ldob').html("");
+            $('#lregdt').html("");
+            $('#lsch').html("");
+            $('#ClassId').val("");
+            $('#hd-tenth').hide();
+            $('#hd-twelfth').hide();
         }
 
     </script>

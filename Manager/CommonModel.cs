@@ -19,6 +19,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
 using System.Windows.Forms;
 using System.Xml;
+using System.Reflection;
 
 namespace UmangMicro.Manager
 {
@@ -103,6 +104,32 @@ namespace UmangMicro.Manager
         #endregion
 
         #region Get User Role 
+        public static string GetUserRoleLogin()
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                if (HttpContext.Current.User.IsInRole("Consultant"))
+                {
+                    return "Consultant";
+                }
+                if (HttpContext.Current.User.IsInRole("Teacher"))
+                {
+                    return "Teacher";
+                }
+            }
+            return "All";
+        }
+        public static string GetUserRoleConsultantDist()
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                if (HttpContext.Current.User.IsInRole("Consultant"))
+                {
+                    return "Consultant";
+                }
+            }
+            return "All";
+        }
         public static string GetUserRole()
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -266,7 +293,11 @@ namespace UmangMicro.Manager
         {
             try
             {
-                var items = new SelectList(dbe.Dist_Mast.Where(x => x.IsActive == true && x.StateId == StateId), "ID", "DistName").OrderBy(x => x.Text).ToList();
+                DataTable dt = new DataTable();
+                dt = SP_Model.GetSP_DistrictList();
+                var listitem = ConvertDataTable<SelectListItem>(dt);
+                //var items = new SelectList(dbe.Dist_Mast.Where(x => x.IsActive == true && x.StateId == StateId), "ID", "DistName").OrderBy(x => x.Text).ToList();
+                var items = new SelectList(listitem, "Value", "Text").OrderBy(x => x.Text).ToList();
                 if (IsAll)
                 {
                     items.Insert(0, new SelectListItem { Value = "0", Text = "All" });
@@ -311,6 +342,33 @@ namespace UmangMicro.Manager
             }
         }
 
+        private static List<T> ConvertDataTable<T>(DataTable dt)
+        {
+            List<T> data = new List<T>();
+            foreach (DataRow row in dt.Rows)
+            {
+                T item = GetItem<T>(row);
+                data.Add(item);
+            }
+            return data;
+        }
+        private static T GetItem<T>(DataRow dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
+
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                foreach (PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name == column.ColumnName)
+                        pro.SetValue(obj, dr[column.ColumnName], null);
+                    else
+                        continue;
+                }
+            }
+            return obj;
+        }
 
         //public static List<SelectListItem> GetState()
         //{
@@ -1047,7 +1105,7 @@ namespace UmangMicro.Manager
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    var items = new SelectList(dbe.AspNetRoles.Where(x=>x.Id.ToLower() == "2CAC5128-08C7-4B95-8C6A-DB61E6B40376" || x.Id.ToLower() == "D3CE11F6-847E-4158-91DB-C4EB555A9BD4"), "Name", "Name").OrderBy(x => x.Text).ToList();
+                    var items = new SelectList(dbe.AspNetRoles.Where(x=>x.Id.ToLower() == "2CAC5128-08C7-4B95-8C6A-DB61E6B40376" || x.Id.ToLower() == "D3CE11F6-847E-4158-91DB-C4EB555A9BD4" || x.Id.ToLower()== "BAA881FB-F8BD-4199-A6CA-6FCAF7E3A0C2"), "Name", "Name").OrderBy(x => x.Text).ToList();
                     if (isAddedSelect)
                     {
                         items.Insert(0, new SelectListItem { Value = "", Text = "Select" });
@@ -1677,6 +1735,11 @@ namespace UmangMicro.Manager
         {
             return date.Date;
         }
+        public static DateTime? TruncateTime(DateTime? original)
+        {
+            if (!original.HasValue) return null;
+            return original.Value.Date;
+        }
         public static string FormateDtMDY(string date)
         {
             string dt = "";
@@ -1870,7 +1933,11 @@ namespace UmangMicro.Manager
         {
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "-1", Text = "Select" });
-            list.Add(new SelectListItem { Value = "2CAC5128-08C7-4B95-8C6A-DB61E6B40376".ToLower(), Text = "Teacher" });
+            if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
+                list.Add(new SelectListItem { Value = "2CAC5128-08C7-4B95-8C6A-DB61E6B40376".ToLower(), Text = "Teacher" });
+            else if (CommonModel.GetUserRoleConsultantDist() == MvcApplication.CUser.Role)
+                list.Add(new SelectListItem { Value = "BAA881FB-F8BD-4199-A6CA-6FCAF7E3A0C2".ToLower(), Text = "Consultant" });
+            else
             list.Add(new SelectListItem { Value = "D3CE11F6-847E-4158-91DB-C4EB555A9BD4".ToLower(), Text = "PCI Representative" });
             return list.OrderBy(x => x.Value.ToString()).ToList();
         }
@@ -1965,7 +2032,7 @@ namespace UmangMicro.Manager
             List<SelectListItem> list = new List<SelectListItem>();
             //list.Add(new SelectListItem { Value = "-1", Text = "Select" });
             list.Add(new SelectListItem { Value = "1", Text = "Career Compendium" });
-            list.Add(new SelectListItem { Value = "2", Text = "Psychometric (RIASEC) test" });
+            //list.Add(new SelectListItem { Value = "2", Text = "Psychometric (RIASEC) test" });
             list.Add(new SelectListItem { Value = "3", Text = "State Career Portal" });
             return list.OrderBy(x => Convert.ToInt32(x.Value.ToString())).ToList();
         }

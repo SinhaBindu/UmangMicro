@@ -17,6 +17,9 @@ namespace UmangMicro.Models
         public Nullable<System.Guid> GudID { get; set; }
         public int Id { get; set; }
         public Nullable<int> Reg_Id_fk { get; set; }
+        public Nullable<int> SchoolId { get; set; }
+        public Nullable<int> DistrictId { get; set; }
+        public Nullable<int> BlockId { get; set; }
         public Nullable<int> RIASECTest_Id_fk { get; set; }
         public string CaseID { get; set; }
         public string FormSubmitTime { get; set; }
@@ -40,6 +43,7 @@ namespace UmangMicro.Models
         public string FY { get; set; }
         public string IsGoalClear { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> CaseDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string UpdatedBy { get; set; }

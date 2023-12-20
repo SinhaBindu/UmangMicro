@@ -13,12 +13,13 @@ namespace UmangMicro.Manager
 {
     public class SP_Model
     {
-        public static DataTable SPCandRegList(string SD, string ED)
+        public static DataTable SPCandRegList(string SD, string ED,string DistrictId)
         {
             StoredProcedure sp = new StoredProcedure("SP_RegList");
             sp.Command.AddParameter("@FD", SD, DbType.String);
             sp.Command.AddParameter("@TD", ED, DbType.String);
-            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRoleLogin(), DbType.String);
             sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
@@ -108,6 +109,9 @@ namespace UmangMicro.Manager
             sp.Command.AddParameter("@Para", Para, DbType.String);
             sp.Command.AddParameter("@SearchBy", SearchBy, DbType.String);
             sp.Command.AddParameter("@DOB", DOB, DbType.String);
+            sp.Command.AddParameter("@DistrictId", MvcApplication.CUser.DistrictId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
@@ -171,7 +175,7 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
-        public static DataTable GetSP_RCTestRes_List(string Para, string SearchBy,string DOB, string Sdt, string Edt, string SchoolId)
+        public static DataTable GetSP_RCTestRes_List(string Para, string SearchBy,string DOB, string Sdt, string Edt, string SchoolId, string DistrictId)
         {
             StoredProcedure sp = new StoredProcedure("SP_RToCTestRes_List");
             //sp.Command.AddParameter("@Para", Para, DbType.String);
@@ -180,7 +184,8 @@ namespace UmangMicro.Manager
             sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
             sp.Command.AddParameter("@Edt", Edt, DbType.String);
             sp.Command.AddParameter("@SchoolId", SchoolId, DbType.String);
-            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRoleLogin(), DbType.String);
             sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
@@ -223,6 +228,30 @@ namespace UmangMicro.Manager
         public static DataSet GetSP_DashboardData(string Sdt, string Edt, string DistrictId, string BlockId)
         {
             StoredProcedure sp = new StoredProcedure("SP_DashboardData");
+            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@BlockId", BlockId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
+        public static DataSet GetSP_AllChartData(string Sdt, string Edt, string DistrictId, string BlockId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_ChartData6To12th");
+            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@BlockId", BlockId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
+        public static DataSet GetSP_ChartDataTypeQuery(string Sdt, string Edt, string DistrictId, string BlockId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_ChartDataTypeQuery");
             sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
             sp.Command.AddParameter("@Edt", Edt, DbType.String);
             sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);

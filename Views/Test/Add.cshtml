@@ -126,6 +126,7 @@
                                         <div class="panel-bodys">
                                             @Html.AntiForgeryToken()
                                             @Html.HiddenFor(m => m.Id)
+                                            @Html.HiddenFor(m => m.SchoolId)
                                             <input type="hidden" name="sid" id="sid" value="@Model.SchoolId" />
                                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                             <div class="top-form">
@@ -169,14 +170,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="gapper">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6" >
                                                         <div class="position-relative form-group">
                                                             <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
                                                             @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
                                                             @Html.ValidationMessageFor(model => model.CaseID, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    @*<div class="col-md-6" style="display:none;">
                                                         <div class="form-group">
                                                             <label class="control-label">School</label>
                                                             @if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
@@ -193,7 +194,7 @@
                                                             }
 
                                                         </div>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                             </div>
                                             @{
@@ -232,6 +233,10 @@
         var StudDList = [];
         var PartTimeSumtxt = 0;
         $(document).ready(function () {
+
+              if ('@Model.TypeCase' === '2' && '@Model.CaseID' === $('input[name=Searchtxt]').val()) {
+                      GetStudData('CaseID');
+                  }
 
             $('input[name=TypeCase]').click(function () {
                 if ($(this).val() == "1") {
@@ -341,7 +346,7 @@
             $('#FormSubmit').submit(function (e) {
                 debugger;
                 e.preventDefault();
-                var bResponse = confirm('Are you sure you want to exit?');
+                var bResponse = confirm('Are you sure you want to Submit & exit?');
                 if (bResponse === true) {
                     if ($('#CaseID').val() != '' && $('#SchoolId').val() != '' && $('#Date').val() != '') {
 

@@ -11,6 +11,7 @@ using UmangMicro.Manager;
 
 namespace UmangMicro.Controllers
 {
+    [Authorize]
     public class ReportController : Controller
     {
         // GET: Report
@@ -31,6 +32,50 @@ namespace UmangMicro.Controllers
                 DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
                 BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
                 var items = SP_Model.GetSP_DashboardData(Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    //var html = ConvertViewToString("_CaseHList", items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetAllChart(string Sdt, string Edt, string DistrictId, string BlockId)
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                BlockId = BlockId == "0" ? string.Empty : BlockId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
+                var items = SP_Model.GetSP_AllChartData(Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    //var html = ConvertViewToString("_CaseHList", items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetTypeQueryChart(string Sdt, string Edt, string DistrictId, string BlockId)
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                BlockId = BlockId == "0" ? string.Empty : BlockId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
+                var items = SP_Model.GetSP_ChartDataTypeQuery(Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
                 if (items != null)
                 {
                     var data = JsonConvert.SerializeObject(items);

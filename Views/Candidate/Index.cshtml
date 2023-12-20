@@ -1,5 +1,6 @@
 ﻿@model  UmangMicro.Models.FilterCanReg
 @using UmangMicro.Models
+@using UmangMicro.Manager;
 @*@model IEnumerable<KGBV_JH.Models.QesRes>*@
 @{
     ViewBag.Title = "Registration List";
@@ -19,7 +20,7 @@
             <div id="div-download"></div>
             @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
             {
-                <div class="row ">                   
+                <div class="row ">
 
                     <div class="col-md-12">
                         <div class="position-relative form-group">
@@ -30,8 +31,13 @@
                         <fieldset class="scheduler-border">
                             <legend class="scheduler-border">Search  :</legend>
                             <div class="row">
-
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <span class="text-danger" id="rqdis" style="display:none;">*</span> @Html.LabelFor(m => m.DistrictId, new { @class = "" })
+                                        @Html.DropDownListFor(m => m.DistrictId, CommonModel.GetDistrict(), "Select", new { @class = "form-control select2" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label class="tar-pull-manage2">From Date :  <span class="text-danger">*</span> </label>
                                         <div id="demo-dp-range">
@@ -39,7 +45,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label class="tar-pull-manage2">To Date : <span class="text-danger">*</span></label>
                                         <div id="demo-dp-range">
@@ -47,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <label class="mt-3"></label>
                                     <div class="clearfix"></div>
                                     <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />
@@ -98,6 +104,18 @@
     <script>
         $(document).ready(function () {
 
+
+             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                  $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                  $('#DistrictId').attr("style", "pointer-events: none;");
+             }
+             if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
+                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                          //$('#DistrictId').attr("style", "pointer-events: none;");
+                             $('#DistrictId').trigger('change');
+                            $("#DistrictId").select2({ disabled: 'readonly' });
+                     }
+
             $('#formid').submit(function (e) {
                 e.preventDefault();
                 LoadReport();
@@ -114,11 +132,12 @@
             var url = $(id).attr("action");
             var FD = $("#FD").val() == "" ? "" : $("#FD").val();
             var TD = $("#TD").val() == "" ? "" : $("#TD").val();
+            var DistrictId = $("#DistrictId").val() == "" ? "" : $("#DistrictId").val();
             $.ajax({
                 // url: url,
                 url: document.baseURI + "/Candidate/GetIndex",
                 type: "POST",
-                data: { 'FD': FD, 'TD': TD },
+                data: { 'FD': FD, 'TD': TD, 'DistrictId': DistrictId },
                 // contentType: "application/json",
                 // dataType: "json",
                 // contentType: "application/json; charset=utf-8",

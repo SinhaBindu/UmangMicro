@@ -19,11 +19,11 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-        public ActionResult GetIndexList(string Para="", string SearchBy = "", string DOB="", string Sdt = "", string Edt = "", string SchoolId = "")
+        public ActionResult GetIndexList(string Para = "", string SearchBy = "", string DOB = "", string Sdt = "", string Edt = "", string SchoolId = "", string DistrictId = "")
         {
             try
             {
-                var items = SP_Model.GetSP_RCTestRes_List(Para, SearchBy,DOB, Sdt, Edt, SchoolId);
+                var items = SP_Model.GetSP_RCTestRes_List(Para, SearchBy, DOB, Sdt, Edt, SchoolId, DistrictId);
                 if (items != null)
                 {
                     var data = JsonConvert.SerializeObject(items);
@@ -37,12 +37,12 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult Add(int? Id)
+        public ActionResult Add(int? Id, int Para = 0, string CaseID = "", string DOB = "")
         {
-            var m = GetAdd(Id);
+            var m = GetAdd(Id, Para, CaseID, DOB);
             return View(m);
         }
-        private QesRes GetAdd(int? Id)
+        private QesRes GetAdd(int? Id, int Para = 0, string CaseID = "", string DOB = "")
         {
             FormModel model;
             List<FormModel> modellist = new List<FormModel>();
@@ -85,6 +85,10 @@ namespace UmangMicro.Controllers
                     return new QesRes { Id = tblmain.ID, SchoolId = Convert.ToInt32(tblmain.SchoolId), Qlist = qList };
                 }
             }
+            if (Para > 0)
+            {
+                return new QesRes { TypeCase = "2", CaseID = CaseID, Searchtxt = CaseID, SchoolId = 0, Qlist = qList };
+            }
             return new QesRes { SchoolId = 0, Qlist = qList };//Convert.ToInt32(MvcApplication.CUser.SchoolId)
         }
 
@@ -98,6 +102,10 @@ namespace UmangMicro.Controllers
                 //var resdata = this.Request.Unvalidated.Form.AllKeys;
                 if (model != null)
                 {
+                    if (db_.tbl_RIASEC_Main.Any(x => x.CaseID == model.CaseID && x.TestDate == model.Date))
+                    {
+                        return Json(new { IsSuccess = false, res = "", msg = "This is record already exists!" }, JsonRequestBehavior.AllowGet);
+                    }
                     if (model.SchoolId == 0)
                     {
                         return Json(new { IsSuccess = false, res = "", msg = "Select School !" }, JsonRequestBehavior.AllowGet);
@@ -156,7 +164,7 @@ namespace UmangMicro.Controllers
                                         if (item.Answer == item.SectionType)
                                         {
                                             tbl_childTest.GudId = Guid.NewGuid();
-                                            tbl_childTest.Reg_ID_fk =regid.ID;
+                                            tbl_childTest.Reg_ID_fk = regid.ID;
                                             tbl_childTest.CaseID = model.CaseID.ToString();
                                             tbl_childTest.RIASEC_ID_fk = maintbl.ID;
                                             tbl_childTest.QuestionID = item.QuestionId_pk;

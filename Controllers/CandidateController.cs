@@ -30,13 +30,13 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-        public ActionResult GetIndex(string FD = "", string TD = "")
+        public ActionResult GetIndex(string FD = "", string TD = "", string DistrictId = "")
         {
             DataTable tbllist = new DataTable();
             var html = "";
             try
             {
-                tbllist = SP_Model.SPCandRegList(FD, TD);
+                tbllist = SP_Model.SPCandRegList(FD, TD, DistrictId);
                 bool IsCheck = false;
                 if (tbllist.Rows.Count > 0)
                 {
@@ -130,7 +130,14 @@ namespace UmangMicro.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var getdt = db_.tbl_Registration.Where(x => x.MobileNo == model.MobileNo);
+                    var getdt = db_.tbl_Registration.Where(x => x.IsActive == true).ToList();
+                    if (getdt.Any(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.SchoolId == model.SchoolId && model.ID == 0))
+                    {
+                        response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Case ID : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
+                        var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                        resResponse1.MaxJsonLength = int.MaxValue;
+                        return resResponse1;
+                    }
                     if (getdt.Any(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.DOB == model.DOB && model.ID == 0))
                     {
                         response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Registration.<br /> <span> Case ID : <strong>" + getdt?.FirstOrDefault().CaseID + " </strong>  </span>", Data = null };
@@ -202,7 +209,8 @@ namespace UmangMicro.Controllers
                     {
                         // var taskres = CU_RegLogin(model, tbl.ID);
                         var case_id = db_.tbl_Registration.Where(x => x.Name == model.Name.Trim() && x.FatherName == model.FatherName.Trim() && x.MotherName == model.MotherName.Trim() && x.DOB == model.DOB)?.FirstOrDefault().CaseID; //if (case_id != null) { }
-                        if (model.ID > 0) {
+                        if (model.ID > 0)
+                        {
                             response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, you have been Updated successfully ! \r\nPlease Note Your <br /> <span> Case ID : <strong>" + case_id + " </strong> </span>", Data = null };
                             var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
                             resResponse3.MaxJsonLength = int.MaxValue;
@@ -312,6 +320,6 @@ namespace UmangMicro.Controllers
                 return writer.ToString();
             }
         }
-        
+
     }
 }

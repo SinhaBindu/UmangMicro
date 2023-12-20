@@ -44,7 +44,12 @@
                 GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
                 $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
                 $('#SchoolId').attr("style", "pointer-events: none;");
-                }
+            }
+             if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
+                     $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                     $('#DistrictId').attr("style", "pointer-events: none;");
+                     OnChagDistricts('BlockId', $('#DistrictId').val());
+                 }
 
             $('#LanguangeType').change(function () {
 

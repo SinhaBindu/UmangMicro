@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SubSonic.Extensions;
 using UmangMicro.Manager;
 using UmangMicro.Models;
 using static UmangMicro.Manager.Enums;
@@ -70,7 +71,7 @@ namespace UmangMicro.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-       // [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public async Task<ActionResult> UmangLogin(LoginViewModel model, string returnUrl)
         {
             UM_DBEntities dbe = new UM_DBEntities();
@@ -97,8 +98,8 @@ namespace UmangMicro.Controllers
                         dbe.tbl_LoginDetail.Add(tbl);
                         dbe.SaveChanges();
                     }
-                   // return RedirectToLocal(returnUrl);
-                   return RedirectToAction("Resource", "Report");
+                    // return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Resource", "Report");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -118,6 +119,7 @@ namespace UmangMicro.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             UM_DBEntities dbe = new UM_DBEntities();
+            Session["CUser"] = null;
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -207,7 +209,7 @@ namespace UmangMicro.Controllers
 
         //
         // POST: /Account/Register
-        [Authorize]
+        [Authorize(Roles = "Admin,PCI_Representative,State")]
         [HttpPost]
         //[AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -228,10 +230,18 @@ namespace UmangMicro.Controllers
 
                         uptbl.Name = model.Name.Trim();
                         uptbl.StateId = 20;
-                        //uptbl.DistrictId = model.DistrictId;
-                        //uptbl.BlockId = model.BlockId;
+                        if (model.Role.ToLower() == "consultant")//BAA881FB-F8BD-4199-A6CA-6FCAF7E3A0C2
+                        {
+                            uptbl.DistrictId = model.DistrictId;
+                        }
+                        else if (model.Role.ToLower() == "teacher")//2CAC5128-08C7-4B95-8C6A-DB61E6B40376
+                        {
+                            var idblck = dbe.SchoolMaster_N.Where(x => x.ID == model.SchoolId).FirstOrDefault().BlockCode;
+                            uptbl.DistrictId = model.DistrictId;
+                            uptbl.BlockId = Convert.ToInt32(idblck);
+                            uptbl.SchoolId = model.SchoolId;
+                        }
                         //uptbl.ClusterId = model.ClusterId;
-                        uptbl.SchoolId = model.SchoolId;
                         uptbl.CreatedBY = user.Id;
                         uptbl.CreatedDt = DateTime.Now;
                         dbe.SaveChanges();
@@ -256,13 +266,17 @@ namespace UmangMicro.Controllers
 
         //
         // GET: /Account/EditUser
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        [Authorize(Roles = "Admin,PCI_Representative,State")]
         public ActionResult EditUser(string id)
         {
             if (!string.IsNullOrWhiteSpace(id))
             {
                 UM_DBEntities dbe = new UM_DBEntities();
                 var user = dbe.AspNetUsers.Find(id);
+                var idblck = 0;
+
+
                 var model = new UserEditViewModel
                 {
                     Id = user.Id,
@@ -272,9 +286,19 @@ namespace UmangMicro.Controllers
                     //DistrictId = user.DistrictId.Value,
                     //BlockId = user.BlockId.Value,
                     //ClusterId = user.ClusterId.Value,
-                    SchoolId = user.SchoolId.Value,
-                    Role = user.AspNetRoles.FirstOrDefault().Name
+
+                    Role = user.AspNetRoles.FirstOrDefault().Name,
+                    DistrictId = user.DistrictId,
+                    BlockId  = user.BlockId,
+                    SchoolId  = user.SchoolId,
+                   // DistrictId = ("Consultant").ToLower() == (user.AspNetRoles.FirstOrDefault().Name).ToLower() ? user.DistrictId.Value : 0,
+                   // BlockId = (("Teacher").ToLower()) == (user.AspNetRoles.FirstOrDefault().Name).ToLower() ? user.BlockId.Value : 0,
+                   // SchoolId = (("Teacher").ToLower()) == (user.AspNetRoles.FirstOrDefault().Name).ToLower() ? user.SchoolId.Value : 0,
                 };
+                if (model == null)
+                {
+                    return RedirectToAction("Register", "Account");
+                }
                 return View(model);
             }
             else
@@ -305,8 +329,17 @@ namespace UmangMicro.Controllers
                         user.Name = model.Name;
                         //user.DistrictId = model.DistrictId;
                         //user.BlockId = model.BlockId;
-                        user.SchoolId = model.SchoolId;
-                        user.CreatedBY = user.Id;
+                        if (model.Role.ToLower() == "consultant")//BAA881FB-F8BD-4199-A6CA-6FCAF7E3A0C2
+                        {
+                            user.DistrictId = model.DistrictId;
+                        }
+                        else if (model.Role.ToLower() == "teacher")//2CAC5128-08C7-4B95-8C6A-DB61E6B40376
+                        {
+                            var idblck = dbe.SchoolMaster_N.Where(x => x.ID == model.SchoolId).FirstOrDefault().BlockCode;
+                            user.DistrictId = model.DistrictId;
+                            user.BlockId = Convert.ToInt32(idblck);
+                            user.SchoolId = model.SchoolId;
+                        }
                         dbe.SaveChanges();
 
                         var userRoles = UserManager.GetRoles(model.Id);

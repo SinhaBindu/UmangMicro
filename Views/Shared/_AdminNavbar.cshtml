@@ -7,7 +7,7 @@
 
 <div id="cssmenu">
     <ul>
-        @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("State") || HttpContext.Current.User.IsInRole("PCI_Representative"))
+        @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("State") || HttpContext.Current.User.IsInRole("PCI_Representative") || HttpContext.Current.User.IsInRole("Consultant"))
         {
             <li class="menu-hide">&nbsp;</li>
             <li>

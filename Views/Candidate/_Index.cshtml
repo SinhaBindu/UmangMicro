@@ -37,7 +37,7 @@
                         <th class="text-center">School<br /> District</th>
                         <th class="text-center">School<br /> Block</th>
                         @*<th class="text-center">Panchayat</th>
-                        <th class="text-center">Village</th>*@
+                            <th class="text-center">Village</th>*@
                         <th class="text-center">DOB</th>
                         <th class="text-center">Age</th>
                         <th class="text-center">Social <br /> Category</th>
@@ -59,17 +59,24 @@
                                 <tr>
                                     <td class="text-center">@(sno++)</td>
                                     <td class="text-center">@dr["RegDate"]</td>
-                                    <td>
-                                        <span class="text-center d-block badge bg-primary txt-bold text-white" title="CaseID"><strong class="text-center">@dr["CaseID"]</strong></span>
+                                    <td class="text-center" title="Click To Case History (Student Counselling)">
+                                        @*onclick="return GetStudData('CaseID', '2', '@dr["CaseID"]', '');"*@
+                                        <a href="~/Counsellor/CaseHistory?Para=2&&CaseID=@dr["CaseID"]">
+                                            <span class="text-center d-block badge bg-primary txt-bold text-white" title="Click To Case History (Student Counselling)"><strong class="text-center" style="font-size:12px;">@dr["CaseID"]</strong></span>
+                                        </a>
                                     </td>
-                                    <td class="text-left">@dr["Name"]</td>
+                                    <td class="text-left" title="Click To RIASEC Test">
+                                        <a href="~/Test/Add?Para=2&&CaseID=@dr["CaseID"]" style="text-decoration:none;">
+                                            <strong>@dr["Name"]</strong>
+                                        </a>
+                                    </td>
                                     <td class="text-left">@dr["MotherName"]</td>
                                     <td class="text-left">@dr["FatherName"]</td>
                                     <td class="text-left">@dr["school_name"]</td>
                                     <td class="text-left">@dr["DistName"]</td>
                                     <td class="text-left">@dr["BlockName"]</td>
                                     @*<td class="text-left">@dr["ClusterName"]</td>
-                                    <td class="text-left">@dr["Village"]</td>*@
+                                        <td class="text-left">@dr["Village"]</td>*@
                                     <td class="text-center">@dr["DOB"]</td>
                                     <td class="text-left">@dr["Age"]</td>
                                     <td class="text-center">@cast</td>

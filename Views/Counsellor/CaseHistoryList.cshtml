@@ -173,6 +173,16 @@
                 $('#BlockId').trigger('change');
                 //$("#BlockId").select2({ disabled: 'readonly' });
             }
+
+             if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
+                     $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                     $('#DistrictId').attr("style", "pointer-events: none;");
+                     OnChagDistricts('BlockId', $('#DistrictId').val());
+                    $('#DistrictId').trigger('change');
+                    //$("#DistrictId").select2({ disabled: 'readonly' });
+                    $('#BlockId').trigger('change');
+                   //$("#BlockId").select2({ disabled: 'readonly' });
+             }
             $('#DistrictId').change(function () {
                 OnChagDistricts('BlockId', $('#DistrictId').val());
                 $("#BlockId option[value='']").remove();

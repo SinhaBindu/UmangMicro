@@ -89,10 +89,10 @@ namespace UmangMicro.Models
         public int? SchoolId { get; set; }
         //[Display(Name = "State")]
         //public int? StateId { get; set; }
-        //[Display(Name = "District")]
-        //public int? DistrictId { get; set; }
-        //[Display(Name = "Block")]
-        //public int? BlockId { get; set; }
+        [Display(Name = "District")]
+        public int? DistrictId { get; set; }
+        [Display(Name = "Block")]
+        public int? BlockId { get; set; }
         //[Display(Name = "Cluster")]
         //public int? ClusterId { get; set; }
         [Display(Name = "Name")]
@@ -126,10 +126,10 @@ namespace UmangMicro.Models
         public string PhoneNumberConfirmed { get; set; }
         //[Display(Name = "State")]
         //public int? StateId { get; set; }
-        //[Display(Name = "District")]
-        //public int? DistrictId { get; set; }
-        //[Display(Name = "Block")]
-        //public int? BlockId { get; set; }
+        [Display(Name = "District")]
+        public int? DistrictId { get; set; }
+        [Display(Name = "Block")]
+        public int? BlockId { get; set; }
         //[Display(Name = "Cluster")]
         //public int? ClusterId { get; set; }
 

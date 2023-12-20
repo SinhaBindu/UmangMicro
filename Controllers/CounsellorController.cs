@@ -1,9 +1,11 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
+using SubSonic.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -14,6 +16,7 @@ using static UmangMicro.Manager.Enums;
 
 namespace UmangMicro.Controllers
 {
+    [Authorize]
     public class CounsellorController : Controller
     {
         UM_DBEntities db = new UM_DBEntities();
@@ -158,16 +161,16 @@ namespace UmangMicro.Controllers
                         }
                         if (model.Paratbl == "3")
                         {
-                            if (ds.Tables[2].Rows.Count > 0)
+                            if (ds.Tables[0].Rows.Count > 0)
                             {
-                                dt2 = ds.Tables[2];
+                                dt2 = ds.Tables[0];
                             }
                         }
                         if (model.Paratbl == "4")
                         {
-                            if (ds.Tables[3].Rows.Count > 0)
+                            if (ds.Tables[0].Rows.Count > 0)
                             {
-                                dt3 = ds.Tables[3];
+                                dt3 = ds.Tables[0];
                             }
                         }
                     }
@@ -204,13 +207,19 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult CaseHistory(int Id = 0)
+        public ActionResult CaseHistory(int Id = 0, int Para = 0, string CaseID = "", string DOB = "")
         {
             CHModel model = new CHModel();
-            if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
+            if (CommonModel.GetUserRoleLogin() == MvcApplication.CUser.Role)
             {
                 model.TypeCounsellor = MvcApplication.CUser.RoleId;
-                model.StratTime = DateTime.Now;
+            }
+            model.StratTime = DateTime.Now;
+            if (Para > 0)
+            {
+                model.TypeCase = "2";
+                model.CaseID = CaseID;
+                model.Searchtxt = CaseID;
             }
             return View(model);
         }
@@ -227,10 +236,24 @@ namespace UmangMicro.Controllers
                 var resSTlist = this.Request.Unvalidated.Form["CH_SkillT_model"];
                 var resSSPlist = this.Request.Unvalidated.Form["CH_SSP_model"];
                 var resSMlist = this.Request.Unvalidated.Form["CH_SM_model"];
-
+                var cdate = string.Format("{0:M/dd/yyyy}",
+                               DateTime.Now.Date);
+                var getcaseid =
+                          //(from dt in
+                          (from ac in db_.tbl_CaseHistory.ToList()
+                           where ac.CaseID == model.CaseID
+                           select new
+                           {
+                               CreatedOndmy = string.Format("{0:M/dd/yyyy}",
+                               ac.CreatedOn),
+                               ac.CaseID
+                           }).ToList();
+                //select string.Format("{0:M/dd/yyyy}", dt.)).ToList();
+                //DateTime ruleData = Convert.ToDateTime(DateTime.Now.Date).Date;
                 //if (ModelState.IsValid)
                 //{
-                if (db_.tbl_CaseHistory.Any(x => x.CaseID == model.CaseID && x.CreatedOn.ToDateTimeDDMMYYYY() == DateTime.Now.Date.ToDateTimeDDMMYYYY()))
+                //if (db_.tbl_CaseHistory.Any(x => x.CaseID == model.CaseID && ((x.CaseDate.Value) == Nullable<System.DateTime>(cdate)) ))
+                if (getcaseid.Any(x => x.CreatedOndmy == cdate))
                 {
                     response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Already Exists Case History Detail.<br /> <span> Case ID : <strong>" + model.CaseID + " </strong>  </span>", Data = null };
                     var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
@@ -252,6 +275,10 @@ namespace UmangMicro.Controllers
                     tbl.GudID = Guid.NewGuid();
                     tbl.Reg_Id_fk = regid.ID;
                     tbl.RIASECTest_Id_fk = model.RIASECTest_Id_fk;
+                    tbl.DistrictId = Convert.ToInt32(regid.DistrictId);
+                    tbl.BlockId = Convert.ToInt32(regid.BlockId);
+                    tbl.SchoolId = Convert.ToInt32(regid.SchoolId);
+
                     //tbl.CountdownStart = model.CountdownStart;
                     //tbl.CountdownEnd = model.CountdownEnd;
                     tbl.DOC = model.DOC;
@@ -293,6 +320,7 @@ namespace UmangMicro.Controllers
                         {
                             tbl.CreatedBy = MvcApplication.CUser.Id;
                         }
+                        tbl.CaseDate = DateTime.Now.Date;
                         tbl.CreatedOn = DateTime.Now;
                         tbl.StratTime = model.StratTime;
                         tbl.EndTime = DateTime.Now;
@@ -314,109 +342,126 @@ namespace UmangMicro.Controllers
                     if (resPHYlist != null)
                     {
                         var mlist = JsonConvert.DeserializeObject<List<CH_Psychometric_Model>>(resPHYlist);
-                        tbl_CH_Psychometric tbl_Psy;
-                        List<tbl_CH_Psychometric> tbl_list = new List<tbl_CH_Psychometric>();
-                        foreach (var m in mlist)
+                        if (mlist.Count() > 0)
                         {
-                            tbl_Psy = new tbl_CH_Psychometric()
+                            tbl_CH_Psychometric tbl_Psy;
+                            List<tbl_CH_Psychometric> tbl_list = new List<tbl_CH_Psychometric>();
+                            foreach (var m in mlist)
                             {
-                                RIASECTest_Id_fk = model.RIASECTest_Id_fk,
-                                CaseHistoryId = tbl.Id.ToString(),
-                                CaseId = tbl.CaseID,
-                                RIASEC_Guided_Id = m.RIASEC_Guided_Id,
-                                PsychometricTestId = m.PsychometricTestId,
-                                CreatedBy = MvcApplication.CUser.Id,
-                                CreatedOn = DateTime.Now,
-                                IsActive = true
-                            };
-                            tbl_list.Add(tbl_Psy);
+                                tbl_Psy = new tbl_CH_Psychometric()
+                                {
+                                    RIASECTest_Id_fk = model.RIASECTest_Id_fk,
+                                    CaseHistoryId = tbl.Id.ToString(),
+                                    CaseId = tbl.CaseID,
+                                    RIASEC_Guided_Id = m.RIASEC_Guided_Id,
+                                    PsychometricTestId = m.PsychometricTestId,
+                                    CreatedBy = MvcApplication.CUser.Id,
+                                    CreatedOn = DateTime.Now,
+                                    IsActive = true
+                                };
+                                tbl_list.Add(tbl_Psy);
+                            }
+                            db.tbl_CH_Psychometric.AddRange(tbl_list);
+                            results = db.SaveChanges();
+
                         }
-                        db.tbl_CH_Psychometric.AddRange(tbl_list);
-                        results = db.SaveChanges();
+
                     }
                     if (resCDlist != null)
                     {
                         var mlist = JsonConvert.DeserializeObject<List<CH_CourseD_Model>>(resCDlist);
-                        tbl_CH_CourseD tbl_;
-                        List<tbl_CH_CourseD> tbl_list = new List<tbl_CH_CourseD>();
-                        foreach (var m in mlist)
+                        if (mlist.Count() > 0)
                         {
-                            tbl_ = new tbl_CH_CourseD()
+                            tbl_CH_CourseD tbl_;
+                            List<tbl_CH_CourseD> tbl_list = new List<tbl_CH_CourseD>();
+                            foreach (var m in mlist)
                             {
-                                CaseHistoryId = tbl.Id.ToString(),
-                                CaseId = tbl.CaseID,
-                                CourseD_Id = m.CourseD_Id,
-                                CreatedBy = MvcApplication.CUser.Id,
-                                CreatedOn = DateTime.Now,
-                                IsActive = true
-                            };
-                            tbl_list.Add(tbl_);
+                                tbl_ = new tbl_CH_CourseD()
+                                {
+                                    CaseHistoryId = tbl.Id.ToString(),
+                                    CaseId = tbl.CaseID,
+                                    CourseD_Id = m.CourseD_Id,
+                                    CreatedBy = MvcApplication.CUser.Id,
+                                    CreatedOn = DateTime.Now,
+                                    IsActive = true
+                                };
+                                tbl_list.Add(tbl_);
+                            }
+                            db.tbl_CH_CourseD.AddRange(tbl_list);
+                            results = db.SaveChanges();
                         }
-                        db.tbl_CH_CourseD.AddRange(tbl_list);
-                        results = db.SaveChanges();
                     }
                     if (resSTlist != null)
                     {
                         var mlist = JsonConvert.DeserializeObject<List<CH_SkillT_Model>>(resSTlist);
-                        tbl_CH_SkillT tbl_;
-                        List<tbl_CH_SkillT> tbl_list = new List<tbl_CH_SkillT>();
-                        foreach (var m in mlist)
+                        if (mlist.Count() > 0)
                         {
-                            tbl_ = new tbl_CH_SkillT()
+                            tbl_CH_SkillT tbl_;
+                            List<tbl_CH_SkillT> tbl_list = new List<tbl_CH_SkillT>();
+                            foreach (var m in mlist)
                             {
-                                CaseHistoryId = tbl.Id.ToString(),
-                                CaseId = tbl.CaseID,
-                                SkillT_Id = m.SkillT_Id,
-                                CreatedBy = MvcApplication.CUser.Id,
-                                CreatedOn = DateTime.Now,
-                                IsActive = true
-                            };
-                            tbl_list.Add(tbl_);
+                                tbl_ = new tbl_CH_SkillT()
+                                {
+                                    CaseHistoryId = tbl.Id.ToString(),
+                                    CaseId = tbl.CaseID,
+                                    SkillT_Id = m.SkillT_Id,
+                                    CreatedBy = MvcApplication.CUser.Id,
+                                    CreatedOn = DateTime.Now,
+                                    IsActive = true
+                                };
+                                tbl_list.Add(tbl_);
+                            }
+                            db.tbl_CH_SkillT.AddRange(tbl_list);
+                            results = db.SaveChanges();
                         }
-                        db.tbl_CH_SkillT.AddRange(tbl_list);
-                        results = db.SaveChanges();
                     }
                     if (resSSPlist != null)
                     {
                         var mlist = JsonConvert.DeserializeObject<List<CH_Scholarship_Model>>(resSSPlist);
-                        tbl_CH_Scholarship tbl_;
-                        List<tbl_CH_Scholarship> tbl_list = new List<tbl_CH_Scholarship>();
-                        foreach (var m in mlist)
+                        if (mlist.Count() > 0)
                         {
-                            tbl_ = new tbl_CH_Scholarship()
+                            tbl_CH_Scholarship tbl_;
+                            List<tbl_CH_Scholarship> tbl_list = new List<tbl_CH_Scholarship>();
+                            foreach (var m in mlist)
                             {
-                                CaseHistoryId = tbl.Id.ToString(),
-                                CaseId = tbl.CaseID,
-                                Scholarship_Id = m.Scholarship_Id,
-                                CreatedBy = MvcApplication.CUser.Id,
-                                CreatedOn = DateTime.Now,
-                                IsActive = true
-                            };
-                            tbl_list.Add(tbl_);
+                                tbl_ = new tbl_CH_Scholarship()
+                                {
+                                    CaseHistoryId = tbl.Id.ToString(),
+                                    CaseId = tbl.CaseID,
+                                    Scholarship_Id = m.Scholarship_Id,
+                                    CreatedBy = MvcApplication.CUser.Id,
+                                    CreatedOn = DateTime.Now,
+                                    IsActive = true
+                                };
+                                tbl_list.Add(tbl_);
+                            }
+                            db.tbl_CH_Scholarship.AddRange(tbl_list);
+                            results = db.SaveChanges();
                         }
-                        db.tbl_CH_Scholarship.AddRange(tbl_list);
-                        results = db.SaveChanges();
                     }
                     if (resSMlist != null)
                     {
                         var mlist = JsonConvert.DeserializeObject<List<CH_Scheme_Model>>(resSMlist);
-                        tbl_CH_Scheme tbl_;
-                        List<tbl_CH_Scheme> tbl_list = new List<tbl_CH_Scheme>();
-                        foreach (var m in mlist)
+                        if (mlist.Count() > 0)
                         {
-                            tbl_ = new tbl_CH_Scheme()
+                            tbl_CH_Scheme tbl_;
+                            List<tbl_CH_Scheme> tbl_list = new List<tbl_CH_Scheme>();
+                            foreach (var m in mlist)
                             {
-                                CaseHistoryId = tbl.Id.ToString(),
-                                CaseId = tbl.CaseID,
-                                Scheme_Id = m.Scheme_Id,
-                                CreatedBy = MvcApplication.CUser.Id,
-                                CreatedOn = DateTime.Now,
-                                IsActive = true
-                            };
-                            tbl_list.Add(tbl_);
+                                tbl_ = new tbl_CH_Scheme()
+                                {
+                                    CaseHistoryId = tbl.Id.ToString(),
+                                    CaseId = tbl.CaseID,
+                                    Scheme_Id = m.Scheme_Id,
+                                    CreatedBy = MvcApplication.CUser.Id,
+                                    CreatedOn = DateTime.Now,
+                                    IsActive = true
+                                };
+                                tbl_list.Add(tbl_);
+                            }
+                            db.tbl_CH_Scheme.AddRange(tbl_list);
+                            results = db.SaveChanges();
                         }
-                        db.tbl_CH_Scheme.AddRange(tbl_list);
-                        results = db.SaveChanges();
                     }
 
                     response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = " Congratulations, Case History Details Submitted successfully ! \r\n Your <br /> <span> Case ID : <strong>" + tbl.CaseID + " </strong> </span>", Data = null };
@@ -455,11 +500,11 @@ namespace UmangMicro.Controllers
         {
             try
             {
-                DistrictId = DistrictId=="0" ? string.Empty : DistrictId;
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
                 BlockId = BlockId == "0" ? string.Empty : BlockId;
                 DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
                 BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
-                var items = SP_Model.GetSP_CaseHList(Para, SearchBy, DOB, Sdt, Edt,  DistrictId.ToUpper(),BlockId.ToUpper());
+                var items = SP_Model.GetSP_CaseHList(Para, SearchBy, DOB, Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
                 if (items != null)
                 {
                     var data = JsonConvert.SerializeObject(items);
