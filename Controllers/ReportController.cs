@@ -226,6 +226,33 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public ActionResult SummaryData()
+        {
+            return View();
+        }
+        public ActionResult GetSummaryData(string Para = "", string SearchBy = "", string DOB = "", string Sdt = "", string Edt = "", string DistrictId = "", string BlockId = "")
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                BlockId = BlockId == "0" ? string.Empty : BlockId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
+                var items = SP_Model.GetSP_SummaryDistBlockData(Para, SearchBy, DOB, Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    var html = ConvertViewToString("_SummaryData", items);
+                    return Json(new { IsSuccess = true, res = html }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
         private string ConvertViewToString(string viewName, object model)
         {
             ViewData.Model = model;

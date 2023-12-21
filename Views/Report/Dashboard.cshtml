@@ -12,8 +12,9 @@
         height: 50px !important;
         width: 690px !important;
     }
-    .hrf{
-        text-decoration:none;
+
+    .hrf {
+        text-decoration: none;
     }
 </style>
 <div class="admin-breadcrumb">
@@ -147,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-                </a>
+            </a>
         </div>
         <div class="col-md-6 col-xl-2">
             <a href="javascript:void(0);" class="hrf" onclick="$('#chartdis6to12')[0].focus(); $('#b7').removeClass('bg-happy-green'); $('#b7').addClass('bg-mixed-hopes');">
@@ -162,10 +163,10 @@
                         </div>
                     </div>
                 </div>
-                </a>
+            </a>
         </div>
         <div class="col-md-6 col-xl-2">
-            <a href="javascript:void(0);" class="hrf" onclick="$('#chartdis6to12')[0].focus(); $('#b8').removeClass('bg-happy-green'); $('#b8').addClass('bg-mixed-hopes');">
+            <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link hrf" onclick="$('#b8').removeClass('bg-happy-green'); $('#b8').addClass('bg-mixed-hopes');">
                 <div class="card mb-3 widget-content bg-happy-green" id="b8">
                     <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
@@ -177,14 +178,14 @@
                         </div>
                     </div>
                 </div>
-                </a>
+            </a>
         </div>
         <div class="col-md-6 col-xl-2">
-            <a href="javascript:void(0);" class="hrf" onclick="$('#chartTypeQuery')[0].focus(); $('#b9').removeClass('bg-happy-green'); $('#b9').addClass('bg-mixed-hopes'); ">
+            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle hrf" onclick="$('#b9').removeClass('bg-happy-green'); $('#b9').addClass('bg-mixed-hopes'); ">
                 <div class="card mb-3 widget-content bg-happy-green" id="b9">
                     <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
-                            <div class="widget-heading">No. of cases education<br /></div>
+                            <div class="widget-heading"> No. of cases career</div>
                             @*<div class="widget-subheading">People Interested</div>*@
                         </div>
                         <div class="widget-content-right">
@@ -195,11 +196,11 @@
             </a>
         </div>
         <div class="col-md-6 col-xl-2">
-            <a href="javascript:void(0);" class="hrf" onclick="$('#chartTypeQuery')[0].focus(); $('#b10').removeClass('bg-happy-green'); $('#b10').addClass('bg-mixed-hopes');">
+            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle hrf" onclick="$('#b10').removeClass('bg-happy-green'); $('#b10').addClass('bg-mixed-hopes');">
                 <div class="card mb-3 widget-content bg-happy-green" id="b10">
                     <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
-                            <div class="widget-heading">No. of cases career</div>
+                            <div class="widget-heading">No. of cases education</div>
                             @*<div class="widget-subheading">People Interested</div>*@
                         </div>
                         <div class="widget-content-right">
@@ -207,14 +208,14 @@
                         </div>
                     </div>
                 </div>
-                </a>
+            </a>
         </div>
         <div class="col-md-6 col-xl-2">
-            <a href="javascript:void(0);" class="hrf" onclick="$('#chartTypeQuery')[0].focus(); $('#b11').removeClass('bg-happy-green'); $('#b11').addClass('bg-mixed-hopes');">
-                <div class="card mb-3 widget-content bg-happy-green" id="b11">
+            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle hrf" onclick="$('#b11').removeClass('bg-happy-green'); $('#b11').addClass('bg-mixed-hopes');">
+            <div class="card mb-3 widget-content bg-happy-green" id="b11">
                     <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
-                            <div class="widget-heading">No. of cases schemes</div>
+                            <div class="widget-heading">No. of cases scholarships</div>
                             @*<div class="widget-subheading">People Interested</div>*@
                         </div>
                         <div class="widget-content-right">
@@ -222,14 +223,14 @@
                         </div>
                     </div>
                 </div>
-                </a>
+            </a>
         </div>
         <div class="col-md-6 col-xl-2">
-            <a href="javascript:void(0);" class="hrf" onclick="$('#chartTypeQuery')[0].focus(); $('#b12').removeClass('bg-happy-green'); $('#b12').addClass('bg-mixed-hopes');">
+            <a data-toggle="tab"  class="nav-link second-tab-toggle hrf" onclick="openTQ('tabs-eg-88','b12'); $('#b12').removeClass('bg-happy-green'); $('#b12').addClass('bg-mixed-hopes');">
                 <div class="card mb-3 widget-content bg-happy-green" id="b12">
                     <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
-                            <div class="widget-heading">No. of cases scholarships</div>
+                            <div class="widget-heading">No. of cases schemes</div>
                             @*<div class="widget-subheading">People Interested</div>*@
                         </div>
                         <div class="widget-content-right">
@@ -237,7 +238,7 @@
                         </div>
                     </div>
                 </div>
-                </a>
+            </a>
         </div>
 
     </div>
@@ -251,12 +252,12 @@
                         No.Of Girls Cohort (6th to 12th grade)
                     </div>
                     <ul class="nav">
-                        @*<li class="nav-item">
-                                <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link">District</a>
-                            </li>*@
-                        @*<li class="nav-item">
-                                <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle">Block</a>
-                            </li>*@
+                        <li class="nav-item">
+                            <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link" id="tab1">6TH TO 12TH GRADE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle" id="tab2">Type Query</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="">
@@ -264,27 +265,20 @@
                         <div class="tab-pane fade show active" id="tabs-eg-77">
                             <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
                                 <div class="widget-chat-wrapper-outer">
-
-                                    <div class="m-0">
-                                        <div id="chartdis6to12" tabindex="1" height="400"></div>
-                                        <hr style="border:1px solid #000;" />
-                                        <br />
-                                        <div id="chartTypeQuery" tabindex="2" height="400"></div>
-                                    </div>
-
+                                    <div id="chartdis6to12" tabindex="1" height="400"></div>
                                 </div>
                             </div>
                         </div>
 
-                        @*<div class="tab-pane fade" id="tabs-eg-88">
-                                <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
-                                    <div class="widget-chat-wrapper-outer">
-                                        <div class="m-0">
-                                            <div id="chartblock6to12" height="400"></div>
-                                        </div>
+                        <div class="tab-pane fade" id="tabs-eg-88">
+                            <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                                <div class="widget-chat-wrapper-outer">
+                                    <div class="m-0">
+                                        <div id="chartTypeQuery" tabindex="2" height="400"></div>
                                     </div>
                                 </div>
-                            </div>*@
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -1090,7 +1084,20 @@
     <script src="~/Scripts/JS/Master.js"></script>
 
     <script>
+        function openTQ(id,bgid) {
+            var i;
+            //var x = document.getElementsByClassName("city");
+            var x = document.getElementById(bgid);
+            for (i = 0; i < x.length; i++) {
+                //x[i].style.display = "none";
+                x[i].css = "bg-happy-green";
+            }
+            document.getElementById(id).style.display = "block";
+        }
         $(document).ready(function () {
+
+          
+
 
             GetDistrict('DistrictId');
             $("#DistrictId option[value='']").remove();
@@ -1560,6 +1567,9 @@
                                             drilldown: ResD.Table[i].DistrictCode
                                         });
                                     }
+                                    else {
+                                        txt1 = '@CommonModel.GetTypeQuery().FirstOrDefault(x=>x.Value=="1").Text';
+                                    }
                                     if (ResD.Table[i].TypeQuery == "2") {
                                         txt2 = ResD.Table[i].TypeQueryName;
                                         disseries2.push({
@@ -1568,6 +1578,9 @@
                                             drilldown: ResD.Table[i].DistrictCode
                                         });
                                     }
+                                   else {
+                                            txt2 = '@CommonModel.GetTypeQuery().FirstOrDefault(x=>x.Value=="2").Text';
+                                        }
                                     if (ResD.Table[i].TypeQuery == "3") {
                                         txt3 = ResD.Table[i].TypeQueryName;
                                         disseries3.push({
@@ -1576,6 +1589,9 @@
                                             drilldown: ResD.Table[i].DistrictCode
                                         });
                                     }
+                                     else {
+                                          txt3 = '@CommonModel.GetTypeQuery().FirstOrDefault(x=>x.Value=="3").Text';
+                                      }
                                     if (ResD.Table[i].TypeQuery == "4") {
                                         txt4 = ResD.Table[i].TypeQueryName;
                                         disseries4.push({
@@ -1584,6 +1600,9 @@
                                             drilldown: ResD.Table[i].DistrictCode
                                         });
                                     }
+                                    else {
+                                         txt4 = '@CommonModel.GetTypeQuery().FirstOrDefault(x=>x.Value=="4").Text';
+                                     }
 
                                 }
 

@@ -1034,6 +1034,8 @@
     <Content Include="Views\Report\_CaseHReportListold.cshtml" />
     <Content Include="Views\Counsellor\_CaseHList.cshtml" />
     <Content Include="Views\Report\Dashboard.cshtml" />
+    <Content Include="Views\Report\_SummaryData.cshtml" />
+    <Content Include="Views\Report\SummaryData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
