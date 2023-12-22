@@ -1087,6 +1087,7 @@
         function openTQ(id,bgid) {
             var i;
             //var x = document.getElementsByClassName("city");
+            debugger;
             var x = document.getElementById(bgid);
             for (i = 0; i < x.length; i++) {
                 //x[i].style.display = "none";
@@ -1095,9 +1096,6 @@
             document.getElementById(id).style.display = "block";
         }
         $(document).ready(function () {
-
-          
-
 
             GetDistrict('DistrictId');
             $("#DistrictId option[value='']").remove();

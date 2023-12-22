@@ -20,7 +20,7 @@
                             Add Case History
                         </a>
                     </li>
-                   
+
                 </ul>
             </li>
             <li>
@@ -37,6 +37,11 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="~/Modular/Index">
+                    Modular Session
+                </a>
             </li>
             <li>
                 <a href="javascript:void(0)">Compendium</a>
@@ -67,8 +72,14 @@
                             Case History Reported By
                         </a>
                     </li>
+                    <li>
+                        <a href="~/Report/SummaryData">
+                            Summary Data
+                        </a>
+                    </li>
                 </ul>
             </li>
+
         }
         @if (HttpContext.Current.User.IsInRole("Teacher"))
         {
@@ -101,6 +112,11 @@
                 </ul>
             </li>
             <li>
+                <a href="~/Modular/Index">
+                    Modular Session
+                </a>
+            </li>
+            <li>
                 <a href="javascript:void(0)">Report</a>
                 <ul>
                     <li>
@@ -111,6 +127,11 @@
                     <li>
                         <a href="~/Report/CaseHReportedList">
                             Case History Reported By
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Report/SummaryData">
+                            Summary Data
                         </a>
                     </li>
                 </ul>
