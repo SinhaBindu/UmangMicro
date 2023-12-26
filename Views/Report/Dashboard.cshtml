@@ -22,20 +22,12 @@
         gap: 10px;
         margin: -15px 0 15px 0;
     }
-
-    .tb1, .tb2 {
-        flex: 1;
-    }
-    /*.result1,
-    .result2 {
-        height: 72px;
-        width: 100%;
-        border: 1px solid #000;
-    }*/
-
-    /*.btn-active {
-        background: #000;
-    }*/
+        .data-connect a:hover {
+            text-decoration: none;
+        }
+        .tb1, .tb2 {
+            flex: 1;
+        }
 
     .box,
     .box2 {
@@ -47,6 +39,14 @@
     }
     .bg-mixed-hopes {
         background-image: linear-gradient(to top,#c471f5 0%,#fa71cd 100%) !important;
+    }
+    @@media screen and (max-width: 768px){
+        .data-connect {
+            flex-direction: column;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
     }
 </style>
 <div class="admin-breadcrumb">
@@ -242,13 +242,13 @@
         <div class="">
             <a data-toggle="tab" href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb2 result2 getCurrent2">
                 <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">No. of cases schemes</div>
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span id="sp12"></span></div>
-                        </div>
+                    <div class="widget-content-left">
+                        <div class="widget-heading">No. of cases schemes</div>
                     </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span id="sp12"></span></div>
+                    </div>
+                </div>
             </a>
         </div>
     </div>
