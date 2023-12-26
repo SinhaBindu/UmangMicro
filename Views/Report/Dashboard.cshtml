@@ -16,6 +16,38 @@
     .hrf {
         text-decoration: none;
     }
+
+    .data-connect {
+        display: flex;
+        gap: 10px;
+        margin: -15px 0 15px 0;
+    }
+
+    .tb1, .tb2 {
+        flex: 1;
+    }
+    /*.result1,
+    .result2 {
+        height: 72px;
+        width: 100%;
+        border: 1px solid #000;
+    }*/
+
+    /*.btn-active {
+        background: #000;
+    }*/
+
+    .box,
+    .box2 {
+        display: none;
+    }
+
+    .graph-active {
+        display: block;
+    }
+    .bg-mixed-hopes {
+        background-image: linear-gradient(to top,#c471f5 0%,#fa71cd 100%) !important;
+    }
 </style>
 <div class="admin-breadcrumb">
     <h3>Dashboard</h3>
@@ -28,7 +60,6 @@
     @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
     {
         <div class="row">
-
             <div class="col-md-2">
                 <div class="position-relative form-group">
                     <label class="tar-pull-manage2">From Date :  </label>
@@ -69,7 +100,6 @@
         </div>
     }
     <div class="row">
-
         <div class="col-md-6 col-xl-2">
             <div class="card mb-3 widget-content bg-happy-green">
                 <div class="widget-content-wrapper text-white">
@@ -109,7 +139,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-3">
             <div class="card mb-3 widget-content bg-happy-green">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
@@ -122,7 +152,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-3">
             <div class="card mb-3 widget-content bg-happy-green">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
@@ -135,118 +165,98 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <a href="javascript:void(0);" class="hrf" onclick="$('#chartdis6to12')[0].focus(); $('#b6').removeClass('bg-happy-green'); $('#b6').addClass('bg-mixed-hopes');">
-                <div class="card mb-3 widget-content bg-happy-green" id="b6">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">No. of girls (6th to 8th)</div>
-                            @*<div class="widget-subheading">People Interested</div>*@
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span id="sp6"></span></div>
-                        </div>
+    </div>
+    <div class="data-connect">
+        <div class="">
+            <a href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb1 result1 getCurrent bg-mixed-hopes">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">No. of girls (6th to 8th)</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span id="sp6"></span></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <a href="javascript:void(0);" class="hrf" onclick="$('#chartdis6to12')[0].focus(); $('#b7').removeClass('bg-happy-green'); $('#b7').addClass('bg-mixed-hopes');">
-                <div class="card mb-3 widget-content bg-happy-green" id="b7">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">No. of girls (9th to 10th)</div>
-                            @*<div class="widget-subheading">People Interested</div>*@
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span id="sp7"></span></div>
-                        </div>
+        <div class="">
+            <a href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb1 result1 getCurrent bg-mixed-hopes">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">No. of girls (9th to 10th)</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span id="sp7"></span></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link hrf" onclick="$('#b8').removeClass('bg-happy-green'); $('#b8').addClass('bg-mixed-hopes');">
-                <div class="card mb-3 widget-content bg-happy-green" id="b8">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">No. of girls (11th to 12th)</div>
-                            @*<div class="widget-subheading">People Interested</div>*@
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span id="sp8"></span></div>
-                        </div>
+        <div class="">
+            <a data-toggle="tab" href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb1 result1 getCurrent bg-mixed-hopes">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">No. of girls (11th to 12th)</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span id="sp8"></span></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle hrf" onclick="$('#b9').removeClass('bg-happy-green'); $('#b9').addClass('bg-mixed-hopes'); ">
-                <div class="card mb-3 widget-content bg-happy-green" id="b9">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading"> No. of cases career</div>
-                            @*<div class="widget-subheading">People Interested</div>*@
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span id="sp9"></span></div>
-                        </div>
+        <div class="">
+            <a data-toggle="tab" href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb2 result2 getCurrent2">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading"> No. of cases career</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span id="sp9"></span></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle hrf" onclick="$('#b10').removeClass('bg-happy-green'); $('#b10').addClass('bg-mixed-hopes');">
-                <div class="card mb-3 widget-content bg-happy-green" id="b10">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">No. of cases education</div>
-                            @*<div class="widget-subheading">People Interested</div>*@
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span id="sp10"></span></div>
-                        </div>
+        <div class="">
+            <a data-toggle="tab" href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb2 result2 getCurrent2">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">No. of cases education</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span id="sp10"></span></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle hrf" onclick="$('#b11').removeClass('bg-happy-green'); $('#b11').addClass('bg-mixed-hopes');">
-            <div class="card mb-3 widget-content bg-happy-green" id="b11">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">No. of cases scholarships</div>
-                            @*<div class="widget-subheading">People Interested</div>*@
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span id="sp11"></span></div>
-                        </div>
+        <div class="">
+            <a data-toggle="tab" href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb2 result2 getCurrent2">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">No. of cases scholarships</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span id="sp11"></span></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <a data-toggle="tab"  class="nav-link second-tab-toggle hrf" onclick="openTQ('tabs-eg-88','b12'); $('#b12').removeClass('bg-happy-green'); $('#b12').addClass('bg-mixed-hopes');">
-                <div class="card mb-3 widget-content bg-happy-green" id="b12">
-                    <div class="widget-content-wrapper text-white">
+        <div class="">
+            <a data-toggle="tab" href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb2 result2 getCurrent2">
+                <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
                             <div class="widget-heading">No. of cases schemes</div>
-                            @*<div class="widget-subheading">People Interested</div>*@
                         </div>
                         <div class="widget-content-right">
                             <div class="widget-numbers text-white"><span id="sp12"></span></div>
                         </div>
                     </div>
-                </div>
             </a>
         </div>
-
     </div>
 
     <div class="row">
         <div class="col-md-12 col-lg-6 col-xl-12">
             <div class="mb-3 card">
-                <div class="card-header-tab card-header-tab-animation card-header">
+                @*<div class="card-header-tab card-header-tab-animation card-header">
                     <div class="card-header-title">
                         <i class="header-icon lnr-chart-bars icon-gradient bg-love-kiss"></i>
                         No.Of Girls Cohort (6th to 12th grade)
@@ -259,8 +269,8 @@
                             <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle" id="tab2">Type Query</a>
                         </li>
                     </ul>
-                </div>
-                <div class="">
+                </div>*@
+                @*<div class="">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tabs-eg-77">
                             <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
@@ -279,8 +289,13 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                </div>*@
+                <div class="box graph-active">
+                    <div id="chartdis6to12" tabindex="1" height="400"></div>
+                </div>
+                <div class="box2">
+                    <div id="chartTypeQuery" tabindex="2" height="400"></div>
                 </div>
             </div>
         </div>
@@ -1082,7 +1097,20 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
-
+    <script>
+        $(".result1").click(function () {
+            $(".getCurrent").addClass("bg-mixed-hopes");
+            $(".getCurrent2").removeClass("bg-mixed-hopes");
+            $(".box").addClass("graph-active");
+            $(".box2").removeClass("graph-active");
+        });
+        $(".result2").click(function () {
+            $(".getCurrent2").addClass("bg-mixed-hopes");
+            $(".getCurrent").removeClass("bg-mixed-hopes");
+            $(".box2").addClass("graph-active");
+            $(".box").removeClass("graph-active");
+        });
+    </script>
     <script>
         function openTQ(id,bgid) {
             var i;
