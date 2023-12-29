@@ -1,5 +1,5 @@
 @media all and (max-width: 1260px) {
-    .aims-objective, .design-graph, .quick-message, .impact-stat, .video-testim, .objectives-content {
+    .aims-objective, .design-graph, .quick-message, .impact-stat, .video-testim, .objectives-content, .innovation-point {
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -247,6 +247,12 @@
             font-size: 36px;
             padding-top: 94px
         }
+        .innovation-point {
+            flex-wrap: wrap;
+        }
+        .innovate {
+            flex-basis: 390px;
+        }
     }
 
     @media all and (max-width: 920px) {
@@ -434,6 +440,9 @@
             font-size: 18px;
             line-height: 29px;
         }
+        .innovate {
+            flex-basis: 350px;
+        }
     }
 
     @media all and (max-width: 768px) {
@@ -599,6 +608,9 @@
             font-size: 17px;
             line-height: 28px;
         }
+        .innovate {
+            flex-basis: 320px;
+        }
     }
 
     @media all and (max-width: 700px) {
@@ -606,7 +618,9 @@
             flex-direction: column;
             gap: 40px;
         }
-
+        .innovate {
+            flex-basis: 290px;
+        }
         .cool-data {
             gap: 20px;
         }
@@ -654,7 +668,9 @@
         .main-objectives {
             flex-direction: column;
         }
-
+        .innovate {
+            flex-basis: 260px;
+        }
             .main-objectives p {
                 font-size: 17px;
             }
@@ -708,7 +724,6 @@
             line-height: 27px;
             padding: 5px 20px;
         }
-
 
         .n-ppost-name {
             height: 110px;
@@ -771,6 +786,9 @@
     }
 
     @media all and (max-width: 520px) {
+        .innovate {
+            flex-basis: 100%;
+        }
         .cool-data {
             gap: 15px;
         }

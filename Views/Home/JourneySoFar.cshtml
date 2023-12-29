@@ -4,7 +4,7 @@
         color: #00AEC4;
     }
 
-    .shg-appear, .vo-appear {
+    .shg-appear, .vo-appear, .clf-appear, .tr-appear {
         position: relative;
         z-index: 99;
         margin: auto;
@@ -12,14 +12,14 @@
         margin-top: -13px;
     }
 
-        .shg-appear p, .vo-appear p {
+        .shg-appear p, .vo-appear p, .clf-appear p, .tr-appear p {
             margin: 0px;
             font-weight: 600;
             font-size: 11px;
             padding: 5px;
         }
 
-    .shg-1, .shg-2, .shg-3, .shg-4, .shg-5, .shg-6, .shg-7, .vo-1, .vo-2, .vo-3, .vo-4, .vo-5, .vo-6, .vo-7 {
+    .shg-1, .shg-2, .shg-3, .shg-4, .shg-5, .shg-6, .shg-7, .vo-1, .vo-2, .vo-3, .vo-4, .vo-5, .vo-6, .vo-7, .clf-1, .clf-2, .clf-3, .clf-4, .clf-5, .clf-6, .clf-7, .tr-1, .tr-2, .tr-3, .tr-4, .tr-5, .tr-6, .tr-7 {
         width: 120px;
         text-align: center;
         float: left;
@@ -86,6 +86,76 @@
         background: #E7F9BB;
         color: #5A2B53;
     }
+    .clf-1 {
+        margin-left: 67px;
+    }
+
+    .clf-2 {
+        margin-left: 17px;
+    }
+
+    .clf-3 {
+        margin-left: 17px;
+    }
+
+    .clf-4 {
+        margin-left: 17px;
+    }
+
+    .clf-5 {
+        margin-left: 17px;
+    }
+
+    .clf-6 {
+        margin-left: 18px;
+    }
+
+    .clf-7 {
+        margin-left: 7px;
+        position: absolute;
+        right: -10px;
+    }
+
+    .clf-appear p {
+        padding: 7px;
+        border-radius: 5px;
+        background: #D8EDFF;
+        color: #002032;
+    }
+    .tr-1 {
+        margin-left: -15px;
+    }
+
+    .tr-2 {
+        margin-left: 18px;
+    }
+
+    .tr-3 {
+        margin-left: 17px;
+    }
+
+    .tr-4 {
+        margin-left: 17px;
+    }
+
+    .tr-5 {
+        margin-left: 17px;
+    }
+
+    .tr-6 {
+        margin-left: 18px;
+    }
+
+    .tr-7 {
+        margin-left: 17px;
+    }
+
+    .tr-appear p {
+        padding: 7px;
+        border-radius: 5px;
+        background: #FFE1D8;
+        color: #2C0A00;
+    }
     .shg-appear .liners1, .shg-appear .liners2 {
         display: block;
         margin: auto;
@@ -98,20 +168,32 @@
         width: 3px;
         background: #E7F9BB;
     }
+    .clf-appear .liners1, .clf-appear .liners2 {
+        display: block;
+        margin: auto;
+        width: 3px;
+        background: #D8EDFF;
+    }
+    .tr-appear .liners1, .tr-appear .liners2 {
+        display: block;
+        margin: auto;
+        width: 3px;
+        background: #FFE1D8;
+    }
     .liners1 {
         height: 50px;
     }
     .liners2 {
         height: 130px;
     }
-    .shg-appear, .vo-appear {
+    .shg-appear, .vo-appear, .clf-appear, .tr-appear {
         height: 0px;
         display: none;
         opacity: 0;
         visibility: hidden;
         transition: 0.5s ease;
     }
-    .timeline_appear, .timeline_appear-2 {
+    .timeline_appear, .timeline_appear-2, .timeline_appear-3, .timeline_appear-4 {
         display: block;
         height: 100%;
         opacity: 1;
@@ -284,36 +366,67 @@
                 </div>
             </div>
         </div>
+        <!-- Training Session -->
+        <div class="tr-appear">
+            <div class="tr-1">
+                <span class="liners1"></span>
+                <p>1<sup>st</sup> Round Training</p>
+            </div>
+            <div class="tr-2">
+                <span class="liners2"></span>
+                <p>2<sup>nd</sup> Round Training</p>
+            </div>
+            <div class="tr-3">
+                <span class="liners1"></span>
+                <p>3<sup>rd</sup> Round Training</p>
+            </div>
+            <div class="tr-4">
+                <span class="liners2"></span>
+                <p>4<sup>th</sup> Round Training</p>
+            </div>
+            <div class="tr-5">
+                <span class="liners1"></span>
+                <p>5<sup>tg</sup> Round Training</p>
+            </div>
+            <div class="tr-6">
+                <span class="liners2"></span>
+                <p>6<sup>th</sup> Round Training</p>
+            </div>
+            <div class="tr-7">
+                <span class="liners1"></span>
+                <p>7<sup>th</sup> Round Training</p>
+            </div>
+        </div>
         <!-- SHG Content -->
         <div class="shg-appear">
-            @*<div class="shg-1">
+            <div class="shg-1">
                 <span class="liners1"></span>
-                <p>Role of VO</p>
+                <p>Self-realisation, gender sensitization & project orientation</p>
             </div>
             <div class="shg-2">
                 <span class="liners2"></span>
-                <p>Identifying challenges of girls' education</p>
+                <p>Mother-daughter communication & relationship</p>
             </div>
             <div class="shg-3">
                 <span class="liners1"></span>
-                <p>The issue of Child Marriage</p>
+                <p>SRHR and decision-making</p>
             </div>
             <div class="shg-4">
                 <span class="liners2"></span>
-                <p>Welfare schemes for girls' education</p>
+                <p>Nutritional requirements of adolescent girls</p>
             </div>
             <div class="shg-5">
                 <span class="liners1"></span>
-                <p>Engagement with external stakeholders at village level for prevention of child marriage</p>
+                <p>Value of education and agency building among girls</p>
             </div>
             <div class="shg-6">
                 <span class="liners2"></span>
-                <p>Discussion on laws related to adolescent education (Right to Education), POCSO, Domestic Violence Act</p>
+                <p>Child rights and laws on prevention of child marriage</p>
             </div>
             <div class="shg-7">
                 <span class="liners1"></span>
-                <p>Identification of village level bodies such as VLCPC</p>
-            </div>*@
+                <p>Career choices & pathways for financial independence of girls</p>
+            </div>
         </div>
         <!-- VO Session -->
         <div class="vo-appear">
@@ -344,6 +457,37 @@
             <div class="vo-7">
                 <span class="liners1"></span>
                 <p>Identification of village level bodies such as VLCPC</p>
+            </div>
+        </div>
+        <!-- CLF Session -->
+        <div class="clf-appear">
+            <div class="clf-1">
+                <span class="liners1"></span>
+                <p>Status of girls in Jharkhand, welfare schemes</p>
+            </div>
+            <div class="clf-2">
+                <span class="liners2"></span>
+                <p>Awareness on child marriage act, POCSO, Child Protection Committee, etc</p>
+            </div>
+            <div class="clf-3">
+                <span class="liners1"></span>
+                <p>Childline 1098, laws on domestic violence, intimate partner violence</p>
+            </div>
+            <div class="clf-4">
+                <span class="liners2"></span>
+                <p>Awareness on dowry act, Women helpline, one-stop centre</p>
+            </div>
+            <div class="clf-5">
+                <span class="liners1"></span>
+                <p>Engagement with stakeholders on education & security of adolescent girls</p>
+            </div>
+            <div class="clf-6">
+                <span class="liners2"></span>
+                <p>Data Collection & Analysis</p>
+            </div>
+            <div class="clf-7">
+                <span class="liners1"></span>
+                <p>Preparation of Demand Note & Advocacy, and Kishori Help Desk</p>
             </div>
         </div>
     </div>
@@ -378,6 +522,22 @@
         },
         function () {
             $(".vo-appear").removeClass("timeline_appear-2");
+        }
+    );
+    $(".clf-session").hover(
+        function () {
+            $(".clf-appear").addClass("timeline_appear-3");
+        },
+        function () {
+            $(".clf-appear").removeClass("timeline_appear-3");
+        }
+    );
+    $(".tr-session").hover(
+        function () {
+            $(".tr-appear").addClass("timeline_appear-4");
+        },
+        function () {
+            $(".tr-appear").removeClass("timeline_appear-4");
         }
     );
 </script>
