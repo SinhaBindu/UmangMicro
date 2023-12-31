@@ -3832,7 +3832,16 @@ img {
     text-align: center;
     line-height: 21px
 }
-
+.influence-round h5 {
+    margin: 70px 0 0 0;
+    text-align: center;
+    font-size: 18px;
+    padding: 40px 47px 0;
+    line-height: 26px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #5B2C54
+}
 .influence-round h3 {
     margin: 0px 0 0 0;
     text-align: center;
@@ -5729,4 +5738,61 @@ img {
 .cefm-manage {
     margin: auto;
     max-width: 1200px;
+}
+.content-details {
+    margin: auto;
+    max-width: 1200px;
+    padding: 40px 0;
+    display: flex;
+    gap: 70px;
+    align-items: center
+}
+.evalue-study {
+    flex: 2;
+}
+.evalue-text {
+    flex: 3;
+}
+.content-details p {
+    padding: 7px 0;
+    line-height: 28px;
+    font-size: 17px;
+}
+.bold-italic {
+    font-weight: bold;
+    font-style: italic;
+}
+.evaluation-study-estimonial {
+    padding: 40px 20px;
+    background: #FBFFD0;
+}
+.testim-control {
+    margin: auto;
+    max-width: 1100px;
+    display: flex;
+    gap: 50px;
+}
+.testim {
+    flex: 1;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+    .testim p {
+        padding: 7px 0;
+        line-height: 27px;
+        font-size: 16px;
+        color: #000;
+        font-weight: 400
+    }
+.testim-quote {
+    font-size: 14px;
+    color: #555;
+    line-height: 22px !important;
+}
+.testim img {
+    width: 60%;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
