@@ -920,6 +920,7 @@
     <Content Include="Content\download\WomenRiseUpAgainstChildMarriage_PCI_F.pdf" />
     <None Include="Content\assets\autocompleteDropdown.scss" />
     <Content Include="Content\download\evaluation-study.pdf" />
+    <Content Include="Content\download\RIASEC-Test-form.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1043,6 +1044,7 @@
     <Content Include="Views\Report\SummaryData.cshtml" />
     <Content Include="Views\Modular\Index.cshtml" />
     <Content Include="Views\Home\EvaluationStudy.cshtml" />
+    <Content Include="Views\Home\WomenLeadership.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5475,19 +5475,36 @@ img {
 .kishori-help-desk-box {
     margin: auto;
     max-width: 1200px;
-    padding: 40px 0
+    padding: 40px 0;
+    
 }
-
-    .kishori-help-desk-box h3 {
-        color: #000;
-    }
-
-.help-desk-option {
+.riasec-box {
     display: flex;
-    gap: 20px;
-    text-align: center;
-    margin-bottom: 30px;
+    align-items: center
 }
+.kishori-help-desk-box h3 {
+    color: #000;
+}
+.riasec-form {
+    flex: 1;
+    text-align: center;
+}
+    .riasec-form a {
+        padding: 12px 22px;
+        background: #F3987A;
+        color: #fff;
+        border-radius: 10px;
+        display: inline-block;
+    }
+        .riasec-form a:hover {
+            background: #00AEC4;
+        }
+    .help-desk-option {
+        display: flex;
+        gap: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
 .box-1 {
     flex: 1;
@@ -5585,7 +5602,8 @@ img {
 }
 .kishori-offered {
     padding-left: 20px;
-    border-left: 5px solid #F5F5F5
+    border-left: 5px solid #F5F5F5;
+    flex: 2;
 }
 
 .kishori-help-desk-box li {

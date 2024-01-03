@@ -30,6 +30,11 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        public ActionResult WomenLeadership()
+        {
+            return View();
+        }
+
         public ActionResult EvaluationStudy()
         {
             return View();
