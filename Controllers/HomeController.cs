@@ -35,6 +35,11 @@ namespace UmangMicro.Controllers
             return View();
         }
 
+        public ActionResult WhyGoddaAndJamtara()
+        {
+            return View();
+        }
+
         public ActionResult EvaluationStudy()
         {
             return View();

@@ -620,11 +620,14 @@
     <Content Include="Content\images\education-pathways.png" />
     <Content Include="Content\images\endline-bg.png" />
     <Content Include="Content\images\evaluation-cover.png" />
+    <Content Include="Content\images\girls-education.jpg" />
+    <Content Include="Content\images\girls-life.png" />
     <Content Include="Content\images\higher-risk-mortality.png" />
     <Content Include="Content\images\intergenerational-poverty.png" />
     <Content Include="Content\images\kishori-banner.jpg" />
     <Content Include="Content\images\kishori-genesis.jpg" />
     <Content Include="Content\images\login-icon.png" />
+    <Content Include="Content\images\marriage-age.png" />
     <Content Include="Content\images\mental-health.png" />
     <Content Include="Content\images\mukhtamani-bibi.jpg" />
     <Content Include="Content\images\partner-violence.png" />
@@ -638,6 +641,7 @@
     <Content Include="Content\images\skills-training.png" />
     <Content Include="Content\images\timeline-bg.png" />
     <Content Include="Content\images\umang-road.png" />
+    <Content Include="Content\images\workforce-participation.png" />
     <Content Include="Scripts\JS\mgaccordion.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1045,6 +1049,7 @@
     <Content Include="Views\Modular\Index.cshtml" />
     <Content Include="Views\Home\EvaluationStudy.cshtml" />
     <Content Include="Views\Home\WomenLeadership.cshtml" />
+    <Content Include="Views\Home\WhyGoddaAndJamtara.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
