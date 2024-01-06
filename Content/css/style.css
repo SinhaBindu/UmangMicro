@@ -5878,12 +5878,16 @@ img {
         margin-bottom: 0px;
         font-style: italic;
     }
-    .godda-jamtara-charts {
-        display: flex;
-        align-items: end;
-        gap: 20px;
-        justify-content: space-around;
-    }
+.godda-jamtara-charts {
+    position: relative;
+    display: flex;
+    align-items: end;
+    gap: 20px;
+    justify-content: space-around;
+    border-left: 1px solid #F3C9ED;
+    border-bottom: 1px solid #F3C9ED;
+    padding-bottom: 15px;
+}
 .charts-list {
     display: flex;
     flex-direction: column;
@@ -5945,3 +5949,29 @@ img {
 .charts-length p {
     font-weight: bold;
 }
+.chart-indicate {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    gap: 20px;
+}
+.ind, .jhr {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+    .ind span {
+        width: 15px;
+        height: 15px;
+        background: #E99275;
+        border-radius: 100%;
+        display: inline-block;
+    }
+    .jhr span {
+        width: 15px;
+        height: 15px;
+        background: #D3DD68;
+        border-radius: 100%;
+        display: inline-block;
+    }
