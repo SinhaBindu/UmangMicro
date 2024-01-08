@@ -5891,12 +5891,26 @@ img {
 .charts-list {
     display: flex;
     flex-direction: column;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
 }
-.chart-data {
-    display: flex;
-    margin: auto;
-    align-items: end
-}
+    .charts-list:hover {
+        transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+    }
+        .charts-list:hover .chart-data span, .charts-list:hover .nfhs {
+            font-weight: bold;
+        }
+        .chart-data {
+            display: flex;
+            margin: auto;
+            align-items: end
+        }
 .IN-data, .JH-data {
     text-align: center;
 }
@@ -5910,6 +5924,7 @@ img {
         width: 40px;
         border-radius: 4px 4px 0 0;
     }
+
 .chart-data span {
     font-size: 12px;
 }
@@ -5975,3 +5990,7 @@ img {
         border-radius: 100%;
         display: inline-block;
     }
+.theory-box i {
+    color: #5B2C54;
+    font-size: 15px;
+}
