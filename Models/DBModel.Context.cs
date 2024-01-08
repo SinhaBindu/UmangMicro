@@ -51,5 +51,7 @@ namespace UmangMicro.Models
         public virtual DbSet<tbl_RIASECTest> tbl_RIASECTest { get; set; }
         public virtual DbSet<tbl_RIASEC_Main> tbl_RIASEC_Main { get; set; }
         public virtual DbSet<tbl_CaseHistory> tbl_CaseHistory { get; set; }
+        public virtual DbSet<ModularSessionMaster> ModularSessionMasters { get; set; }
+        public virtual DbSet<tbl_Modular> tbl_Modular { get; set; }
     }
 }

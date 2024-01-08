@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aaec4385d88f483c8f0ffd90113fce3e" Name="Diagram1">
+      <Diagram DiagramId="aaec4385d88f483c8f0ffd90113fce3e" Name="Diagram1" ZoomLevel="115">
         <EntityTypeShape EntityType="UM_DBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Block_Mast" Width="1.5" PointX="5.875" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Cluster_Mast" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Dist_Mast" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.State_Mast" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_LoginDetail" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_CoursesDetail" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CoursesDetail" Width="1.5" PointX="1.375" PointY="9.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_Resource" Width="1.5" PointX="3.375" PointY="9.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_MicroCase" Width="1.5" PointX="10.375" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.AspNetUser" Width="1.5" PointX="5.375" PointY="7.75" IsExpanded="false" />
@@ -19,19 +19,21 @@
         <AssociationConnector Association="UM_DBModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="UM_DBModel.Month_Master" Width="1.5" PointX="5.5" PointY="5.25" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Year_Master" Width="1.5" PointX="9.5" PointY="7.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.QuestionRIASEC" Width="1.5" PointX="9.375" PointY="11.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.RIASEC_Guided" Width="1.5" PointX="11.375" PointY="11.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Scheme" Width="1.5" PointX="6.25" PointY="11.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.QuestionRIASEC" Width="1.5" PointX="7.125" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.RIASEC_Guided" Width="1.5" PointX="9" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Scheme" Width="1.5" PointX="5.125" PointY="9.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Scholarship" Width="1.5" PointX="9.375" PointY="5.25" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_SkillT" Width="1.5" PointX="13.5" PointY="7.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_CourseD" Width="1.5" PointX="14.375" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Psychometric" Width="1.5" PointX="11.75" PointY="2.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.SchoolMaster_N" Width="1.5" PointX="5.375" PointY="13.75" />
-        <EntityTypeShape EntityType="UM_DBModel.BlockMaster_N" Width="1.5" PointX="7.375" PointY="13.75" />
-        <EntityTypeShape EntityType="UM_DBModel.DistrictMaster_N" Width="1.5" PointX="13.375" PointY="9.75" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_RIASECTest" Width="1.5" PointX="9.375" PointY="13.75" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_RIASEC_Main" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_CaseHistory" Width="1.5" PointX="11.375" PointY="13.75" />
+        <EntityTypeShape EntityType="UM_DBModel.SchoolMaster_N" Width="1.5" PointX="2.875" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.BlockMaster_N" Width="1.5" PointX="4.625" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.DistrictMaster_N" Width="1.5" PointX="11.25" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_RIASECTest" Width="1.5" PointX="6.375" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_RIASEC_Main" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CaseHistory" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.ModularSessionMaster" Width="1.5" PointX="14.375" PointY="2.75" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_Modular" Width="1.5" PointX="10.375" PointY="15" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

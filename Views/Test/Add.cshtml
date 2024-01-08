@@ -346,7 +346,8 @@
             $('#FormSubmit').submit(function (e) {
                 debugger;
                 e.preventDefault();
-                var bResponse = confirm('Are you sure you want to Submit & exit?');
+             
+                var bResponse = confirm('Are you sure you want to Submit?');
                 if (bResponse === true) {
                     if ($('#CaseID').val() != '' && $('#SchoolId').val() != '' && $('#Date').val() != '') {
 
@@ -356,6 +357,7 @@
                         var valid = $('#FormSubmit').valid();
 
                         if (valid) {
+                            $('#btnsubmit').prop('disabled', true);
                             $('.msgerror').hide();
                             debugger;
                             //Serialize the form datas.

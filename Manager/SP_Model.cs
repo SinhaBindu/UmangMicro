@@ -273,5 +273,29 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        public static DataTable GetSP_ModularListData(string Sdt, string Edt, string DistrictId, string BlockId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_ModularList");
+            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@BlockId", BlockId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataSet GetSP_ModularChart(string Sdt, string Edt, string DistrictId, string BlockId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_ChartModularSession");
+            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@BlockId", BlockId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
     }
 }

@@ -22,25 +22,28 @@
         gap: 10px;
         margin: -15px 0 15px 0;
     }
-        .data-connect a:hover {
-            text-decoration: none;
-        }
-        .tb1, .tb2 {
-            flex: 1;
-        }
 
-    .box,
-    .box2 {
+    .data-connect a:hover {
+        text-decoration: none;
+    }
+
+    .tb1, .tb2, .tb3 {
+        flex: 1;
+    }
+
+    .box, .box2, .box3 {
         display: none;
     }
 
     .graph-active {
         display: block;
     }
+
     .bg-mixed-hopes {
         background-image: linear-gradient(to top,#c471f5 0%,#fa71cd 100%) !important;
     }
-    @@media screen and (max-width: 768px){
+
+    @@media screen and (max-width: 768px) {
         .data-connect {
             flex-direction: column;
             margin-left: 20px;
@@ -57,7 +60,7 @@
 </div>
 
 <div class="tabs-animation containers">
-    @using (Html.BeginForm("GetIndex", "Candidate", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("GetIndex1", "Report", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
     {
         <div class="row">
             <div class="col-md-2">
@@ -99,47 +102,65 @@
 
         </div>
     }
-    <div class="row">
-        <div class="col-md-6 col-xl-2">
-            <div class="card mb-3 widget-content bg-happy-green">
-                <div class="widget-content-wrapper text-white">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Districts <br />Covered</div>
-                        @*<div class="widget-subheading">Last year expenses</div>*@
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span id="sp1"></span></div>
-                    </div>
+<div class="row">
+    <div class="col-md-6 col-xl-2">
+        <div class="card mb-3 widget-content bg-happy-green">
+            <div class="widget-content-wrapper text-white">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Districts <br />Covered</div>
+                    @*<div class="widget-subheading">Last year expenses</div>*@
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-white"><span id="sp1"></span></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <div class="card mb-3 widget-content bg-happy-green">
-                <div class="widget-content-wrapper text-white">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Blocks <br />Covered</div>
-                        @*<div class="widget-subheading">Total Clients Profit</div>*@
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span id="sp2"></span></div>
-                    </div>
+    </div>
+    <div class="col-md-6 col-xl-2">
+        <div class="card mb-3 widget-content bg-happy-green">
+            <div class="widget-content-wrapper text-white">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Blocks <br />Covered</div>
+                    @*<div class="widget-subheading">Total Clients Profit</div>*@
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-white"><span id="sp2"></span></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
-            <div class="card mb-3 widget-content bg-happy-green">
+    </div>
+    <div class="col-md-6 col-xl-2">
+        <div class="card mb-3 widget-content bg-happy-green">
+            <div class="widget-content-wrapper text-white">
+                <div class="widget-content-left">
+                    <div class="widget-heading">No. of <br />Schools</div>
+                    @*<div class="widget-subheading">People Interested</div>*@
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-white"><span id="sp3"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-2">
+        <div class="">
+            <a data-toggle="tab" href="javascript:void(0);" class="card widget-content bg-happy-green hrf tb3 result3 getCurrent3">
+
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
-                        <div class="widget-heading">No. of <br />Schools</div>
+                        <div class="widget-heading">Modular<br /> Session</div>
                         @*<div class="widget-subheading">People Interested</div>*@
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span id="sp3"></span></div>
+                        <div class="widget-numbers text-white"><span id="spModular"></span></div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
-        <div class="col-md-6 col-xl-3">
+       </div>
+
+        <div class="col-md-6 col-xl-2">
             <div class="card mb-3 widget-content bg-happy-green">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
@@ -152,7 +173,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-2">
             <div class="card mb-3 widget-content bg-happy-green">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
@@ -257,45 +278,51 @@
         <div class="col-md-12 col-lg-6 col-xl-12">
             <div class="mb-3 card">
                 @*<div class="card-header-tab card-header-tab-animation card-header">
-                    <div class="card-header-title">
-                        <i class="header-icon lnr-chart-bars icon-gradient bg-love-kiss"></i>
-                        No.Of Girls Cohort (6th to 12th grade)
-                    </div>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link" id="tab1">6TH TO 12TH GRADE</a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle" id="tab2">Type Query</a>
-                        </li>
-                    </ul>
-                </div>*@
+                        <div class="card-header-title">
+                            <i class="header-icon lnr-chart-bars icon-gradient bg-love-kiss"></i>
+                            No.Of Girls Cohort (6th to 12th grade)
+                        </div>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link" id="tab1">6TH TO 12TH GRADE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle" id="tab2">Type Query</a>
+                            </li>
+                        </ul>
+                    </div>*@
                 @*<div class="">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="tabs-eg-77">
-                            <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
-                                <div class="widget-chat-wrapper-outer">
-                                    <div id="chartdis6to12" tabindex="1" height="400"></div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tabs-eg-77">
+                                <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                                    <div class="widget-chat-wrapper-outer">
+                                        <div id="chartdis6to12" tabindex="1" height="400"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="tab-pane fade" id="tabs-eg-88">
-                            <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
-                                <div class="widget-chat-wrapper-outer">
-                                    <div class="m-0">
-                                        <div id="chartTypeQuery" tabindex="2" height="400"></div>
+                            <div class="tab-pane fade" id="tabs-eg-88">
+                                <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                                    <div class="widget-chat-wrapper-outer">
+                                        <div class="m-0">
+                                            <div id="chartTypeQuery" tabindex="2" height="400"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
                 <div class="box graph-active">
                     <div id="chartdis6to12" tabindex="1" height="400"></div>
                 </div>
                 <div class="box2">
                     <div id="chartTypeQuery" tabindex="2" height="400"></div>
+                </div>
+                <div class="box3">
+                    <div id="chartModular" tabindex="3" height="400"></div>
+                </div>
+                <div class="box4">
+                    <div id="chartModularblock" tabindex="3" height="400"></div>
                 </div>
             </div>
         </div>
@@ -1101,28 +1128,43 @@
         $(".result1").click(function () {
             $(".getCurrent").addClass("bg-mixed-hopes");
             $(".getCurrent2").removeClass("bg-mixed-hopes");
+            $(".getCurrent3").removeClass("bg-mixed-hopes");
             $(".box").addClass("graph-active");
             $(".box2").removeClass("graph-active");
+            $(".box3").removeClass("graph-active");
         });
         $(".result2").click(function () {
+            $(".getCurrent3").addClass("bg-mixed-hopes");
             $(".getCurrent2").addClass("bg-mixed-hopes");
             $(".getCurrent").removeClass("bg-mixed-hopes");
+            $(".box3").addClass("graph-active");
             $(".box2").addClass("graph-active");
+            $(".box").removeClass("graph-active");
+        });
+        $(".result3").click(function () {
+            $(".getCurrent3").addClass("bg-mixed-hopes");
+            $(".getCurrent2").removeClass("bg-mixed-hopes");
+            $(".getCurrent").removeClass("bg-mixed-hopes");
+            $(".box3").addClass("graph-active");
+            $(".box2").removeClass("graph-active");
             $(".box").removeClass("graph-active");
         });
     </script>
     <script>
-        function openTQ(id,bgid) {
-            var i;
-            //var x = document.getElementsByClassName("city");
-            debugger;
-            var x = document.getElementById(bgid);
-            for (i = 0; i < x.length; i++) {
-                //x[i].style.display = "none";
-                x[i].css = "bg-happy-green";
-            }
-            document.getElementById(id).style.display = "block";
-        }
+        var reslist1 = []; reslist2 = [];
+
+        //function openTQ(id,bgid) {
+        //    var i;
+        //    //var x = document.getElementsByClassName("city");
+        //    debugger;
+        //    var x = document.getElementById(bgid);
+        //    for (i = 0; i < x.length; i++) {
+        //        //x[i].style.display = "none";
+        //        x[i].css = "bg-happy-green";
+        //    }
+        //    document.getElementById(id).style.display = "block";
+        //}
+
         $(document).ready(function () {
 
             GetDistrict('DistrictId');
@@ -1172,10 +1214,12 @@
                 LoadReport();
                 LoadAllChart();
                 LoadTypeQueryChart();
+                LoadModularChart();
             })
             LoadReport();
             LoadAllChart();
             LoadTypeQueryChart();
+            LoadModularChart();
         });
 
         function LoadReport() {
@@ -1206,7 +1250,7 @@
                         var ResD = JSON.parse(resp.res);
                         if (ResD) {
                             var No1 = 0, No2 = 0, No3 = 0, No4 = 0, No5 = 0,
-                                No6 = 0, No7 = 0, No8 = 0, No9 = 0, No10 = 0, No11 = 0, No12 = 0;
+                                No6 = 0, No7 = 0, No8 = 0, No9 = 0, No10 = 0, No11 = 0, No12 = 0; No13 = 0;
                             if (ResD.Table) {
                                 for (var i = 0; i < ResD.Table.length; i++) {
                                     No1 += ResD.Table[i].NoofDistrict;
@@ -1267,10 +1311,16 @@
                                     No12 += ResD.Table11[i].NoofSchemes;
                                 }
                             }
+                            if (ResD.Table12) {
+                                for (var i = 0; i < ResD.Table12.length; i++) {
+                                    No13 += ResD.Table12[i].NoofModular;
+                                }
+                            }
                             $('#sp1').html(No1); $('#sp2').html(No2); $('#sp3').html(No3);
                             $('#sp4').html(No4); $('#sp5').html(No5); $('#sp6').html(No6);
                             $('#sp7').html(No7); $('#sp8').html(No8); $('#sp9').html(No9);
                             $('#sp10').html(No10); $('#sp11').html(No11); $('#sp12').html(No12);
+                            $('#spModular').html(No13);
                         }
                         jQuery.event.trigger("ajaxStop");
 
@@ -1712,6 +1762,338 @@
                     series: DrillDown
                 }
             });
+        }
+
+        function LoadModularChart() {
+            $('#chartModular').html("");
+            $('#chartModularblock').html("");
+            jQuery.event.trigger("ajaxStart");
+            $('#chartModular').removeClass("text-danger");
+            $('#chartModularblock').removeClass("text-danger");
+            var id = '#formid'
+            var url = $(id).attr("action");
+            var Sdt = $("#FD").val() == "" ? "" : $("#FD").val();
+            var Edt = $("#TD").val() == "" ? "" : $("#TD").val();
+            var DistrictId = $("#DistrictId").val() == "" ? "" : $("#DistrictId").val();
+            var BlockId = $("#BlockId").val() == "" ? "" : $("#BlockId").val();
+            $.ajax({
+                // url: url,
+                url: document.baseURI + "/Report/GetModularChart",
+                type: "POST",
+                data: { 'Sdt': Sdt, 'Edt': Edt, 'DistrictId': DistrictId, 'BlockId': BlockId },
+                //{ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }
+                // contentType: "application/json",
+                // dataType: "json",
+                // contentType: "application/json; charset=utf-8",
+                //async: false,
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+
+                        //$('#sub-data').html(resp.res); $('#sub-data').addClass("text-black");
+                        var ResD = JSON.parse(resp.res);
+                        if (ResD) {
+                            reslist1 = ResD.Table;
+                            reslist2 = ResD.Table1;
+                            var discate1 = [], disseries1 = [],
+                                disseries2 = [], disseries3 = [], disseries4 = [], DisDataS1to4 = [], BlockData = []
+                                blkcate1 = [], blkseries1 = [],
+                                blkseries2 = [], blkseries3 = [], blkseries4 = [], blkDataS1to4 = []
+                            blkDDData1to4 = [], drilldownbclk = [];
+                            var txt1 = "", txt2 = "", txt3 = "", txt4 = "";
+                            var blkDDData1to4list = [];
+                            if (ResD.Table) {
+
+                                for (var i = 0; i < ResD.Table.length; i++) {
+
+                                    if (ResD.Table1) {
+
+                                        var resblk = ResD.Table1.filter(x => x.DistrictCode == ResD.Table[i].DistrictCode);//&& x.ClassId == ResD.Table[i].ClassId
+                                        if (resblk) {
+                                            blkDDData1to4 = [];
+
+                                            for (var k = 0; k < resblk.length; k++) {
+                                                var datal = [resblk[k].block_name, resblk[k].NoofModular];
+                                                blkDDData1to4.push(datal);
+
+                                                if (ResD.Table[i].TYPEOFCOHORT == "COHORT-1") {
+                                                    blkseries1.push({
+                                                        name: resblk[k].block_name,
+                                                        y: ResD.Table[i].NoofModular,
+                                                        drilldown: ResD.Table[i].DistrictCode
+                                                    });
+                                                }
+                                                else if (ResD.Table[i].TYPEOFCOHORT == "COHORT-2") {
+                                                    blkseries2.push({
+                                                        name: resblk[k].block_name,
+                                                        y: ResD.Table[i].NoofModular,
+                                                        drilldown: ResD.Table[i].DistrictCode
+                                                    });
+                                                }
+                                                else if (ResD.Table[i].TYPEOFCOHORT == "COHORT-3") {
+                                                    blkseries3.push({
+                                                        name: resblk[k].block_name,
+                                                        y: ResD.Table[i].NoofModular,
+                                                        drilldown: ResD.Table[i].DistrictCode
+                                                    });
+                                                }
+                                            }
+                                            drilldownbclk.push({
+                                                id: ResD.Table[i].DistrictCode,
+                                                name: ResD.Table[i].district_name,
+                                                // y: ResD.Table[i].NoofModular,
+                                                data: blkDDData1to4
+                                            })
+                                        }
+                                    }
+
+                                    discate1.push(ResD.Table[i].district_name);
+                                    if (ResD.Table[i].TYPEOFCOHORT == "COHORT-1") {
+                                        txt1 = ResD.Table[i].TYPEOFCOHORT;
+                                        disseries1.push({
+                                            name: ResD.Table[i].district_name,
+                                            y: ResD.Table[i].NoofModular,
+                                            drilldown: ResD.Table[i].DistrictCode
+                                        });
+                                    }
+                                    else {
+                                        txt1 = 'COHORT-1';
+                                    }
+                                    if (ResD.Table[i].TYPEOFCOHORT == "COHORT-2") {
+                                        txt2 = ResD.Table[i].TYPEOFCOHORT;
+                                        disseries2.push({
+                                            name: ResD.Table[i].district_name,
+                                            y: ResD.Table[i].NoofModular,
+                                            drilldown: ResD.Table[i].DistrictCode
+                                        });
+                                    }
+                                    else {
+                                        txt2 = 'COHORT-2';
+                                    }
+                                    if (ResD.Table[i].TYPEOFCOHORT == "COHORT-3") {
+                                        txt3 = ResD.Table[i].TYPEOFCOHORT;
+                                        disseries3.push({
+                                            name: ResD.Table[i].district_name,
+                                            y: ResD.Table[i].NoofModular,
+                                            drilldown: ResD.Table[i].DistrictCode
+                                        });
+                                    }
+                                    else {
+                                        txt3 = 'COHORT-3';
+                                    }
+                                }
+
+                                DisDataS1to4.push({
+                                    name: txt1,
+                                    data: disseries1,
+                                    color: "#990099",
+                                });
+                                DisDataS1to4.push({
+                                    name: txt2,
+                                    data: disseries2,
+                                    color: '#3dd5f0',
+                                });
+                                DisDataS1to4.push({
+                                    name: txt3,
+                                    data: disseries3,
+                                    color: '#ff4500',
+                                });
+                                ////////////////////////////Block Wise /////////////////////
+                                BlockData.push({
+                                    name: txt1,
+                                    data: blkseries1,
+                                    color: "#990099",
+                                });
+                                BlockData.push({
+                                    name: txt2,
+                                    data: blkseries2,
+                                    color: '#3dd5f0',
+                                });
+                                BlockData.push({
+                                    name: txt3,
+                                    data: blkseries3,
+                                    color: '#ff4500',
+                                });
+                            }
+                            debugger;
+                            chartloadModular(discate1, DisDataS1to4, drilldownbclk);
+                            //chartloadModularBlock(discate1, BlockData, drilldownbclk);
+                        }
+                        jQuery.event.trigger("ajaxStop");
+
+                    }
+                    else {
+                        //$('#sub-data').html(resp.Data); $('#sub-data').addClass("text-danger");
+                        // toastr.error("Error", errormsg);
+                        jQuery.event.trigger("ajaxStop");
+                        return false;
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#chartModular').addClass("text-danger");
+                    toastr.error("Error", errormsg);
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });
+        }
+
+        // Create the chart Modular Session
+        function chartloadModular(Categy, Datas, DrillDown) {
+            console.log(Datas)
+            console.log(DrillDown)
+            Highcharts.chart('chartModular', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Total no.of Modular Session in Cohort'
+                },
+                subtitle: {
+                    text: 'District Wises'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        events: {
+                            click: function (event) {
+                              
+                                chartloadModularBlock(event.point.drilldown, event.point.name, this.name);
+                                //alert(
+                                //   //event.point.name + ' clicked\n' +
+                                //  //'Alt: ' + event.point.drilldown 
+                                //);
+                            },
+                        },
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+
+                series: Datas,
+                //drilldown: {
+                //    name: 'Type of Cohort',
+                //    colorByPoint: true,
+                //    //allowPointDrilldown: false,
+                //    series: DrillDown
+                //}
+            });
+        }
+
+        function chartloadModularBlock(Discode, Disname, Typecohort) {
+            debugger;
+            var reslist3 = reslist2;
+            var blkcate1 = [], blkseries1 = [], BlockData=[],
+                blkseries2 = [], blkseries3 = [], blkseries4 = [], blkDataS1to4 = []
+            blkDDData1to4 = [], drilldownbclk = [];
+            var txt1 = "", txt2 = "", txt3 = "", txt4 = "";
+            var blkDDData1to4list = [];
+            if (reslist3) {
+
+                var resblk = reslist3.filter(x => x.DistrictCode == Discode && x.TYPEOFCOHORT == Typecohort);
+                if (resblk) {
+                    blkDDData1to4 = [];
+
+                    for (var k = 0; k < resblk.length; k++) {
+                        var datal = [resblk[k].block_name, resblk[k].NoofModular];
+                        blkDDData1to4.push(datal);
+
+                        if (resblk[k].TYPEOFCOHORT == "COHORT-1") {
+                            blkseries1.push({
+                                name: resblk[k].block_name,
+                                y: resblk[k].NoofModular,
+                                drilldown: resblk[k].DistrictCode
+                            });
+                        }
+                        else if (resblk[k].TYPEOFCOHORT == "COHORT-2") {
+                            blkseries2.push({
+                                name: resblk[k].block_name,
+                                y: resblk[k].NoofModular,
+                                drilldown: resblk[k].DistrictCode
+                            });
+                        }
+                        else if (resblk[k].TYPEOFCOHORT == "COHORT-3") {
+                            blkseries3.push({
+                                name: resblk[k].block_name,
+                                y: resblk[k].NoofModular,
+                                drilldown: resblk[k].DistrictCode
+                            });
+                        }
+                    }
+                }
+
+                ////////////////////////////Block Wise /////////////////////
+                BlockData.push({
+                    name: 'COHORT-1',
+                    data: blkseries1,
+                    color: "#990099",
+                });
+                BlockData.push({
+                    name: 'COHORT-2',
+                    data: blkseries2,
+                    color: '#3dd5f0',
+                });
+                BlockData.push({
+                    name: 'COHORT-3',
+                    data: blkseries3,
+                    color: '#ff4500',
+                });
+            }
+            else {
+               // $('#chartModularblock').css('display', 'node');
+                $('#chartModularblock').html('');
+            }
+            if (BlockData.length != 0 && reslist3.length!=0) {
+               // $('#chartModularblock').css('display', 'block');
+                $('#chartModularblock').html('');
+            }
+            else {
+               // $('#chartModularblock').css('display', 'node');
+                $('#chartModularblock').html('');
+            }
+            debugger;
+            Highcharts.chart('chartModularblock', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Total no.of Modular Session in Cohort'
+                },
+                subtitle: {
+                    text: 'Block Wises (District-' + Disname + ')'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+
+                series: BlockData,
+                //drilldown: {
+                //    name: 'Type of Cohort',
+                //    colorByPoint: true,
+                //    //allowPointDrilldown: false,
+                //    series: DrillDown
+                //}
+            });
+          
         }
 
 

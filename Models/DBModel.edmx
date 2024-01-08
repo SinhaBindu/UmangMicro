@@ -105,6 +105,18 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="DistNameHin" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="ModularSessionMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Session" Type="nvarchar" MaxLength="50" />
+          <Property Name="COHORT_Session_Hindi" Type="nvarchar(max)" />
+          <Property Name="COHORT_Session_Eng" Type="nvarchar(max)" />
+          <Property Name="TypeOfCohort" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cohort" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="Month_Master">
           <Key>
             <PropertyRef Name="ID" />
@@ -357,6 +369,25 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbl_Modular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConductedDate" Type="date" />
+          <Property Name="Reg_fk_Id" Type="int" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="CalssId" Type="int" />
+          <Property Name="Session" Type="int" />
+          <Property Name="NoofStudent" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="500" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsDeletedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="tbl_Registration">
           <Key>
             <PropertyRef Name="ID" />
@@ -484,6 +515,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="Block_Mast" EntityType="Self.Block_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cluster_Mast" EntityType="Self.Cluster_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dist_Mast" EntityType="Self.Dist_Mast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModularSessionMaster" EntityType="Self.ModularSessionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Month_Master" EntityType="Self.Month_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionRIASEC" EntityType="Self.QuestionRIASEC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RIASEC_Guided" EntityType="Self.RIASEC_Guided" Schema="dbo" store:Type="Tables" />
@@ -498,6 +530,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="tbl_CoursesDetail" EntityType="Self.tbl_CoursesDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_LoginDetail" EntityType="Self.tbl_LoginDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_MicroCase" EntityType="Self.tbl_MicroCase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Modular" EntityType="Self.tbl_Modular" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Registration" EntityType="Self.tbl_Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Resource" EntityType="Self.tbl_Resource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_RIASEC_Main" EntityType="Self.tbl_RIASEC_Main" Schema="dbo" store:Type="Tables" />
@@ -566,6 +599,8 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="tbl_RIASECTest" EntityType="UM_DBModel.tbl_RIASECTest" />
           <EntitySet Name="tbl_RIASEC_Main" EntityType="UM_DBModel.tbl_RIASEC_Main" />
           <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
+          <EntitySet Name="ModularSessionMasters" EntityType="UM_DBModel.ModularSessionMaster" />
+          <EntitySet Name="tbl_Modular" EntityType="UM_DBModel.tbl_Modular" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1004,6 +1039,37 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ModularSessionMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Session" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COHORT_Session_Hindi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COHORT_Session_Eng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TypeOfCohort" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Cohort" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Modular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConductedDate" Type="DateTime" Precision="0" />
+          <Property Name="Reg_fk_Id" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="CalssId" Type="Int32" />
+          <Property Name="Session" Type="Int32" />
+          <Property Name="NoofStudent" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1474,6 +1540,39 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
                 <ScalarProperty Name="Reg_Id_fk" ColumnName="Reg_Id_fk" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="GudID" ColumnName="GudID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModularSessionMasters">
+            <EntityTypeMapping TypeName="UM_DBModel.ModularSessionMaster">
+              <MappingFragment StoreEntitySet="ModularSessionMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Cohort" ColumnName="Cohort" />
+                <ScalarProperty Name="TypeOfCohort" ColumnName="TypeOfCohort" />
+                <ScalarProperty Name="COHORT_Session_Eng" ColumnName="COHORT_Session_Eng" />
+                <ScalarProperty Name="COHORT_Session_Hindi" ColumnName="COHORT_Session_Hindi" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Modular">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_Modular">
+              <MappingFragment StoreEntitySet="tbl_Modular">
+                <ScalarProperty Name="IsDeletedOn" ColumnName="IsDeletedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NoofStudent" ColumnName="NoofStudent" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="CalssId" ColumnName="CalssId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Reg_fk_Id" ColumnName="Reg_fk_Id" />
+                <ScalarProperty Name="ConductedDate" ColumnName="ConductedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

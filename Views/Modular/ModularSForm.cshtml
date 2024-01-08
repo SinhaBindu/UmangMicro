@@ -1,0 +1,230 @@
+﻿@model UmangMicro.Models.ModularSModel
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "Modular Session";
+}
+
+<style>
+    .dataTables_filter {
+        font-size: large !important;
+        font-weight: normal !important;
+        /*margin-left: 3% !important;*/
+    }
+
+    input[aria-controls="DataList_0"] {
+        height: 50px !important;
+        width: 690px !important;
+    }
+
+    .card {
+        padding: 20px !important;
+    }
+</style>
+
+<div class="admin-breadcrumb">
+    <h3>Modular Session</h3>
+    <div class="crumb">
+        <a href="~/Modular/Index">Modular Session List</a> / Add Modular Session
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+
+                @using (Html.BeginForm("ModularSForm", "Modular", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
+                {
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Cohort, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Cohort, CommonModel.GetCohort(true), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Cohort, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.SchoolId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="divModularInput">
+                        </div>
+
+                        <div class="col-md-12">
+                            <br />
+                            <div class="position-relative form-group" style="margin-left: 50% !important;">
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="~/Modular/ModularSForm" class="btn btn-info text-white">Reset</a>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/JS/Master.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#Cohort').change(function () {
+                LoadForm($(this).val());
+            });
+             GetDistrict('DistrictId');
+             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                 $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                 $('#DistrictId').attr("style", "pointer-events: none;");
+                 OnChagDistricts('BlockId', $('#DistrictId').val());
+                 $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
+                 $('#BlockId').attr("style", "pointer-events: none;");
+                 GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                 $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
+                 $('#SchoolId').attr("style", "pointer-events: none;");
+             }
+              if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
+                      $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                      $('#DistrictId').attr("style", "pointer-events: none;");
+                      OnChagDistricts('BlockId', $('#DistrictId').val());
+                  }
+
+            $('#DistrictId').change(function () {
+                OnChagDistricts('BlockId', $('#DistrictId').val());
+            });
+            $('#BlockId').change(function () {
+                // OnChagBlocks('PanchayatId', '', $('#DistrictId').val(), $('#BlockId').val());
+                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+            });
+
+            /* Start Submitted Data */
+            $("#formid").on("submit", function (event) {
+                event.preventDefault();
+                if ($('#DistrictId').val() != '' && $('#BlockId').val() != '' && $('#SchoolId').val() != '') {
+
+                    var bResponse = confirm('Are you sure you want to submit?');
+                    if (bResponse === true) {
+                        jQuery.event.trigger("ajaxStart");
+                        debugger;
+
+                    var formData = new FormData();
+                    formData.append('DistrictId', $('#DistrictId').val());
+                    formData.append('BlockId', $('#BlockId').val());
+                    formData.append('SchoolId', $('#SchoolId').val());
+
+                    debugger;
+                    var MS_model = [];
+                    let tbl = $('#tblModular').DataTable();
+                    tbl.$('input:checked').each(function (i, row) {
+                        var Class_id = $(row).attr('data-id') || 0;
+                        var Sessionid =$('#Session' + Class_id).val();
+                        var NoofStudent = $('#NoofStudent' + Class_id).val();
+                        var CDate = $('#ConductedDate' + Class_id).val();
+                        var Ischeck = $(row, 'input[type=checkbox]').val();
+                        if (NoofStudent == '' || CDate == '' || (Sessionid == "Select" || Sessionid == "-1" || Sessionid == "")) {
+                            toastr.error("Error", "Select Session, Enter the No. of students attended session and Conducted date.");
+                            return false;
+                        }
+                        if (Ischeck) {
+                            MS_model.push({
+                                CalssId: Class_id,
+                                Session: Sessionid,
+                                NoofStudent: NoofStudent,
+                                ConductedDate: CDate,
+                                Ischeck: true,
+                            });
+                        }
+                    });
+                    if (MS_model.length == 0) {
+                        toastr.error("Error", "Please choice at least one Cohort.");
+                        return false;
+                    }
+
+                        formData.append('MS_model', JSON.stringify(MS_model));
+                        $('#submit').prop('disabled', true);
+
+                    $.ajax({
+                        type: "POST",
+                        url: document.baseURI + "/Modular/ModularSForm/",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (resp) {
+                            if (resp.StatusType == "success") {
+                                toastr.success("Success", resp.Message);
+                                jQuery.event.trigger("ajaxStop");
+                            }
+                            else {
+                                toastr.error("Error", resp.Message);
+                            }
+                        },
+                        error: function (req, error) {
+                            if (error === 'error') { error = req.statusText; }
+                            var errormsg = 'There was a communication error: ' + error;
+                            toastr.error("Error", errormsg);
+                            jQuery.event.trigger("ajaxStop");
+                            return false;
+                        }
+
+                    });
+                    }
+                    return bResponse;
+
+                }
+                else {
+                    toastr.error('Error', "Please fill all required fields!!");
+                }
+
+            });//End Submit Data
+
+        });
+        function LoadForm(Cohort) {
+            $.ajax
+                ({
+                    url: document.baseURI+ "/Modular/LoadFormModular",
+                    contentType: "application/html; charset=utf-8",
+                    type: "GET",
+                    data: { 'Cohort': Cohort },
+                    cache: !0,
+                    datatype: "html",
+                    success: function (t) {
+                        $("#divModularInput").html(t)
+                        $('.datepicker').datepicker({
+                            format: 'dd-M-yyyy',
+                            //startDate: '-3d'
+                        });
+                    },
+                    error: function () {
+                        $("#divModularInput").html("Post Not Found")
+                    }
+                })
+        }  
+
+    </script>
+}
+

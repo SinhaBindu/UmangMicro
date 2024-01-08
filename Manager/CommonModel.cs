@@ -20,6 +20,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Windows.Forms;
 using System.Xml;
 using System.Reflection;
+using System.Web.Helpers;
 
 namespace UmangMicro.Manager
 {
@@ -890,180 +891,6 @@ namespace UmangMicro.Manager
         }
         #endregion
 
-        #region Reports
-        public static DataTable GetSPPlanningDetail()
-        {
-            StoredProcedure sp = new StoredProcedure("SP_PlaningDetails");
-            //sp.Command.AddParameter("", '', DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSPPlanningDetail(string ComponentId, string OutcomeId, string OutputId, string ActivityId, string OrganizationIds, string LocationIds, string MonthIds, int YearId)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_PlaningDetails_Report");
-            sp.Command.AddParameter("@ComponentId", ComponentId, DbType.String);
-            sp.Command.AddParameter("@OutcomeId", OutcomeId, DbType.String);
-            sp.Command.AddParameter("@OutputId", OutputId, DbType.String);
-            sp.Command.AddParameter("@ActivityId", ActivityId, DbType.String);
-            sp.Command.AddParameter("@OrganizationIds", OrganizationIds, DbType.String);
-            sp.Command.AddParameter("@LocationIds", LocationIds, DbType.String);
-            sp.Command.AddParameter("@MonthIds", MonthIds, DbType.String);
-            sp.Command.AddParameter("@YearId", YearId, DbType.Int32);
-
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_PerformDetail(string UserLocationId, string FromDate, string ToDate, string ComponentIds, string OrgIds)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_PerformDetail");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            sp.Command.AddParameter("@ComponentIds", ComponentIds, DbType.String);
-            sp.Command.AddParameter("@OrgIds", OrgIds, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_ActivityPerformedDetail(string PerformedID)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_ActivityPerformedData");
-            sp.Command.AddParameter("@IDActivityPerformed", PerformedID, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-        public static DataTable GetSP_ActivityReviewPerformedDetail(string ActivityReviewPerformedID)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_ActivityReviewPerformedData");
-            sp.Command.AddParameter("@IDActivityReview", ActivityReviewPerformedID, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-        public static DataSet GetSP_PerformTrainingReachList(string UserLocationId, string ActivityId, string FD, string TD)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetTrainingReachList");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@ActivityID", ActivityId, DbType.String);
-            sp.Command.AddParameter("@FD", FD, DbType.String);
-            sp.Command.AddParameter("@TD", TD, DbType.String);
-            DataSet ds = sp.ExecuteDataSet();
-            return ds;
-        }
-
-        public static DataTable GetSP_PerformPic(string UserLocationId, string FromDate, string ToDate)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetPerformPic");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_LeadProcessedList(string UserLocationId, string FromDate, string ToDate)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetLeadProcessedList");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_LeadByIds(string UserLocationId, string FromDate, string ToDate, string LeadIds)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetLeadByIds");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            sp.Command.AddParameter("@LeadIds", LeadIds, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-        public static DataTable GetSP_LeadByIdsForRevision(string UserLocationId, string FromDate, string ToDate, string LeadIds, string CompiledLeadId)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetLeadByIdsForRevision");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            sp.Command.AddParameter("@LeadIds", LeadIds, DbType.String);
-            sp.Command.AddParameter("@CompiledLeadId", CompiledLeadId, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-        public static DataTable GetSP_LeadDetailEdit(string LeadId)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetLeadDetail");
-            sp.Command.AddParameter("@LeadId", LeadId, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_LeadDetailForRevise(string LeadId)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetLeadDetailForRevise");
-            sp.Command.AddParameter("@LeadId", LeadId, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_LeadCompiledDataList(string UserLocationId, string FromDate, string ToDate)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetLeadCompiledDataList");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_LeadCompiledData(string compiledLeadId)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetLeadCompiledData");
-            sp.Command.AddParameter("@CompiledLeadId", compiledLeadId, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-        public static DataTable GetSP_CPMULeadList(string UserLocationId, string FromDate, string ToDate)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetCPMULeadList");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-        public static DataTable GetSP_CPMULeadByIds(string UserLocationId, string FromDate, string ToDate, string CompiledLeadIds)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_GetCPMULeadByIds");
-            sp.Command.AddParameter("@UserLocationId", UserLocationId, DbType.String);
-            sp.Command.AddParameter("@FromDate", FromDate, DbType.String);
-            sp.Command.AddParameter("@ToDate", ToDate, DbType.String);
-            sp.Command.AddParameter("@CompiledLeadIds", CompiledLeadIds, DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_ActivityReviewedPartiData(Guid IDPerform)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_ActivityReviewedPartiData");
-            sp.Command.AddParameter("@IDPerform", IDPerform.ToString(), DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-
-        public static DataTable GetSP_ActivityReviewedUploadedDocuments(Guid IDActivityReview, Guid IDPerform)
-        {
-            StoredProcedure sp = new StoredProcedure("SP_ActivityReviewedDocs");
-            sp.Command.AddParameter("@IDActivityReview", IDActivityReview.ToString(), DbType.String);
-            sp.Command.AddParameter("@IDPerform", IDPerform.ToString(), DbType.String);
-            DataTable dt = sp.ExecuteDataSet().Tables[0];
-            return dt;
-        }
-        #endregion
-
         //public static List<SelectListItem> GetSupportOrganization(bool isAddSel = false)
         //{
         //    try
@@ -1098,14 +925,13 @@ namespace UmangMicro.Manager
         //        throw;
         //    }
         //}
-
         public static List<SelectListItem> GetRolesByLoggedinUser(bool isAddedSelect = true)
         {
             try
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    var items = new SelectList(dbe.AspNetRoles.Where(x=>x.Id.ToLower() == "2CAC5128-08C7-4B95-8C6A-DB61E6B40376" || x.Id.ToLower() == "D3CE11F6-847E-4158-91DB-C4EB555A9BD4" || x.Id.ToLower()== "BAA881FB-F8BD-4199-A6CA-6FCAF7E3A0C2"), "Name", "Name").OrderBy(x => x.Text).ToList();
+                    var items = new SelectList(dbe.AspNetRoles.Where(x => x.Id.ToLower() == "2CAC5128-08C7-4B95-8C6A-DB61E6B40376" || x.Id.ToLower() == "D3CE11F6-847E-4158-91DB-C4EB555A9BD4" || x.Id.ToLower() == "BAA881FB-F8BD-4199-A6CA-6FCAF7E3A0C2"), "Name", "Name").OrderBy(x => x.Text).ToList();
                     if (isAddedSelect)
                     {
                         items.Insert(0, new SelectListItem { Value = "", Text = "Select" });
@@ -1928,7 +1754,7 @@ namespace UmangMicro.Manager
         }
         #endregion
 
-        #region Counselling Case History
+        #region Counselling Case History and Other Functions
         public static List<SelectListItem> GetTypeCounsellor()
         {
             List<SelectListItem> list = new List<SelectListItem>();
@@ -1938,7 +1764,7 @@ namespace UmangMicro.Manager
             else if (CommonModel.GetUserRoleConsultantDist() == MvcApplication.CUser.Role)
                 list.Add(new SelectListItem { Value = "BAA881FB-F8BD-4199-A6CA-6FCAF7E3A0C2".ToLower(), Text = "Consultant" });
             else
-            list.Add(new SelectListItem { Value = "D3CE11F6-847E-4158-91DB-C4EB555A9BD4".ToLower(), Text = "PCI Representative" });
+                list.Add(new SelectListItem { Value = "D3CE11F6-847E-4158-91DB-C4EB555A9BD4".ToLower(), Text = "PCI Representative" });
             return list.OrderBy(x => x.Value.ToString()).ToList();
         }
         public static List<SelectListItem> GetTypeQuery()
@@ -2055,10 +1881,13 @@ namespace UmangMicro.Manager
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    listItems = new SelectList(dbe.Month_Master, "ID", "MonthName").OrderBy(x => x.Value).ToList();
-                    if (isAddedSelect)
+                    listItems = new SelectList(dbe.Month_Master, "ID", "MonthName").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    if (listItems != null)
                     {
-                        listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        if (isAddedSelect)
+                        {
+                            listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        }
                     }
                     return listItems;
                 }
@@ -2098,7 +1927,110 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "2", Text = "Case ID" });
             //list.Add(new SelectListItem { Value = "3", Text = "DOB" });
             return list.OrderBy(x => Convert.ToInt32(x.Value.ToString())).ToList();
-            #endregion
+        }
+        public static List<SelectListItem> GetCohort(bool IsCheck)
+        {
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    var resg = dbe.ModularSessionMasters?.Where(x => x.IsActive == true).GroupBy(x => new { x.Cohort, x.TypeOfCohort }).ToList();
+                 if (resg != null)
+                    {
+                        foreach (var item in resg.ToList())
+                        {
+                            listItems.Add(new SelectListItem { Value = item.Key.Cohort.ToString(), Text = item.Key.TypeOfCohort.ToString() });
+                        }
+                    }
+                    if (listItems != null)
+                    {
+                        if (IsCheck)
+                        {
+                            listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        }
+                    }
+                    return listItems;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return listItems;
+        }
+        #endregion
+        public static List<SelectListItem> GetModularMaster68(bool isAddedSelect = true)
+        {
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    listItems = new SelectList(dbe.ModularSessionMasters.Where(x => x.Cohort == 1 && x.IsActive == true), "ID", "COHORT_Session_Hindi").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    if (listItems != null)
+                    {
+                        if (isAddedSelect)
+                        {
+                            listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        }
+                    }
+                    return listItems;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return listItems;
+        }
+        public static List<SelectListItem> GetModularMaster911(bool isAddedSelect = true)
+        {
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    listItems = new SelectList(dbe.ModularSessionMasters.Where(x => x.Cohort == 2 && x.IsActive == true), "ID", "COHORT_Session_Hindi").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    if (listItems != null)
+                    {
+                        if (isAddedSelect)
+                        {
+                            listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        }
+                    }
+                    return listItems;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return listItems;
+        }
+        public static List<SelectListItem> GetModularMaster1112(bool isAddedSelect = true)
+        {
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    listItems = new SelectList(dbe.ModularSessionMasters.Where(x => x.Cohort == 3 && x.IsActive == true), "ID",  "COHORT_Session_Hindi").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    if (listItems != null)
+                    {
+                        if (isAddedSelect)
+                        {
+                            listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                        }
+                    }
+                    return listItems;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return listItems;
         }
     }
 }
