@@ -933,6 +933,8 @@
     <None Include="Content\assets\autocompleteDropdown.scss" />
     <Content Include="Content\download\evaluation-study.pdf" />
     <Content Include="Content\download\RIASEC-Test-form.pdf" />
+    <Content Include="Content\download\Women-Rise-Up-Against-Child-Marriage.pdf" />
+    <Content Include="Content\download\Courses-Details-Final-Hindi.xlsx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
