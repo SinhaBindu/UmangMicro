@@ -3618,7 +3618,7 @@ img {
 .impact-flex {
     display: flex;
     margin: auto;
-    max-width: 960px;
+    max-width: 760px;
     gap: 30px;
     margin-top: 30px;
     justify-content: space-around;
@@ -3666,8 +3666,8 @@ img {
 }
 
 .data-2 {
-    width: 190px;
-    height: 190px;
+    width: 210px;
+    height: 210px;
     background: url('../images/umang-stat/green-strip.png') top center;
 }
 
@@ -3684,7 +3684,7 @@ img {
 .data-2 h3 {
     font-size: 40px;
     font-weight: bold;
-    padding-top: 75px
+    padding-top: 85px
 }
 
 .data-1 h3 {
@@ -5993,4 +5993,11 @@ img {
 .theory-box i {
     color: #5B2C54;
     font-size: 15px;
+}
+.eval {
+    margin: auto;
+    max-width: 1100px;
+    display: flex;
+    gap: 90px;
+    align-items: center;
 }

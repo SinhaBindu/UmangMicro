@@ -627,6 +627,7 @@
     <Content Include="Content\images\education-pathways.png" />
     <Content Include="Content\images\endline-bg.png" />
     <Content Include="Content\images\evaluation-cover.png" />
+    <Content Include="Content\images\evaluation-value.jpg" />
     <Content Include="Content\images\girls-education.jpg" />
     <Content Include="Content\images\girls-life.png" />
     <Content Include="Content\images\higher-risk-mortality.png" />
@@ -935,6 +936,7 @@
     <Content Include="Content\download\RIASEC-Test-form.pdf" />
     <Content Include="Content\download\Women-Rise-Up-Against-Child-Marriage.pdf" />
     <Content Include="Content\download\Courses-Details-Final-Hindi.xlsx" />
+    <Content Include="Content\download\Umang_Endline_Findings_External_Stakeholders.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Export.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
