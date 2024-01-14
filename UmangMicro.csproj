@@ -649,6 +649,7 @@
     <Content Include="Content\images\skill-training.png" />
     <Content Include="Content\images\skills-training.png" />
     <Content Include="Content\images\timeline-bg.png" />
+    <Content Include="Content\images\umang-cover-logo.jpg" />
     <Content Include="Content\images\umang-road.png" />
     <Content Include="Content\images\workforce-participation.png" />
     <Content Include="Scripts\JS\mgaccordion.js" />
