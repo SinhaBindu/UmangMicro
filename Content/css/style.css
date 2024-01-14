@@ -129,6 +129,12 @@ img {
     cursor: pointer;
     margin-left: 8px;
 }
+.cover-logo-round {
+    width: 55px;
+    border-radius: 100px;
+    cursor: pointer;
+    margin-left: 8px;
+}
 .main-banner {
     position: relative;
 }
