@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 <style>
     #ddmenu .current {
         color: #00AEC4;
@@ -58,9 +59,10 @@
 <div class="default-bg">
     <div class="quick-message">
         <div class="quick-info">
-            <h1>Aim & <span class="txt-clr">Objectives</span></h1>
+            <h1>Umang</h1>
             <div class="border-bottom"></div>
-            <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Umang aims to reduce incidence of child/early marriage in high-prevalence districts in Jharkhand <br />and empower adolescent girls.</p>
+            <h5 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">'A Norm-shifting & Empowerment integrated Model'</h5>
+            <h4 data-aos="fade-up" data-aos-duration="1800" data-aos-delay="120">to address child/early marriage of adolescent girls in Jharkhand</h4>
         </div>
         @*<div class="quick-graphic">
             <img src="~/Content/images/umang-cover.jpg" alt="girl art design" class="girl-work" />
@@ -78,30 +80,9 @@
             <li class="obj-bgr-2" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><span class="obj-icon2"><i class="fa fa-child"></i></span> Establish a scalable & sustainable model for addressing child/early marriage through SHG platform</li>
             <a href="~/Home/AimObjectives" class="btn-more" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Learn More</a>
         </ul>
-    </div>
-    
+    </div>    
 </div>
 
-<!-- Partners -->
-@*<div class="partners-list">
-    <div class="partners">
-        <h3 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Our Partners</h3>
-        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-            Umang is implemented by PCI India in partnership with the International Centre for Research on Women (ICRW) and Jharkhand State Livelihood Promotion Society (JSLPS), under the Dept of Rural Development, Govt of Jharkhand, with support from Global Communities.
-        </p>
-        <div class="partner-list" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-            <div>
-                <img src="~/Content/images/partners/jslps-logo.jpg" alt="JSLPS logo" />
-            </div>
-            <div>
-                <img src="~/Content/images/partners/global-communities-logo.jpeg" alt="Global COmmunities logo" />
-            </div>
-            <div>
-                <img src="~/Content/images/partners/icrw-logo.jpg" alt="ICRW logo" />
-            </div>
-        </div>
-    </div>
-</div>*@
 <!-- Impact -->
 <div class="primary-bg">
     <div class="impact-stat">
@@ -138,11 +119,16 @@
     </div>
 </div>
 <!-- Reach Out -->
-<div class="umang-impact">
+
     <div class="umang-manage">
         @*<h2>Umang has reached out to</h2>*@
-        <h2>Encouraging Outcomes</h2>
-        <div class="cool-data" data-module="countup">
+        <h2 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+            Encouraging Outcomes
+        </h2>
+        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+            Findings show positive trend between baseline (done in Feb 2021) & endline ( in March 2023) surveys
+        </p>
+        @*<div class="cool-data" data-module="countup">
             <div class="data1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="150">
                 <img src="~/Content/images/shgs-icon.png" alt="child marriage" />
                 <h4 data-countup-number="12,000">12,000</h4>
@@ -158,17 +144,98 @@
                 <h4 data-countup-number="50">50</h4>
                 <h5>CLFs</h5>
             </div>
+        </div>*@
+    <div class="outcomes-data">
+        <div class="datas" data-aos="fade-up" data-aos-duration="1700" data-aos-delay="120">
+            <img src="~/Content/images/girl-decision-outcome.png" alt="Intra-household Decisions" />
+            <h4 class="data-title1">Intra-household <br />Decisions</h4>
+            <h5>Improved say of mothers on When & Whom children marry</h5>
+            <div class="outcome1">
+                <div class="datas-1">
+                    <span>When</span>
+                    <div class="dt">
+                        <div class="when-data1 data-bg1">52%</div>
+                        <div class="when-data1 data-bg2">65%</div>
+                    </div>
+                </div>
+                <div class="datas-2">
+                    <span>Whom</span>
+                    <div class="dt2">
+                        <div class="when-data1 data-bg3">45%</div>
+                        <div class="when-data1 data-bg4">61%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="datas" data-aos="fade-up" data-aos-duration="1800" data-aos-delay="140">
+            <img src="~/Content/images/education-outcome-icon.png" alt="Educational Aspirations" />
+            <h4 class="data-title2">Educational <br />Aspirations</h4>
+            <h5>Girls' desire & likelihood to study at least up to 12th grade and/or above</h5>
+            <div class="outcome2">
+                <div class="md-data1">
+                    <div class="md-ot">
+                        <div class="ot-data-1 ot-78">78%</div>
+                        <div class="ot-data-1 ot-87">87%</div>
+                    </div>
+                    <span>Desired expectations*</span>
+                </div>
+                <div class="md-data2">
+                    <div class="md-ot">
+                        <div class="ot-data-1 ot-60">60%</div>
+                        <div class="ot-data-1 ot-75">75%</div>
+                    </div>
+                    <span>Real expectations*</span>
+                </div>
+            </div>
+        </div>
+        <div class="datas" data-aos="fade-up" data-aos-duration="1900" data-aos-delay="160">
+            <img src="~/Content/images/mother-daughter-relation-outcome.png" alt="Mother-daughter Conversations" />
+            <h4 class="data-title3">Mother-daughter <br />Conversations</h4>
+            <h5>Enriched discussions, daughters share their concerns with mothers</h5>
+            <div class="outcome3">
+                <div class="datas-3">
+                    <span>Health</span>
+                    <div class="dt3">
+                        <div class="when-data1 data-bg5">94%</div>
+                        <div class="when-data1 data-bg6">100%</div>
+                    </div>
+                </div>
+                <div class="datas-4">
+                    <span>Education</span>
+                    <div class="dt4">
+                        <div class="when-data1 data-bg7">86%</div>
+                        <div class="when-data1 data-bg8">97%</div>
+                    </div>
+                </div>
+                <div class="datas-5">
+                    <span>Safety</span>
+                    <div class="dt5">
+                        <div class="when-data1 data-bg9">70%</div>
+                        <div class="when-data1 data-bg10">82%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="outcome-highlight">
+        <div class="highligh-1">
+            <span></span>
+            Baseine
+        </div>
+        <div class="highligh-2">
+            <span></span>
+            Endline
         </div>
     </div>
 </div>
 <!-- Video Testimonials -->
-<div class="grey-bg">
+@*<div class="grey-bg">
     <div class="video-testim">
         <h2 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
             <span class="video-round">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" class="svg-video"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z" /></svg>
             </span>
-            Testimonials
+            Umang Film
             <a href="~/Home/testimonials" class="view-btn">View All <i class="fa fa-arrow-right"></i></a>
         </h2>
         <div class="video-flex">
@@ -198,6 +265,28 @@
                     <div class="side-vide">
                         <div class="side-video-container">
                             <iframe width="100%" height="290" src="https://www.youtube.com/embed/EKwQuDHyYeI"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<div class="grey-bg">
+    <div class="video-testim">
+        <h2 data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+            <span class="video-round">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" class="svg-video"><path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2V384c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1V320 192 174.9l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z" /></svg>
+            </span>
+            Umang Film
+        </h2>
+        <div class="video-flex">
+            <div class="video-box vd1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                @*<h3>Community Members</h3>*@
+                <div class="lex">
+                    <div class="side-vide">
+                        <div class="side-video-container">
+                            @*<iframe width="100%" height="290" src="https://www.youtube.com/embed/BDslfcmSKlQ"></iframe>*@
                         </div>
                     </div>
                 </div>
