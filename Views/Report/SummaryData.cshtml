@@ -18,6 +18,9 @@
     <h3>Summary Data</h3>
     <div class="crumb">
         <a href="~/Report/CaseHReportedList">Case History Reported By List</a> / Summary Data
+        <h5>
+            <a href="#" target="_self" onclick="return ExcelReport();"><span class="pull-right btn btn-primary">Export To Excel</span></a>
+        </h5>
     </div>
 </div>
 <div class="containers">
@@ -137,6 +140,7 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/JS/Master.js"></script>
+    <script src="~/Scripts/Export.js"></script>
 
     <script>
         $(document).ready(function () {
