@@ -22,6 +22,10 @@ namespace UmangMicro.Controllers
             {
                 return RedirectToAction("Login","Account");
             }
+           else if (strurl == "https://hbhtest.pcidigitals.in" || strurl == "https://hbhtest.pcidigitals.in/")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
