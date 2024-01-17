@@ -3143,7 +3143,6 @@ img {
         font-size: 16px;
         line-height: 26px;
         color: #545563;
-        width: 670px;
         margin: auto
     }
 
@@ -3233,7 +3232,7 @@ img {
         font-family: 'Merriweather', serif;
     }
     .quick-info h1 {
-        font-size: 40px;
+        font-size: 38px;
         font-weight: 500;
         margin-bottom: 10px;
         color: #00AEC4;
