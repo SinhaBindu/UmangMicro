@@ -629,8 +629,11 @@
     <Content Include="Content\images\endline-bg.png" />
     <Content Include="Content\images\evaluation-cover.png" />
     <Content Include="Content\images\evaluation-value.jpg" />
+    <Content Include="Content\images\female-teacher.png" />
     <Content Include="Content\images\girl-decision-outcome.png" />
+    <Content Include="Content\images\girl-wedding.png" />
     <Content Include="Content\images\girls-education.jpg" />
+    <Content Include="Content\images\girls-education.png" />
     <Content Include="Content\images\girls-life.png" />
     <Content Include="Content\images\higher-risk-mortality.png" />
     <Content Include="Content\images\intergenerational-poverty.png" />
@@ -1064,7 +1067,6 @@
     <Content Include="Views\Report\_SummaryData.cshtml" />
     <Content Include="Views\Report\SummaryData.cshtml" />
     <Content Include="Views\Modular\Index.cshtml" />
-
     <Content Include="Views\Home\EvaluationStudy.cshtml" />
     <Content Include="Views\Home\WomenLeadership.cshtml" />
     <Content Include="Views\Home\WhyGoddaAndJamtara.cshtml" />

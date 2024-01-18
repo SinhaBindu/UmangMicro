@@ -5258,7 +5258,7 @@ img {
 
 .theory-of-chnages {
     background: url('../images/umang-road.png') bottom center no-repeat #FCFCFC;
-    height: 580px;
+    height: 520px;
     position: relative;
     max-width: 1200px;
     margin: auto;
@@ -5324,6 +5324,7 @@ img {
     border-bottom: 10px solid #5B2C54;
     background: #EAE4E9;
     border-radius: 100px 100px 0 0;
+    margin-top: -70px;
 }
 
     .value-the-child h3 {
@@ -5346,7 +5347,7 @@ img {
 .empowered-fixed, .system-level-fixed, .community-level-fixed, .household-level-fixed, .kishori-help-desk-fixed {
     position: absolute;
     right: 50px;
-    top: 10px;
+    top: -50px;
     width: 200px;
     text-align: center;
     color: #000;
@@ -5354,22 +5355,22 @@ img {
 
 .system-level-fixed {
     right: 370px;
-    top: 120px;
+    top: 90px;
 }
 
 .community-level-fixed {
     right: 660px;
-    top: 300px;
+    top: 260px;
 }
 
 .household-level-fixed {
     left: 150px;
-    top: 350px;
+    top: 290px;
 }
 
 .kishori-help-desk-fixed {
     right: 440px;
-    top: 340px;
+    top: 270px;
 }
 
 .umang-theory-icon {
@@ -5382,7 +5383,7 @@ img {
 }
 
 .theory-arrow-down {
-    width: 10px;
+    width: 7px;
     display: block;
     margin: auto;
 }
@@ -5428,10 +5429,12 @@ img {
 .household-level-fixed p {
     top: 100px;
     bottom: 0px;
+    width: 180px;
+    margin-left: 50px;
 }
 
 .kishori-help-desk-fixed p {
-    top: 400px;
+    top: 100px;
     bottom: 0px;
 }
 
@@ -5458,7 +5461,7 @@ img {
     visibility: visible;
     opacity: 1;
     bottom: 0px;
-    top: 250px;
+    top: 210px;
 }
 
 .empowered-fixed:hover p {
@@ -5852,9 +5855,12 @@ img {
     margin-top: 40px;
 }
     .girls-life-in-brief p {
-        font-size: 18px;
-        line-height: 33px;
-        margin: 10px 0 50px;
+        font-size: 15px;
+        line-height: 26px;
+        margin: 15px 0 50px 100px;
+        background: #EDEEFF;
+        border-radius: 35px;
+        padding-right: 12px;
     }
         .girls-life-in-brief p:hover .girl-life-icon {
             transform: scale(1.1);
@@ -5870,14 +5876,23 @@ img {
     flex: 5;
 }
 .girl-life-icon {
-    width: 110px;
+    width: 65%;
+    padding-top: 19px;
+}
+.gl-life-round {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
     float: left;
+    margin-top: -5px;
     margin-bottom: 20px;
     margin-right: 25px;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
+    background: #EDEEFF;
+    text-align: center;
 }
 .why-godda-jamtara {
     padding: 0px 20px;
@@ -6241,3 +6256,15 @@ img {
         background: #5B2C54;
         height: 20px;
     }
+.age-marriage {
+    font-weight: bold;
+    color: #F6891E
+}
+.age-marriage2 {
+    font-weight: bold;
+    color: #FF6435
+}
+.age-marriage3 {
+    color: #E12228;
+    font-weight: bold;
+}
