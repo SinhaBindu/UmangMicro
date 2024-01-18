@@ -638,6 +638,7 @@
     <Content Include="Content\images\higher-risk-mortality.png" />
     <Content Include="Content\images\intergenerational-poverty.png" />
     <Content Include="Content\images\jepc-logo.jpg" />
+    <Content Include="Content\images\jh-map.png" />
     <Content Include="Content\images\kishori-banner.jpg" />
     <Content Include="Content\images\kishori-genesis.jpg" />
     <Content Include="Content\images\login-icon.png" />

@@ -1687,7 +1687,7 @@ img {
 }
 
 .box-responsive {
-    width: 1200px;
+    width: 1100px;
     padding: 0 0 0 20px;
 }
 
@@ -2130,7 +2130,7 @@ img {
 
 .disctrict-map {
     margin: auto;
-    max-width: 1220px;
+    max-width: 1120px;
     padding: 70px 0;
 }
 
@@ -2143,7 +2143,7 @@ img {
     }
 
     .disctrict-map p {
-        font-size: 18px;
+        font-size: 15px;
         text-align: center;
         color: #5F5F5F;
         margin-bottom: 50px
@@ -2497,7 +2497,9 @@ img {
 .godda, .jamtara {
     position: relative;
 }
-
+.jamtara-district, .godda-district {
+    width: 80%;
+}
 .nhfs {
     position: relative;
     z-index: 999;
@@ -2510,83 +2512,83 @@ img {
 }
 
 .map1, .map2, .map3, .map4, .map5, .map6, .map7, .map8, .map9, .map10, .map11, .map12, .map13, .map14, .map15 {
-    width: 20px;
+    width: 15px;
     position: absolute;
 }
 
 .map1 {
-    top: 190px;
-    left: 92px;
+    top: 150px;
+    left: 76px;
 }
 
 .map2 {
-    top: 90px;
-    left: 201px;
+    top: 78px;
+    left: 163px;
 }
 
 .map3 {
     top: 9px;
-    right: 95px;
+    right: 145px;
 }
 
 .map4 {
     top: 18px;
-    left: 155px;
+    left: 125px;
 }
 
 .map5 {
-    top: 85px;
-    left: 125px;
+    top: 67px;
+    left: 100px;
 }
 
 .map6 {
-    top: 144px;
-    left: 122px;
+    top: 114px;
+    left: 102px;
 }
 
 .map7 {
-    top: 90px;
-    right: 120px;
+    top: 80px;
+    right: 162px;
 }
 
 .map8 {
-    top: 190px;
-    left: 90px;
+    top: 152px;
+    left: 77px;
 }
 
 .map9 {
-    top: 200px;
-    right: 106px;
+    top: 160px;
+    right: 165px;
 }
 
 .map10 {
-    top: 70px;
-    right: 40px;
+    top: 60px;
+    right: 100px;
 }
 
 .map11 {
-    top: 8px;
-    left: 63px;
+    top: 12px;
+    left: 55px;
 }
 
 .map12 {
-    top: 36px;
-    left: 38px;
+    top: 31px;
+    left: 30px;
 }
 
 .map13 {
-    top: 70px;
-    left: 125px;
+    top: 54px;
+    left: 100px;
 }
 
 .map14 {
-    top: 90px;
-    right: 104px;
+    top: 79px;
+    right: 152px;
 }
 
 .map15 {
-    top: 58px;
-    left: 170px;
+    top: 48px;
+    left: 145px;
 }
 
 .zoom-in-zoom-out {
