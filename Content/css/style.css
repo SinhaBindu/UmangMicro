@@ -2772,7 +2772,7 @@ img {
 }
 
 .txt-ar {
-    margin-top: 20px;
+    margin-top: 13px;
 }
 
     .txt-ar h4 {
@@ -3125,11 +3125,15 @@ img {
     margin: auto;
     max-width: 1200px;
     background: #fff;
-    padding: 0px 0px 50px;
+    padding: 20px 0px 30px;
     margin-top: 0px;
     text-align: center;
 }
-
+    .umang-manage a {
+        color: #5B2C54;
+        text-decoration: underline;
+        color: #333
+    }
     .umang-manage img {
         max-width: 580px
     }
@@ -6237,6 +6241,7 @@ img {
     max-width: 250px;
     margin-top: 20px;
     gap: 20px;
+    margin-bottom: 15px;
 }
 .highligh-1, .highligh-2 {
     align-items: center;

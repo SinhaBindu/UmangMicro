@@ -148,7 +148,8 @@
 	padding-bottom: 5px;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
-	color: #00AEC4;
+	background: #00AEC4;
+	color: #fff;
 	opacity: 1;
 }
 
