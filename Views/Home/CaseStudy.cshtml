@@ -22,7 +22,7 @@
 <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Play:400,700">
 <script src="~/content/flipbook/jquery.js"></script>
 <script src="~/content/flipbook/turn.js"></script>
-<script src="~/content/flipbook/jquery.fullscreen.js"></script>
+@*<script src="~/content/flipbook/jquery.fullscreen.js"></script>*@
 <script src="~/content/flipbook/jquery.address-1.6.min.js"></script>
 <script src="~/content/flipbook/wait.js"></script>
 <script src="~/content/flipbook/onload.js"></script>
@@ -50,11 +50,13 @@
         color: #fff;
         padding-top: 25px
     }
+
     .page-txt-banner {
         margin-top: -30px;
         position: relative;
         padding-top: 30px
     }
+
         .page-txt-banner h2 {
             padding-top: 20px;
             font-size: 26px;
@@ -821,11 +823,19 @@
                         </li>
 
                         <li>
-                            <a title="Zoom Out" class="fb5-show-all" href="javascript:void(0)"><i class="fa fa-list"></i></a>
+                            <a title="Fullscreen" class="expand_photo" href="javascript:void(0)"><i class="fa fa-expand"></i></a>
                         </li>
 
                         <li>
-                            <a title="Zoom Out" class="fb5-home" href="javascript:void(0)"><i class="fa fa-home"></i></a>
+                            <a title="Share This" class="modal-open" href="javascript:void(0)"><i class="fa fa-share"></i></a>
+                        </li>
+
+                        <li>
+                            <a title="Flip Images" class="fb5-show-all" href="javascript:void(0)"><i class="fa fa-list"></i></a>
+                        </li>
+
+                        <li>
+                            <a title="Start the Flip" class="fb5-home" href="javascript:void(0)"><i class="fa fa-home"></i></a>
                         </li>
 
                     </ul>
@@ -1060,10 +1070,10 @@
                     "toolbar_visible": "true",
                     "gotopage_width": "30",
                     "deeplinking_enabled": "true",
-                    "rtl": "false",
+                    "rtl": "true",
                     'full_area': 'true',
-                    'lazy_loading_thumbs': 'false',
-                    'lazy_loading_pages': 'false'
+                    'lazy_loading_thumbs': 'true',
+                    'lazy_loading_pages': 'true'
                 })
         </script>
 
@@ -1073,8 +1083,7 @@
 </div>
 <!-- END DIV YOUR WEBSITE -->
 <div class="page-txt-banner">
-    <a class="fbtn share share" title="Share" onclick="copyToClipboard()" href="javascript:void(0)">Copy to clipboard</a>
-    <button id="myDiv">Zoom</button>
+    @*<a class="fbtn share share" title="Share" onclick="copyToClipboard()" href="javascript:void(0)">Copy to clipboard</a>*@
     <h2>More Stories</h2>
 </div>
 
@@ -1154,22 +1163,52 @@
         </div>*@
 </section>
 
-@Scripts.Render("~/bundles/jqueryval")
 
+<!-- Modal 1 -->
+<div class="modal-overlay hidden"></div>
+<div class="modal-box hidden">
+    <i class="fa fa-times modal-close"></i>
+    <h4>Share Flipbook</h4>
+    <p>&bdquo;</p>
+    <div class="sharethis-inline-share-buttons"></div>
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")
 <script>
-    function copyToClipboard(text) {
-        var inputc = document.body.appendChild(document.createElement("input"));
-        inputc.value = window.location.href;
-        inputc.select();
-        document.execCommand('copy');
-        inputc.parentNode.removeChild(inputc);
-        console.log("Page URL Copied to Clipboard");
-    }
+    'use strict';
+    const modalOpen = document.querySelector('.modal-open');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalBox = document.querySelector('.modal-box');
+    const modalClose = document.querySelector('.modal-close');
+    // Modal 1
+    modalOpen.addEventListener('click', function () {
+        modalOverlay.classList.remove('hidden');
+        modalBox.classList.remove('hidden');
+    });
+    modalClose.addEventListener('click', function () {
+        modalOverlay.classList.add('hidden');
+        modalBox.classList.add('hidden');
+    })
+    modalOverlay.addEventListener('click', function () {
+        modalOverlay.classList.add('hidden');
+        modalBox.classList.add('hidden');
+    })
+</script>
+<script>
+    //function copyToClipboard(text) {
+    //    var inputc = document.body.appendChild(document.createElement("input"));
+    //    inputc.value = window.location.href;
+    //    inputc.select();
+    //    document.execCommand('copy');
+    //    inputc.parentNode.removeChild(inputc);
+    //    console.log("Page URL Copied to Clipboard");
+    //}
 
     function toggleFullscreen(elem) {
         elem = elem || document.documentElement;
         if (!document.fullscreenElement && !document.mozFullScreenElement &&
             !document.webkitFullscreenElement && !document.msFullscreenElement) {
+
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
             } else if (elem.msRequestFullscreen) {
@@ -1192,26 +1231,13 @@
         }
     }
 
-    //document.getElementById('myDiv').addEventListener('click', function () {
-    //    toggleFullscreen();
-    //});
-
-    document.getElementById('myDiv').addEventListener('click', function () {
-        //jQuery('#fb5').data('config',
-        //    {
-        //        "page_width": "550",
-        //        "page_height": "780"
-        //    });
-        
+    document.querySelector('.expand_photo').addEventListener('click', function () {
         toggleFullscreen(document.getElementById('fb5'));
-        $('.fb5-cont-page-book, .turn-page .turn-page-wrapper').css({
-            width: '550px',
-            height: '760px',
-            zoom_step: 0.5
-        })
     });
 </script>
-
+<!-- ShareThis BEGIN -->
+@*<div class="sharethis-inline-share-buttons"></div>*@
+<!-- ShareThis END -->
 <script type="text/javascript">
     var reslist = [];
     $(document).ready(function () {
