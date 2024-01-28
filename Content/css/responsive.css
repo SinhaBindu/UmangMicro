@@ -1,5 +1,5 @@
 @media all and (max-width: 1260px) {
-    .aims-objective, .design-graph, .quick-message, .impact-stat, .video-testim, .objectives-content, .innovation-point {
+    .aims-objective, .design-graph, .quick-message, .impact-stat, .video-testim, .objectives-content, .innovation-point, .umang-manage, .sect-objectives {
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -118,9 +118,21 @@
         #header {
             margin: auto
         }
+        .zoomer-banner, .banner-manage {
+            padding-top: 109px;
+        }
     }
 
     @media all and (max-width: 1024px) {
+        .umang-roadmap {
+            padding: 40px 20px 70px;
+        }
+        .aims-objective {
+            padding: 30px 0 30px;
+        }
+        .impact-stat h2, .video-testim h2, .umang-manage h2 {
+            font-size: 32px !important
+        }
         .empowered-fixed {
             width: 150px;
             top: 50px;
@@ -184,11 +196,11 @@
             font-size: 45px;
         }
 
-        .video-round {
+        /*.video-round {
             width: 66px;
             height: 66px;
             margin-top: -10px;
-        }
+        }*/
 
         .foot2 {
             float: left;
@@ -230,10 +242,6 @@
             gap: 20px;
         }
 
-        .quick-info h1 {
-            font-size: 61px;
-        }
-
         .botlogo {
             margin-left: 25px;
         }
@@ -253,9 +261,21 @@
         .innovate {
             flex-basis: 390px;
         }
+        .slider-text h1 {
+            font-size: 34px;
+        }
     }
 
     @media all and (max-width: 920px) {
+        .theory-of-chnages h2 {
+            font-size: 29px;
+        }
+        .slider-text h1 {
+            font-size: 32px;
+        }
+        .impact-stat h2, .video-testim h2, .umang-manage h2 {
+            font-size: 30px !important
+        }
         .empowered-fixed, .system-level-fixed, .community-level-fixed, .household-level-fixed, .kishori-help-desk-fixed {
             position: relative;
             top: unset;
@@ -323,19 +343,16 @@
             display: none;
         }
 
-        .quick-info h1 {
-            font-size: 56px;
-        }
 
         .impact-stat h2, .video-testim h2, .umang-manage h2 {
             font-size: 41px;
         }
 
-        .video-round {
+        /*.video-round {
             width: 60px;
             height: 60px;
             margin-top: -10px;
-        }
+        }*/
 
         .district-block h3, .umang-design h3, .design-bg h3, .design-graph h2 {
             font-size: 29px;
@@ -443,9 +460,39 @@
         .innovate {
             flex-basis: 350px;
         }
+        .quick-info h5 {
+            font-size: 26px;
+        }
+        .slider-text p {
+            font-size: 16px
+        }
+        .slider-text {
+            bottom: 30px;
+        }
     }
 
     @media all and (max-width: 768px) {
+        .theory-of-chnages h2 {
+            font-size: 27px;
+        }
+        .slider-text {
+            bottom: 27px;
+        }
+        .slider-text p {
+            font-size: 15px
+        }
+        .slider-text h1 {
+            font-size: 29px;
+        }
+        .quick-info h5 {
+            font-size: 24px;
+        }
+        .impact-stat h2, .video-testim h2, .umang-manage h2 {
+            font-size: 28px !important
+        }
+        .outcomes-data {
+            flex-direction: column;
+        }
         .theory-box {
             display: flex;
             flex-direction: column;
@@ -467,19 +514,15 @@
             line-height: 28px;
         }
 
-        .quick-info h1 {
-            font-size: 50px;
-        }
-
         .impact-stat h2, .video-testim h2, .umang-manage h2 {
             font-size: 37px;
         }
 
-        .video-round {
+        /*.video-round {
             width: 58px;
             height: 58px;
             margin-top: -10px;
-        }
+        }*/
 
         .video-flex {
             gap: 50px;
@@ -611,9 +654,18 @@
         .innovate {
             flex-basis: 320px;
         }
+        .quick-info h1 {
+            font-size: 35px;
+        }
+        .quick-info h4 {
+            font-size: 20px;
+        }
     }
 
     @media all and (max-width: 700px) {
+        .slider-text h1 {
+            font-size: 28px;
+        }
         .objectives-matter {
             flex-direction: column;
             gap: 40px;
@@ -631,10 +683,6 @@
 
         .cool-data img {
             width: 70px;
-        }
-
-        .quick-info h1 {
-            font-size: 48px;
         }
 
         .impact-stat h2, .video-testim h2, .umang-manage h2 {
@@ -662,9 +710,37 @@
             font-size: 21px;
             padding-top: 20px;
         }
+        .objectives-content li {
+            font-size: 17px;
+            line-height: 27px;
+        }
     }
 
     @media all and (max-width: 620px) {
+        .theory-of-chnages h2 {
+            font-size: 25px;
+        }
+        .slider-text {
+            bottom: 20px;
+        }
+        .slider-text p {
+            font-size: 14px
+        }
+        .slider-text h1 {
+            font-size: 26px;
+        }
+        .quick-info h4 {
+            font-size: 18px;
+        }
+        .quick-info h5 {
+            font-size: 24px;
+        }
+        .quick-info h1 {
+            font-size: 32px;
+        }
+        .impact-stat h2, .video-testim h2, .umang-manage h2 {
+            font-size: 26px !important
+        }
         .main-objectives {
             flex-direction: column;
         }
@@ -683,10 +759,6 @@
             width: 60px;
         }
 
-        .quick-info h1 {
-            font-size: 45px;
-        }
-
         .impact-stat h2, .video-testim h2, .umang-manage h2 {
             font-size: 32px;
         }
@@ -695,12 +767,12 @@
             margin-top: 5px;
         }
 
-        .video-round {
+        /*.video-round {
             width: 54px;
             height: 54px;
             margin-top: -10px;
             margin-right: 22px;
-        }
+        }*/
 
         .shg-structure {
             flex-direction: column;
@@ -786,6 +858,22 @@
     }
 
     @media all and (max-width: 520px) {
+        .slider-text {
+            bottom: 15px;
+        }
+        .slider-text h1 {
+            font-size: 24px;
+        }
+        .objectives-content li {
+            font-size: 16px;
+            line-height: 25px;
+        }
+        .quick-info h4 {
+            font-size: 17px;
+        }
+        .quick-info h5 {
+            font-size: 22px;
+        }
         .innovate {
             flex-basis: 100%;
         }
@@ -803,10 +891,6 @@
 
         .cool-data h4 {
             font-size: 26px;
-        }
-
-        .quick-info h1 {
-            font-size: 42px;
         }
 
         .design-points {
@@ -857,6 +941,13 @@
     }
 
     @media all and (max-width: 440px) {
+        .slider-text h1 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        .slider-text {
+            bottom: 10px;
+        }
         .take-points {
             flex-basis: 97%;
         }

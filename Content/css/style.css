@@ -3132,7 +3132,14 @@ img {
     .umang-manage a {
         color: #5B2C54;
         text-decoration: underline;
-        color: #333
+        color: #5B2C54;
+        float: right;
+        padding: 1px 14px;
+        border-radius: 4px;
+        background: #FBC982;
+        font-size: 13px;
+        text-decoration: none;
+        margin-right: 50px;
     }
     .umang-manage img {
         max-width: 580px
@@ -6055,7 +6062,7 @@ img {
     display: flex;
     gap: 30px;
     margin: auto;
-    max-width: 1024px;
+    max-width: 1100px;
     padding-top: 20px;
     border-bottom: 2px solid #EEEEEF;
     padding-bottom: 10px;
@@ -6064,7 +6071,7 @@ img {
     flex: 1;
 }
 .datas img {
-    width: 90px;
+    width: 190px;
 }
 .outcomes-data h4 {
     font-size: 20px;
@@ -6253,7 +6260,7 @@ img {
         display: inline-block;
         width: 40px;
         margin-right: 7px;
-        background: #FBC982;
+        background: #F3987A;
         height: 20px;
     }
     .highligh-2 span {
