@@ -101,7 +101,7 @@
                                             onchange = "OnChangeRadio('" + @item.QuestionCode +"', this)",
                                         })
 
-                                        <label for="@(item.SectionType.ToLower()+"_Rest")" class="q-lable">@("Rest")</label>
+                                        <label for="@(item.SectionType.ToLower()+"_Rest")" class="q-lable">@("Reset")</label>
                                     </div>
                                 </div>
                             </div>
@@ -376,6 +376,8 @@
                                     if (resp.IsSuccess) {
                                         toastr.success('Success', resp.msg);
                                         var html = $(resp.htmlData);
+                                        var urllink = document.baseURI + '/Counsellor/CaseHistory?Para=2&&CaseID=' + $('#CaseID').val();
+                                        location.href = urllink;
                                         var hiddenList = $('input[type="hidden"]', html);
                                         $.each(hiddenList, function (i, item) {
                                             console.log(item);
@@ -421,34 +423,34 @@
             $('#' + Ele).append($("<option>").val('').text('Select'));
             var Para = $('input[name="TypeCase"]:checked').val();
             if (Para != undefined) {
-            $.ajax({
-                url: document.baseURI + "/Counsellor/GetStudentlList",
-                type: "Post",
-                data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val(), 'DOB': $('input[name=DOBtxt]').val() }),
-                contentType: "application/json; charset=utf-8",
-                global: false,
-                async: false,
-                dataType: "json",
-                success: function (resp) {
-                    if (resp.IsSuccess) {
-                        StudDList = JSON.parse(resp.res);
-                        $.each(StudDList, function (i, exp) {
-                            $('#' + Ele).append($("<option>").val(exp.CaseID).text(exp.CaseID + ' - ' + exp.Name));
-                        });
+                $.ajax({
+                    url: document.baseURI + "/Counsellor/GetStudentlList",
+                    type: "Post",
+                    data: JSON.stringify({ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val(), 'DOB': $('input[name=DOBtxt]').val() }),
+                    contentType: "application/json; charset=utf-8",
+                    global: false,
+                    async: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.IsSuccess) {
+                            StudDList = JSON.parse(resp.res);
+                            $.each(StudDList, function (i, exp) {
+                                $('#' + Ele).append($("<option>").val(exp.CaseID).text(exp.CaseID + ' - ' + exp.Name));
+                            });
 
+                        }
+                    },
+                    error: function (req, error) {
+                        if (error === 'error') { error = req.statusText; }
+                        var errormsg = 'There was a communication error: ' + error;
+                        //Do To Message display
                     }
-                },
-                error: function (req, error) {
-                    if (error === 'error') { error = req.statusText; }
-                    var errormsg = 'There was a communication error: ' + error;
-                    //Do To Message display
-                }
-            });
-            $('#' + Ele).trigger("chosen:updated");
-        }
- else {
-            toastr.error("Error", "Please check Search By : Name, Case, Date of birth.");
-        }
+                });
+                $('#' + Ele).trigger("chosen:updated");
+            }
+            else {
+                toastr.error("Error", "Please check Search By : Name, Case, Date of birth.");
+            }
         }
 
         const groupBy = (array, key) => {

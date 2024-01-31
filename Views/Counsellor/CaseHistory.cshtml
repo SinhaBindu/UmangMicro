@@ -16,6 +16,7 @@
         height: 50px !important;
         width: 690px !important;
     }
+
     .card {
         padding: 20px !important;
     }
@@ -24,7 +25,7 @@
 <div class="admin-breadcrumb">
     <h3>Case History (Student Counselling)</h3>
     <div class="crumb">
-        <a href="~/Counsellor/CaseHistoryList">Case History List</a> / Add Case History 
+        <a href="~/Counsellor/CaseHistoryList">Case History List</a> / Add Case History
     </div>
 </div>
 <div class="container">
@@ -116,6 +117,8 @@
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.TypeQuery, htmlAttributes: new { @class = "" })
                                 @Html.DropDownListFor(model => model.TypeQuery, CommonModel.GetTypeQuery(), null, new { @id = "TypeQuery", @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.TypeQuery, "", new { @class = "text-danger" })
+                                <br />
+                                <a id="linkrctest" style="display:none;">Click to Psychometric (RIASEC) Test</a>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -302,8 +305,8 @@
 
                                 <div class="col-md-12" id="dv-ssp" style="display:none;">
                                     @*<div class="col-md-6">
-                                        <a href="javascript:void(0);" class="btn btn-info text-white" id="btnsssp" name="btnsssp">Search</a>
-                                    </div>*@
+                                            <a href="javascript:void(0);" class="btn btn-info text-white" id="btnsssp" name="btnsssp">Search</a>
+                                        </div>*@
                                 </div>
                                 <p class="mb-0">
                                     <div id="sub-data2" class="col-md-12"></div>
@@ -314,8 +317,8 @@
 
                                 <div class="col-md-12" id="dv-sm" style="display:none;">
                                     @*<div class="col-md-6">
-                                        <a href="javascript:void(0);" class="btn btn-info text-white" id="btnssm" name="btnssm">Search</a>
-                                    </div>*@
+                                            <a href="javascript:void(0);" class="btn btn-info text-white" id="btnssm" name="btnssm">Search</a>
+                                        </div>*@
                                 </div>
                                 <p class="mb-0">
                                     <div id="sub-data3" class="col-md-12"></div>
@@ -372,7 +375,7 @@
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.IsGoalClear, htmlAttributes: new { @class = "" })
                                 @*@Html.DropDownListFor(model => model.IsGoalClear, CommonModel.GetYesNo(), null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.IsGoalClear, "", new { @class = "text-danger" })*@
+                                    @Html.ValidationMessageFor(model => model.IsGoalClear, "", new { @class = "text-danger" })*@
                                 @*@Html.LabelFor(model => model.IsGoalClear, htmlAttributes: new { @class = "" })*@
                                 <div class="checkbox">
                                     @foreach (var item in CommonModel.GetYesNo())
@@ -417,6 +420,8 @@
         var RCSList = [];
         $(document).ready(function () {
 
+            $("#linkrctest").attr("href", "");
+            $("#linkrctest").css("display", 'none');
             if ('@Model.TypeCase' === '2' && '@Model.CaseID' === $('input[name=Searchtxt]').val()) {
                 GetStudData('CaseID');
             }
@@ -503,6 +508,9 @@
             });
 
             $('select[name=TypeQuery]').change(function () {
+                var urllink =  document.baseURI + '/Test/Add?Para=2&&CaseID=' + $('#CaseID').val();
+                $("#linkrctest").attr("href", "");
+                $("#linkrctest").css("display", 'none');
                 $('#li-tab0').hide(); $('#li-tab1').hide(); $('#li-tab2').hide(); $('#li-tab3').hide();
                 $('#sub-data').hide(); $('#sub-data2').hide(); $('#sub-data3').hide();
                // BindData();
@@ -514,6 +522,8 @@
                 $('#btnSHE').hide(); $('#dv-checdkall').hide();
 
                 if ($(this).val() == "1" || $(this).val() == "2") {
+                    $("#linkrctest").attr("href", urllink);
+                    $("#linkrctest").css("display", 'block');
                     $('.hd-Test').show();
                     $('#li-tab0').show();
                     $('#li-tab1').show();
@@ -539,6 +549,8 @@
 
 
             $('select[name=CaseID]').change(function () {
+                $("#linkrctest").attr("href", "");
+                $("#linkrctest").css("display", 'none');
                 $('#div-stud').hide();
                 BindStudentDetailClear();
                 var fd = StudDList.filter(x => x.CaseID == $('#CaseID').val());
