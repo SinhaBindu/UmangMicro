@@ -210,3 +210,19 @@
 		.pcss3t>ul>li {
 			height: 660px;
 		}
+@media all and (max-width: 900px) {
+	.pcss3t-theme-1 > label {
+		font-size: 18px;
+	}
+}
+@media all and (max-width: 768px) {
+	.pcss3t-theme-1 > label {
+		font-size: 16px;
+	}
+}
+
+@media all and (max-width: 620px) {
+	.pcss3t-theme-1 > label {
+		font-size: 15px;
+	}
+}

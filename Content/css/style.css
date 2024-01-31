@@ -281,7 +281,7 @@ img {
 }
 
 .social-tab .fa {
-    color: #5B2C54
+    color: #fff
 }
 
 .fa-map-marker, .fa-phone, .fa-envelope {
@@ -296,20 +296,15 @@ img {
 }
 
 .social-tab {
-    font-size: 15px;
+    font-size: 27px;
     width: 30px;
     height: 30px;
     text-align: center;
     float: left;
     padding-top: 5px;
-    background: #FBC982;
-    border-radius: 50px;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
-    .social-tab:hover {
-        background: #fff;
-    }
 
 .botlogo {
     float: left;
@@ -2488,7 +2483,6 @@ img {
 }
 
 .jh-district {
-    /*flex: 1;*/
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -3885,7 +3879,7 @@ img {
     font-weight: bold;
     color: #5B2C54
 }
-.influence-round h3 {
+.influence-round h4 {
     margin: 0px 0 0 0;
     text-align: center;
     font-size: 18px;
@@ -6281,4 +6275,26 @@ img {
 .age-marriage3 {
     color: #E12228;
     font-weight: bold;
+}
+.genesis-box h3 {
+    font-size: 28px;
+}
+.module-banner h3 {
+    font-size: 34px;
+    color: #5B2C54;
+    font-weight: 600;
+    padding-top: 80px;
+    margin-bottom: 20px;
+}
+
+.module-banner p {
+    font-size: 18px !important;
+    padding: 12px 120px;
+    color: #3C3C3C;
+    font-weight: 600;
+    line-height: 28px
+}
+.manage-achievement h2 {
+    margin-top: 0px;
+    font-size: 37px;
 }
