@@ -71,7 +71,7 @@
                         {
                             <div class="question-set">
                                 <div class="question-list">
-                                    <span>@(item.QuestionCode+". " +item.HindiQuestion) <em>*</em></span>
+                                    <span>@(item.QuestionCode+". " +item.HindiQuestion) <span></span></span>
                                     <div class="q-check-input">
                                         @Html.HiddenFor(m => m.Qlist[ii].QuestionCode)
                                         @Html.HiddenFor(m => m.Qlist[ii].QuestionId_pk)
@@ -207,7 +207,7 @@
                                                 <div class="col-md-2"></div>
                                                 <div class="col-md-3 pull-right">
                                                     <span class="">
-                                                        <button type="submit" class="previous btn btn-primary btn-lg" id="btnsubmit">Submit</button>
+                                                        <input type="submit" class="previous btn btn-primary btn-lg" id="btnsubmit" />
                                                         <a href="~/Test/Add" class="btn btn-info btn-lg">Reset</a>
                                                     </span>
 
@@ -347,8 +347,8 @@
                 debugger;
                 e.preventDefault();
              
-                var bResponse = confirm('Are you sure you want to Submit?');
-                if (bResponse === true) {
+                //var bResponse = confirm('Are you sure you want to Submit?');
+                //if (bResponse === true) {
                     if ($('#CaseID').val() != '' && $('#SchoolId').val() != '' && $('#Date').val() != '') {
 
                         $("#panel-load").show();
@@ -357,7 +357,7 @@
                         var valid = $('#FormSubmit').valid();
 
                         if (valid) {
-                            $('#btnsubmit').prop('disabled', true);
+                           // $('#btnsubmit').prop('disabled', true);
                             $('.msgerror').hide();
                             debugger;
                             //Serialize the form datas.
@@ -367,7 +367,7 @@
                             //valdata.append(Draft: true);
                             //var PostData = JSON.stringify({ model: valdata, IS_Draft:1 });
                             $.ajax({
-                                url: "/Test/Add",
+                                url: document.baseURI + "/Test/Add",
                                 type: "POST",
                                 dataType: 'json',
                                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -411,8 +411,8 @@
                     else {
                         toastr.error('Error', "Please fill all required fields!!");
                     }
-                }
-                return bResponse;
+                //}
+               //return bResponse;
             });//form end submited closed
 
         });

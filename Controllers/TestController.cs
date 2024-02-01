@@ -11,6 +11,7 @@ using UmangMicro.Models;
 
 namespace UmangMicro.Controllers
 {
+    [Authorize]
     public class TestController : Controller
     {
         // GET: Test
