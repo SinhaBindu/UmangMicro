@@ -35,17 +35,21 @@
             max-width: 1220px !important;
             margin: auto
         }
+
         .dataTables_filter {
             margin-bottom: 15px !important;
         }
+
         .break {
             display: block;
             clear: both;
             height: 20px;
         }
+
         .card {
             padding-bottom: 10px;
         }
+
         .admin-breadcrumb {
             margin: auto;
             max-width: 1220px;
@@ -54,15 +58,17 @@
             justify-content: space-between;
             align-items: center;
         }
+
             .admin-breadcrumb h3 {
                 margin: 0px;
                 font-size: 28px;
                 color: #6A4566;
                 font-weight: bold;
             }
-            input[type="radio"] {
-                margin: 0 2px 0 10px;
-            }
+
+        input[type="radio"] {
+            margin: 0 2px 0 10px;
+        }
 
         table > thead > tr > th {
             /*background-color: #227681 !important;*/
@@ -201,29 +207,40 @@
             font-weight: 600;
             margin-bottom: 15px;
         }
+
         .header-mob-show {
             display: none
         }
+
         @@media all and (max-width: 1000px) {
             .header-block {
                 display: block;
                 width: 100%;
             }
+
             .web-show {
                 display: none;
             }
+
             .header-mob-show {
                 display: flex;
-                justify-content:space-between;
+                justify-content: space-between;
                 align-items: center;
             }
+
             .admin-breadcrumb {
                 padding: 0px 20px 15px;
             }
         }
-        
     </style>
-
+    <style>
+        @@media screen and (max-width: 768px) {
+            .app-main__inner {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
