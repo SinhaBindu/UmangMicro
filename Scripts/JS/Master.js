@@ -13,6 +13,7 @@ $(function () {
 
     $('.datepicker').datepicker({
         format: 'dd-M-yyyy',
+        autoclose: true
         //startDate: '-3d'
     });
 
