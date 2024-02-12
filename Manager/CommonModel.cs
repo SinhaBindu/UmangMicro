@@ -158,6 +158,16 @@ namespace UmangMicro.Manager
             }
             return "All";
         }
+        public class UserRoles
+        {
+            public const string Admin = "Admin";
+            public const string Consultant = "Consultant";
+            public const string PCI_Representative = "PCI_Representative";
+            public const string State = "State";
+            public const string Teacher = "Teacher";
+            public const string Umang = "Umang";
+            public const string Viewer = "Viewer";
+        }
         //public static UserViewModel Get_IsRole()
         //{
         //    var un = dbe.AspNetRoles.Where(x=>x.Name == CUser.Role);
@@ -787,6 +797,34 @@ namespace UmangMicro.Manager
         #endregion
 
         #region Other Think
+        public static List<SelectListItem> GetDocumentType(bool isaddsel)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            try
+            {
+                //list.Add(new SelectListItem() { Text = "Policy", Value = "Policy" });
+                //list.Add(new SelectListItem() { Text = "Guidelines", Value = "Guidelines" });
+                //list.Add(new SelectListItem() { Text = "Government Order", Value = "GovernmentOrder" });
+                //list.Insert(0, new SelectListItem() { Text = "Select One", Value = "" });
+                list = new SelectList(dbe.DocumentType_Master.Where(x => x.IsActive == true), "ID", "DocumentType").OrderBy(x => x.Text).ToList();
+                if (isaddsel)
+                {
+                    list.Insert(0, new SelectListItem { Value = "", Text = "Select" });
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return list;
+        }
+        public static int GetRandomNumber()
+        {
+            Random rnd = new Random();
+            int rnd_num = rnd.Next(10000, 99999);
+            return rnd_num;
+        }
         public static List<SelectListItem> GetLanguangeType()
         {
             List<SelectListItem> list = new List<SelectListItem>();

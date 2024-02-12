@@ -1,0 +1,157 @@
+﻿@model IEnumerable<UmangMicro.Models.Tbl_FileResource>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Resources";
+    var doctype = ViewBag.doctype;
+    int i = 1;
+}
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Resources</title>
+        <link id="Link" href="https://kgbvjh.cissd.co.in/KGBV/Content/images/jepc-logo_ico.ico" rel="icon"
+              type="image/x-icon" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href="~/Content/css/design/nav.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <style>
+            .main-header div img {
+                width: 75px !important
+            }
+
+            .main-header .right-logo img, .main-header .shiksha-logo img {
+                width: 130px !important
+            }
+
+            .under-bg3 {
+                background: #229147 !important;
+                color: #fff;
+                font-weight: 500;
+            }
+
+            @@media all and (max-width: 1250px) {
+                .archieve-table {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+
+                .search-record {
+                    margin-left: 20px !important;
+                    margin-right: 20px !important;
+                }
+            }
+
+            @@media all and (max-width: 768px) {
+                .search_button {
+                    padding: 5px 10px !important;
+                    height: 43px;
+                    margin-left: 0px !important;
+                    font-size: 1rem;
+                    margin-top: 8px !important
+                }
+
+                .search-record {
+                    flex-direction: column;
+                    gap: 8px !important;
+                }
+            }
+        </style>
+    </head>
+    <body>*@
+@*@Html.Partial("_landingheader")*@
+<div class="kishori-help-desk-box">
+    <div class="content-manage">
+        @*<h1 class="title">Resources</h1>
+            <div class="thin-line"></div>*@
+        <br />
+        @using (Html.BeginForm("ResourcesFile", "Home", FormMethod.Post, new { @id = "tblList-frm" }))
+        {
+            <input type="hidden" value="@doctype" name="doctype1" />
+            <div class="search-record">
+                <div class="form-group-control">
+                    <label>Subject</label>
+                    <input type="text" name="Subject" />
+                </div>
+                <div class="form-group-control">
+                    <label>Date of Issue</label>
+                    <input type="date" name="IssueDate" />
+                </div>
+                <div class="form-group-control">
+                    <label>Document Type.</label>
+                    @Html.DropDownList("doctype", UmangMicro.Manager.CommonModel.GetDocumentType(false), "Select One", htmlAttributes: new { @class = "form-control select2", @required = "required" })
+
+                </div>
+                <button class="search_button"> <i class="fa fa-search"></i> Search</button>
+            </div>
+        }
+        <div class="archieve-table">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%">
+                    <thead class="text-center">
+                        <tr>
+                            <th>SI No.</th>
+                            <th>Date of Issue</th>
+                            <th>Document Type.</th>
+                            <th>Subject</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.Count() > 0)
+                            {
+                                foreach (var obj in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center">@(i++)</td>
+                                        <td data-title="Date of Issue" class="text-center">@Convert.ToDateTime(obj.DateofIssue).ToString("dd/MMM/yyyy")</td>
+                                        <td data-title="Document Type" class="text-center">@(UmangMicro.Manager.CommonModel.GetDocumentType(false).Where(x=>x.Value==obj.DocumentType)?.FirstOrDefault().Text)</td>
+                                        <td data-title="Subject" class="text-left">@obj.Subject</td>
+                                        <td data-title="download" class="text-center"><a href="..@obj.AttachmentFile" target="_blank" onclick="setSelectedTestPlan(@obj.FileId_pk);" class="table-btn"><i class="fa fa-download"></i></a></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+@*@Html.Partial("_landingfooter")*@
+
+<script id="rendered-js">
+    (function ($) {
+        $(function () {
+            $('#navbar-toggle').click(function () {
+                $('nav ul').slideToggle();
+            });
+            $('#navbar-toggle').on('click', function () {
+                this.classList.toggle('active');
+            });
+            $('nav ul li a:not(:only-child)').click(function (e) {
+                $(this).siblings('.navbar-dropdown').slideToggle("slow");
+                $('.navbar-dropdown').not($(this).siblings()).hide("slow");
+                e.stopPropagation();
+            });
+            $('html').click(function () {
+                $('.navbar-dropdown').hide();
+            });
+        });
+    })(jQuery);
+</script>
+@*</body>
+    </html>*@

@@ -105,6 +105,18 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="DistNameHin" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="DocumentType_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="ModularSessionMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -341,6 +353,23 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="UpdatedDt" Type="datetime" />
         </EntityType>
+        <EntityType Name="Tbl_FileResource">
+          <Key>
+            <PropertyRef Name="FileId_pk" />
+          </Key>
+          <Property Name="FileId_pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileGuid" Type="varchar" MaxLength="50" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="LetterNo" Type="nvarchar(max)" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="AttachmentFile" Type="nvarchar(max)" />
+          <Property Name="DateofIssue" Type="datetime" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Upload_date" Type="datetime" />
+          <Property Name="UplaodBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tbl_LoginDetail">
           <Key>
             <PropertyRef Name="ID" />
@@ -515,6 +544,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="Block_Mast" EntityType="Self.Block_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cluster_Mast" EntityType="Self.Cluster_Mast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dist_Mast" EntityType="Self.Dist_Mast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType_Master" EntityType="Self.DocumentType_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModularSessionMaster" EntityType="Self.ModularSessionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Month_Master" EntityType="Self.Month_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionRIASEC" EntityType="Self.QuestionRIASEC" Schema="dbo" store:Type="Tables" />
@@ -528,6 +558,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="tbl_CH_Scholarship" EntityType="Self.tbl_CH_Scholarship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CH_SkillT" EntityType="Self.tbl_CH_SkillT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_CoursesDetail" EntityType="Self.tbl_CoursesDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_FileResource" EntityType="Self.Tbl_FileResource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_LoginDetail" EntityType="Self.tbl_LoginDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_MicroCase" EntityType="Self.tbl_MicroCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Modular" EntityType="Self.tbl_Modular" Schema="dbo" store:Type="Tables" />
@@ -601,6 +632,8 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="tbl_CaseHistory" EntityType="UM_DBModel.tbl_CaseHistory" />
           <EntitySet Name="ModularSessionMasters" EntityType="UM_DBModel.ModularSessionMaster" />
           <EntitySet Name="tbl_Modular" EntityType="UM_DBModel.tbl_Modular" />
+          <EntitySet Name="Tbl_FileResource" EntityType="UM_DBModel.Tbl_FileResource" />
+          <EntitySet Name="DocumentType_Master" EntityType="UM_DBModel.DocumentType_Master" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1070,6 +1103,35 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tbl_FileResource">
+          <Key>
+            <PropertyRef Name="FileId_pk" />
+          </Key>
+          <Property Name="FileId_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LetterNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateofIssue" Type="DateTime" Precision="3" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Upload_date" Type="DateTime" Precision="3" />
+          <Property Name="UplaodBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DocumentType_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DocumentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1573,6 +1635,37 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
                 <ScalarProperty Name="Reg_fk_Id" ColumnName="Reg_fk_Id" />
                 <ScalarProperty Name="ConductedDate" ColumnName="ConductedDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_FileResource">
+            <EntityTypeMapping TypeName="UM_DBModel.Tbl_FileResource">
+              <MappingFragment StoreEntitySet="Tbl_FileResource">
+                <ScalarProperty Name="UplaodBy" ColumnName="UplaodBy" />
+                <ScalarProperty Name="Upload_date" ColumnName="Upload_date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="DateofIssue" ColumnName="DateofIssue" />
+                <ScalarProperty Name="AttachmentFile" ColumnName="AttachmentFile" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="LetterNo" ColumnName="LetterNo" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="FileGuid" ColumnName="FileGuid" />
+                <ScalarProperty Name="FileId_pk" ColumnName="FileId_pk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentType_Master">
+            <EntityTypeMapping TypeName="UM_DBModel.DocumentType_Master">
+              <MappingFragment StoreEntitySet="DocumentType_Master">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

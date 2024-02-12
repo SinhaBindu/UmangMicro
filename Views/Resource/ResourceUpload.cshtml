@@ -1,0 +1,123 @@
+﻿@model UmangMicro.Models.FileResourceModel
+@{
+    ViewBag.Title = "ResourceUpload";
+}
+
+<div id="page-content">
+    <div class="genral-form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    @using (Html.BeginForm("ResourceUpload", "Resource", FormMethod.Post, new { @class = "panel-body form-horizontal form-padding loader", enctype = "multipart/form-data", @id = "empform" }))
+                    {
+                        <div class="col-md-12">@Html.Partial("_Alerts")</div>
+                        <div class="panel-bodys">
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-users spacerright2"></i>File Information</p>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-lg-2" })
+                                <div class="col-lg-8">
+                                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "required form-control ", @required = "required", @maxlength = "120" } })
+                                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="mark-devide"></div>
+
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DocumentType, htmlAttributes: new { @class = "control-label col-lg-2" })
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(model => model.DocumentType, UmangMicro.Manager.CommonModel.GetDocumentType(false), "Select One", htmlAttributes: new { @class = "form-control select2", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.DocumentType, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="mark-devide"></div>
+
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DateofIssue, htmlAttributes: new { @class = "control-label col-lg-2" })
+                                <div class="col-lg-4">
+                                    @Html.EditorFor(model => model.DateofIssue, new { htmlAttributes = new { @class = "required form-control datepicker ", @required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.DateofIssue, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="mark-devide"></div>
+                                @*<div class="col-lg-1 text-lg-right">
+                                    <span class="spacer-left2">@Html.LabelFor(model => model.LetterNo, htmlAttributes: new { @class = "control-label" })</span>
+                                </div>
+                                <div class="col-lg-3">
+                                    @Html.EditorFor(model => model.LetterNo, new { htmlAttributes = new { @class = "required form-control ", @required = "required", @maxlength = "120" } })
+                                    @Html.ValidationMessageFor(model => model.LetterNo, "", new { @class = "text-danger" })
+                                </div>*@
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "required form-control ", @required = "required", @maxlength = "220" })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-key spacerright2"></i>Select File</p>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.file, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(m => m.file, new { @class = "form-control-file", @title = "Upload Document", @type = "file" })
+                                    @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
+                                    <em>*</em> <small class="text-danger">Maximum file size allowed for upload <b> 50 mb</b></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-10 pull-right">
+
+                                    <span class="webshow ">
+                                        <button type="submit" class="previous btn btn-primary btn-lg">Submit</button>
+                                        <a href="~/Resource/ResourceUpload" class="btn btn-dark btn-lg">Reset</a>
+                                    </span>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/JS/Master.js"></script>
+    @*<script>
+            $(function () {
+
+
+
+               // EnableOtherProgram();
+
+                $("#StartDate").datepicker({
+                    dateFormat: 'dd-M-yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: new Date(@today.Year,@today.Month -1, @today.Day-70),
+                    onSelect: function () {
+                        $('#TargetDate').datepicker('option', 'minDate', $("#StartDate").datepicker("getDate"));
+                    }
+                });
+                $("#TargetDate").datepicker({
+                    dateFormat: 'dd-M-yy',
+                    changeMonth: true,
+                    changeYear: true
+                });
+
+            })
+
+
+        </script>*@
+}
+

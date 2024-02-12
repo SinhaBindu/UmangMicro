@@ -144,6 +144,21 @@
         @if (HttpContext.Current.User.IsInRole("Umang"))
         {
             <li>
+                <a href="javascript:void(0)">File Upload (Resource)</a>
+                <ul>
+                    <li>
+                        <a href="~/Resource/ResourceUpload">
+                            Resource Upload
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Resource/Index">
+                            Resource Upload List
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="~/Master/MicroCase">
                     Add Case Studies
                 </a>

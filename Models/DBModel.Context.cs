@@ -53,5 +53,7 @@ namespace UmangMicro.Models
         public virtual DbSet<tbl_CaseHistory> tbl_CaseHistory { get; set; }
         public virtual DbSet<ModularSessionMaster> ModularSessionMasters { get; set; }
         public virtual DbSet<tbl_Modular> tbl_Modular { get; set; }
+        public virtual DbSet<Tbl_FileResource> Tbl_FileResource { get; set; }
+        public virtual DbSet<DocumentType_Master> DocumentType_Master { get; set; }
     }
 }

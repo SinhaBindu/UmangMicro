@@ -1,0 +1,79 @@
+﻿@model IEnumerable<UmangMicro.Models.Tbl_FileResource>
+
+@{
+    ViewBag.Title = "Index";
+    int i = 1;
+
+}
+<div id="page-content">
+    <div class="genral-form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-spacer">
+                        <p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-list spacerright2"></i>Upload List</p>
+                    </div>
+
+                    <div class="col-md-12">@Html.Partial("_Alerts")</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12" id="result">
+                                <div class="table-data">
+                                    <div class="table-responsive">
+                                        <div id="demo-dt-basic_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                            <table id="ListDataTable" class="table table-striped table-bordered" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sl.No.</th>
+                                                        <th>Date of Issue</th>
+                                                        <th>Document Type</th>
+                                                        <th>Subject</th>
+                                                        <th>Download </th>
+                                                        <th>Description</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{
+                                                        if (Model.Count() > 0)
+                                                        {
+                                                            foreach (var obj in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td data-title="Sl.No." class="text-center">@(i++)</td>
+                                                                    <td data-title="Request Date" class="text-center">@Convert.ToDateTime(obj.DateofIssue).ToString("dd/MMM/yyyy")</td>
+                                                                    <td data-title="Document Type" class="text-center">@(UmangMicro.Manager.CommonModel.GetDocumentType(false).Where(x=>x.Value==obj.DocumentType)?.FirstOrDefault().Text)</td>
+                                                                    <td data-title="Subject">@obj.Subject</td>
+                                                                    <td data-title="Upload file" class="text-center">
+                                                                        @if (obj.AttachmentFile != null)
+                                                                        {
+                                                                            <a href="..@obj.AttachmentFile" target="_blank" onclick="setSelectedTestPlan(@obj.FileId_pk);"> <span class="badge bg-red"><i class="fa fa-download"></i></span></a>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <code>No File</code>
+                                                                        }
+                                                                    </td>
+                                                                    <td data-title="Description" style="word-wrap:break-word;">@obj.Description</td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr><td colspan="5" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -284,5 +286,52 @@ namespace UmangMicro.Controllers
 
         #endregion
 
+        [AllowAnonymous]
+        public ActionResult ResourcesFile(string dt, resourcefilter rf)
+        {
+            UM_DBEntities _db = new UM_DBEntities();
+            ViewBag.doctype = rf.doctype;
+
+            if (!string.IsNullOrWhiteSpace(rf.doctype) && (string.IsNullOrWhiteSpace(rf.Subject) && rf.IssueDate==null))
+            {
+                var x = _db.Tbl_FileResource.Where(m => m.DocumentType.Contains(rf.doctype)).ToList();
+                return View(x);
+            }
+            if (!string.IsNullOrWhiteSpace(rf.Subject) && (string.IsNullOrWhiteSpace(rf.doctype) && rf.IssueDate == null))
+            {
+                var x = _db.Tbl_FileResource.Where(m => m.Subject.Contains(rf.Subject)).ToList();
+                return View(x);
+            }
+            if (rf.IssueDate!=null && (string.IsNullOrWhiteSpace(rf.doctype) && string.IsNullOrWhiteSpace(rf.Subject)))
+            {
+                var x = _db.Tbl_FileResource.Where(m => m.DateofIssue == rf.IssueDate ).ToList();
+                return View(x);
+            }
+            else if (!string.IsNullOrWhiteSpace(rf.doctype) && !string.IsNullOrWhiteSpace(rf.Subject) && rf.IssueDate == null)
+            {
+                var x = _db.Tbl_FileResource.Where(m => m.DocumentType == rf.doctype && m.Subject == rf.Subject).ToList();
+                return View(x);
+            }
+            else if (!string.IsNullOrWhiteSpace(rf.doctype) && string.IsNullOrWhiteSpace(rf.Subject) && rf.IssueDate != null)
+            {
+                var x = _db.Tbl_FileResource.Where(m => m.DocumentType == rf.doctype && rf.IssueDate != null).ToList();
+                return View(x);
+            }
+            else if (string.IsNullOrWhiteSpace(rf.doctype) && string.IsNullOrWhiteSpace(rf.Subject) && rf.IssueDate != null)
+            {
+                var x = _db.Tbl_FileResource.Where(m => m.Subject == rf.Subject && rf.IssueDate != null).ToList();
+                return View(x);
+            }
+            else if (!string.IsNullOrWhiteSpace(rf.doctype) && !string.IsNullOrWhiteSpace(rf.Subject) && rf.IssueDate != null)
+            {
+                var x = _db.Tbl_FileResource.Where(m => m.DocumentType == rf.doctype && m.DateofIssue == rf.IssueDate && m.Subject == rf.Subject).ToList();
+                return View(x);
+            }
+            else
+            {
+                var x = _db.Tbl_FileResource.ToList();
+                return View(x);
+            }
+        }
     }
 }
