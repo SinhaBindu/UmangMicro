@@ -11,7 +11,7 @@
 <div class="admin-breadcrumb">
     <h3>File Information</h3>
     <div class="crumb">
-        <a href="/">Dashboard</a> / File Information
+        <a href="~/Home/ResourcesFile">Resource File</a> / File Information
     </div>
 </div>
 
@@ -53,12 +53,12 @@
                                     </div>
                                     <div class="mark-devide"></div>
                                     @*<div class="col-lg-1 text-lg-right">
-                        <span class="spacer-left2">@Html.LabelFor(model => model.LetterNo, htmlAttributes: new { @class = "control-label" })</span>
-                    </div>
-                    <div class="col-lg-3">
-                        @Html.EditorFor(model => model.LetterNo, new { htmlAttributes = new { @class = "required form-control ", @required = "required", @maxlength = "120" } })
-                        @Html.ValidationMessageFor(model => model.LetterNo, "", new { @class = "text-danger" })
-                    </div>*@
+                                            <span class="spacer-left2">@Html.LabelFor(model => model.LetterNo, htmlAttributes: new { @class = "control-label" })</span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            @Html.EditorFor(model => model.LetterNo, new { htmlAttributes = new { @class = "required form-control ", @required = "required", @maxlength = "120" } })
+                                            @Html.ValidationMessageFor(model => model.LetterNo, "", new { @class = "text-danger" })
+                                        </div>*@
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                         }
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
