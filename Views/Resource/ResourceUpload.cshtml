@@ -7,6 +7,25 @@
     .card-manage {
         padding: 30px 15px
     }
+    .input_container {
+        border: 1px solid #e5e5e5;
+    }
+
+    input[type=file]::file-selector-button {
+        background-color: #fff;
+        color: #000;
+        border: 0px;
+        border-right: 1px solid #e5e5e5;
+        padding: 10px 15px;
+        margin-right: 20px;
+        transition: .5s;
+    }
+
+        input[type=file]::file-selector-button:hover {
+            background-color: #eee;
+            border: 0px;
+            border-right: 1px solid #e5e5e5;
+        }
 </style>
 <div class="admin-breadcrumb">
     <h3>File Information</h3>
@@ -37,17 +56,17 @@
                                     </div>
                                     <div class="mark-devide"></div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="display:none;">
                                     @Html.LabelFor(model => model.DocumentType, htmlAttributes: new { @class = "control-label col-lg-2" })
                                     <div class="col-lg-8">
-                                        @Html.DropDownListFor(model => model.DocumentType, UmangMicro.Manager.CommonModel.GetDocumentType(false), "Select One", htmlAttributes: new { @class = "form-control select2", @required = "required" })
+                                        @Html.DropDownListFor(model => model.DocumentType, UmangMicro.Manager.CommonModel.GetDocumentType(false), null, htmlAttributes: new { @class = "form-control select2", @required = "required" })
                                         @Html.ValidationMessageFor(model => model.DocumentType, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="mark-devide"></div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DateofIssue, htmlAttributes: new { @class = "control-label col-lg-2" })
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-8">
                                         @Html.EditorFor(model => model.DateofIssue, new { htmlAttributes = new { @class = "required form-control datepicker ", @required = "required" } })
                                         @Html.ValidationMessageFor(model => model.DateofIssue, "", new { @class = "text-danger" })
                                     </div>
@@ -68,15 +87,26 @@
                                     </div>
                                 </div>
                                 @*<p class="bord-btm pad-ver text-main text-bold"><i class="fa fa-key spacerright2"></i>Select File</p>*@
-
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-8">
+                                        <div class="input_container">
+                                            @Html.TextBoxFor(m => m.Image, new { @class = "form-control-file", @title = "Upload Image", @type = "file", accept = "image/png, image/jpg, image/jpeg" })
+                                        </div>
+                                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                            <em>*</em> <small class="text-danger">Maximum file size allowed for upload <b> 50 mb</b></small>
+                                        </div>
+                                    </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.file, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.file, new { @class = "form-control-file", @title = "Upload Document", @type = "file" })
-                                        @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
-                                        <em>*</em> <small class="text-danger">Maximum file size allowed for upload <b> 50 mb</b></small>
+                                        <div class="input_container">
+                                            @Html.TextBoxFor(m => m.file, new { @class = "form-control-file", @title = "Upload Document", @type = "file", accept = "application/pdf,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" })
+                                        </div>
+                                            @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
+                                            <em>*</em> <small class="text-danger">Maximum file size allowed for upload <b> 50 mb</b></small>
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="form-group">
                                     <div class="col-md-10">
                                         <span class="webshow">

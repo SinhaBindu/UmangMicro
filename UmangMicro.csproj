@@ -1150,6 +1150,7 @@
     <Content Include="Views\Home\WomenLeadership.cshtml" />
     <Content Include="Views\Home\WhyGoddaAndJamtara.cshtml" />
     <Content Include="Views\Home\ResourcesFile.cshtml" />
+    <Content Include="Views\Home\ResourcesDownload.cshtml" />
     <None Include="Views\Modular\_ModularInput.cshtml" />
     <Content Include="Views\Modular\ModularSForm.cshtml" />
     <Content Include="Views\Modular\_ModularData.cshtml" />

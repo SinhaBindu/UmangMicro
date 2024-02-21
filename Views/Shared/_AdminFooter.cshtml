@@ -5,7 +5,18 @@
             <div class="footer-dots">
             </div>
         </div>
-            <p style="color:#ffffff !important; text-align: center !important">Copyright @DateTime.Now.Year HBH. All rights reserved.</p>
+            <p style="color:#ffffff !important; text-align: center !important">
+                Copyright @DateTime.Now.Year
+                @if (HttpContext.Current.User.IsInRole("Umang"))
+                {
+                    <strong>Umang</strong>
+                }
+                else
+                {
+            <strong> HBH</strong>
+                }
+                . All rights reserved.
+            </p>
         </div>
     </div>
 </div>

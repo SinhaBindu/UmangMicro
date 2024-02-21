@@ -1,0 +1,273 @@
+﻿@model IEnumerable<UmangMicro.Models.Tbl_FileResource>
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "Resource";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string shg = ""; string vo = ""; string clf = "";
+}
+
+<style>
+    #ddmenu .current3 {
+        color: #00AEC4;
+    }
+
+    .text-danger {
+        color: red !important;
+    }
+
+    .module-banner {
+        position: relative;
+        padding: 1px 0 0;
+        background: url('../../Content/images/module-banner.jpg') top center no-repeat;
+        height: 360px;
+        text-align: center;
+    }
+
+        .module-banner h3 {
+            font-size: 34px;
+            color: #5B2C54;
+            font-weight: 600;
+            padding-top: 80px;
+            margin-bottom: 20px;
+        }
+
+        .module-banner p {
+            font-size: 18px !important;
+            padding: 12px 120px;
+            color: #3C3C3C;
+            font-weight: 600;
+            line-height: 28px
+        }
+
+    @@media all and (max-width: 1024px) {
+        .module-banner h3 {
+            font-size: 32px;
+        }
+    }
+
+    @@media all and (max-width: 920px) {
+        .module-banner h3 {
+            font-size: 30px;
+        }
+
+        .module-banner p {
+            font-size: 17px !important;
+            padding: 12px 50px;
+            line-height: 27px
+        }
+    }
+
+    @@media all and (max-width: 768px) {
+        .module-banner h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .module-banner p {
+            font-size: 16px !important;
+            padding: 12px 30px;
+            line-height: 26px
+        }
+    }
+
+    @@media all and (max-width: 620px) {
+        .module-banner h3 {
+            font-size: 26px;
+            padding-top: 50px
+        }
+
+        .module-banner p {
+            font-size: 15px !important;
+            padding: 12px 10px;
+            line-height: 25px
+        }
+    }
+</style>
+<div class="top-spacer"></div>
+<div class="module-banner">
+    <div class="div-manage">
+        <h3>Resource Download</h3>
+    </div>
+</div>
+
+@*<div class="manage-achievement">
+        <h2>Umang Modules</h2>
+        <div class="left-bord"></div>
+        <p>A key component of Project Umang is its capacity building initiative through modular sessions for SHGs, VOs and CLFs. Umang intervention has designed specific packages for the three groups on issues around the ill-effects of child/early marriage, significance of girls’ education, child rights and entitlements, mother-daughter communication, and so on.</p>
+    </div>*@
+@{
+    if (Model != null)
+    {
+        foreach (var obj in Model.ToList())
+        {
+            <div class="video-section of-bg" id="shg-module">
+                <div class="module-section">
+                    <h3>Resource</h3>
+                    <div class="module-features">
+                        <div class="module-graphic">
+                            @if (obj.AttachmentImage != null)
+                            {
+                                <img src="..@obj.AttachmentImage" alt="Umang Resource" />
+                            }
+                            else
+                            {
+                                <code>No File</code>
+                            }
+
+                        </div>
+                        <div class="module-feat-list">
+                            <h4 class="module-title1">@obj.Subject</h4>
+                            <p>@obj.Description</p>
+                            @if (obj.AttachmentImage != null)
+                            {
+                                <a href="..@obj.AttachmentFile" class="module-pdf-1 btn-module">Click to download</a>
+                            }
+                            else
+                            {
+                                <code>No File</code>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="video-section cd-bg"><h4 class="text-danger">No File</h4></div>
+    }
+}
+    
+
+<script>
+    'use strict';
+    const btnModule = document.querySelectorAll('.btn-module');
+    const moduleForm = document.querySelector('.module-form');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalClose = document.querySelector('.modal-close');
+    for (let i = 0; i < btnModule.length; i++) {
+        btnModule[i].addEventListener('click', function () {
+            $('#div-hf').html(''); ClearInput(); $('#msg').css('display', 'none'); $('#msg').val('');
+            /*moduleForm.classList.remove('module-hidden');*/
+            modalOverlay.classList.remove('module-hidden');
+            moduleForm.classList.remove('module-hidden');
+        })
+    }
+    modalClose.addEventListener('click', function () {
+        modalOverlay.classList.add('module-hidden');
+        moduleForm.classList.add('module-hidden');
+        $('#div-hf').html(''); ClearInput(); $('#msg').css('display', 'none'); $('#msg').val('');
+    })
+</script>
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#div-hf').html(''); $('#msg').css('display', 'none'); $('#msg').val('');
+        $('#Designation').change(function () {
+            $('#Designation_Other').val('');
+            if ($(this).val() == "Others") {
+                $('#hd-desig').show();
+                $('#Designation_Other').attr('required', 'required');
+            }
+            else {
+                $('#hd-desig').hide(); $('#Designation_Other').removeAttr('required');
+            }
+        });
+
+        $("#formid").on("submit", function (e) {
+            debugger;
+            var vd = false; $('#div-hf').html('');
+            e.preventDefault();
+            //jQuery.event.trigger("ajaxStart");
+            var formData = $(this).serialize();
+            $('#msg').css('display', 'none'); $('#msg').val('');
+            var ResourceDownLoad = [];
+            $('input:checkbox:checked').each(function () {
+                ResourceDownLoad.push($(this).attr('value'));
+            });
+            if (ResourceDownLoad.length == 0) {
+                $('.error').css('display', 'block');
+                vd = false;
+                return false;
+            }
+            else {
+                $('.error').css('display', 'none');
+                vd = true;
+            }
+            if (vd) {
+
+                $.ajax({
+                    type: "POST",
+                    url: document.baseURI + "/Home/Resource",
+                    data: formData,
+                    dataType: "json",
+                    success: function (resp) {
+                        $('#msg').css('display', 'block'); $('#msg').focus();
+                        if (resp.StatusType == "success") {
+                            $('#msg').html(resp.Message);
+                            $('#msg').css('color', '#008000');
+                            if (ResourceDownLoad.length != 0) {
+                                var hfid = $('#div-hf'); var ht = "";
+                                for (var i = 0; i < ResourceDownLoad.length; i++) {
+                                    ht += '<h4><a href="' + document.baseURI + '/ResourceFile/' + ResourceDownLoad[i] + '.pdf" download> Download ' + ResourceDownLoad[i] + ' Module</a></h4>';
+                                }
+                                $('#div-hf').html(ht);
+                                ClearInput();
+                            }
+                        }
+                        else {
+                            $('#msg').html(resp.Message);
+                            $('#msg').css('color', '#FF0000');
+                        }
+                        $('#Name').focus();
+                    },
+                    error: function (req, error) {
+                        if (error === 'error') { error = req.statusText; }
+                        var errormsg = 'There was a communication error: ' + error;
+                        $('#msg').css('display', 'block'); $('#msg').focus();
+                        $('#msg').html(errormsg);
+                        $('#msg').css('color', '#FF0000');
+                        $('#Name').focus();
+                        return false;
+                    }
+                });
+                return false;
+            }
+
+        });
+
+    });
+    function ClearInput() {
+        $('#Name').val('');
+        $('#Designation').val('');
+        $('#Designation_Other').val('');
+        $('#Organisation').val('');
+        $('#Email').val('');
+        $('#ContactNo').val('');
+        $('#Age').val('');
+        $('#State').val('');
+        $('#District').val('');
+        $('input[name=ResourceDownLoad]').removeAttr("checked");
+
+    }
+
+    function validate(evt) {
+        var theEvent = evt || window.evt;
+
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = evt.clipboardData.getData('text/plain');
+        } else {
+            // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+</script>

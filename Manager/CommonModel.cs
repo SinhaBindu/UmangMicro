@@ -809,7 +809,7 @@ namespace UmangMicro.Manager
                 list = new SelectList(dbe.DocumentType_Master.Where(x => x.IsActive == true), "ID", "DocumentType").OrderBy(x => x.Text).ToList();
                 if (isaddsel)
                 {
-                    list.Insert(0, new SelectListItem { Value = "", Text = "Select" });
+                    //list.Insert(0, new SelectListItem { Value = "", Text = "Select" });
                 }
                 return list;
             }

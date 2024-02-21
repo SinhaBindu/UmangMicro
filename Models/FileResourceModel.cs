@@ -19,12 +19,17 @@ namespace UmangMicro.Models
         [Required]
         [DisplayName("File Upload")]
         public HttpPostedFileBase file { get; set; }
+        public string FileImage { get; set; }
+        [Required]
+        [DisplayName("Image Upload")]
+        public HttpPostedFileBase Image { get; set; }
         public string AttachmentFile { get; set; }
+        public string AttachmentImage { get; set; }
         [Required]
         [DisplayName("Date of Issue")]
         public Nullable<System.DateTime> DateofIssue { get; set; }
         [Required]
-        [DisplayName("Subject")]
+        [DisplayName("Title")]
         public string Subject { get; set; }
         [Required]
         [DisplayName("Description")]
@@ -43,7 +48,5 @@ namespace UmangMicro.Models
         public string doctype { get; set; }
         [DisplayName("Issue Date")]
         public DateTime? IssueDate { get; set; }
-       
-       
     }
 }

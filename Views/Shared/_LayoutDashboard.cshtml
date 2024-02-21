@@ -4,7 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HBH</title>
+    @if (HttpContext.Current.User.IsInRole("Umang"))
+    {
+        <title>Umang</title>
+    }
+    else
+    {
+        <title>HBH</title>
+    }
     <link id="Link" href="/Content/images/pci.png" rel="icon" type="image/x-icon" />
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@

@@ -333,5 +333,11 @@ namespace UmangMicro.Controllers
                 return View(x);
             }
         }
+        public ActionResult ResourcesDownload()
+        {
+            var x = db.Tbl_FileResource.ToList();
+            return View(x);
+        }
+
     }
 }

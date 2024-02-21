@@ -19,7 +19,9 @@ namespace UmangMicro.Models
         public string DocumentType { get; set; }
         public string LetterNo { get; set; }
         public string FileName { get; set; }
+        public string FileImage { get; set; }
         public string AttachmentFile { get; set; }
+        public string AttachmentImage { get; set; }
         public Nullable<System.DateTime> DateofIssue { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }

@@ -26,9 +26,10 @@
                                                     <tr>
                                                         <th>Sl.No.</th>
                                                         <th>Date of Issue</th>
-                                                        <th>Document Type</th>
+                                                        @*<th>Document Type</th>*@
                                                         <th>Subject</th>
-                                                        <th>Download </th>
+                                                        <th>Image Download </th>
+                                                        <th>File Download </th>
                                                         <th>Description</th>
 
                                                     </tr>
@@ -42,9 +43,19 @@
                                                                 <tr>
                                                                     <td data-title="Sl.No." class="text-center">@(i++)</td>
                                                                     <td data-title="Request Date" class="text-center">@Convert.ToDateTime(obj.DateofIssue).ToString("dd/MMM/yyyy")</td>
-                                                                    <td data-title="Document Type" class="text-center">@(UmangMicro.Manager.CommonModel.GetDocumentType(false).Where(x=>x.Value==obj.DocumentType)?.FirstOrDefault().Text)</td>
+                                                                    @*<td data-title="Document Type" class="text-center">@(UmangMicro.Manager.CommonModel.GetDocumentType(false).Where(x=>x.Value==obj.DocumentType)?.FirstOrDefault().Text)</td>*@
                                                                     <td data-title="Subject">@obj.Subject</td>
-                                                                    <td data-title="Upload file" class="text-center">
+                                                                    <td data-title="File Download" class="text-center">
+                                                                        @if (obj.AttachmentImage != null)
+                                                                        {
+                                                                            <a href="..@obj.AttachmentImage" target="_blank" onclick="setSelectedTestPlan(@obj.FileId_pk);"> <span class="badge bg-red"><i class="fa fa-download"></i></span></a>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <code>No File</code>
+                                                                        }
+                                                                    </td>
+                                                                    <td data-title="File Download" class="text-center">
                                                                         @if (obj.AttachmentFile != null)
                                                                         {
                                                                             <a href="..@obj.AttachmentFile" target="_blank" onclick="setSelectedTestPlan(@obj.FileId_pk);"> <span class="badge bg-red"><i class="fa fa-download"></i></span></a>
@@ -60,7 +71,7 @@
                                                         }
                                                         else
                                                         {
-                                                            <tr><td colspan="5" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                                                            <tr><td colspan="6" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
                                                         }
                                                     }
                                                 </tbody>

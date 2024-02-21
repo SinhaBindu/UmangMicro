@@ -27,13 +27,18 @@ namespace UmangMicro.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-         [Authorize(Roles = UserRoles.Admin + ", " + UserRoles.Umang)]
+        [Authorize(Roles = UserRoles.Admin + ", " + UserRoles.Umang)]
         public ActionResult ResourceUpload(FileResourceModel model)
         {
+            UM_DBEntities _db = new UM_DBEntities();
             try
             {
                 if (ModelState.IsValid)
                 {
+                    var count= _db.Tbl_FileResource.ToList().Count; 
+
+                    var getid = count!=0? _db.Tbl_FileResource?.Max(x => x.FileId_pk):count;
+                    getid = getid == 0 ? 1 : (getid + 1);
                     Tbl_FileResource tbl = new Tbl_FileResource();
                     tbl.FileGuid = Guid.NewGuid().ToString();
                     tbl.DocumentType = model.DocumentType;
@@ -44,11 +49,17 @@ namespace UmangMicro.Controllers
                     tbl.IsActive = true;
                     tbl.Upload_date = DateTime.Now;
                     tbl.FileName = model.file.FileName;
+                    tbl.FileImage = model.Image.FileName;
                     tbl.UplaodBy = User.Identity.Name;
-                    string attachmentfile = saveFile(model.file, model.DocumentType.ToString()+ "DocumentType", "");
-                    if (attachmentfile != "")
+                    FileModel fileModels = saveFile(model.file, getid + "DocumentType","", "");
+                    if (fileModels.FilePathFull != "")
                     {
-                        tbl.AttachmentFile = attachmentfile;
+                        tbl.AttachmentFile = fileModels.FilePathFull;
+                    }
+                    FileModel fileModelimage = saveFile(model.Image,"", fileModels.FolderPath, "");
+                    if (fileModelimage.FilePathFull != "")
+                    {
+                        tbl.AttachmentImage = fileModelimage.FilePathFull;
                     }
 
                     db.Tbl_FileResource.Add(tbl);
@@ -68,13 +79,19 @@ namespace UmangMicro.Controllers
             }
             return View(model);
         }
-        public string saveFile(HttpPostedFileBase item, string Requestby, string FileName = "")
+        public FileModel saveFile(HttpPostedFileBase item, string Requestby, string Fldpath, string FileName = "")
         {
+            FileModel fileModel = new FileModel();
             string URL = "";
             string filepath = string.Empty;
             if (item != null && item.ContentLength > 0)
             {
-                URL = "/Uploads/" + Requestby + "/" + CommonModel.GetRandomNumber() + "/";
+                if (Fldpath!= URL)
+                {
+                    URL = Fldpath;
+                }
+                if (Requestby!="")
+                { URL = "/Uploads/" + Requestby + "/" + CommonModel.GetRandomNumber() + "/"; }   
                 string folderPath = Server.MapPath("~" + URL);
 
                 var supportedTypes = new[] { "pdf", "xls", "xlsx", "jpeg", "png", "jpg" };
@@ -99,9 +116,18 @@ namespace UmangMicro.Controllers
 
                 item.SaveAs(folderPath + fileName);
                 filepath = URL + fileName;
+                fileModel.FolderPath = URL;
             }
-            return filepath;
+            fileModel.FilePathFull = filepath;
+            return fileModel;
 
         }
+
+        public class FileModel
+        {
+            public string FilePathFull { get; set; }
+            public string FolderPath { get; set; }
+        }
+
     }
 }
