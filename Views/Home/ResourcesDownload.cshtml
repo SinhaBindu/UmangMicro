@@ -38,7 +38,28 @@
             font-weight: 600;
             line-height: 28px
         }
-
+    .module-section {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;        
+    }
+    .module-graphic img {
+        width: 80%;
+    }
+    .module-features {
+        flex-basis: 46%;
+        background: #fff;
+        padding: 10px;
+    }
+    .module-pdf-1, .module-pdf-2, .module-pdf-3 {
+        padding: 6px 15px;
+        margin-top: 5px;
+        font-size: 13px
+    }
+    .video-section h4 {
+        font-size: 19px;
+        margin-bottom: 15px;
+    }
     @@media all and (max-width: 1024px) {
         .module-banner h3 {
             font-size: 32px;
@@ -95,14 +116,14 @@
         <div class="left-bord"></div>
         <p>A key component of Project Umang is its capacity building initiative through modular sessions for SHGs, VOs and CLFs. Umang intervention has designed specific packages for the three groups on issues around the ill-effects of child/early marriage, significance of girls’ education, child rights and entitlements, mother-daughter communication, and so on.</p>
     </div>*@
-@{
-    if (Model != null)
-    {
-        foreach (var obj in Model.ToList())
-        {
-            <div class="video-section of-bg" id="shg-module">
-                <div class="module-section">
-                    <h3>Resource</h3>
+<div class="video-section of-bg" id="shg-module">
+    @*<h3>Resource</h3>*@
+    <div class="module-section">
+        @{
+            if (Model != null)
+            {
+                foreach (var obj in Model.ToList())
+                {
                     <div class="module-features">
                         <div class="module-graphic">
                             @if (obj.AttachmentImage != null)
@@ -128,16 +149,17 @@
                             }
                         </div>
                     </div>
-                </div>
-            </div>
+                }
+            }
+            else
+            {
+                <div class="video-section cd-bg"><h4 class="text-danger">No File</h4></div>
+            }
         }
-    }
-    else
-    {
-        <div class="video-section cd-bg"><h4 class="text-danger">No File</h4></div>
-    }
-}
-    
+    </div>
+</div>
+
+
 
 <script>
     'use strict';
