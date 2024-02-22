@@ -5,7 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string shg = ""; string vo = ""; string clf = "";
 }
+<style>
+    .toggle-text-content span {
+        display: none;
+    }
 
+    .toggle-text-link {
+        display: block;
+        margin: 10px 0 0;
+        font-size: 14px;
+    }
+</style>
 <style>
     #ddmenu .current3 {
         color: #00AEC4;
@@ -38,28 +48,34 @@
             font-weight: 600;
             line-height: 28px
         }
+
     .module-section {
         display: flex;
         gap: 30px;
-        flex-wrap: wrap;        
+        flex-wrap: wrap;
     }
+
     .module-graphic img {
         width: 80%;
     }
+
     .module-features {
         flex-basis: 46%;
         background: #fff;
         padding: 10px;
     }
+
     .module-pdf-1, .module-pdf-2, .module-pdf-3 {
         padding: 6px 15px;
         margin-top: 5px;
         font-size: 13px
     }
+
     .video-section h4 {
         font-size: 19px;
         margin-bottom: 15px;
     }
+
     @@media all and (max-width: 1024px) {
         .module-banner h3 {
             font-size: 32px;
@@ -138,7 +154,7 @@
                         </div>
                         <div class="module-feat-list">
                             <h4 class="module-title1">@obj.Subject</h4>
-                            <p>@obj.Description</p>
+                            <p class="toggle-text">@obj.Description</p>
                             @if (obj.AttachmentImage != null)
                             {
                                 <a href="..@obj.AttachmentFile" class="module-pdf-1 btn-module">Click to download</a>
@@ -158,8 +174,6 @@
         }
     </div>
 </div>
-
-
 
 <script>
     'use strict';
@@ -292,4 +306,38 @@
             if (theEvent.preventDefault) theEvent.preventDefault();
         }
     }
+</script>
+
+<script>
+    let showChar = 90;
+    let ellipsestext = "...";
+    let moretext = "Read more";
+    let lesstext = "Read less";
+
+    if ($(".toggle-text").length) {
+        $(".toggle-text").each(function () {
+            let content = $(this).html();
+
+            if (content.length > showChar) {
+                let contentExcert = content.substr(0, showChar);
+                var contentRest = content.substr(showChar, content.length - showChar);
+                var html = contentExcert + '<span class="toggle-text-ellipses">' + ellipsestext + ' </span> <span class="toggle-text-content"><span>' + contentRest + '</span><a href="javascript:;" class="toggle-text-link">' + moretext + '</a></span>';
+
+                $(this).html(html);
+            }
+        });
+    }
+
+    $(".toggle-text-link").click(function () {
+        if ($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
 </script>
