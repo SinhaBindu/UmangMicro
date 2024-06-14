@@ -796,6 +796,40 @@ namespace UmangMicro.Manager
         }
         #endregion
 
+        public static List<SelectListItem> GetTaskType()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            //list.Add(new SelectListItem { Value = "0", Text = "Select Task" });
+            list.Add(new SelectListItem { Value = "1", Text = "Modular" });
+            list.Add(new SelectListItem { Value = "2", Text = "Group" });
+            return list.OrderByDescending(x => x.Text).ToList();
+        }
+        public static List<SelectListItem> Getcoursemaster()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "0", Text = "Select Course" });
+            list.Add(new SelectListItem { Value = "1", Text = "a" });
+            list.Add(new SelectListItem { Value = "2", Text = "b" });
+            return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+        }
+        public static List<SelectListItem> GetCareerMaster()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "0", Text = "Select Career" });
+            list.Add(new SelectListItem { Value = "1", Text = "A" });
+            list.Add(new SelectListItem { Value = "2", Text = "B" });
+            return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+        }
+        public static List<SelectListItem> GetSessionType()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "0", Text = "Select Session" });
+            list.Add(new SelectListItem { Value = "1", Text = "Career" });
+            list.Add(new SelectListItem { Value = "2", Text = "Courses" });
+            list.Add(new SelectListItem { Value = "3", Text = "Others" });
+            return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+        }
+
         #region Other Think
         public static List<SelectListItem> GetDocumentType(bool isaddsel)
         {
@@ -1818,7 +1852,7 @@ namespace UmangMicro.Manager
         public static List<SelectListItem> GetClass()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "-1", Text = "Select" });
+            list.Add(new SelectListItem { Value = "0", Text = "Select class" });
             list.Add(new SelectListItem { Value = "6", Text = "6" });
             list.Add(new SelectListItem { Value = "7", Text = "7" });
             list.Add(new SelectListItem { Value = "8", Text = "8" });

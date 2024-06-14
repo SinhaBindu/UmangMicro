@@ -1,0 +1,70 @@
+﻿@model UmangMicro.Models.PlanModularModel
+@using System.Data
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "Plan";
+}
+<strong>Plan </strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover dt-responsive display tbl" id="tbl_Plan" width="100%">
+                    <thead>
+                        <tr>
+                            @*<th>SrNo.</th>*@
+                            <th></th>
+                            <th>Cohort</th>
+                            <th>Class</th>
+                            <th>Session</th>
+                            <th>No. of students<br /> attended session</th>
+                            <th>Conducted date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1; int indx = 0;
+                            if (Model != null)
+                            {
+                                foreach (var item in CommonModel.GetClass().Where(x => x.Value != "-1").ToList())
+                                {
+                                    var cohrtIsCheck = (sno == 1 || sno == 2 || sno == 3) ? 1 : (sno == 4 || sno == 5) ? 2 : 3;
+                                    var cohrt = (sno == 1 || sno == 2 || sno == 3) ? "Cohort-1" : (sno == 4 || sno == 5) ? "Cohort-2" : "Cohort-3";
+                                    var SessionList = (sno == 1 || sno == 2 || sno == 3) ? CommonModel.GetModularMaster68() : (sno == 4 || sno == 5) ? CommonModel.GetModularMaster911() : CommonModel.GetModularMaster1112();
+
+                                    sno++;
+                                    if (cohrtIsCheck == Model.Cohort)
+                                    {
+                                        <tr>
+                                            @*<td class="text-center">@(sno++)</td>*@
+                                            <td class="text-center">
+                                                <input type="checkbox" data-id="@item.Value" name="Chk_@indx" id="Chk_@indx" value="@item.Value" />
+                                            </td>
+                                            <td class="text-left">@cohrt</td>
+                                            <td class="text-left">@item.Value</td>
+                                            <td class="text-left">
+                                                @Html.DropDownList("Session" + item.Value, SessionList.ToList(), null, new { @class = "form-control" })
+                                            </td>
+                                            <td class="text-left">
+                                                @Html.Editor("NoofStudent" + item.Value, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "3", @min = "0", @placeholder = "No. of students attended session" } })
+                                            </td>
+                                            <td class="text-left">
+                                                @Html.Editor("ConductedDate" + item.Value, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
+                                            </td>
+                                        </tr>
+                                        indx++;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="6" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

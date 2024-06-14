@@ -55,5 +55,9 @@ namespace UmangMicro.Models
         public virtual DbSet<tbl_Modular> tbl_Modular { get; set; }
         public virtual DbSet<DocumentType_Master> DocumentType_Master { get; set; }
         public virtual DbSet<Tbl_FileResource> Tbl_FileResource { get; set; }
+        public virtual DbSet<Class_Master> Class_Master { get; set; }
+        public virtual DbSet<tbl_Plan> tbl_Plan { get; set; }
+        public virtual DbSet<Career_Master> Career_Master { get; set; }
+        public virtual DbSet<Course_Master> Course_Master { get; set; }
     }
 }

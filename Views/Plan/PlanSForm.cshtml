@@ -1,0 +1,377 @@
+﻿@model UmangMicro.Models.PlanModularModel
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "Plan";
+}
+
+<style>
+    .dataTables_filter {
+        font-size: large !important;
+        font-weight: normal !important;
+        /*margin-left: 3% !important;*/
+    }
+
+    input[aria-controls="DataList_0"] {
+        height: 50px !important;
+        width: 690px !important;
+    }
+
+    .card {
+        padding: 20px !important;
+    }
+    .form-check-input {
+        position: relative !important;
+    }
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: 700;
+        font-size: 15px !important;
+    }
+</style>
+
+<div class="admin-breadcrumb">
+    <h3>Plan Modular Session</h3>
+    <div class="crumb">
+        <a href="~/Plan/Index">Plan List</a> / Add Plan
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+
+                @using (Html.BeginForm("PlanSForm", "PlanController", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
+                {
+                    <div class="form-row col-md-12">
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.TaskType, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.TaskType, CommonModel.GetTaskType(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.TaskType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.SchoolId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" id="dv_Cohort" style="display:none">
+                        <div class="position-relative form-group">
+                            <span class="text-danger">*</span>@Html.LabelFor(model => model.Cohort, htmlAttributes: new { @class = "" })<br />
+                            @Html.DropDownListFor(model => model.Cohort, CommonModel.GetCohort(true), null, new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.Cohort, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="col-md-3" id="dv_classmlt" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.ClassMLT, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.ClassMLT, CommonModel.GetClass(), null, new { @class = "form-control display:flex;", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.ClassMLT, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_sessiontype" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.SessionType, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.SessionType, CommonModel.GetSessionType(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.SessionType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_sessioninput" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.SessionInput, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                @Html.EditorFor(m => m.SessionInput, new { htmlAttributes = new { @placeholder = "Enter the Session Input", @class = "form-control required", @required = "required" } })
+                                @Html.ValidationMessageFor(m => m.SessionInput, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_Careerm" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.CareerMaster, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.CareerMaster, CommonModel.GetCareerMaster(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.CareerMaster, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_coursem" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.coursemaster, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.coursemaster, CommonModel.Getcoursemaster(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.coursemaster, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3" id="dv_cd" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.ConductedDate, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                @Html.EditorFor(m => m.ConductedDate, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker", @required = "required" } })
+                                @Html.ValidationMessageFor(m => m.ConductedDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="divPlanInput">
+                        </div>
+
+                        <div class="col-md-12">
+                            <br />
+                            <div class="position-relative form-group" style="margin-left: 50% !important;">
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="~/Plan/PlanSForm" class="btn btn-info text-white">Reset</a>
+                                }
+                            </div>
+                        </div>
+
+                        @*</div>
+
+
+        </div>*@
+
+                    </div>
+                }
+            </div>
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <script src="~/Scripts/JS/Master.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+            <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+
+                    $('#ClassMLT').multiselect({
+                        includeSelectAllOption: true,
+                    });
+                    
+
+            $('#Cohort').change(function () {
+                LoadForm($(this).val());
+            });
+
+            $('#TaskType').change(function () {
+                $('#dv_Cohort').hide();
+                $('#dv_classmlt').hide();
+                $('#dv_sessiontype').hide();
+                $('#dv_sessioninput').hide();
+                $('#dv_Careerm').hide();
+                $('#dv_coursem').hide();
+                $('#dv_cd').hide();
+                $('#dv_Careerm').val("0");
+                $('#dv_Careerm').val("0");
+                $('#Cohort').val("0");
+                $('#ClassMLT').val("0");
+                $('#SessionType').val("0");
+
+                LoadForm("0");
+
+                if ($(this).val() == "1") {
+                    $('#dv_Cohort').show();
+                } else if ($(this).val() == "2") {
+                    $('#dv_Cohort').hide();
+                    $('#dv_classmlt').show();
+                    $('#dv_sessiontype').show();
+                    $('#dv_cd').show();
+                }
+            });
+
+            $('#SessionType').change(function () {
+                if ($(this).val() == "1") {
+                    $('#dv_Careerm').show();
+                } else {
+                    $('#dv_Careerm').hide();
+                }
+                if ($(this).val() == "2") {
+                    $('#dv_coursem').show();
+                } else {
+                    $('#dv_coursem').hide();
+                }
+
+                if ($(this).val() == "3") {
+                    $('#dv_sessioninput').show();
+                } else {
+                    $('#dv_sessioninput').hide();
+                }
+            });
+
+            GetDistrict('DistrictId');
+
+            if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                $('#DistrictId').css("pointer-events", "none");
+                OnChagDistricts('BlockId', $('#DistrictId').val());
+                $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
+                $('#BlockId').css("pointer-events", "none");
+                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
+                $('#SchoolId').css("pointer-events", "none");
+            }
+
+            if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
+                $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                $('#DistrictId').css("pointer-events", "none");
+                OnChagDistricts('BlockId', $('#DistrictId').val());
+            }
+
+            $('#DistrictId').change(function () {
+                OnChagDistricts('BlockId', $('#DistrictId').val());
+            });
+
+            $('#BlockId').change(function () {
+                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+            });
+
+            $("#formid").on("submit", function (event) {
+                event.preventDefault();
+
+                if ($('#DistrictId').val() != '' && $('#BlockId').val() != '' && $('#SchoolId').val() != '') {
+                    jQuery.event.trigger("ajaxStart");
+
+                    var formData = new FormData();
+                    formData.append('DistrictId', $('#DistrictId').val());
+                    formData.append('BlockId', $('#BlockId').val());
+                    formData.append('SchoolId', $('#SchoolId').val());
+                    formData.append('TaskType', $('#TaskType').val());
+
+                    var MS_model = [];
+                    if ($('#TaskType').val() == "1") {
+                        let tbl = $('#tbl_Plan').DataTable();
+                        tbl.$('input:checked').each(function (i, row) {
+                            var Class_id = $(row).attr('data-id') || 0;
+                            var Sessionid = $('#Session' + Class_id).val();
+                            var NoofStudent = $('#NoofStudent' + Class_id).val();
+                            var CDate = $('#ConductedDate' + Class_id).val();
+                            var Ischeck = $(row, 'input[type=checkbox]').val();
+
+                            if (NoofStudent == '' || CDate == '' || (Sessionid == "Select" || Sessionid == "-1" || Sessionid == "")) {
+                                toastr.error("Error", "Select Session, Enter the No. of students attended session and Conducted date.");
+                                return false;
+                            }
+
+                            if (Ischeck) {
+                                MS_model.push({
+                                    CalssId: Class_id,
+                                    Session: Sessionid,
+                                    //TaskType: $("#TaskType").val(),
+                                    NoofStudent: NoofStudent,
+                                    ConductedDate: CDate,
+                                    Ischeck: true,
+                                });
+                            }
+                        });
+
+                        if (MS_model.length == 0) {
+                            toastr.error("Error", "Please choice at least one Cohort.");
+                            return false;
+                        }
+
+                        formData.append('MS_model', JSON.stringify(MS_model));
+                    }
+                    else if ($('#TaskType').val() == "2") {
+                        var calm = [];
+                        $("input:checkbox[name=CalssMlt]:checked").each(function () {
+                            calm.push($(this).val());
+                        });
+                        var cm = calm.length != 0 ? calm.join(","):"";
+                        formData.append('CalssMlt', cm);
+                        formData.append('ConductedDate', $('#ConductedDate').val());
+
+                        formData.append('SessionType', $('#SessionType').val());
+                        if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0') {
+                            formData.append('Session', $('#CareerMaster').val());
+                        }
+                        else if ($('#coursemaster').val() != '' && $('#coursemaster').val() != '0') {
+                            formData.append('Session', $('#coursemaster').val());
+                        }
+
+                        formData.append('SessionInput', $('#SessionInput').val());
+                    }
+                    $('#submit').prop('disabled', true);
+
+                    $.ajax({
+                        type: "POST",
+                        url: document.baseURI + "/Plan/PlanSForm/",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (resp) {
+                            if (resp.StatusType == "success") {
+                                toastr.success("Success", resp.Message);
+                                jQuery.event.trigger("ajaxStop");
+                            } else {
+                                toastr.error("Error", resp.Message);
+                                $('#submit').prop('disabled', false);
+                            }
+                        },
+                        error: function (req, error) {
+                            if (error === 'error') {
+                                error = req.statusText;
+                            }
+                            var errormsg = 'There was a communication error: ' + error;
+                            toastr.error("Error", errormsg);
+                            jQuery.event.trigger("ajaxStop");
+                            $('#submit').prop('disabled', false);
+                            return false;
+                        }
+                    });
+                } else {
+                    toastr.error('Error', "Please fill all required fields!!");
+                }
+            });
+
+        });
+
+        function LoadForm(Cohort) {
+            $('#divPlanInput').html("");
+            if ($('#TaskType').val() == "0" || $('#TaskType').val() == "2") {
+                $('#divPlanInput').hide();
+            } else if ($('#TaskType').val() == "1") {
+                $('#divPlanInput').show();
+            }
+
+            $.ajax({
+                url: document.baseURI + "/Plan/PlanLoadForm",
+                contentType: "application/html; charset=utf-8",
+                type: "GET",
+                data: { 'Cohort': Cohort },
+                cache: true,
+                datatype: "html",
+                success: function (t) {
+                    $("#divPlanInput").html(t);
+                    $('.datepicker').datepicker({
+                        format: 'dd-M-yyyy',
+                        autoclose: true
+                    });
+                },
+                error: function () {
+                    $("#divPlanInput").html("Post Not Found");
+                }
+            })
+        }
+            </script>
+        }

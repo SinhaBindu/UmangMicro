@@ -113,6 +113,7 @@ namespace UmangMicro.Models
         public string UpdatedOn { get; set; }
         public string FD { get; set; }
         public string TD { get; set; }
+        public Nullable<int> TaskType { get; set; }
 
 
     }

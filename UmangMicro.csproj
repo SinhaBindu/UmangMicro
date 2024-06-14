@@ -204,6 +204,7 @@
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\CounsellorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlanController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\ModularController.cs" />
@@ -228,6 +229,15 @@
     <Compile Include="Manager\Extension.cs" />
     <Compile Include="Manager\GlobalUtilityManager.cs" />
     <Compile Include="Manager\JsonResponseData.cs" />
+    <Compile Include="Models\Career_Master.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class_Master.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Course_Master.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DocumentType_Master.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -276,6 +286,7 @@
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\FormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PlanModularModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MicroCaseModel.cs" />
     <Compile Include="Models\ModularSessionMaster.cs">
@@ -332,6 +343,9 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Modular.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Plan.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Registration.cs">
@@ -1150,11 +1164,15 @@
     <Content Include="Views\Home\WhyGoddaAndJamtara.cshtml" />
     <Content Include="Views\Home\ResourcesFile.cshtml" />
     <Content Include="Views\Home\ResourcesDownload.cshtml" />
+    <Content Include="Views\Plan\PlanSForm.cshtml" />
+    <Content Include="Views\Plan\_PlanSFormData.cshtml" />
+    <Content Include="Views\Plan\_PlanInput.cshtml" />
     <None Include="Views\Modular\_ModularInput.cshtml" />
     <Content Include="Views\Modular\ModularSForm.cshtml" />
     <Content Include="Views\Modular\_ModularData.cshtml" />
     <Content Include="Views\Resource\Index.cshtml" />
     <Content Include="Views\Resource\ResourceUpload.cshtml" />
+    <Content Include="Views\Plan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
