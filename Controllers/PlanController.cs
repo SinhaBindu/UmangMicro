@@ -22,7 +22,7 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-        public ActionResult GetIndex(string Sdt, int Task,  string Edt, string DistrictId, string SchoolId)
+        public ActionResult GetIndex(string Sdt, int Task, string Edt, string DistrictId, string SchoolId)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace UmangMicro.Controllers
             UM_DBEntities db_ = new UM_DBEntities();
             try
             {
-                
+
                 var cdate = string.Format("{0:M/dd/yyyy}",
                                   DateTime.Now.Date);
                 //var getid =
@@ -98,7 +98,7 @@ namespace UmangMicro.Controllers
                                     {
                                         SchoolId = model.SchoolId,
                                         CalssId = m.CalssId,
-                                       // NoofStudent = m.NoofStudent,
+                                        // NoofStudent = m.NoofStudent,
                                         Task = model.TaskType,
                                         ConductedDate = m.ConductedDate,
                                         Session = m.Session,
@@ -128,7 +128,7 @@ namespace UmangMicro.Controllers
                                 return resResponse3;
                             }
                         }
-                       
+
                     }
                     else if (model.TaskType == 2)
                     {
@@ -136,21 +136,22 @@ namespace UmangMicro.Controllers
                         {
                             tbl_Plan tbl = new tbl_Plan();
                             tbl.ConductedDate = model.ConductedDate;
+                            tbl.SchoolId = model.SchoolId;
                             tbl.CalssMlt = model.ClassMLT;
                             tbl.Task = model.TaskType;
                             tbl.SessionType = model.SessionType;
-                            if (model.SessionType==1 || model.SessionType==2)
+                            if (model.SessionType == 1 || model.SessionType == 2)
                             {
                                 tbl.Session = model.Session;
                                 tbl.SessionInput = null;
                             }
-                            else if(model.SessionType==3)
+                            else if (model.SessionType == 3)
                             {
                                 tbl.Session = null;
                                 tbl.SessionInput = model.SessionInput;
                             }
-                            
-                            
+
+
                             tbl.IsActive = true;
                             tbl.CreatedBy = MvcApplication.CUser.Id;
                             tbl.CreatedOn = DateTime.Now;

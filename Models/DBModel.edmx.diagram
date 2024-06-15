@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aaec4385d88f483c8f0ffd90113fce3e" Name="Diagram1" ZoomLevel="115">
+      <Diagram DiagramId="aaec4385d88f483c8f0ffd90113fce3e" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="UM_DBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Block_Mast" Width="1.5" PointX="5.875" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Cluster_Mast" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="false" />
@@ -25,21 +25,21 @@
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Scholarship" Width="1.5" PointX="9.375" PointY="5.25" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_SkillT" Width="1.5" PointX="13.5" PointY="7.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_CourseD" Width="1.5" PointX="14.375" PointY="0.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Psychometric" Width="1.5" PointX="11.75" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Psychometric" Width="1.5" PointX="12.375" PointY="0.625" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.SchoolMaster_N" Width="1.5" PointX="2.875" PointY="13.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.BlockMaster_N" Width="1.5" PointX="4.625" PointY="13.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.DistrictMaster_N" Width="1.5" PointX="11.25" PointY="9.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_RIASECTest" Width="1.5" PointX="6.375" PointY="13.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_RIASEC_Main" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CaseHistory" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.ModularSessionMaster" Width="1.5" PointX="14.375" PointY="2.75" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_Modular" Width="1.5" PointX="10.375" PointY="15" />
-        <EntityTypeShape EntityType="UM_DBModel.DocumentType_Master" Width="1.5" PointX="14.375" PointY="9.75" />
-        <EntityTypeShape EntityType="UM_DBModel.Tbl_FileResource" Width="1.5" PointX="12.375" PointY="13.75" />
-        <EntityTypeShape EntityType="UM_DBModel.Class_Master" Width="1.5" PointX="8.375" PointY="2.75" />
-        <EntityTypeShape EntityType="UM_DBModel.tbl_Plan" Width="1.5" PointX="14.375" PointY="13.75" />
-        <EntityTypeShape EntityType="UM_DBModel.Career_Master" Width="1.5" PointX="11.375" PointY="4.75" />
-        <EntityTypeShape EntityType="UM_DBModel.Course_Master" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="UM_DBModel.ModularSessionMaster" Width="1.5" PointX="12.25" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_Modular" Width="1.5" PointX="10.25" PointY="13.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.DocumentType_Master" Width="1.5" PointX="14.375" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.Tbl_FileResource" Width="1.5" PointX="12.375" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.Class_Master" Width="1.5" PointX="8.375" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.tbl_Plan" Width="1.5" PointX="14.375" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.Career_Master" Width="1.5" PointX="11.375" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.Course_Master" Width="1.5" PointX="13.375" PointY="4.75" IsExpanded="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

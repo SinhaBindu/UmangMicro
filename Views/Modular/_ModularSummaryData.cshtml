@@ -1,14 +1,14 @@
 ﻿@using System.Data
 @using UmangMicro.Manager
 @{
-    ViewBag.Title = "Modular Session List";
+    ViewBag.Title = "Modular Summary List";
     DataTable dt = new DataTable();
     if (Model != null)
     {
         dt = Model;
     }
 }
-<strong>Modular Session</strong>
+<strong>Modular Session Summary</strong>
 <div class="row row-deck">
     <div class="col-lg-12 col-md-12">
         <div class="card">
@@ -17,14 +17,11 @@
                     <thead>
                         <tr>
                             <th>SrNo.</th>
-                            <th>Conducted Date</th>
+                            <th>Last Conducted Date</th>
                             <th>District</th>
-                            <th>Block</th>
                             <th>School</th>
-                            @*<th>Cohort</th>*@
-                        <th>Class</th>
-                            <th>Cohort Session</th>
-                            <th>No of Student</th>
+                            <th>Class</th>
+                            <th>No of Sessions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,21 +33,20 @@
                                 {
                                     <tr>
                                         <td class="text-center">@(sno++)</td>
-                                        <td class="text-center">@(CommonModel.FormateDtDMY(dr["ConductedDate"].ToString()))</td>
+                                        <td class="text-center">@(CommonModel.FormateDtDMY(dr["MaxConductedDate"].ToString()))</td>
                                         <td class="text-left">@dr["district_name"]</td>
-                                        <td class="text-left">@dr["block_name"]</td>
                                         <td class="text-left">@dr["school_name"]</td>
-                                        @*<td class="text-center">@dr["TypeOfCohort"]</td>*@
-                                        <td class="text-center">@dr["CalssId"]</td>
-                                        <td class="text-left">@dr["COHORT_Session_Hindi"]</td>
-                                        <td class="text-center">@dr["NoofStudent"]</td>
+                                        <td class="text-center">@dr["ClassId"]</td>
+                                        <td class="text-center">
+                                            <a href="~/Modular/Index?DId=@dr["DistrictId"]&&SId=@dr["SchoolId"]" target="_blank"><strong class="text-success">@dr["NoofData"]</strong></a>
+                                        </td>
                                     </tr>
                                     indx++;
                                 }
                             }
                             else
                             {
-                                <tr><td colspan="8" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                                <tr><td colspan="6" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
                             }
                         }
 

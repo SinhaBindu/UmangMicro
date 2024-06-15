@@ -225,13 +225,16 @@
                                 <div class="col-md-12" style="display:none;" id="dv-checdkall">
                                     <input type="checkbox" class="" name="chckcd" id="chkcdAll" value="1" />All &nbsp;
                                     <input type="checkbox" class="" name="chckcd" id="chkcn" value="2" />Course Name &nbsp;
-                                    <input type="checkbox" class="" name="chckcd" id="chkct" value="3" />Course Type &nbsp;
-                                    <input type="checkbox" class="" name="chckcd" id="chkjo" value="4" />Job Opportunity &nbsp;
-                                    <input type="checkbox" class="" name="chckcd" id="chkcd" value="5" />Course Duration &nbsp;
-                                    <input type="checkbox" class="" name="chckcd" id="chke" value="6" />Eligibility &nbsp;
-                                    <input type="checkbox" class="" name="chckcd" id="chkmi" value="7" />Medium Instruction &nbsp;
-                                    <input type="checkbox" class="" name="chckcd" id="chkcu" value="8" />Institute &nbsp;
-                                    <input type="checkbox" class="" name="chckcd" id="chklc" value="9" />Location
+                                    <div style="display:none">
+
+                                        <input type="checkbox" class="" name="chckcd" id="chkct" value="3" />Course Type &nbsp;
+                                        <input type="checkbox" class="" name="chckcd" id="chkjo" value="4" />Job Opportunity &nbsp;
+                                        <input type="checkbox" class="" name="chckcd" id="chkcd" value="5" />Course Duration &nbsp;
+                                        <input type="checkbox" class="" name="chckcd" id="chke" value="6" />Eligibility &nbsp;
+                                        <input type="checkbox" class="" name="chckcd" id="chkmi" value="7" />Medium Instruction &nbsp;
+                                        <input type="checkbox" class="" name="chckcd" id="chkcu" value="8" />Institute &nbsp;
+                                        <input type="checkbox" class="" name="chckcd" id="chklc" value="9" />Location
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6" id="dv-cn" style="display:none;">
@@ -389,15 +392,32 @@
                             </div>
                         </div>
 
+                        @*<div class="col-md-12">
+                                <div class="position-relative form-group" style="margin-left: 50% !important;">
+                                    <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="~/Counsellor/CaseHistory" class="btn btn-info text-white">Reset</a>
+                                    }
+                                </div>
+                            </div>*@
                         <div class="col-md-12">
-                            <div class="position-relative form-group" style="margin-left: 50% !important;">
-                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a href="~/Counsellor/CaseHistory" class="btn btn-info text-white">Reset</a>
-                                }
+                            <div class="form-group">
+                                <div class="position-relative form-group" style="margin-left: 50% !important;">
+                                    <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <span style="line-height: 91px;">
+                                            <a href="~/Counsellor/CaseHistory" class="btn btn-info text-white">Reset</a>
+                                        </span>
+                                    }
+                                </div>
                             </div>
                         </div>
+
+
 
                     </div>
 
@@ -460,7 +480,7 @@
             }
 
             $('.btnscdst').on('click', function () {
-                BindData(1, "all");
+                BindData(1, "");
             })
 
             $('#btnsssp').on('click', function () {

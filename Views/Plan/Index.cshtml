@@ -33,9 +33,10 @@
                             <legend class="scheduler-border">Search  :</legend>
                             <div class="row">
 
-                                <div class="col-md-3" id="div-dis">
+                                <div class="col-md-2" id="div-dis">
                                     <div class="position-relative form-group">
-                                        <span class="text-danger" id="rqdis" style="display:none;">*</span> @Html.LabelFor(m => m.TaskType, new { @class = "" })
+                                        <span class="text-danger" id="rqdis" style="display:none;">*</span> 
+                                        @Html.LabelFor(m => m.TaskType, new { @class = "" })
                                         @Html.DropDownListFor(m => m.TaskType, CommonModel.GetTaskType(), new { @class = "form-control" })
                                     </div>
                                 </div>
@@ -68,7 +69,7 @@
                                     @Html.DropDownListFor(m => m.SchoolId, new List<SelectListItem>(), null, new { @class = "form-control select2" })
                                     @*@Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })*@
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <label class="mt-3"></label>
                                     <div class="clearfix"></div>
                                     <input type="submit" id="btnshow" name="btnClick" value="Search" class="btn  btn-primary text-right" title="" />

@@ -43,7 +43,7 @@
         <div class="position-relative form-group">
             @Html.Label(Model.DisplayName1, htmlAttributes: new { @class = "" })<span class="text-danger">*</span>
             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger"})
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-6">
@@ -147,12 +147,17 @@
     </div>
 
     <div class="col-md-12">
-        <div class="position-relative form-group" style="margin-left: 50% !important;">
-            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a href="~/Candidate/Reg" class="btn btn-info text-white">Reset</a>
-            }
+        <div class="form-group">
+            <div class="position-relative form-group" style="margin-left: 50% !important;">
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span style="line-height:91px;">
+                        <a href="~/Candidate/Reg" class="btn btn-info text-white">Reset</a>
+                    </span>
+                }
+            </div>
         </div>
     </div>
 

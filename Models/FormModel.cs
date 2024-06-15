@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -113,8 +114,11 @@ namespace UmangMicro.Models
         public string UpdatedOn { get; set; }
         public string FD { get; set; }
         public string TD { get; set; }
+        [Display(Name = "Task")]
         public Nullable<int> TaskType { get; set; }
 
+        [Display(Name = "Class")]
+        public string ClassId { get; set; }
 
     }
     public class HRLable

@@ -18,19 +18,22 @@ namespace UmangMicro.Controllers
         UM_DBEntities db = new UM_DBEntities();
         int results = 0; int results2nd = 0;
         // GET: Modular
-        public ActionResult Index()
+        public ActionResult Index(int? DId, int? SId)
         {
-            return View();
+            QesRes QesRes = new QesRes();
+            QesRes.DistrictId = DId != null ? DId.Value : 0;
+            QesRes.SchoolId = SId != null ? SId.Value : 0;
+            return View(QesRes);
         }
-        public ActionResult GetIndex(string Sdt, string Edt, string DistrictId, string BlockId)
+        public ActionResult GetIndex(string Sdt, string Edt, string DistrictId, string SchoolId)
         {
             try
             {
                 DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
-                BlockId = BlockId == "0" ? string.Empty : BlockId;
+                SchoolId = SchoolId == "0" ? string.Empty : SchoolId;
                 DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
-                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
-                var items = SP_Model.GetSP_ModularListData(Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
+                SchoolId = (string.IsNullOrWhiteSpace(SchoolId)) ? "ALL" : SchoolId;
+                var items = SP_Model.GetSP_ModularListData(Sdt, Edt, DistrictId.ToUpper(), SchoolId.ToUpper());
                 if (items != null)
                 {
                     var data = JsonConvert.SerializeObject(items);
@@ -86,8 +89,8 @@ namespace UmangMicro.Controllers
                         var mlist = JsonConvert.DeserializeObject<List<ModularSModel>>(MS_model);
                         if (mlist.Count() > 0)
                         {
-                             tbl_Modular tbl_MS;
-                             List<tbl_Modular> tbl_list = new List<tbl_Modular>();
+                            tbl_Modular tbl_MS;
+                            List<tbl_Modular> tbl_list = new List<tbl_Modular>();
                             foreach (var m in mlist)
                             {
                                 tbl_MS = new tbl_Modular()
@@ -143,9 +146,35 @@ namespace UmangMicro.Controllers
         [HttpGet]
         public ActionResult LoadFormModular(int Cohort)
         {
-            ModularSModel modularS = new ModularSModel(); 
-            modularS.Cohort = Cohort;   
+            ModularSModel modularS = new ModularSModel();
+            modularS.Cohort = Cohort;
             return PartialView("_ModularInput", modularS);
+        }
+        public ActionResult ModularSummary()
+        {
+            return View();
+        }
+        public ActionResult GetModularSummary(string Sdt, string Edt, string DistrictId, string SchoolId, string ClassId)
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                SchoolId = SchoolId == "0" ? string.Empty : SchoolId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                SchoolId = (string.IsNullOrWhiteSpace(SchoolId)) ? "ALL" : SchoolId;
+                var items = SP_Model.GetSP_ModularSummary(Sdt, Edt, DistrictId.ToUpper(), SchoolId.ToUpper(), ClassId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    var html = ConvertViewToString("_ModularSummaryData", items);
+                    return Json(new { IsSuccess = true, reshtml = html, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
         }
         private string ConvertViewToString(string viewName, object model)
         {

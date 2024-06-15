@@ -11,6 +11,7 @@ namespace UmangMicro.Models
         public int Id { get; set; }
         [Display(Name = "Cohort")]
         public int Cohort { get; set; }
+        [Display(Name = "Conducted Date")]
         public Nullable<System.DateTime> ConductedDate { get; set; }
         public Nullable<int> Reg_fk_Id { get; set; }
         [Display(Name = "District")]
@@ -25,13 +26,13 @@ namespace UmangMicro.Models
         public Nullable<int> NoofStudent { get; set; }
         [Display(Name = "Task")]
         public Nullable<int> TaskType { get; set; }
-        [Display(Name = "Class Mlt")]
+        [Display(Name = "Class")]
         public string ClassMLT { get; set; }
         [Display(Name = "Session Type")]
         public Nullable<int> SessionType { get; set; }
         [Display(Name = "Others")]
         public string SessionInput { get; set; }
-        [Display(Name = "courses")]
+        [Display(Name = "Courses")]
         public Nullable<int> coursemaster { get; set; }
         [Display(Name = "Career")]
         public Nullable<int> CareerMaster { get; set; }

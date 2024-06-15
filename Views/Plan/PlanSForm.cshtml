@@ -19,9 +19,11 @@
     .card {
         padding: 20px !important;
     }
+
     .form-check-input {
         position: relative !important;
     }
+
     label {
         display: inline-block;
         max-width: 100%;
@@ -86,7 +88,7 @@
                         <div class="col-md-3" id="dv_classmlt" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.ClassMLT, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.ClassMLT, CommonModel.GetClass(), null, new { @class = "form-control display:flex;", @required = "required", @multiple = "multiple" })
+                                @Html.DropDownListFor(model => model.ClassMLT, CommonModel.GetClass().Where(x => x.Value != "0"), null, new { @class = "form-control display:flex;", @required = "required", @multiple = "multiple" })
                                 @Html.ValidationMessageFor(model => model.ClassMLT, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -118,7 +120,7 @@
                                 @Html.ValidationMessageFor(model => model.coursemaster, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3" id="dv_cd" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(m => m.ConductedDate, new { @class = "Col-md-2 col-form-label" })<em></em>
@@ -143,7 +145,7 @@
                         @*</div>
 
 
-        </div>*@
+                            </div>*@
 
                     </div>
                 }
@@ -167,7 +169,7 @@
                     $('#ClassMLT').multiselect({
                         includeSelectAllOption: true,
                     });
-                    
+
 
             $('#Cohort').change(function () {
                 LoadForm($(this).val());
@@ -181,11 +183,14 @@
                 $('#dv_Careerm').hide();
                 $('#dv_coursem').hide();
                 $('#dv_cd').hide();
-                $('#dv_Careerm').val("0");
-                $('#dv_Careerm').val("0");
+                //$('#dv_Careerm').val("0");
+                //$('#dv_Careerm').val("0");
                 $('#Cohort').val("0");
-                $('#ClassMLT').val("0");
+                $('#ClassMLT').val("");
                 $('#SessionType').val("0");
+                $('#CareerMaster').val('0');
+                $('#coursemaster').val('0');
+                $('#SessionInput').val('');
 
                 LoadForm("0");
 
@@ -199,9 +204,13 @@
                 }
             });
 
-            $('#SessionType').change(function () {
+              $('#SessionType').change(function () {
+                        $('#CareerMaster').val('0');
+                        $('#coursemaster').val('0');
+                        $('#SessionInput').val('');
                 if ($(this).val() == "1") {
                     $('#dv_Careerm').show();
+
                 } else {
                     $('#dv_Careerm').hide();
                 }
@@ -292,23 +301,26 @@
                         formData.append('MS_model', JSON.stringify(MS_model));
                     }
                     else if ($('#TaskType').val() == "2") {
-                        var calm = [];
-                        $("input:checkbox[name=CalssMlt]:checked").each(function () {
-                            calm.push($(this).val());
-                        });
-                        var cm = calm.length != 0 ? calm.join(","):"";
-                        formData.append('CalssMlt', cm);
+                        //var calm = [];
+                        //$("input:checkbox[name=CalssMlt]:checked").each(function () {
+                        //    calm.push($(this).val());
+                        //});
+                        // var cm = calm.length != 0 ? calm.join(","):"";
+                        var cm = $('#ClassMLT').val();
+                        formData.append('ClassMLT', cm);
                         formData.append('ConductedDate', $('#ConductedDate').val());
 
                         formData.append('SessionType', $('#SessionType').val());
-                        if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0') {
+
+                        if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0' && $('#SessionType').val() == "1") {
                             formData.append('Session', $('#CareerMaster').val());
                         }
-                        else if ($('#coursemaster').val() != '' && $('#coursemaster').val() != '0') {
+                        else if ($('#coursemaster').val() != '' && $('#coursemaster').val() != '0' && $('#SessionType').val() == "2") {
                             formData.append('Session', $('#coursemaster').val());
                         }
-
-                        formData.append('SessionInput', $('#SessionInput').val());
+                        else if ($('#SessionInput').val() != '' && $('#SessionType').val() == "3") {
+                            formData.append('SessionInput', $('#SessionInput').val());
+                        }
                     }
                     $('#submit').prop('disabled', true);
 

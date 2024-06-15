@@ -273,13 +273,26 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
-        public static DataTable GetSP_ModularListData(string Sdt, string Edt, string DistrictId, string BlockId)
+        public static DataTable GetSP_ModularListData(string Sdt, string Edt, string DistrictId, string SchoolId)
         {
             StoredProcedure sp = new StoredProcedure("SP_ModularList");
             sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
             sp.Command.AddParameter("@Edt", Edt, DbType.String);
             sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
-            sp.Command.AddParameter("@BlockId", BlockId, DbType.String);
+            sp.Command.AddParameter("@SchoolId", SchoolId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataTable GetSP_ModularSummary(string Sdt, string Edt, string DistrictId, string SchoolId,string ClassId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_ModularSummary");
+            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@SchoolId", SchoolId, DbType.String);
+            sp.Command.AddParameter("@ClassId",ClassId , DbType.String);
             sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
             sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
             DataTable dt = sp.ExecuteDataSet().Tables[0];

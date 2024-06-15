@@ -21,15 +21,15 @@
                             <th>District</th>
                             <th>Block</th>
                             <th>School</th>
+                            <th>Calss</th>
                             @if (ViewBag.task == 2)
                             {
-                                <th>CalssMlt</th>
-                                <th>SessionType</th>
+                                <th>Session Type</th>
                                 <th>Session</th>
                             }
                             else
                             {
-                                <th>Cohort</th>
+                                @*<th>Cohort</th>*@
                                 <th>Session</th>
                                 @*<th>No of Student</th>*@
                             }
@@ -51,12 +51,13 @@
                             @if (ViewBag.task == 2)
                             {
                                 <td class="text-center">@dr["CalssMlt"]</td>
-                                <td class="text-center">@dr["SessionType"]</td>
+                                <td class="text-center">@dr["SessionTypeText"]</td>
                                 <td class="text-center">@dr["SessionText"]</td>
                             }
                             else
                             {
-                                <td class="text-center">@dr["TypeOfCohort"]</td>
+                                <td class="text-center">@dr["CalssId"]</td>
+                                @*<td class="text-center">@dr["TypeOfCohort"]</td>*@
                                 @*<td class="text-left">@dr["COHORT_Session_Hindi"]</td>*@
                                 <td class="text-center">@dr["SessionText"]</td>
                                 @*<td class="text-center">@dr["NoofStudent"]</td>*@

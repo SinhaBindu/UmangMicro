@@ -806,19 +806,42 @@ namespace UmangMicro.Manager
         }
         public static List<SelectListItem> Getcoursemaster()
         {
+            UM_DBEntities dbe = new UM_DBEntities(); 
+            //list.Add(new SelectListItem { Value = "0", Text = "Select Course" });
+            //list.Add(new SelectListItem { Value = "1", Text = "a" });
+            //list.Add(new SelectListItem { Value = "2", Text = "b" });
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "0", Text = "Select Course" });
-            list.Add(new SelectListItem { Value = "1", Text = "a" });
-            list.Add(new SelectListItem { Value = "2", Text = "b" });
-            return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+            //list.Add(new SelectListItem { Value = "0", Text = "Select Career" });
+            try
+            {
+                var listdata = new SelectList(dbe.Course_Master, "CourseId_pk", "CourseName").OrderBy(x => x.Text).ToList();
+                listdata.Insert(0, new SelectListItem { Value = "0", Text = "Select" });
+                return listdata.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+            }
+            catch (Exception)
+            {
+                //DO To
+                throw;
+            }
         }
         public static List<SelectListItem> GetCareerMaster()
         {
+            UM_DBEntities dbe = new UM_DBEntities();
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "0", Text = "Select Career" });
-            list.Add(new SelectListItem { Value = "1", Text = "A" });
-            list.Add(new SelectListItem { Value = "2", Text = "B" });
-            return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+            //list.Add(new SelectListItem { Value = "0", Text = "Select Career" });
+            try
+            {
+                var listdata = new SelectList(dbe.Career_Master, "CareerId_pk", "CareerName").OrderBy(x => x.Text).ToList();
+                listdata.Insert(0, new SelectListItem { Value = "0", Text = "Select" });
+                
+                return listdata.OrderBy(x => Convert.ToInt16(x.Value)).ToList(); ;
+            }
+            catch (Exception)
+            {
+                //DO To
+                throw;
+            }
+            //return listdata.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
         }
         public static List<SelectListItem> GetSessionType()
         {

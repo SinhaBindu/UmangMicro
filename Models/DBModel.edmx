@@ -74,7 +74,7 @@ warning 6002: The table/view 'UmangMS.dbo.BlockMaster_N' does not have a primary
           <Key>
             <PropertyRef Name="CareerId_pk" />
           </Key>
-          <Property Name="CareerId_pk" Type="int" Nullable="false" />
+          <Property Name="CareerId_pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CareerName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Class_Master">
@@ -100,7 +100,7 @@ warning 6002: The table/view 'UmangMS.dbo.BlockMaster_N' does not have a primary
           <Key>
             <PropertyRef Name="CourseId_pk" />
           </Key>
-          <Property Name="CourseId_pk" Type="int" Nullable="false" />
+          <Property Name="CourseId_pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Dist_Mast">
@@ -1223,14 +1223,14 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Key>
             <PropertyRef Name="CareerId_pk" />
           </Key>
-          <Property Name="CareerId_pk" Type="Int32" Nullable="false" />
+          <Property Name="CareerId_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CareerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Course_Master">
           <Key>
             <PropertyRef Name="CourseId_pk" />
           </Key>
-          <Property Name="CourseId_pk" Type="Int32" Nullable="false" />
+          <Property Name="CourseId_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>

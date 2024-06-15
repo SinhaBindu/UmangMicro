@@ -38,16 +38,22 @@
         padding: 10px 20px;
         display: flex;
     }
+
     .select2 {
         width: 90% !important;
     }
+
     @@media all and (max-width:900px) {
         .gapper {
             flex-direction: column;
         }
+
         .select2 {
             width: 100% !important;
         }
+    }
+    .mglast {
+        margin-left: 40px !important;
     }
 </style>
 <div class="admin-breadcrumb">
@@ -97,11 +103,12 @@
                                             @data_isselected = Model.Qlist[ii].SelectedItem ? "true" : "false",
                                             @data_QIndex = ii,
                                             @data_qcode = Model.Qlist[ii].QuestionCode,
-                                            @class = "QuestCode" + Model.Qlist[ii].QuestionCode,
-                                            onchange = "OnChangeRadio('" + @item.QuestionCode +"', this)",
+                                            @class = "mglast QuestCode" + Model.Qlist[ii].QuestionCode,
+                                            onchange = "OnChangeRadio('" + @item.QuestionCode + "', this)",
                                         })
 
                                         <label for="@(item.SectionType.ToLower()+"_Rest")" class="q-lable">@("Reset")</label>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +147,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="position-relative form-group">
-                                                            <label>                                                                
+                                                            <label>
                                                                 <div class="checkbox">
                                                                     Search By :
                                                                     @foreach (var item in CommonModel.GetTypeCase())
@@ -149,8 +156,8 @@
                                                                     }
                                                                     @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
                                                                 </div>
-                                                            </label>                                                            
-                                                           @Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style="display:none;" } })
+                                                            </label>
+                                                            @Html.EditorFor(model => model.DOBtxt, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "DOB", @style = "display:none;" } })
 
                                                             @Html.ValidationMessageFor(model => model.TypeCase, "", new { @class = "text-danger" })
                                                         </div>
@@ -170,7 +177,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="gapper">
-                                                    <div class="col-md-6" >
+                                                    <div class="col-md-6">
                                                         <div class="position-relative form-group">
                                                             <span class="text-danger">*</span>@Html.LabelFor(model => model.CaseID, htmlAttributes: new { @class = "" })<br />
                                                             @Html.DropDownListFor(model => model.CaseID, new List<SelectListItem>(), null, new { @class = "form-control select2" })
@@ -178,23 +185,23 @@
                                                         </div>
                                                     </div>
                                                     @*<div class="col-md-6" style="display:none;">
-                                                        <div class="form-group">
-                                                            <label class="control-label">School</label>
-                                                            @if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
-                                                            {
-                                                                <div @idreadyonly style=pointer-events:none;>
-                                                                    @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
-                                                                </div>
-                                                            }
-                                                            else
-                                                            {
-                                                                <div @idreadyonly>
-                                                                    @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
-                                                                </div>
-                                                            }
+                                                            <div class="form-group">
+                                                                <label class="control-label">School</label>
+                                                                @if (CommonModel.GetUserRole() == MvcApplication.CUser.Role)
+                                                                {
+                                                                    <div @idreadyonly style=pointer-events:none;>
+                                                                        @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div @idreadyonly>
+                                                                        @Html.DropDownListFor(m => m.SchoolId, UmangMicro.Manager.CommonModel.GetSchoolList(), "Select One", htmlAttributes: new { @id = "SchoolId", @class = "form-control select2", @required = "required" })
+                                                                    </div>
+                                                                }
 
-                                                        </div>
-                                                    </div>*@
+                                                            </div>
+                                                        </div>*@
                                                 </div>
                                             </div>
                                             @{
@@ -208,7 +215,10 @@
                                                 <div class="col-md-3 pull-right">
                                                     <span class="">
                                                         <input type="submit" class="previous btn btn-primary btn-lg" id="btnsubmit" />
-                                                        <a href="~/Test/Add" class="btn btn-info btn-lg">Reset</a>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <span style="line-height:91px;">
+                                                            <a href="~/Test/Add" class="btn btn-info btn-lg">Reset</a>
+                                                        </span>
                                                     </span>
 
                                                 </div>
@@ -346,7 +356,7 @@
             $('#FormSubmit').submit(function (e) {
                 debugger;
                 e.preventDefault();
-             
+
                 //var bResponse = confirm('Are you sure you want to Submit?');
                 //if (bResponse === true) {
                     if ($('#CaseID').val() != '' && $('#SchoolId').val() != '' && $('#Date').val() != '') {

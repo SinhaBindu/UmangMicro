@@ -35,9 +35,9 @@ namespace UmangMicro.Models
         [Display(Name = "Type of Query")]
         [Required]
         public string TypeQuery { get; set; }
-        [Display(Name = "Please write your query using key words like stream of education interested to pursue, particular subject around which you seek information, interest, etc.")]
+        [Display(Name = "Please write your query using key words like stream of education interested to pursue, particular subject around which you seek information, interest, etc. (आप किस तरह की शिक्षा प्राप्त करना चाहते हैं, कौन सा ऐसा विषय है जिसके बारे में आप जानना चाहते हैं, आपकी रुचि क्या है ?)")]
         public string KeyWords { get; set; }
-        [Display(Name = "How long do would you be interested to study after 10th standard (if counselee is studying under 10th)")]
+        [Display(Name = "How long do would you be interested to study after 10th standard (if counselee is studying under 10th) ")]
         public string Study10th { get; set; }
         [Display(Name = "How long do would you be interested to study after 12th standard (if counselee is studying in 11th and 12th)")]
         public string Study12th { get; set; }
@@ -49,17 +49,17 @@ namespace UmangMicro.Models
         public string IsPsychometric { get; set; }
         [Display(Name = "Result of Psychometric test")]
         public string Psychometric { get; set; }
-        [Display(Name = "Areas of improvement")]
+        [Display(Name = "Areas of improvement (सुधार के क्षेत्र /बिंदु )")]
         public string AreasImprovement { get; set; }
-        [Display(Name = "Counselling advice/ recommendations")]
+        [Display(Name = "Counselling advice/ recommendations (आपने क्या सलाह दिया )")]
         public string Recommendation { get; set; }
-        [Display(Name = "Follow up")]
+        [Display(Name = "Follow up (क्या दुबारा आना है)")]
         public string IsFollow { get; set; }
         [Display(Name = "Month")]
         public string FM { get; set; }
         [Display(Name = "Year")]
         public string FY { get; set; }
-        [Display(Name = "Is the career goal clear to counseleee after the session")]
+        [Display(Name = "Is the career goal clear to counseleee after the session (आपने जो कैरियर के बारे में बताया क्या वो परामर्शी को स्पष्ट है ?)")]
         public string IsGoalClear { get; set; }
         public string FormSubmitTime { get; set; }
         public DateTime StratTime { get; set; }
