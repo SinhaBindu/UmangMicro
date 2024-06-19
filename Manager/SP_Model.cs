@@ -311,6 +311,12 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        public static DataTable GetSP_TeachersData()
+        {
+            StoredProcedure sp = new StoredProcedure("SP_GetTeacher");
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
         public static DataSet GetSP_ModularChart(string Sdt, string Edt, string DistrictId, string BlockId)
         {
             StoredProcedure sp = new StoredProcedure("SP_ChartModularSession");

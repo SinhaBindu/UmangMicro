@@ -35,11 +35,13 @@
         <EntityTypeShape EntityType="UM_DBModel.ModularSessionMaster" Width="1.5" PointX="12.25" PointY="2.875" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_Modular" Width="1.5" PointX="10.25" PointY="13.875" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.DocumentType_Master" Width="1.5" PointX="14.375" PointY="9.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.Tbl_FileResource" Width="1.5" PointX="12.375" PointY="13.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.Tbl_FileResource" Width="1.5" PointX="14.375" PointY="12.5" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Class_Master" Width="1.5" PointX="8.375" PointY="2.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_Plan" Width="1.5" PointX="14.375" PointY="13.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Career_Master" Width="1.5" PointX="11.375" PointY="4.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.Course_Master" Width="1.5" PointX="13.375" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="UM_DBModel.Tbl_Training" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="UM_DBModel.Tbl_Trainingteacher" Width="1.5" PointX="15.75" PointY="2.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

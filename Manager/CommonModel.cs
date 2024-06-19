@@ -804,6 +804,49 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "2", Text = "Group" });
             return list.OrderByDescending(x => x.Text).ToList();
         }
+
+        public static List<SelectListItem> GetTrainingType()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "0", Text = "Select" });
+            list.Add(new SelectListItem { Value = "1", Text = "PCI Training" });
+            list.Add(new SelectListItem { Value = "2", Text = "School Training" });
+            return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+        }
+
+        public static List<SelectListItem> GetRound()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Value = "0", Text = "Select Round" });
+            list.Add(new SelectListItem { Value = "1", Text = "1" });
+            list.Add(new SelectListItem { Value = "2", Text = "2" });
+            list.Add(new SelectListItem { Value = "2", Text = "3" });
+            return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
+        }
+
+        public static List<SelectListItem> GetTeachers()
+        {
+            try
+            {
+                DataTable dt = SP_Model.GetSP_TeachersData();
+                var lists = new List<SelectListItem>();
+                //items.Insert(0, new SelectListItem { Value = "0", Text = "All" });
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        lists.Add(new SelectListItem { Value = dr["UserId"].ToString(), Text = dr["SchoolName"].ToString() });
+                    }
+                    return lists.OrderBy(x => x.Text).ToList();
+                }
+                return lists;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         public static List<SelectListItem> Getcoursemaster()
         {
             UM_DBEntities dbe = new UM_DBEntities(); 

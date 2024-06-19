@@ -211,6 +211,7 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TrainingController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -360,6 +361,13 @@
     <Compile Include="Models\tbl_RIASEC_Main.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_Training.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_Trainingteacher.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrainingCentreModel.cs" />
     <Compile Include="Models\ValidateFile.cs" />
     <Compile Include="Models\Year_Master.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -1177,6 +1185,8 @@
     <Content Include="Views\Resource\Index.cshtml" />
     <Content Include="Views\Resource\ResourceUpload.cshtml" />
     <Content Include="Views\Plan\Index.cshtml" />
+    <Content Include="Views\Training\AddTraining.cshtml" />
+    <Content Include="Views\Training\_TrainingData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,81 @@
+﻿@using System.Data
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "Training";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+<strong>Training</strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover dt-responsive display" id="DataList" width="100%">
+                    <thead>
+                        <tr>
+                            <th>SrNo.</th>
+                            <th>Trainingtype</th>
+                            <th>Round</th>
+                            <th>Nameofteacher</th>
+                            <th>Date</th>
+                            
+                            @if (ViewBag.task == 2)
+                            {
+                            <th>Noofteachertrained</th>
+                            <th>Date</th>
+                            }
+                            else
+                            {
+                                @*<th>Cohort</th>*@
+                                @*<th>Session</th>*@
+                                @*<th>No of Student</th>*@
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1; int indx = 0;
+                            if (Model != null)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                        <tr>
+                            <td class="text-center">@(sno++)</td>
+                            <td class="text-center">@(CommonModel.FormateDtDMY(dr["Date"].ToString()))</td>
+                            <td class="text-left">@dr["Trainingtype"]</td>
+                            <td class="text-left">@dr["Round"]</td>
+                            <td class="text-left">@dr["Nameofteacher"]</td>
+                            @if (ViewBag.task == 2)
+                            {
+                                <td class="text-center">@dr["Noofteachertrained"]</td>
+                                <td class="text-center">@(CommonModel.FormateDtDMY(dr["Date"].ToString()))</td>
+                                @*<td class="text-center">@dr["SessionText"]</td>*@
+                            }
+                            else
+                            {
+                                @*<td class="text-center">@dr["CalssId"]</td>*@
+                                @*<td class="text-center">@dr["TypeOfCohort"]</td>*@
+                                @*<td class="text-left">@dr["COHORT_Session_Hindi"]</td>*@
+                                @*<td class="text-center">@dr["SessionText"]</td>*@
+                                @*<td class="text-center">@dr["NoofStudent"]</td>*@
+                            }
+
+                        </tr>
+                                    indx++;
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="8" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
