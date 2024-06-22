@@ -1915,10 +1915,13 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "4", Text = "Schemes" });
             return list.OrderBy(x => Convert.ToInt32(x.Value.ToString())).ToList();
         }
-        public static List<SelectListItem> GetClass()
+        public static List<SelectListItem> GetClass(bool IsSelect=false)
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "0", Text = "Select class" });
+            if (IsSelect)
+            {
+                list.Add(new SelectListItem { Value = "0", Text = "Select class" });
+            }
             list.Add(new SelectListItem { Value = "6", Text = "6" });
             list.Add(new SelectListItem { Value = "7", Text = "7" });
             list.Add(new SelectListItem { Value = "8", Text = "8" });

@@ -17,7 +17,7 @@
                             <th>Cohort</th>
                             <th>Class</th>
                             <th>Session</th>
-                            <th>No. of students<br /> attended session</th>
+                            @*<th>No. of students<br /> attended session</th>*@
                             <th>Conducted date</th>
                         </tr>
                     </thead>
@@ -45,9 +45,9 @@
                                             <td class="text-left">
                                                 @Html.DropDownList("Session" + item.Value, SessionList.ToList(), null, new { @class = "form-control" })
                                             </td>
-                                            <td class="text-left">
+                                            @*<td class="text-left">
                                                 @Html.Editor("NoofStudent" + item.Value, new { htmlAttributes = new { @class = "form-control", @required = "required", @maxlength = "3", @min = "0", @placeholder = "No. of students attended session" } })
-                                            </td>
+                                            </td>*@
                                             <td class="text-left">
                                                 @Html.Editor("ConductedDate" + item.Value, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
                                             </td>

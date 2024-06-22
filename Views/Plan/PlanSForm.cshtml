@@ -88,7 +88,7 @@
                         <div class="col-md-3" id="dv_classmlt" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.ClassMLT, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.ClassMLT, CommonModel.GetClass().Where(x => x.Value != "0"), null, new { @class = "form-control display:flex;", @required = "required", @multiple = "multiple" })
+                                @Html.DropDownListFor(model => model.ClassMLT, CommonModel.GetClass(true).Where(x => x.Value != "0"), null, new { @class = "form-control display:flex;", @required = "required", @multiple = "multiple" })
                                 @Html.ValidationMessageFor(model => model.ClassMLT, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                         includeSelectAllOption: true,
                     });
 
-
+                    $('#dv_Cohort').show();
             $('#Cohort').change(function () {
                 LoadForm($(this).val());
             });
