@@ -35,7 +35,7 @@
 <div class="admin-breadcrumb">
     <h3>Training</h3>
     <div class="crumb">
-        <a href="~/Training/Training">Training</a> / Add Training
+        <a href="~/Training/Index">Training List</a> / Add Training
     </div>
 </div>
 <div class="container">
@@ -81,7 +81,7 @@
                     <div class="col-md3" id="dv_Round" style="display:none">
                         <div class="position-relative form-group">
                             <span class="text-danger">*</span>@Html.LabelFor(model => model.Round, htmlAttributes: new { @class = "" })<br />
-                            @Html.DropDownListFor(model => model.Round, CommonModel.GetRound(), null, new { @class = "form-control", @id = "Round", @required = "required" })
+                            @Html.DropDownListFor(model => model.Round, CommonModel.GetRound(), null, new { @class = "form-control",  @required = "required" })
                             @Html.ValidationMessageFor(model => model.Round, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -96,14 +96,14 @@
                     <div class="col-md-3" id="dv_date" style="display:none">
                         <div class="position-relative form-group">
                             <span class="text-danger">*</span>@Html.LabelFor(m => m.Date, new { @class = "Col-md-2 col-form-label" })<em></em>
-                            @Html.EditorFor(m => m.Date, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker", @id = "Date", @required = "required" } })
+                            @Html.EditorFor(m => m.Date, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker",  @required = "required" } })
                             @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-3" id="dv_teachertrained" style="display:none">
                         <div class="position-relative form-group">
                             <span class="text-danger">*</span>@Html.LabelFor(m => m.Noofteachertrained, new { @class = "Col-md-2 col-form-label" })<em></em>
-                            @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @id = "Noofteachertrained", @required = "required" } })
+                            @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @required = "required" } })
                             @Html.ValidationMessageFor(m => m.Noofteachertrained, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                             <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <a href="~/Training/Training" class="btn btn-info text-white">Reset</a>
+                                <a href="~/Training/AddTraining" class="btn btn-info text-white">Reset</a>
                             }
                         </div>
                     </div>
@@ -176,11 +176,14 @@
                         $('#dv_Round').hide();
                         $('#dv_nameofteacher').hide();
                         $('.dv-hd').hide();
+                        //
                         $('#DistrictId').val('0');
                         $('#BlockId').val('0');
                         $('#SchoolId').val('0');
-                        $('#dv_date').val('0');
-                        $('#dv_teachertrained').val('');
+                        $('#Date').val('');
+                        $('#Round').val('0');
+                        $("#Nameofteacher option:selected").prop("selected", false);
+                        $('#Noofteachertrained').val('');
 
                         if ($(this).val() == "1") {
                             $('#dv_date').show();

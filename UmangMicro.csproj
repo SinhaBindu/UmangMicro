@@ -1087,12 +1087,12 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Plan\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Plan\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Plan\Manage\Index.cshtml" />
+    <Content Include="Views\Plan\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Plan\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Plan\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Master\UserDetaillist.cshtml" />
     <Content Include="Views\Master\_UserDetailData.cshtml" />
@@ -1187,6 +1187,7 @@
     <Content Include="Views\Plan\Index.cshtml" />
     <Content Include="Views\Training\AddTraining.cshtml" />
     <Content Include="Views\Training\_TrainingData.cshtml" />
+    <Content Include="Views\Training\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

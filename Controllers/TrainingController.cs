@@ -22,6 +22,29 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
+        public ActionResult GetIndex(string Sdt, int Trainingtype, string Edt, string DistrictId, string SchoolId)
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                SchoolId = SchoolId == "0" ? string.Empty : SchoolId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                SchoolId = (string.IsNullOrWhiteSpace(SchoolId)) ? "ALL" : SchoolId;
+                var items = SP_Model.GetSP_TrainingListData(Sdt, Trainingtype, Edt, DistrictId.ToUpper(), SchoolId.ToUpper());
+                ViewBag.task = Trainingtype;
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    var html = ConvertViewToString("_TrainingData", items);
+                    return Json(new { IsSuccess = true, reshtml = html, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult AddTraining()
         {
             TrainingCentreModel model = new TrainingCentreModel();
@@ -138,6 +161,25 @@ namespace UmangMicro.Controllers
             var resResponse4 = Json(response, JsonRequestBehavior.AllowGet);
             resResponse4.MaxJsonLength = int.MaxValue;
             return resResponse4;
+        }
+        public ActionResult GetTrainingSession()
+        {
+            TrainingCentreModel TranmodularS = new TrainingCentreModel();
+            return View(TranmodularS);
+        }
+        [HttpGet]
+      
+        private string ConvertViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewEngineResult vResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext vContext = new ViewContext(this.ControllerContext, vResult.View, ViewData, new TempDataDictionary(), writer);
+                vResult.View.Render(vContext, writer);
+                return writer.ToString();
+
+            }
         }
     }
 

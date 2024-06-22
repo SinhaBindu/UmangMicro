@@ -1,11 +1,12 @@
 ﻿@using System.Data
 @using UmangMicro.Manager
+
 @{
     ViewBag.Title = "Training";
     DataTable dt = new DataTable();
     if (Model != null)
     {
-        dt = Model;
+        dt = Model as DataTable;
     }
 }
 <strong>Training</strong>
@@ -17,62 +18,53 @@
                     <thead>
                         <tr>
                             <th>SrNo.</th>
-                            <th>Trainingtype</th>
-                            <th>Round</th>
-                            <th>Nameofteacher</th>
-                            <th>Date</th>
-                            
-                            @if (ViewBag.task == 2)
+                            <th>Training Date</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>School</th>
+                            @if (ViewBag.task == 1)
                             {
-                            <th>Noofteachertrained</th>
-                            <th>Date</th>
+                                <th>Round</th>
+                                <th>Name of Teacher</th>
                             }
-                            else
+                            else if (ViewBag.task == 2)
                             {
-                                @*<th>Cohort</th>*@
-                                @*<th>Session</th>*@
-                                @*<th>No of Student</th>*@
+                                <th>No of Teachers Trained</th>
                             }
                         </tr>
                     </thead>
                     <tbody>
                         @{
-                            int sno = 1; int indx = 0;
-                            if (Model != null)
+                            int sno = 1;
+                            if (dt.Rows.Count > 0)
                             {
                                 foreach (DataRow dr in dt.Rows)
                                 {
                         <tr>
                             <td class="text-center">@(sno++)</td>
                             <td class="text-center">@(CommonModel.FormateDtDMY(dr["Date"].ToString()))</td>
-                            <td class="text-left">@dr["Trainingtype"]</td>
-                            <td class="text-left">@dr["Round"]</td>
-                            <td class="text-left">@dr["Nameofteacher"]</td>
-                            @if (ViewBag.task == 2)
+                            <td class="text-left">@dr["district_name"]</td>
+                            <td class="text-left">@dr["block_name"]</td>
+                            <td class="text-left">@dr["school_name"]</td>
+                            @if (ViewBag.task == 1)
+                            {
+                                <td class="text-left">@dr["Round"]</td>
+                                <td class="text-left">@dr["TeacherName"]</td>
+                            }
+                            else if (ViewBag.task == 2)
                             {
                                 <td class="text-center">@dr["Noofteachertrained"]</td>
-                                <td class="text-center">@(CommonModel.FormateDtDMY(dr["Date"].ToString()))</td>
-                                @*<td class="text-center">@dr["SessionText"]</td>*@
                             }
-                            else
-                            {
-                                @*<td class="text-center">@dr["CalssId"]</td>*@
-                                @*<td class="text-center">@dr["TypeOfCohort"]</td>*@
-                                @*<td class="text-left">@dr["COHORT_Session_Hindi"]</td>*@
-                                @*<td class="text-center">@dr["SessionText"]</td>*@
-                                @*<td class="text-center">@dr["NoofStudent"]</td>*@
-                            }
-
                         </tr>
-                                    indx++;
                                 }
                             }
                             else
                             {
-                                <tr><td colspan="8" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                                <tr>
+                                    <td colspan="8" class="text-danger"><strong>Record Not Found!!</strong></td>
+                                </tr>
                             }
                         }
-
                     </tbody>
                 </table>
             </div>
