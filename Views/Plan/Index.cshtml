@@ -145,12 +145,13 @@
                        //  $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
                        //  $('#SchoolId').trigger('change');
                        //  $("#SchoolId").select2({ disabled: 'readonly' });
-                    }
+            }
+            LoadReport();
             $('#formid').submit(function (e) {
                 e.preventDefault();
                 LoadReport();
             })
-            LoadReport();
+         
         });
 
         function LoadReport() {

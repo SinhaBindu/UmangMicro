@@ -2,6 +2,7 @@
 using SubSonic.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 using UmangMicro.Manager;
 using UmangMicro.Models;
 using static UmangMicro.Manager.Enums;
+using System.Data;
 
 namespace UmangMicro.Controllers
 {
@@ -202,5 +204,55 @@ namespace UmangMicro.Controllers
 
             }
         }
+        public ActionResult PlanGraph()
+        {
+            var model = new FilterModel
+            {
+
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult PlanGraph(FilterModel model)
+        {
+            bool isSuccess = false;
+            try
+            {
+                DataTable dt = SP_Model.Sp_PlanGraph();
+                if (dt.Rows.Count > 0)
+                {
+                    isSuccess = true;
+                    var dataList = dt.AsEnumerable().Select(row => new
+                    {
+                        school_name = row["school_name"].ToString(),
+                        NoofData_Modular = Convert.ToInt32(row["NoofData_Modular"]),
+                        NoofData_Plan = Convert.ToInt32(row["NoofData_Plan"])
+                    }).ToList();
+
+                    return Json(new
+                    {
+                        IsSuccess = isSuccess,
+                        Data = dataList
+                    }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new
+                {
+                    IsSuccess = isSuccess,
+                    Data = "No records found."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    IsSuccess = isSuccess,
+                    Data = "There was a communication error."
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
+
+
+
