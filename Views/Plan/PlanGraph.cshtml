@@ -2,9 +2,9 @@
 @using UmangMicro.Models;
 @using UmangMicro.Manager;
 @{
-    ViewBag.Title = "Plan";
+    ViewBag.Title = "Plan Achievement";
     ViewBag.TitleIcon = "fa fa-area-chart";
-    ViewBag.SemiTitle = "Plan";
+    ViewBag.SemiTitle = "Plan Achievement";
     ViewBag.SemiTitleLink = "/Plan/PlanGraph";
 }
 <style>
@@ -85,7 +85,7 @@
 <div class="admin-breadcrumb">
     <h3>Plan List</h3>
     <div class="crumb">
-        <a href="~/Plan/PlanGraph">Plan Graph</a>
+        <a href="~/Plan/PlanGraph">Plan Achievement </a>
     </div>
 </div>
 
@@ -225,12 +225,13 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'School-wise Modular and Plan Data'
+                    //text: 'School-wise Modular and Plan Data'
+                    text: ' Plan Achievement'
                 },
                 xAxis: {
                     categories: categories,
                     title: {
-                        text: 'School Name'
+                        text: 'School-wise (Plan & Modular Data)'
                     }
                 },
                 yAxis: {
@@ -242,6 +243,9 @@
                     layout: 'vertical',
                     align: 'right',
                     verticalAlign: 'middle'
+                },
+                credits: {
+                    enabled: false
                 },
                 plotOptions: {
                     series: {

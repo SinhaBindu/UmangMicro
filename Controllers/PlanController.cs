@@ -108,6 +108,7 @@ namespace UmangMicro.Controllers
                                         CreatedOn = DateTime.Now,
                                         IsActive = true
                                     };
+                                    tbl_list.Add(tbl_MS);   
                                 }
                                 if (tbl_list.Count > 0)
                                 {
