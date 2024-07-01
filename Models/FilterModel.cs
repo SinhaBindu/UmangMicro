@@ -35,5 +35,15 @@ namespace UmangMicro.Models
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> IsDeletedOn { get; set; }
     }
-    
+    public class FilterCanReg
+    {
+        public string FD { get; set; }
+        public string TD { get; set; }
+        [Display(Name = "District")]
+        public string DistrictId { get; set; }
+        [Display(Name = "Block")]
+        public string BlockId { get; set; }
+        [Display(Name = "School")]
+        public string SchoolId { get; set; }
+    }
 }

@@ -131,7 +131,6 @@ namespace UmangMicro.Controllers
                                 return resResponse3;
                             }
                         }
-
                     }
                     else if (model.TaskType == 2)
                     {
@@ -154,7 +153,6 @@ namespace UmangMicro.Controllers
                                 tbl.SessionInput = model.SessionInput;
                             }
 
-
                             tbl.IsActive = true;
                             tbl.CreatedBy = MvcApplication.CUser.Id;
                             tbl.CreatedOn = DateTime.Now;
@@ -169,7 +167,6 @@ namespace UmangMicro.Controllers
                             }
                         }
                     }
-
                 }
             }
             catch (Exception)
