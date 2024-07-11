@@ -348,5 +348,12 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
+        public static DataSet GtSPPlanCalendar()
+        {
+            StoredProcedure sp = new StoredProcedure("SP_PlanCalendar");
+            //sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
     }
 }

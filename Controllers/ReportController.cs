@@ -125,7 +125,7 @@ namespace UmangMicro.Controllers
                 if (ds.Tables.Count > 0)
                 {
                     IsCheck = true;
-                    if (ds.Tables[0].Rows.Count>0)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
                         dt = ds.Tables[0];
                     }
@@ -135,7 +135,7 @@ namespace UmangMicro.Controllers
                     }
                     if (ds.Tables[2].Rows.Count > 0)
                     {
-                        dt2= ds.Tables[2];
+                        dt2 = ds.Tables[2];
                     }
                     if (ds.Tables[3].Rows.Count > 0)
                     {
@@ -167,7 +167,7 @@ namespace UmangMicro.Controllers
             {
                 //dt = ds.Tables.Contains("Tables[0]") == true ? dt : ds.Tables[0];//dt1 = ds.Tables.Contains("Tables[1]") == true ? dt1 : ds.Tables[1];
                 bool IsCheck = false;
-                DataTable dt =SP_Model.GetSPLastLogin();
+                DataTable dt = SP_Model.GetSPLastLogin();
                 if (dt.Rows.Count > 0)
                 {
                     IsCheck = true;
@@ -190,19 +190,19 @@ namespace UmangMicro.Controllers
         {
             return View();
         }
-        public ActionResult GetResource(string Sd="",string Ed="")
+        public ActionResult GetResource(string Sd = "", string Ed = "")
         {
             try
             {
                 //dt = ds.Tables.Contains("Tables[0]") == true ? dt : ds.Tables[0];//dt1 = ds.Tables.Contains("Tables[1]") == true ? dt1 : ds.Tables[1];
                 bool IsCheck = false;
-                DataSet ds= SP_Model.GetSP_Resource();
+                DataSet ds = SP_Model.GetSP_Resource();
                 DataTable dt = new DataTable();
                 DataTable dtDet = new DataTable();
                 if (ds.Tables.Count > 0)
                 {
                     IsCheck = true;
-                    dt = ds.Tables[0]; dtDet = ds.Tables[1]; 
+                    dt = ds.Tables[0]; dtDet = ds.Tables[1];
                     var html_1 = ConvertViewToString("_ResourceData", dtDet);
                     var res1 = Json(new { IsSuccess = IsCheck, html1 = html_1, Data = JsonConvert.SerializeObject(dt) }, JsonRequestBehavior.AllowGet);
                     res1.MaxJsonLength = int.MaxValue;
@@ -274,7 +274,13 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
-        
+        public ActionResult FullCalendarReport()
+        {
+            DataSet dataSet = new DataSet();
+            dataSet = SP_Model.GtSPPlanCalendar();
+            return View(dataSet);
+        }
+
         private string ConvertViewToString(string viewName, object model)
         {
             ViewData.Model = model;
