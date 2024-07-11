@@ -92,6 +92,13 @@
                                 @Html.ValidationMessageFor(model => model.ClassMLT, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                        <div class="col-md-3" id="dv_NoofStudent" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.NoofStudent, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                @Html.EditorFor(m => m.NoofStudent, new { htmlAttributes = new { @placeholder = "Enter the No of Student", @class = "form-control required", @required = "required", @maxlength = "3" } })
+                                @Html.ValidationMessageFor(m => m.NoofStudent, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                         <div class="col-md-3" id="dv_sessiontype" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.SessionType, htmlAttributes: new { @class = "" })<br />
@@ -145,7 +152,7 @@
                         @*</div>
 
 
-                            </div>*@
+        </div>*@
 
                     </div>
                 }
@@ -185,6 +192,7 @@
                 $('#dv_Careerm').hide();
                 $('#dv_coursem').hide();
                 $('#dv_cd').hide();
+                $('#dv_NoofStudent').hide();
                 //$('#dv_Careerm').val("0");
                 //$('#dv_Careerm').val("0");
                 $('#Cohort').val("0");
@@ -193,6 +201,7 @@
                 $('#CareerMaster').val('0');
                 $('#coursemaster').val('0');
                 $('#SessionInput').val('');
+                $('#dv_NoofStudent').val('');
 
                 LoadForm("0");
 
@@ -203,6 +212,7 @@
                     $('#dv_classmlt').show();
                     $('#dv_sessiontype').show();
                     $('#dv_cd').show();
+                    $('#dv_NoofStudent').show();
                 }
             });
 
@@ -258,6 +268,13 @@
 
             $("#formid").on("submit", function (event) {
                 event.preventDefault();
+                var maxNoofStudentLength = 3;
+                var noofStudent = $('#NoofStudent').val();
+
+                if (noofStudent.length > maxNoofStudentLength) {
+                    toastr.error("Error", "Number of students should not exceed " + maxNoofStudentLength + " digits.");
+                    return false; 
+                }
 
                 if ($('#DistrictId').val() != '' && $('#BlockId').val() != '' && $('#SchoolId').val() != '') {
                     jQuery.event.trigger("ajaxStart");
@@ -313,6 +330,7 @@
                         formData.append('ConductedDate', $('#ConductedDate').val());
 
                         formData.append('SessionType', $('#SessionType').val());
+                        formData.append('NoofStudent', $('#NoofStudent').val());
 
                         if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0' && $('#SessionType').val() == "1") {
                             formData.append('Session', $('#CareerMaster').val());
