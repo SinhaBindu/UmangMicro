@@ -800,8 +800,8 @@ namespace UmangMicro.Manager
         {
             List<SelectListItem> list = new List<SelectListItem>();
             //list.Add(new SelectListItem { Value = "0", Text = "Select Task" });
-            list.Add(new SelectListItem { Value = "1", Text = "Modular" });
-            list.Add(new SelectListItem { Value = "2", Text = "Group" });
+            list.Add(new SelectListItem { Value = "1", Text = "Modular Session" });
+            list.Add(new SelectListItem { Value = "2", Text = "Group Counselling" });
             return list.OrderByDescending(x => x.Text).ToList();
         }
 
@@ -809,15 +809,15 @@ namespace UmangMicro.Manager
         {
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "0", Text = "Select" });
-            list.Add(new SelectListItem { Value = "1", Text = "PCI Training" });
-            list.Add(new SelectListItem { Value = "2", Text = "School Training" });
+            list.Add(new SelectListItem { Value = "1", Text = "State-level ToT" });
+            list.Add(new SelectListItem { Value = "2", Text = "School Teachers' Training" });
             return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
         }
 
         public static List<SelectListItem> GetRound()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "0", Text = "Select Round" });
+            list.Add(new SelectListItem { Value = "0", Text = "Select Cohort" });
             list.Add(new SelectListItem { Value = "1", Text = "1" });
             list.Add(new SelectListItem { Value = "2", Text = "2" });
             list.Add(new SelectListItem { Value = "2", Text = "3" });

@@ -140,6 +140,7 @@ namespace UmangMicro.Controllers
                             tbl.ConductedDate = model.ConductedDate;
                             tbl.SchoolId = model.SchoolId;
                             tbl.CalssMlt = model.ClassMLT;
+                            tbl.NoofStudent = model.NoofStudent;
                             tbl.Task = model.TaskType;
                             tbl.SessionType = model.SessionType;
                             if (model.SessionType == 1 || model.SessionType == 2)

@@ -21,7 +21,7 @@ namespace UmangMicro.Models
         public Nullable<int> SchoolId { get; set; }
         [Display(Name = "Training")]
         public Nullable<int> Trainingtype { get; set; }
-        [Display(Name = "Round")]
+        [Display(Name = "Cohort")]
         public Nullable<int> Round { get; set; }
         [Display(Name = "Name of Teacher")]
         public string Nameofteacher { get; set; }
