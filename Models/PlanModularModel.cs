@@ -11,7 +11,7 @@ namespace UmangMicro.Models
         public int Id { get; set; }
         [Display(Name = "Cohort")]
         public int Cohort { get; set; }
-        [Display(Name = "Conducted Date")]
+        [Display(Name = "Plan Date")]
         public Nullable<System.DateTime> ConductedDate { get; set; }
         public Nullable<int> Reg_fk_Id { get; set; }
         [Display(Name = "District")]
