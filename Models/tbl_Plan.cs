@@ -32,5 +32,8 @@ namespace UmangMicro.Models
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> IsDeletedOn { get; set; }
         public string SessionInput { get; set; }
+        public Nullable<System.DateTime> AchievementDate { get; set; }
+        public Nullable<int> AchievedNoofStudent { get; set; }
+        public string AchieveImagepath { get; set; }
     }
 }

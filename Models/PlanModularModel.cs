@@ -36,6 +36,12 @@ namespace UmangMicro.Models
         public Nullable<int> coursemaster { get; set; }
         [Display(Name = "Career")]
         public Nullable<int> CareerMaster { get; set; }
+        [Display(Name = "Achieved No of Student")]
+        public int AchievedNoofStudent { get; set; }
+        [Display(Name = "Achievement Date")]
+        public Nullable<System.DateTime> AchievementDate { get; set; }
+        [Display(Name = "Achievement Image Upload")]
+        public string AchieveImagepath { get; set; }
 
 
         [Display(Name = "Session")]

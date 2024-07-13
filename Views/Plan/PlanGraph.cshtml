@@ -83,7 +83,7 @@
 </style>
 
 <div class="admin-breadcrumb">
-    <h3>Plan List</h3>
+    <h3>Plan Graph Achievement</h3>
     <div class="crumb">
         <a href="~/Plan/PlanGraph">Plan Achievement </a>
     </div>
@@ -181,10 +181,10 @@
             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
                 $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
                 $('#DistrictId').css("pointer-events", "none");
-                OnChagDistricts('BlockId', $('#DistrictId').val());
-                $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
-                $('#BlockId').css("pointer-events", "none");
-                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                //OnChagDistricts('BlockId', $('#DistrictId').val());
+                @*$('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
+                $('#BlockId').css("pointer-events", "none");*@
+                GetSchool('SchoolId', '', $('#DistrictId').val());/* $('#BlockId').val());*/
                 $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
                 $('#SchoolId').css("pointer-events", "none");
             }
@@ -192,15 +192,15 @@
             if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
                 $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
                 $('#DistrictId').css("pointer-events", "none");
-                OnChagDistricts('BlockId', $('#DistrictId').val());
+                OnChagDistricts('SchoolId', $('#DistrictId').val());
             }
 
             $('#DistrictId').change(function () {
-                OnChagDistricts('BlockId', $('#DistrictId').val());
+                OnChagDistricts('SchoolId', $('#DistrictId').val());
             });
 
-            $('#BlockId').change(function () {
-                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+            $('#DistrictId').change(function () {
+                GetSchool('SchoolId', '', $('#DistrictId').val());/*, $('#BlockId').val());*/
             });
 
             LoadReport();

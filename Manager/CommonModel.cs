@@ -810,7 +810,7 @@ namespace UmangMicro.Manager
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "0", Text = "Select" });
             list.Add(new SelectListItem { Value = "1", Text = "State-level ToT" });
-            list.Add(new SelectListItem { Value = "2", Text = "School Teachers' Training" });
+            list.Add(new SelectListItem { Value = "2", Text = "School Teacher's Training" });
             return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
         }
 

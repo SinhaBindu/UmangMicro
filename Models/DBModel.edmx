@@ -462,6 +462,9 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsDeletedOn" Type="datetime" />
           <Property Name="SessionInput" Type="nvarchar" MaxLength="500" />
+          <Property Name="AchievementDate" Type="date" />
+          <Property Name="AchievedNoofStudent" Type="int" />
+          <Property Name="AchieveImagepath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_Registration">
           <Key>
@@ -722,11 +725,11 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="DocumentType_Master" EntityType="UM_DBModel.DocumentType_Master" />
           <EntitySet Name="Tbl_FileResource" EntityType="UM_DBModel.Tbl_FileResource" />
           <EntitySet Name="Class_Master" EntityType="UM_DBModel.Class_Master" />
-          <EntitySet Name="tbl_Plan" EntityType="UM_DBModel.tbl_Plan" />
           <EntitySet Name="Career_Master" EntityType="UM_DBModel.Career_Master" />
           <EntitySet Name="Course_Master" EntityType="UM_DBModel.Course_Master" />
           <EntitySet Name="Tbl_Training" EntityType="UM_DBModel.Tbl_Training" />
           <EntitySet Name="Tbl_Trainingteacher" EntityType="UM_DBModel.Tbl_Trainingteacher" />
+          <EntitySet Name="tbl_Plan" EntityType="UM_DBModel.tbl_Plan" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1235,29 +1238,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="tbl_Plan">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConductedDate" Type="DateTime" Precision="0" />
-          <Property Name="Reg_fk_Id" Type="Int32" />
-          <Property Name="SchoolId" Type="Int32" />
-          <Property Name="CalssId" Type="Int32" />
-          <Property Name="CalssMlt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Task" Type="Int32" />
-          <Property Name="SessionType" Type="Int32" />
-          <Property Name="Session" Type="Int32" />
-          <Property Name="NoofStudent" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
-          <Property Name="SessionInput" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Career_Master">
           <Key>
             <PropertyRef Name="CareerId_pk" />
@@ -1306,6 +1286,32 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Plan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConductedDate" Type="DateTime" Precision="0" />
+          <Property Name="Reg_fk_Id" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="CalssId" Type="Int32" />
+          <Property Name="CalssMlt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Task" Type="Int32" />
+          <Property Name="SessionType" Type="Int32" />
+          <Property Name="Session" Type="Int32" />
+          <Property Name="NoofStudent" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
+          <Property Name="SessionInput" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AchievementDate" Type="DateTime" Precision="0" />
+          <Property Name="AchievedNoofStudent" Type="Int32" />
+          <Property Name="AchieveImagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1853,30 +1859,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_Plan">
-            <EntityTypeMapping TypeName="UM_DBModel.tbl_Plan">
-              <MappingFragment StoreEntitySet="tbl_Plan">
-                <ScalarProperty Name="SessionInput" ColumnName="SessionInput" />
-                <ScalarProperty Name="IsDeletedOn" ColumnName="IsDeletedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="NoofStudent" ColumnName="NoofStudent" />
-                <ScalarProperty Name="Session" ColumnName="Session" />
-                <ScalarProperty Name="SessionType" ColumnName="SessionType" />
-                <ScalarProperty Name="Task" ColumnName="Task" />
-                <ScalarProperty Name="CalssMlt" ColumnName="CalssMlt" />
-                <ScalarProperty Name="CalssId" ColumnName="CalssId" />
-                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="Reg_fk_Id" ColumnName="Reg_fk_Id" />
-                <ScalarProperty Name="ConductedDate" ColumnName="ConductedDate" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Career_Master">
             <EntityTypeMapping TypeName="UM_DBModel.Career_Master">
               <MappingFragment StoreEntitySet="Career_Master">
@@ -1926,6 +1908,33 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="NameofTeacher" ColumnName="NameofTeacher" />
                 <ScalarProperty Name="TrainingtypeId_fk" ColumnName="TrainingtypeId_fk" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Plan">
+            <EntityTypeMapping TypeName="UM_DBModel.tbl_Plan">
+              <MappingFragment StoreEntitySet="tbl_Plan">
+                <ScalarProperty Name="AchieveImagepath" ColumnName="AchieveImagepath" />
+                <ScalarProperty Name="AchievedNoofStudent" ColumnName="AchievedNoofStudent" />
+                <ScalarProperty Name="AchievementDate" ColumnName="AchievementDate" />
+                <ScalarProperty Name="SessionInput" ColumnName="SessionInput" />
+                <ScalarProperty Name="IsDeletedOn" ColumnName="IsDeletedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NoofStudent" ColumnName="NoofStudent" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="SessionType" ColumnName="SessionType" />
+                <ScalarProperty Name="Task" ColumnName="Task" />
+                <ScalarProperty Name="CalssMlt" ColumnName="CalssMlt" />
+                <ScalarProperty Name="CalssId" ColumnName="CalssId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Reg_fk_Id" ColumnName="Reg_fk_Id" />
+                <ScalarProperty Name="ConductedDate" ColumnName="ConductedDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
