@@ -130,11 +130,20 @@
 
                         <div class="col-md-3" id="dv_cd" style="display:none">
                             <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(m => m.ConductedDate, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.ConductedDate, new { @class = "Col-md-2 col-form-label" ,@id= "AchiDate" })<em></em>
                                 @Html.EditorFor(m => m.ConductedDate, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker", @required = "required" } })
                                 @Html.ValidationMessageFor(m => m.ConductedDate, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="col-md-3" id="dv_file" style="display:none;">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.AchieveImage, htmlAttributes: new { @class = "" })<br />
+                                @Html.TextBoxFor(model => model.AchieveImage, new { type = "file", @required = "required", })
+                                @Html.ValidationMessageFor(model => model.AchieveImage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
                         <div class="col-md-12" id="divPlanInput">
                         </div>
 
@@ -148,11 +157,6 @@
                                 }
                             </div>
                         </div>
-
-                        @*</div>
-
-
-        </div>*@
 
                     </div>
                 }
@@ -173,16 +177,16 @@
 
 
     <script type="text/javascript">
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    $('#ClassMLT').multiselect({
-                        includeSelectAllOption: true,
-                    });
-
-                    $('#dv_Cohort').show();
-            $('#Cohort').change(function () {
-                LoadForm($(this).val());
+            $('#ClassMLT').multiselect({
+                includeSelectAllOption: true,
             });
+
+            $('#dv_Cohort').show();
+                $('#Cohort').change(function () {
+                    LoadForm($(this).val());
+                });
 
             $('#TaskType').change(function () {
                 $('#dv_Cohort').hide();
@@ -266,6 +270,47 @@
                 GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
             });
 
+            if ('@Model.Id' != '0' && '@Model.Id' != '' && '@Model.Id' != undefined) {
+                $('#dv_Cohort').hide();
+                $('#dv_classmlt').hide();
+                $('#dv_sessiontype').hide();
+                $('#dv_sessioninput').hide();
+                $('#dv_Careerm').hide();
+                $('#dv_coursem').hide();
+                $('#dv_cd').hide();
+                $('#dv_NoofStudent').hide();
+                //$('#dv_Careerm').val("0");
+                //$('#dv_Careerm').val("0");
+                $('#Cohort').val("0");
+                $('#ClassMLT').val("");
+                $('#SessionType').val("0");
+                $('#CareerMaster').val('0');
+                $('#coursemaster').val('0');
+                $('#SessionInput').val('');
+                $('#dv_NoofStudent').val('');
+
+                LoadForm("0");
+
+                if ($('#TaskType').val() == "1") {
+                    $('#dv_Cohort').show();
+                } else if ($('#TaskType').val() == "2") {
+                    $('#dv_Cohort').hide();
+                    $('#dv_classmlt').show();
+                    $('#dv_sessiontype').show();
+                    $('#dv_cd').show();
+                    $('#dv_NoofStudent').show();
+                }
+                $('#ConductedDate').val(''); $('#AchieveImage').val('');
+                if ($('#TaskType').val() == "2") {
+                    $('#AchiDate').html('Achievement Date');
+                    $('#dv_file').show();
+                }
+                else {
+                    $('#dv_file').hide();
+                }
+            }
+
+
             $("#formid").on("submit", function (event) {
                 event.preventDefault();
                 var maxNoofStudentLength = 3;
@@ -273,7 +318,7 @@
 
                 if (noofStudent.length > maxNoofStudentLength) {
                     toastr.error("Error", "Number of students should not exceed " + maxNoofStudentLength + " digits.");
-                    return false; 
+                    return false;
                 }
 
                 if ($('#DistrictId').val() != '' && $('#BlockId').val() != '' && $('#SchoolId').val() != '') {

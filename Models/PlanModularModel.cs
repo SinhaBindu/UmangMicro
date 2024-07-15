@@ -43,7 +43,8 @@ namespace UmangMicro.Models
         [Display(Name = "Achievement Image Upload")]
         public string AchieveImagepath { get; set; }
 
-
+        [Display(Name = "Achievement Image Upload")]
+        public HttpPostedFileBase AchieveImage{ get; set; }
         [Display(Name = "Session")]
         public Nullable<int> Session { get; set; }
 

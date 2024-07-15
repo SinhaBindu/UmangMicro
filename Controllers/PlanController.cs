@@ -47,9 +47,16 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult PlanSForm()
+        public ActionResult PlanSForm(int? Id, int TakId = 2)
         {
+            UM_DBEntities db_ = new UM_DBEntities();
             PlanModularModel model = new PlanModularModel();
+            if (Id != 0 && TakId== 2)
+            {
+                var tbl = db_.tbl_Plan.Find(Id);
+                model.Id = tbl.Id;  
+                model.TaskType = tbl.Task;  
+            }
             return View(model);
         }
         [HttpPost]
@@ -108,7 +115,7 @@ namespace UmangMicro.Controllers
                                         CreatedOn = DateTime.Now,
                                         IsActive = true
                                     };
-                                    tbl_list.Add(tbl_MS);   
+                                    tbl_list.Add(tbl_MS);
                                 }
                                 if (tbl_list.Count > 0)
                                 {

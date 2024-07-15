@@ -151,6 +151,118 @@
                 e.preventDefault();
                 LoadReport();
             })
+
+
+            $("#formid").on("submit", function (event) {
+                event.preventDefault();
+                var maxNoofStudentLength = 3;
+                var noofStudent = $('#NoofStudent').val();
+
+                if (noofStudent.length > maxNoofStudentLength) {
+                    toastr.error("Error", "Number of students should not exceed " + maxNoofStudentLength + " digits.");
+                    return false;
+                }
+
+                if ($('#DistrictId').val() != '' && $('#BlockId').val() != '' && $('#SchoolId').val() != '') {
+                    jQuery.event.trigger("ajaxStart");
+
+                    var formData = new FormData();
+                    formData.append('DistrictId', $('#DistrictId').val());
+                    formData.append('BlockId', $('#BlockId').val());
+                    formData.append('SchoolId', $('#SchoolId').val());
+                    formData.append('TaskType', $('#TaskType').val());
+
+                    var MS_model = [];
+                    if ($('#TaskType').val() == "1") {
+                        let tbl = $('#tbl_Plan').DataTable();
+                        tbl.$('input:checked').each(function (i, row) {
+                            var Class_id = $(row).attr('data-id') || 0;
+                            var Sessionid = $('#Session' + Class_id).val();
+                            var NoofStudent = $('#NoofStudent' + Class_id).val();
+                            var CDate = $('#ConductedDate' + Class_id).val();
+                            var Ischeck = $(row, 'input[type=checkbox]').val();
+
+                            if (NoofStudent == '' || CDate == '' || (Sessionid == "Select" || Sessionid == "-1" || Sessionid == "")) {
+                                toastr.error("Error", "Select Session, Enter the No. of students attended session and Conducted date.");
+                                return false;
+                            }
+
+                            if (Ischeck) {
+                                MS_model.push({
+                                    CalssId: Class_id,
+                                    Session: Sessionid,
+                                    //TaskType: $("#TaskType").val(),
+                                    NoofStudent: NoofStudent,
+                                    ConductedDate: CDate,
+                                    Ischeck: true,
+                                });
+                            }
+                        });
+
+                        if (MS_model.length == 0) {
+                            toastr.error("Error", "Please choice at least one Cohort.");
+                            return false;
+                        }
+
+                        formData.append('MS_model', JSON.stringify(MS_model));
+                    }
+                    else if ($('#TaskType').val() == "2") {
+                        //var calm = [];
+                        //$("input:checkbox[name=CalssMlt]:checked").each(function () {
+                        //    calm.push($(this).val());
+                        //});
+                        // var cm = calm.length != 0 ? calm.join(","):"";
+                        var cm = $('#ClassMLT').val();
+                        formData.append('ClassMLT', cm);
+                        formData.append('ConductedDate', $('#ConductedDate').val());
+
+                        formData.append('SessionType', $('#SessionType').val());
+                        formData.append('NoofStudent', $('#NoofStudent').val());
+
+                        if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0' && $('#SessionType').val() == "1") {
+                            formData.append('Session', $('#CareerMaster').val());
+                        }
+                        else if ($('#coursemaster').val() != '' && $('#coursemaster').val() != '0' && $('#SessionType').val() == "2") {
+                            formData.append('Session', $('#coursemaster').val());
+                        }
+                        else if ($('#SessionInput').val() != '' && $('#SessionType').val() == "3") {
+                            formData.append('SessionInput', $('#SessionInput').val());
+                        }
+                    }
+                    $('#submit').prop('disabled', true);
+
+                    $.ajax({
+                        type: "POST",
+                        url: document.baseURI + "/Plan/PlanSForm/",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (resp) {
+                            if (resp.StatusType == "success") {
+                                toastr.success("Success", resp.Message);
+                                jQuery.event.trigger("ajaxStop");
+                            } else {
+                                toastr.error("Error", resp.Message);
+                                $('#submit').prop('disabled', false);
+                            }
+                        },
+                        error: function (req, error) {
+                            if (error === 'error') {
+                                error = req.statusText;
+                            }
+                            var errormsg = 'There was a communication error: ' + error;
+                            toastr.error("Error", errormsg);
+                            jQuery.event.trigger("ajaxStop");
+                            $('#submit').prop('disabled', false);
+                            return false;
+                        }
+                    });
+                } else {
+                    toastr.error('Error', "Please fill all required fields!!");
+                }
+            });
+
          
         });
 
@@ -180,7 +292,7 @@
                     if (resp.IsSuccess) {
                         $('#sub-data').html(resp.reshtml); $('#sub-data').addClass("text-black");
                         jQuery.event.trigger("ajaxStop");
-
+                        //HTML Table Binding
                         if ($.fn.dataTable.isDataTable('#DataList')) {
                             $("#DataList").dataTable().fnDestroy();
                         }
