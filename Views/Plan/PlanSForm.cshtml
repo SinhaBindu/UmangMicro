@@ -46,7 +46,7 @@
 
                 @using (Html.BeginForm("PlanSForm", "Plan", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
                 {
-                    @Html.HiddenFor(x=>x.Id)
+                    @Html.HiddenFor(x => x.Id)
                     <div class="form-row col-md-12">
                         <div class="col-md-3">
                             <div class="position-relative form-group">
@@ -293,6 +293,7 @@
             });
             ///
             if ('@Model.Id' != '0' && '@Model.Id' != '' && '@Model.Id' != undefined && '@Model.TaskType'=='2') {
+                $('#AchievedNoofStudent').val('');
                 $('#dv_Cohort').hide();
                 $('#dv_classmlt').hide();
                 $('#dv_sessiontype').hide();
@@ -311,15 +312,16 @@
                 $('#SessionInput').val('');
 
                 LoadForm("0");
-
-                if ($('#TaskType').val() == "1") {
-                    $('#dv_Cohort').show();
-                } else if ($('#TaskType').val() == "2") {
-                    $('#dv_Cohort').hide();
+                //  $('#dv_sessiontype').show();
+               if ($('#TaskType').val() == "1") {
+                   $('#dv_Cohort').show();
+               } 
+                else if ($('#TaskType').val() == "2") {
+                   $('#dv_Cohort').hide();
                     $('#dv_classmlt').show();
-                    $('#dv_sessiontype').show();
-                    $('#dv_cd').show();
-                    $('#dv_NoofStudent').show();
+                   $('#dv_sessiontype').show();
+                   $('#dv_cd').show();
+                   $('#dv_NoofStudent').show();
                 }
               //  $('#ConductedDate').val(''); $('#AchieveImage').val('');
                 if ($('#TaskType').val() == "2") {
@@ -338,43 +340,42 @@
                     $('#NoofStudent').val('@Model.NoofStudent');
                     $('#SessionType').val('@Model.SessionType');
                     $('#SessionType').trigger('change');
-                   
+
                     if ($('#SessionType').val() == "1") {
                         $('#CareerMaster').val('@Model.Session');
                         $('#dv_Careerm').show();
                         $('#coursemaster').val('0');
                         $('#SessionInput').val('');
-
+                        $('#CareerMaster').attr("style", "pointer-events: none;");
                     } else {
                         $('#dv_Careerm').hide();
-                       
                     }
-                    if ($(this).val() == "2") {
+                    if ($('#SessionType').val() == "2") {
                         $('#coursemaster').val('@Model.Session');
                         $('#dv_coursem').show();
                         $('#CareerMaster').val('0');
                         $('#SessionInput').val('');
+                        $('#coursemaster').attr("style", "pointer-events: none;");
                     } else {
                         $('#dv_coursem').hide();
-                      
                     }
-
-                    if ($(this).val() == "3") {
-                         $('#SessionInput').val('@Model.SessionInput');
+                    if ($('#SessionType').val() == "3") {
+                       $('#SessionInput').val('@Model.SessionInput');
+                        $('#SessionInput').show();
                         $('#dv_sessioninput').show();
                         $('#CareerMaster').val('0');
                         $('#CareerMaster').val('0');
+                         $('#dv_Careerm').hide();
+                        $('#dv_coursem').hide();
+                        $('#SessionInput').attr("style", "pointer-events: none;");
                     } else {
                         $('#dv_sessioninput').hide();
-                        
                     }
                     var checkedclass = ('@Model.ClassMLT').split(',');
                     var checkedcla = ('@Model.ClassMLT');
                     $("#ClassMLT").val(checkedclass)
                     $('#ClassMLT').trigger('change');
                     $("#ClassMLT").multiselect("refresh");
-
-                  
 
                     $('#DistrictId').attr("style", "pointer-events: none;");
                     $('#BlockId').attr("style", "pointer-events: none;");
@@ -383,7 +384,8 @@
                     $('#NoofStudent').attr("style", "pointer-events: none;");
                     $('#SessionType').attr("style", "pointer-events: none;");
                     $('#ClassMLT').attr("style", "pointer-events: none;");
-                    $('#Session').attr("style", "pointer-events: none;");
+                    $('#dv_classmlt').attr("style", "pointer-events: none;");
+                    $('#TaskType').attr("style", "pointer-events: none;");
 
                 }
                 else {
