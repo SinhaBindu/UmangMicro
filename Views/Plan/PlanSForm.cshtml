@@ -46,6 +46,7 @@
 
                 @using (Html.BeginForm("PlanSForm", "Plan", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
                 {
+                    @Html.HiddenFor(x=>x.Id)
                     <div class="form-row col-md-12">
                         <div class="col-md-3">
                             <div class="position-relative form-group">
@@ -130,7 +131,7 @@
 
                         <div class="col-md-3" id="dv_cd" style="display:none">
                             <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(m => m.ConductedDate, new { @class = "Col-md-2 col-form-label" ,@id= "AchiDate" })<em></em>
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.ConductedDate, new { @class = "Col-md-2 col-form-label", @id = "AchiDate" })<em></em>
                                 @Html.EditorFor(m => m.ConductedDate, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker", @required = "required" } })
                                 @Html.ValidationMessageFor(m => m.ConductedDate, "", new { @class = "text-danger" })
                             </div>
@@ -141,6 +142,27 @@
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.AchieveImage, htmlAttributes: new { @class = "" })<br />
                                 @Html.TextBoxFor(model => model.AchieveImage, new { type = "file", @required = "required", })
                                 @Html.ValidationMessageFor(model => model.AchieveImage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_ANoofStudent" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.AchievedNoofStudent, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                @Html.EditorFor(m => m.AchievedNoofStudent, new { htmlAttributes = new { @placeholder = "Enter the Achieved No of Student", @class = "form-control required", @required = "required", @maxlength = "3" } })
+                                @Html.ValidationMessageFor(m => m.AchievedNoofStudent, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_ad" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.AchievementDate, new { @class = "Col-md-2 col-form-label", @id = "AchiDate" })<em></em>
+                                @Html.EditorFor(m => m.AchievementDate, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker", @required = "required" } })
+                                @Html.ValidationMessageFor(m => m.AchievementDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_cr" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.CounsellingRemarks, htmlAttributes: new { @class = "" })<br />
+                                @Html.TextAreaFor(model => model.CounsellingRemarks, new { @class = "form-control", @required = "required", @rows = "4", @maxlength = "300" })
+                                @Html.ValidationMessageFor(model => model.CounsellingRemarks, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -269,8 +291,8 @@
             $('#BlockId').change(function () {
                 GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
             });
-
-            if ('@Model.Id' != '0' && '@Model.Id' != '' && '@Model.Id' != undefined) {
+            ///
+            if ('@Model.Id' != '0' && '@Model.Id' != '' && '@Model.Id' != undefined && '@Model.TaskType'=='2') {
                 $('#dv_Cohort').hide();
                 $('#dv_classmlt').hide();
                 $('#dv_sessiontype').hide();
@@ -282,12 +304,11 @@
                 //$('#dv_Careerm').val("0");
                 //$('#dv_Careerm').val("0");
                 $('#Cohort').val("0");
-                $('#ClassMLT').val("");
-                $('#SessionType').val("0");
+              //  $('#ClassMLT').val("");
+              //  $('#SessionType').val("0");
                 $('#CareerMaster').val('0');
                 $('#coursemaster').val('0');
                 $('#SessionInput').val('');
-                $('#dv_NoofStudent').val('');
 
                 LoadForm("0");
 
@@ -300,13 +321,76 @@
                     $('#dv_cd').show();
                     $('#dv_NoofStudent').show();
                 }
-                $('#ConductedDate').val(''); $('#AchieveImage').val('');
+              //  $('#ConductedDate').val(''); $('#AchieveImage').val('');
                 if ($('#TaskType').val() == "2") {
-                    $('#AchiDate').html('Achievement Date');
+                    //  $('#AchiDate').html('Achievement Date');
                     $('#dv_file').show();
+                    $('#dv_cr').show();
+                    $('#dv_ANoofStudent').show();
+                    $('#dv_ad').show();
+                    $('#Id').val('@Model.Id');
+                    $('#DistrictId').val('@Model.DistrictId');
+                    $('#DistrictId').trigger('change');
+                    $('#BlockId').val('@Model.BlockId');
+                    $('#BlockId').trigger('change');
+                    $('#SchoolId').val('@Model.SchoolId');
+                    $('#ConductedDate').val(moment('@Model.ConductedDate').format('d-MMM-yyyy'));
+                    $('#NoofStudent').val('@Model.NoofStudent');
+                    $('#SessionType').val('@Model.SessionType');
+                    $('#SessionType').trigger('change');
+                   
+                    if ($('#SessionType').val() == "1") {
+                        $('#CareerMaster').val('@Model.Session');
+                        $('#dv_Careerm').show();
+                        $('#coursemaster').val('0');
+                        $('#SessionInput').val('');
+
+                    } else {
+                        $('#dv_Careerm').hide();
+                       
+                    }
+                    if ($(this).val() == "2") {
+                        $('#coursemaster').val('@Model.Session');
+                        $('#dv_coursem').show();
+                        $('#CareerMaster').val('0');
+                        $('#SessionInput').val('');
+                    } else {
+                        $('#dv_coursem').hide();
+                      
+                    }
+
+                    if ($(this).val() == "3") {
+                         $('#SessionInput').val('@Model.SessionInput');
+                        $('#dv_sessioninput').show();
+                        $('#CareerMaster').val('0');
+                        $('#CareerMaster').val('0');
+                    } else {
+                        $('#dv_sessioninput').hide();
+                        
+                    }
+                    var checkedclass = ('@Model.ClassMLT').split(',');
+                    var checkedcla = ('@Model.ClassMLT');
+                    $("#ClassMLT").val(checkedclass)
+                    $('#ClassMLT').trigger('change');
+                    $("#ClassMLT").multiselect("refresh");
+
+                  
+
+                    $('#DistrictId').attr("style", "pointer-events: none;");
+                    $('#BlockId').attr("style", "pointer-events: none;");
+                    $('#SchoolId').attr("style", "pointer-events: none;");
+                    $('#ConductedDate').attr("style", "pointer-events: none;");
+                    $('#NoofStudent').attr("style", "pointer-events: none;");
+                    $('#SessionType').attr("style", "pointer-events: none;");
+                    $('#ClassMLT').attr("style", "pointer-events: none;");
+                    $('#Session').attr("style", "pointer-events: none;");
+
                 }
                 else {
                     $('#dv_file').hide();
+                    $('#dv_ANoofStudent').hide();
+                    $('#dv_ad').hide();
+                    $('#dv_cr').hide();
                 }
             }
 
@@ -331,7 +415,47 @@
                     formData.append('TaskType', $('#TaskType').val());
 
                     var MS_model = [];
-                    if ($('#TaskType').val() == "1") {
+
+                    if ('@Model.Id' != '0' && '@Model.Id' != '' && '@Model.Id' != undefined && '@Model.TaskType'=='2') {
+                        //var calm = [];
+                        //$("input:checkbox[name=CalssMlt]:checked").each(function () {
+                        //    calm.push($(this).val());
+                        //});
+                        // var cm = calm.length != 0 ? calm.join(","):"";
+                        //var cm = $('#ClassMLT').val();
+                        //formData.append('ClassMLT', cm);
+                        //formData.append('ConductedDate', $('#ConductedDate').val());
+
+                        //formData.append('SessionType', $('#SessionType').val());
+                        //formData.append('NoofStudent', $('#NoofStudent').val());
+
+                        //if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0' && $('#SessionType').val() == "1") {
+                        //    formData.append('Session', $('#CareerMaster').val());
+                        //}
+                        //else if ($('#coursemaster').val() != '' && $('#coursemaster').val() != '0' && $('#SessionType').val() == "2") {
+                        //    formData.append('Session', $('#coursemaster').val());
+                        //}
+                        //else if ($('#SessionInput').val() != '' && $('#SessionType').val() == "3") {
+                        //    formData.append('SessionInput', $('#SessionInput').val());
+                        //}
+                        formData.append('Id', $('#Id').val());
+                        if ($('#AchievedNoofStudent').val() != '') {
+                            formData.append('AchievedNoofStudent', $('#AchievedNoofStudent').val());
+                        }
+                        if ($('#CounsellingRemarks').val() != '') {
+                            formData.append('CounsellingRemarks', $('#CounsellingRemarks').val());
+                        }
+                        if ($('#AchievementDate').val() != '') {
+                            formData.append('AchievementDate', $('#AchievementDate').val());
+                        }
+                        if ($('#AchieveImage').get(0).files.length != 0) {
+                            formData.append('AchieveImage', $('#AchieveImage')[0].files[0]);
+                        }
+
+
+                    }
+
+                    if ($('#TaskType').val() == "1" && $('#Id').val()=='0') {
                         let tbl = $('#tbl_Plan').DataTable();
                         tbl.$('input:checked').each(function (i, row) {
                             var Class_id = $(row).attr('data-id') || 0;
@@ -364,7 +488,7 @@
 
                         formData.append('MS_model', JSON.stringify(MS_model));
                     }
-                    else if ($('#TaskType').val() == "2") {
+                    else if ($('#TaskType').val() == "2" && $('#Id').val() == '0') {
                         //var calm = [];
                         //$("input:checkbox[name=CalssMlt]:checked").each(function () {
                         //    calm.push($(this).val());

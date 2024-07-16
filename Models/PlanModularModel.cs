@@ -8,6 +8,10 @@ namespace UmangMicro.Models
 {
     public class PlanModularModel
     {
+        public PlanModularModel()
+        {
+            Id = 0;
+        }
         public int Id { get; set; }
         [Display(Name = "Cohort")]
         public int Cohort { get; set; }
@@ -42,8 +46,10 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> AchievementDate { get; set; }
         [Display(Name = "Achievement Image Upload")]
         public string AchieveImagepath { get; set; }
+        [Display(Name = "Counselling Remarks")]
+        public string CounsellingRemarks { get; set; }
 
-        [Display(Name = "Achievement Image Upload")]
+        [Display(Name = "Achievement Image Upload(jpeg,png,jpg)")]
         public HttpPostedFileBase AchieveImage{ get; set; }
         [Display(Name = "Session")]
         public Nullable<int> Session { get; set; }

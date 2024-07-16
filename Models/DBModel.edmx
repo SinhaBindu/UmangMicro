@@ -465,6 +465,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="AchievementDate" Type="date" />
           <Property Name="AchievedNoofStudent" Type="int" />
           <Property Name="AchieveImagepath" Type="nvarchar(max)" />
+          <Property Name="CounsellingRemarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_Registration">
           <Key>
@@ -1312,6 +1313,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="AchievementDate" Type="DateTime" Precision="0" />
           <Property Name="AchievedNoofStudent" Type="Int32" />
           <Property Name="AchieveImagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CounsellingRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1915,6 +1917,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySetMapping Name="tbl_Plan">
             <EntityTypeMapping TypeName="UM_DBModel.tbl_Plan">
               <MappingFragment StoreEntitySet="tbl_Plan">
+                <ScalarProperty Name="CounsellingRemarks" ColumnName="CounsellingRemarks" />
                 <ScalarProperty Name="AchieveImagepath" ColumnName="AchieveImagepath" />
                 <ScalarProperty Name="AchievedNoofStudent" ColumnName="AchievedNoofStudent" />
                 <ScalarProperty Name="AchievementDate" ColumnName="AchievementDate" />

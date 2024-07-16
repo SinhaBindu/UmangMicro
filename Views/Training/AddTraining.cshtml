@@ -45,83 +45,82 @@
 
                 @using (Html.BeginForm("AddTraining", "Training", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
                 {
-                 <input type="hidden" name="TeacherIds" id="TeacherIds" />
-                <div class="form-row col-md-12">
-                    <div class="col-md-3">
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(model => model.Trainingtype, htmlAttributes: new { @class = "" })<br />
-                            @Html.DropDownListFor(model => model.Trainingtype, CommonModel.GetTrainingType(), null, new { @class = "form-control", @id = "Trainingtype", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.Trainingtype, "", new { @class = "text-danger" })
+                    <input type="hidden" name="TeacherIds" id="TeacherIds" />
+                    <div class="form-row col-md-12">
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Trainingtype, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Trainingtype, CommonModel.GetTrainingType(), null, new { @class = "form-control", @id = "Trainingtype", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Trainingtype, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-3 dv-hd">
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })<br />
-                            @Html.DropDownListFor(model => model.DistrictId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                        <div class="col-md-3 dv-hd">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.DistrictId, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 dv-hd">
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })<br />
-                            @Html.DropDownListFor(model => model.BlockId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
+                        <div class="col-md-3 dv-hd">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.BlockId, new List<SelectListItem>(), new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 dv-hd" >
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })<br />
-                            @Html.DropDownListFor(model => model.SchoolId, new List<SelectListItem>(), null, new { @class = "form-control", @required = "required" })
-                            @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                        <div class="col-md-3 dv-hd">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.SchoolId, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
+                        <div class="col-md-3" id="dv_Round" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Round, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Round, CommonModel.GetRound(), new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Round, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_nameofteacher" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Nameofteacher, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Nameofteacher, CommonModel.GetTeachers().Where(x => x.Value != "0"), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.Nameofteacher, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-                    <div class="col-md3" id="dv_Round" style="display:none">
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(model => model.Round, htmlAttributes: new { @class = "" })<br />
-                            @Html.DropDownListFor(model => model.Round, CommonModel.GetRound(), null, new { @class = "form-control",  @required = "required" })
-                            @Html.ValidationMessageFor(model => model.Round, "", new { @class = "text-danger" })
+                        <div class="col-md-3" id="dv_date" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.Date, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                @Html.EditorFor(m => m.Date, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker", @required = "required" } })
+                                @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3" id="dv_nameofteacher" style="display:none">
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(model => model.Nameofteacher, htmlAttributes: new { @class = "" })<br />
-                            @Html.DropDownListFor(model => model.Nameofteacher, CommonModel.GetTeachers().Where(x => x.Value != "0"), null, new { @class = "form-control display:flex;", @required = "required", @multiple = "multiple" })
-                            @Html.ValidationMessageFor(model => model.Nameofteacher, "", new { @class = "text-danger" })
+                        <div class="col-md-3" id="dv_teachertrained" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.Noofteachertrained, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @required = "required" } })
+                                @Html.ValidationMessageFor(m => m.Noofteachertrained, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-3" id="dv_date" style="display:none">
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(m => m.Date, new { @class = "Col-md-2 col-form-label" })<em></em>
-                            @Html.EditorFor(m => m.Date, new { htmlAttributes = new { @placeholder = "Enter the Date", @class = "form-control datepicker",  @required = "required" } })
-                            @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+                        <div class="col-md-12" id="divPlanInput">
                         </div>
-                    </div>
-                    <div class="col-md-3" id="dv_teachertrained" style="display:none">
-                        <div class="position-relative form-group">
-                            <span class="text-danger">*</span>@Html.LabelFor(m => m.Noofteachertrained, new { @class = "Col-md-2 col-form-label" })<em></em>
-                            @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @required = "required" } })
-                            @Html.ValidationMessageFor(m => m.Noofteachertrained, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-12" id="divPlanInput">
-                    </div>
 
-                    <div class="col-md-12">
-                        <br />
-                        <div class="position-relative form-group" style="margin-left: 50% !important;">
-                            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <a href="~/Training/AddTraining" class="btn btn-info text-white">Reset</a>
-                            }
+                        <div class="col-md-12">
+                            <br />
+                            <div class="position-relative form-group" style="margin-left: 50% !important;">
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="~/Training/AddTraining" class="btn btn-info text-white">Reset</a>
+                                }
+                            </div>
                         </div>
                     </div>
-
-                </div>
                 }
             </div>
         </div>
@@ -139,35 +138,49 @@
                 $(document).ready(function () {
                     $('.dv-hd').hide();
 
-                      GetDistrict('DistrictId');
+                    GetDistrict('DistrictId');
 
-            if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
-                $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
-                $('#DistrictId').css("pointer-events", "none");
-                OnChagDistricts('BlockId', $('#DistrictId').val());
-                $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
-                $('#BlockId').css("pointer-events", "none");
-                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
-                $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
-                $('#SchoolId').css("pointer-events", "none");
-            }
+                    if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                        $('#DistrictId').css("pointer-events", "none");
+                        OnChagDistricts('BlockId', $('#DistrictId').val());
+                        $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
+                        $('#BlockId').css("pointer-events", "none");
+                        GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                        $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
+                        $('#SchoolId').css("pointer-events", "none");
+                    }
 
-            if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
-                $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
-                $('#DistrictId').css("pointer-events", "none");
-                OnChagDistricts('BlockId', $('#DistrictId').val());
-            }
+                    if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
+                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
+                        $('#DistrictId').css("pointer-events", "none");
+                        OnChagDistricts('BlockId', $('#DistrictId').val());
+                    }
 
-            $('#DistrictId').change(function () {
-                OnChagDistricts('BlockId', $('#DistrictId').val());
-            });
+                    $('#DistrictId').change(function () {
+                        OnChagDistricts('BlockId', $('#DistrictId').val());
+                    });
 
-            $('#BlockId').change(function () {
-                GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
-            });
+                    $('#BlockId').change(function () {
+                        GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                    });
 
                     $('#Nameofteacher').multiselect({
                         includeSelectAllOption: true,
+                        buttonWidth: '100%'
+                    });
+
+                    $('#DistrictId').multiselect({
+                        includeSelectAllOption: true,
+                        enableFiltering: true,
+                        buttonWidth: '100%',
+                        multiple: true 
+                    });
+                    $('#SchoolId').multiselect({
+                        includeSelectAllOption: true,
+                        
+                        buttonWidth: '100%',
+                        
                     });
 
                     $('#Trainingtype').change(function () {
@@ -176,7 +189,7 @@
                         $('#dv_Round').hide();
                         $('#dv_nameofteacher').hide();
                         $('.dv-hd').hide();
-                        //
+
                         $('#DistrictId').val('0');
                         $('#BlockId').val('0');
                         $('#SchoolId').val('0');
@@ -200,7 +213,6 @@
                     $("#formid").on("submit", function (event) {
                         event.preventDefault();
 
-                       
                         var Nameofteacher = $('#Nameofteacher').val();
                         if (Nameofteacher != null && Nameofteacher != undefined) {
                             if (Nameofteacher.length != 0) {
@@ -210,9 +222,6 @@
                         }
 
                         var formData = new FormData(this);
-                        
-                        //formData.append('Nameofteacher', Nameofteacher);
-
 
                         $.ajax({
                             type: "POST",

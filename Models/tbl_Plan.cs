@@ -35,5 +35,6 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> AchievementDate { get; set; }
         public Nullable<int> AchievedNoofStudent { get; set; }
         public string AchieveImagepath { get; set; }
+        public string CounsellingRemarks { get; set; }
     }
 }

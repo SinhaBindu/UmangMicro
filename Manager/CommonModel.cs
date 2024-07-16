@@ -617,6 +617,40 @@ namespace UmangMicro.Manager
 
             return filepath;
         }
+        public static string SaveGroupCounsellingModelSessionFile(HttpPostedFileBase files, string ModuleId,string FolderName)
+        {
+            string URL = "";
+            string filepath = string.Empty;
+
+            if (files != null && files.ContentLength > 0)
+            {
+                string file_extension = Path.GetExtension(files.FileName).ToLower();
+                string filenamewithoutext = Path.GetFileNameWithoutExtension(files.FileName);
+                Stream strmStream = files.InputStream;
+                if (IsValidImage(strmStream) == true || file_extension == ".jpeg" || file_extension == ".png" || file_extension == ".jpg")
+                {
+                    //URL = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/" + Module + "/" + RegNo + "/"));
+                    URL = "~/ImageUploads/"+ FolderName +"/";
+                    string extension = Path.GetExtension(files.FileName);
+
+                    if (!Directory.Exists(HttpContext.Current.Server.MapPath(URL)))
+                    {
+                        Directory.CreateDirectory(HttpContext.Current.Server.MapPath(URL));
+                    }
+                    int index = 1;
+                    string fname = files.FileName;
+                    while (System.IO.File.Exists(HttpContext.Current.Server.MapPath(Path.Combine(URL, fname))))
+                    {
+                        index++;
+                        fname = filenamewithoutext + "(" + index.ToString() + ")" + extension;
+                    }
+                    files.SaveAs(HttpContext.Current.Server.MapPath(URL + (ModuleId + "-" + fname)));
+                    filepath = URL + (ModuleId + "-" + fname);
+                }
+            }
+
+            return filepath;
+        }
         public static string DeleteSingleFile(HttpPostedFileBase files, string Module, string RegNo)
         {
             //ToDo: Add code to delete single file from directory

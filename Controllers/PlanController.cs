@@ -51,11 +51,31 @@ namespace UmangMicro.Controllers
         {
             UM_DBEntities db_ = new UM_DBEntities();
             PlanModularModel model = new PlanModularModel();
-            if (Id != 0 && TakId== 2)
+            if (Id != 0 && TakId == 2 && Id != null)
             {
                 var tbl = db_.tbl_Plan.Find(Id);
-                model.Id = tbl.Id;  
-                model.TaskType = tbl.Task;  
+                var tbldis = db_.SchoolMaster_N.Find(tbl.SchoolId);
+
+                model.Id = tbl.Id;
+                model.TaskType = tbl.Task;
+                model.DistrictId = Convert.ToInt32(tbldis.DistrictCode);
+                model.BlockId = Convert.ToInt32(tbldis.BlockCode);
+                model.SchoolId = tbl.SchoolId;
+                model.ConductedDate = tbl.ConductedDate;
+                model.ClassMLT = tbl.CalssMlt;
+                model.NoofStudent = tbl.NoofStudent;
+                model.SessionType = tbl.SessionType;
+                if (tbl.SessionType == 1 || tbl.SessionType == 2)
+                {
+                    model.Session = tbl.Session;
+                    model.SessionInput = null;
+                }
+                else if (tbl.SessionType == 3)
+                {
+                    model.Session = null;
+                    model.SessionInput = tbl.SessionInput;
+                }
+
             }
             return View(model);
         }
@@ -91,7 +111,7 @@ namespace UmangMicro.Controllers
                 }
                 if (model != null)
                 {
-                    if (model.TaskType == 1)
+                    if (model.TaskType == 1 && model.Id == 0)
                     {
                         var MS_model = this.Request.Unvalidated.Form["MS_model"];
                         if (MS_model != null)
@@ -139,7 +159,7 @@ namespace UmangMicro.Controllers
                             }
                         }
                     }
-                    else if (model.TaskType == 2)
+                    else if (model.TaskType == 2 && model.Id == 0)
                     {
                         if (model.SessionType != null)
                         {
@@ -174,6 +194,39 @@ namespace UmangMicro.Controllers
                                 return resResponse3;
                             }
                         }
+                    }
+                    else if (model.TaskType == 2 && model.Id != 0)
+                    {
+                        var tbl = db_.tbl_Plan.Find(model.Id);
+                        if (tbl.ConductedDate > model.AchievementDate)
+                        {
+                            response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Please Enter The Plan Date Greater Than Achievement Date .<br /> ", Data = null };
+                            var resResponse1 = Json(response, JsonRequestBehavior.AllowGet);
+                            resResponse1.MaxJsonLength = int.MaxValue;
+                            return resResponse1;
+                        }
+
+                        if (tbl != null)
+                        {
+                            var filePath = CommonModel.SaveGroupCounsellingModelSessionFile(model.AchieveImage, tbl.Id.ToString(), "GPCounselling");
+                            var physicalFilePath = Server.MapPath(filePath);
+
+                            tbl.AchieveImagepath = filePath;
+                            tbl.CounsellingRemarks = model.CounsellingRemarks;
+                            tbl.AchievementDate = model.AchievementDate;
+                            tbl.AchievedNoofStudent = model.AchievedNoofStudent;
+
+
+                            int results = db_.SaveChanges();
+                            if (results > 0)
+                            {
+                                response = new JsonResponseData { StatusType = eAlertType.success.ToString(), Message = "Congratulations, Group Counselling updated successfully!<br />", Data = null };
+                                var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
+                                resResponse3.MaxJsonLength = int.MaxValue;
+                                return resResponse3;
+                            }
+                        }
+
                     }
                 }
             }
