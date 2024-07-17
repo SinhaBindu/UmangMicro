@@ -91,6 +91,8 @@ namespace UmangMicro.Controllers
                         {
                             tbl_Modular tbl_MS;
                             List<tbl_Modular> tbl_list = new List<tbl_Modular>();
+                            
+                            
                             foreach (var m in mlist)
                             {
                                 tbl_MS = new tbl_Modular()
@@ -100,10 +102,15 @@ namespace UmangMicro.Controllers
                                     NoofStudent = m.NoofStudent,
                                     ConductedDate = m.ConductedDate,
                                     Session = m.Session,
+                                    AchieveImage = model.AchieveImagepath,
                                     CreatedBy = MvcApplication.CUser.Id,
                                     CreatedOn = DateTime.Now,
-                                    IsActive = true
+                                    IsActive = true,
+                                   
                                 };
+                               
+
+
                                 tbl_list.Add(tbl_MS);
                             }
                             if (tbl_list.Count > 0)
@@ -138,11 +145,14 @@ namespace UmangMicro.Controllers
             }
             return View();
         }
+       
+
         public ActionResult GetModularSession()
         {
             ModularSModel modularS = new ModularSModel();
             return View(modularS);
         }
+       
         [HttpGet]
         public ActionResult LoadFormModular(int Cohort)
         {

@@ -16,5 +16,7 @@ namespace UmangMicro.Models
     {
         public int ID { get; set; }
         public string MonthName { get; set; }
+        public Nullable<int> FinMonthID { get; set; }
+        public string FinMonthName { get; set; }
     }
 }

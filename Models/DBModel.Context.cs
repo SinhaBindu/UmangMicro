@@ -52,7 +52,6 @@ namespace UmangMicro.Models
         public virtual DbSet<tbl_RIASEC_Main> tbl_RIASEC_Main { get; set; }
         public virtual DbSet<tbl_CaseHistory> tbl_CaseHistory { get; set; }
         public virtual DbSet<ModularSessionMaster> ModularSessionMasters { get; set; }
-        public virtual DbSet<tbl_Modular> tbl_Modular { get; set; }
         public virtual DbSet<DocumentType_Master> DocumentType_Master { get; set; }
         public virtual DbSet<Tbl_FileResource> Tbl_FileResource { get; set; }
         public virtual DbSet<Class_Master> Class_Master { get; set; }
@@ -61,5 +60,6 @@ namespace UmangMicro.Models
         public virtual DbSet<Tbl_Training> Tbl_Training { get; set; }
         public virtual DbSet<Tbl_Trainingteacher> Tbl_Trainingteacher { get; set; }
         public virtual DbSet<tbl_Plan> tbl_Plan { get; set; }
+        public virtual DbSet<tbl_Modular> tbl_Modular { get; set; }
     }
 }
