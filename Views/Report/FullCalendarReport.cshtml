@@ -6,25 +6,420 @@
 
 <h2>@ViewBag.Title </h2>
 @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">*@
-<link href="~/Content/Calendarcssjs_old/style.css" rel="stylesheet">
-<link href="~/Content/fullcalendar/style.css" rel="stylesheet">
-<link href="~/Content/fullcalendar/theme.css" rel="stylesheet">
-<link href="~/Content/fullcalendar/nice-select.css" rel="stylesheet">
+@*<link href="~/Content/Calendarcssjs_old/style.css" rel="stylesheet">
+    <link href="~/Content/fullcalendar/style.css" rel="stylesheet">
+    <link href="~/Content/fullcalendar/theme.css" rel="stylesheet">
+    <link href="~/Content/fullcalendar/nice-select.css" rel="stylesheet">*@
 
-<div class="card">
-    <div class="p-[1.875rem] max-sm:p-4">
-        <div id="calendar" class="app-fullcalendar"></div>
-    </div>
-</div>
+@*<div class="card">
+        <div class="p-[1.875rem] max-sm:p-4">
+            <div id="calendar" class="app-fullcalendar"></div>
+        </div>
+    </div>*@
+
+<div id="msg"></div>
+<div id="container"></div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-<script src="~/Content/fullcalendar/js/moment.min.js"></script>
-<script src="~/Content/fullcalendar/js/main.min.js"></script>
-<script src="~/Content/fullcalendar/fullcalendar-init.js"></script>
-<script src="~/Content/fullcalendar/jquery.nice-select.min.js"></script>
-<script src="~/Content/fullcalendar/draggable.js"></script>
 
-<script src="~/Content/fullcalendar/jquery.nice-select.min.js"></script> <!-- nice-select -->
-<script src="~/Content/fullcalendar/calendar.min.js"></script> <!-- Date picker -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="~/Content/fullcalendar/js/moment.min.js"></script>
+    <script src="~/Content/fullcalendar/js/main.min.js"></script>
+    <script src="~/Content/fullcalendar/fullcalendar-init.js"></script>
+    <script src="~/Content/fullcalendar/jquery.nice-select.min.js"></script>
+    <script src="~/Content/fullcalendar/draggable.js"></script>
+
+    <script src="~/Content/fullcalendar/jquery.nice-select.min.js"></script>-->
+    <!-- nice-select -->
+    <!--<script src="~/Content/fullcalendar/calendar.min.js"></script>--> <!-- Date picker -->
+
+    <script>
+        var data = [];
+        var chartData = [];
+        const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        $(document).ready(function () {
+
+
+            BindData();
+            //const data = [{
+            //    date: '2023-07-01',
+            //    temperature: 19.1
+            //},
+            //{
+            //    date: '2023-07-02',
+            //    temperature: 15.3
+            //},
+            //{
+            //    date: '2023-07-03',
+            //    temperature: 16.4
+            //},
+            //{
+            //    date: '2023-07-04',
+            //    temperature: 16.0
+            //},
+            //{
+            //    date: '2023-07-05',
+            //    temperature: 17.9
+            //},
+            //{
+            //    date: '2023-07-06',
+            //    temperature: 15.8
+            //},
+            //{
+            //    date: '2023-07-07',
+            //    temperature: 21.1
+            //},
+            //{
+            //    date: '2023-07-08',
+            //    temperature: 23.3
+            //},
+            //{
+            //    date: '2023-07-09',
+            //    temperature: 24.8
+            //},
+            //{
+            //    date: '2023-07-10',
+            //    temperature: 25.1
+            //},
+            //{
+            //    date: '2023-07-11',
+            //    temperature: 18.2
+            //},
+            //{
+            //    date: '2023-07-12',
+            //    temperature: 14.4
+            //},
+            //{
+            //    date: '2023-07-13',
+            //    temperature: 19.3
+            //},
+            //{
+            //    date: '2023-07-14',
+            //    temperature: 20.2
+            //},
+            //{
+            //    date: '2023-07-15',
+            //    temperature: 15.8
+            //},
+            //{
+            //    date: '2023-07-16',
+            //    temperature: 16.1
+            //},
+            //{
+            //    date: '2023-07-17',
+            //    temperature: 15.7
+            //},
+            //{
+            //    date: '2023-07-18',
+            //    temperature: 19.2
+            //},
+            //{
+            //    date: '2023-07-19',
+            //    temperature: 18.6
+            //},
+            //{
+            //    date: '2023-07-20',
+            //    temperature: 18.3
+            //},
+            //{
+            //    date: '2023-07-21',
+            //    temperature: 15.0
+            //},
+            //{
+            //    date: '2023-07-22',
+            //    temperature: 14.7
+            //},
+            //{
+            //    date: '2023-07-23',
+            //    temperature: 18.8
+            //},
+            //{
+            //    date: '2023-07-24',
+            //    temperature: 17.7
+            //},
+            //{
+            //    date: '2023-07-25',
+            //    temperature: 17.4
+            //},
+            //{
+            //    date: '2023-07-26',
+            //    temperature: 17.6
+            //},
+            //{
+            //    date: '2023-07-27',
+            //    temperature: 18.1
+            //},
+            //{
+            //    date: '2023-07-28',
+            //    temperature: 18.2
+            //},
+            //{
+            //    date: '2023-07-29',
+            //    temperature: 20.3
+            //},
+            //{
+            //    date: '2023-07-30',
+            //    temperature: 16.4
+            //},
+            //{
+            //    date: '2023-07-31',
+            //    temperature: 17.0
+            //}];
+
+
+            // The function takes in a dataset and calculates how many empty tiles needed
+            // before and after the dataset is plotted.
+        });
+        function generateChartData(data) {
+            // Calculate the starting weekday index (0-6 of the first date in the given
+            // array)
+            debugger;
+            const firstWeekday = new Date(data[0].date).getDay(),
+                monthLength = data.length,
+                lastElement = data[monthLength - 1].date,
+                lastWeekday = new Date(lastElement).getDay(),
+                lengthOfWeek = 6,
+                emptyTilesFirst = firstWeekday,
+                chartData = [];
+
+            // Add the empty tiles before the first day of the month with null values to
+            // take up space in the chart
+            for (let emptyDay = 0; emptyDay < emptyTilesFirst; emptyDay++) {
+                chartData.push({
+                    x: emptyDay,
+                    y: 5,
+                    value: null,
+                    color: null,
+                    name: null,
+                    date: null,
+                    custom: {
+                        empty: true
+                    }
+                });
+            }
+
+            // Loop through and populate with temperature and dates from the dataset
+            for (let day = 1; day <= monthLength; day++) {
+                // Get date from the given data array
+                const date = data[day - 1].date;
+                // Offset by thenumber of empty tiles
+                const xCoordinate = (emptyTilesFirst + day - 1) % 7;
+                const yCoordinate = Math.floor((firstWeekday + day - 1) / 7);
+                const id = day;
+
+                // Get the corresponding temperature for the current day from the given
+                // array
+                debugger;
+                const temperature = data[day - 1].NoOfPlan;
+                const NoofAchieved = data[day - 1].NoofAchieved;
+                const NoOfAchievement = data[day - 1].NoOfAchievement;
+                var color = "";// NoOfAchievement != null ? "#3FAD18" ? temperature - NoofAchieved != 0 : "#AD3118" :"#F0940F";
+                if (NoOfAchievement != null) {
+                    color = "#3FAD18";
+                }
+                if (temperature==0 && NoofAchieved == 0) {
+                    color = "#AD3118";
+                }
+                if (NoOfAchievement == null && temperature != 0 && NoofAchieved == 0) {
+                    color = "#F0940F";
+                }
+
+                chartData.push({
+                    x: xCoordinate,
+                    y: 5 - yCoordinate,
+                    value: temperature + '/' + NoofAchieved,
+                    color: color,
+                    name: temperature + '/' + NoofAchieved,
+                    date: new Date(date).getTime(),
+                    custom: {
+                        monthDay: id
+                    }
+                });
+            }
+
+            // Fill in the missing values when dataset is looped through.
+            const emptyTilesLast = lengthOfWeek - lastWeekday;
+            for (let emptyDay = 1; emptyDay <= emptyTilesLast; emptyDay++) {
+                chartData.push({
+                    x: (lastWeekday + emptyDay) % 7,
+                    y: 0,
+                    value: null,
+                    color: null,
+                    name: null,
+                    date: null,
+                    custom: {
+                        empty: true
+                    }
+                });
+            }
+            return chartData;
+        }
+        function Treamap(DisMonthYear) {
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'heatmap'
+                },
+
+                title: {
+                    text: 'Modular Session - No Of Plan/Achievement Data',
+                    align: 'left'
+                },
+
+                subtitle: {
+                    text: 'Plan/Achievement variation at day through ' + DisMonthYear,
+                    align: 'left'
+                },
+
+                accessibility: {
+                    landmarkVerbosity: 'one'
+                },
+
+                tooltip: {
+                    enabled: true,
+                    outside: true,
+                    zIndex: 20,
+                    headerFormat: '',
+                    //pointFormat: '{#unless point.custom.empty}{point.date:%A, %b %e, ' +
+                    //    '%Y}{/unless}',
+                    pointFormat: '{#unless point.custom.empty}Modular Session - No of (Plan/Achieved) : {point.name}{/unless}',
+                    //nullFormat: 'No data'
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: weekdays,
+                    opposite: true,
+                    lineWidth: 26,
+                    offset: 13,
+                    lineColor: 'rgba(27, 26, 37, 0.2)',
+                    labels: {
+                        rotation: 0,
+                        y: 20,
+                        style: {
+                            textTransform: 'uppercase',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    accessibility: {
+                        description: 'weekdays',
+                        rangeDescription: 'X Axis is showing all 7 days of the week, ' +
+                            'starting with Sunday.'
+                    }
+                },
+
+                yAxis: {
+                    min: 0,
+                    max: 5,
+                    accessibility: {
+                        description: 'weeks'
+                    },
+                    visible: false
+                },
+
+                legend: {
+                    align: 'right',
+                    layout: 'vertical',
+                    verticalAlign: 'middle'
+                },
+
+                colorAxis: {
+                    min: 0,
+                    stops: [
+                        [0.2, 'lightblue'],
+                        [0.4, '#CBDFC8'],
+                        [0.6, '#F3E99E'],
+                        [0.9, '#F9A05C']
+                    ],
+                    labels: {
+                        format: '{value}'
+                    }
+                },
+
+                series: [{
+                    keys: ['x', 'y', 'value', 'color', 'name', 'date', 'id'],
+                    data: chartData,
+                    nullColor: 'rgba(196, 196, 196, 0.2)',
+                    borderWidth: 2,
+                    borderColor: 'rgba(196, 196, 196, 0.2)',
+                    dataLabels: [{
+                        enabled: true,
+                        format: '{#unless point.custom.empty}{point.value:.1f}{/unless}',
+                        style: {
+                            textOutline: 'none',
+                            fontWeight: 'normal',
+                            fontSize: '1rem'
+                        },
+                        y: 4
+                    }, {
+                        enabled: true,
+                        align: 'left',
+                        verticalAlign: 'top',
+                        format: '{#unless ' +
+                            'point.custom.empty}{point.custom.monthDay}{/unless}',
+                        backgroundColor: 'whitesmoke',
+                        padding: 2,
+                        style: {
+                            textOutline: 'none',
+                            color: 'rgba(70, 70, 92, 1)',
+                            fontSize: '0.8rem',
+                            fontWeight: 'bold',
+                            opacity: 0.5
+                        },
+                        x: 1,
+                        y: 1
+                    }]
+                }]
+            });
+        }
+        function BindData() {
+            $('#msg').html('');
+            //jQuery.event.trigger("ajaxStart");
+            $('#msg').removeClass("text-danger");
+            $.ajax({
+                url: document.baseURI + "/Report/GetCalendarReportData",
+                type: "Post",
+                data: '',//{ 'District': District, 'Block': Block },
+                success: function (resp) {
+                    debugger;
+                    if (resp.IsSuccess) {
+                        var resData = JSON.parse(resp.res);
+                        var tbl1 = resData != null ? resData.Table : null;
+                        data = []; //chartData = [];
+                        var DisMonthYear = "";
+                        for (var i = 0; i < tbl1.length; i++) {
+                            DisMonthYear = tbl1[i].ColumnDisplayMonth + "-" + tbl1[i].ColumnDisplayYear;
+                            data.push({ date: tbl1[i].Date, NoOfPlan: tbl1[i].Noofplan, NoofAchieved: tbl1[i].Noofachived, NoOfAchievement: tbl1[i].NoofAchievement });
+                        }
+                        debugger;
+                        // generateChartData(SRData);
+                        // chartData = generateChartData(data);
+                        chartData = generateChartData(data);
+                        debugger;
+                        Treamap(DisMonthYear);
+                    }
+                    else {
+                        $('#msg').html("Record Not Found !!");//TO DO
+                        $('#msg').addClass("text-danger");//TO DO
+                        // jQuery.event.trigger("ajaxStop");
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#msg').html(errormsg);
+                    //jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });
+        }
+    </script>
+}

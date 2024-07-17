@@ -1102,12 +1102,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Plan\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Plan\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Plan\Manage\Index.cshtml" />
-    <Content Include="Views\Plan\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Plan\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Plan\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Master\UserDetaillist.cshtml" />
     <Content Include="Views\Master\_UserDetailData.cshtml" />

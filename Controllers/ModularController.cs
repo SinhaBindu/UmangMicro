@@ -91,10 +91,12 @@ namespace UmangMicro.Controllers
                         {
                             tbl_Modular tbl_MS;
                             List<tbl_Modular> tbl_list = new List<tbl_Modular>();
-                            
-                            
+                            var maxid = db.tbl_Modular.Max(x => x.Id);
                             foreach (var m in mlist)
                             {
+                                maxid= maxid+1;
+                                var filePath = CommonModel.SaveGroupCounsellingModelSessionFile(model.AchieveImage, maxid.ToString(), "ModularAchievementImage");
+
                                 tbl_MS = new tbl_Modular()
                                 {
                                     SchoolId = model.SchoolId,
@@ -102,7 +104,7 @@ namespace UmangMicro.Controllers
                                     NoofStudent = m.NoofStudent,
                                     ConductedDate = m.ConductedDate,
                                     Session = m.Session,
-                                    AchieveImage = model.AchieveImagepath,
+                                    AchieveImage = filePath,
                                     CreatedBy = MvcApplication.CUser.Id,
                                     CreatedOn = DateTime.Now,
                                     IsActive = true,

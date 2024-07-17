@@ -53,8 +53,9 @@
                                 @Html.Editor("ConductedDate" + item.Value, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @maxlength = "11", @placeholder = "dd-mmm-yyyy" } })
                             </td>
                             <td class="text-left">
-                                @Html.TextBoxFor(model => model.AchieveImage, new { type = "file", @required = "required" })
-                                @Html.ValidationMessageFor(model => model.AchieveImage, "", new { @class = "text-danger" })
+                                <input type="file" name="AchieveImage@(indx)" id="AchieveImage@(indx)" />
+                                @*@Html.TextBox("AchieveImage" + item.Value, new { type = "file", @required = "required" } )*@
+                                @*@Html.ValidationMessageFor(model => model.AchieveImage, "", new { @class = "text-danger" })*@
                             </td>
                         </tr>
                                         indx++;

@@ -147,7 +147,8 @@
                         var Sessionid =$('#Session' + Class_id).val();
                         var NoofStudent = $('#NoofStudent' + Class_id).val();
                         var CDate = $('#ConductedDate' + Class_id).val();
-                        var AchvImage = $('#AchieveImage' + Class_id).files[0];
+                        debugger;
+                        var AchvImage = $('#AchieveImage' + Class_id);
                         var Ischeck = $(row, 'input[type=checkbox]').val();
                         if (NoofStudent == '' || CDate == '' || (Sessionid == "Select" || Sessionid == "-1" || Sessionid == "")) {
                             toastr.error("Error", "Select Session, Enter the No. of students attended session and Conducted date.");
@@ -159,7 +160,7 @@
                                 Session: Sessionid,
                                 NoofStudent: NoofStudent,
                                 ConductedDate: CDate,
-                                AchieveImage: AchvImage,
+                                AchieveImage: AchvImage[0].files[0],
                                 Ischeck: true,
                             });
                         }
