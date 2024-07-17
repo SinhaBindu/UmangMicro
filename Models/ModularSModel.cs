@@ -23,6 +23,10 @@ namespace UmangMicro.Models
         public Nullable<int> CalssId { get; set; }
         [Display(Name = "No of Student")]
         public Nullable<int> NoofStudent { get; set; }
+        [Display(Name = "Achievement Image Upload(jpeg,png,jpg)")]
+        public HttpPostedFileBase AchieveImage { get; set; }
+        [Display(Name = "Achievement Image Upload")]
+        public string AchieveImagepath { get; set; }
         public Nullable<int> Session { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CreatedBy { get; set; }

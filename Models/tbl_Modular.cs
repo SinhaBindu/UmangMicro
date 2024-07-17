@@ -21,6 +21,7 @@ namespace UmangMicro.Models
         public Nullable<int> CalssId { get; set; }
         public Nullable<int> Session { get; set; }
         public Nullable<int> NoofStudent { get; set; }
+        public string AchieveImage { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
