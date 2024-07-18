@@ -94,8 +94,18 @@ namespace UmangMicro.Controllers
                             var maxid = db.tbl_Modular.Max(x => x.Id);
                             foreach (var m in mlist)
                             {
-                                maxid= maxid+1;
-                                var filePath = CommonModel.SaveGroupCounsellingModelSessionFile(model.AchieveImage, maxid.ToString(), "ModularAchievementImage");
+                                string filePath = "";
+                                var file = Request.Files.AllKeys;
+                                for (int i = 0; i < Request.Files.Count; i++)
+                                {
+                                    if (Request.Files.GetKey(i) == ("AchieveImage_" + m.CalssId))
+                                    {
+                                        HttpPostedFileBase fileUpload = Request.Files.Get(i);
+                                        filePath = CommonModel.SaveGroupCounsellingModelSessionFile(fileUpload, maxid.ToString()+"_Clsid"+m.CalssId, "ModularAchievementImage");
+                                    }
+                                }
+
+                                maxid = maxid + 1;
 
                                 tbl_MS = new tbl_Modular()
                                 {
@@ -108,9 +118,9 @@ namespace UmangMicro.Controllers
                                     CreatedBy = MvcApplication.CUser.Id,
                                     CreatedOn = DateTime.Now,
                                     IsActive = true,
-                                   
+
                                 };
-                               
+
 
 
                                 tbl_list.Add(tbl_MS);
@@ -147,14 +157,14 @@ namespace UmangMicro.Controllers
             }
             return View();
         }
-       
+
 
         public ActionResult GetModularSession()
         {
             ModularSModel modularS = new ModularSModel();
             return View(modularS);
         }
-       
+
         [HttpGet]
         public ActionResult LoadFormModular(int Cohort)
         {

@@ -24,7 +24,7 @@ namespace UmangMicro.Models
         [Display(Name = "No of Student")]
         public Nullable<int> NoofStudent { get; set; }
         [Display(Name = "Achievement Image Upload(jpeg,png,jpg)")]
-        public HttpPostedFileBase AchieveImage { get; set; }
+        public List<HttpPostedFileBase> AchieveImage { get; set; }
         [Display(Name = "Achievement Image Upload")]
         public string AchieveImagepath { get; set; }
         public Nullable<int> Session { get; set; }
