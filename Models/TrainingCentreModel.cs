@@ -23,8 +23,12 @@ namespace UmangMicro.Models
         public Nullable<int> Trainingtype { get; set; }
         [Display(Name = "Cohort")]
         public Nullable<int> Round { get; set; }
+        [Display(Name = "Session")]
+        public string Session { get; set; }
         [Display(Name = "Name of Teacher")]
         public string Nameofteacher { get; set; }
+        [Display(Name = "Comment")]
+        public string Comment { get; set; }
         [Display(Name = "Date")]
         public Nullable<System.DateTime> Date { get; set; }
         [Display(Name = "No. of Teacher Trained")]

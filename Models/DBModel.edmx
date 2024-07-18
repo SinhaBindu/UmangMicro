@@ -573,6 +573,8 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsDeletedOn" Type="datetime" />
+          <Property Name="Session" Type="nvarchar" MaxLength="200" />
+          <Property Name="Comment" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Tbl_Trainingteacher">
           <Key>
@@ -730,10 +732,10 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="Class_Master" EntityType="UM_DBModel.Class_Master" />
           <EntitySet Name="Career_Master" EntityType="UM_DBModel.Career_Master" />
           <EntitySet Name="Course_Master" EntityType="UM_DBModel.Course_Master" />
-          <EntitySet Name="Tbl_Training" EntityType="UM_DBModel.Tbl_Training" />
           <EntitySet Name="Tbl_Trainingteacher" EntityType="UM_DBModel.Tbl_Trainingteacher" />
           <EntitySet Name="tbl_Plan" EntityType="UM_DBModel.tbl_Plan" />
           <EntitySet Name="tbl_Modular" EntityType="UM_DBModel.tbl_Modular" />
+          <EntitySet Name="Tbl_Training" EntityType="UM_DBModel.Tbl_Training" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1239,25 +1241,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="CourseId_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Tbl_Training">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Trainingtype" Type="Int32" />
-          <Property Name="Round" Type="Int32" />
-          <Property Name="Nameofteacher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="Noofteachertrained" Type="Int32" />
-          <Property Name="SchoolId" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Tbl_Trainingteacher">
           <Key>
             <PropertyRef Name="Id" />
@@ -1320,6 +1303,27 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tbl_Training">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Trainingtype" Type="Int32" />
+          <Property Name="Round" Type="Int32" />
+          <Property Name="Nameofteacher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Noofteachertrained" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
+          <Property Name="Session" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1865,26 +1869,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tbl_Training">
-            <EntityTypeMapping TypeName="UM_DBModel.Tbl_Training">
-              <MappingFragment StoreEntitySet="Tbl_Training">
-                <ScalarProperty Name="IsDeletedOn" ColumnName="IsDeletedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="Noofteachertrained" ColumnName="Noofteachertrained" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Nameofteacher" ColumnName="Nameofteacher" />
-                <ScalarProperty Name="Round" ColumnName="Round" />
-                <ScalarProperty Name="Trainingtype" ColumnName="Trainingtype" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tbl_Trainingteacher">
             <EntityTypeMapping TypeName="UM_DBModel.Tbl_Trainingteacher">
               <MappingFragment StoreEntitySet="Tbl_Trainingteacher">
@@ -1947,6 +1931,28 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="Reg_fk_Id" ColumnName="Reg_fk_Id" />
                 <ScalarProperty Name="ConductedDate" ColumnName="ConductedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Training">
+            <EntityTypeMapping TypeName="UM_DBModel.Tbl_Training">
+              <MappingFragment StoreEntitySet="Tbl_Training">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="IsDeletedOn" ColumnName="IsDeletedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Noofteachertrained" ColumnName="Noofteachertrained" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Nameofteacher" ColumnName="Nameofteacher" />
+                <ScalarProperty Name="Round" ColumnName="Round" />
+                <ScalarProperty Name="Trainingtype" ColumnName="Trainingtype" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

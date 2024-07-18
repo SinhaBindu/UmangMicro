@@ -316,7 +316,7 @@ namespace UmangMicro.Controllers
             try
             {
                 var items = SP_Model.GetSP_SchoolList(DistrictId, BlockId);
-                if (items != null)
+                if (items.Rows.Count >0)
                 {
                     var data = JsonConvert.SerializeObject(items);
                     return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);

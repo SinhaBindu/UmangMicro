@@ -25,6 +25,7 @@
                         <th>Class</th>
                             <th>Cohort Session</th>
                             <th>No of Student</th>
+                            <th>Achieve Image</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,17 +35,39 @@
                             {
                                 foreach (DataRow dr in dt.Rows)
                                 {
-                                    <tr>
-                                        <td class="text-center">@(sno++)</td>
-                                        <td class="text-center">@(CommonModel.FormateDtDMY(dr["ConductedDate"].ToString()))</td>
-                                        <td class="text-left">@dr["district_name"]</td>
-                                        <td class="text-left">@dr["block_name"]</td>
-                                        <td class="text-left">@dr["school_name"]</td>
-                                        @*<td class="text-center">@dr["TypeOfCohort"]</td>*@
-                                        <td class="text-center">@dr["CalssId"]</td>
-                                        <td class="text-left">@dr["COHORT_Session_Hindi"]</td>
-                                        <td class="text-center">@dr["NoofStudent"]</td>
-                                    </tr>
+                        <tr>
+                            <td class="text-center">@(sno++)</td>
+                            <td class="text-center">@(CommonModel.FormateDtDMY(dr["ConductedDate"].ToString()))</td>
+                            <td class="text-left">@dr["district_name"]</td>
+                            <td class="text-left">@dr["block_name"]</td>
+                            <td class="text-left">@dr["school_name"]</td>
+                            @*<td class="text-center">@dr["TypeOfCohort"]</td>*@
+                            <td class="text-center">@dr["CalssId"]</td>
+                            <td class="text-left">@dr["COHORT_Session_Hindi"]</td>
+                            <td class="text-center">@dr["NoofStudent"]</td>
+                            <td class="text-center">
+                                @{
+                                    string AchieveImage = dr["AchieveImage"].ToString();
+                                    if (!string.IsNullOrEmpty(AchieveImage))
+                                    {
+                                        var splitem = AchieveImage.Split('~');
+                                        if (splitem.Length > 1)
+                                        {
+                                            var fileUrl = CommonModel.GetBaseUrl() + splitem[1];
+                                            <a href="@fileUrl" download><i class="fa fa-file-download"></i> Download</a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger">Invalid Image</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">No Image</span>
+                                    }
+                                }
+                            </td>
+                        </tr>
                                     indx++;
                                 }
                             }
