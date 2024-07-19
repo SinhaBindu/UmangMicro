@@ -573,8 +573,11 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsDeletedOn" Type="datetime" />
-          <Property Name="Session" Type="nvarchar" MaxLength="200" />
           <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="DistrictMlt" Type="nvarchar(max)" />
+          <Property Name="SchoolMlt" Type="nvarchar(max)" />
+          <Property Name="NameofteacherMlt" Type="nvarchar(max)" />
+          <Property Name="sessionMlt" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Tbl_Trainingteacher">
           <Key>
@@ -1322,8 +1325,11 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsDeletedOn" Type="DateTime" Precision="3" />
-          <Property Name="Session" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameofteacherMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sessionMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1938,8 +1944,11 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySetMapping Name="Tbl_Training">
             <EntityTypeMapping TypeName="UM_DBModel.Tbl_Training">
               <MappingFragment StoreEntitySet="Tbl_Training">
+                <ScalarProperty Name="sessionMlt" ColumnName="sessionMlt" />
+                <ScalarProperty Name="NameofteacherMlt" ColumnName="NameofteacherMlt" />
+                <ScalarProperty Name="SchoolMlt" ColumnName="SchoolMlt" />
+                <ScalarProperty Name="DistrictMlt" ColumnName="DistrictMlt" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Session" ColumnName="Session" />
                 <ScalarProperty Name="IsDeletedOn" ColumnName="IsDeletedOn" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />

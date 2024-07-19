@@ -328,6 +328,7 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+      
         public ActionResult GetAllSchoolList(string DistrictId="", string BlockId="")
         {
             try
@@ -345,6 +346,24 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult GetTeacherList(string DistrictIds="", string SchoolIds="")
+        {
+            try
+            {
+                var items =CommonModel.GetTeachers(DistrictIds, SchoolIds);
+                if (items!=null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         #endregion
         // GET: Master
         public ActionResult UserDetaillist()

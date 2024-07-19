@@ -858,11 +858,11 @@ namespace UmangMicro.Manager
             return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
         }
 
-        public static List<SelectListItem> GetTeachers()
+        public static List<SelectListItem> GetTeachers(string DistrictIds="",string SchoolIds="")
         {
             try
             {
-                DataTable dt = SP_Model.GetSP_TeachersData();
+                DataTable dt = SP_Model.GetSP_TeachersData(DistrictIds,SchoolIds);
                 var lists = new List<SelectListItem>();
                 //items.Insert(0, new SelectListItem { Value = "0", Text = "All" });
 

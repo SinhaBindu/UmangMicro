@@ -1194,11 +1194,11 @@
     <Content Include="Views\Resource\Index.cshtml" />
     <Content Include="Views\Resource\ResourceUpload.cshtml" />
     <Content Include="Views\Plan\Index.cshtml" />
-    <Content Include="Views\Training\AddTraining.cshtml" />
     <Content Include="Views\Training\_TrainingData.cshtml" />
     <Content Include="Views\Training\Index.cshtml" />
     <Content Include="Views\Plan\PlanGraph.cshtml" />
     <Content Include="Views\Report\FullCalendarReport.cshtml" />
+    <Content Include="Views\Training\AddTraining.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

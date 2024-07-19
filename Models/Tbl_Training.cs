@@ -28,7 +28,10 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> IsDeletedOn { get; set; }
-        public string Session { get; set; }
         public string Comment { get; set; }
+        public string DistrictMlt { get; set; }
+        public string SchoolMlt { get; set; }
+        public string NameofteacherMlt { get; set; }
+        public string sessionMlt { get; set; }
     }
 }

@@ -23,8 +23,16 @@ namespace UmangMicro.Models
         public Nullable<int> Trainingtype { get; set; }
         [Display(Name = "Cohort")]
         public Nullable<int> Round { get; set; }
-        [Display(Name = "Session")]
-        public string Session { get; set; }
+        //[Display(Name = "Session Mlt")]
+        //public List<string> sessionMlt { get; set; } = new List<string>();
+        [Display(Name = "Session Mlt")]
+        public string sessionMlt { get; set; }
+        [Display(Name = "Name of Teacher Mlt")]
+        public string NameofteacherMlt { get; set; }
+        [Display(Name = "School Mlt")]
+        public string SchoolMlt { get; set; }
+        [Display(Name = "District Mlt")]
+        public string DistrictMlt { get; set; }
         [Display(Name = "Name of Teacher")]
         public string Nameofteacher { get; set; }
         [Display(Name = "Comment")]
@@ -34,6 +42,9 @@ namespace UmangMicro.Models
         [Display(Name = "No. of Teacher Trained")]
         public Nullable<int> Noofteachertrained { get; set; }
         public string TeacherIds { get; set; }
+        public string DistrictIds { get; set; }
+        public string SchoolIds { get; set; }
+        public string sessionIds { get; set; }
 
 
         public Nullable<bool> IsActive { get; set; }

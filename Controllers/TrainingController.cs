@@ -63,6 +63,9 @@ namespace UmangMicro.Controllers
                 if (model.Trainingtype == 1)
                 {
                     model.Nameofteacher = model.TeacherIds;
+                    model.DistrictMlt = model.DistrictIds;
+                    model.SchoolMlt = model.SchoolIds;
+                    model.sessionMlt = model.sessionIds;
                     //tbl = tbl == null ? new tbl_Mapped() : tbl;
                     Tbl_Trainingteacher tbltcmapp;
                     List<Tbl_Trainingteacher> tbllist = new List<Tbl_Trainingteacher>();
@@ -71,10 +74,14 @@ namespace UmangMicro.Controllers
                     {
                         tbl.Trainingtype = model.Trainingtype;
                         tbl.Round = model.Round;
+                        tbl.DistrictMlt = model.DistrictMlt;
+                        tbl.SchoolMlt = model.SchoolMlt;
+                        tbl.sessionMlt = model.sessionMlt;
+                        tbl.Comment = model.Comment;
                         tbl.Nameofteacher = model.Nameofteacher;
                         tbl.Date = model.Date;
                         tbl.IsActive = true;
-                        var Nameofteacherplt = model.Nameofteacher.Split(',');
+                        var Nameofteacherplt = model.Nameofteacher.Split(','); ;
                         if (Nameofteacherplt.Length != 0)
                         {
                             if (model.Id == 0)
@@ -123,6 +130,10 @@ namespace UmangMicro.Controllers
                         tbl.Trainingtype = model.Trainingtype;
                         tbl.Noofteachertrained = model.Noofteachertrained;
                         tbl.SchoolId = model.SchoolId;
+                        tbl.Round = model.Round;
+                        //tbl.sessionMlt = model.sessionMlt != null ? string.Join(",", model.sessionMlt) : "";
+                        tbl.sessionMlt = model.sessionMlt;
+                        tbl.Comment = model.Comment;
                         tbl.Date = model.Date;
                         tbl.IsActive = true;
                         if (model.Id == 0)

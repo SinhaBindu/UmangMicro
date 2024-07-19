@@ -30,6 +30,11 @@
         font-weight: 700;
         font-size: 15px !important;
     }
+
+    .multiselect-container {
+        max-height: 200px !important;
+        overflow-y: auto !important;
+    }
 </style>
 
 <div class="admin-breadcrumb">
@@ -38,15 +43,17 @@
         <a href="~/Training/Index">Training List</a> / Add Training
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                wait
-
                 @using (Html.BeginForm("AddTraining", "Training", FormMethod.Post, new { @id = "formid", @class = "", role = "form", autocomplete = "off", enctype = "multipart/form-data", noValidate = "novalidate" }))
                 {
                     <input type="hidden" name="TeacherIds" id="TeacherIds" />
+                    <input type="hidden" name="DistrictIds" id="DistrictIds" />
+                    <input type="hidden" name="SchoolIds" id="SchoolIds" />
+                    <input type="hidden" name="sessionIds" id="sessionIds" />
                     <div class="form-row col-md-12">
                         <div class="col-md-3">
                             <div class="position-relative form-group">
@@ -56,25 +63,42 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3 dv-hd">
+                        <div class="col-md-3 dv-hd" id="dv_DistrictId" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.DistrictId, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.DropDownListFor(model => model.DistrictId, new List<SelectListItem>(), new { @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-3 dv-hd">
-           <div class="position-relative form-group">
-               <span class="text-danger">*</span>@Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })<br />
-               @Html.DropDownListFor(model => model.BlockId, new List<SelectListItem>(), new { @class = "form-control", @required = "required" })
-               @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
-        </div>
-        </div>
-                        <div class="col-md-3 dv-hd">
+
+                        <div class="col-md-3 dv-hd" id="dv_DistrictMlt" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictMlt, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.DistrictMlt, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.DistrictMlt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 dv-hd" id="dv_block" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.BlockId, new List<SelectListItem>(), new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 dv-hd" id="dv_SchoolId" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.SchoolId, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.DropDownListFor(model => model.SchoolId, new List<SelectListItem>(), new { @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3 dv-hd" id="dv_SchoolMlt" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.SchoolMlt, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.SchoolMlt, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.SchoolMlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -87,17 +111,17 @@
                         </div>
                         <div class="col-md-3" id="dv_session" style="display:none">
                             <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Session, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.Session, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
-                                @Html.ValidationMessageFor(model => model.Session, "", new { @class = "text-danger" })
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.sessionMlt, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.sessionMlt, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.sessionMlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
 
                         <div class="col-md-3" id="dv_nameofteacher" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Nameofteacher, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.Nameofteacher, CommonModel.GetTeachers().Where(x => x.Value != "0"), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @*@Html.DropDownListFor(model => model.Nameofteacher, CommonModel.GetTeachers().Where(x => x.Value != "0"), new { @class = "form-control", @required = "required", @multiple = "multiple" })*@
+                                @Html.DropDownListFor(model => model.Nameofteacher, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
                                 @Html.ValidationMessageFor(model => model.Nameofteacher, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -109,6 +133,7 @@
                                 @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
                         <div class="col-md-3" id="dv_teachertrained" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(m => m.Noofteachertrained, new { @class = "Col-md-2 col-form-label" })<em></em>
@@ -116,6 +141,7 @@
                                 @Html.ValidationMessageFor(m => m.Noofteachertrained, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
                         <div class="col-md-3" id="dv_comment" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "" })<br />
@@ -123,7 +149,6 @@
                                 @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
 
                         <div class="col-md-12" id="divPlanInput">
                         </div>
@@ -155,108 +180,154 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.dv-hd').hide();
-
-                    GetDistrict('DistrictId');
-
+                    
                     if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
-                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
-                        $('#DistrictId').css("pointer-events", "none");
+                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase()).prop("disabled", true);
                         OnChagDistricts('BlockId', $('#DistrictId').val());
-                        $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase());
-                        $('#BlockId').css("pointer-events", "none");
+                        $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase()).prop("disabled", true);
                         GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
-                        $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
-                        $('#SchoolId').css("pointer-events", "none");
+                        $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase()).prop("disabled", true);
+                        $('#Trainingtype').val(('2').toLowerCase()).prop("disabled", true);
                     }
 
                     if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
-                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
-                        $('#DistrictId').css("pointer-events", "none");
-                        OnChagDistricts('BlockId', $('#DistrictId').val());
-                    }
-
-                    $('#DistrictId').change(function () {
+                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase()).prop("disabled", true);
                        // OnChagDistricts('BlockId', $('#DistrictId').val());
-
-                        GetSchool('SchoolId','', $('#DistrictId').val().join(','), '');
-                        $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase());
-                        $('#SchoolId').css("pointer-events", "none");
-                        $('#SchoolId').multiselect({
+                        $('#Trainingtype').val(('1').toLowerCase()).prop("disabled", true);
+                    }
+                    ///School Level teacher
+                    $('#DistrictId').change(function () {
+                        GetBlock('BlockId', '', $('#DistrictId').val());
+                    });
+                    $('#BlockId').change(function () {
+                        GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
+                    });
+                    ///State Leve 
+                    $('#DistrictMlt').change(function () {
+                        debugger;
+                        GetSchool('SchoolMlt', '', $('#DistrictMlt').val(),'');
+                    });
+                    $('#SchoolMlt').change(function () {
+                        BindGetTeacherList('Nameofteacher', '', $('#DistrictMlt').val(), $('#SchoolMlt').val());
+                        $('#Nameofteacher').multiselect({
                             includeSelectAllOption: true,
                             enableFiltering: true,
                             buttonWidth: '100%',
                             multiple: true
-
                         });
                     });
 
-                    $('#BlockId').change(function () {
-                        GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
-                    });
-
-                    $('#Nameofteacher').multiselect({
-                        includeSelectAllOption: true,
-                        buttonWidth: '100%'
-                    });
-
-                    $('#DistrictId').multiselect({
+                    $('#sessionMlt').multiselect({
                         includeSelectAllOption: true,
                         enableFiltering: true,
                         buttonWidth: '100%',
                         multiple: true
                     });
-                   
-
+                    
                     $('#Trainingtype').change(function () {
                         $('#dv_date').hide();
                         $('#dv_teachertrained').hide();
-                        $('#dv_Round').hide();
+                        $('#dv_School').hide();
                         $('#dv_session').hide();
                         $('#dv_nameofteacher').hide();
                         $('.dv-hd').hide();
-                        $('.dv_comment').hide();
+                        $('#dv_comment').hide();
+                        $('#dv_block').hide();
+                        $('#dv_DistrictMlt').hide();
+                        $('#dv_DistrictId').hide();
 
                         $('#DistrictId').val('0');
                         $('#BlockId').val('0');
                         $('#SchoolId').val('0');
                         $('#Date').val('');
                         $('#Round').val('0');
-                        $('#dv_session').val('0');
-                        $('#dv_comment').val('');
+                        $('#sessionMlt').val('0');
+                        $('#Comment').val('');
+                        $('#DistrictMlt').val('0');
+                        $('#SchoolMlt').val('0');
+                        $('#Nameofteacher').val('0');
                         $("#Nameofteacher option:selected").prop("selected", false);
                         $('#Noofteachertrained').val('');
 
                         if ($(this).val() == "1") {
                             $('#dv_date').show();
-                            $('#dv_Round').show();
+                            $('#dv_SchoolMlt').show();
                             $('#dv_session').show();
-                            $('#Session').hide();
-                            $('.dv-hd').show();
+                            $('#dv_Round').show();
                             $('#dv_comment').show();
                             $('#dv_nameofteacher').show();
+                            $('#dv_DistrictMlt').show();
+                            $('#dv_DistrictId').hide();
+                            GetDistrict('DistrictMlt','')
+                            $('#DistrictMlt').multiselect({
+                                includeSelectAllOption: true,
+                                enableFiltering: true,
+                                buttonWidth: '100%',
+                                multiple: true
+                            });
+                          
                         } else if ($(this).val() == "2") {
+                            GetDistrict('DistrictId', '')
                             $('#dv_date').show();
-                            $('.dv-hd').show();
-                            $('#dv_Round').show();
+                            $('#dv_School').show();
                             $('#dv_session').show();
-                            $('#Session').hide();
-                            
                             $('#dv_comment').show();
                             $('#dv_teachertrained').show();
+                            $('#dv_block').show();
+                            $('#dv_DistrictId').show();
+                            $('#dv_Round').show();
+                            $('.dv-hd').show();
+                            $('#dv_DistrictMlt').hide();
+                            $('#dv_SchoolMlt').hide();
                         }
                     });
 
+                    
                     $("#formid").on("submit", function (event) {
                         event.preventDefault();
+                        if ($('#Trainingtype').val() == "1") {
+                            //var Nameofteacher = $('#DistrictMlt').val();
+                            //if (Nameofteacher != null && Nameofteacher != undefined) {
+                            //    if (Nameofteacher.length != 0) {
+                            //        Nameofteacher = Nameofteacher.join(',');
+                            //        $('#DistrictIds').val(Nameofteacher);
+                            //    }
+                            //}
+                            //var Nameofteacher = $('#SchoolIds').val();
+                            //if (Nameofteacher != null && Nameofteacher != undefined) {
+                            //    if (Nameofteacher.length != 0) {
+                            //        Nameofteacher = Nameofteacher.join(',');
+                            //        $('#SchoolIds').val(Nameofteacher);
+                            //    }
+                            //}
 
-                        var Nameofteacher = $('#Nameofteacher').val();
-                        if (Nameofteacher != null && Nameofteacher != undefined) {
-                            if (Nameofteacher.length != 0) {
-                                Nameofteacher = Nameofteacher.join(',');
-                                $('#TeacherIds').val(Nameofteacher);
-                            }
+                            //var Nameofteacher = $('#Nameofteacher').val();
+                            //if (Nameofteacher != null && Nameofteacher != undefined) {
+                            //    if (Nameofteacher.length != 0) {
+                            //        Nameofteacher = Nameofteacher.join(',');
+                            //        $('#TeacherIds').val(Nameofteacher);
+                            //    }
+                            //}
+                            //var Nameofteacher = $('#sessionIds').val();
+                            //if (Nameofteacher != null && Nameofteacher != undefined) {
+                            //    if (Nameofteacher.length != 0) {
+                            //        Nameofteacher = Nameofteacher.join(',');
+                            //        $('#sessionIds').val(Nameofteacher);
+                            //    }
+                            //}
+
+                            $('#DistrictIds').val($('#DistrictMlt').val().join(','));
+                            $('#SchoolIds').val($('#SchoolMlt').val().join(','));
+                            $('#TeacherIds').val($('#Nameofteacher').val().join(','));
                         }
-
+                        var sessionMlt = $('#sessionMlt').val();
+                        if (sessionMlt != null && sessionMlt != undefined) {
+                            if (sessionMlt.length != 0) {
+                                sessionMlt = sessionMlt.join(',');
+                                $('#sessionIds').val(sessionMlt);
+                                }
+                            }
+                       // $('#sessionIds').val($('#sessionMlt').val().join(','));
                         var formData = new FormData(this);
 
                         $.ajax({
@@ -279,34 +350,31 @@
                             }
                         });
                     });
-                     $('#Round').change(function () {
-        var cohortValue = $(this).val();
-        var sessionList = [];
 
-        // Populate Session dropdown based on cohortValue
-        if (cohortValue == "1") {
-            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster68()));
-        } else if (cohortValue == "2") {
-            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster911()));
-        } else if (cohortValue == "3") {
-            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster1112()));
-        }
+                    
+                    $('#Round').change(function () {
+                        var cohortValue = $(this).val();
+                        var sessionList = [];
 
-        // Clear and rebuild Session dropdown
-        $('#Session').empty();
-        $.each(sessionList, function (index, item) {
-            $('#Session').append($('<option>', {
-                value: item.Value,
-                text: item.Text
-            }));
-        });
-        $('#Session').multiselect('rebuild');
-    });
+                        if (cohortValue == "1") {
+                            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster68()));
+                        } else if (cohortValue == "2") {
+                            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster911()));
+                        } else if (cohortValue == "3") {
+                            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster1112()));
+                        }
+
+                        $('#sessionMlt').empty();
+                        $.each(sessionList, function (index, item) {
+                            $('#sessionMlt').append($('<option>', {
+                                value: item.Value,
+                                text: item.Text
+                            }));
+                        });
+                        $('#sessionMlt').multiselect('rebuild');
+                    });
                 });
             </script>
-
         }
     </div>
 </div>
-
-
