@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Reflection;
 using System.Web.Helpers;
+using System.Collections;
 
 namespace UmangMicro.Manager
 {
@@ -2007,6 +2008,22 @@ namespace UmangMicro.Manager
                 lists.Add(new SelectListItem { Value = dr["Value"].ToString(), Text = dr["Text"].ToString() });
             }
             return lists.OrderBy(x => x.Value).ToList();
+        }
+        public static List<SelectListItem> GetSchoolListmutiple(string DistrictId,string BlockId)
+        {
+            List<SelectListItem> lists = new List<SelectListItem>();
+            if (!string.IsNullOrWhiteSpace(DistrictId))
+            {
+                DataTable dt = SP_Model.GetSP_SchoolList(DistrictId, BlockId);
+             
+                //lists.Add(new SelectListItem { Value = "", Text = "Select" });
+                foreach (DataRow dr in dt.Rows)
+                {
+                    lists.Add(new SelectListItem { Value = dr["Value"].ToString(), Text = dr["Text"].ToString() });
+                }
+                return lists.OrderBy(x => x.Value).ToList();
+            }
+            return lists;
         }
         public static List<SelectListItem> GetCaseID(bool isAddedSelect = true)
         {

@@ -25,13 +25,13 @@ namespace UmangMicro.Models
         public Nullable<int> Round { get; set; }
         //[Display(Name = "Session Mlt")]
         //public List<string> sessionMlt { get; set; } = new List<string>();
-        [Display(Name = "Session Mlt")]
+        [Display(Name = "Session")]
         public string sessionMlt { get; set; }
-        [Display(Name = "Name of Teacher Mlt")]
+        [Display(Name = "Name of Teacher")]
         public string NameofteacherMlt { get; set; }
-        [Display(Name = "School Mlt")]
+        [Display(Name = "School")]
         public string SchoolMlt { get; set; }
-        [Display(Name = "District Mlt")]
+        [Display(Name = "District")]
         public string DistrictMlt { get; set; }
         [Display(Name = "Name of Teacher")]
         public string Nameofteacher { get; set; }

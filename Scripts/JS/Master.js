@@ -371,35 +371,7 @@ function BindCluster(Ele, Sel) {
     $('#' + Ele).trigger("chosen:updated");
 }
 
-function BindGetTeacherList(Ele, Sel, DistrictIds, SchoolIds) {
 
-    $('#' + Ele).empty();
-    $('#' + Ele).prop("disabled", false);
-    $('#' + Ele).append($("<option>").val('').text('Select'));
-    $.ajax({
-        url: document.baseURI + "/Master/GetTeacherList",
-        type: "Post",
-        data: JSON.stringify({ 'DistrictIds': DistrictIds, 'SchoolIds': SchoolIds }),
-        contentType: "application/json; charset=utf-8",
-        global: false,
-        async: false,
-        dataType: "json",
-        success: function (resp) {
-            if (resp.IsSuccess) {
-                var data = JSON.parse(resp.res);
-                $.each(data, function (i, exp) {
-                    $('#' + Ele).append($("<option>").val(exp.Value).text(exp.Text));
-                });
-            }
-        },
-        error: function (req, error) {
-            if (error === 'error') { error = req.statusText; }
-            var errormsg = 'There was a communication error: ' + error;
-            //Do To Message display
-        }
-    });
-    $('#' + Ele).trigger("chosen:updated");
-}
 
 //function OnChangeState(District, Sel) {
 //    if (Sel != 'undefined') {
@@ -1036,6 +1008,36 @@ function GetSchool(Ele, Sel, Para1, Para2) {
         url: document.baseURI + "/Master/GetSchoolList",
         type: "Post",
         data: JSON.stringify({ 'DistrictId': Para1, 'BlockId': Para2 }),
+        contentType: "application/json; charset=utf-8",
+        global: false,
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.IsSuccess) {
+                var data = JSON.parse(resp.res);
+                $.each(data, function (i, exp) {
+                    $('#' + Ele).append($("<option>").val(exp.Value).text(exp.Text));
+                });
+            }
+        },
+        error: function (req, error) {
+            if (error === 'error') { error = req.statusText; }
+            var errormsg = 'There was a communication error: ' + error;
+            //Do To Message display
+        }
+    });
+    $('#' + Ele).trigger("chosen:updated");
+}
+
+function BindGetTeacherList(Ele, Sel, DistrictIds, SchoolIds) {
+
+    $('#' + Ele).empty();
+    $('#' + Ele).prop("disabled", false);
+    $('#' + Ele).append($("<option>").val('').text('Select'));
+    $.ajax({
+        url: document.baseURI + "/Master/GetTeacherList",
+        type: "Post",
+        data: JSON.stringify({ 'DistrictIds': DistrictIds, 'SchoolIds': SchoolIds }),
         contentType: "application/json; charset=utf-8",
         global: false,
         async: false,

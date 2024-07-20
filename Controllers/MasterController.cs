@@ -346,7 +346,7 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult GetTeacherList(string DistrictIds="", string SchoolIds="")
+        public ActionResult GetTeacherList(string DistrictIds = "", string SchoolIds = "")
         {
             try
             {

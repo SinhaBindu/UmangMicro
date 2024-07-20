@@ -180,21 +180,26 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.dv-hd').hide();
-                    
+
                     if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                        $('#Trainingtype').val(('2').toLowerCase()).prop("disabled", true);
+                        Onchgetraingtype();
                         $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase()).prop("disabled", true);
                         OnChagDistricts('BlockId', $('#DistrictId').val());
                         $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase()).prop("disabled", true);
                         GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
                         $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase()).prop("disabled", true);
-                        $('#Trainingtype').val(('2').toLowerCase()).prop("disabled", true);
                     }
 
                     if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
-                        $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase()).prop("disabled", true);
+                      //  $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase()).prop("disabled", true);
                        // OnChagDistricts('BlockId', $('#DistrictId').val());
                         $('#Trainingtype').val(('1').toLowerCase()).prop("disabled", true);
+                        Onchgetraingtype();
                     }
+                    $('#Trainingtype').change(function () {
+                        Onchgetraingtype();
+                    });
                     ///School Level teacher
                     $('#DistrictId').change(function () {
                         GetBlock('BlockId', '', $('#DistrictId').val());
@@ -202,19 +207,42 @@
                     $('#BlockId').change(function () {
                         GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
                     });
-                    ///State Leve 
+                    ///State Leve
                     $('#DistrictMlt').change(function () {
                         debugger;
-                        GetSchool('SchoolMlt', '', $('#DistrictMlt').val(),'');
+                        $('#SchoolMlt').empty();
+                        $('#Nameofteacher').empty();
+                        var DistrictMlt = $('#DistrictMlt').val();
+                        if (DistrictMlt != null && DistrictMlt != undefined) {
+                            if (DistrictMlt.length != 0) {
+                                GetSchool('SchoolMlt', '', $('#DistrictMlt').val().join(','), '');
+                                $('#SchoolMlt').multiselect({
+                                    includeSelectAllOption: true,
+                                    enableFiltering: true,
+                                    buttonWidth: '100%',
+                                    multiple: true
+                                });
+                                $('#SchoolMlt').multiselect('rebuild');
+                                 }
+                             }
                     });
                     $('#SchoolMlt').change(function () {
-                        BindGetTeacherList('Nameofteacher', '', $('#DistrictMlt').val(), $('#SchoolMlt').val());
-                        $('#Nameofteacher').multiselect({
-                            includeSelectAllOption: true,
-                            enableFiltering: true,
-                            buttonWidth: '100%',
-                            multiple: true
-                        });
+                        debugger;
+                        var SchoolMlt = $('#SchoolMlt').val();
+                        var DistrictMlt = $('#DistrictMlt').val();
+                        if (SchoolMlt != null && SchoolMlt != undefined && DistrictMlt != null && DistrictMlt != undefined) {
+                            if (SchoolMlt.length != 0 && DistrictMlt.length!= 0) {
+                                BindGetTeacherList('Nameofteacher', '', $('#DistrictMlt').val().join(','), $('#SchoolMlt').val().join(','));
+                                $('#Nameofteacher').multiselect({
+                                    includeSelectAllOption: true,
+                                    enableFiltering: true,
+                                    buttonWidth: '100%',
+                                    multiple: true
+                                });
+
+                                $('#Nameofteacher').multiselect('rebuild');
+                            }
+                        }
                     });
 
                     $('#sessionMlt').multiselect({
@@ -223,98 +251,11 @@
                         buttonWidth: '100%',
                         multiple: true
                     });
-                    
-                    $('#Trainingtype').change(function () {
-                        $('#dv_date').hide();
-                        $('#dv_teachertrained').hide();
-                        $('#dv_School').hide();
-                        $('#dv_session').hide();
-                        $('#dv_nameofteacher').hide();
-                        $('.dv-hd').hide();
-                        $('#dv_comment').hide();
-                        $('#dv_block').hide();
-                        $('#dv_DistrictMlt').hide();
-                        $('#dv_DistrictId').hide();
 
-                        $('#DistrictId').val('0');
-                        $('#BlockId').val('0');
-                        $('#SchoolId').val('0');
-                        $('#Date').val('');
-                        $('#Round').val('0');
-                        $('#sessionMlt').val('0');
-                        $('#Comment').val('');
-                        $('#DistrictMlt').val('0');
-                        $('#SchoolMlt').val('0');
-                        $('#Nameofteacher').val('0');
-                        $("#Nameofteacher option:selected").prop("selected", false);
-                        $('#Noofteachertrained').val('');
 
-                        if ($(this).val() == "1") {
-                            $('#dv_date').show();
-                            $('#dv_SchoolMlt').show();
-                            $('#dv_session').show();
-                            $('#dv_Round').show();
-                            $('#dv_comment').show();
-                            $('#dv_nameofteacher').show();
-                            $('#dv_DistrictMlt').show();
-                            $('#dv_DistrictId').hide();
-                            GetDistrict('DistrictMlt','')
-                            $('#DistrictMlt').multiselect({
-                                includeSelectAllOption: true,
-                                enableFiltering: true,
-                                buttonWidth: '100%',
-                                multiple: true
-                            });
-                          
-                        } else if ($(this).val() == "2") {
-                            GetDistrict('DistrictId', '')
-                            $('#dv_date').show();
-                            $('#dv_School').show();
-                            $('#dv_session').show();
-                            $('#dv_comment').show();
-                            $('#dv_teachertrained').show();
-                            $('#dv_block').show();
-                            $('#dv_DistrictId').show();
-                            $('#dv_Round').show();
-                            $('.dv-hd').show();
-                            $('#dv_DistrictMlt').hide();
-                            $('#dv_SchoolMlt').hide();
-                        }
-                    });
-
-                    
                     $("#formid").on("submit", function (event) {
                         event.preventDefault();
                         if ($('#Trainingtype').val() == "1") {
-                            //var Nameofteacher = $('#DistrictMlt').val();
-                            //if (Nameofteacher != null && Nameofteacher != undefined) {
-                            //    if (Nameofteacher.length != 0) {
-                            //        Nameofteacher = Nameofteacher.join(',');
-                            //        $('#DistrictIds').val(Nameofteacher);
-                            //    }
-                            //}
-                            //var Nameofteacher = $('#SchoolIds').val();
-                            //if (Nameofteacher != null && Nameofteacher != undefined) {
-                            //    if (Nameofteacher.length != 0) {
-                            //        Nameofteacher = Nameofteacher.join(',');
-                            //        $('#SchoolIds').val(Nameofteacher);
-                            //    }
-                            //}
-
-                            //var Nameofteacher = $('#Nameofteacher').val();
-                            //if (Nameofteacher != null && Nameofteacher != undefined) {
-                            //    if (Nameofteacher.length != 0) {
-                            //        Nameofteacher = Nameofteacher.join(',');
-                            //        $('#TeacherIds').val(Nameofteacher);
-                            //    }
-                            //}
-                            //var Nameofteacher = $('#sessionIds').val();
-                            //if (Nameofteacher != null && Nameofteacher != undefined) {
-                            //    if (Nameofteacher.length != 0) {
-                            //        Nameofteacher = Nameofteacher.join(',');
-                            //        $('#sessionIds').val(Nameofteacher);
-                            //    }
-                            //}
 
                             $('#DistrictIds').val($('#DistrictMlt').val().join(','));
                             $('#SchoolIds').val($('#SchoolMlt').val().join(','));
@@ -329,7 +270,7 @@
                             }
                        // $('#sessionIds').val($('#sessionMlt').val().join(','));
                         var formData = new FormData(this);
-
+                        $('#submit').prop('disabled', true);
                         $.ajax({
                             type: "POST",
                             url: $(this).attr("action"),
@@ -340,18 +281,21 @@
                             success: function (resp) {
                                 if (resp.StatusType == "success") {
                                     toastr.success("Success", resp.Message);
+                                    $('#submit').prop('disabled', true);
                                 } else {
                                     toastr.error("Error", resp.Message);
+                                    $('#submit').prop('disabled', false);
                                 }
                             },
                             error: function (req, error) {
                                 var errormsg = 'There was a communication error: ' + error;
                                 toastr.error("Error", errormsg);
+                                $('#submit').prop('disabled', false);
                             }
                         });
                     });
 
-                    
+
                     $('#Round').change(function () {
                         var cohortValue = $(this).val();
                         var sessionList = [];
@@ -373,7 +317,66 @@
                         });
                         $('#sessionMlt').multiselect('rebuild');
                     });
+
                 });
+                function Onchgetraingtype() {
+                    $('#dv_date').hide();
+                    $('#dv_teachertrained').hide();
+                    $('#dv_School').hide();
+                    $('#dv_session').hide();
+                    $('#dv_nameofteacher').hide();
+                    $('.dv-hd').hide();
+                    $('#dv_comment').hide();
+                    $('#dv_block').hide();
+                    $('#dv_DistrictMlt').hide();
+                    $('#dv_DistrictId').hide();
+
+                    $('#DistrictId').val('0');
+                    $('#BlockId').val('0');
+                    $('#SchoolId').val('0');
+                    $('#Date').val('');
+                    $('#Round').val('0');
+                    $('#sessionMlt').empty();
+                    $('#Comment').val('');
+                    $('#DistrictMlt').empty();
+                    $('#SchoolMlt').empty();
+                    $('#Nameofteacher').empty();
+                    $("#Nameofteacher option:selected").prop("selected", false);
+                    $('#Noofteachertrained').val('');
+
+                    if ($('#Trainingtype').val() == "1") {
+                        $('#dv_date').show();
+                        $('#dv_SchoolMlt').show();
+                        $('#dv_session').show();
+                        $('#dv_Round').show();
+                        $('#dv_comment').show();
+                        $('#dv_nameofteacher').show();
+                        $('#dv_DistrictMlt').show();
+                        $('#dv_DistrictId').hide();
+                        GetDistrict('DistrictMlt', '')
+                        $('#DistrictMlt').multiselect({
+                            includeSelectAllOption: true,
+                            enableFiltering: true,
+                            buttonWidth: '100%',
+                            multiple: true
+                        });
+                        $('#DistrictMlt').multiselect('rebuild');
+                    } else if ($('#Trainingtype').val() == "2") {
+                        GetDistrict('DistrictId', '')
+                        $('#dv_date').show();
+                        $('#dv_School').show();
+                        $('#dv_session').show();
+                        $('#dv_comment').show();
+                        $('#dv_teachertrained').show();
+                        $('#dv_block').show();
+                        $('#dv_DistrictId').show();
+                        $('#dv_Round').show();
+                        $('.dv-hd').show();
+                        $('#dv_DistrictMlt').hide();
+                        $('#dv_SchoolMlt').hide();
+                    }
+                }
+
             </script>
         }
     </div>

@@ -59,6 +59,20 @@ namespace UmangMicro.Controllers
             var getschool = _db.AspNetUsers.ToList();
             try
             {
+                if (model.Round==0)
+                {
+                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Please Select Cohort", Data = null };
+                    var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
+                    resResponse3.MaxJsonLength = int.MaxValue;
+                    return resResponse3;
+                }
+                if (string.IsNullOrWhiteSpace(model.sessionIds))
+                {
+                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Please Select Session", Data = null };
+                    var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
+                    resResponse3.MaxJsonLength = int.MaxValue;
+                    return resResponse3;
+                }
                 var tbl = (model.Id > 0) ? db.Tbl_Training.Find(model.Id) : new Tbl_Training();
                 if (model.Trainingtype == 1)
                 {
@@ -132,7 +146,7 @@ namespace UmangMicro.Controllers
                         tbl.SchoolId = model.SchoolId;
                         tbl.Round = model.Round;
                         //tbl.sessionMlt = model.sessionMlt != null ? string.Join(",", model.sessionMlt) : "";
-                        tbl.sessionMlt = model.sessionMlt;
+                        tbl.sessionMlt = model.sessionIds;
                         tbl.Comment = model.Comment;
                         tbl.Date = model.Date;
                         tbl.IsActive = true;
