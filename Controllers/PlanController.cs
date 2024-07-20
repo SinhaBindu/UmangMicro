@@ -174,6 +174,16 @@ namespace UmangMicro.Controllers
                             {
                                 tbl.Session = model.Session;
                                 tbl.SessionInput = null;
+                                //Carre
+                                if (model.Session==99 && model.SessionType == 1)
+                                {
+                                    tbl.SessionInput = model.SessionInput;
+                                }
+                                //Couser
+                                if (model.Session == 99 && model.SessionType == 2)
+                                {
+                                    tbl.SessionInput = model.SessionInput;
+                                }
                             }
                             else if (model.SessionType == 3)
                             {

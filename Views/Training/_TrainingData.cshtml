@@ -31,6 +31,9 @@
                             {
                                 <th>No of Teachers Trained</th>
                             }
+                            <th>Cohort</th>
+                            <th>Session</th>
+                            <th>Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,29 +43,32 @@
                             {
                                 foreach (DataRow dr in dt.Rows)
                                 {
-                        <tr>
-                            <td class="text-center">@(sno++)</td>
-                            <td class="text-center">@(CommonModel.FormateDtDMY(dr["Date"].ToString()))</td>
-                            <td class="text-left">@dr["district_name"]</td>
-                            <td class="text-left">@dr["block_name"]</td>
-                            <td class="text-left">@dr["school_name"]</td>
-                            @if (ViewBag.task == 1)
-                            {
-                                <td class="text-left">@dr["Round"]</td>
-                                <td class="text-left">@dr["TeacherName"]</td>
-                            }
-                            else if (ViewBag.task == 2)
-                            {
-                                <td class="text-center">@dr["Noofteachertrained"]</td>
-                            }
-                        </tr>
+                                                <tr>
+                                                    <td class="text-center">@(sno++)</td>
+                                                    <td class="text-center">@(CommonModel.FormateDtDMY(dr["Date"].ToString()))</td>
+                                                    <td class="text-left">@dr["district_name"]</td>
+                                                    <td class="text-left">@dr["block_name"]</td>
+                                                    <td class="text-left">@dr["school_name"]</td>
+                                                    @if (ViewBag.task == 1)
+                                                    {
+                                                        <td class="text-left">@dr["Round"]</td>
+                                                        <td class="text-left">@dr["TeacherName"]</td>
+                                                    }
+                                                    else if (ViewBag.task == 2)
+                                                    {
+                                                        <td class="text-center">@dr["Noofteachertrained"]</td>
+                                                    }
+                                                    <td class="text-left">@dr["RoundCohortText"]</td>
+                                                    <td class="text-left">@dr["SessionText"]</td>
+                                                    <td class="text-left" style="word-wrap:break-word;">@dr["Comment"]</td>
+                                                </tr>
                                 }
                             }
                             else
                             {
-                                <tr>
-                                    <td colspan="8" class="text-danger"><strong>Record Not Found!!</strong></td>
-                                </tr>
+                                @*<tr>
+                                    <td colspan="9" class="text-danger"><strong>Record Not Found!!</strong></td>
+                                </tr>*@
                             }
                         }
                     </tbody>

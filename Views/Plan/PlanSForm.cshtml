@@ -540,6 +540,15 @@
                         else if ($('#SessionInput').val() != '' && $('#SessionType').val() == "3") {
                             formData.append('SessionInput', $('#SessionInput').val());
                         }
+
+                        ///
+                        if ($('#SessionType').val()=="1" && $('#CareerMaster').val() != '' && $('#CareerMaster').val() == "99") {
+                            formData.append('SessionInput', $('#SessionCareerCouserOtherInput').val());
+                        }
+                        if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && $('#coursemaster').val() == "99") {
+                            formData.append('SessionInput', $('#SessionCareerCouserOtherInput').val());
+                        }
+
                     }
                     $('#submit').prop('disabled', true);
 
