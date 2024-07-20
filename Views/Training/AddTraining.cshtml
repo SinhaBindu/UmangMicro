@@ -137,7 +137,7 @@
                         <div class="col-md-3" id="dv_teachertrained" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(m => m.Noofteachertrained, new { @class = "Col-md-2 col-form-label" })<em></em>
-                                @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @required = "required" } })
+                                @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @required = "required",maxlength="3" } })
                                 @Html.ValidationMessageFor(m => m.Noofteachertrained, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -182,19 +182,20 @@
                     $('.dv-hd').hide();
 
                     if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
-                        $('#Trainingtype').val(('2').toLowerCase()).prop("disabled", true);
+                        $('#Trainingtype').val(('2').toLowerCase()).attr("style", "pointer-events: none;");
                         Onchgetraingtype();
                         $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase()).prop("disabled", true);
                         OnChagDistricts('BlockId', $('#DistrictId').val());
                         $('#BlockId').val(('@MvcApplication.CUser.BlockId').toLowerCase()).prop("disabled", true);
                         GetSchool('SchoolId', '', $('#DistrictId').val(), $('#BlockId').val());
-                        $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase()).prop("disabled", true);
+                       // $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase()).prop("disabled", true);
+                        $('#SchoolId').val(('@MvcApplication.CUser.SchoolId').toLowerCase()).attr("style", "pointer-events: none;");
                     }
 
                     if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
                       //  $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase()).prop("disabled", true);
                        // OnChagDistricts('BlockId', $('#DistrictId').val());
-                        $('#Trainingtype').val(('1').toLowerCase()).prop("disabled", true);
+                        $('#Trainingtype').val(('1').toLowerCase()).attr("style", "pointer-events: none;");
                         Onchgetraingtype();
                     }
                     $('#Trainingtype').change(function () {
@@ -294,7 +295,6 @@
                             }
                         });
                     });
-
 
                     $('#Round').change(function () {
                         var cohortValue = $(this).val();

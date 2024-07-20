@@ -97,15 +97,18 @@
             });
 
             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
+                $('#Trainingtype').val(('2').toLowerCase()).attr("style", "pointer-events: none;");
                 $('#DistrictId').val('@MvcApplication.CUser.DistrictId'.toLowerCase());
                 $('#DistrictId').attr("style", "pointer-events: none;");
                 GetSchool("SchoolId", "", '@MvcApplication.CUser.DistrictId', "");
                 $('#SchoolId').val('@MvcApplication.CUser.SchoolId'.toLowerCase());
                 $('#SchoolId').trigger('change');
                 $("#SchoolId").select2({ disabled: 'readonly' });
+               
             }
 
             if ('@CommonModel.GetUserRoleConsultantDist()' === '@MvcApplication.CUser.Role') {
+                $('#Trainingtype').val(('1').toLowerCase()).attr("style", "pointer-events: none;");
                 $('#DistrictId').val('@MvcApplication.CUser.DistrictId'.toLowerCase());
                 $('#DistrictId').trigger('change');
                 $("#DistrictId").select2({ disabled: 'readonly' });
