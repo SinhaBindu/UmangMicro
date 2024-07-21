@@ -1,0 +1,104 @@
+﻿@using System.Data
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "Plan";
+    DataTable dt = Model ?? new DataTable();
+}
+<strong>Plan</strong>
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="">
+                <table class="table table-bordered table-hover dt-responsive display" id="DataList" width="100%">
+                    <thead>
+                        <tr>
+                            <th>SrNo.</th>
+                            <th>Plan Date</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>School</th>
+                            <th>Class</th>
+                            <th>Session</th>
+                            @if (ViewBag.task == 2)
+                            {
+                                <th>Session Type</th>
+                                <th>No of Student</th>
+                                <th>Achieved No of Student</th>
+                                <th>Achievement Date</th>
+                                <th>AchieveImagepath</th>
+                                <th>CounsellingRemarks</th>
+                                <th>Achieve</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 1;
+                            if (dt.Rows.Count > 0)
+                            {
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    bool achievementDone = !string.IsNullOrEmpty(dr["AchievementDate"].ToString());
+                                    var cl = achievementDone == true && dr["Task"].ToString() == "2" ? "#3FAD18" : "";
+                                    <tr class="" style="background: @cl !important; color:#000;">
+                                        <td class="text-center">@(sno++)</td>
+                                        <td class="text-center">@CommonModel.FormateDtDMY(dr["ConductedDate"].ToString())</td>
+                                        <td class="text-left">@dr["district_name"]</td>
+                                        <td class="text-left">@dr["block_name"]</td>
+                                        <td class="text-left">@dr["school_name"]</td>
+                                        <td class="text-center">@dr["CalssMlt"]</td>
+                                        <td class="text-center">@dr["SessionText"]</td>
+                                        @if (ViewBag.task == 2)
+                                        {
+                                            <td class="text-center">@dr["sessiontypetext"]</td>
+                                            <td class="text-center">@dr["NoofStudent"]</td>
+                                            <td class="text-center">@dr["AchievedNoofStudent"]</td>
+                                            <td class="text-center">@CommonModel.FormateDtDMY(dr["AchievementDate"].ToString())</td>
+                                            <td class="text-center">
+                                                @{
+                                                    string achieveImagePath = dr["AchieveImagepath"].ToString();
+                                                    if (!string.IsNullOrEmpty(achieveImagePath))
+                                                    {
+                                                        var splitem = achieveImagePath.Split('~');
+                                                        if (splitem.Length > 1)
+                                                        {
+                                                            var fileUrl = CommonModel.GetBaseUrl() + splitem[1];
+                                                            <a href="@fileUrl" download><i class="fa fa-file-download"></i> Download</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="text-danger">Invalid path</span>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-danger">No path provided</span>
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">@dr["CounsellingRemarks"]</td>
+                                            <td class="text-center">
+                                                @if (achievementDone)
+                                                {
+                                                    <button class="btn btn-success" disabled><i class="fa fa-check-circle"></i> Achievement Done</button>
+                                                }
+                                                else
+                                                {
+                                                    <a href="~/Plan/PlanSForm?Id=@dr["MID"]&&TakId=@dr["Task"]" class="btn btn-info" name="btnAchieve" id="btnAchieve"><i class="fa fa-edit"></i> Achieve </a>
+                                                }
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="12" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

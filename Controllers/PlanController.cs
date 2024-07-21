@@ -47,6 +47,33 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult SevenDaysPlan()
+        {
+            return View();
+        }
+        public ActionResult GetSevenDaysPlan(string Sdt, int Task, string Edt, string DistrictId, string SchoolId)
+        {
+            try
+            {
+                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
+                SchoolId = SchoolId == "0" ? string.Empty : SchoolId;
+                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
+                SchoolId = (string.IsNullOrWhiteSpace(SchoolId)) ? "ALL" : SchoolId;
+                var items = SP_Model.GetSP_PlanSevenDaysListData(Sdt, Task, Edt, DistrictId.ToUpper(), SchoolId.ToUpper());
+                ViewBag.task = Task;
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    var html = ConvertViewToString("_PlanSevendsData", items);
+                    return Json(new { IsSuccess = true, reshtml = html, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult PlanSForm(int? Id, int TakId = 2)
         {
             UM_DBEntities db_ = new UM_DBEntities();
@@ -175,14 +202,14 @@ namespace UmangMicro.Controllers
                                 tbl.Session = model.Session;
                                 tbl.SessionInput = null;
                                 //Carre
-                                if (model.Session==99 && model.SessionType == 1)
+                                if (model.Session== 8 && model.SessionType == 1)
                                 {
-                                    tbl.SessionInput = model.SessionInput;
+                                    tbl.SessionInput = model.SessionInputother;
                                 }
                                 //Couser
-                                if (model.Session == 99 && model.SessionType == 2)
+                                if (model.Session == 279 && model.SessionType == 2)
                                 {
-                                    tbl.SessionInput = model.SessionInput;
+                                    tbl.SessionInput = model.SessionInputother;
                                 }
                             }
                             else if (model.SessionType == 3)

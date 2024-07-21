@@ -323,6 +323,19 @@ namespace UmangMicro.Manager
             DataTable dt = sp.ExecuteDataSet().Tables[0];
             return dt;
         }
+        public static DataTable GetSP_PlanSevenDaysListData(string Sdt, int Task, string Edt, string DistrictId, string SchoolId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_SevendaysPlanList");
+            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            sp.Command.AddParameter("@Task", Task, DbType.Int32);
+            sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
+            sp.Command.AddParameter("@SchoolId", SchoolId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
         public static DataTable GetSP_TrainingListData(string Sdt, int Trainingtype, string Edt, string DistrictId, string SchoolId)
         {
             StoredProcedure sp = new StoredProcedure("SP_TrainingList");

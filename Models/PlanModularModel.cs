@@ -36,6 +36,8 @@ namespace UmangMicro.Models
         public Nullable<int> SessionType { get; set; }
         [Display(Name = "Others")]
         public string SessionInput { get; set; }
+        [Display(Name = "Others")]
+        public string SessionInputother { get; set; }
         [Display(Name = "Courses")]
         public Nullable<int> coursemaster { get; set; }
         [Display(Name = "Career")]
