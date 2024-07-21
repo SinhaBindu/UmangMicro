@@ -616,7 +616,7 @@
                         else if ($('#coursemaster').val() != '' && $('#coursemaster').val() != '0' && $('#SessionType').val() == "2") {
                             formData.append('Session', $('#coursemaster').val());
                         }
-                        else if ($('#SessionInput').val() != '' && $('#SessionType').val() == "3") {
+                        else if ($('#SessionInput').val() != '' && $('#SessionType').val() == "3"){
                             formData.append('SessionInput', $('#SessionInput').val());
                         }
 
@@ -630,16 +630,17 @@
                                 formData.append('SessionInputother', $('#SessionInputother').val());
                             }
                         }
+                        
 
-                        if ($('#SessionType').val() == "2" && $('#coursemaster').val() == '' && ('#SessionInputother').val() == '' && $('#coursemaster').val() == "279") {
-                            toastr.error("Error", "Please Select Course Others.");
-                            return false;
-                        }
-                        else {
-                            if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && ('#SessionInputother').val() != '' && $('#coursemaster').val() == "279") {
-                                formData.append('SessionInputother', $('#SessionInputother').val());
+                            if ($('#SessionType').val() == "2" && $('#coursemaster').val() == '' && ('#SessionInputother').val() == '' && $('#coursemaster').val() == "279") {
+                                toastr.error("Error", "Please Select Course Others.");
+                                return false;
                             }
-
+                            else {
+                                if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && ('#SessionInputother').val() != '' && $('#coursemaster').val() == "279") {
+                                    formData.append('SessionInputother', $('#SessionInputother').val());
+                                }
+                            }
                     }
                     $('#submit').prop('disabled', true);
 
