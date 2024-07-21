@@ -21,6 +21,10 @@ namespace UmangMicro.Controllers
         }
         public ActionResult Dashboard()
         {
+            if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+            {
+                return RedirectToAction("SevenDaysPlan", "Plan");
+            }
             return View();
         }
         public ActionResult GetDashboard(string Sdt, string Edt, string DistrictId, string BlockId)

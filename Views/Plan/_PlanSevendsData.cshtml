@@ -14,6 +14,7 @@
                         <tr>
                             <th>SrNo.</th>
                             <th>Plan Date</th>
+                            <th>Reported By</th>
                             <th>District</th>
                             <th>Block</th>
                             <th>School</th>
@@ -43,6 +44,7 @@
                                     <tr class="" style="background: @cl !important; color:#000;">
                                         <td class="text-center">@(sno++)</td>
                                         <td class="text-center">@CommonModel.FormateDtDMY(dr["ConductedDate"].ToString())</td>
+                                        <td class="text-left">@dr["ReportedBy"]</td>
                                         <td class="text-left">@dr["district_name"]</td>
                                         <td class="text-left">@dr["block_name"]</td>
                                         <td class="text-left">@dr["school_name"]</td>

@@ -18,10 +18,13 @@
                             <th>Block</th>
                             <th>School</th>
                             <th>Class</th>
-                            <th>Session</th>
                             @if (ViewBag.task == 2)
                             {
                                 <th>Session Type</th>
+                            }
+                            <th>Session</th>
+                            @if (ViewBag.task == 2)
+                            {
                                 <th>No of Student</th>
                                 <th>Achieved No of Student</th>
                                 <th>Achievement Date</th>
@@ -47,10 +50,14 @@
                                         <td class="text-left">@dr["block_name"]</td>
                                         <td class="text-left">@dr["school_name"]</td>
                                         <td class="text-center">@dr["CalssMlt"]</td>
-                                        <td class="text-center">@dr["SessionText"]</td>
                                         @if (ViewBag.task == 2)
                                         {
                                             <td class="text-center">@dr["sessiontypetext"]</td>
+                                        }
+                                        <td class="text-center">@dr["SessionText"]</td>
+                                        @if (ViewBag.task == 2)
+                                        {
+
                                             <td class="text-center">@dr["NoofStudent"]</td>
                                             <td class="text-center">@dr["AchievedNoofStudent"]</td>
                                             <td class="text-center">@CommonModel.FormateDtDMY(dr["AchievementDate"].ToString())</td>

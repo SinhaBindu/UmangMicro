@@ -115,13 +115,7 @@
                                 @Html.ValidationMessageFor(m => m.SessionInput, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-3" id="dv_sessioninputother" style="display:none">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(m => m.SessionInputother, new { @class = "Col-md-2 col-form-label" })<em></em>
-                                @Html.EditorFor(m => m.SessionInputother, new { htmlAttributes = new { @placeholder = "Enter the Session Input", @class = "form-control required", @required = "required" } })
-                                @Html.ValidationMessageFor(m => m.SessionInputother, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+
                         <div class="col-md-3" id="dv_Careerm" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.CareerMaster, htmlAttributes: new { @class = "" })<br />
@@ -136,7 +130,13 @@
                                 @Html.ValidationMessageFor(model => model.coursemaster, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <div class="col-md-3" id="dv_sessioninputother" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(m => m.SessionInputother, new { @class = "Col-md-2 col-form-label" })<em></em>
+                                @Html.EditorFor(m => m.SessionInputother, new { htmlAttributes = new { @placeholder = "Enter the Session Input", @class = "form-control required", @required = "required" } })
+                                @Html.ValidationMessageFor(m => m.SessionInputother, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                         <div class="col-md-3" id="dv_cd" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(m => m.ConductedDate, new { @class = "Col-md-2 col-form-label", @id = "AchiDate" })<em></em>
@@ -263,8 +263,9 @@
                 $('#CareerMaster').val('0');
                 $('#coursemaster').val('0');
                 $('#SessionInput').val('');
-                $('#dv_sessioninputother').val('');
-                $('#dv_NoofStudent').val('');
+                $('#SessionInputother').val('');
+                //$('#dv_sessioninputother').val('');
+                $('#NoofStudent').val('');
 
                 LoadForm("0");
 
@@ -280,6 +281,8 @@
             });
 
             $('#SessionType').change(function () {
+
+                $('#SessionInputother').val('');
                 $('#CareerMaster').val('0');
                 $('#coursemaster').val('0');
                 $('#SessionInput').val('');
@@ -301,8 +304,10 @@
                     $('#dv_sessioninput').hide();
                 }
             });
-            $('#SessionInputother').val('');
+           
             $('#CareerMaster').change(function () {
+                $('#SessionInputother').val('');
+
                 if ($(this).val() == "8") {
                     $('#dv_sessioninputother').show();
                     $('#SessionInputother').show();
@@ -312,6 +317,7 @@
                 }
             });
             $('#coursemaster').change(function () {
+                $('#SessionInputother').val('');
                 if ($(this).val() == "279") {
                     $('#dv_sessioninputother').show();
                     $('#SessionInputother').show();
@@ -586,7 +592,14 @@
                     else if ($('#TaskType').val() == "2" && $('#Id').val() == '0') {
                         
                         var cm = $('#ClassMLT').val();
-                        formData.append('ClassMLT', cm);
+                        if (cm == null || cm == '' || cm == undefined) {
+                            toastr.error("Error", "Please Select Class At Least One.");
+                            return false;
+                        }
+                        else {
+                            formData.append('ClassMLT', cm);
+                        }
+
                         formData.append('ConductedDate', $('#ConductedDate').val());
 
                         formData.append('SessionType', $('#SessionType').val());
@@ -602,12 +615,25 @@
                             formData.append('SessionInput', $('#SessionInput').val());
                         }
 
-                        ///
-                        if ($('#SessionType').val() == "1" && $('#CareerMaster').val() != '' && $('#SessionInputother').val() !=undefined && $('#CareerMaster').val() == "8") {
-                            formData.append('SessionInputother', $('#SessionCareerCouserOtherInput').val());
+                        ////SessionInputother
+                        if ($('#SessionType').val() == "1" && $('#CareerMaster').val() != '' && $('#SessionInputother').val() == '' && $('#CareerMaster').val() == "8") {
+                            toastr.error("Error", "Please Select Career Others.");
+                            return false;
                         }
-                        if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && ('#SessionInputother').val() != undefined && $('#coursemaster').val() == "279") {
-                            formData.append('SessionInputother', $('#SessionCareerCouserOtherInput').val());
+                        else {
+                            if ($('#SessionType').val() == "1" && $('#CareerMaster').val() != '' && $('#SessionInputother').val() != '' && $('#CareerMaster').val() == "8") {
+                                formData.append('SessionInputother', $('#SessionInputother').val());
+                            }
+                        }
+
+                        if ($('#SessionType').val() == "2" && $('#coursemaster').val() == '' && ('#SessionInputother').val() == '' && $('#coursemaster').val() == "279") {
+                            toastr.error("Error", "Please Select Course Others.");
+                            return false;
+                        }
+                        else {
+                            if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && ('#SessionInputother').val() != '' && $('#coursemaster').val() == "279") {
+                                formData.append('SessionInputother', $('#SessionInputother').val());
+                            }
                         }
 
                     }
