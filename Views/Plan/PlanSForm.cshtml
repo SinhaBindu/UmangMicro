@@ -605,6 +605,11 @@
                         formData.append('SessionType', $('#SessionType').val());
                         formData.append('NoofStudent', $('#NoofStudent').val());
 
+                        if ($('#SessionInput').val() == '' && $('#SessionType').val() == "3") {
+                            toastr.error("Error", "Please Select Others.");
+                            return false;
+                        }
+
                         if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0' && $('#SessionType').val() == "1") {
                             formData.append('Session', $('#CareerMaster').val());
                         }
@@ -634,7 +639,6 @@
                             if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && ('#SessionInputother').val() != '' && $('#coursemaster').val() == "279") {
                                 formData.append('SessionInputother', $('#SessionInputother').val());
                             }
-                        }
 
                     }
                     $('#submit').prop('disabled', true);
