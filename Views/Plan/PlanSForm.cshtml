@@ -181,9 +181,12 @@
                             <br />
                             <div class="position-relative form-group" style="margin-left: 50% !important;">
                                 <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a href="~/Plan/PlanSForm" class="btn btn-info text-white">Reset</a>
+                                    <span style="line-height:91px;">
+                                        <a href="~/Plan/PlanSForm" class="btn btn-info text-white">Reset</a>
+                                    </span>
                                 }
                             </div>
                         </div>
