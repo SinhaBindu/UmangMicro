@@ -27,6 +27,10 @@ namespace UmangMicro.Models
         public Nullable<System.DateTime> Date { get; set; }
         [Display(Name = "No. of Teacher Trained")]
         public Nullable<int> Noofteachertrained { get; set; }
+        [Display(Name = "Month")]
+        public string MonthId { get; set; }
+        [Display(Name = "Year")]
+        public string YearId { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }

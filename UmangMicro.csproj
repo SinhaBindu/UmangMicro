@@ -1201,6 +1201,7 @@
     <Content Include="Views\Training\AddTraining.cshtml" />
     <Content Include="Views\Plan\SevenDaysPlan.cshtml" />
     <Content Include="Views\Plan\_PlanSevendsData.cshtml" />
+    <Content Include="Views\Report\CalendarGroupCounselling.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

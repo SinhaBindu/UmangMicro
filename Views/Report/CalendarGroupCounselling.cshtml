@@ -2,9 +2,9 @@
 @using UmangMicro.Models;
 @using UmangMicro.Manager;
 @{
-    ViewBag.Title = "Modular Session - No Of Plan/Achievement Data";
+    ViewBag.Title = "Group Counselling - No Of Plan/Achievement Data";
     ViewBag.TitleIcon = "fa fa-user";
-    ViewBag.SemiTitle = "Modular Session Plan";
+    ViewBag.SemiTitle = "Group Counselling";
     ViewBag.SemiTitleLink = "/";
 }
 <style>
@@ -26,9 +26,10 @@
         </div>
     </div>*@
 
+
 <div class="tabs-animation containers">
 
-    @using (Html.BeginForm("GetCalendarReportData", "Report", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("GetCalendarGroupCounsellingData", "Report", FormMethod.Post, new { @id = "formid", @class = "loader", autocomplete = "off", enctype = "multipart/form-data" }))
     {
         <div class="row">
             <div class="col-md-2" id="div-month">
@@ -307,7 +308,7 @@
             var MonthId = $('#MonthId').val() == "" ? "0" : $('#MonthId').val()
             var YearId = $('#YearId').val() == "" ? "0" : $('#YearId').val()
             $.ajax({
-                url: document.baseURI + "/Report/GetCalendarReportData",
+                url: document.baseURI + "/Report/GetCalendarGroupCounsellingData",
                 type: "Post",
                 data: { 'MonthId': MonthId, 'YearId': YearId },
                 success: function (resp) {

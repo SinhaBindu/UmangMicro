@@ -16,5 +16,6 @@ namespace UmangMicro.Models
     {
         public int ID { get; set; }
         public string Year { get; set; }
+        public string FinYear { get; set; }
     }
 }

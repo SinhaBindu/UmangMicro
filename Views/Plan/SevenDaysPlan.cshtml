@@ -145,7 +145,12 @@
                        //  $('#SchoolId').trigger('change');
                        //  $("#SchoolId").select2({ disabled: 'readonly' });
             }
+
             LoadReport();
+            $('#formid').submit(function (e) {
+                e.preventDefault();
+                LoadReport();
+            })
          
         });
 

@@ -33,5 +33,6 @@ namespace UmangMicro.Models
         public string SchoolMlt { get; set; }
         public string NameofteacherMlt { get; set; }
         public string sessionMlt { get; set; }
+        public string Cohortmlt { get; set; }
     }
 }

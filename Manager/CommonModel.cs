@@ -618,7 +618,7 @@ namespace UmangMicro.Manager
 
             return filepath;
         }
-        public static string SaveGroupCounsellingModelSessionFile(HttpPostedFileBase files, string ModuleId,string FolderName)
+        public static string SaveGroupCounsellingModelSessionFile(HttpPostedFileBase files, string ModuleId, string FolderName)
         {
             string URL = "";
             string filepath = string.Empty;
@@ -631,7 +631,7 @@ namespace UmangMicro.Manager
                 if (IsValidImage(strmStream) == true || file_extension == ".jpeg" || file_extension == ".png" || file_extension == ".jpg")
                 {
                     //URL = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/" + Module + "/" + RegNo + "/"));
-                    URL = "~/ImageUploads/"+ FolderName +"/";
+                    URL = "~/ImageUploads/" + FolderName + "/";
                     string extension = Path.GetExtension(files.FileName);
 
                     if (!Directory.Exists(HttpContext.Current.Server.MapPath(URL)))
@@ -817,6 +817,30 @@ namespace UmangMicro.Manager
             }
             return list.ToList();
         }
+        public static List<SelectListItem> GetFinYear(bool isAddedSelect = true)
+        {
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            try
+            {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    if (DateTime.Now.Month == 1 || DateTime.Now.Month == 2 || DateTime.Now.Month == 3)
+                        listItems = new SelectList(dbe.Year_Master, "Year", "FinYear", DateTime.Now.Year - 1).OrderBy(x => x.Text).ToList();
+                    else
+                        listItems = new SelectList(dbe.Year_Master, "Year", "FinYear", DateTime.Now.Year).OrderBy(x => x.Text).ToList();
+                    if (isAddedSelect)
+                    {
+                        listItems.Insert(0, new SelectListItem { Value = "-1", Text = "Select" });
+                    }
+                    return listItems;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return listItems;
+        }
         public static List<SelectListItem> GetEnumYesNoList()
         {
             List<SelectListItem> list = new List<SelectListItem>();
@@ -859,11 +883,11 @@ namespace UmangMicro.Manager
             return list.OrderBy(x => Convert.ToInt16(x.Value)).ToList();
         }
 
-        public static List<SelectListItem> GetTeachers(string DistrictIds="",string SchoolIds="")
+        public static List<SelectListItem> GetTeachers(string DistrictIds = "", string SchoolIds = "")
         {
             try
             {
-                DataTable dt = SP_Model.GetSP_TeachersData(DistrictIds,SchoolIds);
+                DataTable dt = SP_Model.GetSP_TeachersData(DistrictIds, SchoolIds);
                 var lists = new List<SelectListItem>();
                 //items.Insert(0, new SelectListItem { Value = "0", Text = "All" });
 
@@ -884,7 +908,7 @@ namespace UmangMicro.Manager
         }
         public static List<SelectListItem> Getcoursemaster()
         {
-            UM_DBEntities dbe = new UM_DBEntities(); 
+            UM_DBEntities dbe = new UM_DBEntities();
             //list.Add(new SelectListItem { Value = "0", Text = "Select Course" });
             //list.Add(new SelectListItem { Value = "1", Text = "a" });
             //list.Add(new SelectListItem { Value = "2", Text = "b" });
@@ -911,7 +935,7 @@ namespace UmangMicro.Manager
             {
                 var listdata = new SelectList(dbe.Career_Master, "CareerId_pk", "CareerName").OrderBy(x => x.Text).ToList();
                 listdata.Insert(0, new SelectListItem { Value = "0", Text = "Select" });
-                
+
                 return listdata.OrderBy(x => Convert.ToInt16(x.Value)).ToList(); ;
             }
             catch (Exception)
@@ -1950,7 +1974,7 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "4", Text = "Schemes" });
             return list.OrderBy(x => Convert.ToInt32(x.Value.ToString())).ToList();
         }
-        public static List<SelectListItem> GetClass(bool IsSelect=false)
+        public static List<SelectListItem> GetClass(bool IsSelect = false)
         {
             List<SelectListItem> list = new List<SelectListItem>();
             if (IsSelect)
@@ -2009,13 +2033,13 @@ namespace UmangMicro.Manager
             }
             return lists.OrderBy(x => x.Value).ToList();
         }
-        public static List<SelectListItem> GetSchoolListmutiple(string DistrictId,string BlockId)
+        public static List<SelectListItem> GetSchoolListmutiple(string DistrictId, string BlockId)
         {
             List<SelectListItem> lists = new List<SelectListItem>();
             if (!string.IsNullOrWhiteSpace(DistrictId))
             {
                 DataTable dt = SP_Model.GetSP_SchoolList(DistrictId, BlockId);
-             
+
                 //lists.Add(new SelectListItem { Value = "", Text = "Select" });
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -2066,14 +2090,21 @@ namespace UmangMicro.Manager
             list.Add(new SelectListItem { Value = "C", Text = "Conventional" });
             return list.OrderBy(x => x.Value.ToString()).ToList();
         }
-        public static List<SelectListItem> GetMonth(bool isAddedSelect = true)
+        public static List<SelectListItem> GetMonth(bool isAddedSelect = true, bool IsMonth = false)
         {
             List<SelectListItem> listItems = new List<SelectListItem>();
             try
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    listItems = new SelectList(dbe.Month_Master, "ID", "MonthName").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    if (IsMonth)
+                    {
+                        listItems = new SelectList(dbe.Month_Master, "ID", "MonthName", DateTime.Now.Date.Month).OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    }
+                    else
+                    {
+                        listItems = new SelectList(dbe.Month_Master, "ID", "MonthName").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    }
                     if (listItems != null)
                     {
                         if (isAddedSelect)
@@ -2128,7 +2159,7 @@ namespace UmangMicro.Manager
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     var resg = dbe.ModularSessionMasters?.Where(x => x.IsActive == true).GroupBy(x => new { x.Cohort, x.TypeOfCohort }).ToList();
-                 if (resg != null)
+                    if (resg != null)
                     {
                         foreach (var item in resg.ToList())
                         {
@@ -2207,7 +2238,7 @@ namespace UmangMicro.Manager
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    listItems = new SelectList(dbe.ModularSessionMasters.Where(x => x.Cohort == 3 && x.IsActive == true), "ID",  "COHORT_Session_Hindi").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
+                    listItems = new SelectList(dbe.ModularSessionMasters.Where(x => x.Cohort == 3 && x.IsActive == true), "ID", "COHORT_Session_Hindi").OrderBy(x => Convert.ToInt32(x.Value)).ToList();
                     if (listItems != null)
                     {
                         if (isAddedSelect)

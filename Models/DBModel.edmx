@@ -75,7 +75,7 @@ warning 6002: The table/view 'UmangMS.dbo.BlockMaster_N' does not have a primary
             <PropertyRef Name="CareerId_pk" />
           </Key>
           <Property Name="CareerId_pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CareerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CareerName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Class_Master">
           <Key>
@@ -101,7 +101,7 @@ warning 6002: The table/view 'UmangMS.dbo.BlockMaster_N' does not have a primary
             <PropertyRef Name="CourseId_pk" />
           </Key>
           <Property Name="CourseId_pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CourseName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CourseName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Dist_Mast">
           <Key>
@@ -578,6 +578,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="SchoolMlt" Type="nvarchar(max)" />
           <Property Name="NameofteacherMlt" Type="nvarchar(max)" />
           <Property Name="sessionMlt" Type="nvarchar(max)" />
+          <Property Name="Cohortmlt" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Tbl_Trainingteacher">
           <Key>
@@ -601,6 +602,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Year" Type="nvarchar" MaxLength="50" />
+          <Property Name="FinYear" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
@@ -715,7 +717,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Month_Master" EntityType="UM_DBModel.Month_Master" />
-          <EntitySet Name="Year_Master" EntityType="UM_DBModel.Year_Master" />
           <EntitySet Name="QuestionRIASECs" EntityType="UM_DBModel.QuestionRIASEC" />
           <EntitySet Name="RIASEC_Guided" EntityType="UM_DBModel.RIASEC_Guided" />
           <EntitySet Name="tbl_CH_Scheme" EntityType="UM_DBModel.tbl_CH_Scheme" />
@@ -739,6 +740,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySet Name="tbl_Plan" EntityType="UM_DBModel.tbl_Plan" />
           <EntitySet Name="tbl_Modular" EntityType="UM_DBModel.tbl_Modular" />
           <EntitySet Name="Tbl_Training" EntityType="UM_DBModel.Tbl_Training" />
+          <EntitySet Name="Year_Master" EntityType="UM_DBModel.Year_Master" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -952,13 +954,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="MonthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FinMonthID" Type="Int32" />
           <Property Name="FinMonthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Year_Master">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuestionRIASEC">
           <Key>
@@ -1235,14 +1230,14 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
             <PropertyRef Name="CareerId_pk" />
           </Key>
           <Property Name="CareerId_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CareerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CareerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Course_Master">
           <Key>
             <PropertyRef Name="CourseId_pk" />
           </Key>
           <Property Name="CourseId_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Tbl_Trainingteacher">
           <Key>
@@ -1330,6 +1325,15 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="SchoolMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NameofteacherMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sessionMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cohortmlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Year_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FinYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1560,14 +1564,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
                 <ScalarProperty Name="FinMonthName" ColumnName="FinMonthName" />
                 <ScalarProperty Name="FinMonthID" ColumnName="FinMonthID" />
                 <ScalarProperty Name="MonthName" ColumnName="MonthName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Year_Master">
-            <EntityTypeMapping TypeName="UM_DBModel.Year_Master">
-              <MappingFragment StoreEntitySet="Year_Master">
-                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1944,6 +1940,7 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <EntitySetMapping Name="Tbl_Training">
             <EntityTypeMapping TypeName="UM_DBModel.Tbl_Training">
               <MappingFragment StoreEntitySet="Tbl_Training">
+                <ScalarProperty Name="Cohortmlt" ColumnName="Cohortmlt" />
                 <ScalarProperty Name="sessionMlt" ColumnName="sessionMlt" />
                 <ScalarProperty Name="NameofteacherMlt" ColumnName="NameofteacherMlt" />
                 <ScalarProperty Name="SchoolMlt" ColumnName="SchoolMlt" />
@@ -1963,6 +1960,15 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
                 <ScalarProperty Name="Round" ColumnName="Round" />
                 <ScalarProperty Name="Trainingtype" ColumnName="Trainingtype" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Year_Master">
+            <EntityTypeMapping TypeName="UM_DBModel.Year_Master">
+              <MappingFragment StoreEntitySet="Year_Master">
+                <ScalarProperty Name="FinYear" ColumnName="FinYear" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

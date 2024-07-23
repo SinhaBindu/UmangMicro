@@ -37,7 +37,6 @@ namespace UmangMicro.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<tbl_Registration> tbl_Registration { get; set; }
         public virtual DbSet<Month_Master> Month_Master { get; set; }
-        public virtual DbSet<Year_Master> Year_Master { get; set; }
         public virtual DbSet<QuestionRIASEC> QuestionRIASECs { get; set; }
         public virtual DbSet<RIASEC_Guided> RIASEC_Guided { get; set; }
         public virtual DbSet<tbl_CH_Scheme> tbl_CH_Scheme { get; set; }
@@ -61,5 +60,6 @@ namespace UmangMicro.Models
         public virtual DbSet<tbl_Plan> tbl_Plan { get; set; }
         public virtual DbSet<tbl_Modular> tbl_Modular { get; set; }
         public virtual DbSet<Tbl_Training> Tbl_Training { get; set; }
+        public virtual DbSet<Year_Master> Year_Master { get; set; }
     }
 }

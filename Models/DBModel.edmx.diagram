@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="UM_DBModel.tbl_Registration" Width="1.5" PointX="7.375" PointY="7.75" IsExpanded="false" />
         <AssociationConnector Association="UM_DBModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="UM_DBModel.Month_Master" Width="1.5" PointX="5.5" PointY="5.25" IsExpanded="false" />
-        <EntityTypeShape EntityType="UM_DBModel.Year_Master" Width="1.5" PointX="9.5" PointY="7.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.QuestionRIASEC" Width="1.5" PointX="7.125" PointY="9.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.RIASEC_Guided" Width="1.5" PointX="9" PointY="9.75" IsExpanded="false" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_CH_Scheme" Width="1.5" PointX="5.125" PointY="9.75" IsExpanded="false" />
@@ -42,6 +41,7 @@
         <EntityTypeShape EntityType="UM_DBModel.tbl_Plan" Width="1.5" PointX="12.375" PointY="13.75" />
         <EntityTypeShape EntityType="UM_DBModel.tbl_Modular" Width="1.5" PointX="14.375" PointY="13.75" />
         <EntityTypeShape EntityType="UM_DBModel.Tbl_Training" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="UM_DBModel.Year_Master" Width="1.5" PointX="9.25" PointY="7.75" IsExpanded="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

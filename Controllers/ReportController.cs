@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
 using UmangMicro.Manager;
+using UmangMicro.Models;
 
 namespace UmangMicro.Controllers
 {
@@ -278,21 +279,49 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
+        //Modular Session
         public ActionResult FullCalendarReport()
         {
-            DataSet dataSet = new DataSet();
-            dataSet = SP_Model.GtSPPlanCalendar();
-            return View(dataSet);
+            FilterModel model=new FilterModel();
+            return View(model);
         }
-        public ActionResult GetCalendarReportData(string Sdt, string Edt, string DistrictId, string BlockId)
+        public ActionResult GetCalendarReportData(string Sdt, string Edt, string MonthId, string YearId)
         {
             try
             {
-                DistrictId = DistrictId == "0" ? string.Empty : DistrictId;
-                BlockId = BlockId == "0" ? string.Empty : BlockId;
-                DistrictId = (string.IsNullOrWhiteSpace(DistrictId)) ? "ALL" : DistrictId;
-                BlockId = (string.IsNullOrWhiteSpace(BlockId)) ? "ALL" : BlockId;
-                var items = SP_Model.GetSPCalendarReport(Sdt, Edt, DistrictId.ToUpper(), BlockId.ToUpper());
+                MonthId = MonthId == "0" ? string.Empty : MonthId;
+                YearId = YearId == "0" ? string.Empty : YearId;
+                MonthId = (string.IsNullOrWhiteSpace(MonthId)) ? "ALL" : MonthId;
+                YearId = (string.IsNullOrWhiteSpace(YearId)) ? "ALL" : YearId;
+                var items = SP_Model.GetSPCalendarReport(Sdt, Edt, MonthId.ToUpper(), YearId.ToUpper());
+                if (items != null)
+                {
+                    var data = JsonConvert.SerializeObject(items);
+                    //var html = ConvertViewToString("_CaseHList", items);
+                    return Json(new { IsSuccess = true, res = data }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+       //Group Conselleing
+        public ActionResult CalendarGroupCounselling()
+        {
+            FilterModel model = new FilterModel();
+            return View(model);
+        }
+        public ActionResult GetCalendarGroupCounsellingData(string Sdt, string Edt, string MonthId, string YearId)
+        {
+            try
+            {
+                MonthId = MonthId == "0" ? string.Empty : MonthId;
+                YearId = YearId == "0" ? string.Empty : YearId;
+                MonthId = (string.IsNullOrWhiteSpace(MonthId)) ? "ALL" : MonthId;
+                YearId = (string.IsNullOrWhiteSpace(YearId)) ? "ALL" : YearId;
+                var items = SP_Model.GetSP_CalendarGroupConsellingReport(Sdt, Edt, MonthId.ToUpper(), YearId.ToUpper());
                 if (items != null)
                 {
                     var data = JsonConvert.SerializeObject(items);

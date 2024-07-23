@@ -249,13 +249,25 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
-        public static DataSet GetSPCalendarReport(string Sdt, string Edt, string DistrictId, string BlockId)
+        public static DataSet GetSPCalendarReport(string Sdt, string Edt, string MonthId, string YearId)
         {
-            StoredProcedure sp = new StoredProcedure("SP_CalendarReport");
-            sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
-            sp.Command.AddParameter("@Edt", Edt, DbType.String);
-            sp.Command.AddParameter("@DistrictId", DistrictId, DbType.String);
-            sp.Command.AddParameter("@BlockId", BlockId, DbType.String);
+            StoredProcedure sp = new StoredProcedure("SP_CalendarModularSessionReport");
+            //sp.Command.AddParameter("@Sdt", Sdt, DbType.String);
+            //sp.Command.AddParameter("@Edt", Edt, DbType.String);
+            sp.Command.AddParameter("@MonthId", MonthId, DbType.String);
+            sp.Command.AddParameter("@YearId", YearId, DbType.String);
+            //sp.Command.AddParameter("@DistrictId", MonthId, DbType.String);
+            //sp.Command.AddParameter("@BlockId", YearId, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
+        public static DataSet GetSP_CalendarGroupConsellingReport(string Sdt, string Edt, string MonthId, string YearId)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_CalendarGroupConsellingReport");
+            sp.Command.AddParameter("@MonthId", MonthId, DbType.String);
+            sp.Command.AddParameter("@YearId", YearId, DbType.String);
             sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
             sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
             DataSet ds = sp.ExecuteDataSet();
