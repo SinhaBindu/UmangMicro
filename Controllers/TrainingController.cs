@@ -80,6 +80,8 @@ namespace UmangMicro.Controllers
                     model.DistrictMlt = model.DistrictIds;
                     model.SchoolMlt = model.SchoolIds;
                     model.sessionMlt = model.sessionIds;
+                    model.Cohortmlt = model.CohortIds;
+                    
                     //tbl = tbl == null ? new tbl_Mapped() : tbl;
                     Tbl_Trainingteacher tbltcmapp;
                     List<Tbl_Trainingteacher> tbllist = new List<Tbl_Trainingteacher>();
@@ -88,7 +90,9 @@ namespace UmangMicro.Controllers
                     {
                         tbl.Trainingtype = model.Trainingtype;
                         tbl.Round = model.Round;
+                        tbl.Cohortmlt = model.Cohortmlt;
                         tbl.DistrictMlt = model.DistrictMlt;
+                       
                         tbl.SchoolMlt = model.SchoolMlt;
                         tbl.sessionMlt = model.sessionMlt;
                         tbl.Comment = model.Comment;

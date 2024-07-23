@@ -876,7 +876,7 @@ namespace UmangMicro.Manager
         public static List<SelectListItem> GetRound()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "0", Text = "Select Cohort" });
+            list.Add(new SelectListItem { Value = "0", Text = "Select Round" });
             list.Add(new SelectListItem { Value = "1", Text = "1" });
             list.Add(new SelectListItem { Value = "2", Text = "2" });
             list.Add(new SelectListItem { Value = "2", Text = "3" });

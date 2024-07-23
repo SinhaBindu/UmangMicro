@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Training";
 }
-
 <style>
+
     .dataTables_filter {
         font-size: large !important;
         font-weight: normal !important;
@@ -36,14 +36,12 @@
         overflow-y: auto !important;
     }
 </style>
-
 <div class="admin-breadcrumb">
     <h3>Training</h3>
     <div class="crumb">
         <a href="~/Training/Index">Training List</a> / Add Training
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -54,6 +52,7 @@
                     <input type="hidden" name="DistrictIds" id="DistrictIds" />
                     <input type="hidden" name="SchoolIds" id="SchoolIds" />
                     <input type="hidden" name="sessionIds" id="sessionIds" />
+                    <input type="hidden" name="CohortIds" id="CohortIds" />
                     <div class="form-row col-md-12">
                         <div class="col-md-3">
                             <div class="position-relative form-group">
@@ -62,7 +61,6 @@
                                 @Html.ValidationMessageFor(model => model.Trainingtype, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3 dv-hd" id="dv_DistrictId" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })<br />
@@ -70,7 +68,6 @@
                                 @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3 dv-hd" id="dv_DistrictMlt" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictMlt, htmlAttributes: new { @class = "" })<br />
@@ -78,7 +75,6 @@
                                 @Html.ValidationMessageFor(model => model.DistrictMlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3 dv-hd" id="dv_block" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.BlockId, htmlAttributes: new { @class = "" })<br />
@@ -86,7 +82,6 @@
                                 @Html.ValidationMessageFor(model => model.BlockId, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3 dv-hd" id="dv_SchoolId" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "" })<br />
@@ -101,11 +96,17 @@
                                 @Html.ValidationMessageFor(model => model.SchoolMlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
-                        <div class="col-md-3" id="dv_Round" style="display:none">
+                        <div class="col-md-3" id="dv_Cohortmlt" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Cohortmlt, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Cohortmlt, CommonModel.GetCohort(true), null, new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.Cohortmlt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="dv_Roundcohort" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Round, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.Round, CommonModel.GetCohort(true), null, new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.Round, CommonModel.GetRound(), null, new { @class = "form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.Round, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -116,7 +117,6 @@
                                 @Html.ValidationMessageFor(model => model.sessionMlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3" id="dv_nameofteacher" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Nameofteacher, htmlAttributes: new { @class = "" })<br />
@@ -125,7 +125,6 @@
                                 @Html.ValidationMessageFor(model => model.Nameofteacher, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3" id="dv_date" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(m => m.Date, new { @class = "Col-md-2 col-form-label" })<em></em>
@@ -133,15 +132,13 @@
                                 @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3" id="dv_teachertrained" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(m => m.Noofteachertrained, new { @class = "Col-md-2 col-form-label" })<em></em>
-                                @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @required = "required",maxlength="3" } })
+                                @Html.EditorFor(m => m.Noofteachertrained, new { htmlAttributes = new { @placeholder = "Enter the Teacher Trained", @class = "form-control required", @required = "required", maxlength = "3" } })
                                 @Html.ValidationMessageFor(m => m.Noofteachertrained, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-3" id="dv_comment" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "" })<br />
@@ -149,10 +146,8 @@
                                 @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="col-md-12" id="divPlanInput">
                         </div>
-
                         <div class="col-md-12">
                             <br />
                             <div class="position-relative form-group" style="margin-left: 50% !important;">
@@ -170,19 +165,18 @@
                 }
             </div>
         </div>
-
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
             <script src="~/Scripts/JS/Master.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
             <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.dv-hd').hide();
+
+
 
                     if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
                         $('#Trainingtype').val(('2').toLowerCase()).attr("style", "pointer-events: none;");
@@ -255,6 +249,13 @@
                         buttonWidth: '100%',
                         multiple: true
                     });
+                    $('#Cohortmlt').multiselect({
+                        includeSelectAllOption: true,
+                        enableFiltering: true,
+                        buttonWidth: '100%',
+                        multiple: true
+                    });
+
 
 
                     $("#formid").on("submit", function (event) {
@@ -271,7 +272,14 @@
                                 sessionMlt = sessionMlt.join(',');
                                 $('#sessionIds').val(sessionMlt);
                                 }
+                        }
+                        var Cohortmlt = $('#Cohortmlt').val();
+                        if (Cohortmlt != null && Cohortmlt != undefined) {
+                            if (Cohortmlt.length != 0) {
+                                Cohortmlt = Cohortmlt.join(',');
+                                $('#CohortIds').val(Cohortmlt);
                             }
+                        }
                        // $('#sessionIds').val($('#sessionMlt').val().join(','));
                         var formData = new FormData(this);
                         $('#submit').prop('disabled', true);
@@ -299,17 +307,32 @@
                         });
                     });
 
-                    $('#Round').change(function () {
-                        var cohortValue = $(this).val();
-                        var sessionList = [];
+                     $('#Cohortmlt').change(function () {
+            var cohortValues = $(this).val();
+            var sessionList = [];
 
-                        if (cohortValue == "1") {
-                            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster68()));
-                        } else if (cohortValue == "2") {
-                            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster911()));
-                        } else if (cohortValue == "3") {
-                            sessionList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster1112()));
-                        }
+            if (cohortValues != null && cohortValues.length > 0) {
+                cohortValues.forEach(function (cohortValue) {
+                    var sessions = [];
+                    if (cohortValue == "1") {
+                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster68()));
+                    } else if (cohortValue == "2") {
+                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster911()));
+                    } else if (cohortValue == "3") {
+                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster1112()));
+                    }
+
+                    sessionList = sessionList.concat(sessions);
+                });
+
+
+                sessionList = sessionList.filter((value, index, self) =>
+                    index === self.findIndex((t) => (
+                        t.Value === value.Value && t.Text === value.Text
+                    ))
+                );
+            }
+
 
                         $('#sessionMlt').empty();
                         $.each(sessionList, function (index, item) {
@@ -338,7 +361,8 @@
                     $('#BlockId').val('0');
                     $('#SchoolId').val('0');
                     $('#Date').val('');
-                    $('#Round').val('0');
+                    $('#Cohortmlt').val('0');
+                    $('#RoundCohort').val('0');
                     $('#sessionMlt').empty();
                     $('#Comment').val('');
                     $('#DistrictMlt').empty();
@@ -351,7 +375,8 @@
                         $('#dv_date').show();
                         $('#dv_SchoolMlt').show();
                         $('#dv_session').show();
-                        $('#dv_Round').show();
+                        $('#dv_Cohortmlt').show();
+                        $('#dv_Roundcohort').show();
                         $('#dv_comment').show();
                         $('#dv_nameofteacher').show();
                         $('#dv_DistrictMlt').show();
@@ -362,6 +387,8 @@
                             enableFiltering: true,
                             buttonWidth: '100%',
                             multiple: true
+                            
+
                         });
                         $('#DistrictMlt').multiselect('rebuild');
                     } else if ($('#Trainingtype').val() == "2") {
@@ -373,7 +400,7 @@
                         $('#dv_teachertrained').show();
                         $('#dv_block').show();
                         $('#dv_DistrictId').show();
-                        $('#dv_Round').show();
+                        $('#dv_Cohortmlt').show();
                         $('.dv-hd').show();
                         $('#dv_DistrictMlt').hide();
                         $('#dv_SchoolMlt').hide();
@@ -382,5 +409,3 @@
 
             </script>
         }
-    </div>
-</div>

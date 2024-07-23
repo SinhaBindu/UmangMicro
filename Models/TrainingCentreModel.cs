@@ -21,8 +21,10 @@ namespace UmangMicro.Models
         public Nullable<int> SchoolId { get; set; }
         [Display(Name = "Training")]
         public Nullable<int> Trainingtype { get; set; }
-        [Display(Name = "Cohort")]
+        [Display(Name = "Round")]
         public Nullable<int> Round { get; set; }
+        [Display(Name = "Cohort")]
+        public string Cohortmlt { get; set; }
         //[Display(Name = "Session Mlt")]
         //public List<string> sessionMlt { get; set; } = new List<string>();
         [Display(Name = "Session")]
@@ -45,6 +47,7 @@ namespace UmangMicro.Models
         public string DistrictIds { get; set; }
         public string SchoolIds { get; set; }
         public string sessionIds { get; set; }
+        public string CohortIds { get; set; }
 
 
         public Nullable<bool> IsActive { get; set; }
