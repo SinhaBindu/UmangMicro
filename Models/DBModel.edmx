@@ -1326,7 +1326,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="NameofteacherMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sessionMlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Cohortmlt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-<<<<<<< Updated upstream
         </EntityType>
         <EntityType Name="Year_Master">
           <Key>
@@ -1335,8 +1334,6 @@ warning 6002: The table/view 'UmangMS.dbo.DistrictMaster_N' does not have a prim
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FinYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-=======
->>>>>>> Stashed changes
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
