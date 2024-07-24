@@ -99,7 +99,7 @@
                         <div class="col-md-3" id="dv_Cohortmlt" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Cohortmlt, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.Cohortmlt, CommonModel.GetCohort(true), null, new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.DropDownListFor(model => model.Cohortmlt, CommonModel.GetCohort(false), null, new { @class = "form-control", @required = "required", @multiple = "multiple" })
                                 @Html.ValidationMessageFor(model => model.Cohortmlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -213,7 +213,7 @@
                         var DistrictMlt = $('#DistrictMlt').val();
                         if (DistrictMlt != null && DistrictMlt != undefined) {
                             if (DistrictMlt.length != 0) {
-                                GetSchool('SchoolMlt', '', $('#DistrictMlt').val().join(','), '');
+                                GetSchool('SchoolMlt', '', $('#DistrictMlt').val().join(','), '', false);
                                 $('#SchoolMlt').multiselect({
                                     includeSelectAllOption: true,
                                     enableFiltering: true,
@@ -229,8 +229,8 @@
                         var SchoolMlt = $('#SchoolMlt').val();
                         var DistrictMlt = $('#DistrictMlt').val();
                         if (SchoolMlt != null && SchoolMlt != undefined && DistrictMlt != null && DistrictMlt != undefined) {
-                            if (SchoolMlt.length != 0 && DistrictMlt.length!= 0) {
-                                BindGetTeacherList('Nameofteacher', '', $('#DistrictMlt').val().join(','), $('#SchoolMlt').val().join(','));
+                            if (SchoolMlt.length != 0 && DistrictMlt.length != 0) {
+                                BindGetTeacherList('Nameofteacher', '', $('#DistrictMlt').val().join(','), $('#SchoolMlt').val().join(','), false);
                                 $('#Nameofteacher').multiselect({
                                     includeSelectAllOption: true,
                                     enableFiltering: true,
@@ -243,18 +243,7 @@
                         }
                     });
 
-                    $('#sessionMlt').multiselect({
-                        includeSelectAllOption: true,
-                        enableFiltering: true,
-                        buttonWidth: '100%',
-                        multiple: true
-                    });
-                    $('#Cohortmlt').multiselect({
-                        includeSelectAllOption: true,
-                        enableFiltering: true,
-                        buttonWidth: '100%',
-                        multiple: true
-                    });
+                  
 
 
 
@@ -315,11 +304,11 @@
                 cohortValues.forEach(function (cohortValue) {
                     var sessions = [];
                     if (cohortValue == "1") {
-                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster68()));
+                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster68(false)));
                     } else if (cohortValue == "2") {
-                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster911()));
+                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster911(false)));
                     } else if (cohortValue == "3") {
-                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster1112()));
+                        sessions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(CommonModel.GetModularMaster1112(false)));
                     }
 
                     sessionList = sessionList.concat(sessions);
@@ -361,12 +350,13 @@
                     $('#BlockId').val('0');
                     $('#SchoolId').val('0');
                     $('#Date').val('');
-                    $('#Cohortmlt').val('0');
+                    $('#Cohortmlt').val('');
                     $('#RoundCohort').val('0');
                     $('#sessionMlt').empty();
                     $('#Comment').val('');
                     $('#DistrictMlt').empty();
                     $('#SchoolMlt').empty();
+                    $('#SchoolMlt').prop("disabled", false);
                     $('#Nameofteacher').empty();
                     $("#Nameofteacher option:selected").prop("selected", false);
                     $('#Noofteachertrained').val('');
@@ -381,7 +371,7 @@
                         $('#dv_nameofteacher').show();
                         $('#dv_DistrictMlt').show();
                         $('#dv_DistrictId').hide();
-                        GetDistrict('DistrictMlt', '')
+                        GetDistrict('DistrictMlt', '', false)
                         $('#DistrictMlt').multiselect({
                             includeSelectAllOption: true,
                             enableFiltering: true,
@@ -391,6 +381,9 @@
 
                         });
                         $('#DistrictMlt').multiselect('rebuild');
+
+                       
+
                     } else if ($('#Trainingtype').val() == "2") {
                         GetDistrict('DistrictId', '')
                         $('#dv_date').show();
@@ -405,6 +398,18 @@
                         $('#dv_DistrictMlt').hide();
                         $('#dv_SchoolMlt').hide();
                     }
+                     $('#sessionMlt').multiselect({
+                         includeSelectAllOption: true,
+                         enableFiltering: true,
+                         buttonWidth: '100%',
+                         multiple: true
+                     });
+                     $('#Cohortmlt').multiselect({
+                         includeSelectAllOption: true,
+                         enableFiltering: true,
+                         buttonWidth: '100%',
+                         multiple: true
+                     });
                 }
 
             </script>

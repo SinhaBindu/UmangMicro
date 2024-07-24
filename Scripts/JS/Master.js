@@ -885,11 +885,13 @@ function printDiv(elem) {
 }
 
 /* -------------------------------------------- Bind DDL Code -------------------------------*/
-function GetDistrict(Ele, Sel) {
+function GetDistrict(Ele, Sel, Para = true) {
 
     $('#' + Ele).empty();
     $('#' + Ele).prop("disabled", false);
-    $('#' + Ele).append($("<option>").val('').text('Select'));
+    if (Para) {
+        $('#' + Ele).append($("<option>").val('').text('Select'));
+    }
     $.ajax({
         url: document.baseURI + "/Master/GetDistList",
         type: "Post",
@@ -999,11 +1001,13 @@ function GetVillage(Ele, Sel, Para1, Para2, Para3) {
     $('#' + Ele).trigger("chosen:updated");
 }
 
-function GetSchool(Ele, Sel, Para1, Para2) {
+function GetSchool(Ele, Sel, Para1, Para2, IsPara= true) {
     debugger;
     $('#' + Ele).empty();
     $('#' + Ele).prop("disabled", false);
-    $('#' + Ele).append($("<option>").val('').text('Select'));
+    if (IsPara) {
+        $('#' + Ele).append($("<option>").val('').text('Select'));
+    }
     $.ajax({
         url: document.baseURI + "/Master/GetSchoolList",
         type: "Post",
@@ -1029,11 +1033,13 @@ function GetSchool(Ele, Sel, Para1, Para2) {
     $('#' + Ele).trigger("chosen:updated");
 }
 
-function BindGetTeacherList(Ele, Sel, DistrictIds, SchoolIds) {
+function BindGetTeacherList(Ele, Sel, DistrictIds, SchoolIds, IsPara = true) {
 
     $('#' + Ele).empty();
     $('#' + Ele).prop("disabled", false);
-    $('#' + Ele).append($("<option>").val('').text('Select'));
+    if (IsPara) {
+        $('#' + Ele).append($("<option>").val('').text('Select'));
+    }
     $.ajax({
         url: document.baseURI + "/Master/GetTeacherList",
         type: "Post",
