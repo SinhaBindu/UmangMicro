@@ -59,12 +59,15 @@ namespace UmangMicro.Controllers
             var getschool = _db.AspNetUsers.ToList();
             try
             {
-                if (model.Round==0)
+                if (model.Trainingtype == 1)
                 {
-                    response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Please Select Cohort", Data = null };
-                    var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
-                    resResponse3.MaxJsonLength = int.MaxValue;
-                    return resResponse3;
+                    if (model.Round == 0)
+                    {
+                        response = new JsonResponseData { StatusType = eAlertType.error.ToString(), Message = "Please Select Round", Data = null };
+                        var resResponse3 = Json(response, JsonRequestBehavior.AllowGet);
+                        resResponse3.MaxJsonLength = int.MaxValue;
+                        return resResponse3;
+                    }
                 }
                 if (string.IsNullOrWhiteSpace(model.sessionIds))
                 {
@@ -81,7 +84,7 @@ namespace UmangMicro.Controllers
                     model.SchoolMlt = model.SchoolIds;
                     model.sessionMlt = model.sessionIds;
                     model.Cohortmlt = model.CohortIds;
-                    
+
                     //tbl = tbl == null ? new tbl_Mapped() : tbl;
                     Tbl_Trainingteacher tbltcmapp;
                     List<Tbl_Trainingteacher> tbllist = new List<Tbl_Trainingteacher>();
@@ -92,7 +95,7 @@ namespace UmangMicro.Controllers
                         tbl.Round = model.Round;
                         tbl.Cohortmlt = model.Cohortmlt;
                         tbl.DistrictMlt = model.DistrictMlt;
-                       
+
                         tbl.SchoolMlt = model.SchoolMlt;
                         tbl.sessionMlt = model.sessionMlt;
                         tbl.Comment = model.Comment;
@@ -151,6 +154,7 @@ namespace UmangMicro.Controllers
                         tbl.Round = model.Round;
                         //tbl.sessionMlt = model.sessionMlt != null ? string.Join(",", model.sessionMlt) : "";
                         tbl.sessionMlt = model.sessionIds;
+                        tbl.Cohortmlt = model.CohortIds;
                         tbl.Comment = model.Comment;
                         tbl.Date = model.Date;
                         tbl.IsActive = true;
@@ -197,7 +201,7 @@ namespace UmangMicro.Controllers
             return View(TranmodularS);
         }
         [HttpGet]
-      
+
         private string ConvertViewToString(string viewName, object model)
         {
             ViewData.Model = model;
@@ -210,7 +214,7 @@ namespace UmangMicro.Controllers
 
             }
         }
-        
+
     }
 
 
