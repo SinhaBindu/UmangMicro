@@ -61,6 +61,13 @@
                                 @Html.ValidationMessageFor(model => model.Trainingtype, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                        <div class="col-md-3" id="dv_Roundcohort" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Round, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Round, CommonModel.GetRound(), null, new { @class = "form-control", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Round, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                         <div class="col-md-3 dv-hd" id="dv_DistrictId" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "" })<br />
@@ -103,13 +110,7 @@
                                 @Html.ValidationMessageFor(model => model.Cohortmlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-3" id="dv_Roundcohort" style="display:none">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Round, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.Round, CommonModel.GetRound(), null, new { @class = "form-control", @required = "required" })
-                                @Html.ValidationMessageFor(model => model.Round, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                        
                         <div class="col-md-3" id="dv_session" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.sessionMlt, htmlAttributes: new { @class = "" })<br />
@@ -345,13 +346,15 @@
                     $('#dv_block').hide();
                     $('#dv_DistrictMlt').hide();
                     $('#dv_DistrictId').hide();
+                    $('#dv_Roundcohort').hide();
+                    $('#dv_Cohortmlt').hide();
 
                     $('#DistrictId').val('0');
                     $('#BlockId').val('0');
                     $('#SchoolId').val('0');
                     $('#Date').val('');
                     $('#Cohortmlt').val('');
-                    $('#RoundCohort').val('0');
+                    $('#Round').val('0');
                     $('#sessionMlt').empty();
                     $('#Comment').val('');
                     $('#DistrictMlt').empty();
@@ -397,6 +400,7 @@
                         $('.dv-hd').show();
                         $('#dv_DistrictMlt').hide();
                         $('#dv_SchoolMlt').hide();
+                        $('#dv_comment').hide();
                     }
                      $('#sessionMlt').multiselect({
                          includeSelectAllOption: true,

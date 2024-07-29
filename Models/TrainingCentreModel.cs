@@ -37,7 +37,7 @@ namespace UmangMicro.Models
         public string DistrictMlt { get; set; }
         [Display(Name = "Name of Teacher")]
         public string Nameofteacher { get; set; }
-        [Display(Name = "Comment")]
+        [Display(Name = "Name of Teacher Trained")]
         public string Comment { get; set; }
         [Display(Name = "Date")]
         public Nullable<System.DateTime> Date { get; set; }
