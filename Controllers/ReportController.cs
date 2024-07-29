@@ -378,5 +378,34 @@ namespace UmangMicro.Controllers
                 return writer.ToString();
             }
         }
+        //plan Achievement Data//
+        public ActionResult PlanAchieveData()
+        {
+            FilterModel model = new FilterModel();
+            return View(model);
+        }
+        [HttpGet]
+        [HttpPost]
+        public ActionResult GetPlanAchieveData()
+        {           
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = SP_Model.Sp_GetPlanAchieveData();
+
+                if (dt.Rows.Count > 0)
+                {
+                    var html = ConvertViewToString("_PlanAchveData", dt);
+                    return Json(new { IsSuccess = true, res = html }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { IsSuccess = false, res = "No records found." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }

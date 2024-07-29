@@ -284,6 +284,14 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
+        public static DataTable Sp_GetPlanAchieveData()
+        {
+            StoredProcedure sp = new StoredProcedure("SP_GetPlanAchivementData");
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
         public static DataSet GetSP_ChartDataTypeQuery(string Sdt, string Edt, string DistrictId, string BlockId)
         {
             StoredProcedure sp = new StoredProcedure("SP_ChartDataTypeQuery");

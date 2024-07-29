@@ -295,40 +295,40 @@
     <div class="col-md-12 col-lg-6 col-xl-12">
         <div class="mb-3 card">
             @*<div class="card-header-tab card-header-tab-animation card-header">
-                    <div class="card-header-title">
-                        <i class="header-icon lnr-chart-bars icon-gradient bg-love-kiss"></i>
-                        No.Of Girls Cohort (6th to 12th grade)
-                    </div>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link" id="tab1">6TH TO 12TH GRADE</a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle" id="tab2">Type Query</a>
-                        </li>
-                    </ul>
-                </div>*@
+            <div class="card-header-title">
+                <i class="header-icon lnr-chart-bars icon-gradient bg-love-kiss"></i>
+                No.Of Girls Cohort (6th to 12th grade)
+            </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a data-toggle="tab" href="#tabs-eg-77" class="active nav-link" id="tab1">6TH TO 12TH GRADE</a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab" href="#tabs-eg-88" class="nav-link second-tab-toggle" id="tab2">Type Query</a>
+                </li>
+            </ul>
+        </div>*@
             @*<div class="">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="tabs-eg-77">
-                            <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
-                                <div class="widget-chat-wrapper-outer">
-                                    <div id="chartdis6to12" tabindex="1" height="400"></div>
-                                </div>
-                            </div>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tabs-eg-77">
+                    <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                        <div class="widget-chat-wrapper-outer">
+                            <div id="chartdis6to12" tabindex="1" height="400"></div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="tab-pane fade" id="tabs-eg-88">
-                            <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
-                                <div class="widget-chat-wrapper-outer">
-                                    <div class="m-0">
-                                        <div id="chartTypeQuery" tabindex="2" height="400"></div>
-                                    </div>
-                                </div>
+                <div class="tab-pane fade" id="tabs-eg-88">
+                    <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                        <div class="widget-chat-wrapper-outer">
+                            <div class="m-0">
+                                <div id="chartTypeQuery" tabindex="2" height="400"></div>
                             </div>
                         </div>
                     </div>
-                </div>*@
+                </div>
+            </div>
+        </div>*@
             <div class="box graph-active">
                 <div id="chartdis6to12" tabindex="1" height="400"></div>
             </div>
@@ -340,6 +340,11 @@
             </div>
             <div class="box4">
                 <div id="chartModularblock" tabindex="3" height="400"></div>
+            </div>
+            <div class="box5">
+                <div id="tbldata" tabindex="4" height="400">
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -1208,6 +1213,32 @@
         //    }
         //    document.getElementById(id).style.display = "block";
         //}
+        function bindtbl() {
+            $.ajax({
+                url: document.baseURI + "/Report/GetPlanAchieveData",
+                type: "POST",
+                // data: { 'Sdt': Sdt, 'Edt': Edt, 'DistrictId': DistrictId, 'BlockId': BlockId },
+                success: function (resp) {
+                    var html = "";
+                    if (resp.IsSuccess) {
+                        $("#tbldata").html(resp.res);
+                        jQuery.event.trigger("ajaxStop");
+                    }
+                    else {
+                        jQuery.event.trigger("ajaxStop");
+                        return false;
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#tbldata').addClass("text-danger");
+                    toastr.error("Error", errormsg);
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });
+        }
 
         $(document).ready(function () {
 
@@ -1215,6 +1246,7 @@
             $("#DistrictId option[value='']").remove();
             $('#DistrictId').append(`<option value="0">ALL</option>`);
             $("#DistrictId").val("0");
+            bindtbl();
 
             if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
                 $('#DistrictId').val(('@MvcApplication.CUser.DistrictId').toLowerCase());
@@ -1635,6 +1667,29 @@
                 }
             });
         }
+        function LoadTypeQueryChart() {
+
+            $('#chartTypeQuery').html("");
+            jQuery.event.trigger("ajaxStart");
+            $('#chartTypeQuery').removeClass("text-danger");
+            var id = '#formid'
+            var url = $(id).attr("action");
+            var Sdt = $("#FD").val() == "" ? "" : $("#FD").val();
+            var Edt = $("#TD").val() == "" ? "" : $("#TD").val();
+            var DistrictId = $("#DistrictId").val() == "" ? "" : $("#DistrictId").val();
+            var BlockId = $("#BlockId").val() == "" ? "" : $("#BlockId").val();
+            $.ajax({
+                // url: url,
+                url: document.baseURI + "/Report/GetTypeQueryChart",
+                type: "POST",
+                data: { 'Sdt': Sdt, 'Edt': Edt, 'DistrictId': DistrictId, 'BlockId': BlockId },
+                //{ 'Para': Para, 'SearchBy': $('input[name=Searchtxt]').val() }
+                // contentType: "application/json",
+                // dataType: "json",
+                // contentType: "application/json; charset=utf-8",
+                //async: false,
+                success: function (resp) {
+                    if (resp.IsSuccess) {
 
         function LoadTypeQueryChart() {
 
@@ -2151,161 +2206,6 @@
             });
 
         }
-
-
-        //function chartdis6t012(Categy,Datas) {
-        //    Highcharts.chart('chartdis6to12', {
-        //        chart: {
-        //            type: 'bar'
-        //        },
-        //        title: {
-        //            text: 'Total no.of girls from cohort (6th to 12th grade) availed Counselling Services',
-        //            align: 'left'
-        //        },
-        //        subtitle: {
-        //            //text: 'Source: <a ' +
-        //            //    'href="https://en.wikipedia.org/wiki/List_of_continents_and_continental_subregions_by_population"' +
-        //            //    'target="_blank">Wikipedia.org</a>',
-        //            align: 'left'
-        //        },
-        //        xAxis: {
-        //            categories: Categy,
-        //            //    ['Africa', 'America', 'Asia', 'Europe'],
-        //            title: {
-        //                text: 'District Wise'
-        //            },
-        //            gridLineWidth: 1,
-        //            lineWidth: 0
-        //        },
-        //        yAxis: {
-        //            min: 0,
-        //            title: {
-        //                text: 'No.of girls Counselling( 6th To 12th Grade)',
-        //                align: 'high'
-        //            },
-        //            labels: {
-        //                overflow: 'justify'
-        //            },
-        //            gridLineWidth: 0
-        //        },
-        //        tooltip: {
-        //            valueSuffix: ''
-        //        },
-        //        plotOptions: {
-        //            bar: {
-        //                borderRadius: '50%',
-        //                dataLabels: {
-        //                    enabled: true
-        //                },
-        //                groupPadding: 0.1
-        //            }
-        //        },
-        //        legend: {
-        //            layout: 'vertical',
-        //            align: 'right',
-        //            verticalAlign: 'top',
-        //            x: -40,
-        //            y: 80,
-        //            floating: true,
-        //            borderWidth: 1,
-        //            backgroundColor:
-        //                Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-        //            shadow: true
-        //        },
-        //        credits: {
-        //            enabled: false
-        //        },
-        //        series: Datas
-        //        //    [{
-        //        //    name: '(6th to 8th grade)',
-        //        //    data: [631, 727, 3202, 721]
-        //        //}, {
-        //        //    name: '(9th to 10th grade)',
-        //        //    data: [814, 841, 3714, 726]
-        //        //}, {
-        //        //    name: '(11th to 12th grade)',
-        //        //    data: [1276, 1007, 4561, 746]
-        //        //}]
-        //    });
-
-        //}
-        //function chartblock6t012(Categy, Datas) {
-        //    Highcharts.chart('chartblock6to12', {
-        //        chart: {
-        //            type: 'bar'
-        //        },
-        //        title: {
-        //            text: 'Total no.of girls from cohort (6th to 12th grade) availed Counselling Services',
-        //            align: 'left'
-        //        },
-        //        subtitle: {
-        //            //text: 'Source: <a ' +
-        //            //    'href="https://en.wikipedia.org/wiki/List_of_continents_and_continental_subregions_by_population"' +
-        //            //    'target="_blank">Wikipedia.org</a>',
-        //            align: 'left'
-        //        },
-        //        xAxis: {
-        //            categories: Categy,
-        //            //    ['Africa', 'America', 'Asia', 'Europe'],
-        //            title: {
-        //                text: 'District Wise'
-        //            },
-        //            gridLineWidth: 1,
-        //            lineWidth: 0
-        //        },
-        //        yAxis: {
-        //            min: 0,
-        //            title: {
-        //                text: 'No.of girls Counselling( 6th To 12th Grade)',
-        //                align: 'high'
-        //            },
-        //            labels: {
-        //                overflow: 'justify'
-        //            },
-        //            gridLineWidth: 0
-        //        },
-        //        tooltip: {
-        //            valueSuffix: ''
-        //        },
-        //        plotOptions: {
-        //            bar: {
-        //                borderRadius: '50%',
-        //                dataLabels: {
-        //                    enabled: true
-        //                },
-        //                groupPadding: 0.1
-        //            }
-        //        },
-        //        legend: {
-        //            layout: 'vertical',
-        //            align: 'right',
-        //            verticalAlign: 'top',
-        //            x: -40,
-        //            y: 80,
-        //            floating: true,
-        //            borderWidth: 1,
-        //            backgroundColor:
-        //                Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-        //            shadow: true
-        //        },
-        //        credits: {
-        //            enabled: false
-        //        },
-        //        series: Datas
-        //        //    [{
-        //        //    name: '(6th to 8th grade)',
-        //        //    data: [631, 727, 3202, 721]
-        //        //}, {
-        //        //    name: '(9th to 10th grade)',
-        //        //    data: [814, 841, 3714, 726]
-        //        //}, {
-        //        //    name: '(11th to 12th grade)',
-        //        //    data: [1276, 1007, 4561, 746]
-        //        //}]
-        //    });
-
-        //}
-
     </script>
 }
 
