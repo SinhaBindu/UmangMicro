@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SubSonic.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -282,7 +283,7 @@ namespace UmangMicro.Controllers
         //Modular Session
         public ActionResult FullCalendarReport()
         {
-            FilterModel model=new FilterModel();
+            FilterModel model = new FilterModel();
             return View(model);
         }
         public ActionResult GetCalendarReportData(string Sdt, string Edt, string MonthId, string YearId)
@@ -307,7 +308,38 @@ namespace UmangMicro.Controllers
                 return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
-       //Group Conselleing
+        public ActionResult GetCalendarClickPopModularData(string PlanDate)
+        {
+            string MonthId = ""; string YearId = "";
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(PlanDate))
+                {
+                    return Json(new { IsSuccess = false, res = "Date not Blank.." }, JsonRequestBehavior.AllowGet);
+                }
+                MonthId = string.IsNullOrWhiteSpace(PlanDate) ? DateTime.Now.Month.ToString() : Convert.ToDateTime(PlanDate).Date.Month.ToString();
+                YearId = string.IsNullOrWhiteSpace(PlanDate) ? DateTime.Now.Year.ToString() : Convert.ToDateTime(PlanDate).Date.Year.ToString();
+                PlanDate = string.IsNullOrWhiteSpace(PlanDate) ? DateTime.Now.Date.ToString() : Convert.ToDateTime(PlanDate).Date.ToString();
+                ds = SP_Model.SP_GetPlanAchivementDetailsPOPModel(MonthId.ToUpper(), YearId.ToUpper(), PlanDate);
+                if (ds.Tables.Count > 0)
+                {
+                    dt = ds.Tables[0];
+                    if (dt.Rows.Count > 0)
+                    {
+                        var html = ConvertViewToString("_CalendarpopModularData", dt);
+                        return Json(new { IsSuccess = true, res = html }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //Group Conselleing
         public ActionResult CalendarGroupCounselling()
         {
             FilterModel model = new FilterModel();

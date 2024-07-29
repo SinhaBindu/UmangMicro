@@ -1135,12 +1135,33 @@
 
 </div>
 
+<div class="popup" role="alert" id="popupmain">
+    <div class="popup-container">
+        <a href="javascript:void(0);" class="popup-close img-replace" onclick="popmainclose()">Close</a>
+        <div id="containercalendar">
+            <div id="msg"></div>
+        </div>
+    </div>
 </div>
+
+
+<div id="POPModel">
+</div>
+
+@*</div>*@
 
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    @*<script src="https://code.highcharts.com/highcharts.js"></script>*@
+    @*<script src="https://code.highcharts.com/modules/heatmap.js"></script>*@
+    @*<script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>*@
     <script src="~/Scripts/JS/Master.js"></script>
+    <link href="~/Content/assets/POPCSS.css" rel="stylesheet" />
+    <script src="~/Scripts/JS/ModularCalendarDashboard.js"></script>
+    <script src="~/Scripts/JS/POPModular.js"></script>
+
     <script>
         $(".result1").click(function () {
             $(".getCurrent").addClass("bg-mixed-hopes");

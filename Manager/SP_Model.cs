@@ -263,6 +263,17 @@ namespace UmangMicro.Manager
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
+        public static DataSet SP_GetPlanAchivementDetailsPOPModel(string MonthId, string YearId, string PlanDate)
+        {
+            StoredProcedure sp = new StoredProcedure("SP_GetPlanAchivementDetailsPOPModel");
+            sp.Command.AddParameter("@MonthId", MonthId, DbType.String);
+            sp.Command.AddParameter("@YearId", YearId, DbType.String);
+            sp.Command.AddParameter("@PlanDate", PlanDate, DbType.String);
+            sp.Command.AddParameter("@Role", CommonModel.GetUserRole(), DbType.String);
+            sp.Command.AddParameter("@ParaUser", MvcApplication.CUser.Id, DbType.String);
+            DataSet ds = sp.ExecuteDataSet();
+            return ds;
+        }
         public static DataSet GetSP_CalendarGroupConsellingReport(string Sdt, string Edt, string MonthId, string YearId)
         {
             StoredProcedure sp = new StoredProcedure("SP_CalendarGroupConsellingReport");

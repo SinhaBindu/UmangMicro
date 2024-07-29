@@ -732,10 +732,28 @@
                         if (isvalid) {
                             var phyjoin = "";
                             if ($('input[name=IsPsychometric]:checked').val()=="1") {
-                                phyjoin = ($('#Psychometric').val()).join(',');
+                                //phyjoin = ($('#Psychometric').val()).join(',');
+                                phyjoin = $('#Psychometric').val();
+                                if (phyjoin != null && phyjoin != undefined) {
+                                    if (phyjoin.length != 0) {
+                                        phyjoin = phyjoin.join(',');
+                                    }
+                                }
                             }
-                            var Counsellingjoin = ($('#Counselling').val()).join(',');
-                            var Subjectjoin = ($('#Subject').val()).join(',');
+                            var Counsellingjoin = $('#Counselling').val();
+                            if (Counsellingjoin != null && Counsellingjoin != undefined) {
+                                if (Counsellingjoin.length != 0) {
+                                    Counsellingjoin = Counsellingjoin.join(',');
+                                }
+                            }
+                            var Subjectjoin = $('#Subject').val();
+                            if (Subjectjoin != null && Subjectjoin != undefined) {
+                                if (Subjectjoin.length != 0) {
+                                    Subjectjoin = Subjectjoin.join(',');
+                                }
+                            }
+                           // var Counsellingjoin = ($('#Counselling').val()).join(',');
+                            //var Subjectjoin = ($('#Subject').val()).join(',');
                             var formData = new FormData();
                             formData.append('StratTime', $('#StratTime').val());
                             formData.append('CaseID', $('#CaseID').val());

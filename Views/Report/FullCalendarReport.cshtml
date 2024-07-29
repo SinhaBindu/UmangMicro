@@ -43,8 +43,8 @@
             </div>
             <div class="col-md-8">
                 <ul class="fa-ul" id="ul_top_hypers">
-                    <li><i class="fa-li fa fa-square text-danger" style="color: #E4080A !important;"></i>No of plan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                    <li><i class="fa-li fa fa-square" style="color: #267EEA !important;"></i>No of plan & achieved submission is zero &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    @*<li><i class="fa-li fa fa-square text-danger" style="color: #E4080A !important;"></i>No of plan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>*@
+                    <li><i class="fa-li fa fa-square" style="color: #E4080A !important;"></i>No of plan & achieved submission is zero &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     <li><i class="fa-li fa fa-square text-danger" style="color: #FE9900 !important;"></i>No of plan & achieved is not equal to &nbsp;&nbsp;&nbsp;<br /></li>
                     <li><i class="fa-li fa fa-check-square text-success" style="color: #3FAD18 !important;"></i>No of plan & achieved is equal to</li>
                 </ul>
@@ -57,6 +57,10 @@
         <div id="msg"></div>
     </div>
 
+    <div id="POPModel">
+    </div>
+
+
 </div>
 
 
@@ -66,6 +70,8 @@
     <script src="https://code.highcharts.com/modules/heatmap.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link href="~/Content/assets/POPCSS.css" rel="stylesheet" />
+    <script src="~/Scripts/JS/POPModular.js"></script>
 
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -132,15 +138,16 @@
                 // Get the corresponding temperature for the current day from the given
                 // array
                 // debugger;
+                const PlanDate = data[day - 1].date;
                 const NoofPlan = data[day - 1].NoOfPlan;
                 const NoofAchieved = data[day - 1].NoofAchieved;
                 const NoOfAchievement = data[day - 1].NoOfAchievement;
                 var color = "";// NoOfAchievement != null ? "#3FAD18" ? temperature - NoofAchieved != 0 : "#AD3118" :"#F0940F";
                 if (NoofPlan == 0 && NoofAchieved == 0) {
-                    color = "#E4080A";//red NoofPlan & NoofAchieved zero
+                    color = "";//red #E4080A NoofPlan & NoofAchieved zero
                 }
                 if (NoOfAchievement == null && NoofPlan != 0 && NoofAchieved == 0) {
-                    color = "#267EEA";//bule NoofPlan data & NoofAchieved data is zero
+                    color = "#E4080A";//bule #267EEA NoofPlan data & NoofAchieved data is zero
                 }
                 if (NoOfAchievement != null && NoofAchieved != NoofPlan) {
                     color = "#FE9900";//org NoofPlan & NoofAchieved not will be equal
@@ -157,9 +164,10 @@
                     value: NoofPlan + '/' + NoofAchieved,
                     color: color,
                     name: NoofPlan + '/' + NoofAchieved,
+                    PlanDate: PlanDate,
                     date: new Date(date).getTime(),
                     custom: {
-                        monthDay: id
+                        monthDay: id,
                     }
                 });
             }
@@ -173,6 +181,7 @@
                     value: null,
                     color: null,
                     name: null,
+                    PlanDate: null,
                     date: null,
                     custom: {
                         empty: true
@@ -235,6 +244,19 @@
                             'starting with Sunday.'
                     }
                 },
+                plotOptions: {
+                    series: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                    debugger;
+                                    BindPOPData(this.PlanDate);
+                                }
+                            }
+                        }
+                    }
+                },
 
                 yAxis: {
                     min: 0,
@@ -265,7 +287,7 @@
                 },
 
                 series: [{
-                    keys: ['x', 'y', 'value', 'color', 'name', 'date', 'id'],
+                    keys: ['x', 'y', 'value', 'color', 'name', 'PlanDate', 'date', 'id'],
                     data: chartData,
                     nullColor: 'rgba(196, 196, 196, 0.2)',
                     borderWidth: 2,
@@ -348,5 +370,6 @@
                 }
             });
         }
+
     </script>
 }

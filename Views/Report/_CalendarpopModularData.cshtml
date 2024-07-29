@@ -1,0 +1,200 @@
+﻿@using System.Data
+@using UmangMicro.Manager
+@{
+    ViewBag.Title = "RIASEC Test Result List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+<style>
+    /*body {
+        font-family: 'Roboto';
+    }
+
+    .popup-trigger {
+        display: block;
+        width: 170px;
+        right: 2rem;
+        margin: 3em auto;
+        text-align: center;
+        color: #FFF;
+        font-size: 18px;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 50em;
+        background: #35a785;
+        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.07);
+        transition: 300ms all;
+    }
+
+        .popup-trigger:hover {
+            opacity: .8;
+        }
+
+    .popup {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        z-index: 1000;
+        width: 100%;
+        background-color: rgba(94, 110, 141, 0.9);
+        opacity: 0;
+        visibility: hidden;
+        transition: 500ms all;
+    }
+
+        .popup.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transition: 1s all;
+        }
+
+    .popup-container {
+        height:auto;
+        transform: translateY(-50%);
+        transition: 500ms all;
+        position: relative;
+        width: 100%;*/
+        /*margin: 2em auto;*/
+        /*top: 1%;
+        padding: 2rem;
+        background: #FFF;
+        border-radius: .25em .25em .4em .4em;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .is-visible .popup-container {
+        transform: translateY(0);
+        transition: 500ms all;
+    }
+
+    .popup-container .popup-close {
+        position: absolute;
+        top: 8px;
+        font-size: 0;
+        right: 8px;
+        width: 30px;
+        height: 30px;
+    }
+
+
+        .popup-container .popup-close::before,
+        .popup-container .popup-close::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            width: 14px;
+            height: 3px;
+            background-color: #8f9cb5;
+        }
+
+        .popup-container .popup-close::before {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            left: 8px;
+        }
+
+        .popup-container .popup-close::after {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            right: 8px;
+        }
+
+
+        .popup-container .popup-close:hover:before,
+        .popup-container .popup-close:hover:after {
+            background-color: #35a785;
+            transition: 300ms all;
+        }*/
+
+    /*.overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+    }*/
+
+    /* These are the rules you are looking for. */
+    /*.overlay {
+        transition: opacity 500ms;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+        .overlay:target {
+            opacity: 0;
+            pointer-events: none;
+        }*/
+</style>
+
+<div class="popup overlay" role="alert" id="popup1">
+    <div class="popup-container">
+        <a href="javascript:void(0);" class="popup-close img-replace" onclick="make()">Close</a>
+
+        <div class="row row-deck">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="table-responsive" style="height:600px !important;">
+                        <table class="table table-bordered table-hover dt-responsive display" id="poptbl" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>SrNo.</th>
+                                    <th>Reported By</th>
+                                    <th>District</th>
+                                    <th>School</th>
+                                    <th>Class</th>
+                                    <th>Session</th>
+                                    <th>Plan<br /> Date</th>
+                                    <th>Achievement<br /> Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int sno = 1; int indx = 0;
+                                    if (Model != null)
+                                    {
+                                        foreach (DataRow dr in dt.Rows)
+                                        {
+                                            <tr style="background:@dr["AchievColor"]">
+                                                <td class="text-center">@(sno++)</td>
+                                                <td class="text-left" style="word-break:break-word !important;"><strong>@dr["ReportedByName"]</strong></td>
+                                                <td class="text-left" style="word-break: break-word !important;">@dr["district_name"]</td>
+                                                <td class="text-left" style="word-break: break-word !important;">@dr["school_name"]</td>
+                                                <td class="text-center">@dr["PlanCalssId"]</td>
+                                                <td class="text-left" style="word-break: break-word !important;"><strong>@dr["COHORT_Session_Hindi"]</strong></td>
+                                                <td class="text-center"><strong>@(CommonModel.FormateDtDMY(dr["PlanDate"].ToString()))</strong></td>
+                                                <td class="text-center"><strong>@(CommonModel.FormateDtDMY(dr["AchivedDate"].ToString()))</strong></td>
+                                            </tr>
+                                            indx++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="8" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div> 

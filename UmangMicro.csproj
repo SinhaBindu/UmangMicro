@@ -647,8 +647,12 @@
     <Content Include="Content\assets\images\vline-rtl.gif" />
     <Content Include="Content\assets\images\vline.gif" />
     <Content Include="Content\assets\JS\main.d810cf0ae7f39f28f336.js" />
+    <Content Include="Scripts\JS\ModularCalendarDashboard.js" />
+    <Content Include="Scripts\JS\POPModular.js" />
     <Content Include="Content\assets\main.css" />
     <Content Include="Content\assets\mgaccordion.css" />
+    <Content Include="Content\assets\POPCSS.css" />
+    <Content Include="Content\assets\POPModular.js" />
     <Content Include="Content\assets\TreeTable.css" />
     <Content Include="Content\assets\TreeTable.js" />
     <Content Include="Content\Calendarcssjs_old\fullcalendar-init.js" />
@@ -1202,6 +1206,7 @@
     <Content Include="Views\Plan\SevenDaysPlan.cshtml" />
     <Content Include="Views\Plan\_PlanSevendsData.cshtml" />
     <Content Include="Views\Report\CalendarGroupCounselling.cshtml" />
+    <Content Include="Views\Report\_CalendarpopModularData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

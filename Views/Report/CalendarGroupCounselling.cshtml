@@ -138,10 +138,10 @@
                 const NoOfAchievement = data[day - 1].NoOfAchievement;
                 var color = "";// NoOfAchievement != null ? "#3FAD18" ? temperature - NoofAchieved != 0 : "#AD3118" :"#F0940F";
                 if (NoofPlan == 0 && NoofAchieved == 0) {
-                    color = "#E4080A";//red NoofPlan & NoofAchieved zero
+                    color = "";//red #E4080A NoofPlan & NoofAchieved zero
                 }
                 if (NoOfAchievement == null && NoofPlan != 0 && NoofAchieved == 0) {
-                    color = "#267EEA";//bule NoofPlan data & NoofAchieved data is zero
+                    color = "#E4080A";//bule #267EEA NoofPlan data & NoofAchieved data is zero
                 }
                 if (NoOfAchievement != null && NoofAchieved != NoofPlan) {
                     color = "#FE9900";//org NoofPlan & NoofAchieved not will be equal
@@ -149,8 +149,6 @@
                 if (NoOfAchievement != null && NoofAchieved == NoofPlan) {
                     color = "#3FAD18";//green NoofPlan & NoofAchieved will be equal
                 }
-
-
 
                 chartData.push({
                     x: xCoordinate,
