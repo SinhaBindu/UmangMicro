@@ -31,6 +31,46 @@
         font-weight: 700;
         font-size: 15px !important;
     }
+    .multiselect-container .multiselect-option .form-check, .multiselect-container .multiselect-group .form-check, .multiselect-container .multiselect-all .form-check {
+        padding: 0 5px 0 10px !important;
+    }
+
+    .form-check-label {
+        margin-left: 10px !important;
+    }
+
+    .custom-select {
+        height: 32px !important
+    }
+
+    .multiselect-container {
+        height: 200px;
+        overflow-y;
+        scroll;
+        overflow-x: hidden;
+    }
+
+        .multiselect-container::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+        }
+
+        .multiselect-container::-webkit-scrollbar {
+            width: 10px;
+            background-color: #F5F5F5;
+        }
+
+        .multiselect-container::-webkit-scrollbar-thumb {
+            background-color: #0ae;
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
+        }
+
+    .dropdown-item {
+        width: 90% !important;
+    }
+    .btn-group, .btn-group-vertical {
+        display: block !important;
+    }
 </style>
 
 <div class="admin-breadcrumb">
