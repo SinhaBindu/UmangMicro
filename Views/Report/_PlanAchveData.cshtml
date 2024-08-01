@@ -2,28 +2,26 @@
 @model DataTable
 
 @{
-    ViewBag.Title = "User List";
+    ViewBag.Title = "_Plan / Achievement Data";
 }
 
-<strong>Plan Achievement Lists</strong>
-<div class="row row-deck">
-    <div class="col-lg-12 col-md-12">
+<strong>Plan/Achievement Lists</strong>
+<div class="row row-deck" >
+    <div class="col-lg-12 col-md-12" >
         <div class="card">
-            <div class="table-responsive">
+            <div class="table-responsive" style="height:300px; overflow:scroll;">
                 <table class="table table-bordered table-hover dt-responsive display small" id="tbl" width="100%" style="vertical-align:middle;">
                     <thead>
                         <tr>
                             <th>Sr No.</th>
-                            <th>Schoo lId</th>
                             <th>District Name</th>
                             <th>School Name</th>
-                            <th>Calss Id</th>
-                            <th>No of plan</th>
+                            <th>Calss</th>
+                            <th>No of Plan</th>
                             <th>No of Achieved</th>
                             <th>Plan Date</th>
                             <th>Achieved Date</th>
-                            <th>Achievement Percentage%</th>
-                            <th>Achiev Color%</th>
+                            <th>Achievement %</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,25 +31,23 @@
                             {
                                 foreach (DataRow dr in Model.Rows)
                                 {
-                                    <tr>
+                                    <tr style="background-color:@dr["AchievColor"]">
                                         <td class="text-center">@(sno++)</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["PlanSchoolId"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["district_name"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["school_name"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["PlanCalssId"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["Noofplan"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["Noofachived"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["PlanDate"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["AchivedDate"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["AchievementPercentage"]</td>
-                                        <td class="text-center" style="word-wrap:break-word;">@dr["AchievColor"]</td>
+                                        <td class="text-left">@dr["district_name"]</td>
+                                        <td class="text-left">@dr["school_name"]</td>
+                                        <td class="text-center">@dr["PlanCalssId"]</td>
+                                        <td class="text-center">@dr["Noofplan"]</td>
+                                        <td class="text-center">@dr["Noofachived"]</td>
+                                        <td class="text-center">@dr["PlanDate"]</td>
+                                        <td class="text-center">@dr["AchivedDate"]</td>
+                                        <td class="text-center">@dr["AchievementPercentage"]</td>
                                     </tr>
                                 }
                             }
                             else
                             {
                                 <tr>
-                                    <td colspan="10" class="text-danger text-center"><strong>Record Not Found !!</strong></td>
+                                    <td colspan="9" class="text-danger text-center"><strong>Record Not Found !!</strong></td>
                                 </tr>
                             }
                         }

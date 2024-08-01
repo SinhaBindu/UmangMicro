@@ -139,21 +139,6 @@
                                 @Html.ValidationMessageFor(model => model.SchoolMlt, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-md-3" id="dv_Cohortmlt" style="display:none">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Cohortmlt, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.Cohortmlt, CommonModel.GetCohort(false), null, new { @class = "form-control", @required = "required", @multiple = "multiple" })
-                                @Html.ValidationMessageFor(model => model.Cohortmlt, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-3" id="dv_session" style="display:none">
-                            <div class="position-relative form-group">
-                                <span class="text-danger">*</span>@Html.LabelFor(model => model.sessionMlt, htmlAttributes: new { @class = "" })<br />
-                                @Html.DropDownListFor(model => model.sessionMlt, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
-                                @Html.ValidationMessageFor(model => model.sessionMlt, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
                         <div class="col-md-3" id="dv_nameofteacher" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(model => model.Nameofteacher, htmlAttributes: new { @class = "" })<br />
@@ -162,6 +147,22 @@
                                 @Html.ValidationMessageFor(model => model.Nameofteacher, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                        <div class="col-md-3" id="dv_Cohortmlt" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.Cohortmlt, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.Cohortmlt, CommonModel.GetCohort(false), null, new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.Cohortmlt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" id="dv_session" style="display:none">
+                            <div class="position-relative form-group">
+                                <span class="text-danger">*</span>@Html.LabelFor(model => model.sessionMlt, htmlAttributes: new { @class = "" })<br />
+                                @Html.DropDownListFor(model => model.sessionMlt, new List<SelectListItem>(), new { @class = "form-control", @required = "required", @multiple = "multiple" })
+                                @Html.ValidationMessageFor(model => model.sessionMlt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
                         <div class="col-md-3" id="dv_date" style="display:none">
                             <div class="position-relative form-group">
                                 <span class="text-danger">*</span>@Html.LabelFor(m => m.Date, new { @class = "Col-md-2 col-form-label" })<em></em>
@@ -212,8 +213,6 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.dv-hd').hide();
-
-
 
                     if ('@CommonModel.GetUserRole()' === '@MvcApplication.CUser.Role') {
                         $('#Trainingtype').val(('2').toLowerCase()).attr("style", "pointer-events: none;");
@@ -406,10 +405,11 @@
                         $('#dv_session').show();
                         $('#dv_Cohortmlt').show();
                         $('#dv_Roundcohort').show();
-                        $('#dv_comment').show();
+                       
                         $('#dv_nameofteacher').show();
                         $('#dv_DistrictMlt').show();
                         $('#dv_DistrictId').hide();
+                        
                         GetDistrict('DistrictMlt', '', false)
                         $('#DistrictMlt').multiselect({
                             includeSelectAllOption: true,
@@ -436,7 +436,8 @@
                         $('.dv-hd').show();
                         $('#dv_DistrictMlt').hide();
                         $('#dv_SchoolMlt').hide();
-                        $('#dv_comment').hide();
+                        //$('#dv_comment').hide();
+                     
                     }
                      $('#sessionMlt').multiselect({
                          includeSelectAllOption: true,

@@ -379,13 +379,11 @@ namespace UmangMicro.Controllers
             }
         }
         //plan Achievement Data//
-        public ActionResult PlanAchieveData()
-        {
-            FilterModel model = new FilterModel();
-            return View(model);
-        }
-        [HttpGet]
-        [HttpPost]
+        //public ActionResult PlanAchieveData()
+        //{
+        //    FilterModel model = new FilterModel();
+        //    return View(model);
+        //}
         public ActionResult GetPlanAchieveData()
         {           
             DataTable dt = new DataTable();

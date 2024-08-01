@@ -31,9 +31,12 @@
                             {
                                 <th>No of Teachers Trained</th>
                             }
-                              <th>Cohort</th>
+                            <th>Cohort</th>
                             <th>Session</th>
+                            @if (ViewBag.task == 2)
+                            {
                             <th>Remarks</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -60,8 +63,11 @@
                                                     }
                                                     <td class="text-left">@dr["RoundCohortText"]</td>
                                                     <td class="text-left">@dr["SessionText"]</td>
-                                                    <td class="text-left" style="word-wrap:break-word;">@dr["Comment"]</td>
-                                                </tr>
+                                                    @if (ViewBag.task == 2)
+                                                    {
+                                                        <td class="text-left" style="word-wrap:break-word;">@dr["Comment"]</td>
+                                                    }
+                                                    </tr>
                                 }
                             }
                             else

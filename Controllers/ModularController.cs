@@ -38,13 +38,14 @@ namespace UmangMicro.Controllers
                 {
                     var data = JsonConvert.SerializeObject(items);
                     var html = ConvertViewToString("_ModularData", items);
-                    return Json(new { IsSuccess = true, reshtml = html, res = data }, JsonRequestBehavior.AllowGet);
+                    return Json(new { IsSuccess = true, reshtml = html }, JsonRequestBehavior.AllowGet);
                 }
-                return Json(new { IsSuccess = false, res = "" }, JsonRequestBehavior.AllowGet);
+                return Json(new { IsSuccess = false, reshtml = "Record Not Found." }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Json(new { IsSuccess = false, res = "There was a communication error." }, JsonRequestBehavior.AllowGet);
+                string msg = ex.Message;    
+                return Json(new { IsSuccess = false, reshtml = "There was a communication error." }, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult ModularSForm()

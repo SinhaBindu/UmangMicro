@@ -43,59 +43,66 @@
                                 {
                                     bool achievementDone = !string.IsNullOrEmpty(dr["AchievementDate"].ToString());
                                     var cl = achievementDone == true && dr["Task"].ToString() == "2" ? "#3FAD18" : "";
-                                    <tr class="" style="background: @cl !important; color:#000;">
-                                        <td class="text-center">@(sno++)</td>
-                                        <td class="text-center">@CommonModel.FormateDtDMY(dr["ConductedDate"].ToString())</td>
-                                        <td class="text-left">@dr["district_name"]</td>
-                                        <td class="text-left">@dr["block_name"]</td>
-                                        <td class="text-left">@dr["school_name"]</td>
-                                        <td class="text-center">@dr["CalssMlt"]</td>
-                                        @if (ViewBag.task == 2)
-                                        {
-                                            <td class="text-center">@dr["sessiontypetext"]</td>
-                                        }
-                                        <td class="text-center">@dr["SessionText"]</td>
-                                        @if (ViewBag.task == 2)
-                                        {
-
-                                            <td class="text-center">@dr["NoofStudent"]</td>
-                                            <td class="text-center">@dr["AchievedNoofStudent"]</td>
-                                            <td class="text-center">@CommonModel.FormateDtDMY(dr["AchievementDate"].ToString())</td>
-                                            <td class="text-center">
-                                                @{
-                                                    string achieveImagePath = dr["AchieveImagepath"].ToString();
-                                                    if (!string.IsNullOrEmpty(achieveImagePath))
+                                                <tr class="" style="background: @cl !important; color:#000;">
+                                                    @if (ViewBag.task == 2)
                                                     {
-                                                        var splitem = achieveImagePath.Split('~');
-                                                        if (splitem.Length > 1)
-                                                        {
-                                                            var fileUrl = CommonModel.GetBaseUrl() + splitem[1];
-                                                            <a href="@fileUrl" download><i class="fa fa-file-download"></i> Download</a>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span class="text-danger">Invalid path</span>
-                                                        }
+                                                        <td class="text-center bg-primary" style="cursor:pointer" title="Click Here To"><strong>Click Here To</strong></td>
                                                     }
                                                     else
                                                     {
-                                                        <span class="text-danger">No path provided</span>
+                                                        <td class="text-center">@(sno++)</td>
                                                     }
-                                                }
-                                            </td>
-                                            <td class="text-center">@dr["CounsellingRemarks"]</td>
-                                            <td class="text-center">
-                                                @if (achievementDone)
-                                                {
-                                                    <button class="btn btn-success" disabled><i class="fa fa-check-circle"></i> Achievement Done</button>
-                                                }
-                                                else
-                                                {
-                                                    <a href="~/Plan/PlanSForm?Id=@dr["MID"]&&TakId=@dr["Task"]" class="btn btn-info" name="btnAchieve" id="btnAchieve"><i class="fa fa-edit"></i> Achieve </a>
-                                                }
-                                            </td>
-                                        }
-                                    </tr>
+                                                    <td class="text-center">@CommonModel.FormateDtDMY(dr["ConductedDate"].ToString())</td>
+                                                    <td class="text-left">@dr["district_name"]</td>
+                                                    <td class="text-left">@dr["block_name"]</td>
+                                                    <td class="text-left">@dr["school_name"]</td>
+                                                    <td class="text-center">@dr["CalssMlt"]</td>
+                                                    @if (ViewBag.task == 2)
+                                                    {
+                                                        <td class="text-center">@dr["sessiontypetext"]</td>
+                                                    }
+                                                    <td class="text-center">@dr["SessionText"]</td>
+                                                    @if (ViewBag.task == 2)
+                                                    {
+
+                                                        <td class="text-center">@dr["NoofStudent"]</td>
+                                                        <td class="text-center">@dr["AchievedNoofStudent"]</td>
+                                                        <td class="text-center">@CommonModel.FormateDtDMY(dr["AchievementDate"].ToString())</td>
+                                                        <td class="text-center">
+                                                            @{
+                                                                string achieveImagePath = dr["AchieveImagepath"].ToString();
+                                                                if (!string.IsNullOrEmpty(achieveImagePath))
+                                                                {
+                                                                    var splitem = achieveImagePath.Split('~');
+                                                                    if (splitem.Length > 1)
+                                                                    {
+                                                                        var fileUrl = CommonModel.GetBaseUrl() + splitem[1];
+                                                                        <a href="@fileUrl" download><i class="fa fa-file-download"></i> Download</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="text-danger">Invalid path</span>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="text-danger">No path provided</span>
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td class="text-center">@dr["CounsellingRemarks"]</td>
+                                                        <td class="text-center">
+                                                            @if (achievementDone)
+                                                            {
+                                                                <button class="btn btn-success" disabled><i class="fa fa-check-circle"></i> Achievement Done</button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <a href="~/Plan/PlanSForm?Id=@dr["MID"]&&TakId=@dr["Task"]" class="btn btn-info" name="btnAchieve" id="btnAchieve"><i class="fa fa-edit"></i> Achieve </a>
+                                                            }
+                                                        </td>
+                                                    }
+                                                </tr>
                                 }
                             }
                             else

@@ -208,7 +208,8 @@
                         //table.buttons().container().appendTo($('#div-download'));
                     }
                     else {
-                        $('#sub-data').html(resp.Data); $('#sub-data').addClass("text-danger");
+                        $('#sub-data').html("<b class='text-danger'>" + resp.reshtml + "</b>");
+                        //$('#sub-data').addClass("text-danger");
                         // toastr.error("Error", errormsg);
                         jQuery.event.trigger("ajaxStop");
                         return false;

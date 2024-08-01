@@ -31,6 +31,7 @@
         font-weight: 700;
         font-size: 15px !important;
     }
+
     .multiselect-container .multiselect-option .form-check, .multiselect-container .multiselect-group .form-check, .multiselect-container .multiselect-all .form-check {
         padding: 0 5px 0 10px !important;
     }
@@ -68,6 +69,7 @@
     .dropdown-item {
         width: 90% !important;
     }
+
     .btn-group, .btn-group-vertical {
         display: block !important;
     }
@@ -347,7 +349,7 @@
                     $('#dv_sessioninput').hide();
                 }
             });
-           
+
             $('#CareerMaster').change(function () {
                 $('#SessionInputother').val('');
 
@@ -492,7 +494,7 @@
                             $('#SessionInputother').hide();
                         }
                     });
-                    
+
                     var checkedclass = ('@Model.ClassMLT').split(',');
                     var checkedcla = ('@Model.ClassMLT');
                     $("#ClassMLT").val(checkedclass)
@@ -521,9 +523,10 @@
 
             $("#formid").on("submit", function (event) {
                 event.preventDefault();
+                debugger;
                 var maxNoofStudentLength = 3;
                 var noofStudent = $('#NoofStudent').val();
-
+                var isValid = true;
                 if (noofStudent.length > maxNoofStudentLength) {
                     toastr.error("Error", "Number of students should not exceed " + maxNoofStudentLength + " digits.");
                     return false;
@@ -539,29 +542,32 @@
                     formData.append('TaskType', $('#TaskType').val());
 
                     var MS_model = [];
+                    if ($('#TaskType').val() === '0') {
+                        toastr.error("Error", 'Please select TaskType');
+                        isValid = false;
+                        return false;
+                    }
+                    if ($('#TaskType').val() === '2') {
+                        if ($('#SessionType').val() === '0') {
+                            toastr.error("Error", 'Please select Session Type');
+                            isValid = false;
+                            return false;
+                        } else if ($('#SessionType').val() === '1' && $('#CareerMaster').val() === '8') {
+                            if ($('#SessionInputother').val() === '') {
+                                toastr.error("Error", 'Please enter Session Input');
+                                isValid = false;
+                                return false;
+                            }
+                        } else if ($('#SessionType').val() === '2' && $('#coursemaster').val() == "279") {
+                            if ($('#SessionInputother').val() === '') {
+                                toastr.error("Error", 'Please enter Session Input');
+                                isValid = false;
+                                return false;
+                            }
+                        }
+                    }
 
                     if ('@Model.Id' != '0' && '@Model.Id' != '' && '@Model.Id' != undefined && '@Model.TaskType'=='2') {
-                        //var calm = [];
-                        //$("input:checkbox[name=CalssMlt]:checked").each(function () {
-                        //    calm.push($(this).val());
-                        //});
-                        // var cm = calm.length != 0 ? calm.join(","):"";
-                        //var cm = $('#ClassMLT').val();
-                        //formData.append('ClassMLT', cm);
-                        //formData.append('ConductedDate', $('#ConductedDate').val());
-
-                        //formData.append('SessionType', $('#SessionType').val());
-                        //formData.append('NoofStudent', $('#NoofStudent').val());
-
-                        //if ($('#CareerMaster').val() != '' && $('#CareerMaster').val() != '0' && $('#SessionType').val() == "1") {
-                        //    formData.append('Session', $('#CareerMaster').val());
-                        //}
-                        //else if ($('#coursemaster').val() != '' && $('#coursemaster').val() != '0' && $('#SessionType').val() == "2") {
-                        //    formData.append('Session', $('#coursemaster').val());
-                        //}
-                        //else if ($('#SessionInput').val() != '' && $('#SessionType').val() == "3") {
-                        //    formData.append('SessionInput', $('#SessionInput').val());
-                        //}
                         formData.append('Id', $('#Id').val());
                         if ($('#AchievedNoofStudent').val() != '') {
                             formData.append('AchievedNoofStudent', $('#AchievedNoofStudent').val());
@@ -575,30 +581,9 @@
                         if ($('#AchieveImage').get(0).files.length != 0) {
                             formData.append('AchieveImage', $('#AchieveImage')[0].files[0]);
                         }
-                        if (TaskType === '0') {
-                            toastr.error("Error", 'Please select TaskType');
-                            isValid = false;
-                        }
-                        if (TaskType === '2') {
-                            if (SessionType === '0') {
-                                toastr.error("Error", 'Please select Session Type');
-                                isValid = false;
-                            } else if (SessionType === '1' && CareerMaster === '8') {
-                                if (SessionInputother === '') {
-                                    toastr.error("Error", 'Please enter Session Input');
-                                    isValid = false;
-                                }
-                            } else if (SessionType === '2' && CareerMaster === '279') {
-                                if (SessionInputother === '') {
-                                    toastr.error("Error", 'Please enter Session Input');
-                                    isValid = false;
-                                }
-                            }
-                        }
-
-                        return isValid;
                     }
 
+                    //
                     if ($('#TaskType').val() == "1" && $('#Id').val()=='0') {
                         let tbl = $('#tbl_Plan').DataTable();
                         tbl.$('input:checked').each(function (i, row) {
@@ -617,7 +602,7 @@
                                 MS_model.push({
                                     CalssId: Class_id,
                                     Session: Sessionid,
-                        
+
                                     NoofStudent: NoofStudent,
                                     ConductedDate: CDate,
                                     Ischeck: true,
@@ -633,7 +618,7 @@
                         formData.append('MS_model', JSON.stringify(MS_model));
                     }
                     else if ($('#TaskType').val() == "2" && $('#Id').val() == '0') {
-                        
+
                         var cm = $('#ClassMLT').val();
                         if (cm == null || cm == '' || cm == undefined) {
                             toastr.error("Error", "Please Select Class At Least One.");
@@ -673,17 +658,17 @@
                                 formData.append('SessionInputother', $('#SessionInputother').val());
                             }
                         }
-                        
 
-                            if ($('#SessionType').val() == "2" && $('#coursemaster').val() == '' && ('#SessionInputother').val() == '' && $('#coursemaster').val() == "279") {
-                                toastr.error("Error", "Please Select Course Others.");
-                                return false;
+                        if ($('#SessionType').val() == "2" && $('#coursemaster').val() == '' && $('#SessionInputother').val() == '' && $('#coursemaster').val() == "279") {
+                            toastr.error("Error", "Please Select Course Others.");
+                            return false;
+                        }
+                        else {
+                            if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && $('#SessionInputother').val() != '' && $('#coursemaster').val() == "279") {
+                                formData.append('SessionInputother', $('#SessionInputother').val());
                             }
-                            else {
-                                if ($('#SessionType').val() == "2" && $('#coursemaster').val() != '' && ('#SessionInputother').val() != '' && $('#coursemaster').val() == "279") {
-                                    formData.append('SessionInputother', $('#SessionInputother').val());
-                                }
-                            }
+                        }
+
                     }
                     $('#submit').prop('disabled', true);
 
@@ -717,6 +702,7 @@
                 } else {
                     toastr.error('Error', "Please fill all required fields!!");
                 }
+
             });
 
         });
