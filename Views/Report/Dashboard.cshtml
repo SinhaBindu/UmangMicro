@@ -1897,7 +1897,7 @@
                 }
             });
         }
-
+        var modularsumtotal = 0;
         function LoadModularChart() {
             $('#chartModular').html("");
             $('#chartModularblock').html("");
@@ -1988,6 +1988,7 @@
                                             y: ResD.Table[i].NoofModular,
                                             drilldown: ResD.Table[i].DistrictCode
                                         });
+                                        modularsumtotal += ResD.Table[i].NoofModular;
                                     }
                                     else {
                                         txt1 = 'COHORT-1';
@@ -1999,6 +2000,7 @@
                                             y: ResD.Table[i].NoofModular,
                                             drilldown: ResD.Table[i].DistrictCode
                                         });
+                                        modularsumtotal += ResD.Table[i].NoofModular;
                                     }
                                     else {
                                         txt2 = 'COHORT-2';
@@ -2010,6 +2012,7 @@
                                             y: ResD.Table[i].NoofModular,
                                             drilldown: ResD.Table[i].DistrictCode
                                         });
+                                        modularsumtotal += ResD.Table[i].NoofModular;
                                     }
                                     else {
                                         txt3 = 'COHORT-3';
@@ -2049,7 +2052,7 @@
                                 });
                             }
                             debugger;
-                            chartloadModular(discate1, DisDataS1to4, drilldownbclk);
+                            chartloadModular(discate1, DisDataS1to4, drilldownbclk, modularsumtotal);
                             bindtbl();
                             //chartloadModularBlock(discate1, BlockData, drilldownbclk);
                         }
@@ -2075,7 +2078,7 @@
         }
 
         // Create the chart Modular Session
-        function chartloadModular(Categy, Datas, DrillDown) {
+        function chartloadModular(Categy, Datas, DrillDown,TotalSumMudular) {
             console.log(Datas)
             console.log(DrillDown)
             Highcharts.chart('chartModular', {
@@ -2083,10 +2086,10 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Module Roll Out'
+                    text: 'Module Roll Out  '
                 },
                 subtitle: {
-                    text: 'District Wise'
+                    text: 'District Wise (No Of Schools) Total : ' + TotalSumMudular
                 },
                 xAxis: {
                     type: 'category'
@@ -2096,17 +2099,17 @@
                 },
                 plotOptions: {
                     series: {
-                        //events: {
-                        //    click: function (event) {
+                        events: {
+                            click: function (event) {
 
-                        //        //chartloadModularBlock(event.point.drilldown, event.point.name, this.name);
-                        //        alert(
-                        //          event.point.name + ' clicked\n' +
-                        //          'Alt: ' + event.point.drilldown +
-                        //          'Alt name: ' + this.name
-                        //        );
-                        //    },
-                        //},
+                                chartloadModularBlock(event.point.drilldown, event.point.name, this.name);
+                                //alert(
+                                //  event.point.name + ' clicked\n' +
+                                //  'Alt: ' + event.point.drilldown +
+                                //  'Alt name: ' + this.name
+                                //);
+                            },
+                        },
                         borderWidth: 0,
                         dataLabels: {
                             enabled: true
@@ -2131,7 +2134,7 @@
                 blkseries2 = [], blkseries3 = [], blkseries4 = [], blkDataS1to4 = []
             blkDDData1to4 = [], drilldownbclk = [];
             var txt1 = "", txt2 = "", txt3 = "", txt4 = "";
-            var blkDDData1to4list = [];
+            var blkDDData1to4list = []; var Totalsum = 0;
             if (reslist3) {
 
                 var resblk = reslist3.filter(x => x.DistrictCode == Discode && x.TYPEOFCOHORT == Typecohort);
@@ -2148,6 +2151,7 @@
                                 y: resblk[k].NoofModular,
                                 drilldown: resblk[k].DistrictCode
                             });
+                            Totalsum += resblk[k].NoofModular;
                         }
                         else if (resblk[k].TYPEOFCOHORT == "COHORT-2") {
                             blkseries2.push({
@@ -2155,6 +2159,7 @@
                                 y: resblk[k].NoofModular,
                                 drilldown: resblk[k].DistrictCode
                             });
+                            Totalsum += resblk[k].NoofModular;
                         }
                         else if (resblk[k].TYPEOFCOHORT == "COHORT-3") {
                             blkseries3.push({
@@ -2162,26 +2167,33 @@
                                 y: resblk[k].NoofModular,
                                 drilldown: resblk[k].DistrictCode
                             });
+                            Totalsum += resblk[k].NoofModular;
                         }
                     }
                 }
 
                 ////////////////////////////Block Wise /////////////////////
-                BlockData.push({
-                    name: 'COHORT-1',
-                    data: blkseries1,
-                    color: "#990099",
-                });
-                BlockData.push({
-                    name: 'COHORT-2',
-                    data: blkseries2,
-                    color: '#3dd5f0',
-                });
-                BlockData.push({
-                    name: 'COHORT-3',
-                    data: blkseries3,
-                    color: '#ff4500',
-                });
+                if (Typecohort =="COHORT-1") {
+                    BlockData.push({
+                        name: 'COHORT-1',
+                        data: blkseries1,
+                        color: "#990099",
+                    });
+                }
+               else if (Typecohort == "COHORT-2") {
+                    BlockData.push({
+                        name: 'COHORT-2',
+                        data: blkseries2,
+                        color: '#3dd5f0',
+                    });
+                }
+                else if (Typecohort == "COHORT-3") {
+                    BlockData.push({
+                        name: 'COHORT-3',
+                        data: blkseries3,
+                        color: '#ff4500',
+                    });
+                }
             }
             else {
                // $('#chartModularblock').css('display', 'node');
@@ -2204,7 +2216,7 @@
                     text: 'Module Roll Out'
                 },
                 subtitle: {
-                    text: 'Block Wise (District-' + Disname + ')'
+                    text: 'Block Wise (District-' + Disname + ') ' + Typecohort + ' Total : ' + Totalsum,
                 },
                 xAxis: {
                     type: 'category'

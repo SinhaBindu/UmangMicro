@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Owin.Security.Twitter.Messages;
+using Newtonsoft.Json;
 using SubSonic.Extensions;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using UmangMicro.Manager;
 using UmangMicro.Models;
 using static UmangMicro.Manager.Enums;
@@ -38,7 +40,8 @@ namespace UmangMicro.Controllers
                 {
                     var data = JsonConvert.SerializeObject(items);
                     var html = ConvertViewToString("_ModularData", items);
-                    return Json(new { IsSuccess = true, reshtml = html }, JsonRequestBehavior.AllowGet);
+                    var datahtml = JsonConvert.SerializeObject(new { IsSuccess = true, reshtml = html });
+                    return Content(datahtml, "application/json");
                 }
                 return Json(new { IsSuccess = false, reshtml = "Record Not Found." }, JsonRequestBehavior.AllowGet);
             }
