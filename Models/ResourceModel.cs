@@ -13,7 +13,7 @@ namespace UmangMicro.Models
         [Required]
         public string Name { get; set; }
         [Display(Name = "Designation")]
-        [Required]
+        
         public string Designation { get; set; }
         [Display (Name = "Designation Other")]
         public string Designation_Other { get; set; }
@@ -22,19 +22,18 @@ namespace UmangMicro.Models
         public string Organisation { get; set; }
         [EmailAddress]
         [Display(Name = "Email ID")]
-        //[Required]
+        [Required]
         public string Email { get; set; }
         [Display(Name = "Contact No")]
         [Required]
         public string ContactNo { get; set; }
         [Display(Name = "Age")]
-        [Required]
+        
         public string Age { get; set; }
         [Display(Name = "State")]
-        [Required]
         public string State { get; set; }
         [Display(Name = "District")]
-        [Required]
+        
         public string District { get; set; }
         [Display(Name = "Download Resource File")]
         [Required]

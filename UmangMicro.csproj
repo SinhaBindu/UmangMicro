@@ -647,6 +647,10 @@
     <Content Include="Content\assets\images\vline-rtl.gif" />
     <Content Include="Content\assets\images\vline.gif" />
     <Content Include="Content\assets\JS\main.d810cf0ae7f39f28f336.js" />
+    <Content Include="Content\images\difference\abc.jpg" />
+    <Content Include="Content\images\difference\def.jpg" />
+    <Content Include="Content\images\difference\point-bg.jpg" />
+    <Content Include="Content\images\orissa-map.png" />
     <Content Include="Scripts\JS\ModularCalendarDashboard.js" />
     <Content Include="Scripts\JS\POPModular.js" />
     <Content Include="Content\assets\main.css" />
